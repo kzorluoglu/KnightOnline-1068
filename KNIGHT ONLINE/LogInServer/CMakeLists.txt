@@ -31,13 +31,38 @@ target_compile_definitions(VersionManager PRIVATE
   WIN32
   _WINDOWS
   _MBCS
+  _WIN32_WINNT=0x0501
+  _CRT_SECURE_NO_WARNINGS
+  _WINSOCK_DEPRECATED_NO_WARNINGS
 )
 
 if(MSVC)
-  target_compile_options(VersionManager PRIVATE /UUNICODE /U_UNICODE /W3)
+  target_compile_options(VersionManager PRIVATE
+    /UUNICODE /U_UNICODE /W3
+    /Zc:forScope-
+    /wd4005
+    /wd4018
+    /wd4244
+    /wd4267
+    /wd4566
+    /wd4996
+    /wd4477
+    /wd4474
+    /wd4102
+    /wd4101
+    /wd4288
+  )
+  target_link_options(VersionManager PRIVATE
+    /NODEFAULTLIB:LIBC
+    /NODEFAULTLIB:LIBCD
+  )
 endif()
 
-target_link_libraries(VersionManager PRIVATE ws2_32)
+target_link_libraries(VersionManager PRIVATE
+  ws2_32
+  ZipLib
+  "${CMAKE_CURRENT_SOURCE_DIR}/zlib.lib"
+)
 
 set(ZIP_SOURCES
   AutoBuffer.cpp
@@ -60,8 +85,25 @@ target_compile_definitions(ZipLib PRIVATE
   _WINDOWS
   _MBCS
   ZLIB_DLL
+  _WIN32_WINNT=0x0501
+  _CRT_SECURE_NO_WARNINGS
+  _WINSOCK_DEPRECATED_NO_WARNINGS
 )
 
 if(MSVC)
-  target_compile_options(ZipLib PRIVATE /UUNICODE /U_UNICODE /W3)
+  target_compile_options(ZipLib PRIVATE
+    /UUNICODE /U_UNICODE /W3
+    /Zc:forScope-
+    /wd4005
+    /wd4018
+    /wd4244
+    /wd4267
+    /wd4566
+    /wd4996
+    /wd4477
+    /wd4474
+    /wd4102
+    /wd4101
+    /wd4288
+  )
 endif()

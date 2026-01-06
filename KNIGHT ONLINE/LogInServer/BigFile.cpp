@@ -20,7 +20,7 @@ CBigFile::~CBigFile()
 
 }
 
-_int64 CBigFile::Seek(_int64 dOff, UINT nFrom)
+ULONGLONG CBigFile::Seek(LONGLONG dOff, UINT nFrom)
 {
 	ASSERT_VALID(this);
 	ASSERT(m_hFile != (UINT)hFileNull);
@@ -36,6 +36,6 @@ _int64 CBigFile::Seek(_int64 dOff, UINT nFrom)
 		CFileException::ThrowOsError((LONG)dw);
 	}
 
-	return li.QuadPart;
+	return static_cast<ULONGLONG>(li.QuadPart);
 
 }

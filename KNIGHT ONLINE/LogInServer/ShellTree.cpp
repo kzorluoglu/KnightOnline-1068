@@ -349,8 +349,8 @@ LPITEMIDLIST CShellPidl::GetFullyQualPidl(LPSHELLFOLDER lpsf, LPITEMIDLIST lpi)
 					   MB_PRECOMPOSED,
 					   szBuff,
 					   -1,
-					   (USHORT *)szOleChar,
-					   sizeof(szOleChar));
+					   szOleChar,
+					   static_cast<int>(sizeof(szOleChar) / sizeof(szOleChar[0])));
 
    hr=lpsfDeskTop->ParseDisplayName(NULL,
 									NULL,
