@@ -295,7 +295,8 @@ void CNpc::InitPos()
 
 void CNpc::InitMagicValuable()
 {
-	for(int i=0; i<MAX_MAGIC_TYPE4; i++)	{
+	int i = 0;
+	for(i=0; i<MAX_MAGIC_TYPE4; i++)	{
 		m_MagicType4[i].byAmount = 100;
 		m_MagicType4[i].sDurationTime = 0;
 		m_MagicType4[i].fStartTime = 0.0f;

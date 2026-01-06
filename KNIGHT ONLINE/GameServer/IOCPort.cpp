@@ -395,7 +395,8 @@ CIOCPort::~CIOCPort()
 
 void CIOCPort::DeleteAllArray()
 {
-	for( int i=0; i<m_SocketArraySize; i++ ) {
+	int i = 0;
+	for( i=0; i<m_SocketArraySize; i++ ) {
 		if ( m_SockArray[i] != NULL ) {
 			delete m_SockArray[i];
 			m_SockArray[i] = NULL;
@@ -434,7 +435,8 @@ void CIOCPort::Init(int serversocksize, int clientsocksize, int workernum)
 	m_ClientSockSize = clientsocksize;
 	
 	m_SockArray = new CIOCPSocket2* [serversocksize];
-	for(int i = 0; i<serversocksize; i++ ) {
+	int i = 0;
+	for(i = 0; i<serversocksize; i++ ) {
 		m_SockArray[i] = NULL;
 	}
 

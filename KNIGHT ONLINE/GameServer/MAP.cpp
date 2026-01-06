@@ -272,7 +272,7 @@ void MAP::RegionUserAdd(int rx, int rz, int uid)
 Iterator MAP::RegionUserRemove(int rx, int rz, int uid)
 {
 	if( rx<0 || rz<0 || rx>m_sizeRegion.cx || rz>m_sizeRegion.cy )
-		return FALSE;
+		return Iterator();
 
 	CRegion	*region = NULL;
 	map < int, int* >::iterator		Iter;
@@ -311,7 +311,7 @@ void MAP::RegionNpcAdd(int rx, int rz, int nid)
 Iterator MAP::RegionNpcRemove(int rx, int rz, int nid)
 {
 	if( rx<0 || rz<0 || rx>m_sizeRegion.cx || rz>m_sizeRegion.cy )
-		return FALSE;
+		return Iterator();
 
 	CRegion	*region = NULL;
 	map < int, int* >::iterator		Iter;
@@ -346,7 +346,8 @@ void MAP::LoadMapTile(HANDLE hFile)
 	
 	m_pMap = new CMapInfo*[m_sizeMap.cx];
 
-	for( int i = 0; i < m_sizeMap.cx; i++)
+	int i = 0;
+	for( i = 0; i < m_sizeMap.cx; i++)
 	{
 		m_pMap[i] = new CMapInfo[m_sizeMap.cy];
 	}

@@ -161,6 +161,7 @@ END_MESSAGE_MAP()
 BOOL CServerDlg::OnInitDialog()
 {
 	CDialog::OnInitDialog();
+	int i = 0;
 
 	// Default Init ...
 	DefaultInit();
@@ -173,7 +174,7 @@ BOOL CServerDlg::OnInitDialog()
 	//----------------------------------------------------------------------
 	SetTimer( CHECK_ALIVE, 10000, NULL );
 	srand( (unsigned)time(NULL) );
-	for(int i = 0; i < 10; i++) myrand(1, 10000);	// don't delete
+	for(i = 0; i < 10; i++) myrand(1, 10000);	// don't delete
 	// Compress Init
 	memset( m_CompBuf, NULL, 10240 );		// 압축할 데이터를 모으는 버퍼
 	m_iCompIndex = 0;						// 압축할 데이터의 길이
@@ -1867,7 +1868,7 @@ int CServerDlg::Send(char* pData, int length, int nZone)
 }
 // ~sungyong 2002.05.23
 
-void CServerDlg::OnGameServerLogin( WPARAM wParam )
+LRESULT CServerDlg::OnGameServerLogin( WPARAM wParam, LPARAM lParam )
 {
 /*	if( m_bNpcInfoDown ) {
 		m_ZoneNpcList.push_back(wParam);
@@ -1875,6 +1876,9 @@ void CServerDlg::OnGameServerLogin( WPARAM wParam )
 	}
 
 	AllNpcInfo( wParam );	*/
+	(void)wParam;
+	(void)lParam;
+	return 0;
 }
 
 void CServerDlg::GameServerAcceptThread()
@@ -2156,7 +2160,8 @@ BOOL CServerDlg::SetSummonNpcData(CNpc* pNpc, int zone, float fx, float fz)
 	pEventNpc->m_NpcState = NPC_DEAD;	// 상태는 죽은것으로 해야 한다.. 
 	pEventNpc->m_bFirstLive = 1;		// 처음 살아난 경우로 해줘야 한다..
 
-	for(int i = 0; i < g_arZone.size(); i++)	{
+	int i = 0;
+	for(i = 0; i < g_arZone.size(); i++)	{
 		if(g_arZone[i]->m_nZoneNumber == zone)	{
 			pEventNpc->m_ZoneIndex = i;
 			break;
@@ -2173,7 +2178,6 @@ BOOL CServerDlg::SetSummonNpcData(CNpc* pNpc, int zone, float fx, float fz)
 	BOOL bSuccess = FALSE;
 
 	int test = 0;
-	
 	for(i = 0; i < NPC_NUM; i++ ) {
 		test = m_arEventNpcThread[0]->m_ThreadInfo.m_byNpcUsed[i];
 		TRACE("setsummon == %d, used=%d\n", i, test);
