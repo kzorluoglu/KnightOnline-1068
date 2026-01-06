@@ -42,9 +42,9 @@ function Find-CMake {
 }
 
 function Invoke-CMake {
-  param([string[]]$Args)
+  param([string[]]$CMakeArgs)
   if (-not $script:CMakePath) { throw "CMake not found. Install CMake or add it to PATH." }
-  & $script:CMakePath @Args
+  & $script:CMakePath @CMakeArgs
 }
 
 function Invoke-CMakeBuild {
