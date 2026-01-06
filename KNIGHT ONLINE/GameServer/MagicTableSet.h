@@ -24,8 +24,8 @@ public:
 	CString	m_Description;
 	BYTE	m_BeforeAction;
 	BYTE	m_TargetAction;
-	BYTE	m_SelfEffect;
-	BYTE	m_FlyingEffect;
+	int		m_SelfEffect;
+	int		m_FlyingEffect;
 	int		m_TargetEffect;
 	BYTE	m_Moral;
 	int		m_SkillLevel;

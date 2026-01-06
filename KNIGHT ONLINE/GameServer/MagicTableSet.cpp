@@ -69,8 +69,8 @@ void CMagicTableSet::DoFieldExchange(CFieldExchange* pFX)
 	RFX_Text(pFX, _T("[Description]"), m_Description);
 	RFX_Byte(pFX, _T("[BeforeAction]"), m_BeforeAction);
 	RFX_Byte(pFX, _T("[TargetAction]"), m_TargetAction);
-	RFX_Byte(pFX, _T("[SelfEffect]"), m_SelfEffect);
-	RFX_Byte(pFX, _T("[FlyingEffect]"), m_FlyingEffect);
+	RFX_Int(pFX, _T("[SelfEffect]"), m_SelfEffect);
+	RFX_Int(pFX, _T("[FlyingEffect]"), m_FlyingEffect);
 	RFX_Int(pFX, _T("[TargetEffect]"), m_TargetEffect);
 	RFX_Byte(pFX, _T("[Moral]"), m_Moral);
 	RFX_Int(pFX, _T("[SkillLevel]"), m_SkillLevel);
