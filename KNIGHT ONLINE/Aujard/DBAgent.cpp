@@ -36,7 +36,7 @@ BOOL CDBAgent::DatabaseInit()
 	m_pMain = (CAujardDlg*)AfxGetMainWnd();
 
 	CString strConnect;
-	strConnect.Format (_T("ODBC;DSN=%s;UID=%s;PWD=%s"), m_pMain->m_strGameDSN, m_pMain->m_strGameUID, m_pMain->m_strGamePWD );
+	strConnect = KO_BuildOdbcConnString(m_pMain->m_strGameDSN, _T("Aujard.ini"), NULL, m_pMain->m_strGameUID, m_pMain->m_strGamePWD);
 
 	m_GameDB.SetLoginTimeout (10);
 	if( !m_GameDB.Open(NULL,FALSE,FALSE,strConnect) )
@@ -45,7 +45,7 @@ BOOL CDBAgent::DatabaseInit()
 		return FALSE;
 	}
 
-	strConnect.Format (_T("ODBC;DSN=%s;UID=%s;PWD=%s"), m_pMain->m_strAccountDSN, m_pMain->m_strAccountUID, m_pMain->m_strAccountPWD );
+	strConnect = KO_BuildOdbcConnString(m_pMain->m_strAccountDSN, _T("Aujard.ini"), NULL, m_pMain->m_strAccountUID, m_pMain->m_strAccountPWD);
 
 	m_AccountDB.SetLoginTimeout (10);
 
@@ -76,7 +76,7 @@ void CDBAgent::ReConnectODBC(CDatabase *m_db, char *strdb, char *strname, char *
 
 	// DATABASE 연결...
 	CString strConnect;
-	strConnect.Format (_T("DSN=%s;UID=%s;PWD=%s"), strdb, strname, strpwd);
+	strConnect = KO_BuildOdbcConnString(strdb, _T("Aujard.ini"), NULL, strname, strpwd);
 	int iCount = 0;
 
 	DBProcessNumber( 1 );

@@ -33,8 +33,7 @@ BOOL CDBAgent::DatabaseInit()
 /////////////////////////////////////////////////////////////////////////////////////
 	m_pMain = (CItemManagerDlg*)AfxGetMainWnd();
 
-	CString strConnect;
-	strConnect.Format (_T("ODBC;DSN=%s;UID=%s;PWD=%s"), m_pMain->m_strGameDSN, m_pMain->m_strGameUID, m_pMain->m_strGamePWD );
+	CString strConnect = KO_BuildOdbcConnString(m_pMain->m_strGameDSN, _T("ItemDB.ini"), NULL, m_pMain->m_strGameUID, m_pMain->m_strGamePWD);
 
 	m_GameDB.SetLoginTimeout (10);
 	if( !m_GameDB.Open(NULL,FALSE,FALSE,strConnect) )
@@ -54,8 +53,7 @@ void CDBAgent::ReConnectODBC(CDatabase *m_db, char *strdb, char *strname, char *
 	m_pMain->m_ItemLogFile.Write(strlog, strlen(strlog));
 
 	// DATABASE 연결...
-	CString strConnect;
-	strConnect.Format (_T("DSN=%s;UID=%s;PWD=%s"), strdb, strname, strpwd);
+	CString strConnect = KO_BuildOdbcConnString(strdb, _T("ItemDB.ini"), NULL, strname, strpwd);
 	int iCount = 0;
 
 	do{	

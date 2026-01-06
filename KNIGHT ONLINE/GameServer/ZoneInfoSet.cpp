@@ -38,7 +38,7 @@ CZoneInfoSet::CZoneInfoSet(CDatabase* pdb)
 
 CString CZoneInfoSet::GetDefaultConnect()
 {
-	return _T("ODBC;DSN=KN_Online;UID=knight;PWD=knight");
+	return KO_BuildOdbcConnString(_T("KN_Online"), _T("server.ini"), _T("Server.ini"));
 }
 
 CString CZoneInfoSet::GetDefaultSQL()

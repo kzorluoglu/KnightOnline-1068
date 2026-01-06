@@ -39,7 +39,7 @@ CMonPosSet::CMonPosSet(CDatabase* pdb)
 
 CString CMonPosSet::GetDefaultConnect()
 {
-	return _T("ODBC;DSN=kn_online;UID=knight;PWD=knight");
+	return KO_BuildOdbcConnString(_T("KN_Online"), _T("server.ini"), _T("Server.ini"));
 }
 
 CString CMonPosSet::GetDefaultSQL()

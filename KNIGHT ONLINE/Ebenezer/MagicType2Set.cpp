@@ -36,7 +36,7 @@ CMagicType2Set::CMagicType2Set(CDatabase* pdb)
 
 CString CMagicType2Set::GetDefaultConnect()
 {
-	return _T("ODBC;DSN=KN_Online;UID=knight;PWD=knight");
+	return KO_BuildOdbcConnString(_T("KN_Online"), _T("Server.ini"), _T("server.ini"));
 }
 
 CString CMagicType2Set::GetDefaultSQL()

@@ -85,9 +85,7 @@ BOOL CVersionManagerDlg::OnInitDialog()
 		return FALSE;
 	}
 	
-	char strconnection[256];
-	memset(strconnection, NULL, 256 );
-	sprintf( strconnection, "ODBC;DSN=%s;UID=%s;PWD=%s", m_ODBCName, m_ODBCLogin, m_ODBCPwd );
+	CString strconnection = KO_BuildOdbcConnString(m_ODBCName, _T("Version.ini"), NULL, m_ODBCLogin, m_ODBCPwd);
 	if( !m_DBProcess.InitDatabase( strconnection ) ) {
 		AfxMessageBox("Database Connection Fail!!");
 		AfxPostQuitMessage(0);

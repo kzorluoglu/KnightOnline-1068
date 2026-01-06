@@ -39,7 +39,7 @@ CCharacterDataSet::CCharacterDataSet(CDatabase* pdb)
 
 CString CCharacterDataSet::GetDefaultConnect()
 {
-	return _T("ODBC;DSN=KN_Online;UID=knight;PWD=knight");
+	return KO_BuildOdbcConnString(_T("KN_Online"), _T("Server.ini"), _T("server.ini"));
 }
 
 CString CCharacterDataSet::GetDefaultSQL()

@@ -50,7 +50,7 @@ CItemLevelTableSet::CItemLevelTableSet(CDatabase* pdb)
 
 CString CItemLevelTableSet::GetDefaultConnect()
 {
-	return _T("ODBC;DSN=Repent;UID=Repent;PWD=Repent");
+	return KO_BuildOdbcConnString(_T("Repent"), _T("Server.ini"), _T("server.ini"));
 }
 
 CString CItemLevelTableSet::GetDefaultSQL()

@@ -83,7 +83,7 @@ CItemTableSet::CItemTableSet(CDatabase* pdb)
 
 CString CItemTableSet::GetDefaultConnect()
 {
-	return _T("ODBC;DSN=KN_Online;UID=knight;PWD=knight");
+	return KO_BuildOdbcConnString(_T("KN_Online"), _T("Aujard.ini"));
 }
 
 CString CItemTableSet::GetDefaultSQL()

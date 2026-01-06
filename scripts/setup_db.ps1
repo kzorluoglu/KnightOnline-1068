@@ -5,8 +5,7 @@ param(
   [int]$Port = 1433,
   [string]$SqlLogin = "knight",
   [string]$SqlPassword = "knight",
-  [string]$DriverName = "ODBC Driver 17 for SQL Server",
-  [switch]$CreateDsns = $true
+  [string]$DriverName = "ODBC Driver 17 for SQL Server"
 )
 
 $ErrorActionPreference = "Stop"
@@ -30,14 +29,28 @@ $repoRoot = Split-Path -Parent $repoRoot
 Set-Location $repoRoot
 
 Write-Info "==> Ensuring SQL Server container..."
+$portOwner = docker ps --format "{{.Names}}|{{.Ports}}" | ForEach-Object {
+  $parts = $_ -split '\|', 2
+  if ($parts.Count -eq 2 -and $parts[1] -match ":$Port->") { $parts[0] }
+} | Select-Object -First 1
+$existing = docker ps -a --format "{{.Names}}" | Where-Object { $_ -eq $ContainerName }
+if (-not $existing -and $portOwner -and $portOwner -ne $ContainerName) {
+  throw "Port $Port is already in use by container '$portOwner'. Stop it or rerun with -Port to choose a different host port."
+}
 $existing = docker ps -a --format "{{.Names}}" | Where-Object { $_ -eq $ContainerName }
 if (-not $existing) {
   docker run -e "ACCEPT_EULA=Y" -e "MSSQL_SA_PASSWORD=$SaPassword" `
     -p "$Port`:1433" --name $ContainerName -d $SqlImage | Out-Null
+  if ($LASTEXITCODE -ne 0) {
+    throw "Failed to create container $ContainerName. Resolve docker run errors above (port conflicts?) and retry."
+  }
 } else {
   $running = docker ps --format "{{.Names}}" | Where-Object { $_ -eq $ContainerName }
   if (-not $running) {
     docker start $ContainerName | Out-Null
+    if ($LASTEXITCODE -ne 0) {
+      throw "Failed to start container $ContainerName. Port $Port may be in use by another container."
+    }
   }
 }
 
@@ -82,7 +95,8 @@ if (-not (Test-Path $knAccount)) { throw "Missing: $knAccount" }
 
 $knAccountOut = Join-Path $tmpDir "knightaccount_docker.sql"
 $lines = Get-Content $knAccount
-$start = $lines.IndexOf($lines | Where-Object { $_ -match '^use \\[Knight_Account\\]' } | Select-Object -First 1)
+$marker = $lines | Where-Object { $_ -match '^use \[Knight_Account\]' } | Select-Object -First 1
+$start = $lines.IndexOf($marker)
 if ($start -lt 0) { throw "Could not find 'use [Knight_Account]' in knightaccount.sql" }
 $lines[$start..($lines.Length - 1)] | Set-Content $knAccountOut -Encoding ASCII
 
@@ -94,25 +108,5 @@ docker exec $ContainerName /opt/mssql-tools/bin/sqlcmd -S localhost -U sa -P $Sa
 
 docker cp $versionSql "$ContainerName`:/tmp/version.sql" | Out-Null
 docker exec $ContainerName /opt/mssql-tools/bin/sqlcmd -S localhost -U sa -P $SaPassword -d Knight -i /tmp/version.sql | Out-Null
-
-if ($CreateDsns) {
-  Write-Info "==> Creating 32-bit and 64-bit System DSNs (requires Admin)..."
-  $dsnList = @(
-    @{ Name = "KN_Online"; Db = "KN_Online" },
-    @{ Name = "kn_online"; Db = "KN_Online" },
-    @{ Name = "Knight_Account"; Db = "Knight_Account" },
-    @{ Name = "Repent"; Db = "Repent" },
-    @{ Name = "Knight"; Db = "Knight" }
-  )
-
-  $odbc32 = "$env:SystemRoot\SysWOW64\odbcconf.exe"
-  $odbc64 = "$env:SystemRoot\System32\odbcconf.exe"
-
-  foreach ($dsn in $dsnList) {
-    $attrs = "DSN=$($dsn.Name)|Server=localhost,$Port|Database=$($dsn.Db)|Trusted_Connection=No|UID=$SqlLogin|PWD=$SqlPassword"
-    & $odbc32 /A "CONFIGSYSDSN `"$DriverName`" `"$attrs`"" | Out-Null
-    & $odbc64 /A "CONFIGSYSDSN `"$DriverName`" `"$attrs`"" | Out-Null
-  }
-}
 
 Write-Info "==> Done."

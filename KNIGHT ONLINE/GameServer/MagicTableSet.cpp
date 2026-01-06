@@ -51,7 +51,7 @@ CMagicTableSet::CMagicTableSet(CDatabase* pdb)
 
 CString CMagicTableSet::GetDefaultConnect()
 {
-	return _T("ODBC;DSN=kn_online;UID=knight;PWD=knight");
+	return KO_BuildOdbcConnString(_T("KN_Online"), _T("server.ini"), _T("Server.ini"));
 }
 
 CString CMagicTableSet::GetDefaultSQL()

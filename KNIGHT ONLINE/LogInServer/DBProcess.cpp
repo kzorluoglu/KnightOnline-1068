@@ -28,7 +28,7 @@ CDBProcess::~CDBProcess()
 
 }
 
-BOOL CDBProcess::InitDatabase(char *strconnection)
+BOOL CDBProcess::InitDatabase(LPCTSTR strconnection)
 {
 	m_VersionDB.SetLoginTimeout(100);
 
@@ -49,7 +49,7 @@ void CDBProcess::ReConnectODBC(CDatabase *m_db, const char *strdb, const char *s
 
 	// DATABASE 연결...
 	CString strConnect;
-	strConnect.Format (_T("DSN=%s;UID=%s;PWD=%s"), strdb, strname, strpwd);
+	strConnect = KO_BuildOdbcConnString(strdb, _T("Version.ini"), NULL, strname, strpwd);
 	int iCount = 0;
 
 	do{	

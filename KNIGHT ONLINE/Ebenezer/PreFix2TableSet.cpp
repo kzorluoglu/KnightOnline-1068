@@ -60,7 +60,7 @@ CPreFix2TableSet::CPreFix2TableSet(CDatabase* pdb)
 
 CString CPreFix2TableSet::GetDefaultConnect()
 {
-	return _T("ODBC;DSN=Repent;UID=Repent;PWD=Repent");
+	return KO_BuildOdbcConnString(_T("Repent"), _T("Server.ini"), _T("server.ini"));
 }
 
 CString CPreFix2TableSet::GetDefaultSQL()

@@ -52,7 +52,7 @@ CMagicType4Set::CMagicType4Set(CDatabase* pdb)
 
 CString CMagicType4Set::GetDefaultConnect()
 {
-	return _T("ODBC;DSN=kn_online;UID=knight;PWD=knight");
+	return KO_BuildOdbcConnString(_T("KN_Online"), _T("server.ini"), _T("Server.ini"));
 }
 
 CString CMagicType4Set::GetDefaultSQL()
