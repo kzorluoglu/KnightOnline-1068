@@ -61,6 +61,15 @@ target_include_directories(Ebenezer PRIVATE
   "${CMAKE_CURRENT_SOURCE_DIR}/N3Base"
 )
 
+set(_eb_out "${CMAKE_SOURCE_DIR}/dist/bin/Ebenezer")
+set_target_properties(Ebenezer PROPERTIES
+  RUNTIME_OUTPUT_DIRECTORY "${_eb_out}"
+  RUNTIME_OUTPUT_DIRECTORY_DEBUG "${_eb_out}"
+  RUNTIME_OUTPUT_DIRECTORY_RELEASE "${_eb_out}"
+  RUNTIME_OUTPUT_DIRECTORY_RELWITHDEBINFO "${_eb_out}"
+  RUNTIME_OUTPUT_DIRECTORY_MINSIZEREL "${_eb_out}"
+)
+
 target_compile_definitions(Ebenezer PRIVATE
   WIN32
   _WINDOWS

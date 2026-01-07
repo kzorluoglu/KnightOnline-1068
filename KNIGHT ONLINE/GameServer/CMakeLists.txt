@@ -63,6 +63,15 @@ target_include_directories(GameServer PRIVATE
   "${CMAKE_CURRENT_SOURCE_DIR}/N3BASE"
 )
 
+set(_gs_out "${CMAKE_SOURCE_DIR}/dist/bin/GameServer")
+set_target_properties(GameServer PROPERTIES
+  RUNTIME_OUTPUT_DIRECTORY "${_gs_out}"
+  RUNTIME_OUTPUT_DIRECTORY_DEBUG "${_gs_out}"
+  RUNTIME_OUTPUT_DIRECTORY_RELEASE "${_gs_out}"
+  RUNTIME_OUTPUT_DIRECTORY_RELWITHDEBINFO "${_gs_out}"
+  RUNTIME_OUTPUT_DIRECTORY_MINSIZEREL "${_gs_out}"
+)
+
 target_compile_definitions(GameServer PRIVATE
   WIN32
   _WINDOWS

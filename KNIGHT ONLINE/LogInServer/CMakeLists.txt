@@ -27,6 +27,15 @@ add_executable(VersionManager WIN32 ${LOGINSERVER_SOURCES})
 
 target_include_directories(VersionManager PRIVATE "${CMAKE_CURRENT_SOURCE_DIR}")
 
+set(_vm_out "${CMAKE_SOURCE_DIR}/dist/bin/VersionManager")
+set_target_properties(VersionManager PROPERTIES
+  RUNTIME_OUTPUT_DIRECTORY "${_vm_out}"
+  RUNTIME_OUTPUT_DIRECTORY_DEBUG "${_vm_out}"
+  RUNTIME_OUTPUT_DIRECTORY_RELEASE "${_vm_out}"
+  RUNTIME_OUTPUT_DIRECTORY_RELWITHDEBINFO "${_vm_out}"
+  RUNTIME_OUTPUT_DIRECTORY_MINSIZEREL "${_vm_out}"
+)
+
 target_compile_definitions(VersionManager PRIVATE
   WIN32
   _WINDOWS

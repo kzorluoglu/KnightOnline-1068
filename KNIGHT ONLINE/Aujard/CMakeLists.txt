@@ -21,6 +21,15 @@ add_executable(Aujard WIN32 ${AUJARD_SOURCES})
 
 target_include_directories(Aujard PRIVATE "${CMAKE_CURRENT_SOURCE_DIR}")
 
+set(_auj_out "${CMAKE_SOURCE_DIR}/dist/bin/Aujard")
+set_target_properties(Aujard PROPERTIES
+  RUNTIME_OUTPUT_DIRECTORY "${_auj_out}"
+  RUNTIME_OUTPUT_DIRECTORY_DEBUG "${_auj_out}"
+  RUNTIME_OUTPUT_DIRECTORY_RELEASE "${_auj_out}"
+  RUNTIME_OUTPUT_DIRECTORY_RELWITHDEBINFO "${_auj_out}"
+  RUNTIME_OUTPUT_DIRECTORY_MINSIZEREL "${_auj_out}"
+)
+
 target_compile_definitions(Aujard PRIVATE
   WIN32
   _WINDOWS
