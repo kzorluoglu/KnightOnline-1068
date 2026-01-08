@@ -1,0 +1,7 @@
+EVENT 22001 ; ow ye men
+E SELECT_MSG 19997 99106 99101 22101 50006 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+END
+
+EVENT 22101 ; sana puaným 9 kankam xD
+E ZONE_CHANGE 21 311 347
+END

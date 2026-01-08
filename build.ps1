@@ -12,6 +12,33 @@ $ErrorActionPreference = "Stop"
 $repoRoot = Split-Path -Parent $MyInvocation.MyCommand.Path
 Set-Location $repoRoot
 
+function Ensure-GeneratorConsistency {
+  param(
+    [string]$Dir,
+    [string]$RequestedGenerator
+  )
+  if (-not (Test-Path $Dir)) { return }
+  $cacheFile = Join-Path $Dir "CMakeCache.txt"
+  if (-not (Test-Path $cacheFile)) { return }
+
+  $generatorLine = Select-String -Pattern "^CMAKE_GENERATOR:INTERNAL=(.+)$" -Path $cacheFile -SimpleMatch -Encoding UTF8 -ErrorAction SilentlyContinue |
+    Select-Object -First 1
+  if (-not $generatorLine) { return }
+
+  $configuredGenerator = $generatorLine.Matches[0].Groups[1].Value.Trim()
+  if ($configuredGenerator -ieq $RequestedGenerator) { return }
+
+  Write-Host "Generator mismatch detected (cache: $configuredGenerator, requested: $RequestedGenerator). Cleaning cache from $Dir."
+  Remove-Item -Path $cacheFile -Force -ErrorAction SilentlyContinue
+  $cmakeFiles = Join-Path $Dir "CMakeFiles"
+  if (Test-Path $cmakeFiles) {
+    Remove-Item -Path $cmakeFiles -Recurse -Force -ErrorAction SilentlyContinue
+  }
+}
+
+$buildDirFull = Join-Path $repoRoot $BuildDir
+Ensure-GeneratorConsistency -Dir $buildDirFull -RequestedGenerator $Generator
+
 function Find-CMake {
   $cmd = Get-Command cmake -ErrorAction SilentlyContinue
   if ($cmd) { return $cmd.Path }
@@ -156,29 +183,29 @@ New-Item -ItemType Directory -Path $distBin -Force | Out-Null
 $packageSpecs = @(
   @{
     Name = "Aujard"
-    ExeRel = "KNIGHT ONLINE/Aujard/$Config/Aujard.exe"
-    Configs = @("KNIGHT ONLINE/Aujard/Aujard.ini", "dist/bin/Aujard/Aujard.ini")
+    ExeRel = "Server Source Codes/Aujard/$Config/Aujard.exe"
+    Configs = @("Server Source Codes/Aujard/Aujard.ini")
     DataDirs = @()
   },
   @{
     Name = "Ebenezer"
-    ExeRel = "KNIGHT ONLINE/Ebenezer/$Config/Ebenezer.exe"
-    Configs = @("KNIGHT ONLINE/Ebenezer/Server.ini")
-    DataDirs = @(@{From=@("KNIGHT ONLINE/Ebenezer/map", "dist/bin/Ebenezer/MAP"); To="MAP"})
+    ExeRel = "Server Source Codes/Ebenezer/$Config/Ebenezer.exe"
+    Configs = @("Server Source Codes/Ebenezer/Server.ini")
+    DataDirs = @(@{From=@("Server Source Codes/Ebenezer/map"); To="MAP"})
   },
   @{
     Name = "GameServer"
-    ExeRel = "KNIGHT ONLINE/GameServer/$Config/GameServer.exe"
-    Configs = @("KNIGHT ONLINE/GameServer/server.ini")
+    ExeRel = "Server Source Codes/GameServer/$Config/GameServer.exe"
+    Configs = @("Server Source Codes/GameServer/server.ini")
     DataDirs = @(
-      @{From=@("KNIGHT ONLINE/GameServer/map", "dist/bin/GameServer/MAP"); To="MAP"},
-      @{From=@("KNIGHT ONLINE/GameServer/quests", "dist/bin/GameServer/quests"); To="quests"}
+      @{From=@("Server Source Codes/GameServer/map"); To="MAP"},
+      @{From=@("Server Source Codes/GameServer/quests"); To="quests"}
     )
   },
   @{
     Name = "VersionManager"
-    ExeRel = "KNIGHT ONLINE/LogInServer/$Config/VersionManager.exe"
-    Configs = @("KNIGHT ONLINE/LogInServer/Version.ini")
+    ExeRel = "Server Source Codes/LogInServer/$Config/VersionManager.exe"
+    Configs = @("Server Source Codes/LogInServer/Version.ini")
     DataDirs = @()
   }
 )

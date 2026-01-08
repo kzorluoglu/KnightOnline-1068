@@ -1,0 +1,36 @@
+##################### DEATH ZONE #####################
+
+EVENT 40101;
+E SELECT_MSG 20091 31011 45111 45101 45112 45102 45113 45103 45114 45104 45115 45105 45116 45106 20018 45107 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1;나갈래 말래?
+END
+
+
+EVENT 45101 ; Teleport Minotaur
+E ZONE_CHANGE 72 64 232
+END
+
+EVENT 45102 ; Teleport Lillime
+E ZONE_CHANGE 72 103 74
+END
+
+EVENT 45103 ; Teleport Leech King
+E ZONE_CHANGE 72 248 64
+END
+
+EVENT 45104 ; Teleport Cockatrice
+E ZONE_CHANGE 72 441 186
+END
+
+EVENT 45105 ; Teleport Bone Dragon
+E ZONE_CHANGE 72 407 326
+END
+
+EVENT 45106 ; Teleport Deva Bird
+E ZONE_CHANGE 72 296 298
+END
+
+EVENT 45107 ; Moradon
+E ZONE_CHANGE 21 34 26
+END
+
+######################################################

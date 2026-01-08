@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.36617.4
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "WarFare", "WarFare.vcxproj", "{918844DD-E7EA-40DF-9CFA-679260DA64A4}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x86 = Debug|x86
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{918844DD-E7EA-40DF-9CFA-679260DA64A4}.Debug|x86.ActiveCfg = Debug|Win32
+		{918844DD-E7EA-40DF-9CFA-679260DA64A4}.Debug|x86.Build.0 = Debug|Win32
+		{918844DD-E7EA-40DF-9CFA-679260DA64A4}.Release|x86.ActiveCfg = Release|Win32
+		{918844DD-E7EA-40DF-9CFA-679260DA64A4}.Release|x86.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {28529DB6-0A73-425D-A840-C73220386054}
+	EndGlobalSection
+EndGlobal
