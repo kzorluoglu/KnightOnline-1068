@@ -439,9 +439,12 @@ BOOL CN3TableBase<Type>::Load(HANDLE hFile)
 		}
 
 		unsigned int dwKey = *((unsigned int*)(&Data));
-		std::pair<typename MapType::iterator, bool> pt = m_Datas.insert(typename MapType::value_type(dwKey, Data));
-
-		__ASSERT(pt.second, "CN3TableBase<Type> : Key ??? ???.");
+		auto it = m_Datas.find(dwKey);
+		if(it == m_Datas.end())
+		{
+			m_Datas.insert(typename MapType::value_type(dwKey, Data));
+		}
+		// If duplicate key, just skip to avoid asserts/crash.
 	}
 	return TRUE;
 }

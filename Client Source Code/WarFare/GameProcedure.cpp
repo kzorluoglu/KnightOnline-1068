@@ -126,7 +126,9 @@ void CGameProcedure::Init()
 
 void CGameProcedure::StaticMemberInit(HINSTANCE hInstance, HWND hWndMain, HWND hWndSub)
 {
+	CLogWriter::Write("StaticMemberInit: begin");
 	s_pKnightChr = new CKnightChrMgr(hWndMain);
+	CLogWriter::Write("StaticMemberInit: after KnightChrMgr");
 
 	//////////////////////////////////////////////////////////////////////////////////////////
 	// ���� �⺻ 3D ���� �����..
@@ -155,22 +157,31 @@ void CGameProcedure::StaticMemberInit(HINSTANCE hInstance, HWND hWndMain, HWND h
 	RECT rc;
 	::GetClientRect(hWndMain, &rc);
 	s_pEng = new CGameEng();
-	if(false == s_pEng->Init(s_bWindowed, hWndMain, CN3Base::s_Options.iViewWidth, CN3Base::s_Options.iViewHeight, CN3Base::s_Options.iViewColorDepth, TRUE)) exit(-1);
+	if(false == s_pEng->Init(s_bWindowed, hWndMain, CN3Base::s_Options.iViewWidth, CN3Base::s_Options.iViewHeight, CN3Base::s_Options.iViewColorDepth, TRUE))
+	{
+		CLogWriter::Write("StaticMemberInit: s_pEng->Init failed");
+		exit(-1);
+	}
+	CLogWriter::Write("StaticMemberInit: s_pEng->Init ok");
 	// ���� �⺻ 3D ���� �����..
 	::SetFocus(hWndMain); // Set focus this window..
+	CLogWriter::Write("StaticMemberInit: after SetFocus");
 	
 	RECT rcTmp = rc; rcTmp.left = (rc.right - rc.left) / 2; rcTmp.bottom = rcTmp.top + 30;
 	CN3UIEdit::CreateEditWindow(hWndMain, rcTmp);
+	CLogWriter::Write("StaticMemberInit: after UIEdit create");
 	//////////////////////////////////////////////////////////////////////////////////////////
 
 	s_hWndSubSocket = hWndSub; // ���� ���Ͽ� ������ �ڵ�..
 
 	CGameBase::StaticMemberInit(); // Table �� ����, ������Ʈ, ĳ���� �ʱ�ȭ...
+	CLogWriter::Write("StaticMemberInit: tables loaded");
 
 	//////////////////////////////////////////////////////////////////////////////////////////
 	// Game Procedure ���ϰ� ���� ��ǲ, 3D����, Resource Table �ε� �� �ʱ�ȭ...
 	s_pSocket = new CAPISocket();
 	s_pSocketSub = new CAPISocket();
+	CLogWriter::Write("StaticMemberInit: sockets created");
 	
     // Ŀ�� �����..
 	s_hCursorNormal =		LoadCursor(hInstance, MAKEINTRESOURCE(IDC_CURSOR_NORMAL));
@@ -187,9 +198,11 @@ void CGameProcedure::StaticMemberInit(HINSTANCE hInstance, HWND hWndMain, HWND h
 		s_pGameCursor->LoadFromFile("ui\\cursor.uif");
 	}
 	SetGameCursor(s_hCursorNormal);
+	CLogWriter::Write("StaticMemberInit: cursors loaded");
 
 	s_pLocalInput = new CLocalInput();
 	s_pLocalInput->Init(hInstance, hWndMain, FALSE); // Input �� �ʱ�ȭ.
+	CLogWriter::Write("StaticMemberInit: input initialized");
 
 	//////////////////////////////////////////////////////////////////////////////////////////
 	// Sound �ʱ�ȭ..
@@ -199,6 +212,7 @@ void CGameProcedure::StaticMemberInit(HINSTANCE hInstance, HWND hWndMain, HWND h
 		CN3Base::s_SndMgr.SetDuplicated(CN3Base::s_Options.bSndDuplicated);
 	}
 	CN3FXBundle::SetEffectSndDistance(float(CN3Base::s_Options.iEffectSndDist));
+	CLogWriter::Write("StaticMemberInit: sound/fx init done");
 
 	s_pFX = new CN3FXMgr();
 
@@ -207,9 +221,11 @@ void CGameProcedure::StaticMemberInit(HINSTANCE hInstance, HWND hWndMain, HWND h
 
 	s_pUIMgr = new CUIManager(); // �⺻ UIManager
 	s_pMsgBoxMgr = new CUIMessageBoxManager(); //MessageBox Manager
+	CLogWriter::Write("StaticMemberInit: UI managers created");
 
 	// ����..
 	CN3UIBase::EnableTooltip(pTblUI->szToolTip);
+	CLogWriter::Write("StaticMemberInit: tooltip enabled");
 
 	//////////////////////////////////////////////////////////////////////////////////////////
 	// �� ���ν����� ����
@@ -242,6 +258,7 @@ void CGameProcedure::StaticMemberInit(HINSTANCE hInstance, HWND hWndMain, HWND h
 		   s_eVersion=W98;
 		else
 		   s_eVersion=WME;				
+	CLogWriter::Write("StaticMemberInit: end");
 	}
 }
 

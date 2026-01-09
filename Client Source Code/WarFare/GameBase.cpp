@@ -65,13 +65,13 @@ void CGameBase::StaticMemberInit()
 	if(0x0404 == iLangID) szLangTail = "_TW.tbl"; // Taiwan Language
 
 	std::string szFN;
-	szFN = "Data\\Zones.tbl";				s_pTbl_Zones->LoadFromFile(szFN.c_str());		// Zone ������ ���� Table
-	szFN = "Data\\UIs" + szLangTail;		s_pTbl_UI->LoadFromFile(szFN.c_str());			// UI Resource File Table loading
-	szFN = "Data\\UPC_DefaultLooks.tbl";	s_pTbl_UPC_Looks->LoadFromFile(szFN.c_str());	// �÷��̾���� �⺻ ����� �Ǵ� NPC Resource Table loading
-	szFN = "Data\\Item_Org" + szLangTail;	s_pTbl_Items_Basic->LoadFromFile(szFN.c_str());	// Item Resource Table loading
+	szFN = "Data\\Zones.tbl";				s_pTbl_Zones->LoadFromFile(szFN.c_str());		CLogWriter::Write("Load Zones rows=%d", s_pTbl_Zones->GetSize());
+	szFN = "Data\\UIs" + szLangTail;		s_pTbl_UI->LoadFromFile(szFN.c_str());			CLogWriter::Write("Load UIs rows=%d", s_pTbl_UI->GetSize());
+	szFN = "Data\\UPC_DefaultLooks.tbl";	s_pTbl_UPC_Looks->LoadFromFile(szFN.c_str());	CLogWriter::Write("Load UPC_DefaultLooks rows=%d", s_pTbl_UPC_Looks->GetSize());
+	szFN = "Data\\Item_Org" + szLangTail;	s_pTbl_Items_Basic->LoadFromFile(szFN.c_str());	CLogWriter::Write("Load Item_Org rows=%d", s_pTbl_Items_Basic->GetSize());
 
-	szFN = "Data\\Quest_Menu" + szLangTail;	s_pTbl_QuestMenu->LoadFromFile(szFN.c_str());	// ����Ʈ ���� ���ø޴�
-	szFN = "Data\\Quest_Talk" + szLangTail;	s_pTbl_QuestTalk->LoadFromFile(szFN.c_str());	// ����Ʈ ���� ����
+	szFN = "Data\\Quest_Menu" + szLangTail;	s_pTbl_QuestMenu->LoadFromFile(szFN.c_str());	CLogWriter::Write("Load Quest_Menu rows=%d", s_pTbl_QuestMenu->GetSize());
+	szFN = "Data\\Quest_Talk" + szLangTail;	s_pTbl_QuestTalk->LoadFromFile(szFN.c_str());	CLogWriter::Write("Load Quest_Talk rows=%d", s_pTbl_QuestTalk->GetSize());
 
 	for(i = 0; i < MAX_ITEM_EXTENSION; i++)
 	{
@@ -79,12 +79,13 @@ void CGameBase::StaticMemberInit()
 		sprintf(szFNTmp, "Data\\Item_Ext_%d", i);
 		szFN = szFNTmp + szLangTail;
 		s_pTbl_Items_Exts[i]->LoadFromFile(szFN.c_str());
+		CLogWriter::Write("Load Item_Ext_%d rows=%d", i, s_pTbl_Items_Exts[i]->GetSize());
 	}
 
-	szFN = "Data\\NPC_Looks.tbl";					s_pTbl_NPC_Looks->LoadFromFile(szFN.c_str());		// NPC Resource Table loading
-	szFN = "Data\\skill_magic_main" + szLangTail;	s_pTbl_Skill->LoadFromFile(szFN.c_str());			// Skill ������ ���� Table
-	szFN = "Data\\Exchange_Quest.tbl";				s_pTbl_Exchange_Quest->LoadFromFile(szFN.c_str());	// ��ȯ ����Ʈ�� ���� ���̺�..
-	szFN = "Data\\fx.tbl";							s_pTbl_FXSource->LoadFromFile(szFN.c_str());
+	szFN = "Data\\NPC_Looks.tbl";					s_pTbl_NPC_Looks->LoadFromFile(szFN.c_str());		CLogWriter::Write("Load NPC_Looks rows=%d", s_pTbl_NPC_Looks->GetSize());
+	szFN = "Data\\skill_magic_main" + szLangTail;	s_pTbl_Skill->LoadFromFile(szFN.c_str());			CLogWriter::Write("Load skill_magic_main rows=%d", s_pTbl_Skill->GetSize());
+	szFN = "Data\\Exchange_Quest.tbl";				s_pTbl_Exchange_Quest->LoadFromFile(szFN.c_str());	CLogWriter::Write("Load Exchange_Quest rows=%d", s_pTbl_Exchange_Quest->GetSize());
+	szFN = "Data\\fx.tbl";							s_pTbl_FXSource->LoadFromFile(szFN.c_str());		CLogWriter::Write("Load fx rows=%d", s_pTbl_FXSource->GetSize());
 
 
 	s_pWorldMgr = new CN3WorldManager();
