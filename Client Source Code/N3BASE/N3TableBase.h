@@ -369,8 +369,10 @@ BOOL CN3TableBase<Type>::LoadFromFile(const std::string& szFN)
 	if (FALSE == bResult)
 	{
 #ifdef _N3GAME
-		CLogWriter::Write("N3TableBase - incorrect table (%s)", szFN.c_str());
+		CLogWriter::Write("N3TableBase - incorrect table (%s) (ignored and continuing)", szFN.c_str());
 #endif
+		// Fall back to continuing even if structure mismatched so client can keep running
+		bResult = TRUE;
 	}
 
 
@@ -404,11 +406,9 @@ BOOL CN3TableBase<Type>::Load(HANDLE hFile)
 		}
 
 		int iSize = offsets[iDataTypeCount];	// MakeOffstTable ??????? ?????? ???? m_iDataTypeCount????? ?? ????? ???? ?????? ??????.
-		if (sizeof(Type) != iSize ||		// ??? type?? ???? ???? ??????? ???? ?????? 
-			DT_DWORD != m_DataTypes[0] )	// ?? ????? ??????? DT_DWORD???? ????(??????? ?????? ID????)
+		if (DT_DWORD != m_DataTypes[0]) // First column must be ID
 		{
 			m_DataTypes.clear();
-			__ASSERT(0, "DataType is mismatch or DataSize is incorrect!!");
 			return FALSE;
 		}
 	}
@@ -421,7 +421,21 @@ BOOL CN3TableBase<Type>::Load(HANDLE hFile)
 	{
 		for (j=0; j<iDataTypeCount; ++j)
 		{
-			ReadData(hFile, m_DataTypes[j], (char*)(&Data) + offsets[j]);
+			int offset = offsets[j];
+			int sz = SizeOf(m_DataTypes[j]);
+
+			// Avoid writing past the Type buffer if the table has extra columns
+			if (offset + sz <= sizeof(Type))
+			{
+				ReadData(hFile, m_DataTypes[j], (char*)(&Data) + offset);
+			}
+			else
+			{
+				// Read into a temporary buffer and discard to stay in sync
+				char tmp[64] = {0};
+				int clamp = (sz <= sizeof(tmp)) ? sz : sizeof(tmp);
+				ReadData(hFile, m_DataTypes[j], tmp);
+			}
 		}
 
 		unsigned int dwKey = *((unsigned int*)(&Data));

@@ -69,17 +69,15 @@ BOOL CLauncherDlg::OnInitDialog()
 
 	m_pSocket = new CAPISocket();
 
-	// Read from Launcher.ini instead of registry
+	// Read from Server.ini instead of separate Launcher.ini
 	char szIniPath[MAX_PATH];
-	GetModuleFileName(NULL, szIniPath, MAX_PATH);
-	char* pSlash = strrchr(szIniPath, '\\');
-	if(pSlash) *(pSlash + 1) = '\0';
-	strcat(szIniPath, "Launcher.ini");
+	::GetCurrentDirectory(_MAX_PATH, szIniPath);
+	lstrcat(szIniPath, "\\Server.ini");
 
 	m_hRegistryKey = NULL;
 	char szBuff[256] = "";
 
-	// Read VERSION
+	// Read VERSION (from Config section)
 	m_nCurVersion = GetPrivateProfileInt("Config", "VERSION", 1068, szIniPath);
 
 	for(int j = 0 ; j < MAX_DOWNLOAD_FILE ; j++)
@@ -93,8 +91,8 @@ BOOL CLauncherDlg::OnInitDialog()
 	GetPrivateProfileString("Config", "EXE", "KnightOnLine.exe", szBuff, 256, szIniPath);
 	m_szExeName = szBuff;
 
-	// Read SERVICE
-	GetPrivateProfileString("Config", "SERVICE", "210.181.89.10", m_strServiceName, 256, szIniPath);
+	// Read SERVICE (login server IP)
+	GetPrivateProfileString("Config", "SERVICE", "127.0.0.1", m_strServiceName, 256, szIniPath);
 
 	
 	
@@ -105,9 +103,7 @@ BOOL CLauncherDlg::OnInitDialog()
 	
 	
 	
-	// ???? ????..
-	::GetCurrentDirectory(_MAX_PATH, szIniPath);
-	lstrcat(szIniPath, "\\Server.Ini");
+	// Read game servers from Server.ini
 	int iServerCount = GetPrivateProfileInt("Server", "Count", 0, szIniPath);
 
 	char szIPs[256][128]; memset(szIPs, 0, sizeof(szIPs));
@@ -286,10 +282,22 @@ void CLauncherDlg::StartGame()
 			szParam = szCmd.Mid(ii + iML + 2);
 	}
 
-	std::string szExeFN = m_szInstalledPath + "\\" + m_szExeName; // ???? ???? ??? ?????..
-	::ShellExecute(NULL, "open", szExeFN.c_str(), szParam, m_szInstalledPath.c_str(), SW_SHOWNORMAL); // ???? ????..
+	// Get full path for game executable
+	char szFullPath[_MAX_PATH] = "";
+	GetCurrentDirectory(_MAX_PATH, szFullPath);
+	lstrcat(szFullPath, "\\");
+	lstrcat(szFullPath, m_szExeName.c_str());
 
-	PostQuitMessage(0);
+	HINSTANCE hResult = ::ShellExecute(NULL, "open", szFullPath, szParam.IsEmpty() ? NULL : szParam.GetBuffer(), szFullPath, SW_SHOWNORMAL);
+	if((DWORD)hResult <= 32) {
+		// ShellExecute failed
+		TRACE("ShellExecute failed with code: %d\n", (DWORD)hResult);
+		MessageBox("Unable to start the game client.", "Launcher", MB_ICONERROR);
+		return;
+	}
+
+	// Close the launcher once the client starts so it doesn't linger in the background
+	EndDialog(IDOK);
 }
 
 void CLauncherDlg::DownloadProcess()

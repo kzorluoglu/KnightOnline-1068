@@ -1,4 +1,4 @@
-﻿// User.cpp: implementation of the CUser class.
+// User.cpp: implementation of the CUser class.
 //
 //////////////////////////////////////////////////////////////////////
 
@@ -6,6 +6,9 @@
 #include "versionmanager.h"
 #include "versionmanagerdlg.h"
 #include "User.h"
+#include "define.h"
+
+extern CVersionManagerDlg* g_pVmMain;
 
 #pragma warning(disable : 4786)		// Visual C++ Only
 #include <set>
@@ -32,7 +35,7 @@ CUser::~CUser()
 
 void CUser::Initialize()
 {
-	m_pMain = (CVersionManagerDlg*)AfxGetMainWnd();
+	m_pMain = g_pVmMain ? g_pVmMain : (CVersionManagerDlg*)AfxGetMainWnd();
 
 	CIOCPSocket2::Initialize();
 }
@@ -49,35 +52,63 @@ void CUser::Parsing(int len, char *pData)
 	char buff[2048]; memset( buff, 0x00, 2048 );
 	BYTE command = GetByte( pData, index );
 
-	switch( command ) {
-	case LS_VERSION_REQ:
-		SetByte( buff, LS_VERSION_REQ, send_index );
-		SetShort( buff, m_pMain->m_nLastVersion, send_index );
-		Send( buff, send_index );
-		break;
-	case LS_SERVERLIST:
-		m_pMain->m_DBProcess.LoadUserCountList();		// 기범이가 ^^;
-		SetByte( buff, LS_SERVERLIST, send_index );
-		SetByte( buff, m_pMain->m_nServerCount, send_index );
-		for(i=0; i<m_pMain->m_ServerList.size(); i++) {		
-			SetShort( buff, strlen(m_pMain->m_ServerList[i]->strServerIP), send_index );
-			SetString( buff, m_pMain->m_ServerList[i]->strServerIP, strlen(m_pMain->m_ServerList[i]->strServerIP), send_index );
-			SetShort( buff, strlen(m_pMain->m_ServerList[i]->strServerName), send_index );
-			SetString( buff, m_pMain->m_ServerList[i]->strServerName, strlen( m_pMain->m_ServerList[i]->strServerName ), send_index );			
-			SetShort( buff, m_pMain->m_ServerList[i]->sUserCount, send_index);   // 기범이가 ^^;
+	auto LogPacket = [](const char* msg, int cmd)
+	{
+		char line[128]; memset(line, 0x00, sizeof(line));
+		sprintf(line, "Packet %s cmd=%d", msg, cmd);
+		LogFileWrite(line);
+	};
+
+	try {
+		if (m_pMain == NULL) {
+			// Try to recover main window pointer if initialization was skipped
+			m_pMain = g_pVmMain ? g_pVmMain : (CVersionManagerDlg*)AfxGetMainWnd();
+			LogFileWrite("Parsing: m_pMain was NULL, refreshed from globals");
+			if (m_pMain == NULL) {
+				LogPacket("drop (no main window)", command);
+				return;
+			}
 		}
-		Send( buff, send_index );
-		break;
-	case LS_DOWNLOADINFO_REQ:
-		client_version = GetShort( pData, index );
-		SendDownloadInfo( client_version );
-		break;
-	case LS_LOGIN_REQ:
-		LogInReq( pData+index );
-		break;
-	case LS_MGAME_LOGIN:
-		MgameLogin( pData+index );
-		break;
+
+		LogPacket("recv", command);
+		switch( command ) {
+		case LS_VERSION_REQ:
+			SetByte( buff, LS_VERSION_REQ, send_index );
+			SetShort( buff, m_pMain->m_nLastVersion, send_index );
+			Send( buff, send_index );
+			LogPacket("send version", m_pMain->m_nLastVersion);
+			break;
+		case LS_SERVERLIST:
+			m_pMain->m_DBProcess.LoadUserCountList();		// 기본이가 ^^;
+			SetByte( buff, LS_SERVERLIST, send_index );
+			SetByte( buff, m_pMain->m_nServerCount, send_index );
+			for(i=0; i<m_pMain->m_ServerList.size(); i++) {		
+				SetShort( buff, strlen(m_pMain->m_ServerList[i]->strServerIP), send_index );
+				SetString( buff, m_pMain->m_ServerList[i]->strServerIP, strlen(m_pMain->m_ServerList[i]->strServerIP), send_index );
+				SetShort( buff, strlen(m_pMain->m_ServerList[i]->strServerName), send_index );
+				SetString( buff, m_pMain->m_ServerList[i]->strServerName, strlen( m_pMain->m_ServerList[i]->strServerName ), send_index );			
+				SetShort( buff, m_pMain->m_ServerList[i]->sUserCount, send_index);   // 기본이가 ^^;
+			}
+			Send( buff, send_index );
+			LogPacket("send serverlist", m_pMain->m_nServerCount);
+			break;
+		case LS_DOWNLOADINFO_REQ:
+			client_version = GetShort( pData, index );
+			SendDownloadInfo( client_version );
+			LogPacket("send downloadinfo", client_version);
+			break;
+		case LS_LOGIN_REQ:
+			LogInReq( pData+index );
+			break;
+		case LS_MGAME_LOGIN:
+			MgameLogin( pData+index );
+			break;
+		}
+	}
+	catch (...)
+	{
+		// Avoid crashing the service on malformed packets
+		LogPacket("exception", command);
 	}
 }
 void CUser::LogInReq(char *pBuf)
@@ -168,6 +199,10 @@ void CUser::SendDownloadInfo(int version)
 		if( pInfo->sVersion > version )
 			downloadset.insert(pInfo->strCompName);
 	}
+
+	char info[256]; memset(info, 0x00, sizeof(info));
+	sprintf(info, "SendDownloadInfo: client=%d files=%zu", version, downloadset.size());
+	LogFileWrite(info);
 
 	SetByte( buff, LS_DOWNLOADINFO_REQ, send_index );
 	SetShort( buff, strlen( m_pMain->m_strFtpUrl), send_index );

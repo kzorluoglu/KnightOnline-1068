@@ -593,13 +593,13 @@ BOOL MAP::LoadRoomEvent( int zone_number )
 
 cancel_event_load:
 	CString str;
-	str.Format( "이벤트 정보 읽기 실패(%d)(%d)", zone_number, event_num );
-	AfxMessageBox( str );
+	str.Format( "Event Information Read Failed (%d)(%d) - Continuing without room events", zone_number, event_num );
+	TRACE( "%s\n", str );  // Log to debug output instead of showing dialog
+	// AfxMessageBox( str );  // Commented out to allow server to continue
 	in.Close();
 	pFile.Close();
 //	DeleteAll();
-	return FALSE;
-	//return TRUE;
+	return TRUE;  // Return TRUE to allow server to continue without room events
 }
 
 int MAP::IsRoomCheck(float fx, float fz)

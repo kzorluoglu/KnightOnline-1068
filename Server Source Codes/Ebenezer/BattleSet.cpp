@@ -30,7 +30,7 @@ CBattleSet::CBattleSet(CDatabase* pdb)
 
 CString CBattleSet::GetDefaultConnect()
 {
-	return KO_BuildOdbcConnString(_T("KN_Online"), _T("Server.ini"), _T("server.ini"));
+	return KO_BuildOdbcConnString(_T("Knight"), _T("Server.ini"), _T("server.ini"));
 }
 
 CString CBattleSet::GetDefaultSQL()

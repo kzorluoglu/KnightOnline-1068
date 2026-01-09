@@ -379,39 +379,33 @@ BOOL CEbenezerDlg::OnInitDialog()
 	}
 	LogFileWrite("before 1\r\n");
 	if( LoadMagicType1() == FALSE ) {
-		AfxMessageBox("MagicType1 Load Fail");
-		AfxPostQuitMessage(0);
-		return FALSE;
+		TRACE("WARNING: MagicType1 failed to load\r\n");
+		// Continue - don't fail
 	}
 	LogFileWrite("before 2\r\n");
 	if( LoadMagicType2() == FALSE ) {
-		AfxMessageBox("MagicType2 Load Fail");
-		AfxPostQuitMessage(0);
-		return FALSE;
+		TRACE("WARNING: MagicType2 failed to load\r\n");
+		// Continue - don't fail
 	}
 	LogFileWrite("before 3\r\n");
 	if( LoadMagicType3() == FALSE ) {
-		AfxMessageBox("MagicType3 Load Fail");
-		AfxPostQuitMessage(0);
-		return FALSE;
+		TRACE("WARNING: MagicType3 failed to load\r\n");
+		// Continue - don't fail
 	}
 	LogFileWrite("before 4\r\n");
 	if( LoadMagicType4() == FALSE ) {
-		AfxMessageBox("MagicType4 Load Fail");
-		AfxPostQuitMessage(0);
-		return FALSE;
+		TRACE("WARNING: MagicType4 failed to load\r\n");
+		// Continue - don't fail
 	}
 	LogFileWrite("before 5\r\n");
 	if( LoadMagicType5() == FALSE ) {
-		AfxMessageBox("MagicType5 Load Fail");
-		AfxPostQuitMessage(0);
-		return FALSE;
+		TRACE("WARNING: MagicType5 failed to load\r\n");
+		// Continue - don't fail
 	}
 	LogFileWrite("before 8\r\n");
 	if( LoadMagicType8() == FALSE ) {
-		AfxMessageBox("MagicType8 Load Fail");
-		AfxPostQuitMessage(0);
-		return FALSE;
+		TRACE("WARNING: MagicType8 failed to load\r\n");
+		// Continue - don't fail
 	}
 	LogFileWrite("before Coeffi\r\n");
 	if( LoadCoefficientTable() == FALSE ){

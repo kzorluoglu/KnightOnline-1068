@@ -4,12 +4,24 @@
 #include "stdafx.h"
 #include "VersionManager.h"
 #include "VersionManagerDlg.h"
+#include "define.h" // LogFileWrite
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
 #undef THIS_FILE
 static char THIS_FILE[] = __FILE__;
 #endif
+
+// Simple unhandled exception logger to trace unexpected crashes
+static LONG WINAPI VMUnhandledExceptionFilter(EXCEPTION_POINTERS* pExceptionInfo)
+{
+	char buf[256]; memset(buf, 0x00, sizeof(buf));
+	sprintf(buf, "Unhandled exception: code=0x%08lx at 0x%p", 
+		pExceptionInfo ? pExceptionInfo->ExceptionRecord->ExceptionCode : 0,
+		pExceptionInfo ? pExceptionInfo->ExceptionRecord->ExceptionAddress : NULL);
+	LogFileWrite(buf);
+	return EXCEPTION_EXECUTE_HANDLER;
+}
 
 /////////////////////////////////////////////////////////////////////////////
 // CVersionManagerApp
@@ -41,6 +53,8 @@ CVersionManagerApp theApp;
 
 BOOL CVersionManagerApp::InitInstance()
 {
+	::SetUnhandledExceptionFilter(VMUnhandledExceptionFilter);
+
 	if (!AfxSocketInit())
 	{
 		AfxMessageBox(IDP_SOCKETS_INIT_FAILED);

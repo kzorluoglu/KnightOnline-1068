@@ -28,7 +28,7 @@ public:
 	CString	m_ViceChief_1;
 	CString	m_ViceChief_2;
 	CString	m_ViceChief_3;
-	CString	m_Gold;
+	long		m_Gold;
 	int		m_Domination;
 	long	m_Points;
 	CTime	m_CreateTime;

@@ -31,7 +31,7 @@ CVersionSet::CVersionSet(CDatabase* pdb)
 
 CString CVersionSet::GetDefaultConnect()
 {
-	return KO_BuildOdbcConnString(_T("Knight_Account"), _T("Version.ini"));
+	return KO_BuildOdbcConnString(_T("Knight"), _T("Version.ini"));
 }
 
 CString CVersionSet::GetDefaultSQL()

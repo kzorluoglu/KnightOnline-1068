@@ -36,7 +36,7 @@ CMagicType2Set::CMagicType2Set(CDatabase* pdb)
 
 CString CMagicType2Set::GetDefaultConnect()
 {
-	return KO_BuildOdbcConnString(_T("KN_Online"), _T("Server.ini"), _T("server.ini"));
+	return KO_BuildOdbcConnString(_T("Knight"), _T("Server.ini"), _T("server.ini"));
 }
 
 CString CMagicType2Set::GetDefaultSQL()

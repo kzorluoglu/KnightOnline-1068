@@ -30,7 +30,7 @@
     <SccProjectName>"$/Launcher/ZipArchive", WPDAAAAA</SccProjectName>
     <SccLocalPath>.</SccLocalPath>
     <Keyword>MFCProj</Keyword>
-    <ProjectGuid>{E702FFA0-4E62-4BF6-8DB9-795BAA4B2DD0}</ProjectGuid>
+    <ProjectGuid>{4FCE477F-5913-4C76-8589-D96FF3F2F70E}</ProjectGuid>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">

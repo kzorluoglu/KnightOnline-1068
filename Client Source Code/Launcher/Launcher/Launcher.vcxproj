@@ -14,7 +14,7 @@
     <SccProjectName>"$/Launcher/Launcher", EODAAAAA</SccProjectName>
     <SccLocalPath>.</SccLocalPath>
     <Keyword>MFCProj</Keyword>
-    <ProjectGuid>{7930C922-EAC2-4CF1-A15C-2791CAD2064E}</ProjectGuid>
+    <ProjectGuid>{919F1FC8-F194-43CB-9343-2FD4A5B86E78}</ProjectGuid>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">

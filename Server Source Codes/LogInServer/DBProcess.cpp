@@ -73,6 +73,9 @@ void CDBProcess::ReConnectODBC(CDatabase *m_db, const char *strdb, const char *s
 
 BOOL CDBProcess::LoadVersionList()
 {
+	if (!m_VersionDB.IsOpen())
+		return FALSE;
+
 	SQLHSTMT		hstmt = NULL;
 	SQLRETURN		retcode;
 	TCHAR			szSQL[1024];
@@ -302,8 +305,9 @@ BOOL CDBProcess::LoadUserCountList()
 			SQLGetData(hstmt,4 ,SQL_C_SSHORT  , &zone_3, 0, &Indexind);
 
 			// 여기에서 데이타를 받아서 알아서 사용....
-			if( serverid-1 < m_pMain->m_nServerCount )
-				m_pMain->m_ServerList[serverid-1]->sUserCount = zone_1 + zone_2 + zone_3;		// 기범이가 ^^;
+			int serverIndex = (int)serverid - 1;
+			if( serverIndex >= 0 && serverIndex < (int)m_pMain->m_ServerList.size() )
+				m_pMain->m_ServerList[serverIndex]->sUserCount = zone_1 + zone_2 + zone_3;		// 기범이가 ^^;
 		}
 	}
 	SQLFreeHandle((SQLSMALLINT)SQL_HANDLE_STMT,hstmt);

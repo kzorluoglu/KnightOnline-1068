@@ -30,7 +30,7 @@ CLevelUpTableSet::CLevelUpTableSet(CDatabase* pdb)
 
 CString CLevelUpTableSet::GetDefaultConnect()
 {
-	return KO_BuildOdbcConnString(_T("KN_Online"), _T("Server.ini"), _T("server.ini"));
+	return KO_BuildOdbcConnString(_T("Knight"), _T("Server.ini"), _T("server.ini"));
 }
 
 CString CLevelUpTableSet::GetDefaultSQL()

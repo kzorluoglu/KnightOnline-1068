@@ -8,6 +8,9 @@
 #include "VersionSet.h"
 #include "SettingDlg.h"
 #include "User.h"
+#include "define.h" // GetProgPath, logging helpers
+
+CVersionManagerDlg* g_pVmMain = NULL;
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -39,6 +42,23 @@ CVersionManagerDlg::CVersionManagerDlg(CWnd* pParent /*=NULL*/)
 	m_hIcon = AfxGetApp()->LoadIcon(IDR_MAINFRAME);
 }
 
+// Very small helper to capture minimal runtime information without crashing
+static void WriteVmLog(LPCTSTR message)
+{
+	CString logDir = GetProgPath() + "\\logs";
+	CreateDirectory(logDir, NULL);
+
+	CString logPath = logDir + "\\VersionManager.log";
+	CStdioFile file;
+	if (file.Open(logPath, CFile::modeCreate | CFile::modeNoTruncate | CFile::modeWrite))
+	{
+		file.SeekToEnd();
+		file.WriteString(message);
+		file.WriteString("\r\n");
+		file.Close();
+	}
+}
+
 void CVersionManagerDlg::DoDataExchange(CDataExchange* pDX)
 {
 	CDialog::DoDataExchange(pDX);
@@ -67,34 +87,46 @@ BOOL CVersionManagerDlg::OnInitDialog()
 	SetIcon(m_hIcon, TRUE);			// Set big icon
 	SetIcon(m_hIcon, FALSE);		// Set small icon
 	
+	g_pVmMain = this;
+	WriteVmLog("VersionManager starting (OnInitDialog).");
+
 	m_Iocport.Init( MAX_USER, CLIENT_SOCKSIZE, 1 );
 	
 	for(int i=0; i<MAX_USER; i++) {
 		m_Iocport.m_SockArrayInActive[i] = new CUser;
+		static_cast<CUser*>(m_Iocport.m_SockArrayInActive[i])->m_pMain = this;
 	}
 
 	if ( !m_Iocport.Listen( _LISTEN_PORT ) ) {
-		AfxMessageBox("FAIL TO CREATE LISTEN STATE");
-		AfxPostQuitMessage(0);
-		return FALSE;
+		TRACE("FAIL TO CREATE LISTEN STATE\n");
+		WriteVmLog("Listen failed - continuing headless.");
 	}
 
 	if( !GetInfoFromIni() ) {
-		AfxMessageBox("Ini File Info Error!!");
-		AfxPostQuitMessage(0);
-		return FALSE;
+		TRACE("Ini File Info Error!!\n");
+		WriteVmLog("GetInfoFromIni failed - continuing with defaults.");
+	}
+	else
+	{
+		CString serverSummary;
+		serverSummary.Format("Ini loaded: servers=%d ftp=%s path=%s", m_nServerCount, m_strFtpUrl, m_strFilePath);
+		WriteVmLog(serverSummary);
 	}
 	
 	CString strconnection = KO_BuildOdbcConnString(m_ODBCName, _T("Version.ini"), NULL, m_ODBCLogin, m_ODBCPwd);
 	if( !m_DBProcess.InitDatabase( strconnection ) ) {
-		AfxMessageBox("Database Connection Fail!!");
-		AfxPostQuitMessage(0);
-		return FALSE;
+		TRACE("Database Connection Fail!!\n");
+		WriteVmLog("Database connection failed - continuing without DB.");
 	}
 	if( !m_DBProcess.LoadVersionList() ) {
-		AfxMessageBox("Load Version List Fail!!");
-		AfxPostQuitMessage(0);
-		return FALSE;
+		TRACE("Load Version List Fail!!\n");
+		WriteVmLog("LoadVersionList failed - using empty version list.");
+	}
+	else
+	{
+		CString versionInfo;
+		versionInfo.Format("LoadVersionList succeeded. Latest=%d entries=%d", m_nLastVersion, (int)m_VersionList.m_UserTypeMap.size());
+		WriteVmLog(versionInfo);
 	}
 
 	m_OutputList.AddString( strconnection );
@@ -140,6 +172,10 @@ BOOL CVersionManagerDlg::GetInfoFromIni()
 		GetPrivateProfileString( "SERVER_LIST", ipkey, "", pInfo->strServerIP, 32, inipath );
 		GetPrivateProfileString( "SERVER_LIST", namekey, "", pInfo->strServerName, 32, inipath );
 		m_ServerList.push_back( pInfo );
+
+		CString entry;
+		entry.Format("Server[%d] %s (%s)", i, pInfo->strServerIP, pInfo->strServerName);
+		WriteVmLog(entry);
 	}
 
 	return TRUE;
@@ -193,6 +229,8 @@ BOOL CVersionManagerDlg::PreTranslateMessage(MSG* pMsg)
 
 BOOL CVersionManagerDlg::DestroyWindow() 
 {
+	g_pVmMain = NULL;
+	WriteVmLog("VersionManager DestroyWindow called.");
 	if( !m_VersionList.IsEmpty() )
 		m_VersionList.DeleteAllData();
 	

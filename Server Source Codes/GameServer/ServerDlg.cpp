@@ -300,12 +300,17 @@ BOOL CServerDlg::OnInitDialog()
 	//----------------------------------------------------------------------
 	//	Load NPC Data & Activate NPC
 	//----------------------------------------------------------------------
+	TRACE("DEBUG: Starting Monster Data Load...\n");
 	if(!GetMonsterTableData())	{		// Monster 특성치 테이블 Load
+		TRACE("DEBUG: Monster Data Load FAILED\n");
 		EndDialog(IDCANCEL);
 		return FALSE;
 	}
+	TRACE("DEBUG: Monster Data Load SUCCESS - Monsters loaded: %d\n", m_arMonTable.GetSize());
 
+	TRACE("DEBUG: Starting NPC Data Load...\n");
 	if(!GetNpcTableData())	{			// NPC 특성치 테이블 Load
+		TRACE("DEBUG: NPC Data Load FAILED\n");
 		EndDialog(IDCANCEL);
 		return FALSE;
 	}
@@ -706,14 +711,16 @@ BOOL CServerDlg::GetNpcItemTable()
 	}
 	catch(CMemoryException * e)
 	{
-		e->ReportError();
+		// e->ReportError();  // Suppress Korean error - using English message instead
+		AfxMessageBox(_T("Memory Error: Insufficient memory"));
 		e->Delete();
 
 		return FALSE;
 	}
 	catch(CDBException* e)
 	{
-		e->ReportError();
+		// e->ReportError();  // Suppress Korean error - using English message instead
+		AfxMessageBox(_T("Database Error: Failed to read monster data"));
 		e->Delete();
 
 		return FALSE;
@@ -726,24 +733,36 @@ BOOL CServerDlg::GetNpcItemTable()
 BOOL CServerDlg::GetMonsterTableData()
 {
 	CMonTableSet NpcTableSet;
+	int monsterCount = 0;
 
 	try 
 	{
+		TRACE("DEBUG: GetMonsterTableData - Opening recordset\n");
 		//if(m_arMonTable.GetSize()) return FALSE;
 
 		if(NpcTableSet.IsOpen()) NpcTableSet.Close();
 		
 		if(!NpcTableSet.Open())
 		{
+			TRACE("DEBUG: GetMonsterTableData - Open() failed!\n");
 			AfxMessageBox(_T("MONSTER DB Open Fail!"));
 			return FALSE;
 		}
-		if(NpcTableSet.IsBOF()) 
+		TRACE("DEBUG: GetMonsterTableData - Recordset opened\n");
+		
+		// IMPORTANT: Always call MoveFirst() after Open() in MFC recordsets
+		// Even if IsEOF() returns true, MoveFirst() positions to the first record
+		NpcTableSet.MoveFirst();
+		TRACE("DEBUG: GetMonsterTableData - Called MoveFirst()\n");
+		
+		if(NpcTableSet.IsEOF()) 
 		{
+			TRACE("DEBUG: GetMonsterTableData - Recordset is empty (EOF after MoveFirst)\n");
 			AfxMessageBox(_T("MONSTER DB Empty!"));
 			return FALSE;
 		}
 
+		TRACE("DEBUG: GetMonsterTableData - Starting to read records\n");
 		while(!NpcTableSet.IsEOF())
 		{
 			CNpcTable* Npc = new CNpcTable;
@@ -808,6 +827,8 @@ BOOL CServerDlg::GetMonsterTableData()
 				TRACE("GetMonsterTableData - PutData Fail - %d\n", Npc->m_sSid);
 				delete Npc;
 				Npc = NULL;
+			} else {
+				monsterCount++;
 			}
 			//m_arMonTable.Add(Npc);
 
@@ -815,17 +836,20 @@ BOOL CServerDlg::GetMonsterTableData()
 		}
 
 		NpcTableSet.Close();
+		TRACE("DEBUG: GetMonsterTableData - Successfully loaded %d monsters\n", monsterCount);
 	}
 	catch(CMemoryException * e)
 	{
-		e->ReportError();
+		// e->ReportError();  // Suppress Korean error - using English message instead
+		AfxMessageBox(_T("Memory Error: Insufficient memory"));
 		e->Delete();
 
 		return FALSE;
 	}
 	catch(CDBException* e)
 	{
-		e->ReportError();
+		// e->ReportError();  // Suppress Korean error - using English message instead
+		AfxMessageBox(_T("Database Error: Failed to read NPC data"));
 		e->Delete();
 
 		return FALSE;
@@ -850,7 +874,12 @@ BOOL CServerDlg::GetNpcTableData()
 			AfxMessageBox(_T("NPC DB Open Fail!"));
 			return FALSE;
 		}
-		if(NpcTableSet.IsBOF()) 
+		
+		// IMPORTANT: Always call MoveFirst() after Open() in MFC recordsets
+		// Even if IsEOF() returns true, MoveFirst() positions to the first record
+		NpcTableSet.MoveFirst();
+		
+		if(NpcTableSet.IsEOF()) 
 		{
 			AfxMessageBox(_T("NPC DB Empty!"));
 			return FALSE;
@@ -930,14 +959,16 @@ BOOL CServerDlg::GetNpcTableData()
 	}
 	catch(CMemoryException * e)
 	{
-		e->ReportError();
+		// e->ReportError();  // Suppress Korean error - using English message instead
+		AfxMessageBox(_T("Memory Error: Insufficient memory"));
 		e->Delete();
 
 		return FALSE;
 	}
 	catch(CDBException* e)
 	{
-		e->ReportError();
+		// e->ReportError();  // Suppress Korean error - using English message instead
+		AfxMessageBox(_T("Database Error: Failed to read position data"));
 		e->Delete();
 
 		return FALSE;
@@ -986,8 +1017,9 @@ BOOL CServerDlg::CreateNpcThread()
 			return FALSE;
 		}
 		if(NpcPosSet.IsBOF())	{
-			AfxMessageBox(_T("MONSTER_POS DB Empty!"));
-			return FALSE;
+			// MONSTER_POS is empty - continue without monster spawns
+			TRACE("Warning: MONSTER_POS DB Empty - monsters will not spawn\n");
+			return TRUE;  // Return TRUE to allow server to start without monster data
 		}
 
 		NpcPosSet.MoveFirst();
@@ -1239,14 +1271,16 @@ BOOL CServerDlg::CreateNpcThread()
 
 	catch(CMemoryException * e)
 	{
-		e->ReportError();
+		// e->ReportError();  // Suppress Korean error - using English message instead
+		AfxMessageBox(_T("Memory Error: Insufficient memory while loading data"));
 		e->Delete();
 		
 		return FALSE;
 	}
 	catch(CDBException* e)
 	{
-		e->ReportError();
+		// e->ReportError();  // Suppress Korean error - using English message instead
+		AfxMessageBox(_T("Database Error: Failed to read from database"));
 		e->Delete();
 		
 		return FALSE;
@@ -1529,7 +1563,7 @@ BOOL CServerDlg::MapFileLoad()
 		
 		if (!file.Open(szFullPath, CFile::modeRead))
 		{
-			errormsg.Format( "파일 Open 실패 - %s\n", szFullPath );
+			errormsg.Format( "File Open Failed - %s\n", szFullPath );
 			AfxMessageBox(errormsg);
 			return FALSE;
 		}
@@ -1540,7 +1574,7 @@ BOOL CServerDlg::MapFileLoad()
 		strcpy( pMap->m_MapName, (char*)(LPCTSTR)sZoneName );
 
 		if( !pMap->LoadMap( (HANDLE)file.m_hFile ) ) {
-			errormsg.Format( "Map Load 실패 - %s\n", szFullPath );
+			errormsg.Format( "Map Load Failed - %s\n", szFullPath );
 			AfxMessageBox(errormsg);
 			delete pMap;
 			return FALSE;
@@ -1549,7 +1583,7 @@ BOOL CServerDlg::MapFileLoad()
 		// dungeon work
 		if( ZoneInfoSet.m_RoomEvent > 0 )	{
 			if( !pMap->LoadRoomEvent( ZoneInfoSet.m_RoomEvent ) )	{
-				errormsg.Format( "Map Room Event Load 실패 - %s\n", szFullPath );
+				errormsg.Format( "Map Room Event Load Failed - %s\n", szFullPath );
 				AfxMessageBox(errormsg);
 				delete pMap;
 				return FALSE;

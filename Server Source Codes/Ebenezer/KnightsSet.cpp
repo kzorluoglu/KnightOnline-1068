@@ -30,7 +30,7 @@ CKnightsSet::CKnightsSet(CDatabase* pdb)
 	m_ViceChief_1 = _T("");
 	m_ViceChief_2 = _T("");
 	m_ViceChief_3 = _T("");
-	m_Gold = _T("");
+	m_Gold = 0;
 	m_Domination = 0;
 	m_Points = 0;
 	m_Stash = _T("");
@@ -42,7 +42,7 @@ CKnightsSet::CKnightsSet(CDatabase* pdb)
 
 CString CKnightsSet::GetDefaultConnect()
 {
-	return KO_BuildOdbcConnString(_T("KN_Online"), _T("Server.ini"), _T("server.ini"));
+	return KO_BuildOdbcConnString(_T("Knight"), _T("Server.ini"), _T("server.ini"));
 }
 
 CString CKnightsSet::GetDefaultSQL()
@@ -64,7 +64,7 @@ void CKnightsSet::DoFieldExchange(CFieldExchange* pFX)
 	RFX_Text(pFX, _T("[ViceChief_1]"), m_ViceChief_1);
 	RFX_Text(pFX, _T("[ViceChief_2]"), m_ViceChief_2);
 	RFX_Text(pFX, _T("[ViceChief_3]"), m_ViceChief_3);
-	RFX_Text(pFX, _T("[Gold]"), m_Gold);
+	RFX_Long(pFX, _T("[Gold]"), m_Gold);
 	RFX_Int(pFX, _T("[Domination]"), m_Domination);
 	RFX_Long(pFX, _T("[Points]"), m_Points);
 	RFX_Date(pFX, _T("[CreateTime]"), m_CreateTime);
