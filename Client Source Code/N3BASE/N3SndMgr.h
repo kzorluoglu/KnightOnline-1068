@@ -27,14 +27,14 @@ typedef std::map<std::string, CN3SndObj*>::value_type val_Snd;
 class CN3SndMgr
 {
 protected:
-	CN3TableBase<__TABLE_SOUND>			m_Tbl_Source; // »ç¿îµå ¼Ò½º Á¤º¸ Å×ÀÌºí..
+	CN3TableBase<__TABLE_SOUND>			m_Tbl_Source; // ï¿½ï¿½ï¿½ï¿½ ï¿½Ò½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ìºï¿½..
 
 	bool								m_bSndEnable;
 	bool								m_bSndDuplicated;
 	std::map<std::string, CN3SndObj*>	m_SndObjSrcs;
-	std::list<CN3SndObjStream*>			m_SndObjStreams;	// ½ºÆ®¸®¹Ö »ç¿îµå..
+	std::list<CN3SndObjStream*>			m_SndObjStreams;	// ï¿½ï¿½Æ®ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½..
 	std::list<CN3SndObj*>				m_SndObjs_Duplicated;
-	std::list<CN3SndObj*>				m_SndObjs_PlayOnceAndRelease;	// ÇÑ¹ø¸¸ ÇÃ·¹ÀÌ ÇÏ°í ¸±¸®Áî ÇØ¾ß ÇÏ´Â »ç¿îµåµé
+	std::list<CN3SndObj*>				m_SndObjs_PlayOnceAndRelease;	// ï¿½Ñ¹ï¿½ï¿½ï¿½ ï¿½Ã·ï¿½ï¿½ï¿½ ï¿½Ï°ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ø¾ï¿½ ï¿½Ï´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½
 	
 public:
 	void		ReleaseObj(CN3SndObj** ppObj);

@@ -29,35 +29,35 @@ public:
 protected:
 //	int			m_iZoom;
 	HACCEL		m_hAccelTable;
-	eUIE_MODE	m_eMode;					// ÇöÀç Mode
-	eRECTTYPE	m_eSelectedRectType;		// ¼öÁ¤ÇÏ´Â »ç°¢Çü Á¾·ù (¿µ¿ª, ¿òÁ÷ÀÌ´Â ¿µ¿ª, Å¬¸¯ ¿µ¿ª)
-	CPoint		m_ptOldMouse;				// ÀÌÀü ¸¶¿ì½º ÁÂÇ¥
-	CPoint		m_ptOldLBPos;				// ÀÌÀü¿¡ ¿ÞÂÊ ¹öÆ°À¸·Î ÂïÀº ¸¶¿ì½º..
+	eUIE_MODE	m_eMode;					// ï¿½ï¿½ï¿½ï¿½ Mode
+	eRECTTYPE	m_eSelectedRectType;		// ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½ ï¿½ç°¢ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ (ï¿½ï¿½ï¿½ï¿½, ï¿½ï¿½ï¿½ï¿½ï¿½Ì´ï¿½ ï¿½ï¿½ï¿½ï¿½, Å¬ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½)
+	CPoint		m_ptOldMouse;				// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ì½º ï¿½ï¿½Ç¥
+	CPoint		m_ptOldLBPos;				// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Æ°ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ì½º..
 
-	COLORREF	m_RegionRectColor;			// ¿µ¿ª »ç°¢ÇüÀ» Ç¥½ÃÇÏ´Â ¼± »ö
-	COLORREF	m_MoveRectColor;			// ¿òÁ÷ÀÌ´Â ¿µ¿ª »ç°¢ÇüÀ» Ç¥½ÃÇÏ´Â ¼± »ö
-	COLORREF	m_ClickRectColor;			// click »ç°¢ÇüÀ» Ç¥½ÃÇÏ´Â ¼± »ö
+	COLORREF	m_RegionRectColor;			// ï¿½ï¿½ï¿½ï¿½ ï¿½ç°¢ï¿½ï¿½ï¿½ï¿½ Ç¥ï¿½ï¿½ï¿½Ï´ï¿½ ï¿½ï¿½ ï¿½ï¿½
+	COLORREF	m_MoveRectColor;			// ï¿½ï¿½ï¿½ï¿½ï¿½Ì´ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ç°¢ï¿½ï¿½ï¿½ï¿½ Ç¥ï¿½ï¿½ï¿½Ï´ï¿½ ï¿½ï¿½ ï¿½ï¿½
+	COLORREF	m_ClickRectColor;			// click ï¿½ç°¢ï¿½ï¿½ï¿½ï¿½ Ç¥ï¿½ï¿½ï¿½Ï´ï¿½ ï¿½ï¿½ ï¿½ï¿½
 
 	enum	eDRAGTYPE {DRAGTYPE_NONE=0, DRAGTYPE_MOVE, DRAGTYPE_LEFT, DRAGTYPE_RIGHT,
 					DRAGTYPE_TOP, DRAGTYPE_BOTTOM, DRAGTYPE_LEFTTOP, DRAGTYPE_RIGHTTOP,
 					DRAGTYPE_LEFTBOTTOM, DRAGTYPE_RIGHTBOTTOM};
-	eDRAGTYPE		m_eDragType;			// Drag »óÅÂ
-	CRect			m_rcSelectedRect;		// ¼±ÅÃµÈ »ç°¢Çü ¿µ¿ª
+	eDRAGTYPE		m_eDragType;			// Drag ï¿½ï¿½ï¿½ï¿½
+	CRect			m_rcSelectedRect;		// ï¿½ï¿½ï¿½Ãµï¿½ ï¿½ç°¢ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 
-	BOOL		m_bViewGrid; // ±×¸®µå º¸±â..
+	BOOL		m_bViewGrid; // ï¿½×¸ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½..
 
 // Operations
 public:
 	CN3UIBase*	Pick(const POINT& point, CN3UIBase* pUI);
-	void		SetMode(eUIE_MODE eMode);					// ¸ðµå¸¦ º¯°æÇÏ´Â ÇÔ¼ö(Edit, Preview)
-	void		SelectRectType(eRECTTYPE eRectType);		// ¼öÁ¤ÇÏ´Â »ç°¢Çü Á¾·ù(¿µ¿ª, ¿òÁ÷ÀÌ´Â ¿µ¿ª, Å¬¸¯ ¿µ¿ª)¸¦ Á¤ÇÏ´Â ÇÔ¼ö
-	void		ChangeBkgndColor();							// ¹è°æ»öÀ» ¹Ù²Þ
+	void		SetMode(eUIE_MODE eMode);					// ï¿½ï¿½å¸¦ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½ ï¿½Ô¼ï¿½(Edit, Preview)
+	void		SelectRectType(eRECTTYPE eRectType);		// ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½ ï¿½ç°¢ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½(ï¿½ï¿½ï¿½ï¿½, ï¿½ï¿½ï¿½ï¿½ï¿½Ì´ï¿½ ï¿½ï¿½ï¿½ï¿½, Å¬ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½)ï¿½ï¿½ ï¿½ï¿½ï¿½Ï´ï¿½ ï¿½Ô¼ï¿½
+	void		ChangeBkgndColor();							// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ù²ï¿½
 protected:
-	void	RenderPreview();							// Preview È­¸éÀ» ·»´õÇÏ´Â ÇÔ¼ö
-	void	RenderEditview();							// Editview È­¸éÀ» ·»´õÇÏ´Â ÇÔ¼ö
-	eDRAGTYPE CheckDragType(CRect rcSel, CPoint point);	// ¸¶¿ì½º À§Ä¡¿¡ µû¶ó µå·¡±× »óÅÂ¸¦ ±¸º°ÇÏ´Â ÇÔ¼ö
-	void	UpdateStatusBarText();						// Status Bar text¸¦ ÇöÀç »óÅÂ¿¡ ¹Þ°Ô °»½ÅÇÏ´Â ÇÔ¼ö
-	void	UpdateUIInfo_SelectedRect();				// selected rectÁ¤º¸¸¦ Åä´ë·Î UI Á¤º¸¸¦ °»½ÅÇÏ±â
+	void	RenderPreview();							// Preview È­ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½ ï¿½Ô¼ï¿½
+	void	RenderEditview();							// Editview È­ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½ ï¿½Ô¼ï¿½
+	eDRAGTYPE CheckDragType(CRect rcSel, CPoint point);	// ï¿½ï¿½ï¿½ì½º ï¿½ï¿½Ä¡ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½å·¡ï¿½ï¿½ ï¿½ï¿½ï¿½Â¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½ ï¿½Ô¼ï¿½
+	void	UpdateStatusBarText();						// Status Bar textï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Â¿ï¿½ ï¿½Þ°ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½ ï¿½Ô¼ï¿½
+	void	UpdateUIInfo_SelectedRect();				// selected rectï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ UI ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï±ï¿½
 public:
 // Overrides
 	// ClassWizard generated virtual function overrides

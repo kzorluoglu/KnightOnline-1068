@@ -32,17 +32,17 @@ struct __Material : public _D3DMATERIAL8
 {
 public:
 	DWORD	dwColorOp, dwColorArg1, dwColorArg2;
-	BOOL	nRenderFlags; // 1-AlphaBlending | 2-¾È°³¶û °ü°è¾øÀ½ | 4-Double Side | 8- ??
-	DWORD	dwSrcBlend; // ¼Ò½º ºí·»µù ¹æ¹ý
-	DWORD	dwDestBlend; // µ¥½ºÆ® ºí·»µù ¹æ¹ý
+	BOOL	nRenderFlags; // 1-AlphaBlending | 2-ï¿½È°ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ | 4-Double Side | 8- ??
+	DWORD	dwSrcBlend; // ï¿½Ò½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
+	DWORD	dwDestBlend; // ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
 
 public:
 	void Init()
 	{
 		memset(this, 0, sizeof(__Material));
 		_D3DCOLORVALUE white = { 1.0f, 1.0f, 1.0f, 1.0f };
-//		Specular = Diffuse = Ambient = white; // ±âº»Àº Èò»ö..
-		Diffuse = white; // ±âº»Àº Èò»ö..
+//		Specular = Diffuse = Ambient = white; // ï¿½âº»ï¿½ï¿½ ï¿½ï¿½ï¿½..
+		Diffuse = white; // ï¿½âº»ï¿½ï¿½ ï¿½ï¿½ï¿½..
 		Ambient.a = Diffuse.a;
 		Ambient.r = Diffuse.r * 0.8f;
 		Ambient.g = Diffuse.g * 0.8f;
@@ -184,7 +184,7 @@ public:
 		D3DVECTOR v;
 	};
 	float rhw;
-	D3DCOLOR color; // ÇÊ¿ä ¾ø´Ù..
+	D3DCOLOR color; // ï¿½Ê¿ï¿½ ï¿½ï¿½ï¿½ï¿½..
 	float tu, tv;
 
 public:
@@ -380,7 +380,7 @@ public:
 
 
 
-const int MAX_MIPMAP_COUNT = 10; // 1024 * 1024 ´Ü°è±îÁö »ý¼º
+const int MAX_MIPMAP_COUNT = 10; // 1024 * 1024 ï¿½Ü°ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 
 const DWORD OBJ_UNKNOWN				= 0;
 const DWORD OBJ_BASE				= 0x1;

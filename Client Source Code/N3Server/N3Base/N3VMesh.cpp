@@ -13,7 +13,7 @@ CN3VMesh::CN3VMesh()
 {
 //	m_dwType |= OBJ_MESH_VECTOR3;
 	
-	m_pVertices = NULL; // Á¡ ¹öÆÛ
+	m_pVertices = NULL; // ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	m_pwIndices = NULL; // Index...
 
 	this->Release();
@@ -32,8 +32,8 @@ void CN3VMesh::Release()
 	delete [] m_pwIndices; m_pwIndices = NULL;
 	m_nIC = 0;
 
-	m_vCenter.Set(0,0,0); // Mesh Vertices ÀÇ Áß°£Á¡..
-	m_fRadius = 0.0f; // ¹ÝÁö¸§
+	m_vCenter.Set(0,0,0); // Mesh Vertices ï¿½ï¿½ ï¿½ß°ï¿½ï¿½ï¿½..
+	m_fRadius = 0.0f; // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 }
 
 int CN3VMesh::Load(HANDLE hFile)
@@ -43,10 +43,10 @@ int CN3VMesh::Load(HANDLE hFile)
 	DWORD dwRWC = 0;
 
 	int nVC;
-	ReadFile(hFile, &nVC, 4, &dwRWC, NULL); // Á¡°¹¼ö ÀÐ±â..
+	ReadFile(hFile, &nVC, 4, &dwRWC, NULL); // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ð±ï¿½..
 	if(nVC > 0)
 	{
-		this->CreateVertices(nVC); // Vertex Buffer »ý¼º ¹× µ¥ÀÌÅÍ Ã¤¿ì±â
+		this->CreateVertices(nVC); // Vertex Buffer ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Ã¤ï¿½ï¿½ï¿½
 		ReadFile(hFile, m_pVertices, nVC * sizeof(__Vector3), &dwRWC, NULL);
 	}
 
@@ -54,11 +54,11 @@ int CN3VMesh::Load(HANDLE hFile)
 	ReadFile(hFile, &nIC, 4, &dwRWC, NULL); // Index Count..
 	if(nIC > 0)
 	{
-		this->CreateIndex(nIC); // Vertex Buffer »ý¼º ¹× µ¥ÀÌÅÍ Ã¤¿ì±â
+		this->CreateIndex(nIC); // Vertex Buffer ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Ã¤ï¿½ï¿½ï¿½
 		ReadFile(hFile, m_pwIndices, nIC * 2, &dwRWC, NULL);
 	}
 
-	this->CalcRadiusAndCenter(); // Áß½ÉÁ¡°ú ¹ÝÁö¸§À» °è»êÇØ ÁØ´Ù..
+	this->CalcRadiusAndCenter(); // ï¿½ß½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ø´ï¿½..
 
 	return 0;
 }
@@ -67,7 +67,7 @@ int CN3VMesh::Save(HANDLE hFile)
 {
 	DWORD dwRWC = 0;
 
-	WriteFile(hFile, &m_nVC, 4, &dwRWC, NULL); // Á¡°¹¼ö ÀÐ±â..
+	WriteFile(hFile, &m_nVC, 4, &dwRWC, NULL); // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ð±ï¿½..
 	if(m_nVC > 0) 
 	{
 		WriteFile(hFile, m_pVertices, m_nVC * sizeof(__Vector3), &dwRWC, NULL);
@@ -76,7 +76,7 @@ int CN3VMesh::Save(HANDLE hFile)
 	WriteFile(hFile, &m_nIC, 4, &dwRWC, NULL); // Index Count..
 	if(m_nIC > 0)
 	{
-		WriteFile(hFile, m_pwIndices, m_nIC * 2, &dwRWC, NULL); // Index Buffer µ¥ÀÌÅÍ ¾²±â..
+		WriteFile(hFile, m_pwIndices, m_nIC * 2, &dwRWC, NULL); // Index Buffer ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½..
 	}
 
 	return 0;
@@ -88,7 +88,7 @@ void CN3VMesh::CreateVertices(int nVC)
 	
 	delete [] m_pVertices;
 	m_pVertices = new __Vector3[nVC];
-	memset(m_pVertices, 0, nVC * sizeof(__Vector3)); // Vertex Buffer »ý¼º
+	memset(m_pVertices, 0, nVC * sizeof(__Vector3)); // Vertex Buffer ï¿½ï¿½ï¿½ï¿½
 	m_nVC = nVC;
 }
 
@@ -98,7 +98,7 @@ void CN3VMesh::CreateIndex(int nIC)
 	
 	delete [] m_pwIndices;
 	m_pwIndices = new WORD[nIC];
-	memset(m_pwIndices, 0, nIC * 2); // Index Buffer »ý¼º
+	memset(m_pwIndices, 0, nIC * 2); // Index Buffer ï¿½ï¿½ï¿½ï¿½
 	m_nIC = nIC;
 }
 
@@ -130,7 +130,7 @@ void CN3VMesh::CreateCube(const __Vector3 &vMin, const __Vector3 &vMax)
 	m_pwIndices[30] = 3; m_pwIndices[31] = 2; m_pwIndices[32] = 7;
 	m_pwIndices[33] = 3; m_pwIndices[34] = 7; m_pwIndices[35] = 6;
 
-	this->CalcRadiusAndCenter(); // Áß½ÉÁ¡°ú ¹ÝÁö¸§À» °è»êÇØ ÁØ´Ù..
+	this->CalcRadiusAndCenter(); // ï¿½ß½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ø´ï¿½..
 }
 /*
 void CN3VMesh::Render(D3DCOLOR crLine)
@@ -146,7 +146,7 @@ void CN3VMesh::Render(D3DCOLOR crLine)
 	m_lpD3DDev->SetTextureStageState(0, D3DTSS_COLOROP, D3DTOP_SELECTARG1);
 	m_lpD3DDev->SetTextureStageState(0, D3DTSS_COLORARG1, D3DTA_DIFFUSE);
 	m_lpD3DDev->SetTexture(0, NULL);
-	m_lpD3DDev->SetVertexShader(FVF_CV);
+	m_lpD3DDev->SetFVF(FVF_CV);
 
 	__VertexColor vTs[3];
 	if(m_nIC)

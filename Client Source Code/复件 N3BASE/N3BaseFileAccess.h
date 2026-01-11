@@ -17,22 +17,22 @@
 class CN3BaseFileAccess : public CN3Base
 {
 protected:
-	std::string		m_szFileName; // Base Path ¸¦ Á¦¿ÜÇÑ ·ÎÄÃ °æ·Î + ÆÄÀÏ ÀÌ¸§
+	std::string		m_szFileName; // Base Path ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ + ï¿½ï¿½ï¿½ï¿½ ï¿½Ì¸ï¿½
 
 public:
-	int m_iLOD; // ·ÎµùÇÒ¶§ ¾µ LOD
+	int m_iLOD; // ï¿½Îµï¿½ï¿½Ò¶ï¿½ ï¿½ï¿½ LOD
 
 public:
 	const std::string& FileName() const { return m_szFileName; } // Full Path
 	void FileNameSet(const std::string& szFileName);
 
-	bool LoadFromFile(); // ÆÄÀÏ¿¡¼­ ÀÐ¾î¿À±â.
-	virtual bool LoadFromFile(const std::string& szFileName); // ÆÄÀÏ¿¡¼­ ÀÐ¾î¿À±â.
-	virtual bool Load(HANDLE hFile); // ÇÚµé¿¡¼­ ÀÐ¾î¿À±â..
+	bool LoadFromFile(); // ï¿½ï¿½ï¿½Ï¿ï¿½ï¿½ï¿½ ï¿½Ð¾ï¿½ï¿½ï¿½ï¿½.
+	virtual bool LoadFromFile(const std::string& szFileName); // ï¿½ï¿½ï¿½Ï¿ï¿½ï¿½ï¿½ ï¿½Ð¾ï¿½ï¿½ï¿½ï¿½.
+	virtual bool Load(HANDLE hFile); // ï¿½Úµé¿¡ï¿½ï¿½ ï¿½Ð¾ï¿½ï¿½ï¿½ï¿½..
 
-	virtual bool SaveToFile(); // ÇöÀç ÆÄÀÏ ÀÌ¸§´ë·Î ÀúÀå.
-	virtual bool SaveToFile(const std::string& szFileName); // »õÀÌ¸§À¸·Î ÀúÀå.
-	virtual bool Save(HANDLE hFile); // ÇÚµéÀ» ÅëÇØ ÀúÀå..
+	virtual bool SaveToFile(); // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ì¸ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½.
+	virtual bool SaveToFile(const std::string& szFileName); // ï¿½ï¿½ï¿½Ì¸ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½.
+	virtual bool Save(HANDLE hFile); // ï¿½Úµï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½..
 
 public:
 	void Release();

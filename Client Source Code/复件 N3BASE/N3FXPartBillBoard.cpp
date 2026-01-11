@@ -66,7 +66,7 @@ bool CN3FXPartBillBoard::ParseScript(char* szCommand, char* szBuff0, char* szBuf
 {
 	if(CN3FXPartBase::ParseScript(szCommand, szBuff0, szBuff1, szBuff2, szBuff3)) return true;
 
-	//	º¸µå °¹¼ö.
+	//	ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½.
 	if(lstrcmpi(szCommand, "<billboard_count>")==0)
 	{
 		m_iNum = atoi(szBuff0);
@@ -74,7 +74,7 @@ bool CN3FXPartBillBoard::ParseScript(char* szCommand, char* szBuff0, char* szBuf
 		return true;
 	}
 
-	//	º¸µå Å©±â.
+	//	ï¿½ï¿½ï¿½ï¿½ Å©ï¿½ï¿½.
 	if(lstrcmpi(szCommand, "<billboard_size>")==0)
 	{
 		m_fSizeX = atof(szBuff0);
@@ -296,7 +296,7 @@ bool CN3FXPartBillBoard::Tick()
 		}
 	}
 
-	//À§Ä¡¿¡ °üÇÑ Æ½Æ½...m_vCurrPos
+	//ï¿½ï¿½Ä¡ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ Æ½Æ½...m_vCurrPos
 	m_vCurrVelocity += m_vAcceleration*CN3Base::s_fSecPerFrm;
 	m_vCurrPos += m_vCurrVelocity*CN3Base::s_fSecPerFrm;
 
@@ -348,21 +348,21 @@ bool CN3FXPartBillBoard::IsDead()
 
 //
 //	render...
-//	ÀÏ´ÜÀº ÆÄÆ¼Å¬ ÇÏ³ª¾¿ ±×¸®°í....
-//	³ªÁß¿¡´Â °°Àº ÅØ½ºÃÄ ¾²´Â °Íµé³¢¸® ¹­¾î¼­ ±×¸®ÀÚ...
+//	ï¿½Ï´ï¿½ï¿½ï¿½ ï¿½ï¿½Æ¼Å¬ ï¿½Ï³ï¿½ï¿½ï¿½ ï¿½×¸ï¿½ï¿½ï¿½....
+//	ï¿½ï¿½ï¿½ß¿ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ø½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Íµé³¢ï¿½ï¿½ ï¿½ï¿½ï¿½î¼­ ï¿½×¸ï¿½ï¿½ï¿½...
 //
 void CN3FXPartBillBoard::Render()
 {
 	if(m_iTexIdx >= m_iNumTex) return;
 
-	//È¸Àü...
+	//È¸ï¿½ï¿½...
 	__Matrix44 mtxRotZ;
 	mtxRotZ.Identity();
 	mtxRotZ.RotationZ(m_fCurrLife*m_vRotVelocity.x);
 
 	if(!m_bRoateOnlyY)
 	{
-		//À§Ä¡ÁöÁ¤ & ³ª¸¦ ¹Ù¶óº¸°Ô ¼ÂÆÃ..
+		//ï¿½ï¿½Ä¡ï¿½ï¿½ï¿½ï¿½ & ï¿½ï¿½ï¿½ï¿½ ï¿½Ù¶óº¸°ï¿½ ï¿½ï¿½ï¿½ï¿½..
 		__Matrix44 mtxVI;
 		mtxVI = s_CameraData.mtxViewInverse;
 		__Vector3 vpp;
@@ -453,7 +453,7 @@ void CN3FXPartBillBoard::Render()
 	}
 	else
 	{
-		//À§Ä¡ÁöÁ¤ & ³ª¸¦ ¹Ù¶óº¸°Ô ¼ÂÆÃ..
+		//ï¿½ï¿½Ä¡ï¿½ï¿½ï¿½ï¿½ & ï¿½ï¿½ï¿½ï¿½ ï¿½Ù¶óº¸°ï¿½ ï¿½ï¿½ï¿½ï¿½..
 		__Vector3 AbsoluteCurrPos = Rotate2AbsolutePos(m_vCurrPos);
 		__Vector3 vRadiusPos = s_CameraData.vEye - (AbsoluteCurrPos + m_pRefBundle->m_vPos);
 
@@ -548,7 +548,7 @@ void CN3FXPartBillBoard::Render()
 		}
 	}
 
-	if(m_bAlpha) // Alpha »ç¿ë
+	if(m_bAlpha) // Alpha ï¿½ï¿½ï¿½
 	{
 		__AlphaPrimitive* pAP = s_AlphaMgr.Add();
 		if(pAP)
@@ -575,11 +575,11 @@ void CN3FXPartBillBoard::Render()
 			pAP->pwIndices			= NULL;
 		}
 
-		return; // ·»´õ¸µ ¾ÈÇÏÁö·Õ.
+		return; // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½.
 	}
 	else 
 	{
-		CN3Base::s_lpD3DDev->SetVertexShader(FVF_XYZCOLORT1);
+		CN3Base::s_lpD3DDev->SetFVF(FVF_XYZCOLORT1);
 
 		if(m_ppRefTex[m_iTexIdx]) 
 			CN3Base::s_lpD3DDev->SetTexture(0, m_ppRefTex[m_iTexIdx]->Get());

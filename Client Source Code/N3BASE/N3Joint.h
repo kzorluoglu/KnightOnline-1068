@@ -21,10 +21,10 @@ const int MAX_JOINT_TRANSFORM = 64;
 
 class CN3Joint : public CN3Transform
 {
-	friend class CN3Joint; // Position, Rotation, Scale °ªµéÀ» ÀÚÀ¯·Ó°Ô ´Ù·ê¼ö ÀÖ¾î¾ß ÇÑ´Ù..
+	friend class CN3Joint; // Position, Rotation, Scale ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ó°ï¿½ ï¿½Ù·ï¿½ï¿½ ï¿½Ö¾ï¿½ï¿½ ï¿½Ñ´ï¿½..
 public:
 	__Quaternion			m_qOrient;		// Joint Orient Quaternion
-	CN3AnimKey				m_KeyOrient;	// Joint Orient Å°°ª... NULL ÀÌ¸é ¾ø´Â°Å´Ù..
+	CN3AnimKey				m_KeyOrient;	// Joint Orient Å°ï¿½ï¿½... NULL ï¿½Ì¸ï¿½ ï¿½ï¿½ï¿½Â°Å´ï¿½..
 
 protected:
 	CN3Joint*				m_pParent;
@@ -60,7 +60,7 @@ public:
 	BOOL FindPointerByID(int nID, CN3Joint *&pJoint);
 #ifdef _N3TOOL
 	BOOL FindIndex(const std::string& szName, int &nIndex);
-	BOOL FindPointerByName(const std::string& szName, CN3Joint *&pJoint); // ÀÌ¸§À» ³ÖÀ¸¸é ÇØ´ç ³ëµåÀÇ Æ÷ÀÎÅÍ¸¦ µ¹·ÁÁØ´Ù..
+	BOOL FindPointerByName(const std::string& szName, CN3Joint *&pJoint); // ï¿½Ì¸ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ø´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Í¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ø´ï¿½..
 	void RotSet(const __Quaternion& qtRot) { m_qRot = qtRot; this->ReCalcMatrix(); }
 	void RotSet(float x, float y, float z, float w) { m_qRot.x = x; m_qRot.y = y; m_qRot.z = z; m_qRot.w = w; this->ReCalcMatrix(); }
 	void Render(const __Matrix44* pMtxParent = NULL, float fUnitSize = 0.1f);

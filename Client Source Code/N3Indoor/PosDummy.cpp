@@ -32,13 +32,13 @@ void CPosDummy::SetSelObj(SelectElement Obj, bool bOne)
 		m_SelObjArray.RemoveAll();
 	else
 	{
-		// ÀÌ¹Ì ÀÖÀ¸¸é Ãß°¡ÇÏÁö ¾Ê´Â´Ù..
+		// ï¿½Ì¹ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ß°ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ê´Â´ï¿½..
 		int iSize = m_SelObjArray.GetSize();
 		for ( int i = 0; i < iSize; i++ )
 		{
 			if (m_SelObjArray[i].pSelectPointer == Obj.pSelectPointer)
 			{
-				// ÀÌ¹Ì ÀÖÀ¸¹Ç·Î ¼±ÅÃ¸ñ·Ï¿¡¼­ Á¦°Å
+				// ï¿½Ì¹ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ç·ï¿½ ï¿½ï¿½ï¿½Ã¸ï¿½Ï¿ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 				m_SelObjArray.RemoveAt(i);
 				if (m_SelObjArray.GetSize() > 0)
 				{
@@ -68,9 +68,9 @@ BOOL CPosDummy::MouseMsgFilter(LPMSG pMsg)
 			DWORD nFlags = pMsg->wParam;
 			if (m_pSelectedCube && (nFlags & MK_LBUTTON))
 			{
-				__Vector3 vRayDir, vRayOrig;	// È­¸é Áß¾Ó(½ÃÁ¡)°ú ¸¶¿ì½º Æ÷ÀÎÅÍ¸¦ ÀÌÀº Á÷¼±ÀÇ ¹æÇâ°ú ¿øÁ¡
-				__Vector3 vPN, vPV;	// Æò¸éÀÇ ¹ý¼±°ú Æ÷ÇÔµÈ Á¡
-				__Vector3 vPos;	// À§ÀÇ Æò¸é°ú Á÷¼±ÀÇ ¸¸³ª´Â Á¡(±¸ÇÒ Á¡)
+				__Vector3 vRayDir, vRayOrig;	// È­ï¿½ï¿½ ï¿½ß¾ï¿½(ï¿½ï¿½ï¿½ï¿½)ï¿½ï¿½ ï¿½ï¿½ï¿½ì½º ï¿½ï¿½ï¿½ï¿½ï¿½Í¸ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+				__Vector3 vPN, vPV;	// ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ôµï¿½ ï¿½ï¿½
+				__Vector3 vPos;	// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½(ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½)
 				__Vector3 vCameraDir = s_CameraData.vAt - s_CameraData.vEye;	vCameraDir.Normalize();
 				GetPickRay(point, vRayDir, vRayOrig);
 				vPV = m_vPrevPos;
@@ -84,7 +84,7 @@ BOOL CPosDummy::MouseMsgFilter(LPMSG pMsg)
 						float fT = D3DXVec3Dot(&vPN,&(vPV-vRayOrig)) / D3DXVec3Dot(&vPN, &vRayDir);
 						vPos = vRayOrig + vRayDir*fT;
 
-						// Æò¸é»óÀÇ Á¡¿¡¼­ ÁöÇüÀÇ ³ôÀÌ¸¦ ±¸ÇÑ´Ù.
+						// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ì¸ï¿½ ï¿½ï¿½ï¿½Ñ´ï¿½.
 						__Vector3 v1, v2, v3, v4;	float fSize = 1000.0f;
 						v1.Set(-fSize, 0.0f,  fSize);
 						v2.Set( fSize, 0.0f,  fSize);

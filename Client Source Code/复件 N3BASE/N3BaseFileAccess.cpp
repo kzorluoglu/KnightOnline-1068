@@ -19,7 +19,7 @@ CN3BaseFileAccess::CN3BaseFileAccess()
 {
 	m_dwType |= OBJ_BASE_FILEACCESS;
 	m_szFileName = "";
-	m_iLOD = 0; // ·ÎµùÇÒ¶§ ¾µ LOD
+	m_iLOD = 0; // ï¿½Îµï¿½ï¿½Ò¶ï¿½ ï¿½ï¿½ LOD
 }
 
 CN3BaseFileAccess::~CN3BaseFileAccess()
@@ -29,7 +29,7 @@ CN3BaseFileAccess::~CN3BaseFileAccess()
 void CN3BaseFileAccess::Release()
 {
 	m_szFileName = "";
-	m_iLOD = 0; // ·ÎµùÇÒ¶§ ¾µ LOD
+	m_iLOD = 0; // ï¿½Îµï¿½ï¿½Ò¶ï¿½ ï¿½ï¿½ LOD
 	CN3Base::Release();
 }
 
@@ -37,9 +37,9 @@ void CN3BaseFileAccess::FileNameSet(const std::string& szFileName)
 {
 	std::string szTmpFN = szFileName;
 
-	if(!szTmpFN.empty()) CharLower(&(szTmpFN[0])); // ¸ðµÎ ¼Ò¹®ÀÚ·Î ¸¸µç´Ù..
- 	int iPos = szTmpFN.find(s_szPath); // ¹®ÀÚ¿­¿¡ Base Path ¿Í ÀÏÄ¡ÇÏ´Â ÀÌ¸§ÀÌ ÀÖ´ÂÁö º»´Ù.
-	if(iPos >= 0) m_szFileName = szTmpFN.substr(s_szPath.size()); // °æ·Î°¡ ÀÏÄ¡ÇÏ¸é.. ±ä°æ·Î´Â Â©¶óÁØ´Ù..
+	if(!szTmpFN.empty()) CharLower(&(szTmpFN[0])); // ï¿½ï¿½ï¿½ ï¿½Ò¹ï¿½ï¿½Ú·ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½..
+ 	int iPos = szTmpFN.find(s_szPath); // ï¿½ï¿½ï¿½Ú¿ï¿½ï¿½ï¿½ Base Path ï¿½ï¿½ ï¿½ï¿½Ä¡ï¿½Ï´ï¿½ ï¿½Ì¸ï¿½ï¿½ï¿½ ï¿½Ö´ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½.
+	if(iPos >= 0) m_szFileName = szTmpFN.substr(s_szPath.size()); // ï¿½ï¿½Î°ï¿½ ï¿½ï¿½Ä¡ï¿½Ï¸ï¿½.. ï¿½ï¿½ï¿½Î´ï¿½ Â©ï¿½ï¿½ï¿½Ø´ï¿½..
 	else m_szFileName = szTmpFN;
 }
 
@@ -71,7 +71,7 @@ bool CN3BaseFileAccess::LoadFromFile()
 	}
 
 	std::string szFullPath;
-	if(-1 != m_szFileName.find(':') || -1 != m_szFileName.find("\\\\") || -1 != m_szFileName.find("//")) // ¹®ÀÚ¿­¿¡ ':', '\\', '//' ÀÌ µé¾î ÀÖÀ¸¸é ÀüÃ¼ °æ·ÎÀÌ´Ù..
+	if(-1 != m_szFileName.find(':') || -1 != m_szFileName.find("\\\\") || -1 != m_szFileName.find("//")) // ï¿½ï¿½ï¿½Ú¿ï¿½ï¿½ï¿½ ':', '\\', '//' ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ã¼ ï¿½ï¿½ï¿½ï¿½Ì´ï¿½..
 	{
 		szFullPath = m_szFileName;
 	}
@@ -119,7 +119,7 @@ bool CN3BaseFileAccess::SaveToFile()
 	}
 
 	std::string szFullPath;
-	if(-1 != m_szFileName.find(':') || -1 != m_szFileName.find("\\\\") || -1 != m_szFileName.find("//")) // ¹®ÀÚ¿­¿¡ ':', '\\', '//' ÀÌ µé¾î ÀÖÀ¸¸é ÀüÃ¼ °æ·ÎÀÌ´Ù..
+	if(-1 != m_szFileName.find(':') || -1 != m_szFileName.find("\\\\") || -1 != m_szFileName.find("//")) // ï¿½ï¿½ï¿½Ú¿ï¿½ï¿½ï¿½ ':', '\\', '//' ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ã¼ ï¿½ï¿½ï¿½ï¿½Ì´ï¿½..
 	{
 		szFullPath = m_szFileName;
 	}

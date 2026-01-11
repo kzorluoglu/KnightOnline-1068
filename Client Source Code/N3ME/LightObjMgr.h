@@ -39,7 +39,7 @@ public:
 	__VertexXyzColor		m_CubeVB[36];
 	CDlgLight*				m_pDlg;
 
-	CMapMng*				m_pRefMapMng;		// ÁöÇü ÂüÁ¶ Æ÷ÀÎÅÍ..
+	CMapMng*				m_pRefMapMng;		// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½..
 	bool					m_bActive;
 
 	std::list<LIGHTOBJ*>	m_ListObj;

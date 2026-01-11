@@ -78,10 +78,10 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 	EnableDocking(CBRS_ALIGN_ANY);
 	DockControlBar(&m_wndToolBar);
 
-	// Engine »ý¼º
+	// Engine ï¿½ï¿½ï¿½ï¿½
 //	m_Eng.InitEnv();
 	if(m_Eng.Init(TRUE, m_hWnd, 64, 64, 0, TRUE) == false) return -1;
-	m_Eng.GridCreate(20, 20); // ±×¸®µå ¸¸µé±â..
+	m_Eng.GridCreate(20, 20); // ï¿½×¸ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½..
 	m_SndMgr.Init(m_hWnd);
 
 	return 0;

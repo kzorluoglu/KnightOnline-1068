@@ -11,20 +11,20 @@
 
 struct __CharacterSymbol
 {
-	__Vector3		vBoxes[5]; // »óÀÚ¸¦ LineStrip À¸·Î ±×¸°´Ù. 5
+	__Vector3		vBoxes[5]; // ï¿½ï¿½ï¿½Ú¸ï¿½ LineStrip ï¿½ï¿½ï¿½ï¿½ ï¿½×¸ï¿½ï¿½ï¿½. 5
 	__Vector3		vDirections[3];
 	__Matrix44		mtxWorld;
-	D3DCOLOR		color; // »ö..
+	D3DCOLOR		color; // ï¿½ï¿½..
 	char			szID[64]; // ID
-	char			szRemark[128]; // ÁÖ¼®???
+	char			szRemark[128]; // ï¿½Ö¼ï¿½???
 	
 	__CharacterSymbol()
 	{
 		__Matrix44 mtxTmp;
 		mtxWorld.Identity();
-		color = 0xffffffff; // ±âº»Àº Èò»ö..
+		color = 0xffffffff; // ï¿½âº»ï¿½ï¿½ ï¿½ï¿½ï¿½..
 		szID[0] = NULL; // ID
-		szRemark[0] = NULL; // ÁÖ¼®???
+		szRemark[0] = NULL; // ï¿½Ö¼ï¿½???
 
 		float fRadius = 2.0f;
 		vBoxes[0].Set(-fRadius, 0, fRadius);

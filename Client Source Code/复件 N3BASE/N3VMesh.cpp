@@ -20,7 +20,7 @@ CN3VMesh::CN3VMesh()
 {
 	m_dwType |= OBJ_MESH_VECTOR3;
 	
-	m_pVertices = NULL; // Á¡ ¹öÆÛ
+	m_pVertices = NULL; // ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	m_pwIndices = NULL; // Index...
 
 	this->Release();
@@ -39,8 +39,8 @@ void CN3VMesh::Release()
 	delete [] m_pwIndices; m_pwIndices = NULL;
 	m_nIC = 0;
 
-	m_vCenter.Set(0,0,0); // Mesh Vertices ÀÇ Áß°£Á¡..
-	m_fRadius = 0.0f; // ¹ÝÁö¸§
+	m_vCenter.Set(0,0,0); // Mesh Vertices ï¿½ï¿½ ï¿½ß°ï¿½ï¿½ï¿½..
+	m_fRadius = 0.0f; // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 }
 
 bool CN3VMesh::Load(HANDLE hFile)
@@ -50,10 +50,10 @@ bool CN3VMesh::Load(HANDLE hFile)
 	DWORD dwRWC = 0;
 
 	int nVC;
-	ReadFile(hFile, &nVC, 4, &dwRWC, NULL); // Á¡°¹¼ö ÀÐ±â..
+	ReadFile(hFile, &nVC, 4, &dwRWC, NULL); // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ð±ï¿½..
 	if(nVC > 0)
 	{
-		this->CreateVertices(nVC); // Vertex Buffer »ý¼º ¹× µ¥ÀÌÅÍ Ã¤¿ì±â
+		this->CreateVertices(nVC); // Vertex Buffer ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Ã¤ï¿½ï¿½ï¿½
 		ReadFile(hFile, m_pVertices, nVC * sizeof(__Vector3), &dwRWC, NULL);
 	}
 
@@ -61,11 +61,11 @@ bool CN3VMesh::Load(HANDLE hFile)
 	ReadFile(hFile, &nIC, 4, &dwRWC, NULL); // Index Count..
 	if(nIC > 0)
 	{
-		this->CreateIndex(nIC); // Vertex Buffer »ý¼º ¹× µ¥ÀÌÅÍ Ã¤¿ì±â
+		this->CreateIndex(nIC); // Vertex Buffer ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Ã¤ï¿½ï¿½ï¿½
 		ReadFile(hFile, m_pwIndices, nIC * 2, &dwRWC, NULL);
 	}
 
-	this->CalcRadiusAndCenter(); // Áß½ÉÁ¡°ú ¹ÝÁö¸§À» °è»êÇØ ÁØ´Ù..
+	this->CalcRadiusAndCenter(); // ï¿½ß½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ø´ï¿½..
 
 	return true;
 }
@@ -74,7 +74,7 @@ bool CN3VMesh::Save(HANDLE hFile)
 {
 	DWORD dwRWC = 0;
 
-	WriteFile(hFile, &m_nVC, 4, &dwRWC, NULL); // Á¡°¹¼ö ÀÐ±â..
+	WriteFile(hFile, &m_nVC, 4, &dwRWC, NULL); // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ð±ï¿½..
 	if(m_nVC > 0) 
 	{
 		WriteFile(hFile, m_pVertices, m_nVC * sizeof(__Vector3), &dwRWC, NULL);
@@ -83,7 +83,7 @@ bool CN3VMesh::Save(HANDLE hFile)
 	WriteFile(hFile, &m_nIC, 4, &dwRWC, NULL); // Index Count..
 	if(m_nIC > 0)
 	{
-		WriteFile(hFile, m_pwIndices, m_nIC * 2, &dwRWC, NULL); // Index Buffer µ¥ÀÌÅÍ ¾²±â..
+		WriteFile(hFile, m_pwIndices, m_nIC * 2, &dwRWC, NULL); // Index Buffer ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½..
 	}
 
 	return true;
@@ -95,7 +95,7 @@ void CN3VMesh::CreateVertices(int nVC)
 	
 	delete [] m_pVertices;
 	m_pVertices = new __Vector3[nVC];
-	memset(m_pVertices, 0, nVC * sizeof(__Vector3)); // Vertex Buffer »ý¼º
+	memset(m_pVertices, 0, nVC * sizeof(__Vector3)); // Vertex Buffer ï¿½ï¿½ï¿½ï¿½
 	m_nVC = nVC;
 }
 
@@ -105,7 +105,7 @@ void CN3VMesh::CreateIndex(int nIC)
 	
 	delete [] m_pwIndices;
 	m_pwIndices = new WORD[nIC];
-	memset(m_pwIndices, 0, nIC * 2); // Index Buffer »ý¼º
+	memset(m_pwIndices, 0, nIC * 2); // Index Buffer ï¿½ï¿½ï¿½ï¿½
 	m_nIC = nIC;
 }
 
@@ -137,7 +137,7 @@ void CN3VMesh::CreateCube(const __Vector3 &vMin, const __Vector3 &vMax)
 	m_pwIndices[30] = 3; m_pwIndices[31] = 2; m_pwIndices[32] = 7;
 	m_pwIndices[33] = 3; m_pwIndices[34] = 7; m_pwIndices[35] = 6;
 
-	this->CalcRadiusAndCenter(); // Áß½ÉÁ¡°ú ¹ÝÁö¸§À» °è»êÇØ ÁØ´Ù..
+	this->CalcRadiusAndCenter(); // ï¿½ß½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ø´ï¿½..
 }
 
 void CN3VMesh::Render(D3DCOLOR crLine)
@@ -153,7 +153,7 @@ void CN3VMesh::Render(D3DCOLOR crLine)
 	s_lpD3DDev->SetTextureStageState(0, D3DTSS_COLOROP, D3DTOP_SELECTARG1);
 	s_lpD3DDev->SetTextureStageState(0, D3DTSS_COLORARG1, D3DTA_DIFFUSE);
 	s_lpD3DDev->SetTexture(0, NULL);
- 	s_lpD3DDev->SetVertexShader(FVF_CV);
+ 	s_lpD3DDev->SetFVF(FVF_CV);
 
 	__VertexColor vTs[3];
 	if(m_nIC)
@@ -227,26 +227,26 @@ bool CN3VMesh::CheckCollision(const __Matrix44* pMtxWorld, int xScreen, int yScr
 
 		vPos *= mtxWI;
 		mtxWI.PosSet(0,0,0);
-		vDir *= mtxWI; // ¿ªÇà·Ä·Î È¸Àü..
+		vDir *= mtxWI; // ï¿½ï¿½ï¿½ï¿½Ä·ï¿½ È¸ï¿½ï¿½..
 	}
 
-	if(m_nIC > 0)  // ÀÎµ¦½º°¡ ÀÖ´Â °æ¿ì
+	if(m_nIC > 0)  // ï¿½Îµï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ö´ï¿½ ï¿½ï¿½ï¿½
 	{
 		int nFC = m_nIC / 3;
 		for(int i = 0; i < nFC; i++)
 		{
-			if(::IntersectTriangle(vPos, vDir, m_pVertices[m_pwIndices[i*3+0]], m_pVertices[m_pwIndices[i*3+1]], m_pVertices[m_pwIndices[i*3+2]])) // Ã¹Â° º¤ÅÍ°¡ °ÉÄ¡¸é..
+			if(::IntersectTriangle(vPos, vDir, m_pVertices[m_pwIndices[i*3+0]], m_pVertices[m_pwIndices[i*3+1]], m_pVertices[m_pwIndices[i*3+2]])) // Ã¹Â° ï¿½ï¿½ï¿½Í°ï¿½ ï¿½ï¿½Ä¡ï¿½ï¿½..
 			{
 				return true;
 			}
 		}
 	}
-	else // ÀÎµ¦½º ¾øÀÌ Á¡¸¸ ÀÖ´Â °æ¿ì
+	else // ï¿½Îµï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ö´ï¿½ ï¿½ï¿½ï¿½
 	{
 		int nFC = m_nVC / 3;
 		for(int i = 0; i < nFC; i++)
 		{
-			if(::IntersectTriangle(vPos, vDir, m_pVertices[i*3+0], m_pVertices[i*3+1], m_pVertices[i*3+2])) // Ã¹Â° º¤ÅÍ°¡ °ÉÄ¡¸é..
+			if(::IntersectTriangle(vPos, vDir, m_pVertices[i*3+0], m_pVertices[i*3+1], m_pVertices[i*3+2])) // Ã¹Â° ï¿½ï¿½ï¿½Í°ï¿½ ï¿½ï¿½Ä¡ï¿½ï¿½..
 			{
 				return true;
 			}
@@ -277,7 +277,7 @@ bool CN3VMesh::CheckCollision(const __Matrix44* pMtxWorld, __Vector3& v0, __Vect
 	}
 	vDir = vPos1 - vPos0;
 
-	if(m_nIC > 0) // ÀÎµ¦½º°¡ ÀÖ´Â °æ¿ì
+	if(m_nIC > 0) // ï¿½Îµï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ö´ï¿½ ï¿½ï¿½ï¿½
 	{
 		int nFC = m_nIC / 3;
 		int nCI0, nCI1, nCI2; // Collision polygon index
@@ -287,15 +287,15 @@ bool CN3VMesh::CheckCollision(const __Matrix44* pMtxWorld, __Vector3& v0, __Vect
 			nCI1 = m_pwIndices[i*3+1];
 			nCI2 = m_pwIndices[i*3+2];
 
-			if(::IntersectTriangle(vPos0, vDir, m_pVertices[nCI0], m_pVertices[nCI1], m_pVertices[nCI2])) // Ã¹Â° º¤ÅÍ°¡ °ÉÄ¡¸é..
+			if(::IntersectTriangle(vPos0, vDir, m_pVertices[nCI0], m_pVertices[nCI1], m_pVertices[nCI2])) // Ã¹Â° ï¿½ï¿½ï¿½Í°ï¿½ ï¿½ï¿½Ä¡ï¿½ï¿½..
 			{
-				if(false == ::IntersectTriangle(vPos1, vDir, m_pVertices[nCI0], m_pVertices[nCI1], m_pVertices[nCI2])) // µÑÂ°´Â ¾È °ÉÄ¡¸é..
+				if(false == ::IntersectTriangle(vPos1, vDir, m_pVertices[nCI0], m_pVertices[nCI1], m_pVertices[nCI2])) // ï¿½ï¿½Â°ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½Ä¡ï¿½ï¿½..
 				{
-					// Ãæµ¹ÀÌ´Ù..
+					// ï¿½æµ¹ï¿½Ì´ï¿½..
 					float fT, fU, fV;
 					::IntersectTriangle(vPos0, vDir, m_pVertices[nCI0], m_pVertices[nCI1], m_pVertices[nCI2], fT, fU, fV, &vCollision);
 					if(pMtxWorld) vCollision *= (*pMtxWorld);
-					// ¹ý¼± º¤ÅÍ ±¸ÇÏ±â..
+					// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ï±ï¿½..
 					vNormal.Cross(m_pVertices[nCI1] - m_pVertices[nCI0], m_pVertices[nCI2] - m_pVertices[nCI1]);
 					vNormal.Normalize();
 					return true;
@@ -303,7 +303,7 @@ bool CN3VMesh::CheckCollision(const __Matrix44* pMtxWorld, __Vector3& v0, __Vect
 			}
 		}
 	}
-	else // ÀÎµ¦½º ¾øÀÌ Á¡¸¸ ÀÖ´Â °æ¿ì
+	else // ï¿½Îµï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ö´ï¿½ ï¿½ï¿½ï¿½
 	{
 		int nFC = m_nIC / 3;
 		int nCI0, nCI1, nCI2; // Collision polygon index
@@ -313,14 +313,14 @@ bool CN3VMesh::CheckCollision(const __Matrix44* pMtxWorld, __Vector3& v0, __Vect
 			nCI1 = m_pwIndices[i*3+1];
 			nCI2 = m_pwIndices[i*3+2];
 
-			if(::IntersectTriangle(v0, vDir, m_pVertices[nCI0], m_pVertices[nCI1], m_pVertices[nCI2])) // Ã¹Â° º¤ÅÍ°¡ °ÉÄ¡¸é..
+			if(::IntersectTriangle(v0, vDir, m_pVertices[nCI0], m_pVertices[nCI1], m_pVertices[nCI2])) // Ã¹Â° ï¿½ï¿½ï¿½Í°ï¿½ ï¿½ï¿½Ä¡ï¿½ï¿½..
 			{
-				if(false == ::IntersectTriangle(v1, vDir, m_pVertices[nCI0], m_pVertices[nCI1], m_pVertices[nCI2])) // µÑÂ°´Â ¾È °ÉÄ¡¸é..
+				if(false == ::IntersectTriangle(v1, vDir, m_pVertices[nCI0], m_pVertices[nCI1], m_pVertices[nCI2])) // ï¿½ï¿½Â°ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½Ä¡ï¿½ï¿½..
 				{
-					// Ãæµ¹ÀÌ´Ù..
+					// ï¿½æµ¹ï¿½Ì´ï¿½..
 					float fT, fU, fV;
 					::IntersectTriangle(v0, vDir, m_pVertices[nCI0], m_pVertices[nCI1], m_pVertices[nCI2], fT, fU, fV, &vCollision);
-					// ¹ý¼± º¤ÅÍ ±¸ÇÏ±â..
+					// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ï±ï¿½..
 					vNormal.Cross(m_pVertices[nCI1] - m_pVertices[nCI0], m_pVertices[nCI2] - m_pVertices[nCI1]);
 					return true;
 				}
@@ -341,14 +341,14 @@ bool CN3VMesh::Import(CN3IMesh *pIMesh)
 
 	__VertexT1* pvSrc = pIMesh->BuildVertexList();
 
-	for(int i = 0; i < nFC; i++) // Normal °ª ´Ù½Ã ¼¼ÆÃ..
+	for(int i = 0; i < nFC; i++) // Normal ï¿½ï¿½ ï¿½Ù½ï¿½ ï¿½ï¿½ï¿½ï¿½..
 	{
 		m_pVertices[i*3+0] = pvSrc[i*3+0].v;
 		m_pVertices[i*3+1] = pvSrc[i*3+1].v;
 		m_pVertices[i*3+2] = pvSrc[i*3+2].v;
 	}
 
-	this->NameSet(pIMesh->Name()); // ÀÌ¸§..
+	this->NameSet(pIMesh->Name()); // ï¿½Ì¸ï¿½..
 	return true;
 }
 

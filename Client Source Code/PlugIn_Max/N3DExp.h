@@ -76,7 +76,7 @@ public:
 	CN3Scene*		m_pScene;			// N3Scene
 
 protected:
-	static __EXPORT_OPTION m_Option;	// Export Option - Window Procedure ¶«½Ã Static À¸·Î ¾´´Ù..
+	static __EXPORT_OPTION m_Option;	// Export Option - Window Procedure ï¿½ï¿½ï¿½ï¿½ Static ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½..
 	BOOL			m_bCancelExport;	// TRUE?->Cancel
 	int				m_nNodeCur;			// Current Processing Node Count
 	int				m_nNodeCount;		// Total Node Count
@@ -99,7 +99,7 @@ public:
 	
 	bool IsBone(INode *pNode);
 	bool FindNodeRecursive(INode* pNode, Class_ID cID, std::list<INode*>& list);
-	bool CheckObjectClassID(INode* pNode, const Class_ID& cID) const;	// ÁÖ¾îÁø ³ëµåÀÇ ¿ÀºêÁ§Æ®°¡ ÁÖ¾îÁø Å¬·¡½º ¾ÆÀÌµðÀÎÁö °Ë»ç
+	bool CheckObjectClassID(INode* pNode, const Class_ID& cID) const;	// ï¿½Ö¾ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½Ö¾ï¿½ï¿½ï¿½ Å¬ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ìµï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ë»ï¿½
 	Modifier* FindPhysiqueModifier(INode* pNode);
 //	bool FindNodeIndex(INode* pNodeCompare, INode* pNodeSrc, Class_ID& cID, int& nNodeIndex);
 	bool FindBoneIndex(INode* pNodeCompare, INode* pNodeSrc, int& nNodeIndex);

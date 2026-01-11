@@ -18,11 +18,11 @@
 #endif // end of #ifndef _3DSERVER
 
 
-const int CELL_MAIN_DEVIDE = 4; // ¸ÞÀÎ¼¿Àº 4 X 4 ÀÇ ¼­ºê¼¿·Î ³ª´¶´Ù..
-const int CELL_SUB_SIZE = 4; // 4 Meter °¡ ¼­ºê¼¿ÀÇ »çÀÌÁîÀÌ´Ù..
-const int CELL_MAIN_SIZE = CELL_MAIN_DEVIDE * CELL_SUB_SIZE; // ¸ÞÀÎ¼¿ Å©±â´Â ¼­ºê¼¿°¹¼ö X ¼­ºê¼¿ Å©±âÀÌ´Ù.
-const int MAX_CELL_MAIN = 4096 / CELL_MAIN_SIZE; // ¸ÞÀÎ¼¿ÀÇ ÃÖ´ë °¹¼ö´Â ÁöÇüÅ©±â / ¸ÞÀÎ¼¿Å©±â ÀÌ´Ù.
-const int MAX_CELL_SUB = MAX_CELL_MAIN * CELL_MAIN_DEVIDE; // ¼­ºê¼¿ ÃÖ´ë °¹¼ö´Â ¸ÞÀÎ¼¿ * ¸ÞÀÎ¼¿³ª´®¼ö ÀÌ´Ù.
+const int CELL_MAIN_DEVIDE = 4; // ï¿½ï¿½ï¿½Î¼ï¿½ï¿½ï¿½ 4 X 4 ï¿½ï¿½ ï¿½ï¿½ï¿½ê¼¿ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½..
+const int CELL_SUB_SIZE = 4; // 4 Meter ï¿½ï¿½ ï¿½ï¿½ï¿½ê¼¿ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ì´ï¿½..
+const int CELL_MAIN_SIZE = CELL_MAIN_DEVIDE * CELL_SUB_SIZE; // ï¿½ï¿½ï¿½Î¼ï¿½ Å©ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ê¼¿ï¿½ï¿½ï¿½ï¿½ X ï¿½ï¿½ï¿½ê¼¿ Å©ï¿½ï¿½ï¿½Ì´ï¿½.
+const int MAX_CELL_MAIN = 4096 / CELL_MAIN_SIZE; // ï¿½ï¿½ï¿½Î¼ï¿½ï¿½ï¿½ ï¿½Ö´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Å©ï¿½ï¿½ / ï¿½ï¿½ï¿½Î¼ï¿½Å©ï¿½ï¿½ ï¿½Ì´ï¿½.
+const int MAX_CELL_SUB = MAX_CELL_MAIN * CELL_MAIN_DEVIDE; // ï¿½ï¿½ï¿½ê¼¿ ï¿½Ö´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Î¼ï¿½ * ï¿½ï¿½ï¿½Î¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ì´ï¿½.
 
 #ifdef _3DSERVER
 class CN3ShapeMgr
@@ -35,10 +35,10 @@ class CN3ShapeMgr : public CN3BaseFileAccess
 #endif // end of #ifndef _3DSERVER
 {
 public:
-	struct __CellSub // ÇÏÀ§ ¼¿ µ¥ÀÌÅÍ
+	struct __CellSub // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	{
 		int 	nCCPolyCount; // Collision Check Polygon Count
-		DWORD*	pdwCCVertIndices; // Collision Check Polygon Vertex Indices - wCCPolyCount * 3 ¸¸Å­ »ý¼ºµÈ´Ù.
+		DWORD*	pdwCCVertIndices; // Collision Check Polygon Vertex Indices - wCCPolyCount * 3 ï¿½ï¿½Å­ ï¿½ï¿½ï¿½ï¿½ï¿½È´ï¿½.
 
 		void Load(HANDLE hFile)
 		{
@@ -71,7 +71,7 @@ public:
 		~__CellSub() { delete [] pdwCCVertIndices; }
 	};
 
-	struct __CellMain // ±âº» ¼¿ µ¥ÀÌÅÍ
+	struct __CellMain // ï¿½âº» ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	{
 		int		nShapeCount; // Shape Count;
 		WORD*	pwShapeIndices; // Shape Indices
@@ -120,28 +120,28 @@ public:
 
 protected:
 #ifndef _3DSERVER
-	std::vector<CN3Shape*>	m_Shapes;			// ¸®½ºÆ®·Î ¾È ¸¸µç ÀÌÀ¯´Â... ¹è¿­ÀÌ ÈÎ¾À È¿À²ÀûÀÌ±â ¶§¹®ÀÌ´Ù.
-	std::list<CN3Shape*>	m_ShapesToRender;	// Tick À» È£ÃâÇÏ¸é ·»´õ¸µÇÒ °Í¸¸ Ãß¸°´Ù..
-	std::list<CN3Shape*>	m_ShapesHaveID;		// ID ¸¦ °®°í ÀÖ¾î NPC °¡ µÉ¼ö ÀÖ´Â Shapes....
+	std::vector<CN3Shape*>	m_Shapes;			// ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½... ï¿½è¿­ï¿½ï¿½ ï¿½Î¾ï¿½ È¿ï¿½ï¿½ï¿½ï¿½ï¿½Ì±ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ì´ï¿½.
+	std::list<CN3Shape*>	m_ShapesToRender;	// Tick ï¿½ï¿½ È£ï¿½ï¿½ï¿½Ï¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Í¸ï¿½ ï¿½ß¸ï¿½ï¿½ï¿½..
+	std::list<CN3Shape*>	m_ShapesHaveID;		// ID ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ö¾ï¿½ NPC ï¿½ï¿½ ï¿½É¼ï¿½ ï¿½Ö´ï¿½ Shapes....
 #endif // end of #ifndef _3DSERVER
 	
-	float					m_fMapWidth;	// ¸Ê ³Êºñ.. ¹ÌÅÍ ´ÜÀ§
-	float					m_fMapLength;	// ¸Ê ±æÀÌ.. ¹ÌÅÍ ´ÜÀ§
+	float					m_fMapWidth;	// ï¿½ï¿½ ï¿½Êºï¿½.. ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+	float					m_fMapLength;	// ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½.. ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	int						m_nCollisionFaceCount;
 	__CellMain*				m_pCells[MAX_CELL_MAIN][MAX_CELL_MAIN];
 
 #ifdef _N3TOOL
-	std::list<__Vector3>	m_CollisionExtras; // Ãß°¡·Î ³ÖÀ» Ãæµ¹Ã¼Å© µ¥ÀÌÅÍ
+	std::list<__Vector3>	m_CollisionExtras; // ï¿½ß°ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½æµ¹Ã¼Å© ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 #endif // end of #ifedef _N3TOOL
 
 public:
 #ifndef _3DSERVER
-	CN3Shape* ShapeGetByID(int iID); // °íÀ¯ ID ¸¦ °¡Áø ¿ÀºêÁ§Æ®... NPC ·Î ¾µ¼ö ÀÖ´Â ¿ÀºêÁ§Æ®¸¦ °Ë»öÇØ¼­ µ¹·ÁÁØ´Ù..
-	CN3Shape* Pick(int iXScreen, int iYScreen, bool bMustHaveEvent, __Vector3* pvPick = NULL); // À§Ä¡¸¦ µ¹·ÁÁØ´Ù..
+	CN3Shape* ShapeGetByID(int iID); // ï¿½ï¿½ï¿½ï¿½ ID ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®... NPC ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ö´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½Ë»ï¿½ï¿½Ø¼ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ø´ï¿½..
+	CN3Shape* Pick(int iXScreen, int iYScreen, bool bMustHaveEvent, __Vector3* pvPick = NULL); // ï¿½ï¿½Ä¡ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ø´ï¿½..
 	CN3Shape* PickMovable(int iXScreen, int iYScreen, __Vector3* pvPick);
 #endif // end of #ifndef _3DSERVER
 	void SubCell(const __Vector3& vPos, __CellSub** ppSubCell);
-	__CellSub* SubCell(float fX, float fZ) // ÇØ´ç À§Ä¡ÀÇ ¼¿ Æ÷ÀÎÅÍ¸¦ µ¹·ÁÁØ´Ù.
+	__CellSub* SubCell(float fX, float fZ) // ï¿½Ø´ï¿½ ï¿½ï¿½Ä¡ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Í¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ø´ï¿½.
 	{
 		int x = (int)(fX / CELL_MAIN_SIZE);
 		int z = (int)(fZ / CELL_MAIN_SIZE);
@@ -155,15 +155,15 @@ public:
 		
 		return &(m_pCells[x][z]->SubCells[xx][zz]);
 	}
-	float		GetHeightNearstPos(const __Vector3& vPos, float fDist, __Vector3* pvNormal = NULL);  // °¡Àå °¡±î¿î ³ôÀÌÀ» µ¹·ÁÁØ´Ù. ¾øÀ¸¸é -FLT_MAX À» µ¹·ÁÁØ´Ù.
-	float		GetHeight(float fX, float fZ, __Vector3* pvNormal = NULL);  // ÇöÀç ÁöÁ¡¿¡¼­ Á¦ÀÏ ³ôÀº °ªÀ» µ¹·ÁÁØ´Ù. ¾øÀ¸¸é -FLT_MAX À» µ¹·ÁÁØ´Ù.
-	int			SubCellPathThru(const __Vector3& vFrom, const __Vector3& vAt, int iMaxSubCell, __CellSub** ppSubCells); // º¤ÅÍ »çÀÌ¿¡ °ÉÄ£ ¼¿Æ÷ÀÎÅÍ µ¹·ÁÁØ´Ù..
-	float		Width() { return m_fMapWidth; } // ¸ÊÀÇ ³Êºñ. ´ÜÀ§´Â ¹ÌÅÍÀÌ´Ù.
-	float		Height() { return m_fMapWidth; } // ¸ÊÀÇ ³Êºñ. ´ÜÀ§´Â ¹ÌÅÍÀÌ´Ù.
+	float		GetHeightNearstPos(const __Vector3& vPos, float fDist, __Vector3* pvNormal = NULL);  // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ø´ï¿½. ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ -FLT_MAX ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ø´ï¿½.
+	float		GetHeight(float fX, float fZ, __Vector3* pvNormal = NULL);  // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ø´ï¿½. ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ -FLT_MAX ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ø´ï¿½.
+	int			SubCellPathThru(const __Vector3& vFrom, const __Vector3& vAt, int iMaxSubCell, __CellSub** ppSubCells); // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ì¿ï¿½ ï¿½ï¿½Ä£ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ø´ï¿½..
+	float		Width() { return m_fMapWidth; } // ï¿½ï¿½ï¿½ï¿½ ï¿½Êºï¿½. ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ì´ï¿½.
+	float		Height() { return m_fMapWidth; } // ï¿½ï¿½ï¿½ï¿½ ï¿½Êºï¿½. ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ì´ï¿½.
 
 #ifndef _3DSERVER
 	void		ReleaseShapes();
-	void		RenderCollision(__Vector3& vPos); // ³ÖÀº À§Ä¡¿¡ ÀÖ´Â Ãæµ¹ ¸Þ½Ã¸¦ ±×·ÁÁØ´Ù.. µð¹ö±ë¿ë...
+	void		RenderCollision(__Vector3& vPos); // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ä¡ï¿½ï¿½ ï¿½Ö´ï¿½ ï¿½æµ¹ ï¿½Þ½Ã¸ï¿½ ï¿½×·ï¿½ï¿½Ø´ï¿½.. ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½...
 	void		Tick();
 	void		Render();
 	bool		Load(HANDLE hFile);
@@ -171,18 +171,18 @@ public:
 	static int SortByCameraDistance(const void* pArg1, const void* pArg2);
 #endif // end of #ifndef _3DSERVER
 
-	bool		CheckCollision(	const __Vector3& vPos,			// Ãæµ¹ À§Ä¡
-								const __Vector3& vDir,			// ¹æÇâ º¤ÅÍ
-								float fSpeedPerSec,				// ÃÊ´ç ¿òÁ÷ÀÌ´Â ¼Óµµ
-								__Vector3* pvCol = NULL,		// Ãæµ¹ ÁöÁ¡
-								__Vector3* pvNormal = NULL,		// Ãæµ¹ÇÑ¸éÀÇ ¹ý¼±º¤ÅÍ
-								__Vector3* pVec = NULL);		// Ãæµ¹ÇÑ ¸é ÀÇ Æú¸®°ï __Vector3[3]
+	bool		CheckCollision(	const __Vector3& vPos,			// ï¿½æµ¹ ï¿½ï¿½Ä¡
+								const __Vector3& vDir,			// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+								float fSpeedPerSec,				// ï¿½Ê´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ì´ï¿½ ï¿½Óµï¿½
+								__Vector3* pvCol = NULL,		// ï¿½æµ¹ ï¿½ï¿½ï¿½ï¿½
+								__Vector3* pvNormal = NULL,		// ï¿½æµ¹ï¿½Ñ¸ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+								__Vector3* pVec = NULL);		// ï¿½æµ¹ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ __Vector3[3]
 
-	bool		Create(float fMapWidth, float fMapLength); // ¸ÊÀÇ ³Êºñ¿Í ³ôÀÌ¸¦ ¹ÌÅÍ ´ÜÀ§·Î ³Ö´Â´Ù..
+	bool		Create(float fMapWidth, float fMapLength); // ï¿½ï¿½ï¿½ï¿½ ï¿½Êºï¿½ï¿½ ï¿½ï¿½ï¿½Ì¸ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ö´Â´ï¿½..
 	bool		LoadCollisionData(HANDLE hFile);
 
 #ifdef _N3TOOL
-	void		MakeMoveTable(short** pMoveArray);	//ÁöÇü¿¡¼­ shape°¡ ÀÖ´Â Å¸ÀÏÀº 1, ¾ø´Â Å¸ÀÏÀº 0À¸·Î ¼ÂÆÃÇÑ Å×ÀÌºíÀ» ¸¸µç´Ù.
+	void		MakeMoveTable(short** pMoveArray);	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ shapeï¿½ï¿½ ï¿½Ö´ï¿½ Å¸ï¿½ï¿½ï¿½ï¿½ 1, ï¿½ï¿½ï¿½ï¿½ Å¸ï¿½ï¿½ï¿½ï¿½ 0ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ìºï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½.
 	int			Add(CN3Shape* pShape);
 	bool		AddCollisionTriangle(const __Vector3& v1, const __Vector3& v2, const __Vector3& v3);
 	void		GenerateCollisionData();

@@ -22,20 +22,20 @@ public:
 // Attributes
 public:
 protected:
-	float			m_fCellSize;	// ³»ºÎ ¼¿ Å©±â
-	POINT			m_CurCellPos;	// ÇöÀç ³»ºÎ¼¿ ÁÂÇ¥
-	__Vector3		m_vPos[9];		// ÁÖº¯ ¼¿ 9Ä­ÀÇ Áß½ÉÁÂÇ¥µé
+	float			m_fCellSize;	// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ Å©ï¿½ï¿½
+	POINT			m_CurCellPos;	// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Î¼ï¿½ ï¿½ï¿½Ç¥
+	__Vector3		m_vPos[9];		// ï¿½Öºï¿½ ï¿½ï¿½ 9Ä­ï¿½ï¿½ ï¿½ß½ï¿½ï¿½ï¿½Ç¥ï¿½ï¿½
 
-	// È¿°úµé..
-	CN3GERain*		m_pGERain;		// ºñ
-	CN3GESnow*		m_pGESnow;		// ´«
+	// È¿ï¿½ï¿½ï¿½ï¿½..
+	CN3GERain*		m_pGERain;		// ï¿½ï¿½
+	CN3GESnow*		m_pGESnow;		// ï¿½ï¿½
 
 // Operations
 public:
 	virtual void	Release();
 	void			Tick();
 	void			Render();
-	void			SetWeather(int iWeather);	// ³¯¾¾ ÁöÁ¤ÇÏ±â
+	void			SetWeather(int iWeather);	// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï±ï¿½
 protected:
 
 };

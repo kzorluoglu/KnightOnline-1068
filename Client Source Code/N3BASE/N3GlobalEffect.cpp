@@ -22,8 +22,8 @@ CN3GlobalEffect::CN3GlobalEffect()
 	m_bActive = FALSE;
 	m_iVC = 0;
 	m_iIC = 0;
-	m_fFadeTime = 0.0f; // ÀÌ½Ã°£ µ¿¾È Â÷Â÷ ¸ñÇ¥ÇÑ ¾ç¸¸Å­ ÆÄÆ¼Å¬ÀÇ ¼ö°¡ ´Ã¾î³­´Ù..
-	m_fFadeTimeCur = 0.0f; // Áö³­½Ã°£..
+	m_fFadeTime = 0.0f; // ï¿½Ì½Ã°ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ç¥ï¿½ï¿½ ï¿½ç¸¸Å­ ï¿½ï¿½Æ¼Å¬ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ã¾î³­ï¿½ï¿½..
+	m_fFadeTimeCur = 0.0f; // ï¿½ï¿½ï¿½ï¿½ï¿½Ã°ï¿½..
 	m_iFadeMode = 0;
 }
 
@@ -40,8 +40,8 @@ void CN3GlobalEffect::Release()
 	m_bActive = FALSE;
 	m_iVC = 0;
 	m_iIC = 0;
-	m_fFadeTime = 0.0f; // ÀÌ½Ã°£ µ¿¾È Â÷Â÷ ¸ñÇ¥ÇÑ ¾ç¸¸Å­ ÆÄÆ¼Å¬ÀÇ ¼ö°¡ ´Ã¾î³­´Ù..
-	m_fFadeTimeCur = 0.0f; // Áö³­½Ã°£..
+	m_fFadeTime = 0.0f; // ï¿½Ì½Ã°ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ç¥ï¿½ï¿½ ï¿½ç¸¸Å­ ï¿½ï¿½Æ¼Å¬ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ã¾î³­ï¿½ï¿½..
+	m_fFadeTimeCur = 0.0f; // ï¿½ï¿½ï¿½ï¿½ï¿½Ã°ï¿½..
 	m_iFadeMode = 0;
 
 	CN3Transform::Release();
@@ -51,7 +51,7 @@ void CN3GlobalEffect::Tick()
 {
 	CN3Transform::Tick(-1);
 
-	if(m_iFadeMode && m_fFadeTime > 0) // ½Ã°£À» Áö³ª°Ô ÇÑ´Ù..
+	if(m_iFadeMode && m_fFadeTime > 0) // ï¿½Ã°ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ñ´ï¿½..
 	{
 		m_fFadeTimeCur += s_fSecPerFrm;
 		if(m_fFadeTimeCur > m_fFadeTime) m_fFadeTimeCur = m_fFadeTime;

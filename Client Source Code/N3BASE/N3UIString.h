@@ -18,17 +18,17 @@ class CN3UIString : public CN3UIBase
 {
 	friend class CN3UIEdit;
 #ifdef _N3TOOL
-friend class CPropertyView;	// Åø¿¡¼­ °¢ º¯¼öµéÀ» Á¢±ÙÇÏ±â À§ÇØ¼­ 
+friend class CPropertyView;	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï±ï¿½ ï¿½ï¿½ï¿½Ø¼ï¿½ 
 #endif
 
 protected:
-	CDFont*			m_pDFont;			// DFont(½ÇÁ¦ ±ÛÀÚ¸¦ È­¸é¿¡ Âï¾îÁÖ´Â Å¬·¡½º´Ù)
-	POINT			m_ptDrawPos;		// ½ÇÁ¦ È­¸é¿¡ Ç¥½ÃµÉ ±ÛÀÚÀÇ Á¦ÀÏ ¿ÞÂÊ »ó´Ü ÁÂÇ¥
+	CDFont*			m_pDFont;			// DFont(ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ú¸ï¿½ È­ï¿½é¿¡ ï¿½ï¿½ï¿½ï¿½Ö´ï¿½ Å¬ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½)
+	POINT			m_ptDrawPos;		// ï¿½ï¿½ï¿½ï¿½ È­ï¿½é¿¡ Ç¥ï¿½Ãµï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½Ç¥
 	std::string 	m_szString;			// string buffer
-	D3DCOLOR		m_Color;			// ±ÛÀÚ »ö
-	int				m_iLineCount;		// ÇöÀç ¼¼ÆÃµÈ ±Û¾¾µéÀÇ line¼ö
-	std::vector<int>	m_NewLineIndices;	// multilineÀÏ°æ¿ì »õ·Î¿î ¶óÀÎÀÇ ÀÎµ¦½ºµé
-	int				m_iStartLine;		// multilineÀÏ°æ¿ì ±Û¾¾°¡ ÂïÈ÷´Â ½ÃÀÛ ¶óÀÎ¹øÈ£
+	D3DCOLOR		m_Color;			// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½
+	int				m_iLineCount;		// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ãµï¿½ ï¿½Û¾ï¿½ï¿½ï¿½ï¿½ï¿½ lineï¿½ï¿½
+	std::vector<int>	m_NewLineIndices;	// multilineï¿½Ï°ï¿½ï¿½ ï¿½ï¿½ï¿½Î¿ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Îµï¿½ï¿½ï¿½ï¿½ï¿½
+	int				m_iStartLine;		// multilineï¿½Ï°ï¿½ï¿½ ï¿½Û¾ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Î¹ï¿½È£
 
 public:
 	CN3UIString();
@@ -47,10 +47,10 @@ public:
 	virtual void	Render();
 	virtual void	Release();	
 	virtual void	Init(CN3UIBase* pParent);
-	virtual BOOL	MoveOffset(int iOffsetX, int iOffsetY);// ±Û¾¾Âï´Â À§Ä¡µµ ¹Ù²î¾î ÁØ´Ù.
+	virtual BOOL	MoveOffset(int iOffsetX, int iOffsetY);// ï¿½Û¾ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ä¡ï¿½ï¿½ ï¿½Ù²ï¿½ï¿½ ï¿½Ø´ï¿½.
 	virtual bool	Load(HANDLE hFile);
-	void			ClearOnlyStringBuffer() { m_szString = ""; }	// string ¹öÆÛ¸¸ Áö¿î´Ù.
-	void			SetStartLine(int iLine);	// multilineÀÏ°æ¿ì ½ÃÀÛÇÏ´Â ¶óÀÎ º¯°æÇÏ±â
+	void			ClearOnlyStringBuffer() { m_szString = ""; }	// string ï¿½ï¿½ï¿½Û¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½.
+	void			SetStartLine(int iLine);	// multilineï¿½Ï°ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï±ï¿½
 
 	virtual void	operator = (const CN3UIString& other);
 
@@ -65,8 +65,8 @@ public:
 
 	virtual void	SetString(const std::string& szString);
 	virtual void	SetStringAsInt(int iVal);
-	void			SetString_NoWordWrap(const std::string& szString);	// ±ÛÀÚ Á¤·Ä ÇÏÁö ¾Ê´Â´Ù.
-	virtual void	SetFont(const std::string& szFontName, DWORD dwHeight, BOOL bBold, BOOL bItalic); // dwHeight´Â point sizeÀÌ´Ù.
+	void			SetString_NoWordWrap(const std::string& szString);	// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ê´Â´ï¿½.
+	virtual void	SetFont(const std::string& szFontName, DWORD dwHeight, BOOL bBold, BOOL bItalic); // dwHeightï¿½ï¿½ point sizeï¿½Ì´ï¿½.
 	BOOL			GetTextExtent(const const std::string& szString, int iStrLen, SIZE* pSize )
 	{
 		if (m_pDFont) return m_pDFont->GetTextExtent(szString, iStrLen, pSize);

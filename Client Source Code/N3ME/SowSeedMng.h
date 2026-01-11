@@ -75,8 +75,8 @@ public:
 
 	int Add_List_Count;
 
-	__VertexColor*	m_pVertices; // Á¡ ¹öÆÛ
-	int			m_nVC; // Á¡ °¹¼ö
+	__VertexColor*	m_pVertices; // ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+	int			m_nVC; // ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 
 	bool bActive;
 	BOOL Render_Grass ;
@@ -88,7 +88,7 @@ public:
 	void SetActive(BOOL flage);
 
 	void Render(LPDIRECT3DDEVICE8 lpD3DDevice);
-	// Mouse ¸Þ¼¼Áö Ã³¸®
+	// Mouse ï¿½Þ¼ï¿½ï¿½ï¿½ Ã³ï¿½ï¿½
 	BOOL MouseMessage(LPMSG pMsg);	
 	void Release();
 	void Create_Grass(int NUm);

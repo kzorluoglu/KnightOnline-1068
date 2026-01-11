@@ -120,7 +120,7 @@ void CDlgTexture::OnOK()
 {
 	ASSERT(m_pTexViewer);
 	if (m_iImageTypeCount>0)
-	{	// ¸ðµÎ ¿µ¿ª ¼±ÅÃÀÌ µÇ¾ú³ª Ã¼Å©
+	{	// ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ç¾ï¿½ï¿½ï¿½ Ã¼Å©
 		int i;
 		for (i=0; i<m_iImageTypeCount; ++i)
 		{
@@ -128,7 +128,7 @@ void CDlgTexture::OnOK()
 			{
 				CString str, strLBText;
 				m_ImageType.GetLBText(i, strLBText);
-				str.Format("%sÀÇ ¿µ¿ªÀÌ ¼±ÅÃµÇÁö ¾Ê¾Ò½À´Ï´Ù.", strLBText);
+				str.Format("%sï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ãµï¿½ï¿½ï¿½ ï¿½Ê¾Ò½ï¿½ï¿½Ï´ï¿½.", strLBText);
 				MessageBox(str);
 				return;
 			}
@@ -138,7 +138,7 @@ void CDlgTexture::OnOK()
 	else
 	{
 		if (-1 != m_pTexViewer->GetSelectedRect().left)	CDialog::OnOK();
-		else MessageBox("¿µ¿ªÀÌ ¼±ÅÃ µÇÁö ¾Ê¾Ò½À´Ï´Ù.");
+		else MessageBox("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ê¾Ò½ï¿½ï¿½Ï´ï¿½.");
 	}
 }
 
@@ -152,7 +152,7 @@ void CDlgTexture::OnRadioSelect()
 	if (NULL == m_pTexViewer) return;
 	CTexViewer::eEDITMODE eEditMode = m_pTexViewer->SetEditMode(CTexViewer::EDITMODE_SELECT);
 	if (CTexViewer::EDITMODE_SELECT != eEditMode)
-	{	// ¸ðµå ¹Ù²Ù±â ½ÇÆÐ
+	{	// ï¿½ï¿½ï¿½ ï¿½Ù²Ù±ï¿½ ï¿½ï¿½ï¿½ï¿½
 		UpdateData(TRUE);
 		m_RadioEditMode = eEditMode;
 		UpdateData(FALSE);
@@ -164,7 +164,7 @@ void CDlgTexture::OnRadioZoom()
 	if (NULL == m_pTexViewer) return;
 	CTexViewer::eEDITMODE eEditMode = m_pTexViewer->SetEditMode(CTexViewer::EDITMODE_ZOOM);
 	if (CTexViewer::EDITMODE_ZOOM != eEditMode)
-	{	// ¸ðµå ¹Ù²Ù±â ½ÇÆÐ
+	{	// ï¿½ï¿½ï¿½ ï¿½Ù²Ù±ï¿½ ï¿½ï¿½ï¿½ï¿½
 		UpdateData(TRUE);
 		m_RadioEditMode = eEditMode;
 		UpdateData(FALSE);
@@ -182,7 +182,7 @@ void CDlgTexture::OnRadioHand()
 	if (NULL == m_pTexViewer) return;
 	CTexViewer::eEDITMODE eEditMode = m_pTexViewer->SetEditMode(CTexViewer::EDITMODE_HAND);
 	if (CTexViewer::EDITMODE_HAND != eEditMode)
-	{	// ¸ðµå ¹Ù²Ù±â ½ÇÆÐ
+	{	// ï¿½ï¿½ï¿½ ï¿½Ù²Ù±ï¿½ ï¿½ï¿½ï¿½ï¿½
 		UpdateData(TRUE);
 		m_RadioEditMode = eEditMode;
 		UpdateData(FALSE);
@@ -213,7 +213,7 @@ LRESULT	CDlgTexture::OnUpdateInfo(WPARAM wParam, LPARAM lParam)
 	return 0;
 }
 
-// controlµé ´Ù½Ã ¹èÄ¡
+// controlï¿½ï¿½ ï¿½Ù½ï¿½ ï¿½ï¿½Ä¡
 void CDlgTexture::Resize()
 {
 	CWnd* pOKBtn = GetDlgItem(IDOK);
@@ -228,7 +228,7 @@ void CDlgTexture::Resize()
 		pWnd = GetDlgItem(IDC_STATIC_INFO);
 		pWnd->GetWindowRect(&rc);
 
-		// texture window ¹èÄ¡
+		// texture window ï¿½ï¿½Ä¡
 		int iTexViewerWidth = rcClient.Width()-rc.Width()-iOffset;
 		int iTexViewerHeight = rcClient.Height();
 		if (iTexViewerWidth<0) iTexViewerWidth = 0;
@@ -237,7 +237,7 @@ void CDlgTexture::Resize()
 		else if (iTexViewerHeight > pFrm->m_Eng.s_DevParam.BackBufferHeight) iTexViewerHeight = pFrm->m_Eng.s_DevParam.BackBufferHeight;
 		m_pTexViewer->MoveWindow(0, 0, iTexViewerWidth, iTexViewerHeight);
 
-		// ¹öÆ°µé ¹èÄ¡
+		// ï¿½ï¿½Æ°ï¿½ï¿½ ï¿½ï¿½Ä¡
 		pWnd = GetDlgItem(IDC_STATIC_INFO);
 		pWnd->GetWindowRect(&rc);
 		CPoint ptCtrl(rcClient.Width()-rc.Width(), 0);
@@ -282,7 +282,7 @@ BOOL CDlgTexture::GetSelectedUVRect(struct __FLOAT_RECT* pFRect) const
 	return m_pTexViewer->GetSelectedUVRect(pFRect);
 }
 
-void CDlgTexture::SetSelectedUVRect(const __FLOAT_RECT* pFRect)	// ÇöÀç ¼±ÅÃµÈ UVÁÂÇ¥ ³Ö±â
+void CDlgTexture::SetSelectedUVRect(const __FLOAT_RECT* pFRect)	// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ãµï¿½ UVï¿½ï¿½Ç¥ ï¿½Ö±ï¿½
 {
 	if (NULL == m_pTexViewer) return;
 	m_pTexViewer->SetSelectedUVRect(pFRect);

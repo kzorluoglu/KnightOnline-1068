@@ -29,7 +29,7 @@ CN3ColorChange::~CN3ColorChange()
 
 void CN3ColorChange::ChangeColor(D3DCOLOR color, float fSec)
 {
-	if (color == m_CurColor || 0.0f >= fSec)	// Áï½Ã º¯È­
+	if (color == m_CurColor || 0.0f >= fSec)	// ï¿½ï¿½ï¿½ ï¿½ï¿½È­
 	{
 		m_CurColor = m_PrevColor = m_NextColor = color;
 		m_fRate = m_fPercentage = m_fTempSec = 0.0f;
@@ -77,7 +77,7 @@ void CN3ColorChange::SetPercentage(float fPercentage)
 {
 	if (0.0f>fPercentage || 1.0f<fPercentage) return;
 	if (1.0f == fPercentage)
-	{	// 1.0fÀÌ¸é ¹Ù·Î »ö ¹Ù²Ù±â
+	{	// 1.0fï¿½Ì¸ï¿½ ï¿½Ù·ï¿½ ï¿½ï¿½ ï¿½Ù²Ù±ï¿½
 		m_PrevColor = m_CurColor = m_NextColor;
 		m_fPercentage = m_fRate = 0.0f;
 		return;
@@ -117,7 +117,7 @@ CN3DeltaChange::~CN3DeltaChange()
 
 void CN3DeltaChange::ChangeDelta(float fDelta, float fSec)
 {
-	if (fDelta == m_fCurDelta || 0.0f >= fSec)	// Áï½Ã º¯È­
+	if (fDelta == m_fCurDelta || 0.0f >= fSec)	// ï¿½ï¿½ï¿½ ï¿½ï¿½È­
 	{
 		m_fCurDelta = m_fPrevDelta = m_fNextDelta = fDelta;
 		m_fRate = m_fPercentage = m_fTempSec = 0.0f;
@@ -153,7 +153,7 @@ void CN3DeltaChange::SetPercentage(float fPercentage)
 {
 	if (0.0f>fPercentage || 1.0f<fPercentage) return;
 	if (1.0f == fPercentage)
-	{	// 1.0fÀÌ¸é ¹Ù·Î »ö ¹Ù²Ù±â
+	{	// 1.0fï¿½Ì¸ï¿½ ï¿½Ù·ï¿½ ï¿½ï¿½ ï¿½Ù²Ù±ï¿½
 		m_fPrevDelta = m_fCurDelta = m_fNextDelta;
 		m_fPercentage = m_fRate = 0.0f;
 		return;

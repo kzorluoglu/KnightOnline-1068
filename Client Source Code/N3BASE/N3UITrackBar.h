@@ -21,13 +21,13 @@ public:
 public:
 	enum eIMAGE_TYPE{IMAGETYPE_BKGND=0, IMAGETYPE_THUMB, NUM_IMAGETYPE};
 protected:
-	CN3UIImage*		m_pBkGndImageRef;		// ¹è°æ ÀÌ¹ÌÁö referance (¸Þ¸ð¸® ÇÒ´çÀº children list·Î °ü¸®)
-	CN3UIImage*		m_pThumbImageRef;		// °¡¿îµ¥ µå·¹±× ÇÏ¿© ¿Å±æ ¼ö ÀÖ´Â ÀÌ¹ÌÁö referance
+	CN3UIImage*		m_pBkGndImageRef;		// ï¿½ï¿½ï¿½ ï¿½Ì¹ï¿½ï¿½ï¿½ referance (ï¿½Þ¸ï¿½ ï¿½Ò´ï¿½ï¿½ï¿½ children listï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½)
+	CN3UIImage*		m_pThumbImageRef;		// ï¿½ï¿½ï¿½îµ¥ ï¿½å·¹ï¿½ï¿½ ï¿½Ï¿ï¿½ ï¿½Å±ï¿½ ï¿½ï¿½ ï¿½Ö´ï¿½ ï¿½Ì¹ï¿½ï¿½ï¿½ referance
 
-	int				m_iMaxPos;									// ÃÖ´ë
-	int				m_iMinPos;									// ÃÖ¼Ò
-	int				m_iCurPos;									// ÇöÀç °ª
-	int				m_iPageSize;								// page´ÜÀ§ ÀÌµ¿ÇÒ¶§ ÀÌµ¿°ª
+	int				m_iMaxPos;									// ï¿½Ö´ï¿½
+	int				m_iMinPos;									// ï¿½Ö¼ï¿½
+	int				m_iCurPos;									// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½
+	int				m_iPageSize;								// pageï¿½ï¿½ï¿½ï¿½ ï¿½Ìµï¿½ï¿½Ò¶ï¿½ ï¿½Ìµï¿½ï¿½ï¿½
 // Operations
 public:
 	virtual void	Release();
@@ -46,15 +46,15 @@ public:
 	int				GetMaxPos() const {return m_iMaxPos;}
 	int				GetMinPos() const {return m_iMinPos;}
 protected:
-	void			UpdateThumbPos();							// m_iCurPos¸¦ °è»êÇÏ¿© ThumbÀ§Ä¡ ´Ù½Ã °è»êÇÏ¿© ¹Ù²Ù±â
-	void			UpDownThumbPos(int iDiff);					// ThumbÀ§Ä¡¸¦ ¾Æ·¡ À§·Î iDiff pixel¸¸Å­ ¿òÁ÷ÀÎ ÈÄ m_iCurPos °»½ÅÇÏ±â
+	void			UpdateThumbPos();							// m_iCurPosï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ï¿ï¿½ Thumbï¿½ï¿½Ä¡ ï¿½Ù½ï¿½ ï¿½ï¿½ï¿½ï¿½Ï¿ï¿½ ï¿½Ù²Ù±ï¿½
+	void			UpDownThumbPos(int iDiff);					// Thumbï¿½ï¿½Ä¡ï¿½ï¿½ ï¿½Æ·ï¿½ ï¿½ï¿½ï¿½ï¿½ iDiff pixelï¿½ï¿½Å­ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ m_iCurPos ï¿½ï¿½ï¿½ï¿½ï¿½Ï±ï¿½
 
 #ifdef _N3TOOL
-// tool¿¡¼­ ¾²ÀÌ´Â ÇÔ¼ö
+// toolï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ì´ï¿½ ï¿½Ô¼ï¿½
 public:
 	virtual void	operator = (const CN3UITrackBar& other);
-	void			CreateImages();			// ÀÌ¹ÌÁö »ý¼º
-	void			DeleteBkImage();		// ¹è°æÀÌ¹ÌÁö »èÁ¦
+	void			CreateImages();			// ï¿½Ì¹ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+	void			DeleteBkImage();		// ï¿½ï¿½ï¿½ï¿½Ì¹ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	CN3UIImage*		GetBkGndImgRef() const {return m_pBkGndImageRef;}
 	CN3UIImage*		GetThumbImgRef() const {return m_pThumbImageRef;}
 #endif

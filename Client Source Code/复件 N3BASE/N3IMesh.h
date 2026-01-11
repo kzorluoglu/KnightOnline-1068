@@ -13,17 +13,17 @@ protected:
 	static __VertexT1 s_Vertices[65536];
 //	static __VertexXyzT1 m_StaticVertices[32767];
 
-	int			m_nFC; // »ï°¢Çü °¹¼ö
+	int			m_nFC; // ï¿½ï°¢ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 
 	int				m_nVC; // Vertex Count
-	WORD*	m_pwVtxIndices; // Á¡ ÀÎµ¦½º ¸®½ºÆ®. 
-	int				m_nUVC; // UV ÁÂÇ¥ Count
-	WORD*	m_pwUVsIndices; // ÅØ½ºÃ³ ÁÂÇ¥ ÀÎµ¦½º ¸®½ºÆ®.
+	WORD*	m_pwVtxIndices; // ï¿½ï¿½ ï¿½Îµï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Æ®. 
+	int				m_nUVC; // UV ï¿½ï¿½Ç¥ Count
+	WORD*	m_pwUVsIndices; // ï¿½Ø½ï¿½Ã³ ï¿½ï¿½Ç¥ ï¿½Îµï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Æ®.
 
-	__VertexXyzNormal*	m_pVertices; // ÁÂÇ¥ Data
-	float*		m_pfUVs; // UV Data - m_nUVC * 2 ¸¸Å­ ÇÒ´çÇÑ´Ù.
+	__VertexXyzNormal*	m_pVertices; // ï¿½ï¿½Ç¥ Data
+	float*		m_pfUVs; // UV Data - m_nUVC * 2 ï¿½ï¿½Å­ ï¿½Ò´ï¿½ï¿½Ñ´ï¿½.
 
-	__Vector3 m_vMin, m_vMax; // ÃÖ¼Ò, ÃÖ´ëÁ¡.. º¯ÇÏ±ä ÇÏÁö¸¸ ´ë·«ÀûÀ¸·Î...
+	__Vector3 m_vMin, m_vMax; // ï¿½Ö¼ï¿½, ï¿½Ö´ï¿½ï¿½ï¿½.. ï¿½ï¿½ï¿½Ï±ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ë·«ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½...
 
 public:
 	void ApplyOffset(__Vector3 vOffset);
@@ -45,7 +45,7 @@ public:
 	void UVSet(int index, float fU, float fV) { if(index >= 0 && index < m_nUVC) { m_pfUVs[index*2+0] = fU; m_pfUVs[index*2+1] = fV; } }
 	void UVIndexSet(int index, int nUVI) { if(index >= 0 && index < m_nFC*3) m_pwUVsIndices[index] = nUVI; }
 
-	void Create(int nFC, int nVC, int nUVC); // Â÷·Ê´ë·Î  Face Count, VertexCount, UV Count
+	void Create(int nFC, int nVC, int nUVC); // ï¿½ï¿½ï¿½Ê´ï¿½ï¿½  Face Count, VertexCount, UV Count
 	bool Load(HANDLE hFile);
 	bool Save(HANDLE hFile);
 	

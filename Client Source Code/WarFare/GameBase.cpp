@@ -17,23 +17,23 @@ static char THIS_FILE[]=__FILE__;
 #define new DEBUG_NEW
 #endif
 
-CN3TableBase<__TABLE_ZONE>*				CGameBase::s_pTbl_Zones = NULL;				// Zone ������ ���� Table
+CN3TableBase<__TABLE_ZONE>*				CGameBase::s_pTbl_Zones = NULL;				// Zone ?????? ???? Table
 CN3TableBase<__TABLE_UI_RESRC>*			CGameBase::s_pTbl_UI = NULL;				// UI FileName Table
-CN3TableBase<__TABLE_ITEM_BASIC>*		CGameBase::s_pTbl_Items_Basic = NULL;			// �� ������(�� �ڽŰ� ���� �ٸ� ���) Ŭ������ ���� ������ ���ҽ� ���̺�
+CN3TableBase<__TABLE_ITEM_BASIC>*		CGameBase::s_pTbl_Items_Basic = NULL;			// ?? ??????(?? ???? ???? ??? ???) ??????? ???? ?????? ????? ?????
 CN3TableBase<__TABLE_ITEM_EXT>*			CGameBase::s_pTbl_Items_Exts[MAX_ITEM_EXTENSION] = 
-											{ NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL };			// �� ������(�� �ڽŰ� ���� �ٸ� ���) Ŭ������ ���� ������ ���ҽ� ���̺�
-CN3TableBase<__TABLE_PLAYER_LOOKS>*		CGameBase::s_pTbl_UPC_Looks = NULL;			// �� ������(�� �ڽŰ� ���� �ٸ� ���) Ŭ������ �⺻ ��Ų
-CN3TableBase<__TABLE_PLAYER_LOOKS>*		CGameBase::s_pTbl_NPC_Looks = NULL;			// NPC, Mob �⺻ ��� - 6���� ĳ���� ��Ʈ(), 2���� �÷���
-CN3TableBase<__TABLE_UPC_SKILL>*		CGameBase::s_pTbl_Skill = NULL;				// Skill ������ ���� Table
-CN3TableBase<__TABLE_EXCHANGE_QUEST>*	CGameBase::s_pTbl_Exchange_Quest = NULL;	// ��ȯ ����Ʈ�� ���� ���̺�..
-CN3TableBase<__TABLE_FX>*				CGameBase::s_pTbl_FXSource;		// FX�ҽ� ���� ���̺�..
-CN3TableBase<__TABLE_QUEST_MENU>*		CGameBase::s_pTbl_QuestMenu		= NULL;		// ����Ʈ ���� �޴�
-CN3TableBase<__TABLE_QUEST_TALK>*		CGameBase::s_pTbl_QuestTalk		= NULL;		// ����Ʈ ����
+											{ NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL };			// ?? ??????(?? ???? ???? ??? ???) ??????? ???? ?????? ????? ?????
+CN3TableBase<__TABLE_PLAYER_LOOKS>*		CGameBase::s_pTbl_UPC_Looks = NULL;			// ?? ??????(?? ???? ???? ??? ???) ??????? ?? ???
+CN3TableBase<__TABLE_PLAYER_LOOKS>*		CGameBase::s_pTbl_NPC_Looks = NULL;			// NPC, Mob ?? ??? - 6???? ????? ???(), 2???? ?????
+CN3TableBase<__TABLE_UPC_SKILL>*		CGameBase::s_pTbl_Skill = NULL;				// Skill ?????? ???? Table
+CN3TableBase<__TABLE_EXCHANGE_QUEST>*	CGameBase::s_pTbl_Exchange_Quest = NULL;	// ??? ??????? ???? ?????..
+CN3TableBase<__TABLE_FX>*				CGameBase::s_pTbl_FXSource;		// FX??? ???? ?????..
+CN3TableBase<__TABLE_QUEST_MENU>*		CGameBase::s_pTbl_QuestMenu		= NULL;		// ????? ???? ???
+CN3TableBase<__TABLE_QUEST_TALK>*		CGameBase::s_pTbl_QuestTalk		= NULL;		// ????? ????
 
 
-CN3WorldManager*	CGameBase::s_pWorldMgr = NULL;		// ���� �Ŵ���..
-CPlayerOtherMgr*	CGameBase::s_pOPMgr = NULL;				// Other Player Manager - �ٸ� ���� ���� Ŭ����..
-CPlayerMySelf*		CGameBase::s_pPlayer = NULL;			// ���� Ŭ����..
+CN3WorldManager*	CGameBase::s_pWorldMgr = NULL;		// ???? ?????..
+CPlayerOtherMgr*	CGameBase::s_pOPMgr = NULL;				// Other Player Manager - ??? ???? ???? ?????..
+CPlayerMySelf*		CGameBase::s_pPlayer = NULL;			// ???? ?????..
 	
 CGameBase::CGameBase()
 {
@@ -45,60 +45,71 @@ CGameBase::~CGameBase()
 
 void CGameBase::StaticMemberInit()
 {
-	//////////////////////////////////////////////////////////////////////////////////////////
-	// Resource Table �ε� �� �ʱ�ȭ...
-	s_pTbl_Zones			= new CN3TableBase<__TABLE_ZONE>;			// Zone ������ ���� Table
-	s_pTbl_UI				= new CN3TableBase<__TABLE_UI_RESRC>;		// UI Resource File Table loading
-	s_pTbl_UPC_Looks		= new CN3TableBase<__TABLE_PLAYER_LOOKS>;	// �÷��̾���� �⺻ ����� �Ǵ� NPC Resource Table loading
-	s_pTbl_Items_Basic		= new CN3TableBase<__TABLE_ITEM_BASIC>;		// Item Resource Table loading
-	for(int i = 0; i < MAX_ITEM_EXTENSION; i++)
-		s_pTbl_Items_Exts[i] = new CN3TableBase<__TABLE_ITEM_EXT>;
-	s_pTbl_NPC_Looks		= new CN3TableBase<__TABLE_PLAYER_LOOKS>;	// NPC Resource Table loading
-	s_pTbl_Skill			= new CN3TableBase<__TABLE_UPC_SKILL>;		// Skill ������ ���� Table
-	s_pTbl_Exchange_Quest	= new CN3TableBase<__TABLE_EXCHANGE_QUEST>;	// ��ȯ ����Ʈ�� ���� ���̺�..
-	s_pTbl_FXSource			= new CN3TableBase<__TABLE_FX>;				// FX Source�� ���� ���̺�..
-	s_pTbl_QuestMenu		= new CN3TableBase<__TABLE_QUEST_MENU>;
-	s_pTbl_QuestTalk		= new CN3TableBase<__TABLE_QUEST_TALK>;
+    CLogWriter::Write("CGameBase::StaticMemberInit: begin");
+    // Resource Table setup
+    s_pTbl_Zones            = new CN3TableBase<__TABLE_ZONE>;
+    s_pTbl_UI               = new CN3TableBase<__TABLE_UI_RESRC>;
+    s_pTbl_UPC_Looks        = new CN3TableBase<__TABLE_PLAYER_LOOKS>;
+    s_pTbl_Items_Basic      = new CN3TableBase<__TABLE_ITEM_BASIC>;
+    for(int i = 0; i < MAX_ITEM_EXTENSION; i++) s_pTbl_Items_Exts[i] = new CN3TableBase<__TABLE_ITEM_EXT>;
+    s_pTbl_NPC_Looks        = new CN3TableBase<__TABLE_PLAYER_LOOKS>;
+    s_pTbl_Skill            = new CN3TableBase<__TABLE_UPC_SKILL>;
+    s_pTbl_Exchange_Quest   = new CN3TableBase<__TABLE_EXCHANGE_QUEST>;
+    s_pTbl_FXSource         = new CN3TableBase<__TABLE_FX>;
+    s_pTbl_QuestMenu        = new CN3TableBase<__TABLE_QUEST_MENU>;
+    s_pTbl_QuestTalk        = new CN3TableBase<__TABLE_QUEST_TALK>;
 
-	std::string szLangTail = ".tbl";
-	int iLangID = ::GetUserDefaultLangID();
-	if(0x0404 == iLangID) szLangTail = "_TW.tbl"; // Taiwan Language
+    std::string szLangTail = ".tbl";
+    int iLangID = ::GetUserDefaultLangID();
+    if(0x0404 == iLangID) szLangTail = "_TW.tbl"; // Taiwan Language
 
-	std::string szFN;
-	szFN = "Data\\Zones.tbl";				s_pTbl_Zones->LoadFromFile(szFN.c_str());		CLogWriter::Write("Load Zones rows=%d", s_pTbl_Zones->GetSize());
-	szFN = "Data\\UIs" + szLangTail;		s_pTbl_UI->LoadFromFile(szFN.c_str());			CLogWriter::Write("Load UIs rows=%d", s_pTbl_UI->GetSize());
-	szFN = "Data\\UPC_DefaultLooks.tbl";	s_pTbl_UPC_Looks->LoadFromFile(szFN.c_str());	CLogWriter::Write("Load UPC_DefaultLooks rows=%d", s_pTbl_UPC_Looks->GetSize());
-	szFN = "Data\\Item_Org" + szLangTail;	s_pTbl_Items_Basic->LoadFromFile(szFN.c_str());	CLogWriter::Write("Load Item_Org rows=%d", s_pTbl_Items_Basic->GetSize());
+    std::string szFN;
+    CLogWriter::Write("CGameBase::StaticMemberInit: load Zones");
+    szFN = "Data\\Zones.tbl";               s_pTbl_Zones->LoadFromFile(szFN.c_str());      CLogWriter::Write("Load Zones rows=%d", s_pTbl_Zones->GetSize());
+    CLogWriter::Write("CGameBase::StaticMemberInit: load UIs");
+    szFN = "Data\\UIs" + szLangTail;        s_pTbl_UI->LoadFromFile(szFN.c_str());         CLogWriter::Write("Load UIs rows=%d", s_pTbl_UI->GetSize());
+    CLogWriter::Write("CGameBase::StaticMemberInit: load UPC_DefaultLooks");
+    szFN = "Data\\UPC_DefaultLooks.tbl";    s_pTbl_UPC_Looks->LoadFromFile(szFN.c_str());  CLogWriter::Write("Load UPC_DefaultLooks rows=%d", s_pTbl_UPC_Looks->GetSize());
+    CLogWriter::Write("CGameBase::StaticMemberInit: load Item_Org");
+    szFN = "Data\\Item_Org" + szLangTail;   s_pTbl_Items_Basic->LoadFromFile(szFN.c_str());CLogWriter::Write("Load Item_Org rows=%d", s_pTbl_Items_Basic->GetSize());
 
-	szFN = "Data\\Quest_Menu" + szLangTail;	s_pTbl_QuestMenu->LoadFromFile(szFN.c_str());	CLogWriter::Write("Load Quest_Menu rows=%d", s_pTbl_QuestMenu->GetSize());
-	szFN = "Data\\Quest_Talk" + szLangTail;	s_pTbl_QuestTalk->LoadFromFile(szFN.c_str());	CLogWriter::Write("Load Quest_Talk rows=%d", s_pTbl_QuestTalk->GetSize());
+    CLogWriter::Write("CGameBase::StaticMemberInit: load Quest_Menu");
+    szFN = "Data\\Quest_Menu" + szLangTail;  s_pTbl_QuestMenu->LoadFromFile(szFN.c_str());  CLogWriter::Write("Load Quest_Menu rows=%d", s_pTbl_QuestMenu->GetSize());
+    CLogWriter::Write("CGameBase::StaticMemberInit: load Quest_Talk");
+    szFN = "Data\\Quest_Talk" + szLangTail;  s_pTbl_QuestTalk->LoadFromFile(szFN.c_str());  CLogWriter::Write("Load Quest_Talk rows=%d", s_pTbl_QuestTalk->GetSize());
 
-	for(i = 0; i < MAX_ITEM_EXTENSION; i++)
-	{
-		char szFNTmp[256] = "";
-		sprintf(szFNTmp, "Data\\Item_Ext_%d", i);
-		szFN = szFNTmp + szLangTail;
-		s_pTbl_Items_Exts[i]->LoadFromFile(szFN.c_str());
-		CLogWriter::Write("Load Item_Ext_%d rows=%d", i, s_pTbl_Items_Exts[i]->GetSize());
-	}
+    for(int i = 0; i < MAX_ITEM_EXTENSION; i++)
+    {
+        char szFNTmp[256] = "";
+        sprintf(szFNTmp, "Data\\Item_Ext_%d", i);
+        szFN = szFNTmp + szLangTail;
+        CLogWriter::Write("CGameBase::StaticMemberInit: load Item_Ext_%d", i);
+        s_pTbl_Items_Exts[i]->LoadFromFile(szFN.c_str());
+        CLogWriter::Write("Load Item_Ext_%d rows=%d", i, s_pTbl_Items_Exts[i]->GetSize());
+    }
 
-	szFN = "Data\\NPC_Looks.tbl";					s_pTbl_NPC_Looks->LoadFromFile(szFN.c_str());		CLogWriter::Write("Load NPC_Looks rows=%d", s_pTbl_NPC_Looks->GetSize());
-	szFN = "Data\\skill_magic_main" + szLangTail;	s_pTbl_Skill->LoadFromFile(szFN.c_str());			CLogWriter::Write("Load skill_magic_main rows=%d", s_pTbl_Skill->GetSize());
-	szFN = "Data\\Exchange_Quest.tbl";				s_pTbl_Exchange_Quest->LoadFromFile(szFN.c_str());	CLogWriter::Write("Load Exchange_Quest rows=%d", s_pTbl_Exchange_Quest->GetSize());
-	szFN = "Data\\fx.tbl";							s_pTbl_FXSource->LoadFromFile(szFN.c_str());		CLogWriter::Write("Load fx rows=%d", s_pTbl_FXSource->GetSize());
+    CLogWriter::Write("CGameBase::StaticMemberInit: load NPC_Looks");
+    szFN = "Data\\NPC_Looks.tbl";                    s_pTbl_NPC_Looks->LoadFromFile(szFN.c_str());       CLogWriter::Write("Load NPC_Looks rows=%d", s_pTbl_NPC_Looks->GetSize());
+    CLogWriter::Write("CGameBase::StaticMemberInit: load skill_magic_main");
+    szFN = "Data\\skill_magic_main" + szLangTail;   s_pTbl_Skill->LoadFromFile(szFN.c_str());            CLogWriter::Write("Load skill_magic_main rows=%d", s_pTbl_Skill->GetSize());
+    CLogWriter::Write("CGameBase::StaticMemberInit: load Exchange_Quest");
+    szFN = "Data\\Exchange_Quest.tbl";              s_pTbl_Exchange_Quest->LoadFromFile(szFN.c_str());   CLogWriter::Write("Load Exchange_Quest rows=%d", s_pTbl_Exchange_Quest->GetSize());
+    CLogWriter::Write("CGameBase::StaticMemberInit: load fx");
+    szFN = "Data\\fx.tbl";                          s_pTbl_FXSource->LoadFromFile(szFN.c_str());         CLogWriter::Write("Load fx rows=%d", s_pTbl_FXSource->GetSize());
 
 
-	s_pWorldMgr = new CN3WorldManager();
-	s_pOPMgr = new CPlayerOtherMgr();
-	s_pPlayer = new CPlayerMySelf(); // �⺻���� �� �÷��̾� ����..
+    s_pWorldMgr = new CN3WorldManager();
+    s_pOPMgr = new CPlayerOtherMgr();
+    s_pPlayer = new CPlayerMySelf();
+    CLogWriter::Write("CGameBase::StaticMemberInit: end");
 }
 
 void CGameBase::StaticMemberRelease()
 {
 	// Tables ....
-	delete s_pTbl_Zones; s_pTbl_Zones = NULL;		// Zone ������ ���� Table
+	delete s_pTbl_Zones; s_pTbl_Zones = NULL;		// Zone ?????? ???? Table
 	delete s_pTbl_UI; s_pTbl_UI = NULL;					// UI Resource File Table loading
-	delete s_pTbl_UPC_Looks; s_pTbl_UPC_Looks = NULL;	// �÷��̾���� �⺻ ����� �Ǵ� NPC Resource Table loading
+	delete s_pTbl_UPC_Looks; s_pTbl_UPC_Looks = NULL;	// ????????? ?? ????? ??? NPC Resource Table loading
 	delete s_pTbl_Items_Basic; s_pTbl_Items_Basic = NULL;	// Item Resource Table loading
 	for(int i = 0; i < MAX_ITEM_EXTENSION; i++)
 	{
@@ -106,11 +117,11 @@ void CGameBase::StaticMemberRelease()
 		s_pTbl_Items_Exts[i] = NULL;
 	}
 	delete s_pTbl_NPC_Looks; s_pTbl_NPC_Looks = NULL;			// NPC Resource Table loading
-	delete s_pTbl_Skill; s_pTbl_Skill = NULL;					// Skill ������ ���� Table
-	delete s_pTbl_Exchange_Quest; s_pTbl_Exchange_Quest = NULL;	// Skill ������ ���� Table
-	delete s_pTbl_FXSource; s_pTbl_FXSource = NULL;				// FX Source�� ���� ���̺�..	
-	delete s_pTbl_QuestMenu; s_pTbl_QuestMenu = NULL;			// ����Ʈ ���� ���ø޴�
-	delete s_pTbl_QuestTalk; s_pTbl_QuestTalk = NULL;		// ����Ʈ ���� ����
+	delete s_pTbl_Skill; s_pTbl_Skill = NULL;					// Skill ?????? ???? Table
+	delete s_pTbl_Exchange_Quest; s_pTbl_Exchange_Quest = NULL;	// Skill ?????? ???? Table
+	delete s_pTbl_FXSource; s_pTbl_FXSource = NULL;				// FX Source?? ???? ?????..	
+	delete s_pTbl_QuestMenu; s_pTbl_QuestMenu = NULL;			// ????? ???? ??????
+	delete s_pTbl_QuestTalk; s_pTbl_QuestTalk = NULL;		// ????? ???? ????
 
 	
 	delete s_pPlayer;	s_pPlayer = NULL;		// Player Character
@@ -168,13 +179,13 @@ bool CGameBase::GetTextByKnightsDuty(e_KnightsDuty eDuty, std::string& szText)
 {
 	switch(eDuty)
 	{
-		case KNIGHTS_DUTY_UNKNOWN:		::_LoadStringFromResource(IDS_KNIGHTS_DUTY_UNKNOWN, szText); break; // ????? �Ѱܳ�??
-		case KNIGHTS_DUTY_PUNISH:		::_LoadStringFromResource(IDS_KNIGHTS_DUTY_PUNISH, szText); break; // ¡����.
-		case KNIGHTS_DUTY_TRAINEE:		::_LoadStringFromResource(IDS_KNIGHTS_DUTY_TRAINEE, szText); break; // �߽����
-		case KNIGHTS_DUTY_KNIGHT:		::_LoadStringFromResource(IDS_KNIGHTS_DUTY_KNIGHT, szText); break; // �Ϲݱ��
-		case KNIGHTS_DUTY_OFFICER:		::_LoadStringFromResource(IDS_KNIGHTS_DUTY_OFFICER, szText); break; // �屳
-		case KNIGHTS_DUTY_VICECHIEF:	::_LoadStringFromResource(IDS_KNIGHTS_DUTY_VICECHIEF, szText); break; // �δ���.
-		case KNIGHTS_DUTY_CHIEF:		::_LoadStringFromResource(IDS_KNIGHTS_DUTY_CHIEF, szText); break; // ������ ����..
+		case KNIGHTS_DUTY_UNKNOWN:		::_LoadStringFromResource(IDS_KNIGHTS_DUTY_UNKNOWN, szText); break; // ????? ??????
+		case KNIGHTS_DUTY_PUNISH:		::_LoadStringFromResource(IDS_KNIGHTS_DUTY_PUNISH, szText); break; // ?????.
+		case KNIGHTS_DUTY_TRAINEE:		::_LoadStringFromResource(IDS_KNIGHTS_DUTY_TRAINEE, szText); break; // ??????
+		case KNIGHTS_DUTY_KNIGHT:		::_LoadStringFromResource(IDS_KNIGHTS_DUTY_KNIGHT, szText); break; // ?????
+		case KNIGHTS_DUTY_OFFICER:		::_LoadStringFromResource(IDS_KNIGHTS_DUTY_OFFICER, szText); break; // ??
+		case KNIGHTS_DUTY_VICECHIEF:	::_LoadStringFromResource(IDS_KNIGHTS_DUTY_VICECHIEF, szText); break; // ?????.
+		case KNIGHTS_DUTY_CHIEF:		::_LoadStringFromResource(IDS_KNIGHTS_DUTY_CHIEF, szText); break; // ?????? ????..
 		default: __ASSERT(0, "Invalid Knights Duty"); szText = "Unknown Duty"; return false;
 	}
 
@@ -185,43 +196,43 @@ bool CGameBase::GetTextByItemClass(e_ItemClass eItemClass, std::string& szText)
 {
 	switch(eItemClass)
 	{
-		case ITEM_CLASS_DAGGER:			::_LoadStringFromResource(IDS_ITEM_CLASS_DAGGER, szText); break; // �ܰ�(dagger)
-		case ITEM_CLASS_SWORD:			::_LoadStringFromResource(IDS_ITEM_CLASS_SWORD, szText); break; // �Ѽհ�(onehandsword)
-		case ITEM_CLASS_SWORD_2H:		::_LoadStringFromResource(IDS_ITEM_CLASS_SWORD_2H, szText); break; // 3 : ��հ�(twohandsword)
-		case ITEM_CLASS_AXE:			::_LoadStringFromResource(IDS_ITEM_CLASS_AXE, szText); break; // �Ѽյ���(onehandaxe)
-		case ITEM_CLASS_AXE_2H:			::_LoadStringFromResource(IDS_ITEM_CLASS_AXE_2H, szText); break; // �μյ���(twohandaxe)
-		case ITEM_CLASS_MACE:			::_LoadStringFromResource(IDS_ITEM_CLASS_MACE, szText); break; // �Ѽ�Ÿ�ݹ���(mace)
-		case ITEM_CLASS_MACE_2H:		::_LoadStringFromResource(IDS_ITEM_CLASS_MACE_2H, szText); break; // �μ�Ÿ�ݹ���(twohandmace)
-		case ITEM_CLASS_SPEAR:			::_LoadStringFromResource(IDS_ITEM_CLASS_SPEAR, szText); break; // â(spear)
-		case ITEM_CLASS_POLEARM:		::_LoadStringFromResource(IDS_ITEM_CLASS_POLEARM, szText); break; // ����(polearm)
+		case ITEM_CLASS_DAGGER:			::_LoadStringFromResource(IDS_ITEM_CLASS_DAGGER, szText); break; // ???(dagger)
+		case ITEM_CLASS_SWORD:			::_LoadStringFromResource(IDS_ITEM_CLASS_SWORD, szText); break; // ????(onehandsword)
+		case ITEM_CLASS_SWORD_2H:		::_LoadStringFromResource(IDS_ITEM_CLASS_SWORD_2H, szText); break; // 3 : ????(twohandsword)
+		case ITEM_CLASS_AXE:			::_LoadStringFromResource(IDS_ITEM_CLASS_AXE, szText); break; // ??????(onehandaxe)
+		case ITEM_CLASS_AXE_2H:			::_LoadStringFromResource(IDS_ITEM_CLASS_AXE_2H, szText); break; // ??????(twohandaxe)
+		case ITEM_CLASS_MACE:			::_LoadStringFromResource(IDS_ITEM_CLASS_MACE, szText); break; // ?????????(mace)
+		case ITEM_CLASS_MACE_2H:		::_LoadStringFromResource(IDS_ITEM_CLASS_MACE_2H, szText); break; // ?????????(twohandmace)
+		case ITEM_CLASS_SPEAR:			::_LoadStringFromResource(IDS_ITEM_CLASS_SPEAR, szText); break; // ?(spear)
+		case ITEM_CLASS_POLEARM:		::_LoadStringFromResource(IDS_ITEM_CLASS_POLEARM, szText); break; // ????(polearm)
 
-		case ITEM_CLASS_SHIELD:			::_LoadStringFromResource(IDS_ITEM_CLASS_SHIELD, szText); break; // ����(shield)
+		case ITEM_CLASS_SHIELD:			::_LoadStringFromResource(IDS_ITEM_CLASS_SHIELD, szText); break; // ????(shield)
 
-		case ITEM_CLASS_BOW:			::_LoadStringFromResource(IDS_ITEM_CLASS_BOW, szText); break; //  ��Ʈ����(Shortbow)
-		case ITEM_CLASS_BOW_CROSS:		::_LoadStringFromResource(IDS_ITEM_CLASS_BOW_CROSS, szText); break; // ũ�ν�����(crossbow)
-		case ITEM_CLASS_BOW_LONG:		::_LoadStringFromResource(IDS_ITEM_CLASS_BOW_LONG, szText); break; // �պ���(longbow)
+		case ITEM_CLASS_BOW:			::_LoadStringFromResource(IDS_ITEM_CLASS_BOW, szText); break; //  ???????(Shortbow)
+		case ITEM_CLASS_BOW_CROSS:		::_LoadStringFromResource(IDS_ITEM_CLASS_BOW_CROSS, szText); break; // ????????(crossbow)
+		case ITEM_CLASS_BOW_LONG:		::_LoadStringFromResource(IDS_ITEM_CLASS_BOW_LONG, szText); break; // ?????(longbow)
 
-		case ITEM_CLASS_EARRING:		::_LoadStringFromResource(IDS_ITEM_CLASS_EARRING, szText); break; // �Ͱ���
-		case ITEM_CLASS_AMULET:			::_LoadStringFromResource(IDS_ITEM_CLASS_AMULET, szText); break; // �����
-		case ITEM_CLASS_RING:			::_LoadStringFromResource(IDS_ITEM_CLASS_RING, szText); break; // ����
-		case ITEM_CLASS_BELT:			::_LoadStringFromResource(IDS_ITEM_CLASS_BELT, szText); break; // �㸮��
-		case ITEM_CLASS_CHARM:			::_LoadStringFromResource(IDS_ITEM_CLASS_CHARM, szText); break; //�κ��丮�� ���ϰ� �ִ� ������
-		case ITEM_CLASS_JEWEL:			::_LoadStringFromResource(IDS_ITEM_CLASS_JEWEL, szText); break; //��������
-		case ITEM_CLASS_POTION:			::_LoadStringFromResource(IDS_ITEM_CLASS_POTION, szText); break; // ����
-		case ITEM_CLASS_SCROLL:			::_LoadStringFromResource(IDS_ITEM_CLASS_SCROLL, szText); break; // ��ũ��
+		case ITEM_CLASS_EARRING:		::_LoadStringFromResource(IDS_ITEM_CLASS_EARRING, szText); break; // ?????
+		case ITEM_CLASS_AMULET:			::_LoadStringFromResource(IDS_ITEM_CLASS_AMULET, szText); break; // ?????
+		case ITEM_CLASS_RING:			::_LoadStringFromResource(IDS_ITEM_CLASS_RING, szText); break; // ????
+		case ITEM_CLASS_BELT:			::_LoadStringFromResource(IDS_ITEM_CLASS_BELT, szText); break; // ????
+		case ITEM_CLASS_CHARM:			::_LoadStringFromResource(IDS_ITEM_CLASS_CHARM, szText); break; //??????? ????? ??? ??????
+		case ITEM_CLASS_JEWEL:			::_LoadStringFromResource(IDS_ITEM_CLASS_JEWEL, szText); break; //????????
+		case ITEM_CLASS_POTION:			::_LoadStringFromResource(IDS_ITEM_CLASS_POTION, szText); break; // ????
+		case ITEM_CLASS_SCROLL:			::_LoadStringFromResource(IDS_ITEM_CLASS_SCROLL, szText); break; // ?????
 
 
 
 		case ITEM_CLASS_LAUNCHER:		::_LoadStringFromResource(IDS_ITEM_CLASS_LAUNCHER, szText); break; 
 						
-		case ITEM_CLASS_STAFF:			::_LoadStringFromResource(IDS_ITEM_CLASS_STAFF, szText); break; // ������(staff)
-		case ITEM_CLASS_ARROW:			::_LoadStringFromResource(IDS_ITEM_CLASS_ARROW, szText); break; // ȭ��(Arrow)
-		case ITEM_CLASS_JAVELIN:		::_LoadStringFromResource(IDS_ITEM_CLASS_JAVELIN, szText); break; // ��â
+		case ITEM_CLASS_STAFF:			::_LoadStringFromResource(IDS_ITEM_CLASS_STAFF, szText); break; // ??????(staff)
+		case ITEM_CLASS_ARROW:			::_LoadStringFromResource(IDS_ITEM_CLASS_ARROW, szText); break; // ???(Arrow)
+		case ITEM_CLASS_JAVELIN:		::_LoadStringFromResource(IDS_ITEM_CLASS_JAVELIN, szText); break; // ???
 		
-		case ITEM_CLASS_ARMOR_WARRIOR:	::_LoadStringFromResource(IDS_ITEM_CLASS_ARMOR_WARRIOR, szText); break; // ���� ��
-		case ITEM_CLASS_ARMOR_ROGUE:	::_LoadStringFromResource(IDS_ITEM_CLASS_ARMOR_ROGUE, szText); break; // �α� ��
-		case ITEM_CLASS_ARMOR_MAGE:		::_LoadStringFromResource(IDS_ITEM_CLASS_ARMOR_MAGE, szText); break; // ������ ��
-		case ITEM_CLASS_ARMOR_PRIEST:	::_LoadStringFromResource(IDS_ITEM_CLASS_ARMOR_PRIEST, szText); break; // ���� ��
+		case ITEM_CLASS_ARMOR_WARRIOR:	::_LoadStringFromResource(IDS_ITEM_CLASS_ARMOR_WARRIOR, szText); break; // ???? ???
+		case ITEM_CLASS_ARMOR_ROGUE:	::_LoadStringFromResource(IDS_ITEM_CLASS_ARMOR_ROGUE, szText); break; // ??? ???
+		case ITEM_CLASS_ARMOR_MAGE:		::_LoadStringFromResource(IDS_ITEM_CLASS_ARMOR_MAGE, szText); break; // ?????? ???
+		case ITEM_CLASS_ARMOR_PRIEST:	::_LoadStringFromResource(IDS_ITEM_CLASS_ARMOR_PRIEST, szText); break; // ???? ???
 		default:
 //			__ASSERT(0, "Invalid Item Class"); szText = "Unknonw Item Class";
 			return false;
@@ -234,12 +245,12 @@ bool CGameBase::GetTextByAttrib(e_ItemAttrib eAttrib, std::string& szAttrib)
 {
 	switch(eAttrib)
 	{
-		case ITEM_ATTRIB_GENERAL:		::_LoadStringFromResource(IDS_ITEM_ATTRIB_GENERAL, szAttrib); break; // �ܰ�(dagger)
-		case ITEM_ATTRIB_MAGIC:			::_LoadStringFromResource(IDS_ITEM_ATTRIB_MAGIC, szAttrib); break; // �Ѽհ�(onehandsword)
-		case ITEM_ATTRIB_LAIR:			::_LoadStringFromResource(IDS_ITEM_ATTRIB_LAIR, szAttrib); break; // 3 : ��հ�(twohandsword)
-		case ITEM_ATTRIB_CRAFT:			::_LoadStringFromResource(IDS_ITEM_ATTRIB_CRAFT, szAttrib); break; // �Ѽյ���(onehandaxe)
-		case ITEM_ATTRIB_UNIQUE:		::_LoadStringFromResource(IDS_ITEM_ATTRIB_UNIQUE, szAttrib); break; // �μյ���(twohandaxe)
-		case ITEM_ATTRIB_UPGRADE:		::_LoadStringFromResource(IDS_ITEM_ATTRIB_UPGRADE, szAttrib); break; // �Ѽ�Ÿ�ݹ���(mace)
+		case ITEM_ATTRIB_GENERAL:		::_LoadStringFromResource(IDS_ITEM_ATTRIB_GENERAL, szAttrib); break; // ???(dagger)
+		case ITEM_ATTRIB_MAGIC:			::_LoadStringFromResource(IDS_ITEM_ATTRIB_MAGIC, szAttrib); break; // ????(onehandsword)
+		case ITEM_ATTRIB_LAIR:			::_LoadStringFromResource(IDS_ITEM_ATTRIB_LAIR, szAttrib); break; // 3 : ????(twohandsword)
+		case ITEM_ATTRIB_CRAFT:			::_LoadStringFromResource(IDS_ITEM_ATTRIB_CRAFT, szAttrib); break; // ??????(onehandaxe)
+		case ITEM_ATTRIB_UNIQUE:		::_LoadStringFromResource(IDS_ITEM_ATTRIB_UNIQUE, szAttrib); break; // ??????(twohandaxe)
+		case ITEM_ATTRIB_UPGRADE:		::_LoadStringFromResource(IDS_ITEM_ATTRIB_UPGRADE, szAttrib); break; // ?????????(mace)
 		default:
 			return false;
 	}
@@ -321,14 +332,14 @@ bool CGameBase::GetTextByRace(e_Race eRace, std::string& szText)
 
 D3DCOLOR CGameBase::GetIDColorByLevelDifference(int iLevelDiff)
 {
-	// ���� ���̿� ���� ����...
-	// ����� : �÷��̾�� +8, 
-	// ������: �÷��̾�� +5, +6, +7
-	// ����� : �÷��̾��� +2, +3, +4
-	// ��� : -1 ? �÷��̾�  ? 1
-	// �Ķ��� : �÷��̾�� 2���� ���� -2, -3, -4   
-	// �ʷϻ� : �÷��̾�� -5, -6, -7
-	// �ϴû� : �÷��̾�� -8, ��(����ġ�� ���� ����)
+	// ???? ????? ???? ????...
+	// ????? : ???????? +8, 
+	// ??????: ???????? +5, +6, +7
+	// ????? : ????????? +2, +3, +4
+	// ??? : -1 ? ??????  ? 1
+	// ????? : ???????? 2???? ???? -2, -3, -4   
+	// ???? : ???????? -5, -6, -7
+	// ???? : ???????? -8, ??(??????? ???? ????)
 	
 	D3DCOLOR crID = 0xffffffff;
 	if(iLevelDiff >= 8)			crID = D3DCOLOR_ARGB(255, 255, 0, 255);
@@ -342,12 +353,12 @@ D3DCOLOR CGameBase::GetIDColorByLevelDifference(int iLevelDiff)
 	return crID;
 }
 
-// Item Data �� ������ �����̸��� �����..
-e_ItemType CGameBase::MakeResrcFileNameForUPC(	__TABLE_ITEM_BASIC* pItem,		// ������ ������...
+// Item Data ?? ?????? ????????? ?????..
+e_ItemType CGameBase::MakeResrcFileNameForUPC(	__TABLE_ITEM_BASIC* pItem,		// ?????? ??????...
 												std::string* pszResrcFN,			// Resource FileName
 												std::string* pszIconFN,			// Icon FileName
-												e_PartPosition& ePartPosition,	// Part �ϰ�� Index
-												e_PlugPosition& ePlugPosition)	// Plug �ϰ�� Index
+												e_PartPosition& ePartPosition,	// Part ???? Index
+												e_PlugPosition& ePlugPosition)	// Plug ???? Index
 {	
 	ePartPosition = PART_POS_UNKNOWN;
 	ePlugPosition = PLUG_POS_UNKNOWN;
@@ -356,12 +367,12 @@ e_ItemType CGameBase::MakeResrcFileNameForUPC(	__TABLE_ITEM_BASIC* pItem,		// �
 
 	if(NULL == pItem) return ITEM_TYPE_UNKNOWN;
 	
-	// �� 8 �ڸ��̴�.
+	// ?? 8 ??????.
 	e_ItemType eType	= ITEM_TYPE_UNKNOWN;
-	e_ItemPosition ePos	= (e_ItemPosition)pItem->byAttachPoint;	// ������ġ...
+	e_ItemPosition ePos	= (e_ItemPosition)pItem->byAttachPoint;	// ???????...
 
 	int iPos = 0;
-	std::string szExt; // Ȯ����..
+	std::string szExt; // ?????..
 	
 	if(ePos >= ITEM_POS_DUAL && ePos <= ITEM_POS_TWOHANDLEFT)
 	{
@@ -373,11 +384,11 @@ e_ItemType CGameBase::MakeResrcFileNameForUPC(	__TABLE_ITEM_BASIC* pItem,		// �
 	}
 	else if(ePos >= ITEM_POS_UPPER && ePos <= ITEM_POS_SHOES)
 	{
-		if(ITEM_POS_UPPER == ePos)			ePartPosition = PART_POS_UPPER; 		// ��ü
-		else if(ITEM_POS_LOWER == ePos)		ePartPosition = PART_POS_LOWER; 		// ��ü
-		else if(ITEM_POS_HEAD == ePos)		ePartPosition = PART_POS_HAIR_HELMET; 	// ����
-		else if(ITEM_POS_GLOVES == ePos)	ePartPosition = PART_POS_HANDS; 		// ��
-		else if(ITEM_POS_SHOES == ePos)		ePartPosition = PART_POS_FEET;			// ��
+		if(ITEM_POS_UPPER == ePos)			ePartPosition = PART_POS_UPPER; 		// ???
+		else if(ITEM_POS_LOWER == ePos)		ePartPosition = PART_POS_LOWER; 		// ???
+		else if(ITEM_POS_HEAD == ePos)		ePartPosition = PART_POS_HAIR_HELMET; 	// ????
+		else if(ITEM_POS_GLOVES == ePos)	ePartPosition = PART_POS_HANDS; 		// ??
+		else if(ITEM_POS_SHOES == ePos)		ePartPosition = PART_POS_FEET;			// ??
 		else { __ASSERT(0, "lll"); }
 		
 		eType = ITEM_TYPE_PART;
@@ -417,7 +428,7 @@ e_ItemType CGameBase::MakeResrcFileNameForUPC(	__TABLE_ITEM_BASIC* pItem,		// �
 				szExt.c_str());
 			*pszResrcFN = &buffer[0];
 		}
-		else // �����ܸ� �ִ� �÷��׳� ��Ʈ �ϼ��� �ִ�...
+		else // ??????? ??? ?????? ??? ????? ???...
 		{
 			*pszResrcFN = "";
 		}
@@ -440,8 +451,8 @@ e_ItemType CGameBase::MakeResrcFileNameForUPC(	__TABLE_ITEM_BASIC* pItem,		// �
 bool CGameBase::IsValidCharacter(CPlayerBase* pCharacter)
 {
 	if(NULL == pCharacter) return false;
-	if(pCharacter == s_pPlayer) return true; // �÷��̾��̴�.
-	return s_pOPMgr->IsValidCharacter(pCharacter); //  �ϴ� ����ִ� �ѵ��߿��� �����ͺ���.. 
+	if(pCharacter == s_pPlayer) return true; // ?????????.
+	return s_pOPMgr->IsValidCharacter(pCharacter); //  ??? ?????? ???????? ?????????.. 
 }
 
 CPlayerBase* CGameBase::CharacterGetByID(int iID, bool bFromAlive)
@@ -450,4 +461,5 @@ CPlayerBase* CGameBase::CharacterGetByID(int iID, bool bFromAlive)
 	if(iID == s_pPlayer->IDNumber()) return s_pPlayer;
 	return s_pOPMgr->CharacterGetByID(iID, bFromAlive);
 }
+
 

@@ -17,27 +17,27 @@ class CLyTerrain;
 class CNPCPath : public CN3Base  
 {
 public:
-	char	m_strPathName[256];	// ±æÀÌ¸§..
-	char	m_strNPCName[80];	// NPC ÀÌ¸§.
-	int		m_iNPCID;			// NPC Á¾·ù..
-	int		m_iNumNPC;			// ¸î¸¶¸®?..
+	char	m_strPathName[256];	// ï¿½ï¿½ï¿½Ì¸ï¿½..
+	char	m_strNPCName[80];	// NPC ï¿½Ì¸ï¿½.
+	int		m_iNPCID;			// NPC ï¿½ï¿½ï¿½ï¿½..
+	int		m_iNumNPC;			// ï¿½î¸¶ï¿½ï¿½?..
 		
-	__Vector3	m_LTStartVertex;	// ½ÃÀÛ¿µ¿ªÀÇ ¸ð¼­¸® µÎÁ¡..
+	__Vector3	m_LTStartVertex;	// ï¿½ï¿½ï¿½Û¿ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ð¼­¸ï¿½ ï¿½ï¿½ï¿½ï¿½..
 	__Vector3	m_RBStartVertex;
 
-	//CRect	m_rcStartRect;		// NPC»ý±â´Â ¿µ¿ª.
-	int		m_iRegenTime;		// NPC°¡ Á×¾ú´Ù°¡ ´Ù½Ã »ì¾Æ³ª´Âµ¥ °É¸®´Â ½Ã°£.
+	//CRect	m_rcStartRect;		// NPCï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½.
+	int		m_iRegenTime;		// NPCï¿½ï¿½ ï¿½×¾ï¿½ï¿½Ù°ï¿½ ï¿½Ù½ï¿½ ï¿½ï¿½Æ³ï¿½ï¿½Âµï¿½ ï¿½É¸ï¿½ï¿½ï¿½ ï¿½Ã°ï¿½.
 	int		m_iActType;
 	int		m_iZoneID;
 
-	std::list<__Vector3> m_Path;	//pathÁöÁ¤ÇÏ´Â Á¡µé....½ÃÀÛÁ¡~³¡Á¡..
+	std::list<__Vector3> m_Path;	//pathï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½ ï¿½ï¿½ï¿½ï¿½....ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½~ï¿½ï¿½ï¿½ï¿½..
 
 	CLyTerrain*		m_pRefTerrain;
 
 	DWORD	m_dwColor;
 	int		m_iVersion;
 
-	__Vector3	m_LTActVertex;	// ½ÃÀÛ¿µ¿ªÀÇ ¸ð¼­¸® µÎÁ¡..
+	__Vector3	m_LTActVertex;	// ï¿½ï¿½ï¿½Û¿ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ð¼­¸ï¿½ ï¿½ï¿½ï¿½ï¿½..
 	__Vector3	m_RBActVertex;
 
 	unsigned char	m_cAttr_Create;
@@ -51,8 +51,8 @@ public:
 	void	Load(HANDLE hFile);
 	void	Save(HANDLE hFile);
 	int		GetSize() { return m_Path.size(); }
-	bool	GetPath(int idx, __Vector3* pPos);	// idxÂ° Á¡ °¡Á®¿À±â..
-	void	AddPos(__Vector3 Path);	//path´õÇÏ±â.
+	bool	GetPath(int idx, __Vector3* pPos);	// idxÂ° ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½..
+	void	AddPos(__Vector3 Path);	//pathï¿½ï¿½ï¿½Ï±ï¿½.
 	void	DelPrevPos();
 	CNPCPath();
 	virtual ~CNPCPath();

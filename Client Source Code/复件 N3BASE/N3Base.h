@@ -38,10 +38,10 @@ class CN3Base
 public:
 	static CN3Mng<CN3Texture>	s_MngTex; // Texture Manager
 	static CN3Mng<CN3Mesh>		s_MngMesh; // Normal Mesh Manager
-	static CN3Mng<CN3VMesh>		s_MngVMesh; // ´Ü¼øÈ÷ Æú¸®°ï¸¸ °®°í ÀÖ´Â ¸Þ½Ã - ÁÖ·Î Ãæµ¹ Ã¼Å©¿¡ ¾´´Ù..
+	static CN3Mng<CN3VMesh>		s_MngVMesh; // ï¿½Ü¼ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¸¸ ï¿½ï¿½ï¿½ï¿½ ï¿½Ö´ï¿½ ï¿½Þ½ï¿½ - ï¿½Ö·ï¿½ ï¿½æµ¹ Ã¼Å©ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½..
 	static CN3Mng<CN3PMesh>		s_MngPMesh; // Progressive Mesh Manager
 	static CN3Mng<CN3Joint>		s_MngJoint; // Joint Manager
-	static CN3Mng<CN3CPart>		s_MngCPart; // Character ¿¡ ¾²´Â Part Manager
+	static CN3Mng<CN3CPart>		s_MngCPart; // Character ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ Part Manager
 	static CN3Mng<CN3AnimControl>	CN3Base::s_MngAniCtrl; // Animation Manager
 
 	typedef struct __CameraData
@@ -49,25 +49,25 @@ public:
 		__Vector3 vEye; // Camera Position Vector
 		__Vector3 vAt; // Camera At Vector
 		__Vector3 vUp; // Camera Up Vector
-		float fEyeDotValues[MAX_CAMERA_RADIUS][5];	// Camera Eye Vector - Camera Direction Vector ¸¦ Dot Porduct ÇÑ°ª.. 
-													// Ã¹¹øÂ° ¹è¿­[MAX_CAMERA_RADIUS]- 3 meter ´ÜÀ§·Î MAX_CAMERA_RADIUS°³, Áï Ä«¸Þ¶ó¸¦ µÚ·Î MAX_CAMERA_RADIUS * 10 meter ±îÁö »« °Å¸®¸¦ Ä¿¹öÇÒ¼ö ÀÖ´Ù´Â ÀÇ¹ÌÀÌ´Ù.
-													// µÎ¹øÂ° ¹è¿­[5] - Ä«¸Þ¶ó À§Ä¡. 1~4:Left, Right, Top, Bottom
+		float fEyeDotValues[MAX_CAMERA_RADIUS][5];	// Camera Eye Vector - Camera Direction Vector ï¿½ï¿½ Dot Porduct ï¿½Ñ°ï¿½.. 
+													// Ã¹ï¿½ï¿½Â° ï¿½è¿­[MAX_CAMERA_RADIUS]- 3 meter ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ MAX_CAMERA_RADIUSï¿½ï¿½, ï¿½ï¿½ Ä«ï¿½Þ¶ï¿½ ï¿½Ú·ï¿½ MAX_CAMERA_RADIUS * 10 meter ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½Å¸ï¿½ï¿½ï¿½ Ä¿ï¿½ï¿½ï¿½Ò¼ï¿½ ï¿½Ö´Ù´ï¿½ ï¿½Ç¹ï¿½ï¿½Ì´ï¿½.
+													// ï¿½Î¹ï¿½Â° ï¿½è¿­[5] - Ä«ï¿½Þ¶ï¿½ ï¿½ï¿½Ä¡. 1~4:Left, Right, Top, Bottom
 		
-		__Vector3 vFrustumNormals[5]; // Ä«¸Þ¶ó ÀýµÎÃ¼ Æò¸éÀÇ ¹ý¼± º¤ÅÍ.. 0:Camera À§Ä¡ 1~4:Left, Right, Top, Bottom , °¢ Æò¸éÀÇ À§Ä¡´Â vPos ÀÌ´Ù..
+		__Vector3 vFrustumNormals[5]; // Ä«ï¿½Þ¶ï¿½ ï¿½ï¿½ï¿½ï¿½Ã¼ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½.. 0:Camera ï¿½ï¿½Ä¡ 1~4:Left, Right, Top, Bottom , ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ä¡ï¿½ï¿½ vPos ï¿½Ì´ï¿½..
 		__Vector3 vFarPoints[4]; // LeftTop, RightTop, BottomRight, BottomLeft
 
-		float fFOV; // Ä«¸Þ¶ó ·»Áî °¢ : Field Of View
-		float fAspect; // Á¾È¾ºñ
+		float fFOV; // Ä«ï¿½Þ¶ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ : Field Of View
+		float fAspect; // ï¿½ï¿½È¾ï¿½ï¿½
 		float fNP; // NearPlane
 		float fFP; // FarPlane
-		D3DVIEWPORT8 vp; // ViewPort;
+		D3DVIEWPORT9 vp; // ViewPort;
 		__Matrix44 mtxView;
 		__Matrix44 mtxViewInverse;
 		__Matrix44 mtxProjection;
 
-		BOOL IsOutOfFrustum(__Vector3& vPosition, float fRadius) // ¹Ì¸® °è»êµÈ Ä«¸Þ¶ó Æò¸éÀÇ µµÆ® ÇÁ·Î´öÆ® °ªÀ» ±âÁØÀ¸·Î Ä«¸Þ¶ó »ç¸éÃ¼ ¹Û¿¡ ÀÖÀ¸¸é  ÂüÀ» µ¹·ÁÁØ´Ù.
+		BOOL IsOutOfFrustum(__Vector3& vPosition, float fRadius) // ï¿½Ì¸ï¿½ ï¿½ï¿½ï¿½ï¿½ Ä«ï¿½Þ¶ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Æ® ï¿½ï¿½ï¿½Î´ï¿½Æ® ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Ä«ï¿½Þ¶ï¿½ ï¿½ï¿½ï¿½Ã¼ ï¿½Û¿ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½  ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ø´ï¿½.
 		{
-			int nEyeDotIndex = (int)(fRadius / 3.0f); // 3 Meter ´ÜÀ§·Î ¹Ì¸® °è»êÇØ ³õ´Â´Ù..
+			int nEyeDotIndex = (int)(fRadius / 3.0f); // 3 Meter ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ì¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Â´ï¿½..
 			if(nEyeDotIndex < 0) nEyeDotIndex = 0;
 			else if(nEyeDotIndex >= MAX_CAMERA_RADIUS) nEyeDotIndex = MAX_CAMERA_RADIUS - 1;
 			if(	vPosition.Dot(vFrustumNormals[0]) < fEyeDotValues[nEyeDotIndex][0] || // Front...
@@ -90,15 +90,15 @@ public:
 		int nChr;
 		int nChrPart;
 
-		int nPolygon; // ´Ü¼ø Æú¸®°ï
-		int nPolygonCharacter; // Ä³¸¯ÅÍ Æú¸®°ï
+		int nPolygon; // ï¿½Ü¼ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+		int nPolygonCharacter; // Ä³ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		
 		int nTexture_32X32; // 32 X 32 Texture
 		int nTexture_64X64; // 64 X 64 Texture
 		int nTexture_128X128; // 128 X 128 Texture
 		int nTexture_256X256; // 256 X 256 Texture
 		int nTexture_512X512; // 512 X 512 Texture
-		int nTexture_Huge; // 512 X 512 ÀÌ»ó size
+		int nTexture_Huge; // 512 X 512 ï¿½Ì»ï¿½ size
 		int nTexture_OtherSize; // Other size
 	} __RenderInfo;
 
@@ -109,32 +109,32 @@ public:
 		int nTexture_Loaded_128X128; // 128 X 128 Texture
 		int nTexture_Loaded_256X256; // 256 X 256 Texture
 		int nTexture_Loaded_512X512; // 512 X 512 Texture
-		int nTexture_Loaded_Huge; // 512 X 512 ÀÌ»ó size
+		int nTexture_Loaded_Huge; // 512 X 512 ï¿½Ì»ï¿½ size
 		int nTexture_Loaded_OtherSize; // Other size
 	} __ResrcInfo;
 
 
-	static LPDIRECT3DDEVICE8		s_lpD3DDev; // Device ÂüÁ¶ Æ÷ÀÎÅÍ.. ¸Ú´ë·Î ÇØÁ¦ÇÏ¸é ¾ÈµÈ´Ù..
-	static D3DPRESENT_PARAMETERS	s_DevParam; // Device »ý¼º Present Parameter
-	static D3DCAPS8	s_DevCaps; // Device È£È¯¼º...
-	static DWORD	s_dwTextureCaps; // Texture Áö¿ø.. DXT1 ~ DXT5, Square Only
+	static LPDIRECT3DDEVICE8		s_lpD3DDev; // Device ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½.. ï¿½Ú´ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï¸ï¿½ ï¿½ÈµÈ´ï¿½..
+	static D3DPRESENT_PARAMETERS	s_DevParam; // Device ï¿½ï¿½ï¿½ï¿½ Present Parameter
+	static D3DCAPS8	s_DevCaps; // Device È£È¯ï¿½ï¿½...
+	static DWORD	s_dwTextureCaps; // Texture ï¿½ï¿½ï¿½ï¿½.. DXT1 ~ DXT5, Square Only
 	static HWND		s_hWndDevice; // Device Window Handle
-	static HWND		s_hWndBase; // Init ÇÒ¶§ ¾´ Window Handle
-	static HWND		s_hWndPresent; // ÃÖ±Ù¿¡ Present ÇÑ Window Handle
+	static HWND		s_hWndBase; // Init ï¿½Ò¶ï¿½ ï¿½ï¿½ Window Handle
+	static HWND		s_hWndPresent; // ï¿½Ö±Ù¿ï¿½ Present ï¿½ï¿½ Window Handle
 
-	static __CameraData	s_CameraData; // Ä«¸Þ¶ó µ¥ÀÌÅÍ Á¤Àû º¯¼ö..
+	static __CameraData	s_CameraData; // Ä«ï¿½Þ¶ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½..
 	static __RenderInfo	s_RenderInfo; // Rendering Information..
 	static __ResrcInfo	s_ResrcInfo; // Rendering Information..
 	static float		s_fFrmPerSec; // Frame Per Second
 
 protected:
-	static char				s_szPath[512]; // ÇÁ·Î±×·¥ÀÌ ½ÇÇàµÈ °æ·Î.. 
-	static LARGE_INTEGER	s_TimePrev; // ½Ã°£..
+	static char				s_szPath[512]; // ï¿½ï¿½ï¿½Î±×·ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½.. 
+	static LARGE_INTEGER	s_TimePrev; // ï¿½Ã°ï¿½..
 
 protected:
-	DWORD	m_dwType; // "MESH", "CAMERA", "SCENE", "???" .... µîµîµî...
+	DWORD	m_dwType; // "MESH", "CAMERA", "SCENE", "???" .... ï¿½ï¿½ï¿½ï¿½...
 	char*	m_szName;
-	char*	m_szFileName; // Base Path ¸¦ Á¦¿ÜÇÑ ·ÎÄÃ °æ·Î + ÆÄÀÏ ÀÌ¸§
+	char*	m_szFileName; // Base Path ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ + ï¿½ï¿½ï¿½ï¿½ ï¿½Ì¸ï¿½
 
 public:
 	float TimeGet();
@@ -149,19 +149,19 @@ public:
 	const char* Name() { return m_szName; }
 	void NameSet(const char* szName);
 
-	const char* FileNameShort(); // º£ÀÌ½º °æ·Î¸¦ Á¦¿ÜÇÑ ÂªÀº ÀÌ¸§À» µ¹·ÁÁØ´Ù..(·ÎÄÃ °æ·ÎÀÌ´Ù..)
+	const char* FileNameShort(); // ï¿½ï¿½ï¿½Ì½ï¿½ ï¿½ï¿½Î¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Âªï¿½ï¿½ ï¿½Ì¸ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ø´ï¿½..(ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ì´ï¿½..)
 	const char* FileName() { return m_szFileName; } // Full Path
 	void FileNameSet(const char* szFileName);
 
-	DWORD Type() { return m_dwType; } // °´Ã¼ Á¾·ù..
+	DWORD Type() { return m_dwType; } // ï¿½ï¿½Ã¼ ï¿½ï¿½ï¿½ï¿½..
 
-	bool LoadFromFile(); // ÆÄÀÏ¿¡¼­ ÀÐ¾î¿À±â.
-	bool LoadFromFile(const char* szFileName); // ÆÄÀÏ¿¡¼­ ÀÐ¾î¿À±â.
-	bool SaveToFile(); // ÇöÀç ÆÄÀÏ ÀÌ¸§´ë·Î ÀúÀå.
-	bool SaveToFile(const char* szFileName); // »õÀÌ¸§À¸·Î ÀúÀå.
+	bool LoadFromFile(); // ï¿½ï¿½ï¿½Ï¿ï¿½ï¿½ï¿½ ï¿½Ð¾ï¿½ï¿½ï¿½ï¿½.
+	bool LoadFromFile(const char* szFileName); // ï¿½ï¿½ï¿½Ï¿ï¿½ï¿½ï¿½ ï¿½Ð¾ï¿½ï¿½ï¿½ï¿½.
+	bool SaveToFile(); // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ì¸ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½.
+	bool SaveToFile(const char* szFileName); // ï¿½ï¿½ï¿½Ì¸ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½.
 
-	virtual bool Load(HANDLE hFile); // ÇÚµé¿¡¼­ ÀÐ¾î¿À±â..
-	virtual bool Save(HANDLE hFile); // ÇÚµéÀ» ÅëÇØ ÀúÀå..
+	virtual bool Load(HANDLE hFile); // ï¿½Úµé¿¡ï¿½ï¿½ ï¿½Ð¾ï¿½ï¿½ï¿½ï¿½..
+	virtual bool Save(HANDLE hFile); // ï¿½Úµï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½..
 
 	void RenderLines(const __Vector3 *pvLines, int nCount, D3DCOLOR color);
 

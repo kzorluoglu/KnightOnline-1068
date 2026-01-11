@@ -60,7 +60,7 @@ bool CN3Texture::Create(int nWidth, int nHeight, D3DFORMAT Format, BOOL bGenerat
 	if(nWidth <= 1 || nHeight <= 1 || D3DFMT_UNKNOWN == Format) return false;
 	if(m_lpTexture != NULL) this->Release();
 
-	if(s_dwTextureCaps & TEX_CAPS_POW2) // 2 ÀÇ ½Â¼ö¸¸ µÈ´Ù¸é..
+	if(s_dwTextureCaps & TEX_CAPS_POW2) // 2 ï¿½ï¿½ ï¿½Â¼ï¿½ï¿½ï¿½ ï¿½È´Ù¸ï¿½..
 	{
 		int nW = 1;
 		for(; nW <= nWidth; nW *= 2);
@@ -73,21 +73,21 @@ bool CN3Texture::Create(int nWidth, int nHeight, D3DFORMAT Format, BOOL bGenerat
 		nHeight = nH;
 	}
 
-	if((s_dwTextureCaps & TEX_CAPS_SQUAREONLY) && nWidth != nHeight) // Á¤»ç°¢Çü ÅØ½ºÃ³¸¸ µÇ¸é..
+	if((s_dwTextureCaps & TEX_CAPS_SQUAREONLY) && nWidth != nHeight) // ï¿½ï¿½ï¿½ç°¢ï¿½ï¿½ ï¿½Ø½ï¿½Ã³ï¿½ï¿½ ï¿½Ç¸ï¿½..
 	{
 		if(nWidth > nHeight) nWidth = nHeight;
 		else nHeight = nWidth;
 	}
 
-	// ºñµð¿À Ä«µå°¡ 256 ÀÌ»óÀÇ ÅØ½ºÃ³¸¦ Áö¿ø ÇÏÁö ¸øÇÏ¸é..
+	// ï¿½ï¿½ï¿½ï¿½ Ä«ï¿½å°¡ 256 ï¿½Ì»ï¿½ï¿½ï¿½ ï¿½Ø½ï¿½Ã³ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ï¸ï¿½..
 	if(nWidth > 256 && CN3Base::s_DevCaps.MaxTextureWidth <= 256) nWidth = CN3Base::s_DevCaps.MaxTextureWidth;
 	if(nHeight > 256 && CN3Base::s_DevCaps.MaxTextureHeight <= 256) nHeight = CN3Base::s_DevCaps.MaxTextureHeight;
 
-	// Çì´õ ¼¼ÆÃ..
+	// ï¿½ï¿½ï¿?ï¿½ï¿½ï¿½ï¿½..
 	memset(&m_Header, 0, sizeof(m_Header));
 
-	// MipMap ´Ü°è °áÁ¤..
-	// 4 X 4 ÇÈ¼¿±îÁö¸¸ MipMap À» ¸¸µç´Ù..
+	// MipMap ï¿½Ü°ï¿½ ï¿½ï¿½ï¿½ï¿½..
+	// 4 X 4 ï¿½È¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ MipMap ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿?.
 	int nMMC = 1;
 	if(bGenerateMipMap)
 	{
@@ -95,7 +95,11 @@ bool CN3Texture::Create(int nWidth, int nHeight, D3DFORMAT Format, BOOL bGenerat
 		for(int nW = nWidth, nH = nHeight; nW >=4 && nH >= 4; nW /=2, nH /= 2) nMMC++;
 	}
 
-	HRESULT rval = s_lpD3DDev->CreateTexture(nWidth, nHeight, nMMC, 0, Format, D3DPOOL_MANAGED, &m_lpTexture);
+	
+#ifdef _N3GAME
+    CLogWriter::Write("CN3Texture::Create - %dx%d, fmt=%d, Mms=%d (%s)", nWidth, nHeight, Format, nMMC, m_szFileName.c_str());
+#endif
+    HRESULT rval = s_lpD3DDev->CreateTexture(nWidth, nHeight, nMMC, 0, Format, D3DPOOL_MANAGED, &m_lpTexture, NULL);
 
 #ifdef _N3GAME
 	if(rval == D3DERR_INVALIDCALL)
@@ -138,7 +142,7 @@ bool CN3Texture::Create(int nWidth, int nHeight, D3DFORMAT Format, BOOL bGenerat
 }
 
 #ifdef _N3TOOL
-bool CN3Texture::CreateFromSurface(LPDIRECT3DSURFACE8 lpSurf, D3DFORMAT Format, BOOL bGenerateMipMap)
+bool CN3Texture::CreateFromSurface(LPDIRECT3DSURFACE9 lpSurf, D3DFORMAT Format, BOOL bGenerateMipMap)
 {
 	if(lpSurf == NULL) return false;
 
@@ -159,9 +163,9 @@ bool CN3Texture::LoadFromFile(const std::string& szFileName)
 {
 	if(m_lpTexture != NULL) this->Release();
 
-	this->FileNameSet(szFileName); // ÆÄÀÏ ÀÌ¸§À» º¹»çÇÏ°í..
+	this->FileNameSet(szFileName); // ï¿½ï¿½ï¿½ï¿½ ï¿½Ì¸ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï°ï¿½..
 	std::string szFullPath;
-	if(-1 != m_szFileName.find(':') || -1 != m_szFileName.find("\\\\") || -1 != m_szFileName.find("//")) // ¹®ÀÚ¿­¿¡ ':', '\\', '//' ÀÌ µé¾î ÀÖÀ¸¸é ÀüÃ¼ °æ·ÎÀÌ´Ù..
+	if(-1 != m_szFileName.find(':') || -1 != m_szFileName.find("\\\\") || -1 != m_szFileName.find("//")) // ï¿½ï¿½ï¿½Ú¿ï¿½ï¿½ï¿½ ':', '\\', '//' ï¿½ï¿½ ï¿½ï¿½ï¿?ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ã¼ ï¿½ï¿½ï¿½ï¿½Ì´ï¿?.
 	{
 		szFullPath = m_szFileName;
 	}
@@ -241,16 +245,17 @@ bool CN3Texture::Load(HANDLE hFile)
 
 	DWORD dwRWC = 0;
 
-	__DXT_HEADER HeaderOrg; // Çì´õ¸¦ ÀúÀåÇØ ³õ°í..
-	ReadFile(hFile, &HeaderOrg, sizeof(HeaderOrg), &dwRWC, NULL); // Çì´õ¸¦ ÀÐ´Â´Ù..
+	__DXT_HEADER HeaderOrg; // ï¿½ï¿½ï¿½ï¿½ï¿?ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½..
+	ReadFile(hFile, &HeaderOrg, sizeof(HeaderOrg), &dwRWC, NULL); // ï¿½ï¿½ï¿½ï¿½ï¿?ï¿½Ð´Â´ï¿½..
 	if(	'N' != HeaderOrg.szID[0] || 'T' != HeaderOrg.szID[1] || 'F' != HeaderOrg.szID[2] || 3 != HeaderOrg.szID[3] ) // "NTF"3 - Noah Texture File Ver. 3.0
 	{
 #ifdef _N3GAME
-		CLogWriter::Write("N3Texture Warning - Old format DXT file (%s)", m_szFileName.c_str());
+		CLogWriter::Write("N3Texture Error - Invalid or Old format DXT file (%s). Aborting load.", m_szFileName.c_str());
 #endif
+		return false;
 	}
 
-	// DXT Format À» ÀÐ¾î¾ß ÇÏ´Âµ¥ Áö¿øÀÌ µÇ´ÂÁö ¾ÈµÇ´ÂÁö º¸°í Áö¿ø¾ÈµÇ¸é ´ëÃ¼ Æ÷¸ËÀ» Á¤ÇÑ´Ù.
+	// DXT Format ï¿½ï¿½ ï¿½Ð¾ï¿½ï¿?ï¿½Ï´Âµï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ç´ï¿½ï¿½ï¿½ ï¿½ÈµÇ´ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ÈµÇ¸ï¿½ ï¿½ï¿½Ã¼ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ñ´ï¿½.
 	bool bDXTSupport = FALSE;
 	D3DFORMAT fmtNew = HeaderOrg.Format;
 	if(D3DFMT_DXT1 == HeaderOrg.Format) 
@@ -280,8 +285,8 @@ bool CN3Texture::Load(HANDLE hFile)
 	}
 
 	int iWCreate = HeaderOrg.nWidth, iHCreate = HeaderOrg.nHeight;
-	if(fmtNew != HeaderOrg.Format) { iWCreate /= 2; iHCreate /= 2; }// DXT Áö¿øÀÌ ¾ÈµÇ¸é ³Êºñ ³ôÀÌ¸¦ ÁÙÀÎ´Ù.
-	if(m_iLOD > 0 && m_iLOD <= 2 && HeaderOrg.nWidth >= 16 && HeaderOrg.nHeight >= 16) // LOD ¸¸Å­ ÀÛ°Ô »ý¼º..
+	if(fmtNew != HeaderOrg.Format) { iWCreate /= 2; iHCreate /= 2; }// DXT ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ÈµÇ¸ï¿½ ï¿½Êºï¿½ ï¿½ï¿½ï¿½Ì¸ï¿½ ï¿½ï¿½ï¿½Î´ï¿½.
+	if(m_iLOD > 0 && m_iLOD <= 2 && HeaderOrg.nWidth >= 16 && HeaderOrg.nHeight >= 16) // LOD ï¿½ï¿½Å­ ï¿½Û°ï¿½ ï¿½ï¿½ï¿½ï¿½..
 	{
 		for(int i = 0; i < m_iLOD; i++)
 		{
@@ -289,10 +294,10 @@ bool CN3Texture::Load(HANDLE hFile)
 			iHCreate /= 2;
 		}
 	}
-	else m_iLOD = 0; // LOD Àû¿ëÀÌ ¾Æ´Ï¸é..
+	else m_iLOD = 0; // LOD ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Æ´Ï¸ï¿½..
 
 	int iLODPrev = m_iLOD;
-	this->Create(iWCreate, iHCreate, fmtNew, HeaderOrg.bMipMap); // ¼­ÇÇ½º ¸¸µé°í..
+	this->Create(iWCreate, iHCreate, fmtNew, HeaderOrg.bMipMap); // ï¿½ï¿½ï¿½Ç½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿?.
 	m_iLOD = iLODPrev;
 
 	if(m_lpTexture == NULL)
@@ -305,80 +310,90 @@ bool CN3Texture::Load(HANDLE hFile)
 
 	D3DSURFACE_DESC sd;
 	D3DLOCKED_RECT LR;
-	int iMMC = m_lpTexture->GetLevelCount(); // »ý¼ºÇÑ MipMap ¼ö
+	int iMMC = m_lpTexture->GetLevelCount(); // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ MipMap ï¿½ï¿½
 
-	// ¾ÐÃà Æ÷¸ËÀÌ¸é..
+	// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ì¸ï¿½..
 	if(	D3DFMT_DXT1 == HeaderOrg.Format || 
 		D3DFMT_DXT2 == HeaderOrg.Format || 
 		D3DFMT_DXT3 == HeaderOrg.Format || 
 		D3DFMT_DXT4 == HeaderOrg.Format || 
 		D3DFMT_DXT5 == HeaderOrg.Format )
 	{
-		if(TRUE == bDXTSupport) // ¾ÐÃà ÅØ½ºÃ³ Áö¿øÀÌ¸é..
+		if(TRUE == bDXTSupport) // ï¿½ï¿½ï¿½ï¿½ ï¿½Ø½ï¿½Ã³ ï¿½ï¿½ï¿½ï¿½ï¿½Ì¸ï¿½..
 		{
 			if(iMMC > 1)
 			{
-				if(m_iLOD > 0) // LOD ¸¸Å­ °Ç³Ê¶Ù±â...
+				if(m_iLOD > 0) // LOD ï¿½ï¿½Å­ ï¿½Ç³Ê¶Ù±ï¿½...
 				{
 					int iWTmp = HeaderOrg.nWidth, iHTmp = HeaderOrg.nHeight, iSkipSize = 0;
 					for(int i = 0; i < m_iLOD; i++, iWTmp /= 2, iHTmp /= 2)
 					{
-						if(D3DFMT_DXT1 == HeaderOrg.Format) iSkipSize += iWTmp * iHTmp / 2; // DXT1 Çü½ÄÀº 16ºñÆ® Æ÷¸Ë¿¡ ºñÇØ 1/4 ·Î ¾ÐÃà..
-						else iSkipSize += iWTmp * iHTmp; // DXT2 ~ DXT5 Çü½ÄÀº 16ºñÆ® Æ÷¸Ë¿¡ ºñÇØ 1/2 ·Î ¾ÐÃà..
+						if(D3DFMT_DXT1 == HeaderOrg.Format) iSkipSize += iWTmp * iHTmp / 2; // DXT1 ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ 16ï¿½ï¿½Æ® ï¿½ï¿½ï¿½Ë¿ï¿½ ï¿½ï¿½ï¿½ï¿½ 1/4 ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½..
+						else iSkipSize += iWTmp * iHTmp; // DXT2 ~ DXT5 ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ 16ï¿½ï¿½Æ® ï¿½ï¿½ï¿½Ë¿ï¿½ ï¿½ï¿½ï¿½ï¿½ 1/2 ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½..
 					}
-					::SetFilePointer(hFile, iSkipSize, 0, FILE_CURRENT); // °Ç³Ê¶Ù°í.
+					::SetFilePointer(hFile, iSkipSize, 0, FILE_CURRENT); // ï¿½Ç³Ê¶Ù°ï¿½.
 				}
 
 				for(int i = 0; i < iMMC; i++)
 				{
 					m_lpTexture->GetLevelDesc(i, &sd);
 					m_lpTexture->LockRect(i, &LR, NULL, NULL);
-					ReadFile(hFile, (BYTE*)LR.pBits, sd.Size, &dwRWC, NULL); // ÀÏ·Ä·Î µÈ µ¥ÀÌÅÍ¸¦ ¾²°í..
+					
+                    int iByteSize = 0;
+                    if (sd.Format == D3DFMT_DXT1) iByteSize = sd.Width * sd.Height / 2;
+                    else if (sd.Format >= D3DFMT_DXT2 && sd.Format <= D3DFMT_DXT5) iByteSize = sd.Width * sd.Height;
+                    else iByteSize = sd.Width * sd.Height * 4;
+                    ReadFile(hFile, (BYTE*)LR.pBits, iByteSize, &dwRWC, NULL); // ï¿½Ï·Ä·ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Í¸ï¿½ ï¿½ï¿½ï¿½ï¿½..
 					m_lpTexture->UnlockRect(i);
 				}
 
-				// ÅØ½ºÃ³ ¾ÐÃà¾ÈµÇ´Â ºñµð¿À Ä«µå¸¦ À§ÇÑ ¿©ºÐÀÇ µ¥ÀÌÅÍ °Ç³Ê¶Ù±â.. 
+				// ï¿½Ø½ï¿½Ã³ ï¿½ï¿½ï¿½ï¿½ÈµÇ´ï¿?ï¿½ï¿½ï¿½ï¿½ Ä«ï¿½å¸¦ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ç³Ê¶Ù±ï¿½.. 
 				int iWTmp = HeaderOrg.nWidth / 2, iHTmp = HeaderOrg.nHeight / 2;
-				for(; iWTmp >= 4 && iHTmp >= 4; iWTmp /= 2, iHTmp /= 2) // ÇÑÇÈ¼¿¿¡ µÎ¹ÙÀÌÆ®°¡ µé¾î°¡´Â A1R5G5B5 È¤Àº A4R4G4B4 Æ÷¸ËÀ¸·Î µÇ¾î ÀÖ´Ù..
-					::SetFilePointer(hFile, iWTmp * iHTmp * 2, 0, FILE_CURRENT); // °Ç³Ê¶Ù°í.
+				for(; iWTmp >= 4 && iHTmp >= 4; iWTmp /= 2, iHTmp /= 2) // ï¿½ï¿½ï¿½È¼ï¿½ï¿½ï¿½ ï¿½Î¹ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½î°¡ï¿½ï¿?A1R5G5B5 È¤ï¿½ï¿½ A4R4G4B4 ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ç¾ï¿½ ï¿½Ö´ï¿½..
+					::SetFilePointer(hFile, iWTmp * iHTmp * 2, 0, FILE_CURRENT); // ï¿½Ç³Ê¶Ù°ï¿½.
 			}
 			else // pair of if(iMMC > 1)
 			{
 				m_lpTexture->GetLevelDesc(0, &sd);
 				m_lpTexture->LockRect(0, &LR, NULL, NULL);
-				ReadFile(hFile, (BYTE*)LR.pBits, sd.Size, &dwRWC, NULL); // ÀÏ·Ä·Î µÈ µ¥ÀÌÅÍ¸¦ ¾²°í..
+				
+                    int iByteSize = 0;
+                    if (sd.Format == D3DFMT_DXT1) iByteSize = sd.Width * sd.Height / 2;
+                    else if (sd.Format >= D3DFMT_DXT2 && sd.Format <= D3DFMT_DXT5) iByteSize = sd.Width * sd.Height;
+                    else iByteSize = sd.Width * sd.Height * 4;
+                    ReadFile(hFile, (BYTE*)LR.pBits, iByteSize, &dwRWC, NULL); // ï¿½Ï·Ä·ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Í¸ï¿½ ï¿½ï¿½ï¿½ï¿½..
 				m_lpTexture->UnlockRect(0);
 
-				// ÅØ½ºÃ³ ¾ÐÃà¾ÈµÇ´Â ºñµð¿À Ä«µå¸¦ À§ÇÑ ¿©ºÐÀÇ µ¥ÀÌÅÍ °Ç³Ê¶Ù±â.. 
-				::SetFilePointer(hFile, HeaderOrg.nWidth * HeaderOrg.nHeight / 4, 0, FILE_CURRENT); // °Ç³Ê¶Ù°í.
-				if(HeaderOrg.nWidth >= 1024) SetFilePointer(hFile, 256 * 256 * 2, 0, FILE_CURRENT); // »çÀÌÁî°¡ 512 º¸´Ù Å¬°æ¿ì ºÎµÎ¿ë µ¥ÀÌÅÍ °Ç³Ê¶Ù±â..
+				// ï¿½Ø½ï¿½Ã³ ï¿½ï¿½ï¿½ï¿½ÈµÇ´ï¿?ï¿½ï¿½ï¿½ï¿½ Ä«ï¿½å¸¦ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ç³Ê¶Ù±ï¿½.. 
+				::SetFilePointer(hFile, HeaderOrg.nWidth * HeaderOrg.nHeight / 4, 0, FILE_CURRENT); // ï¿½Ç³Ê¶Ù°ï¿½.
+				if(HeaderOrg.nWidth >= 1024) SetFilePointer(hFile, 256 * 256 * 2, 0, FILE_CURRENT); // ï¿½ï¿½ï¿½ï¿½ï¿½î°¡ 512 ï¿½ï¿½ï¿½ï¿½ Å¬ï¿½ï¿½ï¿?ï¿½ÎµÎ¿ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ç³Ê¶Ù±ï¿½..
 			}
 		}
-		else // DXT Áö¿øÀÌ ¾ÈµÇ¸é..
+		else // DXT ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ÈµÇ¸ï¿½..
 		{
-			if(iMMC > 1) // LOD ¸¸Å­ °Ç³Ê¶Ù±â...
+			if(iMMC > 1) // LOD ï¿½ï¿½Å­ ï¿½Ç³Ê¶Ù±ï¿½...
 			{
-				// ¾ÐÃà µ¥ÀÌÅÍ °Ç³Ê¶Ù±â..
+				// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ç³Ê¶Ù±ï¿½..
 				int iWTmp = HeaderOrg.nWidth, iHTmp = HeaderOrg.nHeight, iSkipSize = 0;
 				for(; iWTmp >= 4 && iHTmp >= 4; iWTmp /= 2, iHTmp /= 2)
 				{
-					if(D3DFMT_DXT1 == HeaderOrg.Format) iSkipSize += iWTmp * iHTmp / 2; // DXT1 Çü½ÄÀº 16ºñÆ® Æ÷¸Ë¿¡ ºñÇØ 1/4 ·Î ¾ÐÃà..
-					else iSkipSize += iWTmp * iHTmp; // DXT2 ~ DXT5 Çü½ÄÀº 16ºñÆ® Æ÷¸Ë¿¡ ºñÇØ 1/2 ·Î ¾ÐÃà..
+					if(D3DFMT_DXT1 == HeaderOrg.Format) iSkipSize += iWTmp * iHTmp / 2; // DXT1 ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ 16ï¿½ï¿½Æ® ï¿½ï¿½ï¿½Ë¿ï¿½ ï¿½ï¿½ï¿½ï¿½ 1/4 ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½..
+					else iSkipSize += iWTmp * iHTmp; // DXT2 ~ DXT5 ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ 16ï¿½ï¿½Æ® ï¿½ï¿½ï¿½Ë¿ï¿½ ï¿½ï¿½ï¿½ï¿½ 1/2 ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½..
 				}
-				::SetFilePointer(hFile, iSkipSize, 0, FILE_CURRENT); // °Ç³Ê¶Ù°í.
+				::SetFilePointer(hFile, iSkipSize, 0, FILE_CURRENT); // ï¿½Ç³Ê¶Ù°ï¿½.
 
-				// LOD ¸¸Å­ °Ç³Ê¶Ù±â..
+				// LOD ï¿½ï¿½Å­ ï¿½Ç³Ê¶Ù±ï¿½..
 				iWTmp = HeaderOrg.nWidth / 2; iHTmp = HeaderOrg.nHeight / 2; iSkipSize = 0;
 				if(m_iLOD > 0)
 				{
 					for(int i = 0; i < m_iLOD; i++, iWTmp /= 2, iHTmp /= 2)
-						iSkipSize += iWTmp * iHTmp * 2; // ÇÇÄ¡¿¡ ³Êºñ¸¦ ³ª´«°Ô ÇÈ¼¿ÀÇ Å©±â¶ó »ý°¢ÇÑ´Ù...
+						iSkipSize += iWTmp * iHTmp * 2; // ï¿½ï¿½Ä¡ï¿½ï¿½ ï¿½Êºï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½È¼ï¿½ï¿½ï¿½ Å©ï¿½ï¿½ï¿?ï¿½ï¿½ï¿½ï¿½ï¿½Ñ´ï¿½...
 				}
 
-				// ºñµð¿À Ä«µå Áö¿ø ÅØ½ºÃ³ Å©±â°¡ ÀÛÀ»°æ¿ì °Ç³Ê¶Ù±â..
+				// ï¿½ï¿½ï¿½ï¿½ Ä«ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ø½ï¿½Ã³ Å©ï¿½â°¡ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿?ï¿½Ç³Ê¶Ù±ï¿½..
 				for(; iWTmp > s_DevCaps.MaxTextureWidth || iHTmp > s_DevCaps.MaxTextureHeight; iWTmp /= 2, iHTmp /= 2)
 					iSkipSize += iWTmp * iHTmp * 2;
-				if(iSkipSize) ::SetFilePointer(hFile, iSkipSize, 0, FILE_CURRENT); // °Ç³Ê¶Ù°í.
+				if(iSkipSize) ::SetFilePointer(hFile, iSkipSize, 0, FILE_CURRENT); // ï¿½Ç³Ê¶Ù°ï¿½.
 
 				for(int i = 0; i < iMMC; i++)
 				{
@@ -392,10 +407,10 @@ bool CN3Texture::Load(HANDLE hFile)
 			}
 			else // pair of if(iMMC > 1)
 			{
-				// ¾ÐÃà µ¥ÀÌÅÍ °Ç³Ê¶Ù±â..
+				// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ç³Ê¶Ù±ï¿½..
 				int iWTmp = HeaderOrg.nWidth, iHTmp = HeaderOrg.nHeight, iSkipSize = 0;
-				if(D3DFMT_DXT1 == HeaderOrg.Format) iSkipSize = iWTmp * iHTmp / 2; // DXT1 Çü½ÄÀº 16ºñÆ® Æ÷¸Ë¿¡ ºñÇØ 1/4 ·Î ¾ÐÃà..
-				else iSkipSize = iWTmp * iHTmp; // DXT2 ~ DXT5 Çü½ÄÀº 16ºñÆ® Æ÷¸Ë¿¡ ºñÇØ 1/2 ·Î ¾ÐÃà..
+				if(D3DFMT_DXT1 == HeaderOrg.Format) iSkipSize = iWTmp * iHTmp / 2; // DXT1 ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ 16ï¿½ï¿½Æ® ï¿½ï¿½ï¿½Ë¿ï¿½ ï¿½ï¿½ï¿½ï¿½ 1/4 ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½..
+				else iSkipSize = iWTmp * iHTmp; // DXT2 ~ DXT5 ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ 16ï¿½ï¿½Æ® ï¿½ï¿½ï¿½Ë¿ï¿½ ï¿½ï¿½ï¿½ï¿½ 1/2 ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½..
 
 			}
 		}
@@ -413,20 +428,20 @@ bool CN3Texture::Load(HANDLE hFile)
 
 		if(iMMC > 1)
 		{
-			if(m_iLOD > 0) // LOD ¸¸Å­ °Ç³Ê¶Ù±â...
+			if(m_iLOD > 0) // LOD ï¿½ï¿½Å­ ï¿½Ç³Ê¶Ù±ï¿½...
 			{
 				int iWTmp = HeaderOrg.nWidth, iHTmp = HeaderOrg.nHeight, iSkipSize = 0;
-				for(int i = 0; i < m_iLOD; i++, iWTmp /= 2, iHTmp /= 2) iSkipSize += iWTmp * iHTmp * iPixelSize; // ÇÇÄ¡¿¡ ³Êºñ¸¦ ³ª´«°Ô ÇÈ¼¿ÀÇ Å©±â¶ó »ý°¢ÇÑ´Ù...
-				::SetFilePointer(hFile, iSkipSize, 0, FILE_CURRENT); // °Ç³Ê¶Ù°í.
+				for(int i = 0; i < m_iLOD; i++, iWTmp /= 2, iHTmp /= 2) iSkipSize += iWTmp * iHTmp * iPixelSize; // ï¿½ï¿½Ä¡ï¿½ï¿½ ï¿½Êºï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½È¼ï¿½ï¿½ï¿½ Å©ï¿½ï¿½ï¿?ï¿½ï¿½ï¿½ï¿½ï¿½Ñ´ï¿½...
+				::SetFilePointer(hFile, iSkipSize, 0, FILE_CURRENT); // ï¿½Ç³Ê¶Ù°ï¿½.
 			}
 
-			// ºñµð¿À Ä«µå Áö¿ø ÅØ½ºÃ³ Å©±â°¡ ÀÛÀ»°æ¿ì °Ç³Ê¶Ù±â..
+			// ï¿½ï¿½ï¿½ï¿½ Ä«ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ø½ï¿½Ã³ Å©ï¿½â°¡ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿?ï¿½Ç³Ê¶Ù±ï¿½..
 			int iWTmp = HeaderOrg.nWidth, iHTmp = HeaderOrg.nHeight, iSkipSize = 0;
 			for(; iWTmp > s_DevCaps.MaxTextureWidth || iHTmp > s_DevCaps.MaxTextureHeight; iWTmp /= 2, iHTmp /= 2)
 				iSkipSize += iWTmp * iHTmp * iPixelSize;
-			if(iSkipSize) ::SetFilePointer(hFile, iSkipSize, 0, FILE_CURRENT); // °Ç³Ê¶Ù°í.
+			if(iSkipSize) ::SetFilePointer(hFile, iSkipSize, 0, FILE_CURRENT); // ï¿½Ç³Ê¶Ù°ï¿½.
 
-			// µ¥ÀÌÅÍ ÀÐ±â..
+			// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ð±ï¿½..
 			for(int i = 0; i < iMMC; i++)
 			{
 				m_lpTexture->GetLevelDesc(i, &sd);
@@ -438,9 +453,9 @@ bool CN3Texture::Load(HANDLE hFile)
 		}
 		else // pair of if(iMMC > 1)
 		{
-			// ºñµð¿À Ä«µå Áö¿ø ÅØ½ºÃ³ Å©±â°¡ ÀÛÀ»°æ¿ì °Ç³Ê¶Ù±â..
+			// ï¿½ï¿½ï¿½ï¿½ Ä«ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ø½ï¿½Ã³ Å©ï¿½â°¡ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿?ï¿½Ç³Ê¶Ù±ï¿½..
 			if(HeaderOrg.nWidth >= 512 && m_Header.nWidth <= 256)
-				::SetFilePointer(hFile, HeaderOrg.nWidth * HeaderOrg.nHeight * iPixelSize, 0, FILE_CURRENT); // °Ç³Ê¶Ù°í.
+				::SetFilePointer(hFile, HeaderOrg.nWidth * HeaderOrg.nHeight * iPixelSize, 0, FILE_CURRENT); // ï¿½Ç³Ê¶Ù°ï¿½.
 
 			m_lpTexture->GetLevelDesc(0, &sd);
 			m_lpTexture->LockRect(0, &LR, NULL, NULL);
@@ -449,10 +464,10 @@ bool CN3Texture::Load(HANDLE hFile)
 			m_lpTexture->UnlockRect(0);
 
 			if(m_Header.nWidth >= 512 && m_Header.nHeight >= 512)
-				SetFilePointer(hFile, 256 * 256 * 2, 0, FILE_CURRENT); // »çÀÌÁî°¡ 512 º¸´Ù Å¬°æ¿ì ºÎµÎ¿ë µ¥ÀÌÅÍ °Ç³Ê¶Ù±â..
+				SetFilePointer(hFile, 256 * 256 * 2, 0, FILE_CURRENT); // ï¿½ï¿½ï¿½ï¿½ï¿½î°¡ 512 ï¿½ï¿½ï¿½ï¿½ Å¬ï¿½ï¿½ï¿?ï¿½ÎµÎ¿ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ç³Ê¶Ù±ï¿½..
 		}
 	}
-//	this->GenerateMipMap(); // Mip Map À» ¸¸µç´Ù..
+//	this->GenerateMipMap(); // Mip Map ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿?.
 	return true;
 }
 
@@ -460,9 +475,9 @@ bool CN3Texture::SkipFileHandle(HANDLE hFile)
 {
 	CN3BaseFileAccess::Load(hFile);
 
-	__DXT_HEADER HeaderOrg; // Çì´õ¸¦ ÀúÀåÇØ ³õ°í..
+	__DXT_HEADER HeaderOrg; // ï¿½ï¿½ï¿½ï¿½ï¿?ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½..
 	DWORD dwRWC = 0;
-	ReadFile(hFile, &HeaderOrg, sizeof(HeaderOrg), &dwRWC, NULL); // Çì´õ¸¦ ÀÐ´Â´Ù..
+	ReadFile(hFile, &HeaderOrg, sizeof(HeaderOrg), &dwRWC, NULL); // ï¿½ï¿½ï¿½ï¿½ï¿?ï¿½Ð´Â´ï¿½..
 	if(	'N' != HeaderOrg.szID[0] || 'T' != HeaderOrg.szID[1] || 'F' != HeaderOrg.szID[2] || 3 != HeaderOrg.szID[3] ) // "NTF"3 - Noah Texture File Ver. 3.0
 	{
 #ifdef _N3GAME
@@ -470,7 +485,7 @@ bool CN3Texture::SkipFileHandle(HANDLE hFile)
 #endif
 	}
 
-	// ¾ÐÃà Æ÷¸ËÀÌ¸é..
+	// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ì¸ï¿½..
 	if(	D3DFMT_DXT1 == HeaderOrg.Format || 
 		D3DFMT_DXT2 == HeaderOrg.Format || 
 		D3DFMT_DXT3 == HeaderOrg.Format || 
@@ -480,29 +495,29 @@ bool CN3Texture::SkipFileHandle(HANDLE hFile)
 		int iWTmp = HeaderOrg.nWidth, iHTmp = HeaderOrg.nHeight, iSkipSize = 0;
 		if(HeaderOrg.bMipMap)
 		{
-			// ¾ÐÃà µ¥ÀÌÅÍ °Ç³Ê¶Ù±â..
+			// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ç³Ê¶Ù±ï¿½..
 			for(; iWTmp >= 4 && iHTmp >= 4; iWTmp/=2, iHTmp/=2)
 			{
 				if(D3DFMT_DXT1 == HeaderOrg.Format) iSkipSize += iWTmp * iHTmp / 2;
 				else iSkipSize += iWTmp * iHTmp;
 			}
-			// ÅØ½ºÃ³ ¾ÐÃà¾ÈµÇ´Â ºñµð¿À Ä«µå¸¦ À§ÇÑ ¿©ºÐÀÇ µ¥ÀÌÅÍ °Ç³Ê¶Ù±â.. 
+			// ï¿½Ø½ï¿½Ã³ ï¿½ï¿½ï¿½ï¿½ÈµÇ´ï¿?ï¿½ï¿½ï¿½ï¿½ Ä«ï¿½å¸¦ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ç³Ê¶Ù±ï¿½.. 
 			iWTmp = HeaderOrg.nWidth / 2; iHTmp = HeaderOrg.nHeight / 2;
-			for(; iWTmp >= 4 && iHTmp >= 4; iWTmp /= 2, iHTmp /= 2) // ÇÑÇÈ¼¿¿¡ µÎ¹ÙÀÌÆ®°¡ µé¾î°¡´Â A1R5G5B5 È¤Àº A4R4G4B4 Æ÷¸ËÀ¸·Î µÇ¾î ÀÖ´Ù..
-				iSkipSize += iWTmp * iHTmp * 2; // °Ç³Ê¶Ù°í.
+			for(; iWTmp >= 4 && iHTmp >= 4; iWTmp /= 2, iHTmp /= 2) // ï¿½ï¿½ï¿½È¼ï¿½ï¿½ï¿½ ï¿½Î¹ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½î°¡ï¿½ï¿?A1R5G5B5 È¤ï¿½ï¿½ A4R4G4B4 ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ç¾ï¿½ ï¿½Ö´ï¿½..
+				iSkipSize += iWTmp * iHTmp * 2; // ï¿½Ç³Ê¶Ù°ï¿½.
 		}
 		else // pair of if(HeaderOrg.bMipMap)
 		{
-			// ¾ÐÃà µ¥ÀÌÅÍ °Ç³Ê¶Ù±â..
+			// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ç³Ê¶Ù±ï¿½..
 			if(D3DFMT_DXT1 == HeaderOrg.Format) iSkipSize += HeaderOrg.nWidth * HeaderOrg.nHeight / 2;
 			else iSkipSize += iSkipSize += HeaderOrg.nWidth * HeaderOrg.nHeight;
 
-			// ÅØ½ºÃ³ ¾ÐÃà¾ÈµÇ´Â ºñµð¿À Ä«µå¸¦ À§ÇÑ ¿©ºÐÀÇ µ¥ÀÌÅÍ °Ç³Ê¶Ù±â.. 
+			// ï¿½Ø½ï¿½Ã³ ï¿½ï¿½ï¿½ï¿½ÈµÇ´ï¿?ï¿½ï¿½ï¿½ï¿½ Ä«ï¿½å¸¦ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ç³Ê¶Ù±ï¿½.. 
 			iSkipSize += HeaderOrg.nWidth * HeaderOrg.nHeight * 2;
-			if(HeaderOrg.nWidth >= 1024) iSkipSize += 256 * 256 * 2; // »çÀÌÁî°¡ 1024 º¸´Ù Å¬°æ¿ì ºÎµÎ¿ë µ¥ÀÌÅÍ °Ç³Ê¶Ù±â..
+			if(HeaderOrg.nWidth >= 1024) iSkipSize += 256 * 256 * 2; // ï¿½ï¿½ï¿½ï¿½ï¿½î°¡ 1024 ï¿½ï¿½ï¿½ï¿½ Å¬ï¿½ï¿½ï¿?ï¿½ÎµÎ¿ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ç³Ê¶Ù±ï¿½..
 		}
 
-		::SetFilePointer(hFile, iSkipSize, 0, FILE_CURRENT); // °Ç³Ê¶Ù°í.
+		::SetFilePointer(hFile, iSkipSize, 0, FILE_CURRENT); // ï¿½Ç³Ê¶Ù°ï¿½.
 	}
 	else
 	{
@@ -524,10 +539,10 @@ bool CN3Texture::SkipFileHandle(HANDLE hFile)
 		else
 		{
 			iSkipSize += iWTmp * iHTmp * iPixelSize;
-			if(HeaderOrg.nWidth >= 512) iSkipSize += 256 * 256 * 2; // »çÀÌÁî°¡ 512 º¸´Ù Å¬°æ¿ì ºÎµÎ¿ë µ¥ÀÌÅÍ °Ç³Ê¶Ù±â..
+			if(HeaderOrg.nWidth >= 512) iSkipSize += 256 * 256 * 2; // ï¿½ï¿½ï¿½ï¿½ï¿½î°¡ 512 ï¿½ï¿½ï¿½ï¿½ Å¬ï¿½ï¿½ï¿?ï¿½ÎµÎ¿ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ç³Ê¶Ù±ï¿½..
 		}
 		
-		::SetFilePointer(hFile, iSkipSize, 0, FILE_CURRENT); // °Ç³Ê¶Ù°í.
+		::SetFilePointer(hFile, iSkipSize, 0, FILE_CURRENT); // ï¿½Ç³Ê¶Ù°ï¿½.
 	}
 	return true;
 }
@@ -568,7 +583,7 @@ bool CN3Texture::Save(HANDLE hFile)
 
 	int nMMC = m_lpTexture->GetLevelCount();
 	(nMMC > 1) ? m_Header.bMipMap = TRUE : m_Header.bMipMap = FALSE;
-	if(TRUE == m_Header.bMipMap) // MipMap °¹¼ö°¡ ¸Â´ÂÁö È®ÀÎ..
+	if(TRUE == m_Header.bMipMap) // MipMap ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Â´ï¿½ï¿½ï¿½ È®ï¿½ï¿½..
 	{
 		int nMMC2 = 0;
 		for(int nW = sd.Width, nH = sd.Height; nW >=4 && nH >= 4; nW /=2, nH /= 2) nMMC2++;
@@ -594,7 +609,7 @@ bool CN3Texture::Save(HANDLE hFile)
 	m_Header.nHeight = sd.Height;
 	m_Header.bMipMap = (nMMC > 1) ? TRUE : FALSE;
 	
-	WriteFile(hFile, &m_Header, sizeof(m_Header), &dwRWC, NULL); // Çì´õ¸¦ ¾²°í
+	WriteFile(hFile, &m_Header, sizeof(m_Header), &dwRWC, NULL); // ï¿½ï¿½ï¿½ï¿½ï¿?ï¿½ï¿½ï¿½ï¿½
 
 	if(m_lpTexture == NULL) return false;
 
@@ -611,13 +626,13 @@ bool CN3Texture::Save(HANDLE hFile)
 			m_lpTexture->GetLevelDesc(i, &sd);
 
 			m_lpTexture->LockRect(i, &LR, NULL, NULL);
-			WriteFile(hFile, (BYTE*)LR.pBits, sd.Size, &dwRWC, NULL); // ÀÏ·Ä·Î µÈ µ¥ÀÌÅÍ¸¦ ¾²°í..
+			WriteFile(hFile, (BYTE*)LR.pBits, sd.Width * sd.Height * 4, &dwRWC, NULL); // ï¿½Ï·Ä·ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Í¸ï¿½ ï¿½ï¿½ï¿½ï¿½..
 			m_lpTexture->UnlockRect(i);
 		}
 
-		// Ãß°¡·Î ¾ÐÃàµÇÁö ¾ÊÀº Çü½ÄÀ» ½áÁØ´Ù.. Àý¹Ý Å©±âÀÌ´Ù.
-		// ¾ÐÃàµÇÁö ¾ÊÀº Çü½ÄÀ» ÇØ»óµµ¸¦ ÇÑ´Ü°è ³·Ãß¾î¼­ ÀúÀå.
-		LPDIRECT3DSURFACE8 lpSurfSrc = NULL, lpSurfDest = NULL;
+		// ï¿½ß°ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿?ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ø´ï¿½.. ï¿½ï¿½ï¿½ï¿½ Å©ï¿½ï¿½ï¿½Ì´ï¿½.
+		// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿?ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ø»óµµ¸ï¿½ ï¿½Ñ´Ü°ï¿½ ï¿½ï¿½ï¿½ß¾î¼­ ï¿½ï¿½ï¿½ï¿½.
+		LPDIRECT3DSURFACE9 lpSurfSrc = NULL, lpSurfDest = NULL;
 		D3DFORMAT fmtExtra = D3DFMT_UNKNOWN;
 		if(D3DFMT_DXT1 == sd.Format) fmtExtra = D3DFMT_A1R5G5B5;
 		else fmtExtra = D3DFMT_A4R4G4B4;
@@ -630,7 +645,7 @@ bool CN3Texture::Save(HANDLE hFile)
 			m_lpTexture->GetSurfaceLevel(i, &lpSurfSrc);
 			int nW = sd.Width / 2, nH = sd.Height / 2;
 			s_lpD3DDev->CreateImageSurface(nW, nH, fmtExtra, &lpSurfDest);
-			D3DXLoadSurfaceFromSurface(lpSurfDest, NULL, NULL, lpSurfSrc, NULL, NULL, D3DX_FILTER_TRIANGLE, 0); // ¼­ÇÇ½º º¹»ç.
+			D3DXLoadSurfaceFromSurface(lpSurfDest, NULL, NULL, lpSurfSrc, NULL, NULL, D3DX_FILTER_TRIANGLE, 0); // ï¿½ï¿½ï¿½Ç½ï¿½ ï¿½ï¿½ï¿½ï¿½.
 			int nPixelSize = 2;
 			lpSurfDest->LockRect(&LR, NULL, NULL);
 			for(int y = 0; y < nH; y++)
@@ -642,13 +657,13 @@ bool CN3Texture::Save(HANDLE hFile)
 			lpSurfSrc->Release(); lpSurfSrc = NULL;
 		}
 
-		if(nMMC == 1 && m_Header.nWidth >= 1024) // ºÎµÎ¸¦ À§ÇØ 256 * 256 Â¥¸® ÇÏ³ª ´õ ÀúÀåÇØÁØ´Ù..
+		if(nMMC == 1 && m_Header.nWidth >= 1024) // ï¿½ÎµÎ¸ï¿½ ï¿½ï¿½ï¿½ï¿½ 256 * 256 Â¥ï¿½ï¿½ ï¿½Ï³ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ø´ï¿½..
 		{
 			m_lpTexture->GetLevelDesc(0, &sd);
 			m_lpTexture->GetSurfaceLevel(0, &lpSurfSrc);
 			int nW = 256, nH = 256;
 			s_lpD3DDev->CreateImageSurface(nW, nH, fmtExtra, &lpSurfDest);
-			D3DXLoadSurfaceFromSurface(lpSurfDest, NULL, NULL, lpSurfSrc, NULL, NULL, D3DX_FILTER_TRIANGLE, 0); // ¼­ÇÇ½º º¹»ç.
+			D3DXLoadSurfaceFromSurface(lpSurfDest, NULL, NULL, lpSurfSrc, NULL, NULL, D3DX_FILTER_TRIANGLE, 0); // ï¿½ï¿½ï¿½Ç½ï¿½ ï¿½ï¿½ï¿½ï¿½.
 			int nPixelSize = 2;
 			lpSurfDest->LockRect(&LR, NULL, NULL);
 			for(int y = 0; y < nH; y++)
@@ -660,7 +675,7 @@ bool CN3Texture::Save(HANDLE hFile)
 			lpSurfSrc->Release(); lpSurfSrc = NULL;
 		}
 	}
-	else // ÀÏ¹ÝÀûÀÎ Æ÷¸ËÀÌ¸é.
+	else // ï¿½Ï¹ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ì¸ï¿½.
 	{
 		int nPixelSize = 0;
 		if(	D3DFMT_A1R5G5B5 == sd.Format ||
@@ -676,22 +691,22 @@ bool CN3Texture::Save(HANDLE hFile)
 		for(int i = 0; i < nMMC; i++)
 		{
 			m_lpTexture->GetLevelDesc(i, &sd);
-			m_lpTexture->LockRect(i, &LR, NULL, 0); // °¢ ·¹º§ Lock
+			m_lpTexture->LockRect(i, &LR, NULL, 0); // ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ Lock
 			int nH = sd.Height;
-			for(int y = 0; y < nH; y++) // ±×³É ÇÈ¼¿ ÀúÀå..
+			for(int y = 0; y < nH; y++) // ï¿½×³ï¿½ ï¿½È¼ï¿½ ï¿½ï¿½ï¿½ï¿½..
 				WriteFile(hFile, (BYTE*)LR.pBits + y * LR.Pitch, sd.Width * nPixelSize, &dwRWC, NULL);
 			m_lpTexture->UnlockRect(i);
 		}
 
-		if(nMMC == 1 && m_Header.nWidth >= 512) // ºÎµÎ¸¦ À§ÇØ 256 * 256 Â¥¸® ÇÏ³ª ´õ ÀúÀåÇØÁØ´Ù..
+		if(nMMC == 1 && m_Header.nWidth >= 512) // ï¿½ÎµÎ¸ï¿½ ï¿½ï¿½ï¿½ï¿½ 256 * 256 Â¥ï¿½ï¿½ ï¿½Ï³ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ø´ï¿½..
 		{
-			LPDIRECT3DSURFACE8 lpSurfSrc = NULL, lpSurfDest = NULL;
+			LPDIRECT3DSURFACE9 lpSurfSrc = NULL, lpSurfDest = NULL;
 
 			m_lpTexture->GetLevelDesc(0, &sd);
 			m_lpTexture->GetSurfaceLevel(0, &lpSurfSrc);
 			int nW = 256, nH = 256;
 			s_lpD3DDev->CreateImageSurface(nW, nH, sd.Format, &lpSurfDest);
-			HRESULT rval = D3DXLoadSurfaceFromSurface(lpSurfDest, NULL, NULL, lpSurfSrc, NULL, NULL, D3DX_FILTER_TRIANGLE, 0); // ¼­ÇÇ½º º¹»ç.
+			HRESULT rval = D3DXLoadSurfaceFromSurface(lpSurfDest, NULL, NULL, lpSurfSrc, NULL, NULL, D3DX_FILTER_TRIANGLE, 0); // ï¿½ï¿½ï¿½Ç½ï¿½ ï¿½ï¿½ï¿½ï¿½.
 			lpSurfDest->LockRect(&LR, NULL, NULL);
 			for(int y = 0; y < nH; y++)
 			{
@@ -726,18 +741,18 @@ bool CN3Texture::Convert(D3DFORMAT Format, int nWidth, int nHeight, BOOL bGenera
 	if(this->Create(nWidth, nHeight, Format, bGenerateMipMap) == false) return false;
 	if(bGenerateMipMap)
 	{
-		LPDIRECT3DSURFACE8 lpTSOld;
+		LPDIRECT3DSURFACE9 lpTSOld;
 		lpTexOld->GetSurfaceLevel(0, &lpTSOld);
-		this->GenerateMipMap(lpTSOld); // MipMap »ý¼º
+		this->GenerateMipMap(lpTSOld); // MipMap ï¿½ï¿½ï¿½ï¿½
 		lpTSOld->Release();
 	}
 	else
 	{
-		LPDIRECT3DSURFACE8 lpTSNew;
-		LPDIRECT3DSURFACE8 lpTSOld;
+		LPDIRECT3DSURFACE9 lpTSNew;
+		LPDIRECT3DSURFACE9 lpTSOld;
 		m_lpTexture->GetSurfaceLevel(0, &lpTSNew);
 		lpTexOld->GetSurfaceLevel(0, &lpTSOld);
-		D3DXLoadSurfaceFromSurface(lpTSNew, NULL, NULL, lpTSOld, NULL, NULL, D3DX_FILTER_NONE, 0); // Ã¹¹øÀç ·¹º§ ¼­ÇÇ½º º¹»ç.
+		D3DXLoadSurfaceFromSurface(lpTSNew, NULL, NULL, lpTSOld, NULL, NULL, D3DX_FILTER_NONE, 0); // Ã¹ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ç½ï¿½ ï¿½ï¿½ï¿½ï¿½.
 		lpTSOld->Release();
 		lpTSNew->Release();
 	}
@@ -749,11 +764,11 @@ bool CN3Texture::Convert(D3DFORMAT Format, int nWidth, int nHeight, BOOL bGenera
 #endif // end of _N3TOOL
 
 #ifdef _N3TOOL
-bool CN3Texture::GenerateMipMap(LPDIRECT3DSURFACE8 lpSurfSrc)
+bool CN3Texture::GenerateMipMap(LPDIRECT3DSURFACE9 lpSurfSrc)
 {
 	if(m_lpTexture == NULL) return false;
 
-	// MipMap ÀÌ ¸î°³ ÇÊ¿äÇÑÁö °è»ê..
+	// MipMap ï¿½ï¿½ ï¿½î°³ ï¿½Ê¿ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿?.
 	int nMMC = m_lpTexture->GetLevelCount();
 	int nMMC2 = 0;
 	for(int nW = m_Header.nWidth, nH = m_Header.nHeight; nW >=4 && nH >= 4; nW /=2, nH /= 2) nMMC2++;
@@ -766,7 +781,7 @@ bool CN3Texture::GenerateMipMap(LPDIRECT3DSURFACE8 lpSurfSrc)
 	}
 
 	HRESULT rval = D3D_OK;
-	if(nMMC < nMMC2) // ÀûÀ¸¸é »õ·Î »ý¼º..
+	if(nMMC < nMMC2) // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½..
 	{
 		LPDIRECT3DTEXTURE8 lpTexOld = m_lpTexture;
 		m_lpTexture = NULL;
@@ -785,24 +800,24 @@ bool CN3Texture::GenerateMipMap(LPDIRECT3DSURFACE8 lpSurfSrc)
 			return FALSE;
 		}
 	}
-	else // MipMap ÀÌ ÀÖÀ¸¸é ±×³É Ç¥¸é¸¸ º¹»ç
+	else // MipMap ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½×³ï¿½ Ç¥ï¿½é¸¸ ï¿½ï¿½ï¿½ï¿½
 	{
-		if(false == bNeedReleaseSurf) // ´Ù¸¥ ¼­ÇÇ½º¿¡¼­ º¹»çÇØ¾ß µÇ´Â °Å¸é 0 ·¹º§µµ º¹»ç..
+		if(false == bNeedReleaseSurf) // ï¿½Ù¸ï¿½ ï¿½ï¿½ï¿½Ç½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ø¾ï¿½ ï¿½Ç´ï¿½ ï¿½Å¸ï¿½ 0 ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½..
 		{
-			LPDIRECT3DSURFACE8 lpSurfDest;
+			LPDIRECT3DSURFACE9 lpSurfDest;
 			m_lpTexture->GetSurfaceLevel(0, &lpSurfDest);
-			DWORD dwFilter = D3DX_FILTER_TRIANGLE; // ±âº» ÇÊÅÍ´Â ¾ø´Ù..
-			HRESULT rval = D3DXLoadSurfaceFromSurface(lpSurfDest, NULL, NULL, lpSurfSrc, NULL, NULL, dwFilter, 0); // ÀÛÀº ¸Ê Ã¼ÀÎ¿¡ ¼­ÇÇ½º ÀÌ¹ÌÁö Ãà¼Ò º¹»ç 
+			DWORD dwFilter = D3DX_FILTER_TRIANGLE; // ï¿½âº» ï¿½ï¿½ï¿½Í´ï¿½ ï¿½ï¿½ï¿½ï¿½..
+			HRESULT rval = D3DXLoadSurfaceFromSurface(lpSurfDest, NULL, NULL, lpSurfSrc, NULL, NULL, dwFilter, 0); // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ Ã¼ï¿½Î¿ï¿½ ï¿½ï¿½ï¿½Ç½ï¿½ ï¿½Ì¹ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿?ï¿½ï¿½ï¿½ï¿½ 
 			lpSurfDest->Release(); lpSurfDest = NULL;
 		}
 
 		for(int i = 1; i < nMMC2; i++)
 		{
-			LPDIRECT3DSURFACE8 lpSurfDest, lpSurfUp;
+			LPDIRECT3DSURFACE9 lpSurfDest, lpSurfUp;
 			m_lpTexture->GetSurfaceLevel(i-1, &lpSurfUp);
 			m_lpTexture->GetSurfaceLevel(i, &lpSurfDest);
-			DWORD dwFilter = D3DX_FILTER_TRIANGLE; // ±âº» ÇÊÅÍ´Â ¾ø´Ù..
-			HRESULT rval = D3DXLoadSurfaceFromSurface(lpSurfDest, NULL, NULL, lpSurfUp, NULL, NULL, dwFilter, 0); // ÀÛÀº ¸Ê Ã¼ÀÎ¿¡ ¼­ÇÇ½º ÀÌ¹ÌÁö Ãà¼Ò º¹»ç 
+			DWORD dwFilter = D3DX_FILTER_TRIANGLE; // ï¿½âº» ï¿½ï¿½ï¿½Í´ï¿½ ï¿½ï¿½ï¿½ï¿½..
+			HRESULT rval = D3DXLoadSurfaceFromSurface(lpSurfDest, NULL, NULL, lpSurfUp, NULL, NULL, dwFilter, 0); // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ Ã¼ï¿½Î¿ï¿½ ï¿½ï¿½ï¿½Ç½ï¿½ ï¿½Ì¹ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿?ï¿½ï¿½ï¿½ï¿½ 
 			lpSurfDest->Release();
 			lpSurfUp->Release();
 		}
@@ -832,16 +847,16 @@ bool CN3Texture::SaveToBitmapFile(const std::string& szFN)
 	if(szFN.empty()) return false;
 	if(NULL == m_lpTexture) return false;
 
-	LPDIRECT3DSURFACE8 lpSurfSrc = NULL;
+	LPDIRECT3DSURFACE9 lpSurfSrc = NULL;
 	m_lpTexture->GetSurfaceLevel(0, &lpSurfSrc);
 
 	if(NULL == lpSurfSrc) return false;
 
-	LPDIRECT3DSURFACE8 lpSurfDest = NULL;
+	LPDIRECT3DSURFACE9 lpSurfDest = NULL;
 	s_lpD3DDev->CreateImageSurface(m_Header.nWidth, m_Header.nHeight, D3DFMT_A8R8G8B8, &lpSurfDest);
 
 	if(NULL == lpSurfDest) return false;
-	if(D3D_OK != D3DXLoadSurfaceFromSurface(lpSurfDest, NULL, NULL, lpSurfSrc, NULL, NULL, D3DX_FILTER_TRIANGLE, 0)) // ¼­ÇÇ½º º¹»ç.
+	if(D3D_OK != D3DXLoadSurfaceFromSurface(lpSurfDest, NULL, NULL, lpSurfSrc, NULL, NULL, D3DX_FILTER_TRIANGLE, 0)) // ï¿½ï¿½ï¿½Ç½ï¿½ ï¿½ï¿½ï¿½ï¿½.
 	{
 		lpSurfDest->Release(); lpSurfDest = NULL;
 		lpSurfSrc->Release(); lpSurfSrc = NULL;

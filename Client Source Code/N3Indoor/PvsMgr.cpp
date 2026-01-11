@@ -266,7 +266,7 @@ void CPvsMgr::RenderCompile()
 			TotalCollisionRender();	
 	}
 
-// Debug¿ë ·»´õ¸µ..
+// Debugï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½..
 /*	typedef std::list<__Collision>::iterator citer;
 	citer cit = m_ColList.begin();
 	while (cit != m_ColList.end())
@@ -342,7 +342,7 @@ void CPvsMgr::TotalShapeRender()
 	CN3Base::s_lpD3DDev->SetTransform(D3DTS_WORLD, &mtxWorld);
 	CN3Base::s_lpD3DDev->SetTexture(0, NULL);
 
-	CN3Base::s_lpD3DDev->SetVertexShader(FVF_CV);	
+	CN3Base::s_lpD3DDev->SetFVF(FVF_CV);	
 	CN3Base::s_lpD3DDev->SetRenderState(D3DRS_FILLMODE, D3DFILL_SOLID);
 
 	CN3Shape* pSh = ((CMainFrame*)AfxGetMainWnd())->m_pShapeBg;
@@ -360,7 +360,7 @@ void CPvsMgr::TotalShapeRender()
 		pSh->Tick(-1000);
 
 		pSh->Render();
-	    CN3Base::s_AlphaMgr.Render(); // Alpha primitive ±×¸®±â...
+	    CN3Base::s_AlphaMgr.Render(); // Alpha primitive ï¿½×¸ï¿½ï¿½ï¿½...
 	}
 
 	CN3Base::s_lpD3DDev->SetRenderState(D3DRS_POINTSIZE, dwPointSize);
@@ -397,7 +397,7 @@ void CPvsMgr::TotalCollisionRender()
 	CN3Base::s_lpD3DDev->SetTransform(D3DTS_WORLD, &mtxWorld);
 	CN3Base::s_lpD3DDev->SetTexture(0, NULL);
 
-	CN3Base::s_lpD3DDev->SetVertexShader(FVF_CV);	
+	CN3Base::s_lpD3DDev->SetFVF(FVF_CV);	
 	CN3Base::s_lpD3DDev->SetRenderState(D3DRS_FILLMODE, D3DFILL_SOLID);
 
 	CN3Shape* pSh = ((CMainFrame*)AfxGetMainWnd())->m_pShapeBg;
@@ -415,7 +415,7 @@ void CPvsMgr::TotalCollisionRender()
 		pSh->Tick(-1000);
 
 		pSh->CollisionMesh()->Render(0xffffffff);
-		CN3Base::s_AlphaMgr.Render(); // Alpha primitive ±×¸®±â...
+		CN3Base::s_AlphaMgr.Render(); // Alpha primitive ï¿½×¸ï¿½ï¿½ï¿½...
 	}
 
 	CN3Base::s_lpD3DDev->SetRenderState(D3DRS_POINTSIZE, dwPointSize);
@@ -461,7 +461,7 @@ void CPvsMgr::Load(FILE* stream)
 		}
 	}
 
-	// ¸µÅ©µÈ ¾ÆÀÌµðµéÀ» ÀÐ¾î¼­ ¿¬°á½ÃÅ´..
+	// ï¿½ï¿½Å©ï¿½ï¿½ ï¿½ï¿½ï¿½Ìµï¿½ï¿½ï¿½ï¿½ ï¿½Ð¾î¼­ ï¿½ï¿½ï¿½ï¿½ï¿½Å´..
 	iter it = m_pPvsList.begin();
 	while(it != m_pPvsList.end())
 	{
@@ -513,7 +513,7 @@ void CPvsMgr::Save(FILE* stream)
 
 	while(it != m_pPvsList.end())
 	{
-		// ÀÚ½ÅÀÇ µ¥ÀÌÅÍ ÀúÀå..
+		// ï¿½Ú½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½..
 		pBase = *it++;
 		pBase->Save(stream);
 	}
@@ -554,7 +554,7 @@ void CPvsMgr::ComputeVisibilty(CPortalVol * const pVolMy)
 
 	SetPriority(pVolMy);
 
-	// PortalVol·Î¸¸ ÀÌ·ç¾îÁø ¸®½ºÆ®¸¦ ¸¸µë..
+	// PortalVolï¿½Î¸ï¿½ ï¿½Ì·ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½..
 	std::priority_queue< CPortalVol*, std::vector<CPortalVol*>, Myless<CPortalVol*> > pQueue; 
 
 	CPvsBase* pBase = NULL;
@@ -566,7 +566,7 @@ void CPvsMgr::ComputeVisibilty(CPortalVol * const pVolMy)
 			pQueue.push((CPortalVol* )pBase);
 	}
 
-	// µð¹ö±×¿ë Æ®·¹ÀÌ½º..
+	// ï¿½ï¿½ï¿½ï¿½×¿ï¿½ Æ®ï¿½ï¿½ï¿½Ì½ï¿½..
 	CPortalVol* pVol = NULL;
 	while (!pQueue.empty())
 	{
@@ -578,7 +578,7 @@ void CPvsMgr::ComputeVisibilty(CPortalVol * const pVolMy)
 	}
 	pVolMy->m_eRenderType = TYPE_TRUE;
 	
-	// Ãæµ¹Ã¼Å© ÁØºñ.. 
+	// ï¿½æµ¹Ã¼Å© ï¿½Øºï¿½.. 
 	PrepareCollisionDetect(pVolMy);
 	CollisionDetectMain(pVolMy);
 }
@@ -602,7 +602,7 @@ void CPvsMgr::SetPriority(CPortalVol * const pVolMy)
 	pVolMy->m_iPriority = 0;
 	int igPriority = 0;
 
-// Àç±ÍÀûÀ¸·Î ¿ì¼±¼øÀ§ °áÁ¤..	Á»´õ º¹ÀâÇÏ±¸ Á¤È®È÷ ÇÏ·Á¸é.. Ã¹¹øÂ°ÀÇ Wall°ú °°Àº ¹æÇâÀÌ ¿ì¼±¼øÀ§°¡ ³ô´Ù..
+// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ì¼±ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½..	ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï±ï¿½ ï¿½ï¿½È®ï¿½ï¿½ ï¿½Ï·ï¿½ï¿½ï¿½.. Ã¹ï¿½ï¿½Â°ï¿½ï¿½ Wallï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ì¼±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½..
 	SetPriorityRecursive(pVolMy, igPriority+1);
 }
 
@@ -618,7 +618,7 @@ void CPvsMgr::SetPriorityRecursive(CPortalVol * const pVolMy, int iRecursive)
 		if (pBase->IsKindOf(RUNTIME_CLASS(CPortalVol)))
 		{
 			pVol = (CPortalVol* )pBase;
-			if ( (pVol->m_iPriority == -1) || (pVol->m_iPriority > iRecursive) )	// ¿ì¼±¼øÀ§°¡ Á¤ÇØÁöÁö ¾Ê¾Ò°Å³ª ÇöÀç ¿ì¼±¼øÀ§º¸´Ù Å©¸é..
+			if ( (pVol->m_iPriority == -1) || (pVol->m_iPriority > iRecursive) )	// ï¿½ì¼±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ê¾Ò°Å³ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ì¼±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Å©ï¿½ï¿½..
 			{
 				pVol->m_iPriority = iRecursive;
 				SetPriorityRecursive(pVol, iRecursive+1);		
@@ -696,72 +696,72 @@ void CPvsMgr::PrepareCollisionDetectTwo(CPortalVol* pVol, CPortalWall* pWall, e_
 {
 	switch (Col.eWT)
 	{
-		case WALL_ZB:		// µÚÂÊ..
+		case WALL_ZB:		// ï¿½ï¿½ï¿½ï¿½..
 			Col.Vvec[0] = pVol->m_pvVertex[7];
 			Col.Vvec[1] = pVol->m_pvVertex[3];
 			Col.Vvec[2] = pVol->m_pvVertex[6];
 			Col.Vvec[3] = pVol->m_pvVertex[2];
-							// µÚÂÊ Åõ¿µµÈ °ª..
+							// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½..
 			Col.Vvec[4] = pWall->m_pvVertex[0];	Col.Vvec[4].z = pVol->m_pvVertex[7].z;
 			Col.Vvec[5] = pWall->m_pvVertex[1];	Col.Vvec[5].z = pVol->m_pvVertex[3].z;
 			Col.Vvec[6] = pWall->m_pvVertex[2];	Col.Vvec[6].z = pVol->m_pvVertex[6].z;
 			Col.Vvec[7] = pWall->m_pvVertex[3];	Col.Vvec[7].z = pVol->m_pvVertex[2].z;
 			break;
 
-		case WALL_ZF:		// ¾ÕÂÊ..
+		case WALL_ZF:		// ï¿½ï¿½ï¿½ï¿½..
 			Col.Vvec[0] = pVol->m_pvVertex[5];
 			Col.Vvec[1] = pVol->m_pvVertex[1];
 			Col.Vvec[2] = pVol->m_pvVertex[4];
 			Col.Vvec[3] = pVol->m_pvVertex[0];
-							// ¾ÕÂÊ Åõ¿µµÈ °ª..
+							// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½..
 			Col.Vvec[4] = pWall->m_pvVertex[0];	Col.Vvec[4].z = pVol->m_pvVertex[5].z;
 			Col.Vvec[5] = pWall->m_pvVertex[1];	Col.Vvec[5].z = pVol->m_pvVertex[1].z;
 			Col.Vvec[6] = pWall->m_pvVertex[2];	Col.Vvec[6].z = pVol->m_pvVertex[4].z;
 			Col.Vvec[7] = pWall->m_pvVertex[3];	Col.Vvec[7].z = pVol->m_pvVertex[0].z;
 			break;
 				
-		case WALL_XL:		// ¿ÞÂÊ..
+		case WALL_XL:		// ï¿½ï¿½ï¿½ï¿½..
 			Col.Vvec[0] = pVol->m_pvVertex[6];
 			Col.Vvec[1] = pVol->m_pvVertex[2];
 			Col.Vvec[2] = pVol->m_pvVertex[5];
 			Col.Vvec[3] = pVol->m_pvVertex[1];
-							// ¿ÞÂÊ Åõ¿µµÈ °ª..
+							// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½..
 			Col.Vvec[4] = pWall->m_pvVertex[0];	Col.Vvec[4].x = pVol->m_pvVertex[6].x;
 			Col.Vvec[5] = pWall->m_pvVertex[1];	Col.Vvec[5].x = pVol->m_pvVertex[2].x;
 			Col.Vvec[6] = pWall->m_pvVertex[2];	Col.Vvec[6].x = pVol->m_pvVertex[5].x;
 			Col.Vvec[7] = pWall->m_pvVertex[3];	Col.Vvec[7].x = pVol->m_pvVertex[1].x;
 			break;
 
-		case WALL_XR:	// ¿À¸¥ÂÊ..
+		case WALL_XR:	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½..
 			Col.Vvec[0] = pVol->m_pvVertex[4];
 			Col.Vvec[1] = pVol->m_pvVertex[0];
 			Col.Vvec[2] = pVol->m_pvVertex[7];
 			Col.Vvec[3] = pVol->m_pvVertex[3];
-						// ¿À¸¥ÂÊ Åõ¿µµÈ °ª..
+						// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½..
 			Col.Vvec[4] = pWall->m_pvVertex[0];	Col.Vvec[4].x = pVol->m_pvVertex[4].x;
 			Col.Vvec[5] = pWall->m_pvVertex[1];	Col.Vvec[5].x = pVol->m_pvVertex[0].x;
 			Col.Vvec[6] = pWall->m_pvVertex[2];	Col.Vvec[6].x = pVol->m_pvVertex[7].x;
 			Col.Vvec[7] = pWall->m_pvVertex[3];	Col.Vvec[7].x = pVol->m_pvVertex[3].x;
 			break;
 
-		case WALL_YT:	// À§ÂÊ
+		case WALL_YT:	// ï¿½ï¿½ï¿½ï¿½
 			Col.Vvec[0] = pVol->m_pvVertex[0];
 			Col.Vvec[1] = pVol->m_pvVertex[1];
 			Col.Vvec[2] = pVol->m_pvVertex[3];
 			Col.Vvec[3] = pVol->m_pvVertex[2];
-						// À§ÂÊ Åõ¿µµÈ °ª..
+						// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½..
 			Col.Vvec[4] = pWall->m_pvVertex[0];	Col.Vvec[4].y = pVol->m_pvVertex[0].y;
 			Col.Vvec[5] = pWall->m_pvVertex[1];	Col.Vvec[5].y = pVol->m_pvVertex[1].y;
 			Col.Vvec[6] = pWall->m_pvVertex[2];	Col.Vvec[6].y = pVol->m_pvVertex[3].y;
 			Col.Vvec[7] = pWall->m_pvVertex[3];	Col.Vvec[7].y = pVol->m_pvVertex[2].y;
 			break;
 
-		case WALL_YB:	// ¾Æ·¡ÂÊ
+		case WALL_YB:	// ï¿½Æ·ï¿½ï¿½ï¿½
 			Col.Vvec[0] = pVol->m_pvVertex[7];
 			Col.Vvec[1] = pVol->m_pvVertex[6];
 			Col.Vvec[2] = pVol->m_pvVertex[4];
 			Col.Vvec[3] = pVol->m_pvVertex[5];
-						// ¾Æ·¡ÂÊ Åõ¿µµÈ °ª..
+						// ï¿½Æ·ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½..
 			Col.Vvec[4] = pWall->m_pvVertex[0];	Col.Vvec[4].y = pVol->m_pvVertex[7].y;
 			Col.Vvec[5] = pWall->m_pvVertex[1];	Col.Vvec[5].y = pVol->m_pvVertex[6].y;
 			Col.Vvec[6] = pWall->m_pvVertex[2];	Col.Vvec[6].y = pVol->m_pvVertex[4].y;
@@ -786,7 +786,7 @@ bool CPvsMgr::CollisionDetectMain(CPortalVol* const pVolMy)
 	{
 		Col = *icit++;
 
-		// Volumn¿¡ ÀÖ´Â Ãæµ¹ Ã¼Å© Á¡µé..
+		// Volumnï¿½ï¿½ ï¿½Ö´ï¿½ ï¿½æµ¹ Ã¼Å© ï¿½ï¿½ï¿½ï¿½..
 		for( i = 0; i < 9; i++ )
 		{
 			for( j = 0; j < 5; j++ )
@@ -795,26 +795,26 @@ bool CPvsMgr::CollisionDetectMain(CPortalVol* const pVolMy)
 				{
 					int k = 98;
 				}
-				// ¼±ºÐÀ» ¸¸µç´Ù..
+				// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½..
 				vDir = Col.Wvec[j] - Col.Vvec[i];	vDir.Normalize();
 
-				// ¿ì¼± ¼øÀ§´ë·Î Ãæµ¹ Ã¼Å©..
+				// ï¿½ì¼± ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½æµ¹ Ã¼Å©..
 				ivit = m_pVoltList.begin();
 				while(ivit != m_pVoltList.end())
 				{
 					pVol = *ivit++;
-					// ÀÚ±â ÀÚ½ÅÀº °Ë»çÇÏÁö ¾Ê´Â´Ù..
+					// ï¿½Ú±ï¿½ ï¿½Ú½ï¿½ï¿½ï¿½ ï¿½Ë»ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ê´Â´ï¿½..
 					if (pVol == pVolMy)
 						continue;
 
-// Debug¿ë..
+// Debugï¿½ï¿½..
 /*					if ( (i == 1) && (j == 1) && (pVol->m_iID == 0) )
 					{
 						m_dcol.Vvec[0] = Col.Wvec[j];
 						m_dcol.Vvec[1] = Col.Vvec[i];
 					}*/
 
-					// Portal WallÀÌ ÀÖ´Â ¸éÀº Portal Wall°ú ¸ÕÀú °Ë»çÇÑÈÄ.. Ãæµ¹ÇÏÁö ¾Ê´Â ¸é¸¸ ÀÎÁ¤.. !!
+					// Portal Wallï¿½ï¿½ ï¿½Ö´ï¿½ ï¿½ï¿½ï¿½ï¿½ Portal Wallï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ë»ï¿½ï¿½ï¿½ï¿½ï¿½.. ï¿½æµ¹ï¿½ï¿½ï¿½ï¿½ ï¿½Ê´ï¿½ ï¿½é¸¸ ï¿½ï¿½ï¿½ï¿½.. !!
 					switch (CollisionDetectSub(Col.Vvec[i], vDir, pVol))
 					{
 						case COLLISION_AND_CONTINUE:
@@ -824,7 +824,7 @@ bool CPvsMgr::CollisionDetectMain(CPortalVol* const pVolMy)
 								TRACE3("id %d, i %d, j %d \n", pVol->m_iID, i, j);
 							}
 							break;
-						case COLLISION_AND_STOP:	// ÇØ´ç ¼±ºÐ¿¡ ´ëÇØ¼­¸¸ °Ë»çÇÏÁö ¾Ê´Â´Ù..
+						case COLLISION_AND_STOP:	// ï¿½Ø´ï¿½ ï¿½ï¿½ï¿½Ð¿ï¿½ ï¿½ï¿½ï¿½Ø¼ï¿½ï¿½ï¿½ ï¿½Ë»ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ê´Â´ï¿½..
 							if (pVol->m_eRenderType == TYPE_UNKNOWN)
 							{
 								pVol->m_eRenderType = TYPE_TRUE;
@@ -844,7 +844,7 @@ again:;
 	return false;
 }
 
-// Debug¿ë..
+// Debugï¿½ï¿½..
 /*
 void CPvsMgr::RenderCollision(__Collision& col)
 {
@@ -903,7 +903,7 @@ void CPvsMgr::RenderCollision(__Collision& col)
 	CN3Base::s_lpD3DDev->SetTransform(D3DTS_WORLD, &mtxWorld);
 	CN3Base::s_lpD3DDev->SetTexture(0, NULL);
 
-	CN3Base::s_lpD3DDev->SetVertexShader(FVF_CV);	
+	CN3Base::s_lpD3DDev->SetFVF(FVF_CV);	
 
 	CN3Base::s_lpD3DDev->SetRenderState(D3DRS_FILLMODE, D3DFILL_POINT);
 //	CN3Base::s_lpD3DDev->DrawIndexedPrimitiveUP(D3DPT_POINTLIST, 0, 9, 9, pIndex, D3DFMT_INDEX16, pvVertex, sizeof(__VertexColor) );
@@ -918,12 +918,12 @@ void CPvsMgr::RenderCollision(__Collision& col)
 
 e_ReturnCode CPvsMgr::CollisionDetectSub(const __Vector3& vOrig, const __Vector3& vDir, CPortalVol* pVolMy)
 {
-	// °íÃÄ¾ß µÉ²¯µé..
-// 1. Wall´ÜÀ§·Î °Ë»çÇØ¼­..Wall°ú Ãæµ¹ Ã¼Å© ¾øÀÌ VolumnÀÇ ¸é°ú Ãæµ¹ÇÑ ¸éÀÌ ÀÖÀ¸¸é.. 
+	// ï¿½ï¿½ï¿½Ä¾ï¿½ ï¿½É²ï¿½ï¿½ï¿½..
+// 1. Wallï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ë»ï¿½ï¿½Ø¼ï¿½..Wallï¿½ï¿½ ï¿½æµ¹ Ã¼Å© ï¿½ï¿½ï¿½ï¿½ Volumnï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½æµ¹ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½.. 
 // 2. Return COLLISION_AND_STOP;
-// 3. µÑ´Ù Ãæµ¹ ÇßÀ¸¸é.. ÀÏ´Ü COLLISION_AND_CONTINUE¸¦ ¼ÂÆÃÇÏ°í ´Ù¸¥ WallÀ» °è¼Ó °Ë»ç..
-// 4. COLLISION_AND_CONTINUE°¡ ¼ÂÆÃµÇ¾î ÀÖÀ¸¸é.. COLLISION_AND_CONTINUE¸¦ return..
-// 5. ¾Æ´Ï¸é..NO_COLLISION¸¦ ¸®ÅÏ..
+// 3. ï¿½Ñ´ï¿½ ï¿½æµ¹ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½.. ï¿½Ï´ï¿½ COLLISION_AND_CONTINUEï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï°ï¿½ ï¿½Ù¸ï¿½ Wallï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½Ë»ï¿½..
+// 4. COLLISION_AND_CONTINUEï¿½ï¿½ ï¿½ï¿½ï¿½ÃµÇ¾ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½.. COLLISION_AND_CONTINUEï¿½ï¿½ return..
+// 5. ï¿½Æ´Ï¸ï¿½..NO_COLLISIONï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½..
 
 #define TM_DEF_MAC(A)	\
 {						\
@@ -1049,20 +1049,20 @@ bool CPvsMgr::IntersectTriangle(const __Vector3& vOrig, const __Vector3& vDir,
     // Begin calculating determinant - also used to calculate U parameter
     __Vector3 pVec;	float fDet;
 	
-//	By : Ecli666 ( On 2001-09-12 ¿ÀÀü 10:39:01 )
+//	By : Ecli666 ( On 2001-09-12 ï¿½ï¿½ï¿½ï¿½ 10:39:01 )
 
 	pVec.Cross(vEdge1, vEdge2);
 	fDet = pVec.Dot(vDir);
 	if ( fDet > -0.0001f )
 		return false;
 
-//	~(By Ecli666 On 2001-09-12 ¿ÀÀü 10:39:01 )
+//	~(By Ecli666 On 2001-09-12 ï¿½ï¿½ï¿½ï¿½ 10:39:01 )
 
     pVec.Cross(vDir, vEdge2);
 
     // If determinant is near zero, ray lies in plane of triangle
     fDet = vEdge1.Dot(pVec);
-    if( fDet < 0.0001f )		// °ÅÀÇ 0¿¡ °¡±î¿ì¸é »ï°¢Çü Æò¸é°ú Áö³ª°¡´Â ¼±ÀÌ ÆòÇàÇÏ´Ù.
+    if( fDet < 0.0001f )		// ï¿½ï¿½ï¿½ï¿½ 0ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï°¢ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½.
         return false;
 
     // Calculate distance from vert0 to ray origin
@@ -1089,15 +1089,15 @@ bool CPvsMgr::IntersectTriangle(const __Vector3& vOrig, const __Vector3& vDir,
     fU *= fInvDet;
     fV *= fInvDet;
 
-	// t°¡ Å¬¼ö·Ï ¸Ö¸® Á÷¼±°ú Æò¸é°ú ¸¸³ª´Â Á¡ÀÌ ¸Ö´Ù.
-	// t*dir + orig ¸¦ ±¸ÇÏ¸é ¸¸³ª´Â Á¡À» ±¸ÇÒ ¼ö ÀÖ´Ù.
-	// u¿Í vÀÇ ÀÇ¹Ì´Â ¹«¾ùÀÏ±î?
-	// ÃßÃø : v0 (0,0), v1(1,0), v2(0,1) <°ýÈ£¾ÈÀº (U, V)ÁÂÇ¥> ÀÌ·±½ÄÀ¸·Î ¾î´À Á¡¿¡ °¡±õ³ª ³ªÅ¸³½ °Í °°À½
+	// tï¿½ï¿½ Å¬ï¿½ï¿½ï¿½ï¿½ ï¿½Ö¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ö´ï¿½.
+	// t*dir + orig ï¿½ï¿½ ï¿½ï¿½ï¿½Ï¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½Ö´ï¿½.
+	// uï¿½ï¿½ vï¿½ï¿½ ï¿½Ç¹Ì´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï±ï¿½?
+	// ï¿½ï¿½ï¿½ï¿½ : v0 (0,0), v1(1,0), v2(0,1) <ï¿½ï¿½È£ï¿½ï¿½ï¿½ï¿½ (U, V)ï¿½ï¿½Ç¥> ï¿½Ì·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Å¸ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	//
 
-	if(pVCol) (*pVCol) = vOrig + (vDir * fT);	// Á¢Á¡À» °è»ê..
+	if(pVCol) (*pVCol) = vOrig + (vDir * fT);	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½..
 
-	// *t < 0 ÀÌ¸é µÚÂÊ...
+	// *t < 0 ï¿½Ì¸ï¿½ ï¿½ï¿½ï¿½ï¿½...
 	if ( fT < 0.0f )
 		return false;
 
@@ -1143,7 +1143,7 @@ void CPvsMgr::CalcCompile()
 		pBase->SetState(STATE_NONE);
 	}
 
-	// Visibility¸¦ °áÁ¤ÇÑ´Ù.. !!!!!!!!
+	// Visibilityï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ñ´ï¿½.. !!!!!!!!
 	m_ColList.clear();
 	m_pVoltList.clear();
 
@@ -1191,11 +1191,11 @@ void CPvsMgr::SplitShapeToVolumn()
 	if (!pShape)	
 		return;
 
-	//  ¹è°æ ShapeÀÇ lod ·¹º§À» ÃÖ°í·Î ¸¸µç´Ù..
+	//  ï¿½ï¿½ï¿½ Shapeï¿½ï¿½ lod ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ö°ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½..
 	pShape->Tick();
 	pShape->SetMaxLOD();
 
-	// »Ç°µ´Ù..
+	// ï¿½Ç°ï¿½ï¿½ï¿½..
 	CPvsBase* pBase = NULL;
 	CPortalVol* pVol = NULL;
 
@@ -1207,7 +1207,7 @@ void CPvsMgr::SplitShapeToVolumn()
 		{
 			pVol = (CPortalVol* )pBase;
 
-			// ShapeÀÇÆú¸®°ï °¹¼ö¸¸Å­ µ¹¸é¼­.. ¸ÕÀú Transform ½ÃÅ°°í.. °Ë»ç.. 								
+			// Shapeï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Å­ ï¿½ï¿½ï¿½é¼­.. ï¿½ï¿½ï¿½ï¿½ Transform ï¿½ï¿½Å°ï¿½ï¿½.. ï¿½Ë»ï¿½.. 								
 			pVol->SplitAndMakeShape(pShape);
 		}
 	}

@@ -64,13 +64,13 @@ bool CN3UIImage::CreateVB()
 {
 	HRESULT hr;
 	if (m_pVB) {m_pVB->Release(); m_pVB = NULL;}
-	hr = s_lpD3DDev->CreateVertexBuffer( 4*sizeof(__VertexTransformed), 0, FVF_TRANSFORMED, D3DPOOL_MANAGED, &m_pVB );
+	hr = s_lpD3DDev->CreateVertexBuffer( 4*sizeof(__VertexTransformed), 0, FVF_TRANSFORMED, D3DPOOL_MANAGED, &m_pVB, NULL );
 	return SUCCEEDED(hr);
 }
 
 void CN3UIImage::SetVB()
 {
-	if (UISTYLE_IMAGE_ANIMATE & m_dwStyle)	// animate imageÀÌ¸é vertex buffer releaseÇÏ±â
+	if (UISTYLE_IMAGE_ANIMATE & m_dwStyle)	// animate imageï¿½Ì¸ï¿½ vertex buffer releaseï¿½Ï±ï¿½
 	{
 		if (m_pVB) {m_pVB->Release(); m_pVB = NULL;}
 	}
@@ -79,11 +79,11 @@ void CN3UIImage::SetVB()
 		if(m_pVB)
 		{
 			__VertexTransformed* pVertices;
-			m_pVB->Lock( 0, 0, (BYTE**)&pVertices, 0 );
+			m_pVB->Lock( 0, 0, (void**)&pVertices, 0 );
 
 			DWORD dwColor = 0xffffffff;
 			float fRHW = 1.0f;
-			// -0.5f¸¦ ÇØÁÖÁö ¾ÊÀ¸¸é °¡²û ÀÌ¹ÌÁö°¡ ÇÑ µ¾Æ®¾¿ ¹Ð¸®´Â °æ¿ì°¡ ÀÖ´Ù.(¿Ö ±×·±Áö´Â È®½ÇÇÏ°Ô ¸ð¸£°ÚÀ½)
+			// -0.5fï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ì¹ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½Ð¸ï¿½ï¿½ï¿½ ï¿½ï¿½ì°?ï¿½Ö´ï¿½.(ï¿½ï¿½ ï¿½×·ï¿½ï¿½ï¿½ï¿½ï¿½ È®ï¿½ï¿½ï¿½Ï°ï¿½ ï¿½ð¸£°ï¿½ï¿½ï¿½)
 			pVertices[0].Set((float)m_rcRegion.left-0.5f,	(float)m_rcRegion.top-0.5f,		UI_DEFAULT_Z, fRHW, m_Color, m_frcUVRect.left,		m_frcUVRect.top);
 			pVertices[1].Set((float)m_rcRegion.right-0.5f,	(float)m_rcRegion.top-0.5f,		UI_DEFAULT_Z, fRHW, m_Color, m_frcUVRect.right,	m_frcUVRect.top);
 			pVertices[2].Set((float)m_rcRegion.right-0.5f,	(float)m_rcRegion.bottom-0.5f,	UI_DEFAULT_Z, fRHW, m_Color, m_frcUVRect.right,	m_frcUVRect.bottom);
@@ -99,7 +99,7 @@ void CN3UIImage::SetTex(const std::string& szFN)
 {
 	m_szTexFN = szFN;
 	s_MngTex.Delete(&m_pTexRef);
-	// animate imageÀÏ¶§¸¸ texture ÁöÁ¤ÇÏ±â
+	// animate imageï¿½Ï¶ï¿½ï¿½ï¿½ texture ï¿½ï¿½ï¿½ï¿½ï¿½Ï±ï¿½
 	if (!(UISTYLE_IMAGE_ANIMATE & m_dwStyle)) m_pTexRef = s_MngTex.Get(szFN);
 }
 
@@ -123,7 +123,7 @@ void CN3UIImage::SetUVRect(float left, float top, float right, float bottom)
 void CN3UIImage::Tick()
 {
 	CN3UIBase::Tick();
-	if (m_iAnimCount>0)		// Animate ImageÀÏ¶§ ÇöÀç frame °è»ê
+	if (m_iAnimCount>0)		// Animate Imageï¿½Ï¶ï¿½ ï¿½ï¿½ï¿½ï¿½ frame ï¿½ï¿½ï¿?
 	{
 		m_fCurAnimFrame += (s_fSecPerFrm * m_fAnimFrame);
 		while (m_fCurAnimFrame >= (float)m_iAnimCount)
@@ -137,18 +137,18 @@ void CN3UIImage::Render()
 {
 	if(!m_bVisible) return;
 
-	if (UISTYLE_IMAGE_ANIMATE & m_dwStyle) // AnimateµÇ´Â ÀÌ¹ÌÁöÀÌ¸é
+	if (UISTYLE_IMAGE_ANIMATE & m_dwStyle) // Animateï¿½Ç´ï¿½ ï¿½Ì¹ï¿½ï¿½ï¿½ï¿½Ì¸ï¿½
 	{
-		__ASSERT(m_fCurAnimFrame>=0.0f && m_fCurAnimFrame < (float)m_iAnimCount, "animate image °¡ ÀÌ»óÀÛµ¿");
-		__ASSERT(m_pAnimImagesRef, "ÃÊ±âÈ­ ÀÌ»ó");
+		__ASSERT(m_fCurAnimFrame>=0.0f && m_fCurAnimFrame < (float)m_iAnimCount, "animate image ï¿½ï¿½ ï¿½Ì»ï¿½ï¿½Ûµï¿½");
+		__ASSERT(m_pAnimImagesRef, "ï¿½Ê±ï¿½È­ ï¿½Ì»ï¿½");
 		m_pAnimImagesRef[(int)m_fCurAnimFrame]->Render();
 	}
 	else
 	{
 		if (m_pVB && m_pTexRef)
 		{
-			s_lpD3DDev->SetStreamSource( 0, m_pVB, sizeof(__VertexTransformed) );
-			s_lpD3DDev->SetVertexShader( FVF_TRANSFORMED );
+			s_lpD3DDev->SetStreamSource( 0, m_pVB, 0, sizeof(__VertexTransformed) );
+			s_lpD3DDev->SetFVF( FVF_TRANSFORMED );
 
 			s_lpD3DDev->SetTexture( 0, m_pTexRef->Get());
 			s_lpD3DDev->SetTextureStageState( 0, D3DTSS_COLOROP,    D3DTOP_MODULATE );
@@ -168,8 +168,8 @@ void CN3UIImage::RenderIconWrapper()
 
 	if (m_pVB)
 	{
-		s_lpD3DDev->SetStreamSource( 0, m_pVB, sizeof(__VertexTransformed) );
-		s_lpD3DDev->SetVertexShader( FVF_TRANSFORMED );
+		s_lpD3DDev->SetStreamSource( 0, m_pVB, 0, sizeof(__VertexTransformed) );
+		s_lpD3DDev->SetFVF( FVF_TRANSFORMED );
 		s_lpD3DDev->SetTexture( 0, NULL);
 
 		s_lpD3DDev->DrawPrimitive( D3DPT_TRIANGLEFAN, 0, 2);
@@ -201,23 +201,23 @@ bool CN3UIImage::Load(HANDLE hFile)
 {
 	if (false == CN3UIBase::Load(hFile)) return false;
 	DWORD dwNum;
-	// texture Á¤º¸
-	__ASSERT(NULL == m_pTexRef, "load ÇÏ±â Àü¿¡ ÃÊ±âÈ­°¡ µÇÁö ¾Ê¾Ò½À´Ï´Ù.");
+	// texture ï¿½ï¿½ï¿½ï¿½
+	__ASSERT(NULL == m_pTexRef, "load ï¿½Ï±ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ê±ï¿½È­ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ê¾Ò½ï¿½ï¿½Ï´ï¿½.");
 	int	iStrLen = 0;
-	ReadFile(hFile, &iStrLen, sizeof(iStrLen), &dwNum, NULL);			// ÆÄÀÏ ÀÌ¸§ ±æÀÌ
+	ReadFile(hFile, &iStrLen, sizeof(iStrLen), &dwNum, NULL);			// ï¿½ï¿½ï¿½ï¿½ ï¿½Ì¸ï¿½ ï¿½ï¿½ï¿½ï¿½
 	char szFName[MAX_PATH] = "";
 	if (iStrLen>0)
 	{
-		ReadFile(hFile, szFName, iStrLen, &dwNum, NULL);		// ÆÄÀÏ ÀÌ¸§
+		ReadFile(hFile, szFName, iStrLen, &dwNum, NULL);		// ï¿½ï¿½ï¿½ï¿½ ï¿½Ì¸ï¿½
 		szFName[iStrLen]='\0';
 		this->SetTex(szFName);
 	} 
 
-	ReadFile(hFile, &m_frcUVRect, sizeof(m_frcUVRect), &dwNum, NULL);	// uvÁÂÇ¥
+	ReadFile(hFile, &m_frcUVRect, sizeof(m_frcUVRect), &dwNum, NULL);	// uvï¿½ï¿½Ç¥
 	ReadFile(hFile, &m_fAnimFrame, sizeof(m_fAnimFrame), &dwNum, NULL);
 
-	// Animate µÇ´Â imageÀÌ¸é °ü·ÃµÈ º¯¼ö ¼¼ÆÃ
-	m_iAnimCount = 0; // animate image ¼ö Á¤ÇÏ±â
+	// Animate ï¿½Ç´ï¿½ imageï¿½Ì¸ï¿½ ï¿½ï¿½ï¿½Ãµï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+	m_iAnimCount = 0; // animate image ï¿½ï¿½ ï¿½ï¿½ï¿½Ï±ï¿½
 	for(UIListItor itor = m_Children.begin(); m_Children.end() != itor; ++itor)
 	{
 		if(UI_TYPE_IMAGE == (*itor)->UIType()) m_iAnimCount++;
@@ -231,12 +231,12 @@ bool CN3UIImage::Load(HANDLE hFile)
 		for(itor = m_Children.begin(); m_Children.end() != itor; ++itor)
 		{
 			if(UI_TYPE_IMAGE == (*itor)->UIType()) m_pAnimImagesRef[i] = (CN3UIImage*)(*itor);
-			__ASSERT(m_pAnimImagesRef[i]->GetReserved() == (DWORD)i, "animate Image load fail");	// Á¦´ë·Î Á¤·ÄÀÌ µÇÁö ¾Ê¾ÒÀ»°æ¿ì ½ÇÆÐÇÑ´Ù.
+			__ASSERT(m_pAnimImagesRef[i]->GetReserved() == (DWORD)i, "animate Image load fail");	// ï¿½ï¿½ï¿½ï¿½ï¿?ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ê¾ï¿½ï¿½ï¿½ï¿½ï¿½ï¿?ï¿½ï¿½ï¿½ï¿½ï¿½Ñ´ï¿½.
 			++i;
 		}
 	}
 
-	SetVB();	// vertex ¼¼ÆÃ
+	SetVB();	// vertex ï¿½ï¿½ï¿½ï¿½
 	return true;
 }
 
@@ -253,8 +253,8 @@ void CN3UIImage::operator = (const CN3UIImage& other)
 	if (other.m_pTexRef) m_pTexRef = s_MngTex.Get(other.m_pTexRef->FileName());
 	m_szTexFN = other.m_szTexFN;
 
-	// Animate µÇ´Â imageÀÌ¸é °ü·ÃµÈ º¯¼ö ¼¼ÆÃ
-	m_iAnimCount = m_Children.size();	// animate image ¼ö Á¤ÇÏ±â
+	// Animate ï¿½Ç´ï¿½ imageï¿½Ì¸ï¿½ ï¿½ï¿½ï¿½Ãµï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+	m_iAnimCount = m_Children.size();	// animate image ï¿½ï¿½ ï¿½ï¿½ï¿½Ï±ï¿½
 	if ((UISTYLE_IMAGE_ANIMATE & m_dwStyle) && m_iAnimCount>0)
 	{
 		m_pAnimImagesRef = new CN3UIImage*[m_iAnimCount];
@@ -262,29 +262,29 @@ void CN3UIImage::operator = (const CN3UIImage& other)
 		int i=0;
 		for(UIListItor itor = m_Children.begin(); m_Children.end() != itor; ++itor)
 		{
-			__ASSERT(UI_TYPE_IMAGE == (*itor)->UIType(), "animate image childÀÇ UI typeÀÌ image°¡ ¾Æ´Ï´Ù.");
+			__ASSERT(UI_TYPE_IMAGE == (*itor)->UIType(), "animate image childï¿½ï¿½ UI typeï¿½ï¿½ imageï¿½ï¿½ ï¿½Æ´Ï´ï¿½.");
 			m_pAnimImagesRef[i] = (CN3UIImage*)(*itor);
-			__ASSERT(m_pAnimImagesRef[i]->GetReserved() == (DWORD)i, "animate Image load fail");	// Á¦´ë·Î Á¤·ÄÀÌ µÇÁö ¾Ê¾ÒÀ»°æ¿ì ½ÇÆÐÇÑ´Ù.
+			__ASSERT(m_pAnimImagesRef[i]->GetReserved() == (DWORD)i, "animate Image load fail");	// ï¿½ï¿½ï¿½ï¿½ï¿?ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ê¾ï¿½ï¿½ï¿½ï¿½ï¿½ï¿?ï¿½ï¿½ï¿½ï¿½ï¿½Ñ´ï¿½.
 			++i;
 		}
 	}
 
-	SetVB();	// vertex ¼¼ÆÃ
+	SetVB();	// vertex ï¿½ï¿½ï¿½ï¿½
 }
 
 #ifdef _N3TOOL
 bool CN3UIImage::Save(HANDLE hFile)
 {
-	ReorderChildImage();	// child imageµé ¼ø¼­´ë·Î Á¤·Ä
+	ReorderChildImage();	// child imageï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿?ï¿½ï¿½ï¿½ï¿½
 	if (false == CN3UIBase::Save(hFile)) return false;
 	DWORD dwNum;
-	// texture Á¤º¸
+	// texture ï¿½ï¿½ï¿½ï¿½
 	if (m_pTexRef) m_szTexFN = m_pTexRef->FileName();
 	int iStrLen = m_szTexFN.size();
-	WriteFile(hFile, &iStrLen, sizeof(iStrLen), &dwNum, NULL);			// ÆÄÀÏ ±æÀÌ
-	if (iStrLen>0)	WriteFile(hFile, m_szTexFN.c_str(), iStrLen, &dwNum, NULL);	// ÆÄÀÏ ÀÌ¸§
+	WriteFile(hFile, &iStrLen, sizeof(iStrLen), &dwNum, NULL);			// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+	if (iStrLen>0)	WriteFile(hFile, m_szTexFN.c_str(), iStrLen, &dwNum, NULL);	// ï¿½ï¿½ï¿½ï¿½ ï¿½Ì¸ï¿½
 
-	WriteFile(hFile, &m_frcUVRect, sizeof(m_frcUVRect), &dwNum, NULL);		// uvÁÂÇ¥
+	WriteFile(hFile, &m_frcUVRect, sizeof(m_frcUVRect), &dwNum, NULL);		// uvï¿½ï¿½Ç¥
 	WriteFile(hFile, &m_fAnimFrame, sizeof(m_fAnimFrame), &dwNum, NULL);	// Animate frame
 
 	return true;
@@ -314,7 +314,7 @@ void CN3UIImage::ChangeImagePath(const std::string& szPathOld, const std::string
 
 void CN3UIImage::GatherImageFileName(std::set<std::string>& setImgFile)
 {
-	CN3UIBase::GatherImageFileName(setImgFile); // child Á¤º¸
+	CN3UIBase::GatherImageFileName(setImgFile); // child ï¿½ï¿½ï¿½ï¿½
 	
 	std::string szImgFN = m_szTexFN;
 	if(!szImgFN.empty())
@@ -324,7 +324,7 @@ void CN3UIImage::GatherImageFileName(std::set<std::string>& setImgFile)
 	}
 }
 
-// childÀÇ image°¡ m_dwReserved¿¡ µé¾î°¡ÀÖ´Â ¼ýÀÚ ¼ø¼­¿¡ ¸Â°Ô Àç¹èÄ¡
+// childï¿½ï¿½ imageï¿½ï¿½ m_dwReservedï¿½ï¿½ ï¿½ï¿½î°¡ï¿½Ö´ï¿?ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Â°ï¿½ ï¿½ï¿½ï¿½Ä?
 void CN3UIImage::ReorderChildImage()
 {
 	if (m_iAnimCount<=0) return;
@@ -338,16 +338,16 @@ void CN3UIImage::ReorderChildImage()
 		for(UIListItor itor = m_Children.begin(); m_Children.end() != itor; ++itor)
 		{
 			CN3UIBase* pChild = (*itor);
-			__ASSERT(UI_TYPE_IMAGE == pChild->UIType(), "image°¡ ¾Æ´Ñ child°¡ ÀÖ½À´Ï´Ù.");
+			__ASSERT(UI_TYPE_IMAGE == pChild->UIType(), "imageï¿½ï¿½ ï¿½Æ´ï¿½ childï¿½ï¿½ ï¿½Ö½ï¿½ï¿½Ï´ï¿½.");
 			if (NULL == pSelChild) pSelChild = pChild;
 			else if (pSelChild->GetReserved() > pChild->GetReserved()) pSelChild = pChild;
 		}
-		__ASSERT(pSelChild,"Á¦ÀÏ ÀÛÀº m_dwReserved¸¦ °¡Áø child°¡ ¾ø´Ù.");
+		__ASSERT(pSelChild,"ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ m_dwReservedï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ childï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½.");
 		pNewList[i] = pSelChild;
 		RemoveChild(pSelChild);
 	}
 	
-	for (i=0; i<m_iAnimCount; ++i) m_Children.push_back(pNewList[i]);	// ÀÛÀº ¼ø¼­´ë·Î ³Ö±â
+	for (i=0; i<m_iAnimCount; ++i) m_Children.push_back(pNewList[i]);	// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿?ï¿½Ö±ï¿½
 
 	delete [] pNewList;
 }
@@ -360,19 +360,19 @@ CN3UIImage* CN3UIImage::GetChildImage(int iIndex)
 
 void CN3UIImage::SetAnimImage(int iAnimCount)
 {
-	// ÀÌ¹Ì ¼³Á¤ µÇ¾î ÀÖ´Â°ÍÀÌ ÀÖÀ¸¸é Áö¿ì±â
+	// ï¿½Ì¹ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ç¾ï¿½ ï¿½Ö´Â°ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿?
 	int i;
 	if (m_pAnimImagesRef)
 	{
 		for (i=0; i<m_iAnimCount; ++i)
-		{	// ÀÚ½Ä Áö¿ì±â
+		{	// ï¿½Ú½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿?
 			if (m_pAnimImagesRef[i]) {delete m_pAnimImagesRef[i]; m_pAnimImagesRef[i] = NULL;}
 		}
 		delete [] m_pAnimImagesRef; m_pAnimImagesRef = NULL;
 	}
 	m_iAnimCount = iAnimCount;
 
-	// 0À¸·Î ¼³Á¤ÇÏ¸é º¸Åë image·Î ÀüÈ¯
+	// 0ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï¸ï¿½ ï¿½ï¿½ï¿½ï¿½ imageï¿½ï¿½ ï¿½ï¿½È¯
 	if (0 == m_iAnimCount)
 	{
 		SetStyle(m_dwStyle & (~UISTYLE_IMAGE_ANIMATE));
@@ -424,7 +424,7 @@ bool CN3UIImage::ReplaceAllTextures(const std::string& strFind, const std::strin
 			}
 			else
 			{	// *.tga ->
-				if (lstrcmpi(szFindExt, szTexExt) != 0 ) break;	// È®ÀåÀÚ°¡ °°Áö ¾ÊÀ¸¹Ç·Î ±×³É ¸®ÅÏ
+				if (lstrcmpi(szFindExt, szTexExt) != 0 ) break;	// È®ï¿½ï¿½ï¿½Ú°ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ç·ï¿½ ï¿½×³ï¿½ ï¿½ï¿½ï¿½ï¿½
 
 				if (lstrcmpi(szReplaceFName, "*") == 0)	strNew += szTexFName;
 				else strNew += szReplaceFName;
@@ -434,7 +434,7 @@ bool CN3UIImage::ReplaceAllTextures(const std::string& strFind, const std::strin
 		}
 		else
 		{
-			if (lstrcmpi(szFindFName, szTexFName) != 0 ) break;	// ÀÌ¸§ÀÌ °°Áö ¾ÊÀ¸¹Ç·Î ±×³É ¸®ÅÏ
+			if (lstrcmpi(szFindFName, szTexFName) != 0 ) break;	// ï¿½Ì¸ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ç·ï¿½ ï¿½×³ï¿½ ï¿½ï¿½ï¿½ï¿½
 
 			if (lstrcmpi(szFindExt, ".*") == 0)
 			{	// abc.* ->
@@ -444,8 +444,8 @@ bool CN3UIImage::ReplaceAllTextures(const std::string& strFind, const std::strin
 				else strNew += szReplaceExt;
 			}
 			else
-			{	// Ã£´Â ÆÄÀÏ¸í°ú È®ÀåÀÚ°¡ ÁöÁ¤µÇ¾î ÀÖÀ»°æ¿ì // abc.tga ->
-				if (lstrcmpi(szFindExt, szTexExt) != 0 ) break;	// È®ÀåÀÚ°¡ °°Áö ¾ÊÀ¸¹Ç·Î ±×³É ¸®ÅÏ
+			{	// Ã£ï¿½ï¿½ ï¿½ï¿½ï¿½Ï¸ï¿½ï¿½ï¿½ È®ï¿½ï¿½ï¿½Ú°ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ç¾ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿?// abc.tga ->
+				if (lstrcmpi(szFindExt, szTexExt) != 0 ) break;	// È®ï¿½ï¿½ï¿½Ú°ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ç·ï¿½ ï¿½×³ï¿½ ï¿½ï¿½ï¿½ï¿½
 
 				if (lstrcmpi(szReplaceFName, "*") == 0)	strNew += szFindFName;
 				else strNew += szReplaceFName;
@@ -453,7 +453,7 @@ bool CN3UIImage::ReplaceAllTextures(const std::string& strFind, const std::strin
 				else strNew += szReplaceExt;
 			}
 		}
-		// ÅØ½ºÃÄ ´Ù½Ã ÁöÁ¤ÇÏ±â
+		// ï¿½Ø½ï¿½ï¿½ï¿½ ï¿½Ù½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï±ï¿½
 		SetTex(strNew);
 		break;
 	}

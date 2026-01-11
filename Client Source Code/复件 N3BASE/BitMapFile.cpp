@@ -30,51 +30,51 @@ void CBitMapFile::Release()
 {
 	memset(&m_bmfHeader, 0, sizeof(m_bmfHeader));
 	memset(&m_bmInfoHeader, 0, sizeof(m_bmInfoHeader));
-	::GlobalFree(m_pPixels); // ½ÇÁ¦ ÇÈ¼¿ µ¥ÀÌÅÍ
+	::GlobalFree(m_pPixels); // ï¿½ï¿½ï¿½ï¿½ ï¿½È¼ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	m_pPixels = NULL;
 }
 
 bool CBitMapFile::Load(HANDLE hFile)
 {
-	this->Release(); // ÀÏ´Ü ´Ù ÇØÁ¦ÇÏ°í..
+	this->Release(); // ï¿½Ï´ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï°ï¿½..
 
 	DWORD dwRWC = 0;
 
-	// ÆÄÀÏ Çì´õ ÀÐ±â
+	// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½Ð±ï¿½
 	ReadFile(hFile, &m_bmfHeader, sizeof(m_bmfHeader), &dwRWC, NULL);
 
-	// bmp ÆÄÀÏÀÓÀ» ³ªÅ¸³»´Â "BM"¸¶Ä¿ È®ÀÎ
+	// bmp ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Å¸ï¿½ï¿½ï¿½ï¿½ "BM"ï¿½ï¿½Ä¿ È®ï¿½ï¿½
 	if (m_bmfHeader.bfType != 0x4D42)
 	{
-		MessageBox(s_hWndBase, "¿øº» ÆÄÀÏÀÌ bitmapÆÄÀÏÀÌ ¾Æ´Õ´Ï´Ù.", "error", MB_OK);
+		MessageBox(s_hWndBase, "ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ bitmapï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Æ´Õ´Ï´ï¿½.", "error", MB_OK);
 		return FALSE;
 	}
 
-	// BITMAPINFOHEADER ¾ò±â
+	// BITMAPINFOHEADER ï¿½ï¿½ï¿½
 	ReadFile(hFile, &m_bmInfoHeader, sizeof(m_bmInfoHeader), &dwRWC, NULL);
 
-	// ÇÈ¼¿´ç ºñÆ® ¼ö È®ÀÎ
+	// ï¿½È¼ï¿½ï¿½ï¿½ ï¿½ï¿½Æ® ï¿½ï¿½ È®ï¿½ï¿½
 	WORD wBitCount = m_bmInfoHeader.biBitCount;
-	if (24 != wBitCount || m_bmInfoHeader.biWidth <= 0 || m_bmInfoHeader.biHeight <= 0)		// 24ºñÆ® bmp°¡ ¾Æ´Ï¸é returnÇØ ¹ö¸°´Ù.
+	if (24 != wBitCount || m_bmInfoHeader.biWidth <= 0 || m_bmInfoHeader.biHeight <= 0)		// 24ï¿½ï¿½Æ® bmpï¿½ï¿½ ï¿½Æ´Ï¸ï¿½ returnï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½.
 	{
-		MessageBox(s_hWndBase, "¿øº» bitmapÀÌ ³Êºñ, ³ôÀÌ¿¡ ÀÌ»óÀÌ ÀÖ°Å³ª 24bitÆÄÀÏÀÌ ¾Æ´Õ´Ï´Ù.", "error", NULL);
+		MessageBox(s_hWndBase, "ï¿½ï¿½ï¿½ï¿½ bitmapï¿½ï¿½ ï¿½Êºï¿½, ï¿½ï¿½ï¿½Ì¿ï¿½ ï¿½Ì»ï¿½ï¿½ï¿½ ï¿½Ö°Å³ï¿½ 24bitï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Æ´Õ´Ï´ï¿½.", "error", NULL);
 		return FALSE;
 	}
 
-	// ½ÇÁ¦ ÀÌ¹ÌÁöÀÇ ¸Þ¸ð¸®»ó¿¡ ÀâÈù °¡·Î ±æÀÌ (24bit)
+	// ï¿½ï¿½ï¿½ï¿½ ï¿½Ì¹ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Þ¸ð¸®»ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ (24bit)
 	int iRealWidthSrc = ((int)((m_bmInfoHeader.biWidth*3 + 3)/4))*4;	
 
-	// »õ·Î ¸¸µé ÀÌ¹ÌÁö ¸Þ¸ð¸® ÇÒ´ç
+	// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ì¹ï¿½ï¿½ï¿½ ï¿½Þ¸ï¿½ ï¿½Ò´ï¿½
 	int iDIBSize = iRealWidthSrc * m_bmInfoHeader.biHeight;
 
 	if ((m_pPixels = ::GlobalAlloc(GMEM_FIXED | GMEM_ZEROINIT, iDIBSize )) == NULL )
 	{
-		MessageBox(s_hWndBase, "¸Þ¸ð¸®¸¦ ÇÒ´çÇÏÁö ¸øÇß½À´Ï´Ù.", "error", MB_OK);
+		MessageBox(s_hWndBase, "ï¿½Þ¸ð¸®¸ï¿½ ï¿½Ò´ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ß½ï¿½ï¿½Ï´ï¿½.", "error", MB_OK);
 		return FALSE;
 	}
 
-	// ÇÈ¼¿À» ÀÐ´Â´Ù..
-	for(int y = m_bmInfoHeader.biHeight; y >= 0; y--) // ºñÆ®¸ÊÀº À§¾Æ·¡°¡ °Å²Ù·Î ÀÖ´Ù..
+	// ï¿½È¼ï¿½ï¿½ï¿½ ï¿½Ð´Â´ï¿½..
+	for(int y = m_bmInfoHeader.biHeight; y >= 0; y--) // ï¿½ï¿½Æ®ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Æ·ï¿½ï¿½ï¿½ ï¿½Å²Ù·ï¿½ ï¿½Ö´ï¿½..
 	{
 		ReadFile(hFile, (BYTE*)m_pPixels + y * iRealWidthSrc, iRealWidthSrc, &dwRWC, NULL);
 	}
@@ -91,19 +91,19 @@ bool CBitMapFile::Save(HANDLE hFile)
 {
 	DWORD dwRWC = 0;
 
-	// ÆÄÀÏ Çì´õ ¾²±â
+	// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	WriteFile(hFile, &m_bmfHeader, sizeof(m_bmfHeader), &dwRWC, NULL);
 
-	// BITMAPINFOHEADER ¾²±â
+	// BITMAPINFOHEADER ï¿½ï¿½ï¿½ï¿½
 	WriteFile(hFile, &m_bmInfoHeader, sizeof(m_bmInfoHeader), &dwRWC, NULL);
 
-	// ½ÇÁ¦ ÀÌ¹ÌÁöÀÇ ¸Þ¸ð¸®»ó¿¡ ÀâÈù °¡·Î ±æÀÌ (24bit)
+	// ï¿½ï¿½ï¿½ï¿½ ï¿½Ì¹ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Þ¸ð¸®»ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ (24bit)
 	int iRealWidthSrc = ((int)((m_bmInfoHeader.biWidth*3 + 3)/4))*4;	
 
-	// »õ·Î ¸¸µé ÀÌ¹ÌÁö ¸Þ¸ð¸® ÇÒ´ç
+	// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ì¹ï¿½ï¿½ï¿½ ï¿½Þ¸ï¿½ ï¿½Ò´ï¿½
 	int iDIBSize = iRealWidthSrc * m_bmInfoHeader.biHeight;
 
-	// ÇÈ¼¿À» ÀúÀåÇÑ´Ù...
+	// ï¿½È¼ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ñ´ï¿½...
 	WriteFile(hFile, m_pPixels, iDIBSize, &dwRWC, NULL);
 
 	CloseHandle(hFile);
@@ -124,31 +124,31 @@ bool CBitMapFile::SaveRectToFile(const char* szFileName, RECT rc)
 
 	if (lstrlen(szFileName) == 0 || nWidth<=0 || nHeight<=0)
 	{
-		MessageBox(s_hWndBase, "°¡·Î ¼¼·Î°¡ 0ÀÌÇÏÀÎ bitmapÀ¸·Î ÀúÀåÇÒ¼ö ¾ø½À´Ï´Ù.", "error", MB_OK);
+		MessageBox(s_hWndBase, "ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Î°ï¿½ 0ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ bitmapï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ò¼ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½.", "error", MB_OK);
 		return FALSE;
 	}
 
 	DWORD dwRWC = 0;
 	HANDLE hFile = ::CreateFile(szFileName, GENERIC_WRITE, 0, NULL, CREATE_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
 
-	// ¾²±â ¸ðµå·Î ÆÄÀÏ ¿­±â
+	// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	if (INVALID_HANDLE_VALUE == hFile)
 	{
-		MessageBox(s_hWndBase, "¿øº» bitmapÀ» ¿­ ¼ö ¾ø½À´Ï´Ù.", "error", MB_OK);
+		MessageBox(s_hWndBase, "ï¿½ï¿½ï¿½ï¿½ bitmapï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½.", "error", MB_OK);
 		return false;
 	}
 
-	// ½ÇÁ¦ ÀÌ¹ÌÁöÀÇ ¸Þ¸ð¸®»ó¿¡ ÀâÈù °¡·Î ±æÀÌ (24bit)
+	// ï¿½ï¿½ï¿½ï¿½ ï¿½Ì¹ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Þ¸ð¸®»ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ (24bit)
 	int iRealWidthDest = ((int)((nWidth*3 + 3)/4))*4;	
 	int iDestDIBSize = sizeof(BITMAPINFOHEADER) + iRealWidthDest * nHeight;
 
-	// »õ·Î ¸¸µé ÀÌ¹ÌÁö file header Á¤º¸ Ã¤¿ì±â
+	// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ì¹ï¿½ï¿½ï¿½ file header ï¿½ï¿½ï¿½ï¿½ Ã¤ï¿½ï¿½ï¿½
 	BITMAPFILEHEADER bmfHeaderDest = m_bmfHeader;
 	bmfHeaderDest.bfType = 0x4D42; // "BM"
 	bmfHeaderDest.bfSize = sizeof(bmfHeaderDest) + iDestDIBSize;
 	bmfHeaderDest.bfOffBits = sizeof(bmfHeaderDest) + sizeof(BITMAPINFOHEADER);
 
-	// »õ·Î ¸¸µé ÀÌ¹ÌÁö bitmap info header Á¤º¸ Ã¤¿ì±â
+	// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ì¹ï¿½ï¿½ï¿½ bitmap info header ï¿½ï¿½ï¿½ï¿½ Ã¤ï¿½ï¿½ï¿½
 	BITMAPINFOHEADER bmInfoHeaderDest = m_bmInfoHeader;
 	bmInfoHeaderDest.biSize = sizeof(bmInfoHeaderDest);
 	bmInfoHeaderDest.biWidth = nWidth;
@@ -156,19 +156,19 @@ bool CBitMapFile::SaveRectToFile(const char* szFileName, RECT rc)
 	bmInfoHeaderDest.biPlanes = 1;
 	bmInfoHeaderDest.biSizeImage = iRealWidthDest * nHeight;
 
-	// ÆÄÀÏ Çì´õ ¾²±â
+	// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	WriteFile(hFile, &bmfHeaderDest, sizeof(bmfHeaderDest), &dwRWC, NULL);
 
-	// BITMAPINFOHEADER ¾²±â
+	// BITMAPINFOHEADER ï¿½ï¿½ï¿½ï¿½
 	WriteFile(hFile, &bmInfoHeaderDest, sizeof(bmInfoHeaderDest), &dwRWC, NULL);
 
-	// ÇÈ¼¿À» ÀúÀåÇÑ´Ù...
+	// ï¿½È¼ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ñ´ï¿½...
 	RECT rcPixel = { rc.left, m_bmInfoHeader.biHeight - rc.bottom, rc.right, m_bmInfoHeader.biHeight - rc.top };
 	int iRealWidthSrc = ((int)((m_bmInfoHeader.biWidth*3 + 3)/4))*4;	
 	for(int y = rcPixel.bottom - 1; y >= rcPixel.top; y--)
 	{
 		void* pPixelDest = ((byte*)m_pPixels) + iRealWidthSrc * y + (rcPixel.left * 3);
-		WriteFile(hFile, pPixelDest, iRealWidthDest, &dwRWC, NULL); // ¶óÀÎ ¾²±â..
+		WriteFile(hFile, pPixelDest, iRealWidthDest, &dwRWC, NULL); // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½..
 	}
 
 	CloseHandle(hFile);

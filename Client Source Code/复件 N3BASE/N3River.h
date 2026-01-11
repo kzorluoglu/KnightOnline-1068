@@ -14,35 +14,35 @@
 
 struct __RiverInfo
 {
-	// °íÁ¤µÈ Á¤º¸
+	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	short		iRiverID;
 	DWORD		dwAlphaFactor;
 	float		fSpeed1;
 	float		fSpeed2;
 	char*		pszTexName;
 
-	// animation texture Á¤º¸
-	float		fAnimTexFPS;	// ÃÊ´ç ÇÁ·¹ÀÓ¼ö
-	int			iAnimTexCount;	// Animation texture °¹¼ö
-	char**		pszAnimTexNames;// animation texture ÀÌ¸§µé
+	// animation texture ï¿½ï¿½ï¿½ï¿½
+	float		fAnimTexFPS;	// ï¿½Ê´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ó¼ï¿½
+	int			iAnimTexCount;	// Animation texture ï¿½ï¿½ï¿½ï¿½
+	char**		pszAnimTexNames;// animation texture ï¿½Ì¸ï¿½ï¿½ï¿½
 
-	// ½Ç½Ã°£À¸·Î º¯ÇÏ´Â Á¤º¸
-	float		fCurDiffV1;		// ¿øº»°ú ÇöÀç VÁÂÇ¥ÀÇ Â÷ÀÌ
-	float		fCurDiffV2;		// ¿øº»°ú ÇöÀç V2ÁÂÇ¥ÀÇ Â÷ÀÌ
-	CN3Texture*	pTexture;		// Texture ÂüÁ¶Æ÷ÀÎÅÍ (NULLÀÌ ¾Æ´Ï¸é LoadµÇ¾î ÀÖ´Â °ÍÀÌ´Ù.
-	int			iCurAnimTexFrm;	// ÇöÀç animation textureÀÇ ÇÁ¿¡ÀÓ ¹øÈ£..
-	CN3Texture** pAnimTextures;	// animation textureÆ÷ÀÎÅÍµé..(NULLÀÌ ¾Æ´Ï¸é LoadµÇ¾î ÀÖ´Â °ÍÀÌ´Ù.
-	DWORD		dwPrevTick;		// ÀÌÀü iCurAnimTexFrmÀ» Áõ°¡½ÃÅ² tickcount
+	// ï¿½Ç½Ã°ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ï´ï¿½ ï¿½ï¿½ï¿½ï¿½
+	float		fCurDiffV1;		// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ Vï¿½ï¿½Ç¥ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+	float		fCurDiffV2;		// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ V2ï¿½ï¿½Ç¥ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+	CN3Texture*	pTexture;		// Texture ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ (NULLï¿½ï¿½ ï¿½Æ´Ï¸ï¿½ Loadï¿½Ç¾ï¿½ ï¿½Ö´ï¿½ ï¿½ï¿½ï¿½Ì´ï¿½.
+	int			iCurAnimTexFrm;	// ï¿½ï¿½ï¿½ï¿½ animation textureï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È£..
+	CN3Texture** pAnimTextures;	// animation textureï¿½ï¿½ï¿½ï¿½ï¿½Íµï¿½..(NULLï¿½ï¿½ ï¿½Æ´Ï¸ï¿½ Loadï¿½Ç¾ï¿½ ï¿½Ö´ï¿½ ï¿½ï¿½ï¿½Ì´ï¿½.
+	DWORD		dwPrevTick;		// ï¿½ï¿½ï¿½ï¿½ iCurAnimTexFrmï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Å² tickcount
 
 	__RiverInfo () {iRiverID = -1; dwAlphaFactor = 0x00000000; fSpeed1 = fSpeed2 = 0; pszTexName = NULL;
 					fAnimTexFPS = 30.0f; iAnimTexCount = 0; pszAnimTexNames = NULL;
 					fCurDiffV1 = fCurDiffV2 = 0; pTexture = NULL; iCurAnimTexFrm = 0; pAnimTextures = NULL; dwPrevTick = 0;}
 	~__RiverInfo () { if (pszTexName) delete [] pszTexName;
-						__ASSERT(pTexture==NULL, "Texture ÂüÁ¶ Æ÷ÀÎÅÍ°¡ ÇØÁ¦ µÇÁö ¾Ê¾Ò½À´Ï´Ù.");
+						__ASSERT(pTexture==NULL, "Texture ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Í°ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ê¾Ò½ï¿½ï¿½Ï´ï¿½.");
 						for(int i=0; i<iAnimTexCount; ++i)
 						{	__ASSERT(pszAnimTexNames, "");
 							if (pszAnimTexNames[i]) {delete [] pszAnimTexNames[i]; pszAnimTexNames[i] = NULL;}
-							__ASSERT(pAnimTextures, ""); __ASSERT(pAnimTextures[i]==NULL, "Texture ÂüÁ¶ Æ÷ÀÎÅÍ°¡ ÇØÁ¦ µÇÁö ¾Ê¾Ò½À´Ï´Ù.");
+							__ASSERT(pAnimTextures, ""); __ASSERT(pAnimTextures[i]==NULL, "Texture ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Í°ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ê¾Ò½ï¿½ï¿½Ï´ï¿½.");
 						}
 						if (pszAnimTexNames) {delete [] pszAnimTexNames; pszAnimTexNames = NULL;}
 						if (pAnimTextures) {delete [] pAnimTextures; pAnimTextures = NULL;}
@@ -56,15 +56,15 @@ struct __RiverInfo
 	}
 	void		SetAnimTexName(int iIndex, const char* pszName)
 	{
-		__ASSERT(pAnimTextures && pszAnimTexNames, "SetAnimTexCount¸¦ ÇÑ¹ø È£ÃâÇØ¾ß ÇÑ´Ù.");
+		__ASSERT(pAnimTextures && pszAnimTexNames, "SetAnimTexCountï¿½ï¿½ ï¿½Ñ¹ï¿½ È£ï¿½ï¿½ï¿½Ø¾ï¿½ ï¿½Ñ´ï¿½.");
 		int iLen = lstrlen(pszName); if (iLen==0) return;
 		if(pszAnimTexNames[iIndex]) delete [] pszAnimTexNames[iIndex];
 		pszAnimTexNames[iIndex] = new char[iLen+1];
 		lstrcpy(pszAnimTexNames[iIndex], pszName);
 	}
-	void		SetAnimTexCount(int iCount)	// ÀÌÇÔ¼ö´Â Ã³À½¿¡ ÇÑ¹ø¸¸ ºÒ·¯Áà¾ß ÇÑ´Ù.
+	void		SetAnimTexCount(int iCount)	// ï¿½ï¿½ï¿½Ô¼ï¿½ï¿½ï¿½ Ã³ï¿½ï¿½ï¿½ï¿½ ï¿½Ñ¹ï¿½ï¿½ï¿½ ï¿½Ò·ï¿½ï¿½ï¿½ï¿½ ï¿½Ñ´ï¿½.
 	{
-		__ASSERT(pAnimTextures == NULL && iAnimTexCount == 0 && pszAnimTexNames == NULL && iCount>0,"ÀÌÇÔ¼ö´Â Ã³À½¿¡ ÇÑ¹ø¸¸ ºÒ·¯Áà¾ß ÇÑ´Ù.");
+		__ASSERT(pAnimTextures == NULL && iAnimTexCount == 0 && pszAnimTexNames == NULL && iCount>0,"ï¿½ï¿½ï¿½Ô¼ï¿½ï¿½ï¿½ Ã³ï¿½ï¿½ï¿½ï¿½ ï¿½Ñ¹ï¿½ï¿½ï¿½ ï¿½Ò·ï¿½ï¿½ï¿½ï¿½ ï¿½Ñ´ï¿½.");
 		iAnimTexCount = iCount;
 		pszAnimTexNames = new char*[iAnimTexCount];
 		pAnimTextures = new CN3Texture*[iAnimTexCount];
@@ -95,11 +95,11 @@ struct __RiverInfo
 	}
 };
 
-#define _LOAD_ALL_RIVERPATCH		// ¸ðµç patch¸¦ ÇÑ²¨¹ø¿¡ LoadÇÏ¿© ³õ°í ¾µ¶§ ¼±¾ðÇÏÀÚ
-// ¼±¾ðÇÏÁö ¾ÊÀ¸¸é ÁÖº¯ 9Ä­ÀÇ patchÁ¤º¸ ÆÄÀÏ¸¸ loadÇÏ¿© »ç¿ëÇÑ´Ù.
+#define _LOAD_ALL_RIVERPATCH		// ï¿½ï¿½ï¿½ patchï¿½ï¿½ ï¿½Ñ²ï¿½ï¿½ï¿½ï¿½ï¿½ Loadï¿½Ï¿ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Öºï¿½ 9Ä­ï¿½ï¿½ patchï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ï¸ï¿½ loadï¿½Ï¿ï¿½ ï¿½ï¿½ï¿½ï¿½Ñ´ï¿½.
 
 class CN3RiverPatch;
-class CN3River : public CN3Base  // CN3RiverPatch¸¦ °ü¸®ÇÏ´Â Å¬·¡½º
+class CN3River : public CN3Base  // CN3RiverPatchï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½ Å¬ï¿½ï¿½ï¿½ï¿½
 {
 public:
 	CN3River();
@@ -112,20 +112,20 @@ protected:
 public:
 	void			SetMaxPatchSize(int iX, int iZ) {m_MaxPatchSize.cx = iX; m_MaxPatchSize.cy = iZ;};
 protected:
-	int				m_iRiverCount;		// ¸ðµç °­ÀÇ ¼ö
-	__RiverInfo*	m_RiverInfos;		// ¸ðµç °­ÀÇ Á¤º¸
-	CN3RiverPatch*	m_pRiverPatches[9];	// ÁÖº¯ 9Ä­ÀÇ ÆÐÄ¡Á¤º¸
-	POINT			m_CurPatchPos;		//ÇöÀç ÀÖ´Â À§Ä¡ÀÇ PatchÁÂÇ¥
-	SIZE			m_MaxPatchSize;		// Patch°¡ °¡·Î ¼¼·Î ¸î°³°¡ ÀÖ´ÂÁö..
-	CN3LinkedList<struct __RiverEx*> m_RiverList;	// ½ÇÁ¦·Î ±×·ÁÁú ¼ö ÀÖ´Â °­µéÀÇ ¸®½ºÆ®
+	int				m_iRiverCount;		// ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½
+	__RiverInfo*	m_RiverInfos;		// ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+	CN3RiverPatch*	m_pRiverPatches[9];	// ï¿½Öºï¿½ 9Ä­ï¿½ï¿½ ï¿½ï¿½Ä¡ï¿½ï¿½ï¿½ï¿½
+	POINT			m_CurPatchPos;		//ï¿½ï¿½ï¿½ï¿½ ï¿½Ö´ï¿½ ï¿½ï¿½Ä¡ï¿½ï¿½ Patchï¿½ï¿½Ç¥
+	SIZE			m_MaxPatchSize;		// Patchï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½î°³ï¿½ï¿½ ï¿½Ö´ï¿½ï¿½ï¿½..
+	CN3LinkedList<struct __RiverEx*> m_RiverList;	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½×·ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½Ö´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Æ®
 
 #ifndef _LOAD_ALL_RIVERPATCH
-	char			m_PatchBaseName[_MAX_PATH];	//PatchÆÄÀÏÀÇ ±âº»ÀûÀÎ ÀÌ¸§ (¸ÇµÚÀÇ XXXXÀÇ À§Ä¡ÁÂÇ¥¸¦ »« ÀÌ¸§)
+	char			m_PatchBaseName[_MAX_PATH];	//Patchï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½âº»ï¿½ï¿½ï¿½ï¿½ ï¿½Ì¸ï¿½ (ï¿½Çµï¿½ï¿½ï¿½ XXXXï¿½ï¿½ ï¿½ï¿½Ä¡ï¿½ï¿½Ç¥ï¿½ï¿½ ï¿½ï¿½ ï¿½Ì¸ï¿½)
 #else
-	CN3RiverPatch**	m_pAllRiverPatches;	// ÀÌ Á¸ÀÇ ¸ðµç patchÁ¤º¸
+	CN3RiverPatch**	m_pAllRiverPatches;	// ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ patchï¿½ï¿½ï¿½ï¿½
 
 public:
-	void LoadAllPatches(HANDLE hFile);	// ¸ðµç °­ ÆÐÄ¡Á¤º¸¸¦ ÇÑ²¨¹ø¿¡ Load
+	void LoadAllPatches(HANDLE hFile);	// ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½Ä¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ñ²ï¿½ï¿½ï¿½ï¿½ï¿½ Load
 #endif
 
 // Operations
@@ -136,15 +136,15 @@ public:
 	void			Render();
 	void			Tick();
 
-	__RiverInfo*	CreateRiverInfo(int iRiverCount);	// m_RiverInfos ¹öÆÛ »ý¼º
-	void			SetPatchPos(int iX, int iZ);		// ÇöÀç ÀÖ´Â À§Ä¡ patchÁÂÇ¥ ¼³Á¤
+	__RiverInfo*	CreateRiverInfo(int iRiverCount);	// m_RiverInfos ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+	void			SetPatchPos(int iX, int iZ);		// ï¿½ï¿½ï¿½ï¿½ ï¿½Ö´ï¿½ ï¿½ï¿½Ä¡ patchï¿½ï¿½Ç¥ ï¿½ï¿½ï¿½ï¿½
 protected:
 	__RiverInfo*	GetRiverInfoByID(int iRiverID);	
 	void			ReleaseRiverList();					
-	void			ReleaseAllRiverPatches();			// RiverPatch¸¦ ¸ðµÎ Release
-	CN3RiverPatch*	LoadPatch(int iX, int iZ);			// ÇØ´ç À§Ä¡ÀÇ patch¸¦ newÇÏ¿© loadÇÑ´Ù.
-	void			SortRiver();						// °­ÀÇ Á¡µéÀ» ´Ù½Ã Á¤·ÄÇÑ´Ù.
-	static int		CompareVertexRiver( const void *arg1, const void *arg2 );	// __VertexRiverÁ¡À» Á¤·ÄÇÒ¶§ ºñ±³ÇÏ´Â ÇÔ¼ö
+	void			ReleaseAllRiverPatches();			// RiverPatchï¿½ï¿½ ï¿½ï¿½ï¿½ Release
+	CN3RiverPatch*	LoadPatch(int iX, int iZ);			// ï¿½Ø´ï¿½ ï¿½ï¿½Ä¡ï¿½ï¿½ patchï¿½ï¿½ newï¿½Ï¿ï¿½ loadï¿½Ñ´ï¿½.
+	void			SortRiver();						// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ù½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ñ´ï¿½.
+	static int		CompareVertexRiver( const void *arg1, const void *arg2 );	// __VertexRiverï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ò¶ï¿½ ï¿½ï¿½ï¿½Ï´ï¿½ ï¿½Ô¼ï¿½
 };
 
 #endif // !defined(AFX_N3RIVER_H__D0171C53_F631_4EC3_9D42_B4B754093FAC__INCLUDED_)

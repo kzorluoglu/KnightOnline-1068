@@ -25,12 +25,12 @@ public:
 protected:
 	int							m_iVC;
 	int							m_iIC;
-	LPDIRECT3DVERTEXBUFFER8		m_pVB;
-	LPDIRECT3DINDEXBUFFER8		m_pIB;
+	LPDIRECT3DVERTEXBUFFER9		m_pVB;
+	LPDIRECT3DINDEXBUFFER9		m_pIB;
 	DWORD						m_dwEffectType;
 	BOOL						m_bActive;
-	float						m_fFadeTime; // ÀÌ½Ã°£ µ¿¾È Â÷Â÷ ¸ñÇ¥ÇÑ ¾ç¸¸Å­ ÆÄÆ¼Å¬ÀÇ ¼ö°¡ ´Ã¾î³­´Ù..
-	float						m_fFadeTimeCur; // Áö³­½Ã°£..
+	float						m_fFadeTime; // ï¿½Ì½Ã°ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ç¥ï¿½ï¿½ ï¿½ç¸¸Å­ ï¿½ï¿½Æ¼Å¬ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ã¾î³­ï¿½ï¿½..
+	float						m_fFadeTimeCur; // ï¿½ï¿½ï¿½ï¿½ï¿½Ã°ï¿½..
 	int							m_iFadeMode; // 1 - FadeIn 0... -1 FadeOut
 
 // Operations

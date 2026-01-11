@@ -165,7 +165,7 @@ public:
 		}
 		
 		m_nCount--;
-		if (m_nCount == 0) Init(); //	Count°¡ 0ÀÌ¸é ÃÊ±âÈ­ÇØ¾ß ÇÑ´Ù.
+		if (m_nCount == 0) Init(); //	Countï¿½ï¿½ 0ï¿½Ì¸ï¿½ ï¿½Ê±ï¿½È­ï¿½Ø¾ï¿½ ï¿½Ñ´ï¿½.
 		return m_nCount;
 	}
 

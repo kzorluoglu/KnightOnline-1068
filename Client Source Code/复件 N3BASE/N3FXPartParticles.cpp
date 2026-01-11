@@ -22,7 +22,7 @@ static char THIS_FILE[]=__FILE__;
 
 CN3FXPartParticles::CN3FXPartParticles()
 {
-	m_iVersion = 5;	//3ÀÌÇÏ´Â ´Ù ¹«½ÃÇØ¹ö·Á..
+	m_iVersion = 5;	//3ï¿½ï¿½ï¿½Ï´ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ø¹ï¿½ï¿½ï¿½..
 
 	m_iNumParticle		= 0;
 	m_iNumLodParticle	= 0;
@@ -139,7 +139,7 @@ bool CN3FXPartParticles::ParseScript(char* szCommand, char* szBuff0, char* szBuf
 {
 	if(CN3FXPartBase::ParseScript(szCommand, szBuff0, szBuff1, szBuff2, szBuff3)) return true;
 
-	//	ÆÄÆ¼Å¬ ¼ö.
+	//	ï¿½ï¿½Æ¼Å¬ ï¿½ï¿½.
 	if(lstrcmpi(szCommand, "<particle_count>")==0)
 	{
 		m_iNumParticle = atoi(szBuff0);
@@ -147,7 +147,7 @@ bool CN3FXPartParticles::ParseScript(char* szCommand, char* szBuff0, char* szBuf
 		return true;
 	}
 
-	//	ÆÄÆ¼Å¬ Å©±â.
+	//	ï¿½ï¿½Æ¼Å¬ Å©ï¿½ï¿½.
 	if(lstrcmpi(szCommand, "<particle_size>")==0)
 	{
 		m_pair_fParticleSize.first = m_pair_fParticleSize.second = atof(szBuff0);
@@ -160,7 +160,7 @@ bool CN3FXPartParticles::ParseScript(char* szCommand, char* szBuff0, char* szBuf
 		return true;
 	}
 
-	//	ÆÄÆ¼Å¬ »ý¸í.
+	//	ï¿½ï¿½Æ¼Å¬ ï¿½ï¿½ï¿½ï¿½.
 	if(lstrcmpi(szCommand, "<particle_life>")==0)
 	{
 		m_pair_fParticleLife.first = atof(szBuff0);
@@ -168,35 +168,35 @@ bool CN3FXPartParticles::ParseScript(char* szCommand, char* szBuff0, char* szBuf
 		return true;
 	}
 
-	//	ÆÄÆ¼Å¬ ½ÃÀÛ¿ÀÂ÷..min
+	//	ï¿½ï¿½Æ¼Å¬ ï¿½ï¿½ï¿½Û¿ï¿½ï¿½ï¿½..min
 	if(lstrcmpi(szCommand, "<start_range_min>")==0)
 	{
 		m_MinCreateRange.Set(atof(szBuff0), atof(szBuff1), atof(szBuff2));
 		return true;
 	}
 
-	//	ÆÄÆ¼Å¬ ½ÃÀÛ¿ÀÂ÷..max
+	//	ï¿½ï¿½Æ¼Å¬ ï¿½ï¿½ï¿½Û¿ï¿½ï¿½ï¿½..max
 	if(lstrcmpi(szCommand, "<start_range_max>")==0)
 	{
 		m_MaxCreateRange.Set(atof(szBuff0), atof(szBuff1), atof(szBuff2));
 		return true;
 	}
 
-	//	ÆÄÆ¼Å¬ ÇÑ¹ø¿¡ »ý¼º °¹¼ö
+	//	ï¿½ï¿½Æ¼Å¬ ï¿½Ñ¹ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	if(lstrcmpi(szCommand, "<create_count>")==0)
 	{
 		m_iNumCreate = atoi(szBuff0);
 		return true;
 	}
 
-	//	ÆÄÆ¼Å¬ ÇÑ¹ø¿¡ »ý¼º ½Ã°£ ¹üÀ§
+	//	ï¿½ï¿½Æ¼Å¬ ï¿½Ñ¹ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ã°ï¿½ ï¿½ï¿½ï¿½ï¿½
 	if(lstrcmpi(szCommand, "<create_delay>")==0)
 	{
 		m_CurrCreateDelay = m_fCreateDelay = atof(szBuff0);
 		return true;
 	}
 
-	//	½ÃÀÛÇÏ´Â ¹æ¹ý.
+	//	ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½ ï¿½ï¿½ï¿½.
 	if(lstrcmpi(szCommand, "<emit_type>")==0)
 	{
 		if(lstrcmpi(szBuff0, "spread")==0)
@@ -565,7 +565,7 @@ bool CN3FXPartParticles::Tick()
 
 	if(m_bAnimKey && m_pShape)
 	{
-		//frm °è»ê..
+		//frm ï¿½ï¿½ï¿½..
 		float fFrm = m_fCurrLife * m_fMeshFPS;
 		int share = fFrm / m_pShape->GetWholeFrm();
 		//if(fFrm > m_pShape->GetWholeFrm()-1.0f) fFrm = m_pShape->GetWholeFrm()-1.0f;
@@ -599,7 +599,7 @@ bool CN3FXPartParticles::Tick()
 	}
 	
 	// make particles...
-	if(m_CurrCreateDelay >= m_fCreateDelay && m_dwState==FX_PART_STATE_LIVE)	//ÆÄÆ¼Å¬ »ý¼º...
+	if(m_CurrCreateDelay >= m_fCreateDelay && m_dwState==FX_PART_STATE_LIVE)	//ï¿½ï¿½Æ¼Å¬ ï¿½ï¿½ï¿½ï¿½...
 	{
 		m_CurrCreateDelay = 0.0f;
 		CreateParticles();		
@@ -663,14 +663,14 @@ void CN3FXPartParticles::Scaling()
 
 //
 //	render...
-//	ÀÏ´ÜÀº ÆÄÆ¼Å¬ ÇÏ³ª¾¿ ±×¸®°í....
-//	³ªÁß¿¡´Â °°Àº ÅØ½ºÃÄ ¾²´Â °Íµé³¢¸® ¹­¾î¼­ ±×¸®ÀÚ...
+//	ï¿½Ï´ï¿½ï¿½ï¿½ ï¿½ï¿½Æ¼Å¬ ï¿½Ï³ï¿½ï¿½ï¿½ ï¿½×¸ï¿½ï¿½ï¿½....
+//	ï¿½ï¿½ï¿½ß¿ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ø½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Íµé³¢ï¿½ï¿½ ï¿½ï¿½ï¿½î¼­ ï¿½×¸ï¿½ï¿½ï¿½...
 //
 void CN3FXPartParticles::Render()
 {
 	if(m_pVBList_Alive.size()==0) return;
 
-	if(m_bAlpha) // Alpha »ç¿ë
+	if(m_bAlpha) // Alpha ï¿½ï¿½ï¿½
 	{
 		std::list<CN3FXParticle*>::iterator it;
 		it = m_pVBList_Alive.begin();
@@ -706,10 +706,10 @@ void CN3FXPartParticles::Render()
 			}
 		}		
 
-		return; // ·»´õ¸µ ¾ÈÇÏÁö·Õ.
+		return; // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½.
 	}
 		
-	CN3Base::s_lpD3DDev->SetVertexShader(FVF_XYZCOLORT1);
+	CN3Base::s_lpD3DDev->SetFVF(FVF_XYZCOLORT1);
 
 	//s_lpD3DDev->SetRenderState( D3DRS_ALPHABLENDENABLE, m_bAlpha );
 	//s_lpD3DDev->SetRenderState( D3DRS_SRCBLEND, m_dwSrcBlend );
@@ -798,7 +798,7 @@ void CN3FXPartParticles::Render()
 	m_mtxVI = s_CameraData.mtxViewInverse;
 	m_mtxVI.PosSet(0,0,0);
 
-	CN3Base::s_lpD3DDev->SetVertexShader(FVF_XYZCOLORT1);
+	CN3Base::s_lpD3DDev->SetFVF(FVF_XYZCOLORT1);
 
 	//DWORD dwZWriteEnable;
 	//CN3Base::s_lpD3DDev->GetRenderState(D3DRS_ZWRITEENABLE, &dwZWriteEnable);
@@ -836,7 +836,7 @@ void CN3FXPartParticles::Render()
 	////////////////////////////////////////////////////////////////////////////////////
 	//ParticleGreater pg;
 	//m_pVBList_Alive.sort(pg);
-	// ÀÌ°ÅÀÌ ¾ÈµÇ¼­ ¾È¿¡ ÀÖ´Â ·çÆ¾ ±×´ë·Î º£²¸¼­ PSort()ÇÔ¼ö ¸¸µé¾ú¾û...¤Ð.¤Ð;;
+	// ï¿½Ì°ï¿½ï¿½ï¿½ ï¿½ÈµÇ¼ï¿½ ï¿½È¿ï¿½ ï¿½Ö´ï¿½ ï¿½ï¿½Æ¾ ï¿½×´ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ PSort()ï¿½Ô¼ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½...ï¿½ï¿½.ï¿½ï¿½;;
 	PSort();
 
 	std::list<CN3FXParticle*>::iterator it;
@@ -978,7 +978,7 @@ void CN3FXPartParticles::CreateParticles_Spread()
 
 		__Quaternion Qt;
 
-		//bundleÀÇ ¹æÇâ Àû¿ë..
+		//bundleï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½..
 		if(m_pRefBundle)
 		{			
 			if(RotateQuaternion(v, m_pRefBundle->m_vDir, &Qt))
@@ -996,7 +996,7 @@ void CN3FXPartParticles::CreateParticles_Spread()
 			}
 		}
 
-		//part(emiiter)ÀÇ ¹æÇâ Àû¿ë
+		//part(emiiter)ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 		//if(m_vEmitterDir.Magnitude()!=0)
 		if(vDirPart.Magnitude()!=0)
 		{
@@ -1016,7 +1016,7 @@ void CN3FXPartParticles::CreateParticles_Spread()
 			}
 		}
 
-		//»Ñ·ÁÁö´Â ¹æÇâ Àû¿ë..
+		//ï¿½Ñ·ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½..
 		//if(RotateQuaternion(v, m_vPtEmitDir, &Qt))
 		if(RotateQuaternion(v, vDirEmit, &Qt))
 		{
@@ -1156,7 +1156,7 @@ void CN3FXPartParticles::CreateParticles_Gather()
 
 		__Quaternion Qt;
 
-		//bundleÀÇ ¹æÇâ Àû¿ë..
+		//bundleï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½..
 		if(m_pRefBundle)
 		{			
 			if(RotateQuaternion(v, m_pRefBundle->m_vDir, &Qt))
@@ -1174,7 +1174,7 @@ void CN3FXPartParticles::CreateParticles_Gather()
 			}
 		}
 
-		//part(emiiter)ÀÇ ¹æÇâ Àû¿ë
+		//part(emiiter)ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 		if(vDirPart.Magnitude()!=0)
 		{
 			if(RotateQuaternion(v, vDirPart, &Qt))
@@ -1191,7 +1191,7 @@ void CN3FXPartParticles::CreateParticles_Gather()
 				vDirEmit *= -1.0f;
 			}
 		}
-		//»Ñ·ÁÁö´Â ¹æÇâ Àû¿ë..
+		//ï¿½Ñ·ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½..
 		//if(RotateQuaternion(v, m_vPtEmitDir, &Qt))
 		if(RotateQuaternion(v, vDirEmit, &Qt))
 		{
@@ -1415,7 +1415,7 @@ bool CN3FXPartParticles::GetColor(int key, DWORD& color)
 
 
 //
-// µÎ ¹æÇâ º¤ÅÍ°¡ ÀÖÀ»¶§ ÇÏ³ªÀÇ ¹æÇâº¤ÅÍ¿¡¼­ ´Ù¸¥ ÇÏ³ªÀÇ ¹æÇâº¤ÅÍ·Î È¸ÀüÇÏ´Â mtx±¸ÇÏ±â..
+// ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Í°ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ï³ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½âº¤ï¿½Í¿ï¿½ï¿½ï¿½ ï¿½Ù¸ï¿½ ï¿½Ï³ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½âº¤ï¿½Í·ï¿½ È¸ï¿½ï¿½ï¿½Ï´ï¿½ mtxï¿½ï¿½ï¿½Ï±ï¿½..
 //
 bool CN3FXPartParticles::RotateQuaternion(__Vector3 vSrcDir, __Vector3 vDestDir, __Quaternion* pQt)
 {
@@ -1441,8 +1441,8 @@ bool CN3FXPartParticles::RotateQuaternion(__Vector3 vSrcDir, __Vector3 vDestDir,
 //
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // related sort list...
-// listÀÇ sortÇÔ¼ö º£²¼´ç..-.-
-// Á¦´ë·Î µ¿ÀÛ ¾ÈÇÏ´õ¶ó..¤Ð.¤Ð
+// listï¿½ï¿½ sortï¿½Ô¼ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½..-.-
+// ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ï´ï¿½ï¿½ï¿½..ï¿½ï¿½.ï¿½ï¿½
 //
 
 void CN3FXPartParticles::PSort()

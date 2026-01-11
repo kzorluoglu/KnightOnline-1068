@@ -37,7 +37,7 @@ protected:
 public:
 	int						m_iID;
 	bool					m_bUse;
-	std::string				m_szFileName;	//ÆÄÀÏÀÌ¸§...(ID ´ë¿ë).
+	std::string				m_szFileName;	//ï¿½ï¿½ï¿½ï¿½ï¿½Ì¸ï¿½...(ID ï¿½ï¿½ï¿½).
 	
 
 protected:

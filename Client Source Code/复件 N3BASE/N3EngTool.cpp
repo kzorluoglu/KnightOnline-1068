@@ -18,7 +18,7 @@ static char THIS_FILE[]=__FILE__;
 
 CN3EngTool::CN3EngTool()
 {
-	// ½ÊÀÚ¼± »ý¼º..
+	// ï¿½ï¿½ï¿½Ú¼ï¿½ ï¿½ï¿½ï¿½ï¿½..
 	int i = 0;
 	for(i = -10; i < 10; i++)
 	{
@@ -40,7 +40,7 @@ CN3EngTool::~CN3EngTool()
 //	m_lpD3DDevExtra = NULL;
 }
 
-// ¿ùµå Ãà ±×¸®±â..
+// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½×¸ï¿½ï¿½ï¿½..
 void CN3EngTool::RenderGrid(float fScale)
 {
 	if(fScale <= 0) fScale = 1.0f;
@@ -66,19 +66,19 @@ void CN3EngTool::RenderGrid(float fScale)
 		bInit = true;
 	}
 
-	stm.Scale(fScale, fScale, fScale); // ½ºÄÉÀÏ Àû¿ë
+	stm.Scale(fScale, fScale, fScale); // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 
 	s_lpD3DDev->SetTransform(D3DTS_WORLD, &stm);
 	s_lpD3DDev->SetTexture(0, NULL);
 
-	s_lpD3DDev->SetVertexShader(FVF_CV);
+	s_lpD3DDev->SetFVF(FVF_CV);
 
-	if(m_pVGrids) // ±×¸®µå ±×¸®±â..
+	if(m_pVGrids) // ï¿½×¸ï¿½ï¿½ï¿½ ï¿½×¸ï¿½ï¿½ï¿½..
 	{
 		s_lpD3DDev->DrawPrimitiveUP(D3DPT_LINELIST, m_nGridLineCount, m_pVGrids, sizeof(__VertexColor)); // X
 	}
 
-	// Ãà ±×¸®±â..
+	// ï¿½ï¿½ ï¿½×¸ï¿½ï¿½ï¿½..
 	s_lpD3DDev->DrawPrimitiveUP(D3DPT_LINESTRIP, 19, &m_VAxis[0], sizeof(__VertexColor)); // X
 	s_lpD3DDev->DrawPrimitiveUP(D3DPT_LINESTRIP, 19, &m_VAxis[20], sizeof(__VertexColor)); // Y
 	s_lpD3DDev->DrawPrimitiveUP(D3DPT_LINESTRIP, 19, &m_VAxis[40], sizeof(__VertexColor)); // Z
@@ -117,9 +117,9 @@ void CN3EngTool::RenderAxis()
 	s_lpD3DDev->SetTransform(D3DTS_WORLD, &stm);
 	s_lpD3DDev->SetTexture(0, NULL);
 
-	s_lpD3DDev->SetVertexShader(FVF_CV);
+	s_lpD3DDev->SetFVF(FVF_CV);
 
-	// Ãà ±×¸®±â..
+	// ï¿½ï¿½ ï¿½×¸ï¿½ï¿½ï¿½..
 	s_lpD3DDev->DrawPrimitiveUP(D3DPT_LINESTRIP, 19, &m_VAxis[0], sizeof(__VertexColor)); // X
 	s_lpD3DDev->DrawPrimitiveUP(D3DPT_LINESTRIP, 19, &m_VAxis[20], sizeof(__VertexColor)); // Y
 	s_lpD3DDev->DrawPrimitiveUP(D3DPT_LINESTRIP, 19, &m_VAxis[40], sizeof(__VertexColor)); // Z
@@ -135,7 +135,7 @@ void CN3EngTool::RenderTexturePreview(CN3Texture *pTex, HWND hWndDiffuse)
 	
 	if(hWndDiffuse != NULL)
 	{
-		// ÅØ½ºÃ³ ÇÁ¸®ºä
+		// ï¿½Ø½ï¿½Ã³ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		RECT rcPreview;
 		::GetClientRect(hWndDiffuse, &rcPreview);
 
@@ -151,13 +151,13 @@ void CN3EngTool::RenderTexturePreview(CN3Texture *pTex, HWND hWndDiffuse)
 			float fRatioDest = (float)nW / (float)nH;
 			float fRatioSrc = (float)(pTex->Width()) / (float)(pTex->Height());
 
-			if(fRatioDest > 1.0f) // °¡·Î°¡ ±ä°æ¿ì
+			if(fRatioDest > 1.0f) // ï¿½ï¿½ï¿½Î°ï¿½ ï¿½ï¿½ï¿½ï¿½
 			{
 				int nDec = (nW - nH) / 2;
 				rcTex.left += nDec;
 				rcTex.right -= nDec;
 			}
-			else if(fRatioDest < 1.0f) // ¼¼·Î°¡ ±ä°æ¿ì
+			else if(fRatioDest < 1.0f) // ï¿½ï¿½ï¿½Î°ï¿½ ï¿½ï¿½ï¿½ï¿½
 			{
 				int nDec = (nH - nW) / 2;
 				rcTex.top += nDec;
@@ -189,7 +189,7 @@ void CN3EngTool::RenderTexturePreview(CN3Texture *pTex, HWND hWndDiffuse)
 			s_lpD3DDev->SetTextureStageState(0, D3DTSS_COLORARG1, D3DTA_TEXTURE);
 			s_lpD3DDev->SetTexture(0, pTex->Get());
 
-			s_lpD3DDev->SetVertexShader(FVF_TRANSFORMED);
+			s_lpD3DDev->SetFVF(FVF_TRANSFORMED);
 			s_lpD3DDev->DrawPrimitiveUP(D3DPT_TRIANGLELIST, 2, &m_VPreview, sizeof(__VertexTransformed));
 
 			if(TRUE != dwAlphaUse) s_lpD3DDev->SetRenderState(D3DRS_ALPHABLENDENABLE, dwAlphaUse);
@@ -210,7 +210,7 @@ void CN3EngTool::GridCreate(int nWidth, int nHeight)
 	m_nGridLineCount = (nWidth+1) + (nHeight+1);
 	m_pVGrids = new __VertexColor[m_nGridLineCount * 2];
 
-	// ±×¸®µå »ý¼º..
+	// ï¿½×¸ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½..
 	D3DCOLOR GridColor = 0xff808080;
 	int xx = nWidth/2, zz = nHeight/2;
 	int nSeq = 0;
@@ -244,16 +244,16 @@ bool CN3EngTool::CreateExtraDevice(int nWidth, int nHeight)
 	D3DDISPLAYMODE dm;
 	m_lpD3D->GetAdapterDisplayMode(D3DADAPTER_DEFAULT, &dm);
 	s_DevParam.BackBufferFormat = dm.Format;
-	s_DevParam.MultiSampleType = D3DMULTISAMPLE_NONE; // Swap Effect °¡ Discard ÇüÅÂ°¡ ¾Æ´Ï¸é ¹Ýµå½Ã ÀÌ·± ½ÄÀÌ¾î¾ß ÇÑ´Ù.
+	s_DevParam.MultiSampleType = D3DMULTISAMPLE_NONE; // Swap Effect ï¿½ï¿½ Discard ï¿½ï¿½ï¿½Â°ï¿½ ï¿½Æ´Ï¸ï¿½ ï¿½Ýµï¿½ï¿½ ï¿½Ì·ï¿½ ï¿½ï¿½ï¿½Ì¾ï¿½ï¿½ ï¿½Ñ´ï¿½.
 
 	int nMC = m_DeviceInfo.nModeCount;
 	for(int i = 0; i < nMC; i++)
 	{
 //		if(	m_DeviceInfo.pModes[i].Width == dwWidth && 
 //			m_DeviceInfo.pModes[i].Height == dwHeight && 
-		if(	m_DeviceInfo.pModes[i].Format == dm.Format) // ¸ðµå°¡ ÀÏÄ¡ÇÏ¸é
+		if(	m_DeviceInfo.pModes[i].Format == dm.Format) // ï¿½ï¿½å°¡ ï¿½ï¿½Ä¡ï¿½Ï¸ï¿½
 		{
-			this->FindDepthStencilFormat(0, m_DeviceInfo.DevType, m_DeviceInfo.pModes[i].Format, &DevParam.AutoDepthStencilFormat); // ±íÀÌ¿Í ½ºÅÙ½Ç ¹öÆÛ¸¦ Ã£´Â´Ù.
+			this->FindDepthStencilFormat(0, m_DeviceInfo.DevType, m_DeviceInfo.pModes[i].Format, &DevParam.AutoDepthStencilFormat); // ï¿½ï¿½ï¿½Ì¿ï¿½ ï¿½ï¿½ï¿½Ù½ï¿½ ï¿½ï¿½ï¿½Û¸ï¿½ Ã£ï¿½Â´ï¿½.
 			break;
 		}
 	}
@@ -267,16 +267,16 @@ bool CN3EngTool::CreateExtraDevice(int nWidth, int nHeight)
 		{
 			char szDebug[256];
 			D3DXGetErrorString(rval, szDebug, 256);
-			MessageBox(s_hWndBase, szDebug, "Direct3D Device »ý¼º ½ÇÆÐ", MB_OK);
+			MessageBox(s_hWndBase, szDebug, "Direct3D Device ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½", MB_OK);
 			this->Release();
 			return false;
 		}
 #if _DEBUG
-		OutputDebugString("HardWare TnL ÀÌ Áö¿øµÇÁö ¾Ê½À´Ï´Ù. SoftWare TnL ·Î ÁøÇà ÇÕ´Ï´Ù.\n");
+		OutputDebugString("HardWare TnL ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ê½ï¿½ï¿½Ï´ï¿½. SoftWare TnL ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Õ´Ï´ï¿½.\n");
 #endif
 	}
 
-	// ±âº» ¶óÀÌÆ® Á¤º¸ ÁöÁ¤..
+	// ï¿½âº» ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½..
 	for(i = 0; i < 8; i++)
 	{
 		CN3Light::__Light Lgt;
@@ -285,7 +285,7 @@ bool CN3EngTool::CreateExtraDevice(int nWidth, int nHeight)
 		m_lpD3DDevExtra->SetLight(i, &Lgt);
 	}
 
-	// ±âº» ºä¿Í ÇÁ·ÎÁ§¼Ç ¼³Á¤.
+	// ï¿½âº» ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½.
 	__Matrix44 matView;
 	__Vector3 vEye(5,5,-10), vAt(0,0,0), vUp(0,1,0);
 	D3DXMatrixLookAtLH(&matView, &vEye, &vAt, &vUp);
@@ -295,7 +295,7 @@ bool CN3EngTool::CreateExtraDevice(int nWidth, int nHeight)
 	::D3DXMatrixPerspectiveFovLH(&matProjection, D3DXToRadian(45.0f), (float)nHeight/nWidth, 0.11f, 2560.0f);
 	m_lpD3DDevExtra->SetTransform(D3DTS_PROJECTION, &matProjection);
 	
-	D3DVIEWPORT8 vp;
+	D3DVIEWPORT9 vp;
 	vp.X = 0;
 	vp.Y = 0;
 	vp.Width = nWidth;
@@ -304,7 +304,7 @@ bool CN3EngTool::CreateExtraDevice(int nWidth, int nHeight)
 	vp.MaxZ = 1.0f;
 	m_lpD3DDevExtra->SetViewport(&vp);
 
-	m_lpD3DDevExtra->SetRenderState(D3DRS_ZENABLE, D3DZB_TRUE); // Z¹öÆÛ »ç¿ë°¡´É
+	m_lpD3DDevExtra->SetRenderState(D3DRS_ZENABLE, D3DZB_TRUE); // Zï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ë°¡ï¿½ï¿½
 	m_lpD3DDevExtra->SetRenderState(D3DRS_LIGHTING, TRUE);
 
     m_lpD3DDevExtra->SetRenderState( D3DRS_DITHERENABLE,   TRUE );
@@ -312,12 +312,12 @@ bool CN3EngTool::CreateExtraDevice(int nWidth, int nHeight)
 //    m_lpD3DDevExtra->SetRenderState( D3DRS_AMBIENT,        0x00444444 );
 
 	m_lpD3DDevExtra->SetRenderState(D3DRS_ALPHATESTENABLE, TRUE);
-	m_lpD3DDevExtra->SetRenderState(D3DRS_ALPHAFUNC, D3DCMP_GREATER); // ±âº» ¾ËÆÄ Æã¼Ç - ¾ÈÇØÁÖ¸é ¾ËÆÄ ÅØ½ºÃ³µéÀÌ »§²Ù³ª±âµµ ÇÑ´Ù.
+	m_lpD3DDevExtra->SetRenderState(D3DRS_ALPHAFUNC, D3DCMP_GREATER); // ï¿½âº» ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ - ï¿½ï¿½ï¿½ï¿½ï¿½Ö¸ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ø½ï¿½Ã³ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ù³ï¿½ï¿½âµµ ï¿½Ñ´ï¿½.
 	
 	m_lpD3DDevExtra->SetRenderState(D3DRS_FILLMODE, D3DFILL_SOLID);
 	m_lpD3DDevExtra->SetRenderState(D3DRS_CULLMODE, D3DCULL_CCW);
 
-	// ±âº» ÅØ½ºÃ³ ÇÊÅÍ ÁöÁ¤.
+	// ï¿½âº» ï¿½Ø½ï¿½Ã³ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½.
 	float fMipMapLODBias = -1.0f;
 	for(i = 0; i < 8; i++)
 	{
@@ -327,8 +327,8 @@ bool CN3EngTool::CreateExtraDevice(int nWidth, int nHeight)
 		m_lpD3DDevExtra->SetTextureStageState(i, D3DTSS_MIPMAPLODBIAS, *((LPDWORD) (&fMipMapLODBias)));
 	}
 
-	// Å¬¸®ÇÎ »óÅÂ ÁöÁ¤
-	D3DCLIPSTATUS8 cs; cs.ClipUnion = cs.ClipIntersection = D3DCS_ALL;
+	// Å¬ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+	D3DCLIPSTATUS9 cs; cs.ClipUnion = cs.ClipIntersection = D3DCS_ALL;
 	m_lpD3DDevExtra->SetClipStatus(&cs);	
 
 	return true;

@@ -71,7 +71,7 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 	DockControlBar(&m_wndToolBar);
 
 	if(!m_Eng.Init(TRUE, m_hWnd, 64, 64, 0, TRUE)) return -1;
-	m_Eng.GridCreate(1000, 1000); // ±×¸®µå ¸¸µé±â..
+	m_Eng.GridCreate(1000, 1000); // ï¿½×¸ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½..
 
 	m_Camera.m_bFogUse = true;
 
@@ -80,7 +80,7 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 	m_Lights[1].m_Data.InitDirection(1, __Vector3(0,0,-1), crLgt);
 	m_Lights[2].m_Data.InitPoint(2, __Vector3(0,0,0), crLgt, 32.0f);
 
-	m_ObjectBundle.LoadFromFile("Object\\Field.N3Shape"); // ¹è°æÀ¸·Î ¾µ ¿ÀºêÁ§Æ® ºÎ¸£±â..
+	m_ObjectBundle.LoadFromFile("Object\\Field.N3Shape"); // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ® ï¿½Î¸ï¿½ï¿½ï¿½..
 
 	return 0;
 }
@@ -147,7 +147,7 @@ void CMainFrame::OnImportObject()
 
 	std::string szObjPrev = m_ObjectBundle.FileName();
 	m_ObjectBundle.Release();
-	if(m_ObjectBundle.LoadFromFile((const char*)szFullPath)) // ¹è°æÀ¸·Î ¾µ ¿ÀºêÁ§Æ® ºÎ¸£±â..
+	if(m_ObjectBundle.LoadFromFile((const char*)szFullPath)) // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ® ï¿½Î¸ï¿½ï¿½ï¿½..
 	{
 		CSkyViewerView* pView = (CSkyViewerView*)(m_wndSplitter.GetPane(0,1));
 		pView->InvalidateRect(NULL, FALSE);

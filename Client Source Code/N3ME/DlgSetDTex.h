@@ -16,8 +16,8 @@ class CDlgSetDTex : public CDialog
 public:
 	float					m_fTexSurfaceSize;
 	CN3Texture*				m_pTex;
-	LPDIRECT3DVERTEXBUFFER8 m_pTexVB;
-	LPDIRECT3DVERTEXBUFFER8 m_pGridVB;
+	LPDIRECT3DVERTEXBUFFER9 m_pTexVB;
+	LPDIRECT3DVERTEXBUFFER9 m_pGridVB;
 		
 // Construction
 public:

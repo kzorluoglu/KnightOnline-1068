@@ -36,27 +36,27 @@ DWORD CN3UIManager::MouseProc(DWORD dwFlags, const POINT& ptCur, const POINT& pt
 	m_dwMouseFlagsCur = UI_MOUSEPROC_NONE;
 	if (!m_bVisible) return m_dwMouseFlagsCur;
 
-	if (s_pTooltipCtrl)	s_pTooltipCtrl->MouseProc(dwFlags, ptCur, ptOld);	// ÅøÆÁ¿¡°Ô ¸¶¿ì½º ¸Þ¼¼Áö Àü´Þ.
+	if (s_pTooltipCtrl)	s_pTooltipCtrl->MouseProc(dwFlags, ptCur, ptOld);	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ì½º ï¿½Þ¼ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½.
 
-	// child¿¡°Ô ¸Þ¼¼Áö Àü´Þ
+	// childï¿½ï¿½ï¿½ï¿½ ï¿½Þ¼ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	for(UIListItor itor = m_Children.begin(); m_Children.end() != itor; )
 	{
 		CN3UIBase* pChild = (*itor);
 		DWORD dwChildRet = pChild->MouseProc(dwFlags, ptCur, ptOld);
 		if (UI_MOUSEPROC_DONESOMETHING & dwChildRet)
-		{	// ÀÌ°æ¿ì¿¡´Â ¸Õ°¡ Æ÷Ä¿½º¸¦ ¹ÞÀº °æ¿ìÀÌ´Ù.
-			itor = m_Children.erase(itor);			// ¿ì¼± ¸®½ºÆ®¿¡¼­ Áö¿ì°í
-			m_Children.push_front(pChild);	// ¸Ç¾Õ¿¡ ³Ö´Â´Ù. ±×¸®´Â ¼ø¼­¸¦ ¸Ç ³ªÁß¿¡ ±×¸®µµ·Ï ÇÏ°í ¸Þ¼¼Áö¸¦ ¸Ç ¸ÕÀú ¹Þ°Ô ÇÏ·Á°í
+		{	// ï¿½Ì°ï¿½ì¿¡ï¿½ï¿½ ï¿½Õ°ï¿½ ï¿½ï¿½Ä¿ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ì´ï¿½.
+			itor = m_Children.erase(itor);			// ï¿½ì¼± ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½
+			m_Children.push_front(pChild);	// ï¿½Ç¾Õ¿ï¿½ ï¿½Ö´Â´ï¿½. ï¿½×¸ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ß¿ï¿½ ï¿½×¸ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ï°ï¿½ ï¿½Þ¼ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Þ°ï¿½ ï¿½Ï·ï¿½ï¿½ï¿½
 			m_dwMouseFlagsCur |= (UI_MOUSEPROC_DONESOMETHING|UI_MOUSEPROC_CHILDDONESOMETHING);
-			ReorderChildList();	// child list ÀçÁ¤·Ä(Ç×»ó À§¿¡ ¶ß´Â dialog ¶§¹®¿¡ ´Ù½Ã Á¤·ÄÇÑ´Ù.)
+			ReorderChildList();	// child list ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½(ï¿½×»ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ß´ï¿½ dialog ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ù½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ñ´ï¿½.)
 			return m_dwMouseFlagsCur;
 		}
 		else if ( (	UI_MOUSE_LBCLICK & dwFlags) && (UI_MOUSEPROC_INREGION & dwChildRet) )
-		{	// ¿µ¿ª ¾ÈÀ» Å¬¸¯ ÇßÀ»¶§ ¸Õ°¡ ÀÏÀ» Çß´Ù°í ÇÏ°í ¸®ÅÏÇØ¹ö¸°´Ù.
-			itor = m_Children.erase(itor);			// ¿ì¼± ¸®½ºÆ®¿¡¼­ Áö¿ì°í
-			m_Children.push_front(pChild);	// ¸Ç¾Õ¿¡ ³Ö´Â´Ù. ±×¸®´Â ¼ø¼­¸¦ ¸Ç ³ªÁß¿¡ ±×¸®µµ·Ï ÇÏ°í ¸Þ¼¼Áö¸¦ ¸Ç ¸ÕÀú ¹Þ°Ô ÇÏ·Á°í
+		{	// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ Å¬ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Õ°ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ß´Ù°ï¿½ ï¿½Ï°ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ø¹ï¿½ï¿½ï¿½ï¿½ï¿½.
+			itor = m_Children.erase(itor);			// ï¿½ì¼± ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½
+			m_Children.push_front(pChild);	// ï¿½Ç¾Õ¿ï¿½ ï¿½Ö´Â´ï¿½. ï¿½×¸ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ß¿ï¿½ ï¿½×¸ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ï°ï¿½ ï¿½Þ¼ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Þ°ï¿½ ï¿½Ï·ï¿½ï¿½ï¿½
 			m_dwMouseFlagsCur |= (UI_MOUSEPROC_DIALOGFOCUS);
-			ReorderChildList();	// child list ÀçÁ¤·Ä(Ç×»ó À§¿¡ ¶ß´Â dialog ¶§¹®¿¡ ´Ù½Ã Á¤·ÄÇÑ´Ù.)
+			ReorderChildList();	// child list ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½(ï¿½×»ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ß´ï¿½ dialog ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ù½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ñ´ï¿½.)
 			return m_dwMouseFlagsCur;
 		}
 		else ++itor;
@@ -68,7 +68,7 @@ DWORD CN3UIManager::MouseProc(DWORD dwFlags, const POINT& ptCur, const POINT& pt
 	return m_dwMouseFlagsCur;
 }
 
-void CN3UIManager::ReorderChildList()	// ´ÙÀÌ¾Ë·Î±× ¼ø¼­ Àç¹èÄ¡
+void CN3UIManager::ReorderChildList()	// ï¿½ï¿½ï¿½Ì¾Ë·Î±ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ä¡
 {
 	int iChildCount = m_Children.size();
 	if (iChildCount<=0) return;
@@ -80,7 +80,7 @@ void CN3UIManager::ReorderChildList()	// ´ÙÀÌ¾Ë·Î±× ¼ø¼­ Àç¹èÄ¡
 		CN3UIBase* pChild = (*itor);
 		if (pChild->GetStyle() & UISTYLE_ALWAYSTOP)
 		{
-			itor = m_Children.erase(itor);			// ¿ì¼± ¸®½ºÆ®¿¡¼­ Áö¿ì°í
+			itor = m_Children.erase(itor);			// ï¿½ì¼± ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½
 			ppBuffer[iAlwaysTopChildCount++] = pChild;
 		}
 		else ++itor;
@@ -88,7 +88,7 @@ void CN3UIManager::ReorderChildList()	// ´ÙÀÌ¾Ë·Î±× ¼ø¼­ Àç¹èÄ¡
 	int i;
 	for (i=iAlwaysTopChildCount-1; i>=0; --i)
 	{
-		m_Children.push_front(ppBuffer[i]);	// ¸Ç¾Õ¿¡ ³Ö´Â´Ù. ±×¸®´Â ¼ø¼­¸¦ ¸Ç ³ªÁß¿¡ ±×¸®µµ·Ï ÇÏ°í ¸Þ¼¼Áö¸¦ ¸Ç ¸ÕÀú ¹Þ°Ô ÇÏ·Á°í
+		m_Children.push_front(ppBuffer[i]);	// ï¿½Ç¾Õ¿ï¿½ ï¿½Ö´Â´ï¿½. ï¿½×¸ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ß¿ï¿½ ï¿½×¸ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ï°ï¿½ ï¿½Þ¼ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Þ°ï¿½ ï¿½Ï·ï¿½ï¿½ï¿½
 	}
 	delete [] ppBuffer;
 }
@@ -103,7 +103,7 @@ void CN3UIManager::Render()
 {
 	this->RenderStateSet();
 
-	CN3UIBase::Render();	// ÀÚ½Äµé render
+	CN3UIBase::Render();	// ï¿½Ú½Äµï¿½ render
 	if (s_pTooltipCtrl) s_pTooltipCtrl->Render();	// tooltip render
 
 	this->RenderStateRestore();
@@ -114,7 +114,7 @@ void CN3UIManager::RenderStateSet()
 	if(NULL == s_lpD3DDev) return;
 
 #ifdef _DEBUG
-	__ASSERT(FALSE == s_sRSFU.bSet, "ÀÌÀü¿¡ RenderStateSet()ÇÔ¼ö¸¦ È£ÃâÇÏ°í RenderStateRestore()ÇÔ¼ö°¡ È£ÃâµÇÁö ¾ÊÀº »óÅÂÀÔ´Ï´Ù.");
+	__ASSERT(FALSE == s_sRSFU.bSet, "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ RenderStateSet()ï¿½Ô¼ï¿½ï¿½ï¿½ È£ï¿½ï¿½ï¿½Ï°ï¿½ RenderStateRestore()ï¿½Ô¼ï¿½ï¿½ï¿½ È£ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ô´Ï´ï¿½.");
 	s_sRSFU.bSet = TRUE;
 #endif
 
@@ -133,7 +133,7 @@ void CN3UIManager::RenderStateSet()
 	if (TRUE != s_sRSFU.dwAlphaBlend) s_lpD3DDev->SetRenderState(D3DRS_ALPHABLENDENABLE, TRUE);
 	if (D3DBLEND_SRCALPHA != s_sRSFU.dwSrcBlend) s_lpD3DDev->SetRenderState(D3DRS_SRCBLEND, D3DBLEND_SRCALPHA);
 	if (D3DBLEND_INVSRCALPHA != s_sRSFU.dwDestBlend) s_lpD3DDev->SetRenderState(D3DRS_DESTBLEND, D3DBLEND_INVSRCALPHA);
-	if (FALSE != s_sRSFU.dwFog) s_lpD3DDev->SetRenderState(D3DRS_FOGENABLE   , FALSE);	// 2dµµ fog¸¦ ¸Ô´Â´Ù ¤Ñ.¤Ñ;
+	if (FALSE != s_sRSFU.dwFog) s_lpD3DDev->SetRenderState(D3DRS_FOGENABLE   , FALSE);	// 2dï¿½ï¿½ fogï¿½ï¿½ ï¿½Ô´Â´ï¿½ ï¿½ï¿½.ï¿½ï¿½;
 	if (D3DTEXF_POINT != s_sRSFU.dwMagFilter ) s_lpD3DDev->SetTextureStageState(0, D3DTSS_MAGFILTER,   D3DTEXF_POINT);
 	if (D3DTEXF_POINT != s_sRSFU.dwMinFilter ) s_lpD3DDev->SetTextureStageState(0, D3DTSS_MINFILTER,   D3DTEXF_POINT);
 	if (D3DTEXF_NONE != s_sRSFU.dwMipFilter ) s_lpD3DDev->SetTextureStageState(0, D3DTSS_MIPFILTER,   D3DTEXF_NONE);
@@ -142,7 +142,7 @@ void CN3UIManager::RenderStateSet()
 void CN3UIManager::RenderStateRestore()
 {
 #ifdef _DEBUG
-	__ASSERT(TRUE == s_sRSFU.bSet, "ÀÌÀü¿¡ RenderStateSet()ÇÔ¼ö¸¦ È£ÃâÇÏÁö ¾Ê¾Ò½À´Ï´Ù.");
+	__ASSERT(TRUE == s_sRSFU.bSet, "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ RenderStateSet()ï¿½Ô¼ï¿½ï¿½ï¿½ È£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ê¾Ò½ï¿½ï¿½Ï´ï¿½.");
 	s_sRSFU.bSet = FALSE;
 #endif
 

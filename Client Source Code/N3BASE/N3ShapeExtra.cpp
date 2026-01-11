@@ -46,7 +46,7 @@ void CN3ShapeExtra::Tick(float fFrm)
 	if(false == m_bVisible) 
 	{
 		m_bDontRender = true;
-		return; // °­Á¦·Î ·»´õ¸µ ÇÏÁö ¾Ê´Â´Ù.
+		return; // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ê´Â´ï¿½.
 	}
 
 	CN3Shape::Tick();
@@ -67,11 +67,11 @@ void CN3ShapeExtra::Tick(float fFrm)
 		__Rotation* pRot = &(m_Rotations[i]);
 		if(	pRot->fRadianPerSec == 0 || 
 			pRot->fRadianCur == pRot->fRadianToReach) continue;
-		(pRot->fRadianCur < pRot->fRadianToReach) ? fDir = 1.0f : fDir = -1.0f; // µµ´Â ¹æÇâ..
+		(pRot->fRadianCur < pRot->fRadianToReach) ? fDir = 1.0f : fDir = -1.0f; // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½..
 		
 		fRotDelta = pRot->fRadianPerSec * fDir * CN3Base::s_fSecPerFrm;
 		pRot->fRadianCur += fRotDelta;
-		if(T_Abs(pRot->fRadianToReach - pRot->fRadianCur) <= fRotDelta) /// ¿øÇÏ´Â °÷±îÁö ´Ù ¿­·È´Ù!!
+		if(T_Abs(pRot->fRadianToReach - pRot->fRadianCur) <= fRotDelta) /// ï¿½ï¿½ï¿½Ï´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½È´ï¿½!!
 		{
 			bNeedRemakeCollisionMeshes = true;
 			pRot->fRadianPerSec = 0;
@@ -85,7 +85,7 @@ void CN3ShapeExtra::Tick(float fFrm)
 	}
 
 	if(bNeedRemakeCollisionMeshes) 
-		this->MakeCollisionMeshByParts(); // Ãæµ¹¸Þ½Ã¸¦ ´Ù½Ã ¸¸µç´Ù..
+		this->MakeCollisionMeshByParts(); // ï¿½æµ¹ï¿½Þ½Ã¸ï¿½ ï¿½Ù½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½..
 }
 
 void CN3ShapeExtra::RotateTo(int iPart, const __Vector3& vAxis, float fRadianToReach, float fRadianPerSec, bool bImmediately)
@@ -97,5 +97,5 @@ void CN3ShapeExtra::RotateTo(int iPart, const __Vector3& vAxis, float fRadianToR
 	pRot->fRadianToReach = fRadianToReach;
 	pRot->fRadianPerSec = fRadianPerSec;
 	pRot->vAxis = vAxis;
-	if(bImmediately) pRot->fRadianCur = pRot->fRadianToReach - 0.01f; // ÀÌ·¯¸é Á÷»§À¸·Î ¿­¸°´Ù.. ¾à°£ °ªÀ» »©ÁÖ´Â ÀÌÀ¯´Â ÇÑ¹øÀº Æ½À» µ¹°Ô ÇÏ±â À§ÇØ¼­ÀÌ´Ù.
+	if(bImmediately) pRot->fRadianCur = pRot->fRadianToReach - 0.01f; // ï¿½Ì·ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½.. ï¿½à°£ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ö´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ñ¹ï¿½ï¿½ï¿½ Æ½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ï±ï¿½ ï¿½ï¿½ï¿½Ø¼ï¿½ï¿½Ì´ï¿½.
 }

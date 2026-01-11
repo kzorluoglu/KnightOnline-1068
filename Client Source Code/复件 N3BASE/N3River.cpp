@@ -90,7 +90,7 @@ bool CN3River::Load(HANDLE hFile)
 	Release();
 	int i;
 	DWORD dwNum;
-	// PatchBaseName ÁöÁ¤
+	// PatchBaseName ï¿½ï¿½ï¿½ï¿½
 #ifndef _LOAD_ALL_RIVERPATCH
 	char szDir[_MAX_DIR];	char szFName[_MAX_FNAME];
 	_splitpath(m_szFileName, NULL, szDir, szFName, NULL);
@@ -114,7 +114,7 @@ bool CN3River::Load(HANDLE hFile)
 		szTexName[iLen] = NULL;
 		pRiverInfo->SetTexName(szTexName);
 
-		// animation texture °ü·Ã..
+		// animation texture ï¿½ï¿½ï¿½ï¿½..
 		ReadFile(hFile, &(pRiverInfo->fAnimTexFPS), sizeof(pRiverInfo->fAnimTexFPS), &dwNum, NULL);
 		int iAnimTexCount;
 		ReadFile(hFile, &iAnimTexCount, sizeof(iAnimTexCount), &dwNum, NULL);
@@ -149,13 +149,13 @@ bool CN3River::Save(HANDLE hFile)
 		WriteFile(hFile, &iLen, sizeof(iLen), &dwNum, NULL);
 		if (iLen>0) WriteFile(hFile, pRiverInfo->pszTexName, iLen, &dwNum, NULL);
 
-		// animation texture °ü·Ã..
+		// animation texture ï¿½ï¿½ï¿½ï¿½..
 		WriteFile(hFile, &(pRiverInfo->fAnimTexFPS), sizeof(pRiverInfo->fAnimTexFPS), &dwNum, NULL);
 		int iAnimTexCount = pRiverInfo->iAnimTexCount;
 		WriteFile(hFile, &iAnimTexCount, sizeof(iAnimTexCount), &dwNum, NULL);
 		for (int j=0; j<iAnimTexCount; ++j)
 		{
-			__ASSERT(pRiverInfo->pszAnimTexNames, "AnimTexNames°¡ ¸Þ¸ð¸® ÇÒ´çµÇÁö ¾Ê¾Ò½À´Ï´Ù.");
+			__ASSERT(pRiverInfo->pszAnimTexNames, "AnimTexNamesï¿½ï¿½ ï¿½Þ¸ï¿½ ï¿½Ò´ï¿½ï¿½ï¿½ï¿½ ï¿½Ê¾Ò½ï¿½ï¿½Ï´ï¿½.");
 			iLen = lstrlen(pRiverInfo->pszAnimTexNames[j]);
 			__ASSERT(iLen>0, "Texture file name length is less than 0");
 			WriteFile(hFile, &iLen, sizeof(iLen), &dwNum, NULL);
@@ -195,34 +195,34 @@ void CN3River::Render()
 		__RiverInfo* pRiverInfo = GetRiverInfoByID(pRiverEx->iRiverID);
 		__ASSERT(pRiverInfo, "River information pointer is NULL!");
 
-		// alpha factor ÀÖÀ¸¸é Åõ¸í ¼³Á¤ÇÏ±â
+		// alpha factor ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï±ï¿½
 		if ( (pRiverInfo->dwAlphaFactor & 0xff000000) != 0xff000000)
 		{
-			// render state ¼¼ÆÃ
+			// render state ï¿½ï¿½ï¿½ï¿½
 			s_lpD3DDev->SetRenderState(D3DRS_ALPHABLENDENABLE, TRUE);
 			s_lpD3DDev->SetRenderState(D3DRS_DESTBLEND, D3DBLEND_INVSRCALPHA);
 			s_lpD3DDev->SetRenderState(D3DRS_SRCBLEND, D3DBLEND_SRCALPHA);
 			s_lpD3DDev->SetRenderState(D3DRS_TEXTUREFACTOR, pRiverInfo->dwAlphaFactor);	// alpha factor
-			// texture state ¼¼ÆÃ (alpha)
+			// texture state ï¿½ï¿½ï¿½ï¿½ (alpha)
 			s_lpD3DDev->SetTextureStageState(0, D3DTSS_ALPHAOP, D3DTOP_SELECTARG1);
 			s_lpD3DDev->SetTextureStageState(0, D3DTSS_ALPHAARG1, D3DTA_TFACTOR);
 			s_lpD3DDev->SetTextureStageState(1, D3DTSS_ALPHAOP, D3DTOP_DISABLE);
 		}
 		else
 		{
-			// render state ¼¼ÆÃ
+			// render state ï¿½ï¿½ï¿½ï¿½
 			s_lpD3DDev->SetRenderState(D3DRS_ALPHABLENDENABLE, FALSE);
-			// texture state ¼¼ÆÃ (alpha)
+			// texture state ï¿½ï¿½ï¿½ï¿½ (alpha)
 			s_lpD3DDev->SetTextureStageState(0, D3DTSS_ALPHAOP, D3DTOP_DISABLE);
 		}
 
-		// texture ¼¼ÆÃÇÏ±â (color)
+		// texture ï¿½ï¿½ï¿½ï¿½ï¿½Ï±ï¿½ (color)
 		__ASSERT(pRiverInfo->pTexture, "Texture pointer is NULL!");
 		s_lpD3DDev->SetTexture(0, pRiverInfo->pTexture->Get());
 		s_lpD3DDev->SetTextureStageState(0, D3DTSS_COLOROP, D3DTOP_SELECTARG1);
 		s_lpD3DDev->SetTextureStageState(0, D3DTSS_COLORARG1, D3DTA_TEXTURE);
 		//
-		__ASSERT(pRiverInfo->pAnimTextures, "Animation Texture°¡ ÁöÁ¤µÇ¾î ÀÖÁö ¾Ê½À´Ï´Ù.");
+		__ASSERT(pRiverInfo->pAnimTextures, "Animation Textureï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ç¾ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ê½ï¿½ï¿½Ï´ï¿½.");
 
 		LPDIRECT3DTEXTURE8 pD3DTex = NULL;
 		if (pRiverInfo->pAnimTextures && pRiverInfo->pAnimTextures[pRiverInfo->iCurAnimTexFrm])
@@ -241,7 +241,7 @@ void CN3River::Render()
 		}
 
 		// render
-		s_lpD3DDev->SetVertexShader(FVF_XYZT2);
+		s_lpD3DDev->SetFVF(FVF_XYZT2);
 		HRESULT hr = s_lpD3DDev->DrawIndexedPrimitiveUP(D3DPT_TRIANGLELIST, 0, pRiverEx->iVertexCount, iPrimitiveCount, 
 			pRiverEx->pIndices, D3DFMT_INDEX16, pRiverEx->pVertices, sizeof(__VertexXyzT2));
 	}
@@ -259,7 +259,7 @@ void CN3River::Render()
 
 void CN3River::Tick()
 {
-	// UVÁÂÇ¥ °è»ê
+	// UVï¿½ï¿½Ç¥ ï¿½ï¿½ï¿½
 	if (m_RiverList.Count() <= 0) return;
 	int j = 0;
 	float fSecPerFrm = 1.0f/s_fFrmPerSec;
@@ -274,28 +274,28 @@ void CN3River::Tick()
 		__RiverInfo* pRiverInfo = GetRiverInfoByID(pRiverEx->iRiverID);
 		__ASSERT(pRiverInfo, "River information pointer is NULL");
 
-		// uvÁÂÇ¥ º¯È­
+		// uvï¿½ï¿½Ç¥ ï¿½ï¿½È­
 		if (pRiverInfo->fSpeed1 != 0.0f)
 		{
 			float fDiffV1 = pRiverInfo->fSpeed1 * fSecPerFrm;
 			for (j=0; j<pRiverEx->iVertexCount; ++j) pRiverEx->pVertices[j].tv += fDiffV1;
 			pRiverInfo->fCurDiffV1 += fDiffV1;
 
-			if (pRiverInfo->fCurDiffV1 > 10.0f)	// 1.0f´Â ³Ê¹« ÀÛ¾Æ¼­ ÀÚÁÖ ½ÇÇàÇÒ °Í°°´Ù.
+			if (pRiverInfo->fCurDiffV1 > 10.0f)	// 1.0fï¿½ï¿½ ï¿½Ê¹ï¿½ ï¿½Û¾Æ¼ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Í°ï¿½ï¿½ï¿½.
 			{
 				for (j=0; j<pRiverEx->iVertexCount; ++j) pRiverEx->pVertices[j].tv -= 10.0f;
 				pRiverInfo->fCurDiffV1 -= 10.0f;
 			}
 		}
 
-		// uv2ÁÂÇ¥ º¯È­
+		// uv2ï¿½ï¿½Ç¥ ï¿½ï¿½È­
 		if (pRiverInfo->fSpeed2 != 0.0f)
 		{
 			float fDiffV2 = pRiverInfo->fSpeed2 * fSecPerFrm;
 			for (j=0; j<pRiverEx->iVertexCount; ++j) pRiverEx->pVertices[j].tv2 += fDiffV2;
 			pRiverInfo->fCurDiffV2 += fDiffV2;
 
-			if (pRiverInfo->fCurDiffV2 > 10.0f)	// 1.0f´Â ³Ê¹« ÀÛ¾Æ¼­ ÀÚÁÖ ½ÇÇàÇÒ °Í°°´Ù.
+			if (pRiverInfo->fCurDiffV2 > 10.0f)	// 1.0fï¿½ï¿½ ï¿½Ê¹ï¿½ ï¿½Û¾Æ¼ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Í°ï¿½ï¿½ï¿½.
 			{
 				for (j=0; j<pRiverEx->iVertexCount; ++j) pRiverEx->pVertices[j].tv2 -= 10.0f;
 				pRiverInfo->fCurDiffV2 -= 10.0f;
@@ -312,7 +312,7 @@ void CN3River::Tick()
 	}
 }
 
-__RiverInfo* CN3River::CreateRiverInfo(int iRiverCount)	// m_RiverInfos ¹öÆÛ »ý¼º
+__RiverInfo* CN3River::CreateRiverInfo(int iRiverCount)	// m_RiverInfos ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 {
 	if (iRiverCount <= 0) return NULL;
 	m_iRiverCount = iRiverCount;
@@ -322,7 +322,7 @@ __RiverInfo* CN3River::CreateRiverInfo(int iRiverCount)	// m_RiverInfos ¹öÆÛ »ý¼
 
 void CN3River::SetPatchPos(int iX, int iZ)
 {
-	if (m_iRiverCount<=0) return;	// ÀÌ Á¸¿¡´Â °­ÀÌ ¾ø´Ù.
+	if (m_iRiverCount<=0) return;	// ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½.
 
 	int i, j;
 	int iDX = m_CurPatchPos.x-iX;
@@ -333,7 +333,7 @@ void CN3River::SetPatchPos(int iX, int iZ)
 
 	if ( m_CurPatchPos.x == -1 || m_CurPatchPos.y == -1 || abs(iDX)>2 || abs(iDZ)>2)
 	{
-		// Ã³À½ LoadÇÏ°Å³ª 2Ä­À» ³Ñ°Ô ÁÂÇ¥ ÀÌµ¿ÇÏ¿´À»¶§
+		// Ã³ï¿½ï¿½ Loadï¿½Ï°Å³ï¿½ 2Ä­ï¿½ï¿½ ï¿½Ñ°ï¿½ ï¿½ï¿½Ç¥ ï¿½Ìµï¿½ï¿½Ï¿ï¿½ï¿½ï¿½ï¿½ï¿½
 		ReleaseAllRiverPatches();
 		for(i=0; i<3; ++i)
 		{
@@ -346,7 +346,7 @@ void CN3River::SetPatchPos(int iX, int iZ)
 	else
 	{
 		CN3RiverPatch* pOldRiverPatches[9];
-		CopyMemory(pOldRiverPatches, m_pRiverPatches, sizeof(pOldRiverPatches));	// ÇöÀç patch Æ÷ÀÎÅÍµé ¹öÆÛ¿¡ ÀúÀå
+		CopyMemory(pOldRiverPatches, m_pRiverPatches, sizeof(pOldRiverPatches));	// ï¿½ï¿½ï¿½ï¿½ patch ï¿½ï¿½ï¿½ï¿½ï¿½Íµï¿½ ï¿½ï¿½ï¿½Û¿ï¿½ ï¿½ï¿½ï¿½ï¿½
 
 		int iNewX, iNewZ;
 		for(i=0; i<3; ++i)
@@ -358,19 +358,19 @@ void CN3River::SetPatchPos(int iX, int iZ)
 				int iTmpZ = iNewZ-m_CurPatchPos.y+1;
 				if (iTmpX>=0 && iTmpX<3 && iTmpZ>=0 && iTmpZ<3)
 				{
-					// ±âÁ¸¿¡ LoadµÈ °ÍÀÌ »õ·Î¿î9ÆÐÄ¡Áß¿¡µµ ¾²ÀÌ¸é Æ÷ÀÎÅÍ ¿Å±â±â
+					// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Loadï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Î¿ï¿½9ï¿½ï¿½Ä¡ï¿½ß¿ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ì¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Å±ï¿½ï¿½
 					m_pRiverPatches[j*3 + i] = pOldRiverPatches[iTmpZ*3 + iTmpX];
 					pOldRiverPatches[iTmpZ*3 + iTmpX] = NULL;
 				}
 				else
 				{
-					// »õ·Î LoadÇØ¾ß ÇÏ´Â °Íµé
+					// ï¿½ï¿½ï¿½ï¿½ Loadï¿½Ø¾ï¿½ ï¿½Ï´ï¿½ ï¿½Íµï¿½
 					m_pRiverPatches[j*3 + i] = LoadPatch(iNewX, iNewZ);
 				}
 			}
 		}
 #ifndef _LOAD_ALL_RIVERPATCH
-		// ´õÀÌ»ó ÇÊ¿ä¾ø´Â °ÍÀº ¸Þ¸ð¸® ÇØÁ¦
+		// ï¿½ï¿½ï¿½Ì»ï¿½ ï¿½Ê¿ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Þ¸ï¿½ ï¿½ï¿½ï¿½ï¿½
 		for(i=0; i<3; ++i)
 		{
 			for(j=0; j<3; ++j)
@@ -383,21 +383,21 @@ void CN3River::SetPatchPos(int iX, int iZ)
 
 	m_CurPatchPos.x = iX; m_CurPatchPos.y = iZ;
 
-	// °­ÀÇ VertexµéÀ» ¼ø¼­¿¡ ¸Â°Ô Á¤·ÄÈÄ Index buffer »ý¼ºÇÏ±â
+	// ï¿½ï¿½ï¿½ï¿½ Vertexï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Â°ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Index buffer ï¿½ï¿½ï¿½ï¿½ï¿½Ï±ï¿½
 	SortRiver();
 }
 
 void CN3River::SortRiver()
 {
 	int i, j, k, l;
-	// °­º°·Î..
+	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½..
 	for (i=0; i<m_iRiverCount; ++i)
 	{
 		int iVC = 0;
 		__VertexRiver* pVRs[2048];
 		ZeroMemory(pVRs, sizeof(pVRs));
 
-		// Æ¯Á¤ IDÀÇ °­À» Ã£´Â´Ù.
+		// Æ¯ï¿½ï¿½ IDï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ Ã£ï¿½Â´ï¿½.
 		for(j=0; j<3; ++j)
 		{
 			for (k=0; k<3; ++k)
@@ -405,11 +405,11 @@ void CN3River::SortRiver()
 				if (m_pRiverPatches[k*3+j] == NULL) continue;
 				__River* pRiver = m_pRiverPatches[k*3+j]->GetRiverByID(m_RiverInfos[i].iRiverID);
 				if (pRiver == NULL) continue;
-				// __VertexRiver Æ÷ÀÎÅÍ¸¦ array¿¡ Ä«ÇÇ
+				// __VertexRiver ï¿½ï¿½ï¿½ï¿½ï¿½Í¸ï¿½ arrayï¿½ï¿½ Ä«ï¿½ï¿½
 				for (l=0; l<pRiver->iVertexCount; ++l) pVRs[iVC++] = pRiver->pVertices + l;
 			}
 		}
-		if (iVC==0)	// m_RiverInfos[i].iRiverID¸¦ °¡Áø °­ÀÌ ÁÖº¯9Ä­¿¡ Æ÷ÇÔµÇ¾î ÀÖÁö ¾Ê´Ù.
+		if (iVC==0)	// m_RiverInfos[i].iRiverIDï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Öºï¿½9Ä­ï¿½ï¿½ ï¿½ï¿½ï¿½ÔµÇ¾ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ê´ï¿½.
 		{
 			m_RiverInfos[i].DeleteTextures();
 			continue;
@@ -417,10 +417,10 @@ void CN3River::SortRiver()
 		__ASSERT(lstrlen(m_RiverInfos[i].pszTexName), "Texture filename length less than 0");
 		m_RiverInfos[i].GetTextures();
 
-		// index¼øÀ¸·Î.. __VertexRiver Á¤·Ä 
+		// indexï¿½ï¿½ï¿½ï¿½ï¿½ï¿½.. __VertexRiver ï¿½ï¿½ï¿½ï¿½ 
 		qsort(pVRs, iVC, sizeof(__VertexRiver*), CompareVertexRiver);
 
-		// __RiverEx ¿¡ º¹»ç
+		// __RiverEx ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 		float fCurDiffV1 = m_RiverInfos[i].fCurDiffV1;
 		float fCurDiffV2 = m_RiverInfos[i].fCurDiffV2;
 		__RiverEx* pRiverEx = new __RiverEx;
@@ -429,12 +429,12 @@ void CN3River::SortRiver()
 		__VertexXyzT2* pNewBuff = pRiverEx->pVertices = new __VertexXyzT2[iVC];
 		for (j=0; j<iVC; ++j)
 		{
-			pNewBuff[j].Set(pVRs[j]->x, pVRs[j]->y, pVRs[j]->z, pVRs[j]->tu, pVRs[j]->tv, pVRs[j]->tu2, pVRs[j]->tv2);	// º¹»ç
-			pNewBuff[j].tv += fCurDiffV1;	// UVÁÂÇ¥Áß VÁÂÇ¥ ÇöÀç ½Ã°£¿¡ ¸Â°Ô ¼öÁ¤
-			pNewBuff[j].tv2 += fCurDiffV2;	// UVÁÂÇ¥Áß V2ÁÂÇ¥ ÇöÀç ½Ã°£¿¡ ¸Â°Ô ¼öÁ¤
+			pNewBuff[j].Set(pVRs[j]->x, pVRs[j]->y, pVRs[j]->z, pVRs[j]->tu, pVRs[j]->tv, pVRs[j]->tu2, pVRs[j]->tv2);	// ï¿½ï¿½ï¿½ï¿½
+			pNewBuff[j].tv += fCurDiffV1;	// UVï¿½ï¿½Ç¥ï¿½ï¿½ Vï¿½ï¿½Ç¥ ï¿½ï¿½ï¿½ï¿½ ï¿½Ã°ï¿½ï¿½ï¿½ ï¿½Â°ï¿½ ï¿½ï¿½ï¿½ï¿½
+			pNewBuff[j].tv2 += fCurDiffV2;	// UVï¿½ï¿½Ç¥ï¿½ï¿½ V2ï¿½ï¿½Ç¥ ï¿½ï¿½ï¿½ï¿½ ï¿½Ã°ï¿½ï¿½ï¿½ ï¿½Â°ï¿½ ï¿½ï¿½ï¿½ï¿½
 		}
 
-		// __RiverExÀÇ ÀÎµ¦½º ¹öÆÛ ¸¸µé±â
+		// __RiverExï¿½ï¿½ ï¿½Îµï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½
 		int iIC = 0;
 
 		struct __Sequence{ WORD iStart; WORD iEnd;};
@@ -444,23 +444,23 @@ void CN3River::SortRiver()
 		WORD iFirstIndex = pVRs[0]->index;
 		for (j=1; j<iVC; ++j)
 		{
-			if ((pVRs[j-1]->index + 1) == pVRs[j]->index)	continue;	// °è¼Ó ÀÌ¾îÁö´Â Index´Ù..
+			if ((pVRs[j-1]->index + 1) == pVRs[j]->index)	continue;	// ï¿½ï¿½ï¿½ ï¿½Ì¾ï¿½ï¿½ï¿½ï¿½ï¿½ Indexï¿½ï¿½..
 
-			// ÀÌ¾îÁöÁö ¾Ê´Â´Ù.
+			// ï¿½Ì¾ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ê´Â´ï¿½.
 			TmpSequence[iSequenceCount].iStart = iFirstIndex;
 			TmpSequence[iSequenceCount].iEnd = pVRs[j-1]->index;
 			iFirstIndex = pVRs[j]->index;
 
-			// iIC °è»ê.
+			// iIC ï¿½ï¿½ï¿½.
 			int iDiff = TmpSequence[iSequenceCount].iEnd - TmpSequence[iSequenceCount].iStart + 1;
 			if (iDiff>2) iIC += ((iDiff-2)*3);
 
 			++iSequenceCount;
 		}
-		// ¸¶Áö¸· Á¡ Ã³¸®
+		// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ Ã³ï¿½ï¿½
 		TmpSequence[iSequenceCount].iStart = iFirstIndex;
 		TmpSequence[iSequenceCount].iEnd = pVRs[j-1]->index;
-		// iIC °è»ê.
+		// iIC ï¿½ï¿½ï¿½.
 		int iDiff = TmpSequence[iSequenceCount].iEnd - TmpSequence[iSequenceCount].iStart + 1;
 		if (iDiff>2) iIC += ((iDiff-2)*3);
 		++iSequenceCount;
@@ -468,29 +468,29 @@ void CN3River::SortRiver()
 		WORD iFirstIndex = pNewBuff[0].index;
 		for (j=1; j<iVC; ++j)
 		{
-			if ((pNewBuff[j-1].index + 1) == pNewBuff[j].index)	continue;	// °è¼Ó ÀÌ¾îÁö´Â Index´Ù..
+			if ((pNewBuff[j-1].index + 1) == pNewBuff[j].index)	continue;	// ï¿½ï¿½ï¿½ ï¿½Ì¾ï¿½ï¿½ï¿½ï¿½ï¿½ Indexï¿½ï¿½..
 
-			// ÀÌ¾îÁöÁö ¾Ê´Â´Ù.
+			// ï¿½Ì¾ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ê´Â´ï¿½.
 			TmpSequence[iSequenceCount].iStart = iFirstIndex;
 			TmpSequence[iSequenceCount].iEnd = pNewBuff[j-1].index;
 			iFirstIndex = pNewBuff[j].index;
 
-			// iIC °è»ê.
+			// iIC ï¿½ï¿½ï¿½.
 			int iDiff = TmpSequence[iSequenceCount].iEnd - TmpSequence[iSequenceCount].iStart + 1;
 			if (iDiff>2) iIC += ((iDiff-2)*3);
 
 			++iSequenceCount;
 		}
-		// ¸¶Áö¸· Á¡ Ã³¸®
+		// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ Ã³ï¿½ï¿½
 		TmpSequence[iSequenceCount].iStart = iFirstIndex;
 		TmpSequence[iSequenceCount].iEnd = pNewBuff[j-1].index;
-		// iIC °è»ê.
+		// iIC ï¿½ï¿½ï¿½.
 		int iDiff = TmpSequence[iSequenceCount].iEnd - TmpSequence[iSequenceCount].iStart + 1;
 		if (iDiff>2) iIC += ((iDiff-2)*3);
 		++iSequenceCount;
 */
 
-		// TmpSequence Á¤º¸¸¦ Åä´ë·Î Index ¹öÆÛ ¸¸µé±â
+		// TmpSequence ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ Index ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½
 		int iCount = 0;
 		int iVertexIndex = 0;
 		pRiverEx->iIndexCount = iIC;
@@ -521,7 +521,7 @@ void CN3River::SortRiver()
 		}
 		__ASSERT(iCount == iIC, "count different");
 
-		// ¸®½ºÆ®¿¡ Ãß°¡ÇÏ±â
+		// ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½ß°ï¿½ï¿½Ï±ï¿½
 		m_RiverList.Add(pRiverEx);
 	}
 }

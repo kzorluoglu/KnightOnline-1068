@@ -31,7 +31,7 @@ CN3PMesh::CN3PMesh()
 #endif
 	m_pLODCtrlValues = NULL;
 
-	m_pWeaponTrack = NULL; // ¹«±âÀÇ ±ËÀûµî...
+	m_pWeaponTrack = NULL; // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½...
 
 	Release();
 }
@@ -140,11 +140,11 @@ bool CN3PMesh::Load(HANDLE hFile)
 	}
 
 	BOOL bHaveWeaponTrack = FALSE;
-	ReadFile(hFile, &bHaveWeaponTrack, 4, &dwNum, NULL); // ±ËÀûÀÌ ÀÖ´ÂÁö...
+	ReadFile(hFile, &bHaveWeaponTrack, 4, &dwNum, NULL); // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ö´ï¿½ï¿½ï¿½...
 	if(bHaveWeaponTrack)
 	{
 		if(NULL == m_pWeaponTrack) m_pWeaponTrack = new __WeaponTrack;
-		ReadFile(hFile, m_pWeaponTrack, sizeof(__WeaponTrack), &dwNum, NULL); // ±ËÀû µ¥ÀÌÅÍ..
+		ReadFile(hFile, m_pWeaponTrack, sizeof(__WeaponTrack), &dwNum, NULL); // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½..
 	}
 	
 	FindMinMax();
@@ -197,10 +197,10 @@ bool CN3PMesh::Save(HANDLE hFile)
 
 	BOOL bHaveWeaponTrack = FALSE;
 	if(m_pWeaponTrack) bHaveWeaponTrack = TRUE;
-	WriteFile(hFile, &bHaveWeaponTrack, 4, &dwNum, NULL); // ±ËÀûÀÌ ÀÖ´ÂÁö...
+	WriteFile(hFile, &bHaveWeaponTrack, 4, &dwNum, NULL); // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ö´ï¿½ï¿½ï¿½...
 	if(bHaveWeaponTrack)
 	{
-		WriteFile(hFile, m_pWeaponTrack, sizeof(__WeaponTrack), &dwNum, NULL); // ±ËÀû µ¥ÀÌÅÍ..
+		WriteFile(hFile, m_pWeaponTrack, sizeof(__WeaponTrack), &dwNum, NULL); // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½..
 	}
 
 	return true;
@@ -208,7 +208,7 @@ bool CN3PMesh::Save(HANDLE hFile)
 
 void CN3PMesh::FindMinMax()
 {
-	// ÃÖ¼Ò, ÃÖ´ë Á¡À» Ã£´Â´Ù.
+	// ï¿½Ö¼ï¿½, ï¿½Ö´ï¿½ ï¿½ï¿½ï¿½ï¿½ Ã£ï¿½Â´ï¿½.
 	m_vMin.Set(1000000.0f, 1000000.0f, 1000000.0f);
 	m_vMax.Set(-1000000.0f, -1000000.0f, -1000000.0f);
 
@@ -240,7 +240,7 @@ void CN3PMesh::FindMinMax()
 		if(m_pVertices[i].z > m_vMax.z) m_vMax.z = m_pVertices[i].z;
 	}
 #endif
-	// ºÎÇÇ °è»ê
+	// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
 	__Vector3 vDiff = m_vMax - m_vMin;
 	m_fVolume = vDiff.x * vDiff.y + vDiff.y * vDiff.z + vDiff.z * vDiff.x;
 }
@@ -371,7 +371,7 @@ void CN3PMesh::LODCtrlSet(__LODCtrlValue *pLODCtrls, int nCount)
 		m_pLODCtrlValues = new __LODCtrlValue[nCount];
 		memcpy(m_pLODCtrlValues, pLODCtrls, sizeof(__LODCtrlValue) * nCount);
 
-		// °Å¸®¿¡ µû¶ó Á¤·Ä
+		// ï¿½Å¸ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 		qsort(m_pLODCtrlValues, m_iLODCtrlValueCount, sizeof(__LODCtrlValue), SortByDistance);
 	}
 }
@@ -391,7 +391,7 @@ int CN3PMesh::SortByDistance(const void *pArg1, const void *pArg2)
 void CN3PMesh::CreateLODByDefault()
 {
 	///////////////////////////////////////////////////////
-	// tigger ±âº»ÀûÀÎ LOD °ªÀ» ³Ö´Â´Ù..
+	// tigger ï¿½âº»ï¿½ï¿½ï¿½ï¿½ LOD ï¿½ï¿½ï¿½ï¿½ ï¿½Ö´Â´ï¿½..
 	float fMaxDist = s_CameraData.fFP * s_CameraData.fFOV;
 	if(m_iMaxNumVertices <= 0 || fMaxDist < 0.0f) return;
 
@@ -408,7 +408,7 @@ void CN3PMesh::CreateLODByDefault()
 	LODs[1].iNumVertices = m_iMinNumVertices;
 
 	this->LODCtrlSet(LODs, 2);
-	// tigger ±âº»ÀûÀÎ LOD °ªÀ» ³Ö´Â´Ù..
+	// tigger ï¿½âº»ï¿½ï¿½ï¿½ï¿½ LOD ï¿½ï¿½ï¿½ï¿½ ï¿½Ö´Â´ï¿½..
 	///////////////////////////////////////////////////////
 
 }
@@ -418,7 +418,7 @@ void CN3PMesh::ReGenerateSmoothNormal()
 	if(m_iMaxNumVertices <= 0) return;
 
 	CN3PMeshInstance PMI(this);
-	PMI.SetLODByNumVertices(m_iMaxNumVertices); // ÃÖ´ë Á¡À¸·Î ¼¼ÆÃÇÏ°í..
+	PMI.SetLODByNumVertices(m_iMaxNumVertices); // ï¿½Ö´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï°ï¿½..
 	int nIC = PMI.GetNumIndices(); // Index Count...
 	WORD* pwIndices = PMI.GetIndices(); // Index ...
 
@@ -442,7 +442,7 @@ void CN3PMesh::ReGenerateSmoothNormal()
 				(m_pVertices[i].x == v1.x && m_pVertices[i].y == v1.y && m_pVertices[i].z == v1.z) ||
 				(m_pVertices[i].x == v2.x && m_pVertices[i].y == v2.y && m_pVertices[i].z == v2.z) )
 			{
-				vN.Cross(v1 - v0, v2 - v1); // Normal °ªÀ» °è»êÇÏ°í...
+				vN.Cross(v1 - v0, v2 - v1); // Normal ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ï°ï¿½...
 				vN.Normalize();
 
 				pnNs[i]++;
@@ -462,7 +462,7 @@ void CN3PMesh::ReGenerateSharpNormal()
 	if(m_iMaxNumVertices <= 0) return;
 
 	CN3PMeshInstance PMI(this);
-	PMI.SetLODByNumVertices(m_iMaxNumVertices); // ÃÖ´ë Á¡À¸·Î ¼¼ÆÃÇÏ°í..
+	PMI.SetLODByNumVertices(m_iMaxNumVertices); // ï¿½Ö´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï°ï¿½..
 	int nIC = PMI.GetNumIndices(); // Index Count...
 	WORD* pwIndices = PMI.GetIndices(); // Index ...
 
@@ -474,7 +474,7 @@ void CN3PMesh::ReGenerateSharpNormal()
 		v1 = m_pVertices[pwIndices[j*3+1]].v;
 		v2 = m_pVertices[pwIndices[j*3+2]].v;
 
-		vN.Cross(v1 - v0, v2 - v1); // Normal °ªÀ» °è»êÇÏ°í...
+		vN.Cross(v1 - v0, v2 - v1); // Normal ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ï°ï¿½...
 		vN.Normalize();
 
 		m_pVertices[pwIndices[j*3+0]].n = vN;

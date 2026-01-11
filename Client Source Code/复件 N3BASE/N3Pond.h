@@ -43,19 +43,19 @@ public:
 	{
 	public:
 		CN3Texture*		m_pTexWave;
-		BOOL			m_bTick2Rand;	//	½Ã¾ß¿¡ µé¾î¿Í tick°úrend¸¦ ½ÇÇà°áÁ¤
+		BOOL			m_bTick2Rand;	//	ï¿½Ã¾ß¿ï¿½ ï¿½ï¿½ï¿½ï¿½ tickï¿½ï¿½rendï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		__VertexPond*	m_pVertices;	//	Vertices
-		float*			m_pfVelocityArray;	//	°è»ê ÀúÀå
-		float			m_pfMaxHeight;	//	¹°°áÀÌ ¾î´ÀÁ¤µµ ÀÌ»ó ¿Ã¶ó°¡Áö ¸øÇÏ°Ô ÇÔ
-		WORD*			m_wpIndex;		//	±×¸²À» ±×¸± ¼ø¼­
+		float*			m_pfVelocityArray;	//	ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+		float			m_pfMaxHeight;	//	ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ì»ï¿½ ï¿½Ã¶ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ï°ï¿½ ï¿½ï¿½
+		WORD*			m_wpIndex;		//	ï¿½×¸ï¿½ï¿½ï¿½ ï¿½×¸ï¿½ ï¿½ï¿½ï¿½ï¿½
 		int				m_iIC;			// Index Buffer Count.
 		int				m_iVC;			// Vertex Count.
 
-		int				m_iWidthVtx,m_iHeightVtx;		// °è»ê¿¡ ÇÊ¿ä
+		int				m_iWidthVtx,m_iHeightVtx;		// ï¿½ï¿½ê¿¡ ï¿½Ê¿ï¿½
 		float			m_fmin,m_fmax,m_fmaxcal,m_fmincal;
 
-		__Vector3		m_vCenterPo;	//	¿¬¸øÀÇ Áß°£ÁöÁ¡
-		float			m_fRadius;		//	¿¬¸øÀÇ Áö¸§
+		__Vector3		m_vCenterPo;	//	ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ß°ï¿½ï¿½ï¿½ï¿½ï¿½
+		float			m_fRadius;		//	ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 
 		CPongMesh() {m_bTick2Rand=FALSE;m_pVertices=NULL,m_wpIndex=NULL;m_pfVelocityArray=NULL;m_pTexWave=NULL;};
 		virtual ~CPongMesh() 
@@ -68,14 +68,14 @@ public:
 	};
 
 public:
-	int				m_iPondMeshNum;	//	ÀüÃ¼ ¿¬¸øÀÇ °¹¼ö
-	CPongMesh*		m_pCPondMesh;	//	¿¬¸øÀÇ Á¤º¸
+	int				m_iPondMeshNum;	//	ï¿½ï¿½Ã¼ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+	CPongMesh*		m_pCPondMesh;	//	ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 
 	CN3Texture*		m_pTexPond[MAX_POND_TEX];	
 	float			m_fTexIndex;
 
-	int				m_iMaxVtxNum;	//	°¡Àå ¸¹Àº vertices¼ö
-	float*			m_pfMaxVtx;		//	¹°°á³ôÀÌ °è»êÀ» À§ÇÑ ÀÓ½Ã
+	int				m_iMaxVtxNum;	//	ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ verticesï¿½ï¿½
+	float*			m_pfMaxVtx;		//	ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ó½ï¿½
 
 public:
 	void		Release();

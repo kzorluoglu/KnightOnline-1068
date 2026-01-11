@@ -27,7 +27,7 @@ CN3SubScene::~CN3SubScene()
 
 void CN3SubScene::Release()
 {
-#ifdef _MAPTOOL	// ¸ÊÅø¿¡¼­´Â Ãß°¡µÈ objectÀÇ Æ÷ÀÎÅÍ°¡ ÂüÁ¶Æ÷ÀÎÅÍÀÌ±â ¶§¹®¿¡ delete ¾Ê°Ô ÇÏ±â À§ÇØ¼­..
+#ifdef _MAPTOOL	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ß°ï¿½ï¿½ï¿½ objectï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Í°ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ì±ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ delete ï¿½Ê°ï¿½ ï¿½Ï±ï¿½ ï¿½ï¿½ï¿½Ø¼ï¿½..
 	memset(m_pShapes, 0, sizeof(m_pShapes));
 	memset(m_pChrs, 0, sizeof(m_pChrs));
 #else
@@ -67,7 +67,7 @@ bool CN3SubScene::Load(HANDLE hFile)
 		pShape->NameSet(szName);
 		pShape->LoadFromFile();
 
-		// À§Ä¡ È¸Àü ½ºÄÉÀÏ Á¤º¸ load
+		// ï¿½ï¿½Ä¡ È¸ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ load
 		ReadFile(hFile, &ObjInfo, sizeof(ObjInfo), &dwRWC, NULL);
 		pShape->PosSet(ObjInfo.vPos);
 		pShape->RotSet(ObjInfo.vRot);
@@ -77,7 +77,7 @@ bool CN3SubScene::Load(HANDLE hFile)
 	}
 
 	int nChrC = 0;
-	ReadFile(hFile, &nChrC, sizeof(nChrC), &dwRWC, NULL); // Ä³¸¯ÅÍ
+	ReadFile(hFile, &nChrC, sizeof(nChrC), &dwRWC, NULL); // Ä³ï¿½ï¿½ï¿½ï¿½
 	for(i = 0; i < nChrC; i++)
 	{
 		ReadFile(hFile, &nL, sizeof(nL), &dwRWC, NULL);
@@ -107,13 +107,13 @@ bool CN3SubScene::Save(HANDLE hFile)
 	for(i = 0; i < m_nShapeCount; i++)
 	{
 #ifdef _MAPTOOL
-		// ¿øº» ÆÄÀÏ ÀÌ¸§ ÃßÃâÇØ¼­ ÀúÀåÇÏ±â..
+		// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ì¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ø¼ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï±ï¿½..
 		char szSrcName[_MAX_PATH];
 		char szDir[_MAX_DIR], szFName[_MAX_FNAME], szExt[_MAX_EXT];
 		char szNewFName[_MAX_FNAME];
 		_splitpath(m_pShapes[i]->Name(), NULL, szDir, szFName, szExt);
 		int iLen = lstrlen(szFName);
-		__ASSERT(iLen>4, "¿øº»ÆÄÀÏ ÀÌ¸§À» ¾Ë ¼ö ¾ø´Ù.");
+		__ASSERT(iLen>4, "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ì¸ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½.");
 		lstrcpyn(szNewFName, szFName, iLen-4+1);
 		_makepath(szSrcName, NULL, szDir, szNewFName, szExt);
 		szName = szSrcName;
@@ -127,7 +127,7 @@ bool CN3SubScene::Save(HANDLE hFile)
 		WriteFile(hFile, szName, nL, &dwRWC, NULL);
 		//m_pShapes[i]->SaveToFile();
 
-		// À§Ä¡ È¸Àü ½ºÄÉÀÏ Á¤º¸ save
+		// ï¿½ï¿½Ä¡ È¸ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ save
 		ObjInfo.vPos = m_pShapes[i]->PosGet();
 		ObjInfo.vRot = m_pShapes[i]->RotGet();
 		ObjInfo.vScale = m_pShapes[i]->ScaleGet();
@@ -135,7 +135,7 @@ bool CN3SubScene::Save(HANDLE hFile)
 		WriteFile(hFile, &ObjInfo, sizeof(ObjInfo), &dwRWC, NULL);
 	}
 
-	WriteFile(hFile, &m_nChrCount, sizeof(m_nChrCount), &dwRWC, NULL); // Ä³¸¯ÅÍ
+	WriteFile(hFile, &m_nChrCount, sizeof(m_nChrCount), &dwRWC, NULL); // Ä³ï¿½ï¿½ï¿½ï¿½
 	for(i = 0; i < m_nChrCount; i++)
 	{
 		szName = m_pChrs[i]->Name();
@@ -179,7 +179,7 @@ void CN3SubScene::Tick(float fFrm)
 //	{
 //		if(fFrm <  m_fFrmStart || fFrm > m_fFrmEnd)
 //		{
-//			m_fFrmCur += 20.0f / CN3Base::m_fFrmPerSec; // ÀÏÁ¤ÇÏ°Ô ¿òÁ÷ÀÌµµ·Ï ½Ã°£¿¡ µû¶ó ¿òÁ÷ÀÌ´Â ¾çÀ» Á¶Àý..
+//			m_fFrmCur += 20.0f / CN3Base::m_fFrmPerSec; // ï¿½ï¿½ï¿½ï¿½ï¿½Ï°ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ìµï¿½ï¿½ï¿½ ï¿½Ã°ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ì´ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½..
 //			if(m_fFrmCur > m_fFrmEnd) m_fFrmCur = m_fFrmStart;
 //		}
 //		else

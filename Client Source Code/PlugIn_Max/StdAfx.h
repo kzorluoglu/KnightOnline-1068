@@ -3,13 +3,13 @@
 //      are changed infrequently
 //
 
-// stl ¾µ·Á°í...
+// stl ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½...
 #pragma warning(disable : 4786)
 
 #if !defined(AFX_STDAFX_H__56FE7113_3A24_4DE1_BFF7_2E9D5F20984B__INCLUDED_)
 #define AFX_STDAFX_H__56FE7113_3A24_4DE1_BFF7_2E9D5F20984B__INCLUDED_
 
-// Ãß°¡ Çì´õ..
+// ï¿½ß°ï¿½ ï¿½ï¿½ï¿½..
 #include <stdio.h>
 #include "../N3Base/My_3DStruct.h"
 

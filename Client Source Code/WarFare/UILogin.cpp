@@ -107,6 +107,9 @@ bool CUILogIn::Load(HANDLE hFile)
 	if(CN3UIBase::Load(hFile)==false) return false;
 
 	m_pGroup_LogIn = GetChildByID("Group_LogIn");				__ASSERT(m_pGroup_LogIn, "NULL UI Component!!");
+#ifdef _N3GAME
+	if(NULL == m_pGroup_LogIn) CLogWriter::Write("CUILogIn::Load - missing UI: Group_LogIn");
+#endif
 	if(m_pGroup_LogIn)
 	{
 		m_pBtn_LogIn = (CN3UIButton*)m_pGroup_LogIn->GetChildByID("Btn_Login");		__ASSERT(m_pBtn_LogIn, "NULL UI Component!!");
@@ -122,16 +125,28 @@ bool CUILogIn::Load(HANDLE hFile)
 	m_pText_Rights = GetChildByID("Text_Rights");	__ASSERT(m_pText_Rights, "NULL UI Component!!");
 	m_pImg_MGameLogo = GetChildByID("Img_MGame");	__ASSERT(m_pImg_MGameLogo, "NULL UI Component!!");
 	m_pImg_DaumLogo = GetChildByID("Img_Daum");		__ASSERT(m_pImg_DaumLogo, "NULL UI Component!!");
+#ifdef _N3GAME
+	if(NULL == m_pText_Rights) CLogWriter::Write("CUILogIn::Load - missing UI: Text_Rights");
+	if(NULL == m_pImg_MGameLogo) CLogWriter::Write("CUILogIn::Load - missing UI: Img_MGame");
+	if(NULL == m_pImg_DaumLogo) CLogWriter::Write("CUILogIn::Load - missing UI: Img_Daum");
+#endif
 
 	if(m_pText_Rights) m_pText_Rights->SetVisible(false);
 	if(m_pImg_MGameLogo) m_pImg_MGameLogo->SetVisible(false);
 	if(m_pImg_DaumLogo) m_pImg_DaumLogo->SetVisible(false);
 
 	m_pGroup_ServerList = GetChildByID("Group_ServerList");		__ASSERT(m_pGroup_ServerList, "NULL UI Component!!");
+#ifdef _N3GAME
+	if(NULL == m_pGroup_ServerList) CLogWriter::Write("CUILogIn::Load - missing UI: Group_ServerList");
+#endif
 	if(m_pGroup_ServerList)
 	{
 		m_pList_Server = (CN3UIList*)(m_pGroup_ServerList->GetChildByID("List_Server"));	__ASSERT(m_pList_Server, "NULL UI Component!!");
 		m_pBtn_Connect = (CN3UIButton*)m_pGroup_ServerList->GetChildByID("Btn_Connect");	__ASSERT(m_pBtn_Connect, "NULL UI Component!!");
+#ifdef _N3GAME
+		if(NULL == m_pList_Server) CLogWriter::Write("CUILogIn::Load - missing UI: List_Server");
+		if(NULL == m_pBtn_Connect) CLogWriter::Write("CUILogIn::Load - missing UI: Btn_Connect");
+#endif
 
 		m_pGroup_ServerList->SetVisible(false);
 	}

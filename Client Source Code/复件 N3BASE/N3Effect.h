@@ -12,7 +12,7 @@
 #include "N3Base.h"
 #include "N3Texture.h"
 
-// ¿©±â ¼­ºÎÅÍ´Â Effect °ü·Ã º¯¼öÀÌ´Ù..
+// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Í´ï¿½ Effect ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ì´ï¿½..
 // Enumeration..
 enum PARTICLE_TYPE {PARTICLE_NOTHING = -1,
 					PARTICLE_NORMAL = 0, PARTICLE_DROP, PARTICLE_EXPLODE, PARTICLE_GATHER };
@@ -26,27 +26,27 @@ class CN3EffectPart : public CN3Base
 
 protected:
 	int		m_nTexCount; // Texture Count
-	CN3Texture** m_ppTexs; // Textures - Manager ¿¡¼­ ÂüÁ¶¸¦ °¡Á®¿Í¼­ ¾´´Ù..
+	CN3Texture** m_ppTexs; // Textures - Manager ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Í¼ï¿½ ï¿½ï¿½ï¿½ï¿½..
 
 public:
 	int			m_nBoardCount; // Board Count
 	float		m_fFPS; // Frame Per Second
 	float		m_fBoardSize; // Board Size
 	__Vector3	m_vOffset; // Offset Position
-	__Vector3	m_vRandomMin; // offset position À» ±âÁØÀ¸·Î ÇÑ Random Factor
-	__Vector3	m_vRandomMax; // offset position À» ±âÁØÀ¸·Î ÇÑ Random Factor
+	__Vector3	m_vRandomMin; // offset position ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ Random Factor
+	__Vector3	m_vRandomMax; // offset position ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ Random Factor
 	D3DCOLOR	m_BoardColor; // Board Color
-	float		m_fSpeedZ; // Z Ãà ¹æÇâ Move Speed
-	float		m_fSpeedY; // Y Ãà ¹æÇâ Move Speed
-	float		m_fGravity; // Áß·Â°¡¼Óµµ°ª
-	BOOL		m_bNeedCollisionCheck; // Ãæµ¹ Ã¼Å©°¡ ÇÊ¿äÇÑ°¡??
+	float		m_fSpeedZ; // Z ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ Move Speed
+	float		m_fSpeedY; // Y ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ Move Speed
+	float		m_fGravity; // ï¿½ß·Â°ï¿½ï¿½Óµï¿½ï¿½ï¿½
+	BOOL		m_bNeedCollisionCheck; // ï¿½æµ¹ Ã¼Å©ï¿½ï¿½ ï¿½Ê¿ï¿½ï¿½Ñ°ï¿½??
 	__VertexXyzColorT1 m_VPlanes[6]; // Vertex Buffer
 
 	// Particle
 	PARTICLE_TYPE	m_eParticleType;
-	int				m_nTexCycle; // ÆÄÆ¼Å¬ ÅØ½ºÃ³ »çÀÌÅ¬ Ä«¿îÆ®.. ¼ö¸í Ã³·³ ¾´´Ù..
-	float			m_fParticleDelta; // ÃÊ±â ¼Óµµ...
-	float			m_fParticleAccel; // °¡¼Óµµ...
+	int				m_nTexCycle; // ï¿½ï¿½Æ¼Å¬ ï¿½Ø½ï¿½Ã³ ï¿½ï¿½ï¿½ï¿½Å¬ Ä«ï¿½ï¿½Æ®.. ï¿½ï¿½ï¿½ï¿½ Ã³ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½..
+	float			m_fParticleDelta; // ï¿½Ê±ï¿½ ï¿½Óµï¿½...
+	float			m_fParticleAccel; // ï¿½ï¿½ï¿½Óµï¿½...
 
 	// Alpha Blend Factor
 	DWORD m_dwSrcBlend, m_dwDestBlend;
@@ -57,7 +57,7 @@ public:
 	CN3Texture* Tex(int index) { if(index < 0 || index >= m_nTexCount) return NULL; return m_ppTexs[index]; }
 	void		TexAlloc(int nCount);
 	int			TexCount() { return m_nTexCount; }
-	void		TexSet(const char* szFN); // ÀÌ¸§À» ³Ö¾îÁÖ¸é ÇÒ´çµÈ ÅØ½ºÃ³ ¼ö ¸¸Å­ ¼¼ÀÚ¸® ¼ýÀÚ¸¦ ºÙ¿©¼­ ºÎ¸¥´Ù.
+	void		TexSet(const char* szFN); // ï¿½Ì¸ï¿½ï¿½ï¿½ ï¿½Ö¾ï¿½ï¿½Ö¸ï¿½ ï¿½Ò´ï¿½ï¿½ ï¿½Ø½ï¿½Ã³ ï¿½ï¿½ ï¿½ï¿½Å­ ï¿½ï¿½ï¿½Ú¸ï¿½ ï¿½ï¿½ï¿½Ú¸ï¿½ ï¿½Ù¿ï¿½ï¿½ï¿½ ï¿½Î¸ï¿½ï¿½ï¿½.
 	void		TexSet(int index, const char* szName);
 	
 	void		Release();
@@ -83,10 +83,10 @@ public:
 	};
 
 protected:
-	int				m_nPartCount; // Unit °¹¼ö..
+	int				m_nPartCount; // Unit ï¿½ï¿½ï¿½ï¿½..
 	CN3EffectPart*	m_pParts; // Effect Parts Pointer
-	int				m_nTickStepCount; // Tick ´Ü°è °¹¼ö
-	__EFFECT_TICK*	m_pTicks; // Effect Tick Struct - ÀÌ ±¸Á¶Ã¼¿¡ ´ã±ä ³»¿ë´ë·Î ¸Å ´Ü°è ¸¶´Ù Part °¡ ¹Ù²î°í Sound °¡ Àç»ýµÈ´Ù.
+	int				m_nTickStepCount; // Tick ï¿½Ü°ï¿½ ï¿½ï¿½ï¿½ï¿½
+	__EFFECT_TICK*	m_pTicks; // Effect Tick Struct - ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ã¼ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½Ü°ï¿½ ï¿½ï¿½ï¿½ï¿½ Part ï¿½ï¿½ ï¿½Ù²ï¿½ï¿½ Sound ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½È´ï¿½.
 
 public:
 	int			m_iFactor; // Factor Number

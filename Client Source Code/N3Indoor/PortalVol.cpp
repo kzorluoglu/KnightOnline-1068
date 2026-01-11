@@ -44,27 +44,27 @@ CPortalVol::CPortalVol()
 
 	unsigned short*		pIdx = m_pIndex;
 
-	// ¾Æ·§¸é.
+	// ï¿½Æ·ï¿½ï¿½ï¿½.
 	*pIdx++ = 0;  *pIdx++ = 1;  *pIdx++ = 3;
 	*pIdx++ = 2;  *pIdx++ = 3;  *pIdx++ = 1;
 
-	// ¾Õ¸é..
+	// ï¿½Õ¸ï¿½..
 	*pIdx++ = 7;  *pIdx++ = 3;  *pIdx++ = 6;
 	*pIdx++ = 2;  *pIdx++ = 6;  *pIdx++ = 3;
 
-	// ¿ÞÂÊ..
+	// ï¿½ï¿½ï¿½ï¿½..
 	*pIdx++ = 4;  *pIdx++ = 0;  *pIdx++ = 7;
 	*pIdx++ = 3;  *pIdx++ = 7;  *pIdx++ = 0;
 
-	// ¿À¸¥ÂÊ..
+	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½..
 	*pIdx++ = 6;  *pIdx++ = 2;  *pIdx++ = 5;
 	*pIdx++ = 1;  *pIdx++ = 5;  *pIdx++ = 2;
 
-	// µÞ¸é..
+	// ï¿½Þ¸ï¿½..
 	*pIdx++ = 5;  *pIdx++ = 1;  *pIdx++ = 4;
 	*pIdx++ = 0;  *pIdx++ = 4;  *pIdx++ = 1;
 
-	// À­¸é..	
+	// ï¿½ï¿½ï¿½ï¿½..	
 	*pIdx++ = 4;  *pIdx++ = 7;  *pIdx++ = 5;
 	*pIdx++ = 6;  *pIdx++ = 5;  *pIdx++ = 7;
 
@@ -173,7 +173,7 @@ void CPortalVol::RenderEdit()
 	CN3Base::s_lpD3DDev->SetTransform(D3DTS_WORLD, &mtxWorld);
 	CN3Base::s_lpD3DDev->SetTexture(0, NULL);
 
-	CN3Base::s_lpD3DDev->SetVertexShader(FVF_CV);	
+	CN3Base::s_lpD3DDev->SetFVF(FVF_CV);	
 
 	CN3Base::s_lpD3DDev->SetRenderState(D3DRS_CULLMODE, D3DCULL_CCW);
 	CN3Base::s_lpD3DDev->SetRenderState(D3DRS_FILLMODE, D3DFILL_WIREFRAME);
@@ -242,7 +242,7 @@ void CPortalVol::RenderCompile()
 	CN3Base::s_lpD3DDev->SetTransform(D3DTS_WORLD, &mtxWorld);
 	CN3Base::s_lpD3DDev->SetTexture(0, NULL);
 
-	CN3Base::s_lpD3DDev->SetVertexShader(FVF_CV);	
+	CN3Base::s_lpD3DDev->SetFVF(FVF_CV);	
 
 	CN3Base::s_lpD3DDev->SetRenderState(D3DRS_CULLMODE, D3DCULL_CCW);
 	CN3Base::s_lpD3DDev->SetRenderState(D3DRS_FILLMODE, D3DFILL_WIREFRAME);
@@ -335,7 +335,7 @@ void CPortalVol::RenderShape()
 	CN3Shape* pShape = ((CMainFrame*)AfxGetMainWnd())->m_pShapeBg;
 	if (!pShape)	return;
 
-	// PMesh¿¡ Àü´ÞÇÒ Index Buffer¸¦ ¸¸µç´Ù..
+	// PMeshï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Index Bufferï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½..
 	viter vit =	m_viIndex.begin();
 	__VPI vpi;
 	
@@ -345,7 +345,7 @@ void CPortalVol::RenderShape()
 		int iSize = vpi.m_ivVector.size();
 	
 #ifdef _USE_VERTEXBUFFER
-		LPDIRECT3DINDEXBUFFER8	pIB;
+		LPDIRECT3DINDEXBUFFER9	pIB;
 		HRESULT hr = CN3Base::s_lpD3DDev->CreateIndexBuffer(iSize*sizeof(WORD),
 										D3DUSAGE_DYNAMIC, D3DFMT_INDEX16, D3DPOOL_MANAGED, &pIB);
 		if (FAILED(hr)) return hr;
@@ -382,7 +382,7 @@ void CPortalVol::RenderShape()
 
 void CPortalVol::RenderCollision()
 {
-	// Çà·Ä °è»ê..
+	// ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½..
 	__Matrix44 mtxWorld;
 	mtxWorld.Identity();
 
@@ -530,27 +530,27 @@ void CPortalVol::Load(FILE* stream)
 
 	unsigned short*		pIdx = m_pIndex;
 
-	// ¾Æ·§¸é.
+	// ï¿½Æ·ï¿½ï¿½ï¿½.
 	*pIdx++ = 0;  *pIdx++ = 1;  *pIdx++ = 3;
 	*pIdx++ = 2;  *pIdx++ = 3;  *pIdx++ = 1;
 
-	// ¾Õ¸é..
+	// ï¿½Õ¸ï¿½..
 	*pIdx++ = 7;  *pIdx++ = 3;  *pIdx++ = 6;
 	*pIdx++ = 2;  *pIdx++ = 6;  *pIdx++ = 3;
 
-	// ¿ÞÂÊ..
+	// ï¿½ï¿½ï¿½ï¿½..
 	*pIdx++ = 4;  *pIdx++ = 0;  *pIdx++ = 7;
 	*pIdx++ = 3;  *pIdx++ = 7;  *pIdx++ = 0;
 
-	// ¿À¸¥ÂÊ..
+	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½..
 	*pIdx++ = 6;  *pIdx++ = 2;  *pIdx++ = 5;
 	*pIdx++ = 1;  *pIdx++ = 5;  *pIdx++ = 2;
 
-	// µÞ¸é..
+	// ï¿½Þ¸ï¿½..
 	*pIdx++ = 5;  *pIdx++ = 1;  *pIdx++ = 4;
 	*pIdx++ = 0;  *pIdx++ = 4;  *pIdx++ = 1;
 
-	// À­¸é..	
+	// ï¿½ï¿½ï¿½ï¿½..	
 	*pIdx++ = 4;  *pIdx++ = 7;  *pIdx++ = 5;
 	*pIdx++ = 6;  *pIdx++ = 5;  *pIdx++ = 7;
 
@@ -576,11 +576,11 @@ void CPortalVol::Load(FILE* stream)
 
 	Translate();
 
-	// ¸µÅ©µÈ °¹¼ö¸¦ ·Îµå..
+	// ï¿½ï¿½Å©ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Îµï¿½..
 	int iLinkedCount = 0;
 	fread(&iLinkedCount, sizeof(int), 1, stream);
 	
-	// ¸µÅ©µÈ ¾ÆÀÌµð ·Îµå..
+	// ï¿½ï¿½Å©ï¿½ï¿½ ï¿½ï¿½ï¿½Ìµï¿½ ï¿½Îµï¿½..
 	int iID;
 	for( int i = 0; i < iLinkedCount; i++ )
 	{
@@ -591,16 +591,16 @@ void CPortalVol::Load(FILE* stream)
 
 void CPortalVol::Save(FILE* stream)
 {
-	// ¸ÕÀú ÀÚ½ÅÀÇ Å¸ÀÔÀ» ÀúÀå..
+	// ï¿½ï¿½ï¿½ï¿½ ï¿½Ú½ï¿½ï¿½ï¿½ Å¸ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½..
 	fwrite(&_iTypeVolumn, sizeof(int), 1, stream);	
 
-	// ÀÚ½ÅÀÇ ¾ÆÀÌµð¸¦ ÀúÀå..
+	// ï¿½Ú½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ìµï¿½ ï¿½ï¿½ï¿½ï¿½..
 	fwrite(&m_iID, sizeof(int), 1, stream);	
 
-	// ÀÚ½ÅÀÇ µ¥ÀÌÅÍ ÀúÀå..
+	// ï¿½Ú½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½..
 	CPvsBase::Save(stream);
 
-	// ¸µÅ©µÈ °¹¼ö¸¦ ÀúÀå..
+	// ï¿½ï¿½Å©ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½..
 	int iCount = 0;
 	iter it = m_pPvsList.begin();
 	while (it != m_pPvsList.end())
@@ -609,7 +609,7 @@ void CPortalVol::Save(FILE* stream)
 	}
 	fwrite(&iCount, sizeof(int), 1, stream);	
 
-	//¸µÅ©µÈ ¾ÆÀÌµð ÀúÀå..
+	//ï¿½ï¿½Å©ï¿½ï¿½ ï¿½ï¿½ï¿½Ìµï¿½ ï¿½ï¿½ï¿½ï¿½..
 	CPvsBase* pBase = NULL;
 	it = m_pPvsList.begin();
 	while (it != m_pPvsList.end())
@@ -653,8 +653,8 @@ void CPortalVol::SplitAndMakeShape(CN3Shape* pShape)
 	GAPP->Write("Part Count %d", iPartCount);
 
 	// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-	// ±âÁ¸ Index Buffer ¿¡¼­.. Vertex Buffer¸¦ ÂüÁ¶ÇØ¼­.. ¹öÅØ½º¸¦ ¾ò¾î³½´ÙÀ½.. 
-	//  Æú¸®°ï ´ÜÀ§(3°³ÀÇ ¹öÅØ½º°¡ ÀüºÎ)·Î º¸ÀÌÁö ¾Ê´Â ´Ù¸é.. ÀÎµ¦½º ¹öÆÛ¿¡¼­ Á¦°ÅÇÑ´Ù..
+	// ï¿½ï¿½ï¿½ï¿½ Index Buffer ï¿½ï¿½ï¿½ï¿½.. Vertex Bufferï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ø¼ï¿½.. ï¿½ï¿½ï¿½Ø½ï¿½ï¿½ï¿½ ï¿½ï¿½î³½ï¿½ï¿½ï¿½ï¿½.. 
+	//  ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½(3ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ø½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½)ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ê´ï¿½ ï¿½Ù¸ï¿½.. ï¿½Îµï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Û¿ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ñ´ï¿½..
 
 	for ( int i = 0; i < iPartCount; i++ )
 	{
@@ -872,20 +872,20 @@ bool CPortalVol::IntersectTriangle(const __Vector3& vOrig, const __Vector3& vDir
     // Begin calculating determinant - also used to calculate U parameter
     __Vector3 pVec;	float fDet;
 	
-//	By : Ecli666 ( On 2001-09-12 ¿ÀÀü 10:39:01 )
+//	By : Ecli666 ( On 2001-09-12 ï¿½ï¿½ï¿½ï¿½ 10:39:01 )
 
 	pVec.Cross(vEdge1, vEdge2);
 	fDet = pVec.Dot(vDir);
 	if ( fDet > -0.0001f )
 		return false;
 
-//	~(By Ecli666 On 2001-09-12 ¿ÀÀü 10:39:01 )
+//	~(By Ecli666 On 2001-09-12 ï¿½ï¿½ï¿½ï¿½ 10:39:01 )
 
     pVec.Cross(vDir, vEdge2);
 
     // If determinant is near zero, ray lies in plane of triangle
     fDet = vEdge1.Dot(pVec);
-    if( fDet < 0.0001f )		// °ÅÀÇ 0¿¡ °¡±î¿ì¸é »ï°¢Çü Æò¸é°ú Áö³ª°¡´Â ¼±ÀÌ ÆòÇàÇÏ´Ù.
+    if( fDet < 0.0001f )		// ï¿½ï¿½ï¿½ï¿½ 0ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï°¢ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½.
         return false;
 
     // Calculate distance from vert0 to ray origin
@@ -912,15 +912,15 @@ bool CPortalVol::IntersectTriangle(const __Vector3& vOrig, const __Vector3& vDir
     fU *= fInvDet;
     fV *= fInvDet;
 
-	// t°¡ Å¬¼ö·Ï ¸Ö¸® Á÷¼±°ú Æò¸é°ú ¸¸³ª´Â Á¡ÀÌ ¸Ö´Ù.
-	// t*dir + orig ¸¦ ±¸ÇÏ¸é ¸¸³ª´Â Á¡À» ±¸ÇÒ ¼ö ÀÖ´Ù.
-	// u¿Í vÀÇ ÀÇ¹Ì´Â ¹«¾ùÀÏ±î?
-	// ÃßÃø : v0 (0,0), v1(1,0), v2(0,1) <°ýÈ£¾ÈÀº (U, V)ÁÂÇ¥> ÀÌ·±½ÄÀ¸·Î ¾î´À Á¡¿¡ °¡±õ³ª ³ªÅ¸³½ °Í °°À½
+	// tï¿½ï¿½ Å¬ï¿½ï¿½ï¿½ï¿½ ï¿½Ö¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ö´ï¿½.
+	// t*dir + orig ï¿½ï¿½ ï¿½ï¿½ï¿½Ï¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½Ö´ï¿½.
+	// uï¿½ï¿½ vï¿½ï¿½ ï¿½Ç¹Ì´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï±ï¿½?
+	// ï¿½ï¿½ï¿½ï¿½ : v0 (0,0), v1(1,0), v2(0,1) <ï¿½ï¿½È£ï¿½ï¿½ï¿½ï¿½ (U, V)ï¿½ï¿½Ç¥> ï¿½Ì·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Å¸ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	//
 
-	if(pVCol) (*pVCol) = vOrig + (vDir * fT);	// Á¢Á¡À» °è»ê..
+	if(pVCol) (*pVCol) = vOrig + (vDir * fT);	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½..
 
-	// *t < 0 ÀÌ¸é µÚÂÊ...
+	// *t < 0 ï¿½Ì¸ï¿½ ï¿½ï¿½ï¿½ï¿½...
 	if ( fT < 0.0f )
 		return false;
 

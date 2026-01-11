@@ -63,7 +63,7 @@ public:
 	//..
 	void	OnCurserSelect(e_EditMode eED);
 	void	SelectVolumeByPick(CPortalVolume* pVol, bool bOne = true);
-	void	SelectObjectByDragRect(RECT* pRect, BOOL bAdd);	// µå·¡±× ÇØ¼­ °´Ã¼ ¼±ÅÃÇÏ±â
+	void	SelectObjectByDragRect(RECT* pRect, BOOL bAdd);	// ï¿½å·¡ï¿½ï¿½ ï¿½Ø¼ï¿½ ï¿½ï¿½Ã¼ ï¿½ï¿½ï¿½ï¿½ï¿½Ï±ï¿½
 
 	void    TickRender();
 

@@ -40,7 +40,7 @@ void CN3PMeshCreate::swap_triangle(WORD *t1, WORD *t2)
 	swap(t1[2], t2[2]);
 }
 
-// ¾ø¾îÁú »ï°¢ÇüÀÇ ³ÐÀÌ °è»ê, È¤Àº º¯ÀÇ ±æÀÌÀÇ ÇÕ
+// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï°¢ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½, È¤ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½
 float CN3PMeshCreate::GetTriCollapsesLoss(WORD* pTriIndex, bool bArea)
 {
 	// These are the corners of the triangle.
@@ -110,8 +110,8 @@ void CN3PMeshCreate::combine_modified(float &sofar, WORD *tri, int which, int wh
 
 	// The angle change weighted by the area of the triangle.
 	float weighted_angle_change = (1.0f - cosangdiff) * (oldarea + newarea);
-	if (weighted_angle_change<0.0f) weighted_angle_change = 0.0f;	// cosangdiff°¡ 1º¸´Ù ¾ÆÁÖ Á¶±Ý Å¬¶§°¡ ÀÖ¾î¼­ weighted_angle_change°¡ -°ªÀÌ ³ª¿Ã¶§°¡ ÀÖ´Ù.
-	//__ASSERT(weighted_angle_change>=0.0f, "weighted_angle_change > 0 ÀÌ¾î¾ß ÇÑ´Ù.");
+	if (weighted_angle_change<0.0f) weighted_angle_change = 0.0f;	// cosangdiffï¿½ï¿½ 1ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ Å¬ï¿½ï¿½ï¿½ï¿½ ï¿½Ö¾î¼­ weighted_angle_changeï¿½ï¿½ -ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ã¶ï¿½ï¿½ï¿½ ï¿½Ö´ï¿½.
+	//__ASSERT(weighted_angle_change>=0.0f, "weighted_angle_change > 0 ï¿½Ì¾ï¿½ï¿½ ï¿½Ñ´ï¿½.");
 
 	// These numbers are not in the same "units", one being length^3 and the other length^2
 	// And let's put some arbitrary weighting on these things.
@@ -243,13 +243,13 @@ void CN3PMeshCreate::Collapse(WORD& pt_to, WORD& pt_from, float edge_val)
 
 						// So, this triangle became redundant. Try the next triangle,
 						// but don't increment tri_index.
-						// ÀÌ¹ø¿¡ °Ë»çÇÑ »ï°¢ÇüÀº »ç¶óÁ³´Ù. ¸®½ºÆ® ¸ÇµÚ·Î º¸³ÂÀ¸´Ï
-						// tri_index´Â Áß°¡½ÃÅ°Áö ¾Ê´Â´Ù.
+						// ï¿½Ì¹ï¿½ï¿½ï¿½ ï¿½Ë»ï¿½ï¿½ï¿½ ï¿½ï°¢ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½. ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ÇµÚ·ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+						// tri_indexï¿½ï¿½ ï¿½ß°ï¿½ï¿½ï¿½Å°ï¿½ï¿½ ï¿½Ê´Â´ï¿½.
 						goto try_same_triangle_location;
 					}
 				}
 
-				// ¿©±â¿¡ ¿À¸é ÀÌ »ï°¢ÇüÀº »ç¶óÁö´Â »ï°¢ÇüÀº ¾Æ´Ï´Ù. ±×·¯³ª ÇÑ Á¡ÀÌ ´Ù¸¥Á¡À¸·Î ¿Å°ÜÁø´Ù.
+				// ï¿½ï¿½ï¿½â¿¡ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï°¢ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï°¢ï¿½ï¿½ï¿½ï¿½ ï¿½Æ´Ï´ï¿½. ï¿½×·ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ù¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Å°ï¿½ï¿½ï¿½ï¿½ï¿½.
 				// This triangle isn't degenerate if we've got here. But it does
 				// have a reference to the collapsing vertex. This is fine - it can
 				// now just refer to the non-collapsing vertex.
@@ -365,7 +365,7 @@ void CN3PMeshCreate::TryEdge(
 			if (tri[1] != pt_b && tri[2] != pt_b)
 			{
 				combine_modified(a_loss, tri, 0, pt_b, m_PMCOption.bUseSumOfLoss);
-				__ASSERT(a_loss>=0.0f, "loss > 0ÀÌ¾î¾ß ÇÑ´Ù.");
+				__ASSERT(a_loss>=0.0f, "loss > 0ï¿½Ì¾ï¿½ï¿½ ï¿½Ñ´ï¿½.");
 			}
 			else
 			{
@@ -382,7 +382,7 @@ void CN3PMeshCreate::TryEdge(
 					{
 						if (t_loss > a_loss) a_loss = t_loss;
 					}
-					__ASSERT(a_loss>=0.0f && b_loss>=0.0f, "loss > 0ÀÌ¾î¾ß ÇÑ´Ù.");
+					__ASSERT(a_loss>=0.0f && b_loss>=0.0f, "loss > 0ï¿½Ì¾ï¿½ï¿½ ï¿½Ñ´ï¿½.");
 				}
 				continue;
 			}
@@ -393,7 +393,7 @@ void CN3PMeshCreate::TryEdge(
 			if (tri[2] != pt_b && tri[0] != pt_b)
 			{
 				combine_modified(a_loss, tri, 1, pt_b, m_PMCOption.bUseSumOfLoss);
-				__ASSERT(a_loss>=0.0f, "loss > 0ÀÌ¾î¾ß ÇÑ´Ù.");
+				__ASSERT(a_loss>=0.0f, "loss > 0ï¿½Ì¾ï¿½ï¿½ ï¿½Ñ´ï¿½.");
 			}
 			else
 			{
@@ -410,7 +410,7 @@ void CN3PMeshCreate::TryEdge(
 					{
 						if (t_loss > a_loss) a_loss = t_loss;
 					}
-					__ASSERT(a_loss>=0.0f && b_loss>=0.0f, "loss > 0ÀÌ¾î¾ß ÇÑ´Ù.");
+					__ASSERT(a_loss>=0.0f && b_loss>=0.0f, "loss > 0ï¿½Ì¾ï¿½ï¿½ ï¿½Ñ´ï¿½.");
 				}
 				continue;
 			}
@@ -421,7 +421,7 @@ void CN3PMeshCreate::TryEdge(
 			if (tri[0] != pt_b && tri[1] != pt_b)
 			{
 				combine_modified(a_loss, tri, 2, pt_b, m_PMCOption.bUseSumOfLoss);
-				__ASSERT(a_loss>=0.0f, "loss > 0ÀÌ¾î¾ß ÇÑ´Ù.");
+				__ASSERT(a_loss>=0.0f, "loss > 0ï¿½Ì¾ï¿½ï¿½ ï¿½Ñ´ï¿½.");
 			}
 			else
 			{
@@ -438,7 +438,7 @@ void CN3PMeshCreate::TryEdge(
 					{
 						if (t_loss > a_loss) a_loss = t_loss;
 					}
-					__ASSERT(a_loss>=0.0f && b_loss>=0.0f, "loss > 0ÀÌ¾î¾ß ÇÑ´Ù.");
+					__ASSERT(a_loss>=0.0f && b_loss>=0.0f, "loss > 0ï¿½Ì¾ï¿½ï¿½ ï¿½Ñ´ï¿½.");
 				}
 				continue;
 			}
@@ -449,28 +449,28 @@ void CN3PMeshCreate::TryEdge(
 			if (tri[0] == pt_b)
 			{
 				combine_modified(b_loss, tri, 0, pt_a, m_PMCOption.bUseSumOfLoss);
-				__ASSERT(b_loss>=0.0f, "loss > 0ÀÌ¾î¾ß ÇÑ´Ù.");
+				__ASSERT(b_loss>=0.0f, "loss > 0ï¿½Ì¾ï¿½ï¿½ ï¿½Ñ´ï¿½.");
 			}
 			else
 			if (tri[1] == pt_b)
 			{
 				combine_modified(b_loss, tri, 1, pt_a, m_PMCOption.bUseSumOfLoss);
-				__ASSERT(b_loss>=0.0f, "loss > 0ÀÌ¾î¾ß ÇÑ´Ù.");
+				__ASSERT(b_loss>=0.0f, "loss > 0ï¿½Ì¾ï¿½ï¿½ ï¿½Ñ´ï¿½.");
 			}
 			else
 			if (tri[2] == pt_b)
 			{
 				combine_modified(b_loss, tri, 2, pt_a, m_PMCOption.bUseSumOfLoss);
-				__ASSERT(b_loss>=0.0f, "loss > 0ÀÌ¾î¾ß ÇÑ´Ù.");
+				__ASSERT(b_loss>=0.0f, "loss > 0ï¿½Ì¾ï¿½ï¿½ ï¿½Ñ´ï¿½.");
 			}
 		}
 	}
-	__ASSERT(a_loss>=0.0f && b_loss>=0.0f, "loss > 0ÀÌ¾î¾ß ÇÑ´Ù.");
+	__ASSERT(a_loss>=0.0f && b_loss>=0.0f, "loss > 0ï¿½Ì¾ï¿½ï¿½ ï¿½Ñ´ï¿½.");
 
 #ifdef _SAME_VERTEXPOS
 	float temp_a_loss = GetLossOfSamePosVertex(pt_b, pt_a);
 	float temp_b_loss = GetLossOfSamePosVertex(pt_a, pt_b);
-	__ASSERT(temp_a_loss>=0.0f && temp_b_loss>=0.0f, "loss > 0ÀÌ¾î¾ß ÇÑ´Ù.");
+	__ASSERT(temp_a_loss>=0.0f && temp_b_loss>=0.0f, "loss > 0ï¿½Ì¾ï¿½ï¿½ ï¿½Ñ´ï¿½.");
 	if (m_PMCOption.bUseSumOfLoss)
 	{
 		a_loss += temp_a_loss;
@@ -490,7 +490,7 @@ void CN3PMeshCreate::TryEdge(
 	// We want to lose the point that costs the least.
 
 	// Make sure it's point B that is the least cost by swapping if necessary.
-	__ASSERT(a_loss>=0.0f && b_loss>=0.0f, "loss > 0ÀÌ¾î¾ß ÇÑ´Ù.");
+	__ASSERT(a_loss>=0.0f && b_loss>=0.0f, "loss > 0ï¿½Ì¾ï¿½ï¿½ ï¿½Ñ´ï¿½.");
 	if (b_loss > a_loss)
 	{
 		swap(pt_a, pt_b);
@@ -543,7 +543,7 @@ bool CN3PMeshCreate::FindACollapse(float &val_so_far)
 	Collapse(be_index_a, be_index_b, val_so_far);
 
 #ifdef _SAME_VERTEXPOS
-	// °°Àº Á¡ Ã£±â
+	// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ Ã£ï¿½ï¿½
 	int i;
 	for (i=0; i<m_iNumVertices; ++i)
 	{
@@ -625,7 +625,7 @@ CN3PMesh *CN3PMeshCreate::CreateRendererMesh()
 		fTempValue = src.Value;
 	}
 
-	// mesh Á¤º¸
+	// mesh ï¿½ï¿½ï¿½ï¿½
 	pPMesh->m_iMaxNumIndices  = m_iOriginalNumIndices ;
 	pPMesh->m_iMaxNumVertices = m_iOriginalNumVertices;
 	pPMesh->m_iMinNumIndices  = m_iNumIndices ;
@@ -668,8 +668,8 @@ int CN3PMeshCreate::ReGenerate(CN3PMesh *pPMesh)
 	if(NULL == pPMesh) return -1;
 	
 	this->Release();
-	this->ConvertFromN3PMesh(pPMesh); // Mesh ·Î ºÎÅÍ ¸¸µé±â..
-	this->CreateCollapseList(); // Progressive Mesh Ã³¸®..
+	this->ConvertFromN3PMesh(pPMesh); // Mesh ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½..
+	this->CreateCollapseList(); // Progressive Mesh Ã³ï¿½ï¿½..
 
 	pPMesh->m_iTotalIndexChanges = m_iTotalIndexChanges;
 	if (m_iTotalIndexChanges>0)
@@ -710,7 +710,7 @@ int CN3PMeshCreate::ReGenerate(CN3PMesh *pPMesh)
 		fTempValue = src.Value;
 	}
 
-	// mesh Á¤º¸
+	// mesh ï¿½ï¿½ï¿½ï¿½
 	pPMesh->m_iMinNumIndices  = m_iNumIndices ;
 	pPMesh->m_iMinNumVertices = m_iNumVertices;
 
@@ -742,9 +742,9 @@ int CN3PMeshCreate::ReGenerate(CN3PMesh *pPMesh)
 	return 0;
 }
 // swap "swapper" to the end of the material, updating all references to the vertices being swapped
-// swapper¹øÂ° ¹öÅØ½º¸¦ ¹öÅØ½º¹öÆÛÀÇ m_iNumVertices-1 ¹øÂ°·Î º¸³»°í
-// ( m_iNumVertices´Â collapse ¸®½ºÆ®¸¦ ¸¸µé¶§¸¶´Ù ÇÏ³ª¾¿ °¨¼Ò) m_iNumVertices-1¹øÂ°´Â swapper¹øÂ°·Î ¿Å±ä´Ù.
-// ÀÎµ¦½º ¹öÆÛ, collapse¸®½ºÆ® ¾ÈÀÇ ÂüÁ¶ ÀÎµ¦½º, pt_to, pt_endµµ »õ·Î¿î ÀÎµ¦½º¿¡ ¸Â°Ô swap ÇÏ´Â ÇÔ¼ö
+// swapperï¿½ï¿½Â° ï¿½ï¿½ï¿½Ø½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ø½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ m_iNumVertices-1 ï¿½ï¿½Â°ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+// ( m_iNumVerticesï¿½ï¿½ collapse ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½ï¿½é¶§ï¿½ï¿½ï¿½ï¿½ ï¿½Ï³ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½) m_iNumVertices-1ï¿½ï¿½Â°ï¿½ï¿½ swapperï¿½ï¿½Â°ï¿½ï¿½ ï¿½Å±ï¿½ï¿½.
+// ï¿½Îµï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½, collapseï¿½ï¿½ï¿½ï¿½Æ® ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Îµï¿½ï¿½ï¿½, pt_to, pt_endï¿½ï¿½ ï¿½ï¿½ï¿½Î¿ï¿½ ï¿½Îµï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Â°ï¿½ swap ï¿½Ï´ï¿½ ï¿½Ô¼ï¿½
 void CN3PMeshCreate::SwapToEnd(WORD swapper, __PMCEdgeCollapse *collapses, __PMCEdgeCollapse *collapses_end, WORD &pt_to, WORD &pt_from)
 {
 	// NOTE: Here you may want to call back into your animation system (for example), so that it knows that
@@ -813,7 +813,7 @@ void CN3PMeshCreate::SwapToEnd(WORD swapper, __PMCEdgeCollapse *collapses, __PMC
 	}
 }
 
-bool CN3PMeshCreate::ConvertFromN3Mesh(CN3Mesh* pN3Mesh)	// N3Mesh -> CN3PMeshCreate ·Î ÄÁ¹öÆÃ..
+bool CN3PMeshCreate::ConvertFromN3Mesh(CN3Mesh* pN3Mesh)	// N3Mesh -> CN3PMeshCreate ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½..
 {
 	if (pN3Mesh == NULL) return false;
 	Release();
@@ -850,7 +850,7 @@ bool CN3PMeshCreate::ConvertFromN3PMesh(CN3PMesh* pN3PMesh)
 	if (pN3PMesh == NULL) return false;
 	Release();
 
-	CN3PMesh* pPMeshTmp = CN3Base::s_MngPMesh.Get(pN3PMesh->FileName()); // ÀÌ·¡¾ß ÂüÁ¶ Ä«¿îÆ®°¡ ÇÏ³ª ´Ã¾î¼­ Æ÷ÀÎÅÍ°¡ ¾È¾ø¾îÁø´Ù.
+	CN3PMesh* pPMeshTmp = CN3Base::s_MngPMesh.Get(pN3PMesh->FileName()); // ï¿½Ì·ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ Ä«ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½Ï³ï¿½ ï¿½Ã¾î¼­ ï¿½ï¿½ï¿½ï¿½ï¿½Í°ï¿½ ï¿½È¾ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½.
 	CN3PMeshInstance PMeshInst(pN3PMesh);
 	PMeshInst.SetLODByNumVertices(pN3PMesh->GetMaxNumVertices());
 
@@ -861,7 +861,7 @@ bool CN3PMeshCreate::ConvertFromN3PMesh(CN3PMesh* pN3PMesh)
 
 #ifdef _USE_VERTEXBUFFER
 	// copy vertices
-	LPDIRECT3DVERTEXBUFFER8 pVB = PMeshInst.GetVertexBuffer();
+	LPDIRECT3DVERTEXBUFFER9 pVB = PMeshInst.GetVertexBuffer();
 	if (pVB)
 	{
 		m_pVertices = new __VertexT1[m_iNumVertices];
@@ -874,7 +874,7 @@ bool CN3PMeshCreate::ConvertFromN3PMesh(CN3PMesh* pN3PMesh)
 		pVB->Unlock();
 	}
 	// copy indices
-	LPDIRECT3DINDEXBUFFER8 pIB = PMeshInst.GetIndexBuffer();
+	LPDIRECT3DINDEXBUFFER9 pIB = PMeshInst.GetIndexBuffer();
 	if (pIB)
 	{
 		m_pIndices = new WORD[m_iNumIndices];
@@ -923,13 +923,13 @@ float CN3PMeshCreate::GetLossOfSamePosVertex(WORD pt_to, WORD pt_from)
 	int i;
 	for (i=0; i<m_iNumVertices; ++i)
 	{
-		// from °ú °°Àº À§Ä¡ÀÇ VertexÃ£±â
+		// from ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ä¡ï¿½ï¿½ VertexÃ£ï¿½ï¿½
 		if (i != pt_to && i != pt_from &&
 			m_pVertices[i].x == x &&
 			m_pVertices[i].y == y &&
 			m_pVertices[i].z == z )
 		{
-			// i´Â °°Àº À§Ä¡¸¦ °¡Áø ¹öÅØ½ºÀÇ ÀÎµ¦½º
+			// iï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ä¡ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ø½ï¿½ï¿½ï¿½ ï¿½Îµï¿½ï¿½ï¿½
 			WORD* tri;
 			for (tri = m_pIndices; tri<m_pIndices+m_iNumIndices; tri += 3)
 			{

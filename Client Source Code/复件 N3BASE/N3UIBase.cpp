@@ -32,7 +32,7 @@ static char THIS_FILE[]=__FILE__;
 
 CN3UIEdit* CN3UIBase::s_pFocusedEdit = NULL;
 CN3UITooltip* CN3UIBase::s_pTooltipCtrl = NULL;
-std::string CN3UIStatic::s_szStringTmp; // ÀÓ½Ãº¯¼ö..
+std::string CN3UIStatic::s_szStringTmp; // ï¿½Ó½Ãºï¿½ï¿½ï¿½..
 
 CN3UIBase::CN3UIBase()
 {
@@ -56,7 +56,7 @@ CN3UIBase::CN3UIBase()
 
 CN3UIBase::~CN3UIBase()
 {
-	if(m_pParent) m_pParent->RemoveChild(this);	// ºÎ¸ðÀÇ ÀÚ½Ä¿¡¼­ ³ª¸¦ Áö¿ì±â
+	if(m_pParent) m_pParent->RemoveChild(this);	// ï¿½Î¸ï¿½ï¿½ï¿½ ï¿½Ú½Ä¿ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½
 
 	CN3Base::s_SndMgr.ReleaseObj(&m_pSnd_OpenUI);
 	CN3Base::s_SndMgr.ReleaseObj(&m_pSnd_CloseUI);
@@ -64,8 +64,8 @@ CN3UIBase::~CN3UIBase()
 	while(!m_Children.empty())
 	{
 		CN3UIBase* pChild = m_Children.front();
-		if (pChild) delete pChild;	// ÀÚ½ÄÀÌ deleteµÇ¸é¼­ ºÎ¸ðÀÇ list¿¡¼­´Â ÀÚµ¿À¸·Î Á¦°ÅµÈ´Ù.
-									// µû¶ó¼­ ¸®½ºÆ®¿¡¼­ µû·Î Áö¿ì´Â ºÎºÐÀÌ ¾ø¾îµµ µÈ´Ù.
+		if (pChild) delete pChild;	// ï¿½Ú½ï¿½ï¿½ï¿½ deleteï¿½Ç¸é¼­ ï¿½Î¸ï¿½ï¿½ï¿½ listï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Úµï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ÅµÈ´ï¿½.
+									// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Îºï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½îµµ ï¿½È´ï¿½.
 	}
 }
 
@@ -89,8 +89,8 @@ void CN3UIBase::Release()
 	while(!m_Children.empty())
 	{
 		CN3UIBase* pChild = m_Children.front();
-		if (pChild) delete pChild;	// ÀÚ½ÄÀÌ deleteµÇ¸é¼­ ºÎ¸ðÀÇ list¿¡¼­´Â ÀÚµ¿À¸·Î Á¦°ÅµÈ´Ù.
-									// µû¶ó¼­ ¸®½ºÆ®¿¡¼­ µû·Î Áö¿ì´Â ºÎºÐÀÌ ¾ø¾îµµ µÈ´Ù.
+		if (pChild) delete pChild;	// ï¿½Ú½ï¿½ï¿½ï¿½ deleteï¿½Ç¸é¼­ ï¿½Î¸ï¿½ï¿½ï¿½ listï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Úµï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ÅµÈ´ï¿½.
+									// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Îºï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½îµµ ï¿½È´ï¿½.
 	}
 
 	CN3BaseFileAccess::Release();
@@ -135,10 +135,10 @@ POINT CN3UIBase::GetPos() const
 	return p;
 }
 
-// À§Ä¡ ¹Ù²Ù±â
+// ï¿½ï¿½Ä¡ ï¿½Ù²Ù±ï¿½
 void CN3UIBase::SetPos(int x, int y)
 {
-	// ¿òÁ÷ÀÎ Â÷ÀÌ ±¸ÇÏ±â
+	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ï±ï¿½
 	int dx, dy;
 	dx = x - m_rcRegion.left;
 	dy = y - m_rcRegion.top;
@@ -155,19 +155,19 @@ void CN3UIBase::SetPosCenter()
 	int iWVP = CN3Base::s_CameraData.vp.Width;
 	int iHVP = CN3Base::s_CameraData.vp.Height;
 
-	// ¿òÁ÷ÀÎ Â÷ÀÌ ±¸ÇÏ±â
+	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ï±ï¿½
 	MoveOffset(((iWVP - iW) / 2) - pt.x, ((iHVP - iH) / 2) - pt.y);
 }
 
-// offset¸¸Å­ ÀÌµ¿ÇØÁØ´Ù.(childrenµµ ÀÌµ¿)
+// offsetï¿½ï¿½Å­ ï¿½Ìµï¿½ï¿½ï¿½ï¿½Ø´ï¿½.(childrenï¿½ï¿½ ï¿½Ìµï¿½)
 BOOL CN3UIBase::MoveOffset(int iOffsetX, int iOffsetY)
 {
 	if (0 == iOffsetX && 0 == iOffsetY) return FALSE;
-	// ui ¿µ¿ª
+	// ui ï¿½ï¿½ï¿½ï¿½
 	m_rcRegion.left += iOffsetX;		m_rcRegion.top += iOffsetY;
 	m_rcRegion.right += iOffsetX;		m_rcRegion.bottom += iOffsetY;
 
-	// movable ¿µ¿ª
+	// movable ï¿½ï¿½ï¿½ï¿½
 	if(	m_rcMovable.right - m_rcMovable.left != 0 &&
 		m_rcMovable.bottom - m_rcMovable.top != 0 )
 	{
@@ -175,7 +175,7 @@ BOOL CN3UIBase::MoveOffset(int iOffsetX, int iOffsetY)
 		m_rcMovable.right += iOffsetX;		m_rcMovable.bottom += iOffsetY;
 	}
 
-	// children ÁÂÇ¥ °»½Å
+	// children ï¿½ï¿½Ç¥ ï¿½ï¿½ï¿½ï¿½
 	CN3UIBase* pCUI = NULL; // Child UI...
 	for(UIListItor itor = m_Children.begin(); m_Children.end() != itor; ++itor)
 	{
@@ -186,7 +186,7 @@ BOOL CN3UIBase::MoveOffset(int iOffsetX, int iOffsetY)
 	return TRUE;
 }
 
-//	Á¡ (x,y)°¡ ¿µ¿ª¾È¿¡ ÀÖÀ¸¸é true..
+//	ï¿½ï¿½ (x,y)ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½È¿ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ true..
 bool CN3UIBase::IsIn(int x, int y)
 {
 	if(x<m_rcRegion.left || x>m_rcRegion.right || y<m_rcRegion.top || y>m_rcRegion.bottom) return false;
@@ -200,9 +200,9 @@ void CN3UIBase::SetSize(int iWidth, int iHeight)
 	SetRegion(rc);
 }
 
-bool CN3UIBase::ReceiveMessage(CN3UIBase* pSender, DWORD dwMsg) // ¸Þ½ÃÁö¸¦ ¹Þ´Â´Ù.. º¸³½³ð, msg
+bool CN3UIBase::ReceiveMessage(CN3UIBase* pSender, DWORD dwMsg) // ï¿½Þ½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Þ´Â´ï¿½.. ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½, msg
 {
-	if(m_pParent && pSender) m_pParent->ReceiveMessage(pSender, dwMsg); // ºÎ¸ð°¡ ÀÖÀ¸¸é ±×³Ñ¿¡°Ôµµ º¸³½´Ù..
+	if(m_pParent && pSender) m_pParent->ReceiveMessage(pSender, dwMsg); // ï¿½Î¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½×³Ñ¿ï¿½ï¿½Ôµï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½..
 	return true;
 }
 
@@ -226,14 +226,14 @@ bool CN3UIBase::Load(HANDLE hFile)
 	CN3BaseFileAccess::Load(hFile);
 	DWORD dwRWC = NULL;
 
-	// children Á¤º¸
+	// children ï¿½ï¿½ï¿½ï¿½
 	int iCC = 0;
 	ReadFile(hFile, &iCC, sizeof(iCC), &dwRWC, NULL); // children count
 	eUI_TYPE eChildUIType;
 	for(int i = 0; i < iCC; i++)
 	{
 		CN3UIBase* pChild = NULL;
-		ReadFile(hFile, &eChildUIType, sizeof(eChildUIType), &dwRWC, NULL); // childÀÇ ui type
+		ReadFile(hFile, &eChildUIType, sizeof(eChildUIType), &dwRWC, NULL); // childï¿½ï¿½ ui type
 
 		switch(eChildUIType)
 		{
@@ -257,7 +257,7 @@ bool CN3UIBase::Load(HANDLE hFile)
 		pChild->Load(hFile);
 	}
 
-	// base Á¤º¸
+	// base ï¿½ï¿½ï¿½ï¿½
 	int iIDLen = 0;
 	ReadFile(hFile, &iIDLen, sizeof(iIDLen), &dwRWC, NULL);				// ui id length
 	if (iIDLen>0)
@@ -276,7 +276,7 @@ bool CN3UIBase::Load(HANDLE hFile)
 	ReadFile(hFile, &m_dwReserved, sizeof(m_dwReserved), &dwRWC, NULL);	//	m_dwReserved
 
 	int iTooltipLen;
-	ReadFile(hFile, &iTooltipLen, sizeof(iTooltipLen), &dwRWC, NULL);		//	tooltip¹®ÀÚ¿­ ±æÀÌ
+	ReadFile(hFile, &iTooltipLen, sizeof(iTooltipLen), &dwRWC, NULL);		//	tooltipï¿½ï¿½ï¿½Ú¿ï¿½ ï¿½ï¿½ï¿½ï¿½
 	if (iTooltipLen>0)
 	{
 		std::vector<char> buffer(iTooltipLen+1, NULL);
@@ -284,9 +284,9 @@ bool CN3UIBase::Load(HANDLE hFile)
 		m_szToolTip = buffer.begin();
 	}
 
-	// ÀÌÀü uifÆÄÀÏÀ» ÄÁ¹öÆÃ ÇÏ·Á¸é »ç¿îµå ·Îµå ÇÏ´Â ºÎºÐ ¸·±â
+	// ï¿½ï¿½ï¿½ï¿½ uifï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ï·ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Îµï¿½ ï¿½Ï´ï¿½ ï¿½Îºï¿½ ï¿½ï¿½ï¿½ï¿½
 	int iSndFNLen = 0;
-	ReadFile(hFile, &iSndFNLen, sizeof(iSndFNLen), &dwRWC, NULL);		//	»ç¿îµå ÆÄÀÏ ¹®ÀÚ¿­ ±æÀÌ
+	ReadFile(hFile, &iSndFNLen, sizeof(iSndFNLen), &dwRWC, NULL);		//	ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ú¿ï¿½ ï¿½ï¿½ï¿½ï¿½
 	if (iSndFNLen>0)
 	{
 		std::vector<char> buffer(iSndFNLen+1, NULL);
@@ -296,7 +296,7 @@ bool CN3UIBase::Load(HANDLE hFile)
 		m_pSnd_OpenUI = s_SndMgr.CreateObj(buffer.begin(), SNDTYPE_2D);
 	}
 
-	ReadFile(hFile, &iSndFNLen, sizeof(iSndFNLen), &dwRWC, NULL);		//	»ç¿îµå ÆÄÀÏ ¹®ÀÚ¿­ ±æÀÌ
+	ReadFile(hFile, &iSndFNLen, sizeof(iSndFNLen), &dwRWC, NULL);		//	ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ú¿ï¿½ ï¿½ï¿½ï¿½ï¿½
 	if (iSndFNLen>0)
 	{
 		std::vector<char> buffer(iSndFNLen+1, NULL);
@@ -321,7 +321,7 @@ void CN3UIBase::Tick()
 
 void CN3UIBase::Render()
 {
-	if (!m_bVisible) return;	// º¸ÀÌÁö ¾ÊÀ¸¸é ÀÚ½ÄµéÀ» renderÇÏÁö ¾Ê´Â´Ù.
+	if (!m_bVisible) return;	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ú½Äµï¿½ï¿½ï¿½ renderï¿½ï¿½ï¿½ï¿½ ï¿½Ê´Â´ï¿½.
 
 	for(UIListReverseItor itor = m_Children.rbegin(); m_Children.rend() != itor; ++itor)
 	{
@@ -344,7 +344,7 @@ DWORD CN3UIBase::MouseProc(DWORD dwFlags, const POINT& ptCur, const POINT& ptOld
 	DWORD dwRet = UI_MOUSEPROC_NONE;
 	if (!m_bVisible) return dwRet;
 
-	// UI ¿òÁ÷ÀÌ´Â ÄÚµå
+	// UI ï¿½ï¿½ï¿½ï¿½ï¿½Ì´ï¿½ ï¿½Úµï¿½
 	if (UI_STATE_COMMON_MOVE == m_eState)
 	{
 		if (dwFlags&UI_MOUSE_LBCLICKED)
@@ -359,43 +359,43 @@ DWORD CN3UIBase::MouseProc(DWORD dwFlags, const POINT& ptCur, const POINT& ptOld
 		return dwRet;
 	}
 
-	if(false == IsIn(ptCur.x, ptCur.y))	// ¿µ¿ª ¹ÛÀÌ¸é
+	if(false == IsIn(ptCur.x, ptCur.y))	// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ì¸ï¿½
 	{
 		if(false == IsIn(ptOld.x, ptOld.y))
 		{
-			return dwRet;// ÀÌÀü ÁÂÇ¥µµ ¿µ¿ª ¹ÛÀÌ¸é 
+			return dwRet;// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ç¥ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ì¸ï¿½ 
 		}
-		dwRet |= UI_MOUSEPROC_PREVINREGION;	// ÀÌÀü ÁÂÇ¥´Â ¿µ¿ª ¾ÈÀÌ¾ú´Ù.
+		dwRet |= UI_MOUSEPROC_PREVINREGION;	// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ç¥ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ì¾ï¿½ï¿½ï¿½.
 	}
 	else
 	{
-		// tool tip °ü·Ã
+		// tool tip ï¿½ï¿½ï¿½ï¿½
 		if (s_pTooltipCtrl) s_pTooltipCtrl->SetText(m_szToolTip);
 	}
-	dwRet |= UI_MOUSEPROC_INREGION;	// ÀÌ¹ø ÁÂÇ¥´Â ¿µ¿ª ¾ÈÀÌ´Ù.
+	dwRet |= UI_MOUSEPROC_INREGION;	// ï¿½Ì¹ï¿½ ï¿½ï¿½Ç¥ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ì´ï¿½.
 
 
 	//this_ui
 	if(m_pChildUI && m_pChildUI->IsVisible())
 		return dwRet;
 
-	// child¿¡°Ô ¸Þ¼¼Áö Àü´Þ
+	// childï¿½ï¿½ï¿½ï¿½ ï¿½Þ¼ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	for(UIListItor itor = m_Children.begin(); m_Children.end() != itor; ++itor)
 	{
 		CN3UIBase* pChild = (*itor);
 		DWORD dwChildRet = pChild->MouseProc(dwFlags, ptCur, ptOld);
 		if (UI_MOUSEPROC_DONESOMETHING & dwChildRet)
-		{	// ÀÌ°æ¿ì¿¡´Â ¸Õ°¡ Æ÷Ä¿½º¸¦ ¹ÞÀº °æ¿ìÀÌ´Ù.
-			// (¾Æ·¡ ÄÚµå´Â dialog¸¦ °ü¸®ÇÏ´Â °÷¿¡¼­ ÇØ¾ß ÇÑ´Ù. µû¶ó¼­ ¸·¾Æ³õÀ½)
-//			m_Children.erase(itor);			// ¿ì¼± ¸®½ºÆ®¿¡¼­ Áö¿ì°í
-//			m_Children.push_front(pChild);	// ¸Ç¾Õ¿¡ ³Ö´Â´Ù. ±×¸®´Â ¼ø¼­¸¦ ¸Ç ³ªÁß¿¡ ±×¸®µµ·Ï ÇÏ·Á°í
+		{	// ï¿½Ì°ï¿½ì¿¡ï¿½ï¿½ ï¿½Õ°ï¿½ ï¿½ï¿½Ä¿ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ì´ï¿½.
+			// (ï¿½Æ·ï¿½ ï¿½Úµï¿½ï¿½ dialogï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ø¾ï¿½ ï¿½Ñ´ï¿½. ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Æ³ï¿½ï¿½ï¿½)
+//			m_Children.erase(itor);			// ï¿½ì¼± ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½
+//			m_Children.push_front(pChild);	// ï¿½Ç¾Õ¿ï¿½ ï¿½Ö´Â´ï¿½. ï¿½×¸ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ß¿ï¿½ ï¿½×¸ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ï·ï¿½ï¿½ï¿½
 
 			dwRet |= (UI_MOUSEPROC_CHILDDONESOMETHING|UI_MOUSEPROC_DONESOMETHING);
 			return dwRet;
 		}
 	}
 
-	// UI ¿òÁ÷ÀÌ´Â ÄÚµå
+	// UI ï¿½ï¿½ï¿½ï¿½ï¿½Ì´ï¿½ ï¿½Úµï¿½
 	if (UI_STATE_COMMON_MOVE != m_eState && 
 			PtInRect(&m_rcMovable, ptCur) && (dwFlags&UI_MOUSE_LBCLICK) )
 	{
@@ -432,7 +432,7 @@ CN3UIBase* CN3UIBase::GetChildByID(const std::string& szID)
 	{
 		CN3UIBase* pChild = (*itor);
 //		if(pChild->m_szID == szID) return pChild;
-		if(lstrcmpi(pChild->m_szID.c_str(), szID.c_str()) == 0) return pChild; // ´ë¼Ò¹®ÀÚ ¾È°¡¸®°í °Ë»ö..
+		if(lstrcmpi(pChild->m_szID.c_str(), szID.c_str()) == 0) return pChild; // ï¿½ï¿½Ò¹ï¿½ï¿½ï¿½ ï¿½È°ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ë»ï¿½..
 	}
 	return NULL;
 }
@@ -441,8 +441,8 @@ void CN3UIBase::SetVisible(bool bVisible)
 {
 	if (bVisible != m_bVisible)
 	{
-		if (bVisible) { if(m_pSnd_OpenUI) m_pSnd_OpenUI->Play(); }	// ¿©´Â ¼Ò¸®
-		else { if(m_pSnd_CloseUI) m_pSnd_CloseUI->Play(); }	// ´Ý´Â ¼Ò¸®
+		if (bVisible) { if(m_pSnd_OpenUI) m_pSnd_OpenUI->Play(); }	// ï¿½ï¿½ï¿½ï¿½ ï¿½Ò¸ï¿½
+		else { if(m_pSnd_CloseUI) m_pSnd_CloseUI->Play(); }	// ï¿½Ý´ï¿½ ï¿½Ò¸ï¿½
 	}
 	m_bVisible = bVisible;
 	if(!m_bVisible)
@@ -485,7 +485,7 @@ void CN3UIBase::SetVisibleWithNoSound(bool bVisible, bool bWork, bool bReFocus)
 #ifndef _N3TOOL
 void CN3UIBase::operator = (const CN3UIBase& other)
 {
-	Init(NULL);	// ÀÏ´Ü ºÎ¸ð´Â ¾ø°Ô ÃÊ±âÈ­
+	Init(NULL);	// ï¿½Ï´ï¿½ ï¿½Î¸ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ê±ï¿½È­
 
 	UIListItorConst it = other.m_Children.begin();
 	UIListItorConst itEnd = other.m_Children.end();
@@ -519,7 +519,7 @@ void CN3UIBase::operator = (const CN3UIBase& other)
 				*pUINew = *((CN3UIStatic*)pOtherChild); 
 				pChild = pUINew;
 			} 
-			break;	// static (¹è°æ±×¸²°ú ±ÛÀÚ°¡ ³ª¿À´Â Å¬·¡½º)
+			break;	// static (ï¿½ï¿½ï¿½×¸ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ú°ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Å¬ï¿½ï¿½ï¿½ï¿½)
 		case UI_TYPE_PROGRESS:	
 			{ 
 				CN3UIProgress* pUINew = new CN3UIProgress();	
@@ -595,7 +595,7 @@ void CN3UIBase::operator = (const CN3UIBase& other)
 			break;	// icon slot
 #endif
 		}
-		if(pChild) pChild->SetParent(this);	// ºÎ¸ð ÁöÁ¤
+		if(pChild) pChild->SetParent(this);	// ï¿½Î¸ï¿½ ï¿½ï¿½ï¿½ï¿½
 	}
 
 	m_bVisible = other.m_bVisible;
@@ -629,20 +629,20 @@ bool CN3UIBase::Save(HANDLE hFile)
 	CN3BaseFileAccess::Save(hFile);
 	DWORD dwRWC = NULL;
 
-	// child Á¤º¸
+	// child ï¿½ï¿½ï¿½ï¿½
 	int iCC = m_Children.size();
-	WriteFile(hFile, &iCC, sizeof(iCC), &dwRWC, NULL); // Child °¹¼ö ¤¶°í..°í..
+	WriteFile(hFile, &iCC, sizeof(iCC), &dwRWC, NULL); // Child ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½..ï¿½ï¿½..
 	for(UIListReverseItor itor = m_Children.rbegin(); m_Children.rend() != itor; ++itor)
-	// childaddÇÒ¶§ push_frontÀÌ¹Ç·Î ÀúÀåÇÒ ¶§ °Å²Ù·Î ÀúÀåÇØ¾ß ÇÑ´Ù.
+	// childaddï¿½Ò¶ï¿½ push_frontï¿½Ì¹Ç·ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½Å²Ù·ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ø¾ï¿½ ï¿½Ñ´ï¿½.
 	{
 		CN3UIBase* pChild = (*itor);
 		eUI_TYPE eUIType = pChild->UIType();
 
-		WriteFile(hFile, &eUIType, sizeof(eUIType), &dwRWC, NULL); // UI Type ¾²°í..
+		WriteFile(hFile, &eUIType, sizeof(eUIType), &dwRWC, NULL); // UI Type ï¿½ï¿½ï¿½ï¿½..
 		pChild->Save(hFile);
 	}
 
-	// base Á¤º¸
+	// base ï¿½ï¿½ï¿½ï¿½
 	int iIDLen = 0;
 	iIDLen = m_szID.size();
 	WriteFile(hFile, &iIDLen, sizeof(iIDLen), &dwRWC, NULL);				// id length
@@ -653,17 +653,17 @@ bool CN3UIBase::Save(HANDLE hFile)
 	WriteFile(hFile, &m_dwReserved, sizeof(m_dwReserved), &dwRWC, NULL);	//	m_dwReserved
 
 	int iTooltipLen = m_szToolTip.size();
-	WriteFile(hFile, &iTooltipLen, sizeof(iTooltipLen), &dwRWC, NULL);		//	tooltip¹®ÀÚ¿­ ±æÀÌ
+	WriteFile(hFile, &iTooltipLen, sizeof(iTooltipLen), &dwRWC, NULL);		//	tooltipï¿½ï¿½ï¿½Ú¿ï¿½ ï¿½ï¿½ï¿½ï¿½
 	if (iTooltipLen>0) WriteFile(hFile, m_szToolTip.c_str(), iTooltipLen, &dwRWC, NULL);
 
 	int iSndFNLen = 0;
 	if (m_pSnd_OpenUI) iSndFNLen = m_pSnd_OpenUI->m_szFileName.size();
-	WriteFile(hFile, &iSndFNLen, sizeof(iSndFNLen), &dwRWC, NULL);		//	»ç¿îµå ÆÄÀÏ ¹®ÀÚ¿­ ±æÀÌ
+	WriteFile(hFile, &iSndFNLen, sizeof(iSndFNLen), &dwRWC, NULL);		//	ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ú¿ï¿½ ï¿½ï¿½ï¿½ï¿½
 	if (iSndFNLen>0) WriteFile(hFile, m_pSnd_OpenUI->m_szFileName.c_str(), iSndFNLen, &dwRWC, NULL);
 
 	iSndFNLen = 0;
 	if (m_pSnd_CloseUI) iSndFNLen = m_pSnd_CloseUI->m_szFileName.size();
-	WriteFile(hFile, &iSndFNLen, sizeof(iSndFNLen), &dwRWC, NULL);		//	»ç¿îµå ÆÄÀÏ ¹®ÀÚ¿­ ±æÀÌ
+	WriteFile(hFile, &iSndFNLen, sizeof(iSndFNLen), &dwRWC, NULL);		//	ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ú¿ï¿½ ï¿½ï¿½ï¿½ï¿½
 	if (iSndFNLen>0) WriteFile(hFile, m_pSnd_CloseUI->m_szFileName.c_str(), iSndFNLen, &dwRWC, NULL);
 	
 	return true;
@@ -671,7 +671,7 @@ bool CN3UIBase::Save(HANDLE hFile)
 
 void CN3UIBase::ChangeImagePath(const std::string& szPathOld, const std::string& szPathNew)
 {
-	// child Á¤º¸
+	// child ï¿½ï¿½ï¿½ï¿½
 	for(UIListItor itor = m_Children.begin(); m_Children.end() != itor; ++itor)
 	{
 		CN3UIBase* pChild = (*itor);
@@ -681,7 +681,7 @@ void CN3UIBase::ChangeImagePath(const std::string& szPathOld, const std::string&
 
 void CN3UIBase::ChangeFont(const std::string& szFont)
 {
-	// child Á¤º¸
+	// child ï¿½ï¿½ï¿½ï¿½
 	for(UIListItor itor = m_Children.begin(); m_Children.end() != itor; ++itor)
 	{
 		CN3UIBase* pChild = (*itor);
@@ -691,7 +691,7 @@ void CN3UIBase::ChangeFont(const std::string& szFont)
 
 void CN3UIBase::GatherImageFileName(std::set<std::string>& setImgFile)
 {
-	// child Á¤º¸
+	// child ï¿½ï¿½ï¿½ï¿½
 	for(UIListItor itor = m_Children.begin(); m_Children.end() != itor; ++itor)
 	{
 		CN3UIBase* pChild = (*itor);
@@ -722,7 +722,7 @@ void CN3UIBase::ResizeAutomaticalyByChild()
 	if(rcCur.right < rcMax.right) rcCur.right = rcMax.right;
 	if(rcCur.bottom < rcMax.bottom) rcCur.bottom = rcMax.bottom;
 //	this->SetRegion(rcCur);
-	m_rcRegion = rcCur;	// SetRegionÀ» ÇØ¹ö¸®¸é childÀÇ ¿µ¿ªÀ» ¹Ù²ã¹ö¸®´Â °æ¿ì°¡ ÀÖÀ¸¹Ç·Î ³» ¿µ¿ª¸¸ ¹Ù²Ù±âÀ§ÇØ Á÷Á¢ ³Ö´Â´Ù.
+	m_rcRegion = rcCur;	// SetRegionï¿½ï¿½ ï¿½Ø¹ï¿½ï¿½ï¿½ï¿½ï¿½ childï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ù²ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ì°¡ ï¿½ï¿½ï¿½ï¿½ï¿½Ç·ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ù²Ù±ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ö´Â´ï¿½.
 }
 
 int CN3UIBase::IsMyChild(CN3UIBase* pUI)
@@ -832,16 +832,16 @@ bool CN3UIBase::MoveToUpper(CN3UIBase* pChild)
 
 void CN3UIBase::ArrangeZOrder()
 {
-	// º¸Åë image°¡ ¹è°æ±×¸²ÀÌ µÇ¹Ç·Î child list¿¡¼­ ¸Ç µÚ·Î º¸³½´Ù.
-	// ¿Ö³ÄÇÏ¸é ¸Ç µÚ¿¡ ÀÖ´Â°ÍÀÌ ¸Ç ¸ÕÀú ±×·ÁÁö¹Ç·Î
+	// ï¿½ï¿½ï¿½ï¿½ imageï¿½ï¿½ ï¿½ï¿½ï¿½×¸ï¿½ï¿½ï¿½ ï¿½Ç¹Ç·ï¿½ child listï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½Ú·ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½.
+	// ï¿½Ö³ï¿½ï¿½Ï¸ï¿½ ï¿½ï¿½ ï¿½Ú¿ï¿½ ï¿½Ö´Â°ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½×·ï¿½ï¿½ï¿½ï¿½Ç·ï¿½
 	UIList tempList;
 	for(UIListItor itor = m_Children.begin(); m_Children.end() != itor;)
 	{
 		CN3UIBase* pChild = (*itor);
 		if(UI_TYPE_IMAGE == pChild->UIType())
 		{
-			itor = m_Children.erase(itor);	// ÇöÀç À§Ä¡¿¡¼­ Áö¿ì°í
-			tempList.push_back(pChild);		// ÀÓ½Ã ¹öÆÛ¿¡ ÀúÀå
+			itor = m_Children.erase(itor);	// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ä¡ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½
+			tempList.push_back(pChild);		// ï¿½Ó½ï¿½ ï¿½ï¿½ï¿½Û¿ï¿½ ï¿½ï¿½ï¿½ï¿½
 		}
 		else ++itor;
 	}
@@ -849,14 +849,14 @@ void CN3UIBase::ArrangeZOrder()
 	for(itor = tempList.begin(); tempList.end() != itor; ++itor)
 	{
 		CN3UIBase* pChild = (*itor);
-		m_Children.push_back(pChild);		// child list¸Ç µÚ¿¡ ³Ö±â
+		m_Children.push_back(pChild);		// child listï¿½ï¿½ ï¿½Ú¿ï¿½ ï¿½Ö±ï¿½
 	}
 	tempList.clear();
 }
 
 void CN3UIBase::operator = (const CN3UIBase& other)
 {
-	Init(NULL);	// ÀÏ´Ü ºÎ¸ð´Â ¾ø°Ô ÃÊ±âÈ­
+	Init(NULL);	// ï¿½Ï´ï¿½ ï¿½Î¸ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ê±ï¿½È­
 
 	UIListItorConst it = other.m_Children.begin();
 	UIListItorConst itEnd = other.m_Children.end();
@@ -890,7 +890,7 @@ void CN3UIBase::operator = (const CN3UIBase& other)
 				*pUINew = *((CN3UIStatic*)pOtherChild); 
 				pChild = pUINew;
 			} 
-			break;	// static (¹è°æ±×¸²°ú ±ÛÀÚ°¡ ³ª¿À´Â Å¬·¡½º)
+			break;	// static (ï¿½ï¿½ï¿½×¸ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ú°ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Å¬ï¿½ï¿½ï¿½ï¿½)
 		case UI_TYPE_PROGRESS:	
 			{ 
 				CN3UIProgress* pUINew = new CN3UIProgress();	
@@ -966,7 +966,7 @@ void CN3UIBase::operator = (const CN3UIBase& other)
 			break;	// icon slot
 #endif
 		}
-		if(pChild) pChild->SetParent(this);	// ºÎ¸ð ÁöÁ¤
+		if(pChild) pChild->SetParent(this);	// ï¿½Î¸ï¿½ ï¿½ï¿½ï¿½ï¿½
 	}
 
 	m_bVisible = other.m_bVisible;
@@ -990,7 +990,7 @@ void CN3UIBase::SetSndOpen(const std::string& strFileName)
 	if (0 == strFileName.size()) return;
 
 	CN3BaseFileAccess tmpBase;
-	tmpBase.FileNameSet(strFileName);	// Base°æ·Î¿¡ ´ëÇØ¼­ »ó´ëÀû °æ·Î¸¦ ³Ñ°ÜÁØ´Ù.
+	tmpBase.FileNameSet(strFileName);	// Baseï¿½ï¿½Î¿ï¿½ ï¿½ï¿½ï¿½Ø¼ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Î¸ï¿½ ï¿½Ñ°ï¿½ï¿½Ø´ï¿½.
 
 	SetCurrentDirectory(tmpBase.PathGet().c_str());
 	m_pSnd_OpenUI = s_SndMgr.CreateObj(tmpBase.FileName(), SNDTYPE_2D);
@@ -1002,7 +1002,7 @@ void CN3UIBase::SetSndClose(const std::string& strFileName)
 	if (0 == strFileName.size()) return;
 
 	CN3BaseFileAccess tmpBase;
-	tmpBase.FileNameSet(strFileName);	// Base°æ·Î¿¡ ´ëÇØ¼­ »ó´ëÀû °æ·Î¸¦ ³Ñ°ÜÁØ´Ù.
+	tmpBase.FileNameSet(strFileName);	// Baseï¿½ï¿½Î¿ï¿½ ï¿½ï¿½ï¿½Ø¼ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Î¸ï¿½ ï¿½Ñ°ï¿½ï¿½Ø´ï¿½.
 
 	SetCurrentDirectory(tmpBase.PathGet().c_str());
 	m_pSnd_CloseUI = s_SndMgr.CreateObj(tmpBase.FileName(), SNDTYPE_2D);

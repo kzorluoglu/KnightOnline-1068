@@ -161,7 +161,7 @@ void CDlgEditPartMesh::OnPartMeshBtnSave()
 	FILE* file = fopen((LPCTSTR)m_strPathName, "w");
 	if(!file)
 	{
-		MessageBox("n3fxpartÆÄÀÏ »ý¼º ½ÇÆÐ..-.-;;","ERR02",MB_OK);
+		MessageBox("n3fxpartï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½..-.-;;","ERR02",MB_OK);
 		return;
 	}
 
@@ -256,7 +256,7 @@ bool CDlgEditPartMesh::LoadPartScript(const char* szPath)
 	}
 
 	//////////////////////////////////////////////////
-	//°¢ ÄÁÆ®·Ñ ¼ÂÆÃ...
+	//ï¿½ï¿½ ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½...
 	m_bOnGround = pPart->m_bOnGround;
 	m_bAlphaBlend = pPart->m_bAlpha;
 
@@ -392,7 +392,7 @@ void CDlgEditPartMesh::OnPartMeshBtnLoadShape()
 	}
 	else
 	{
-		MessageBox("N3ShapeÆÄÀÏÀº fxÆú´õ ¾Æ·¡, È¤Àº fxÆú´õ ¾Æ·¡¿¡ ÀÖ´Â Æú´õ¿¡ À§Ä¡ÇØ¾ß ÇÕ´Ï´Ù..-.-;;","ERR03",MB_OK);
+		MessageBox("N3Shapeï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ fxï¿½ï¿½ï¿½ï¿½ ï¿½Æ·ï¿½, È¤ï¿½ï¿½ fxï¿½ï¿½ï¿½ï¿½ ï¿½Æ·ï¿½ï¿½ï¿½ ï¿½Ö´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ä¡ï¿½Ø¾ï¿½ ï¿½Õ´Ï´ï¿½..-.-;;","ERR03",MB_OK);
 	}
 
 	delete pBaseFileAccess;			

@@ -1,11 +1,11 @@
 // N3ShapeMod.h: interface for the CN3ShapeMod class.
-// ¸¸µçÀÌ : dino
-// n3shapeÀÇ ÇÑ ÀÏºÎºÐÀ» ¿òÁ÷ÀÏ ¼ö ÀÖ°Ô ÇÑ Å¬·¡½º
-// »óÅÂ(0¹ø »óÅÂ, 1¹ø»óÅÂ, 2¹ø»óÅÂ)¸¦ º¯°æÇÒ ¼ö ÀÖ´Ù.
-// »óÅÂ º¯°æ½Ã (½Ã°£À» ³Ö¾îÁÖ¸é »óÅÂ°£ÀÇ pos rot scale Á¤º¸¸¦ linearÇÏ°Ô º¯È­½ÃÅ²´Ù.
+// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ : dino
+// n3shapeï¿½ï¿½ ï¿½ï¿½ ï¿½ÏºÎºï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½Ö°ï¿½ ï¿½ï¿½ Å¬ï¿½ï¿½ï¿½ï¿½
+// ï¿½ï¿½ï¿½ï¿½(0ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½, 1ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½, 2ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½)ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½Ö´ï¿½.
+// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ (ï¿½Ã°ï¿½ï¿½ï¿½ ï¿½Ö¾ï¿½ï¿½Ö¸ï¿½ ï¿½ï¿½ï¿½Â°ï¿½ï¿½ï¿½ pos rot scale ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ linearï¿½Ï°ï¿½ ï¿½ï¿½È­ï¿½ï¿½Å²ï¿½ï¿½.
 
-// °³¼±Á¡ : Shape ÀüÃ¼°¡ ¿òÁ÷ÀÌ´Â »óÅÂ¸¦ Ãß°¡ÇÏÀÚ
-//          ¼³°è½Ã Ãß°¡ÇÏ·Á´Ù ³Ê¹« º¹ÀâÇÏ¿© º¸·ùÇÔ. ¸®¸¶Å© µÈ ºÎºÐÀÌ ±×¿¡ °ü·ÃµÈ °ÍÀÓ. Ãß°¡ º¸°­ÇØ¾ßÇÔ.
+// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ : Shape ï¿½ï¿½Ã¼ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ì´ï¿½ ï¿½ï¿½ï¿½Â¸ï¿½ ï¿½ß°ï¿½ï¿½ï¿½ï¿½ï¿½
+//          ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ß°ï¿½ï¿½Ï·ï¿½ï¿½ï¿½ ï¿½Ê¹ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï¿ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½. ï¿½ï¿½ï¿½ï¿½Å© ï¿½ï¿½ ï¿½Îºï¿½ï¿½ï¿½ ï¿½×¿ï¿½ ï¿½ï¿½ï¿½Ãµï¿½ ï¿½ï¿½ï¿½ï¿½. ï¿½ß°ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ø¾ï¿½ï¿½ï¿½.
 //////////////////////////////////////////////////////////////////////
 
 #if !defined(AFX_N3SHAPEMOD_H__6F3C87B4_D10B_412B_B385_0ECE2D4A19A8__INCLUDED_)
@@ -35,12 +35,12 @@ protected:
 	};
 	struct __ModPart
 	{
-		CN3Shape::CPart*	pPart;				// ¿òÁ÷ÀÏ Part
-		bool				bPos;				// Pos º¯È­°¡ ÀÖ´Â°¡?
-		bool				bRot;				// Rot º¯È­°¡ ÀÖ´Â°¡?
-		bool				bScale;				// Scale º¯È­°¡ ÀÖ´Â°¡?
-		__ModPosRotScale*	pStateInfos;		// ¿òÁ÷ÀÏ »óÅÂ Á¤º¸µé(ÀÌµ¿,È¸Àü,È®´ëÃà¼Ò Á¤º¸ m_iStateCount°³)
-		__ModPosRotScale	CurStateInfo;		// ÇöÀç ¿òÁ÷ÀÎ »óÅÂ Á¤º¸(tick¿¡ µû¶ó º¯È­ÇÑ´Ù)
+		CN3Shape::CPart*	pPart;				// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Part
+		bool				bPos;				// Pos ï¿½ï¿½È­ï¿½ï¿½ ï¿½Ö´Â°ï¿½?
+		bool				bRot;				// Rot ï¿½ï¿½È­ï¿½ï¿½ ï¿½Ö´Â°ï¿½?
+		bool				bScale;				// Scale ï¿½ï¿½È­ï¿½ï¿½ ï¿½Ö´Â°ï¿½?
+		__ModPosRotScale*	pStateInfos;		// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½(ï¿½Ìµï¿½,È¸ï¿½ï¿½,È®ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ m_iStateCountï¿½ï¿½)
+		__ModPosRotScale	CurStateInfo;		// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½(tickï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È­ï¿½Ñ´ï¿½)
 
 		__ModPart() {pPart = NULL; pStateInfos = NULL; bPos = false; bRot = false; bScale = false; }
 		~__ModPart() {pPart = NULL; if (pStateInfos) { delete [] pStateInfos; pStateInfos = NULL;}}
@@ -50,9 +50,9 @@ protected:
 	{
 		bool				bShapePos;
 		bool				bShapeRot;
-		bool				bShapeScale;		// Shape°¡ À§Ä¡, È¸Àü, ½ºÄÉÀÏ º¯È­°¡ ÀÖ´Â°¡?
-		__ModPosRotScale*	pShapeStateInfos;	// Shape ÀüÃ¼ÀÇ º¯È­ Á¤º¸
-		__ModPosRotScale	CurShapeStateInfo;	// ÇöÀç ¿òÁ÷ÀÎ »óÅÂ Á¤º¸(tick¿¡ µû¶ó º¯È­ÇÑ´Ù)
+		bool				bShapeScale;		// Shapeï¿½ï¿½ ï¿½ï¿½Ä¡, È¸ï¿½ï¿½, ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È­ï¿½ï¿½ ï¿½Ö´Â°ï¿½?
+		__ModPosRotScale*	pShapeStateInfos;	// Shape ï¿½ï¿½Ã¼ï¿½ï¿½ ï¿½ï¿½È­ ï¿½ï¿½ï¿½ï¿½
+		__ModPosRotScale	CurShapeStateInfo;	// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½(tickï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È­ï¿½Ñ´ï¿½)
 		__ModShape() {pShapeStateInfos = NULL; bShapePos = false; bShapeRot = false; bShapeScale = false;}
 		~__ModShape() {if (pShapeStateInfos) {delete [] pShapeStateInfos; pShapeStateInfos = NULL;}}
 	};
@@ -61,34 +61,34 @@ protected:
 public:
 protected:
 //	enum	{
-//			N3SHAPEMOD_TYPE_NOT_MOD = 0,		// ¾Æ¹« Á¤º¸µµ º¯È­ÇÏÁö ¾Ê´Â °Í
-//			N3SHAPEMOD_TYPE_ONLY_SHAPE = 1,		// ShapeÁ¤º¸¸¸ º¯È­ÇÏ´Â °Í
-//			N3SHAPEMOD_TYPE_ONLY_PART = 2,		// Part Á¤º¸¸¸ º¯È­ÇÏ´Â °Í
-//			N3SHAPEMOD_TYPE_NORMAL = 4			// µÑ ´Ù º¯È­ÇÏ´Â °Í
+//			N3SHAPEMOD_TYPE_NOT_MOD = 0,		// ï¿½Æ¹ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È­ï¿½ï¿½ï¿½ï¿½ ï¿½Ê´ï¿½ ï¿½ï¿½
+//			N3SHAPEMOD_TYPE_ONLY_SHAPE = 1,		// Shapeï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È­ï¿½Ï´ï¿½ ï¿½ï¿½
+//			N3SHAPEMOD_TYPE_ONLY_PART = 2,		// Part ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È­ï¿½Ï´ï¿½ ï¿½ï¿½
+//			N3SHAPEMOD_TYPE_NORMAL = 4			// ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½È­ï¿½Ï´ï¿½ ï¿½ï¿½
 //	};
 //	int		m_iModType;			// type..
-	int		m_iStateCount;		// »óÅÂ°¡ ¸î°³°¡ ÀÖ´ÂÁö ³ªÅ¸³½´Ù.
-	int		m_iCurState;		// ÇöÀç »óÅÂ
-	int		m_iPrevState;		// ÀÌÀü »óÅÂ(»õ·Î¿î »óÅÂ¸¦ ¼³Á¤ÇØÁÖ¸é AnimationµÇ´Â µ¿¾È ÀÌÀü»óÅÂ¸¦ ÀúÀåÇØµÐ´Ù.
-	float	m_fTimeChanged;		// »óÅÂ°¡ ¿ÏÀüÈ÷ ¹Ù²î´Â ½Ã°£
-	float	m_fTimeChanging;	// »óÅÂ°¡ ¹Ù²î´Â ½ÃÀÛ½Ã°£ºÎÅÍ Áö±Ý±îÁöÀÇ °æ°ú ½Ã°£
+	int		m_iStateCount;		// ï¿½ï¿½ï¿½Â°ï¿½ ï¿½î°³ï¿½ï¿½ ï¿½Ö´ï¿½ï¿½ï¿½ ï¿½ï¿½Å¸ï¿½ï¿½ï¿½ï¿½.
+	int		m_iCurState;		// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+	int		m_iPrevState;		// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½(ï¿½ï¿½ï¿½Î¿ï¿½ ï¿½ï¿½ï¿½Â¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö¸ï¿½ Animationï¿½Ç´ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Â¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ØµÐ´ï¿½.
+	float	m_fTimeChanged;		// ï¿½ï¿½ï¿½Â°ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ù²ï¿½ï¿½ ï¿½Ã°ï¿½
+	float	m_fTimeChanging;	// ï¿½ï¿½ï¿½Â°ï¿½ ï¿½Ù²ï¿½ï¿½ ï¿½ï¿½ï¿½Û½Ã°ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ý±ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½Ã°ï¿½
 
-	__ModShape	m_ModShape;			// shapeÀÇ »óÅÂ º¯È­ Á¤º¸
-	int		m_iModPartCount;		// º¯È­ÇÏ´Â ÆÄÆ®ÀÇ °¹¼ö
-	__ModPart*	m_pModParts;		// º¯È­ÇÏ´Â ÆÄÆ®µé Á¤º¸
+	__ModShape	m_ModShape;			// shapeï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È­ ï¿½ï¿½ï¿½ï¿½
+	int		m_iModPartCount;		// ï¿½ï¿½È­ï¿½Ï´ï¿½ ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+	__ModPart*	m_pModParts;		// ï¿½ï¿½È­ï¿½Ï´ï¿½ ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 
-	__ModPart**	m_pMatchPart2ModPart;		// CPart¸®½ºÆ® ¹è¿­¼øÀ¸·Î __ModPart*¿Í ¸ÅÄ¡½ÃÅ² ¹è¿­ (load½Ã CPart °¹¼ö¸¸Å­ ¹è¿­·Î Àâ°í Á¤º¸¸¦ ³Ö´Â´Ù)
+	__ModPart**	m_pMatchPart2ModPart;		// CPartï¿½ï¿½ï¿½ï¿½Æ® ï¿½è¿­ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ __ModPart*ï¿½ï¿½ ï¿½ï¿½Ä¡ï¿½ï¿½Å² ï¿½è¿­ (loadï¿½ï¿½ CPart ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Å­ ï¿½è¿­ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ö´Â´ï¿½)
 
 // Operations
 public:
-	BOOL	SetState(int iState, float fSec);	// fSec½Ã°£µ¿¾È »óÅÂ¸¦ ¹Ù²Û´Ù. (fSecÀÌ 0ÀÏ°æ¿ì Áï½Ã ¹Ù²ï´Ù.)
-	BOOL	LoadStateInfo(FILE* stream);	// »óÅÂ Á¤º¸¸¦ ÀÐ¾î¿Â´Ù.(text·ÎºÎÅÍ)
+	BOOL	SetState(int iState, float fSec);	// fSecï¿½Ã°ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Â¸ï¿½ ï¿½Ù²Û´ï¿½. (fSecï¿½ï¿½ 0ï¿½Ï°ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½Ù²ï¿½ï¿½.)
+	BOOL	LoadStateInfo(FILE* stream);	// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ð¾ï¿½Â´ï¿½.(textï¿½Îºï¿½ï¿½ï¿½)
 	virtual void	Release();
 	virtual void	ReCalcMatrix();
 	virtual void	Tick(float fFrm = FRAME_SELFPLAY);
 	virtual bool	Load(HANDLE hFile);
 protected:
-	CPart* GetPartByPMeshName(LPCTSTR pszName);	// ÀÌ¸§À¸·Î PMeshÆ÷ÀÎÅÍ ±¸ÇÏ±â
+	CPart* GetPartByPMeshName(LPCTSTR pszName);	// ï¿½Ì¸ï¿½ï¿½ï¿½ï¿½ï¿½ PMeshï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ï±ï¿½
 
 };
 

@@ -17,9 +17,9 @@ public:
 
 	DWORD		m_dwCurrColor;	//
 	
-	char		m_cTextureMoveDir;	//ÅØ½ºÃÄ ÀÌµ¿ ¹æÇâ..1:up 2:down, 3:left, 4:right
-	float		m_fu;				//ÅØ½ºÃÄ ÀÌµ¿ ¼Óµµ
-	float		m_fv;				//ÅØ½ºÃÄ ÀÌµ¿ ¼Óµµ
+	char		m_cTextureMoveDir;	//ï¿½Ø½ï¿½ï¿½ï¿½ ï¿½Ìµï¿½ ï¿½ï¿½ï¿½ï¿½..1:up 2:down, 3:left, 4:right
+	float		m_fu;				//ï¿½Ø½ï¿½ï¿½ï¿½ ï¿½Ìµï¿½ ï¿½Óµï¿½
+	float		m_fv;				//ï¿½Ø½ï¿½ï¿½ï¿½ ï¿½Ìµï¿½ ï¿½Óµï¿½
 
 	__Vector3	m_vUnitScale;
 	__Vector3	m_vScaleVel;
@@ -34,13 +34,13 @@ protected:
 	bool	IsDead();
 
 public:
-	void	Init();				//	°¢Á¾ º¯¼öµéÀ» Ã³À½ ·ÎµùÇÑ »óÅÂ·Î ÃÊ±âÈ­...
-	void	Start();			//	ÆÄÆ® ±¸µ¿ ½ÃÀÛ.
-	void	Stop();				//	ÆÄÆ® ±¸µ¿ ¸ØÃã..
+	void	Init();				//	ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Ã³ï¿½ï¿½ ï¿½Îµï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Â·ï¿½ ï¿½Ê±ï¿½È­...
+	void	Start();			//	ï¿½ï¿½Æ® ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½.
+	void	Stop();				//	ï¿½ï¿½Æ® ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½..
 	bool	Tick();				//	ticktick...
-	void	Render();			//	È­¸é¿¡ »Ñ¸®±â..
-	bool	Load(HANDLE hFile);	//	°ÔÀÓÆÄÀÏ ºÒ·¯¿À±â.
-	bool	Save(HANDLE hFile);	//	°ÔÀÓÆÄÀÏ ÀúÀå¿À±â.
+	void	Render();			//	È­ï¿½é¿¡ ï¿½Ñ¸ï¿½ï¿½ï¿½..
+	bool	Load(HANDLE hFile);	//	ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ò·ï¿½ï¿½ï¿½ï¿½ï¿½.
+	bool	Save(HANDLE hFile);	//	ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½.
 	void	Duplicate(CN3FXPartMesh* pSrc);
 		
 public:
@@ -51,7 +51,7 @@ public:
 
 	int		NumPart();
 	int		NumVertices(int Part);
-	LPDIRECT3DVERTEXBUFFER8 GetVB(int Part);
+	LPDIRECT3DVERTEXBUFFER9 GetVB(int Part);
 
 	CN3FXPartMesh();
 	virtual ~CN3FXPartMesh();

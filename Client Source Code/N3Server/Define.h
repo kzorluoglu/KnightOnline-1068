@@ -6,7 +6,7 @@
 
 #define MAX_ID_SIZE			20
 #define MAX_ITEM			28
-#define VIEW_DIST			64		// °¡½Ã°Å¸®
+#define VIEW_DIST			64		// ï¿½ï¿½ï¿½Ã°Å¸ï¿½
 
 ////////////////////////////////////////////////////////////
 // Socket Define

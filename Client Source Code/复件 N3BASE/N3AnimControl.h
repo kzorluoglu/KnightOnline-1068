@@ -21,13 +21,13 @@ public:
 protected:
 		char*	szName;
 public:
-		float	fFrmStartUpper; // ╩Сц╪ ╫цюш
-		float	fFrmEndUpper; // ╩Сц╪ Ё║
-		float	fFrmPerSecUpper; // цй╢Г 30га╥╧юсюл г╔аьюл╢ы..
+		float	fFrmStartUpper; // О©╫О©╫ц╪ О©╫О©╫О©╫О©╫
+		float	fFrmEndUpper; // О©╫О©╫ц╪ О©╫О©╫
+		float	fFrmPerSecUpper; // О©╫й╢О©╫ 30О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫ г╔О©╫О©╫О©╫л╢О©╫..
 
-		float	fFrmStartLower; // гоц╪ ╫цюш
-		float	fFrmEndLower; // гоц╪ Ё║
-		float	fFrmPerSecLower; // цй╢Г 30га╥╧юсюл г╔аьюл╢ы..
+		float	fFrmStartLower; // О©╫О©╫ц╪ О©╫О©╫О©╫О©╫
+		float	fFrmEndLower; // О©╫О©╫ц╪ О©╫О©╫
+		float	fFrmPerSecLower; // О©╫й╢О©╫ 30О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫ г╔О©╫О©╫О©╫л╢О©╫..
 
 		float	fFrmPlugTraceStart0;
 		float	fFrmPlugTraceEnd0;

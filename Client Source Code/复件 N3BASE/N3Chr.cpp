@@ -109,14 +109,14 @@ void CN3CPart::Render(int nLOD)
 	CN3Base::s_RenderInfo.nChrPart++;
 
 	static DWORD dwAlpha, dwFog, dwCull;
-	if(m_Mtl.nRenderFlags & RF_ALPHABLENDING) // Alpha »ç¿ë
+	if(m_Mtl.nRenderFlags & RF_ALPHABLENDING) // Alpha ï¿½ï¿½ï¿½
 	{
 		s_lpD3DDev->GetRenderState(D3DRS_ALPHABLENDENABLE, &dwAlpha);
 		if(TRUE != dwAlpha) s_lpD3DDev->SetRenderState(D3DRS_ALPHABLENDENABLE, TRUE);
 		s_lpD3DDev->SetRenderState(D3DRS_SRCBLEND,   m_Mtl.dwSrcBlend);
 		s_lpD3DDev->SetRenderState(D3DRS_DESTBLEND,  m_Mtl.dwDestBlend);
 	}
-	if(m_Mtl.nRenderFlags & RF_NOTUSEFOG) // Fog ¹«½Ã..
+	if(m_Mtl.nRenderFlags & RF_NOTUSEFOG) // Fog ï¿½ï¿½ï¿½ï¿½..
 	{
 		s_lpD3DDev->GetRenderState(D3DRS_FOGENABLE, &dwFog);
 		if(TRUE == dwFog) s_lpD3DDev->SetRenderState(D3DRS_FOGENABLE, FALSE);
@@ -149,7 +149,7 @@ void CN3CPart::Render(int nLOD)
 	m_IMeshes[nLOD].Render();
 
 	if((m_Mtl.nRenderFlags & RF_ALPHABLENDING) && FALSE == dwAlpha)	s_lpD3DDev->SetRenderState(D3DRS_ALPHABLENDENABLE, FALSE);
-	if((m_Mtl.nRenderFlags & RF_NOTUSEFOG) && TRUE == dwFog) 		s_lpD3DDev->SetRenderState(D3DRS_FOGENABLE, TRUE); // ¾È°³ »ç¿ëÇÏÁö ¾Ê´Â´Ù..
+	if((m_Mtl.nRenderFlags & RF_NOTUSEFOG) && TRUE == dwFog) 		s_lpD3DDev->SetRenderState(D3DRS_FOGENABLE, TRUE); // ï¿½È°ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ê´Â´ï¿½..
 	if((m_Mtl.nRenderFlags & RF_DOUBLESIDED) && D3DCULL_NONE != dwCull) 		s_lpD3DDev->SetRenderState(D3DRS_CULLMODE, dwCull);
 }
 
@@ -182,10 +182,10 @@ void CN3CPlug::Release()
 	m_vScale.Set(1,1,1);
 	m_Matrix.Identity();
 
-	m_nTraceStep = 0; // ±ËÀû ¼Ò¸ê ½Ã°£..
-	m_crTrace = 0xffffffff; // ±ËÀû »ö±ò.. °ËÀº»öÀÌ¸é ¾ø´Ù..
-	m_fTrace0 = 0; // ±ËÀû À§Ä¡..
-	m_fTrace1 = 0; // ±ËÀû À§Ä¡..
+	m_nTraceStep = 0; // ï¿½ï¿½ï¿½ï¿½ ï¿½Ò¸ï¿½ ï¿½Ã°ï¿½..
+	m_crTrace = 0xffffffff; // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½.. ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ì¸ï¿½ ï¿½ï¿½ï¿½ï¿½..
+	m_fTrace0 = 0; // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ä¡..
+	m_fTrace1 = 0; // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ä¡..
 }
 
 void CN3CPlug::RecalcMatrix()
@@ -212,14 +212,14 @@ void CN3CPlug::Render(__Matrix44& mtxParent, __Matrix44& mtxJoint)
 	if(m_PMeshInst.GetNumVertices() <= 0) return;
 	
 	static DWORD dwAlpha, dwFog, dwCull;
-	if(m_Mtl.nRenderFlags & RF_ALPHABLENDING) // Alpha »ç¿ë
+	if(m_Mtl.nRenderFlags & RF_ALPHABLENDING) // Alpha ï¿½ï¿½ï¿½
 	{
 		s_lpD3DDev->GetRenderState(D3DRS_ALPHABLENDENABLE, &dwAlpha);
 		if(TRUE != dwAlpha) s_lpD3DDev->SetRenderState(D3DRS_ALPHABLENDENABLE, TRUE);
 		s_lpD3DDev->SetRenderState(D3DRS_SRCBLEND,   m_Mtl.dwSrcBlend);
 		s_lpD3DDev->SetRenderState(D3DRS_DESTBLEND,  m_Mtl.dwDestBlend);
 	}
-	if(m_Mtl.nRenderFlags & RF_NOTUSEFOG) // Fog ¹«½Ã..
+	if(m_Mtl.nRenderFlags & RF_NOTUSEFOG) // Fog ï¿½ï¿½ï¿½ï¿½..
 	{
 		s_lpD3DDev->GetRenderState(D3DRS_FOGENABLE, &dwFog);
 		if(TRUE == dwFog) s_lpD3DDev->SetRenderState(D3DRS_FOGENABLE, FALSE);
@@ -256,7 +256,7 @@ void CN3CPlug::Render(__Matrix44& mtxParent, __Matrix44& mtxJoint)
 	}
 
 	if((m_Mtl.nRenderFlags & RF_ALPHABLENDING) && FALSE == dwAlpha)	s_lpD3DDev->SetRenderState(D3DRS_ALPHABLENDENABLE, FALSE);
-	if((m_Mtl.nRenderFlags & RF_NOTUSEFOG) && TRUE == dwFog) 		s_lpD3DDev->SetRenderState(D3DRS_FOGENABLE, TRUE); // ¾È°³ »ç¿ëÇÏÁö ¾Ê´Â´Ù..
+	if((m_Mtl.nRenderFlags & RF_NOTUSEFOG) && TRUE == dwFog) 		s_lpD3DDev->SetRenderState(D3DRS_FOGENABLE, TRUE); // ï¿½È°ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ê´Â´ï¿½..
 	if((m_Mtl.nRenderFlags & RF_DOUBLESIDED) && D3DCULL_NONE != dwCull) 		s_lpD3DDev->SetRenderState(D3DRS_CULLMODE, dwCull);
 
 	m_PMeshInst.Render();
@@ -277,7 +277,7 @@ bool CN3CPlug::Load(HANDLE hFile)
 	ReadFile(hFile, &m_MtxRot, sizeof(m_MtxRot), &dwRWC, NULL);
 	ReadFile(hFile, &m_vScale, sizeof(m_vScale), &dwRWC, NULL);
 
-	ReadFile(hFile, &m_Mtl, sizeof(__Material), &dwRWC, NULL); // ÀçÁú
+	ReadFile(hFile, &m_Mtl, sizeof(__Material), &dwRWC, NULL); // ï¿½ï¿½ï¿½ï¿½
 
 	ReadFile(hFile, &nL, 4, &dwRWC, NULL);
 	if(nL > 0)
@@ -293,16 +293,16 @@ bool CN3CPlug::Load(HANDLE hFile)
 		this->TexSet(szFN);
 	}
 
-	ReadFile(hFile, &m_nTraceStep, 4, &dwRWC, NULL); // ±ËÀû °¹¼ö..
+	ReadFile(hFile, &m_nTraceStep, 4, &dwRWC, NULL); // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½..
 	if(m_nTraceStep > 0 && m_nTraceStep <= MAX_PLUG_TRACE_VERTEX/2 - 1)
 	{
-		ReadFile(hFile, &m_crTrace, 4, &dwRWC, NULL); // ±ËÀû »ö±ò.. °ËÀº»öÀÌ¸é ¾ø´Ù..
-		ReadFile(hFile, &m_fTrace0, 4, &dwRWC, NULL); // ±ËÀû À§Ä¡..
-		ReadFile(hFile, &m_fTrace1, 4, &dwRWC, NULL); // ±ËÀû À§Ä¡..
+		ReadFile(hFile, &m_crTrace, 4, &dwRWC, NULL); // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½.. ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ì¸ï¿½ ï¿½ï¿½ï¿½ï¿½..
+		ReadFile(hFile, &m_fTrace0, 4, &dwRWC, NULL); // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ä¡..
+		ReadFile(hFile, &m_fTrace1, 4, &dwRWC, NULL); // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ä¡..
 	}
 	else m_nTraceStep = 0;
 
-	this->RecalcMatrix(); // Çà·Ä °è»ê...
+	this->RecalcMatrix(); // ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½...
 
 	return 0;
 }
@@ -321,7 +321,7 @@ bool CN3CPlug::Save(HANDLE hFile)
 	WriteFile(hFile, &m_MtxRot, sizeof(m_MtxRot), &dwRWC, NULL);
 	WriteFile(hFile, &m_vScale, sizeof(m_vScale), &dwRWC, NULL);
 
-	WriteFile(hFile, &m_Mtl, sizeof(__Material), &dwRWC, NULL); // ÀçÁú
+	WriteFile(hFile, &m_Mtl, sizeof(__Material), &dwRWC, NULL); // ï¿½ï¿½ï¿½ï¿½
 
 	nL = 0;
 	CN3PMesh* pPMesh = m_PMeshInst.GetMesh();
@@ -334,12 +334,12 @@ bool CN3CPlug::Save(HANDLE hFile)
 	WriteFile(hFile, &nL, 4, &dwRWC, NULL);
 	if(nL > 0) WriteFile(hFile, m_pTexRef->FileName(), nL, &dwRWC, NULL);
 
-	WriteFile(hFile, &m_nTraceStep, 4, &dwRWC, NULL); // ±ËÀû °¹¼ö..
+	WriteFile(hFile, &m_nTraceStep, 4, &dwRWC, NULL); // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½..
 	if(m_nTraceStep > 0 && m_nTraceStep <= MAX_PLUG_TRACE_VERTEX/2 - 1)
 	{
-		WriteFile(hFile, &m_crTrace, 4, &dwRWC, NULL); // ±ËÀû »ö±ò.. °ËÀº»öÀÌ¸é ¾ø´Ù..
-		WriteFile(hFile, &m_fTrace0, 4, &dwRWC, NULL); // ±ËÀû À§Ä¡..
-		WriteFile(hFile, &m_fTrace1, 4, &dwRWC, NULL); // ±ËÀû À§Ä¡..
+		WriteFile(hFile, &m_crTrace, 4, &dwRWC, NULL); // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½.. ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ì¸ï¿½ ï¿½ï¿½ï¿½ï¿½..
+		WriteFile(hFile, &m_fTrace0, 4, &dwRWC, NULL); // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ä¡..
+		WriteFile(hFile, &m_fTrace1, 4, &dwRWC, NULL); // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ä¡..
 	}
 	else m_nTraceStep = 0;
 
@@ -367,27 +367,27 @@ CN3Chr::CN3Chr()
 	m_pMtxs = NULL;
 //	m_pSkinCollision = NULL;
 	
-/*	m_vCollisionBoxes[0].Set(-0.3f, 1.8f, -0.15f); // Ãæµ¹ Ã¼Å©¸¦ À§ÇÑ Æú¸®°ï
-	m_vCollisionBoxes[1].Set( 0.3f, 1.8f, -0.15f); // Ãæµ¹ Ã¼Å©¸¦ À§ÇÑ Æú¸®°ï
-	m_vCollisionBoxes[2].Set( 0.3f, 0.0f, -0.15f); // Ãæµ¹ Ã¼Å©¸¦ À§ÇÑ Æú¸®°ï
-	m_vCollisionBoxes[3].Set(-0.3f, 0.0f, -0.15f); // Ãæµ¹ Ã¼Å©¸¦ À§ÇÑ Æú¸®°ï
-	m_vCollisionBoxes[4].Set( 0.3f, 1.8f,  0.15f); // Ãæµ¹ Ã¼Å©¸¦ À§ÇÑ Æú¸®°ï
-	m_vCollisionBoxes[5].Set(-0.3f, 1.8f,  0.15f); // Ãæµ¹ Ã¼Å©¸¦ À§ÇÑ Æú¸®°ï
-	m_vCollisionBoxes[6].Set(-0.3f, 0.0f,  0.15f); // Ãæµ¹ Ã¼Å©¸¦ À§ÇÑ Æú¸®°ï
-	m_vCollisionBoxes[7].Set( 0.3f, 0.0f,  0.15f); // Ãæµ¹ Ã¼Å©¸¦ À§ÇÑ Æú¸®°ï
+/*	m_vCollisionBoxes[0].Set(-0.3f, 1.8f, -0.15f); // ï¿½æµ¹ Ã¼Å©ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	m_vCollisionBoxes[1].Set( 0.3f, 1.8f, -0.15f); // ï¿½æµ¹ Ã¼Å©ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	m_vCollisionBoxes[2].Set( 0.3f, 0.0f, -0.15f); // ï¿½æµ¹ Ã¼Å©ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	m_vCollisionBoxes[3].Set(-0.3f, 0.0f, -0.15f); // ï¿½æµ¹ Ã¼Å©ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	m_vCollisionBoxes[4].Set( 0.3f, 1.8f,  0.15f); // ï¿½æµ¹ Ã¼Å©ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	m_vCollisionBoxes[5].Set(-0.3f, 1.8f,  0.15f); // ï¿½æµ¹ Ã¼Å©ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	m_vCollisionBoxes[6].Set(-0.3f, 0.0f,  0.15f); // ï¿½æµ¹ Ã¼Å©ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	m_vCollisionBoxes[7].Set( 0.3f, 0.0f,  0.15f); // ï¿½æµ¹ Ã¼Å©ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 
-	m_wCollisionIndices[0] = 0; m_wCollisionIndices[1] = 1; m_wCollisionIndices[2] = 2; // Ãæµ¹ Ã¼Å©¸¦ À§ÇÑ Æú¸®°ï ÀÎµ¦½º - Á¤¸é
-	m_wCollisionIndices[3] = 0; m_wCollisionIndices[4] = 2; m_wCollisionIndices[5] = 3; // Ãæµ¹ Ã¼Å©¸¦ À§ÇÑ Æú¸®°ï ÀÎµ¦½º
-	m_wCollisionIndices[6] = 1; m_wCollisionIndices[7] = 4; m_wCollisionIndices[8] = 7; // Ãæµ¹ Ã¼Å©¸¦ À§ÇÑ Æú¸®°ï ÀÎµ¦½º - ¿À¸¥ÂÊ
-	m_wCollisionIndices[9] = 1; m_wCollisionIndices[10] = 2; m_wCollisionIndices[11] = 2; // Ãæµ¹ Ã¼Å©¸¦ À§ÇÑ Æú¸®°ï ÀÎµ¦½º 
-	m_wCollisionIndices[12] = 5; m_wCollisionIndices[13] = 0; m_wCollisionIndices[14] = 3; // Ãæµ¹ Ã¼Å©¸¦ À§ÇÑ Æú¸®°ï ÀÎµ¦½º - ¿ÞÂÊ
-	m_wCollisionIndices[15] = 5; m_wCollisionIndices[16] = 3; m_wCollisionIndices[17] = 2; // Ãæµ¹ Ã¼Å©¸¦ À§ÇÑ Æú¸®°ï ÀÎµ¦½º
-	m_wCollisionIndices[18] = 4; m_wCollisionIndices[19] = 5; m_wCollisionIndices[20] = 6; // Ãæµ¹ Ã¼Å©¸¦ À§ÇÑ Æú¸®°ï ÀÎµ¦½º - µÞÂÊ
-	m_wCollisionIndices[21] = 4; m_wCollisionIndices[22] = 6; m_wCollisionIndices[23] = 7; // Ãæµ¹ Ã¼Å©¸¦ À§ÇÑ Æú¸®°ï ÀÎµ¦½º
-	m_wCollisionIndices[24] = 5; m_wCollisionIndices[25] = 4; m_wCollisionIndices[26] = 1; // Ãæµ¹ Ã¼Å©¸¦ À§ÇÑ Æú¸®°ï ÀÎµ¦½º - À§ÂÊ
-	m_wCollisionIndices[27] = 5; m_wCollisionIndices[28] = 1; m_wCollisionIndices[29] = 0; // Ãæµ¹ Ã¼Å©¸¦ À§ÇÑ Æú¸®°ï ÀÎµ¦½º
-	m_wCollisionIndices[30] = 3; m_wCollisionIndices[31] = 2; m_wCollisionIndices[32] = 7; // Ãæµ¹ Ã¼Å©¸¦ À§ÇÑ Æú¸®°ï ÀÎµ¦½º - ¾Æ·¡ÂÊ
-	m_wCollisionIndices[33] = 4; m_wCollisionIndices[34] = 7; m_wCollisionIndices[35] = 6; // Ãæµ¹ Ã¼Å©¸¦ À§ÇÑ Æú¸®°ï ÀÎµ¦½º
+	m_wCollisionIndices[0] = 0; m_wCollisionIndices[1] = 1; m_wCollisionIndices[2] = 2; // ï¿½æµ¹ Ã¼Å©ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Îµï¿½ï¿½ï¿½ - ï¿½ï¿½ï¿½ï¿½
+	m_wCollisionIndices[3] = 0; m_wCollisionIndices[4] = 2; m_wCollisionIndices[5] = 3; // ï¿½æµ¹ Ã¼Å©ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Îµï¿½ï¿½ï¿½
+	m_wCollisionIndices[6] = 1; m_wCollisionIndices[7] = 4; m_wCollisionIndices[8] = 7; // ï¿½æµ¹ Ã¼Å©ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Îµï¿½ï¿½ï¿½ - ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	m_wCollisionIndices[9] = 1; m_wCollisionIndices[10] = 2; m_wCollisionIndices[11] = 2; // ï¿½æµ¹ Ã¼Å©ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Îµï¿½ï¿½ï¿½ 
+	m_wCollisionIndices[12] = 5; m_wCollisionIndices[13] = 0; m_wCollisionIndices[14] = 3; // ï¿½æµ¹ Ã¼Å©ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Îµï¿½ï¿½ï¿½ - ï¿½ï¿½ï¿½ï¿½
+	m_wCollisionIndices[15] = 5; m_wCollisionIndices[16] = 3; m_wCollisionIndices[17] = 2; // ï¿½æµ¹ Ã¼Å©ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Îµï¿½ï¿½ï¿½
+	m_wCollisionIndices[18] = 4; m_wCollisionIndices[19] = 5; m_wCollisionIndices[20] = 6; // ï¿½æµ¹ Ã¼Å©ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Îµï¿½ï¿½ï¿½ - ï¿½ï¿½ï¿½ï¿½
+	m_wCollisionIndices[21] = 4; m_wCollisionIndices[22] = 6; m_wCollisionIndices[23] = 7; // ï¿½æµ¹ Ã¼Å©ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Îµï¿½ï¿½ï¿½
+	m_wCollisionIndices[24] = 5; m_wCollisionIndices[25] = 4; m_wCollisionIndices[26] = 1; // ï¿½æµ¹ Ã¼Å©ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Îµï¿½ï¿½ï¿½ - ï¿½ï¿½ï¿½ï¿½
+	m_wCollisionIndices[27] = 5; m_wCollisionIndices[28] = 1; m_wCollisionIndices[29] = 0; // ï¿½æµ¹ Ã¼Å©ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Îµï¿½ï¿½ï¿½
+	m_wCollisionIndices[30] = 3; m_wCollisionIndices[31] = 2; m_wCollisionIndices[32] = 7; // ï¿½æµ¹ Ã¼Å©ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Îµï¿½ï¿½ï¿½ - ï¿½Æ·ï¿½ï¿½ï¿½
+	m_wCollisionIndices[33] = 4; m_wCollisionIndices[34] = 7; m_wCollisionIndices[35] = 6; // ï¿½æµ¹ Ã¼Å©ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Îµï¿½ï¿½ï¿½
 */
 	this->Release();
 }
@@ -418,7 +418,7 @@ void CN3Chr::Release()
 //	s_MngSkin.Delete(m_pSkinCollision);
 //	m_pSkinCollision = NULL;
 
-	// ¹«±â ±ËÀû
+	// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	memset(m_vPlugTraces, 0, sizeof(m_vPlugTraces));
 	memset(m_bRenderPlugTraces, 0, sizeof(m_bRenderPlugTraces));
 	memset(m_dwTickPlugPrevs, 0, sizeof(m_dwTickPlugPrevs));
@@ -427,19 +427,19 @@ void CN3Chr::Release()
 	s_MngAniCtrl.Delete(m_pAniCtrlRef); m_pAniCtrlRef = NULL;
 	m_pAniCur = NULL;
 
-	m_fFrmCurUpper = 0; // ÇöÀç ÇÁ·¹ÀÓ 0 - »óÃ¼
-	m_fFrmCurLower = 0; // ÇöÀç ÇÁ·¹ÀÓ 1 - ÇÏÃ¼
+	m_fFrmCurUpper = 0; // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ 0 - ï¿½ï¿½Ã¼
+	m_fFrmCurLower = 0; // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ 1 - ï¿½ï¿½Ã¼
 
-	m_nAniCur = -1; // ÇöÀç ¿¡´Ï¸ÞÀÌ¼Ç
-	m_nAniPrev = -1; // ÀüÀÇ ¿¡´Ï¸ÞÀÌ¼Ç..
-	m_nAniLoopCountCur = 0; // ¿¡´Ï¸ÞÀÌ¼Ç ·çÇÎ Ä«¿îÆ®..
+	m_nAniCur = -1; // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ï¸ï¿½ï¿½Ì¼ï¿½
+	m_nAniPrev = -1; // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ï¸ï¿½ï¿½Ì¼ï¿½..
+	m_nAniLoopCountCur = 0; // ï¿½ï¿½ï¿½Ï¸ï¿½ï¿½Ì¼ï¿½ ï¿½ï¿½ï¿½ï¿½ Ä«ï¿½ï¿½Æ®..
 
-	m_fFrmBlendUpper = 0.0f; // ºí·»µùÇÒ ¿¡´Ï¸ÞÀÌ¼Ç µ¥ÀÌÅÍ Æ÷ÀÎÅÍ..
-	m_fFrmBlendLower = 0.0f; // ºí·»µùÇÒ ¿¡´Ï¸ÞÀÌ¼Ç µ¥ÀÌÅÍ Æ÷ÀÎÅÍ..
-	m_fBlendTimeCur = 0.0f; // ÇöÀç ºí·»µù ½Ã°£..
-	m_fBlendTime = 0.0f; // ºí·»µùÇÒ ½Ã°£. (ÃÊ´ÜÀ§)
+	m_fFrmBlendUpper = 0.0f; // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ï¸ï¿½ï¿½Ì¼ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½..
+	m_fFrmBlendLower = 0.0f; // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ï¸ï¿½ï¿½Ì¼ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½..
+	m_fBlendTimeCur = 0.0f; // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ã°ï¿½..
+	m_fBlendTime = 0.0f; // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ã°ï¿½. (ï¿½Ê´ï¿½ï¿½ï¿½)
 
-	// Ãæµ¹ ¸Þ½Ã´Â Ä³¸¯ÅÍ¿¡¼­´Â Áö¿î´Ù..
+	// ï¿½æµ¹ ï¿½Þ½Ã´ï¿½ Ä³ï¿½ï¿½ï¿½Í¿ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½..
 	delete m_pMeshCollision; m_pMeshCollision = NULL;
 
 	CN3TransformCollision::Release();
@@ -494,7 +494,7 @@ bool CN3Chr::Load(HANDLE hFile)
 		}
 	}
 
-	this->RemakePlugTracePolygons(); // Plug Trace ¿¡ ¾²ÀÌ´Â Æú¸®°ï ÃÊ±âÈ­...
+	this->RemakePlugTracePolygons(); // Plug Trace ï¿½ï¿½ ï¿½ï¿½ï¿½Ì´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ê±ï¿½È­...
 
 //	ReadFile(hFile, &nL, 4, &dwRWC, NULL);
 //	if(nL > 0) 
@@ -513,7 +513,7 @@ bool CN3Chr::Load(HANDLE hFile)
 		this->AniCurSet(0);
 	}
 
-	this->Init(); // °üÀý ¹× Vertex µéÀ» ÃÊ±âÈ­ ½ÃÄÑÁØ´Ù.. ±×¸®°í ÃÖ´ë ÃÖ¼Ò°ªÀ» Ã£°í... Ãæµ¹ ¹Ú½º ¸Þ½Ã¸¦ ÃÊ±âÈ­ ½ÃÅ²´Ù..
+	this->Init(); // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ Vertex ï¿½ï¿½ï¿½ï¿½ ï¿½Ê±ï¿½È­ ï¿½ï¿½ï¿½ï¿½ï¿½Ø´ï¿½.. ï¿½×¸ï¿½ï¿½ï¿½ ï¿½Ö´ï¿½ ï¿½Ö¼Ò°ï¿½ï¿½ï¿½ Ã£ï¿½ï¿½... ï¿½æµ¹ ï¿½Ú½ï¿½ ï¿½Þ½Ã¸ï¿½ ï¿½Ê±ï¿½È­ ï¿½ï¿½Å²ï¿½ï¿½..
 
 	return 0;
 }
@@ -529,7 +529,7 @@ bool CN3Chr::Save(HANDLE hFile)
 	WriteFile(hFile, &nL, 4, &dwRWC, NULL);
 	if(nL > 0) WriteFile(hFile, m_pJointRef->FileName(), nL, &dwRWC, NULL);
 
-	// ³»¿ëÀÌ ¾ø´Â Part Data´Â °É·¯³½´Ù..
+	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ Part Dataï¿½ï¿½ ï¿½É·ï¿½ï¿½ï¿½ï¿½ï¿½..
 	for(void* pPos = m_Parts.Position(0); pPos; )
 	{
 		bool bIsNullData = true;
@@ -590,7 +590,7 @@ bool CN3Chr::Save(HANDLE hFile)
 		}
 		else
 		{
-			__ASSERT(0, "Plug ÀÌ¸§À» Á¤ÇØ ÁÖ¼¼¿ä");
+			__ASSERT(0, "Plug ï¿½Ì¸ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ö¼ï¿½ï¿½ï¿½");
 		}
 	}
 	
@@ -622,7 +622,7 @@ void CN3Chr::Tick(float fFrm)
 		return;
 	}
 
-	// Ä«¸Þ¶ó¿Í ¸Ö¸® ¶³¾îÁö¸é Áö³ª°£´Ù..
+	// Ä«ï¿½Þ¶ï¿½ï¿½ ï¿½Ö¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½..
 	float fDist = (m_vPos - s_CameraData.vEye).Magnitude();
 	if(fDist > s_CameraData.fFP + m_fRadius)
 	{
@@ -635,13 +635,13 @@ void CN3Chr::Tick(float fFrm)
 	vPos2.y += 1.8f;
 	float fOffset = m_fRadius * 1.2f + 2.0f;
 	if(	s_CameraData.IsOutOfFrustum(m_vPos, fOffset) &&
-		s_CameraData.IsOutOfFrustum(vPos2, fOffset) ) // Ä«¸Þ¶ó »ç¸éÃ¼ ¹Ù±ùÀÌ¸é Áö³ª°£´Ù.. Çö ÁöÁ¡°ú ¸Ó¸® ³¡Á¡À» Á¶»ç..
+		s_CameraData.IsOutOfFrustum(vPos2, fOffset) ) // Ä«ï¿½Þ¶ï¿½ ï¿½ï¿½ï¿½Ã¼ ï¿½Ù±ï¿½ï¿½Ì¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½.. ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ó¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½..
 	{
 		m_nLOD = -1;
 		return;
 	}
 
-	// LOD °áÁ¤...
+	// LOD ï¿½ï¿½ï¿½ï¿½...
 	m_nLOD = MAX_CHR_LOD;
 	float fLOD = fDist * s_CameraData.fFOV;
 	bool bDecideLOD = false;
@@ -658,13 +658,13 @@ void CN3Chr::Tick(float fFrm)
 
 	if(m_nLOD >= 0 && m_nLOD < MAX_CHR_LOD)
 	{
-		if(m_pAniCur && fFrm == FRAME_SELFPLAY) // ÇöÀç ¼³Á¤µÈ ¿¡´Ï¸ÞÀÌ¼Ç ´ë·Î ÀÚµ¿ ÇÃ·¹ÀÌ
+		if(m_pAniCur && fFrm == FRAME_SELFPLAY) // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ï¸ï¿½ï¿½Ì¼ï¿½ ï¿½ï¿½ï¿½ ï¿½Úµï¿½ ï¿½Ã·ï¿½ï¿½ï¿½
 		{
 			bool bBlendTick = false;
 
-			if(0.0f != m_fBlendTime) // Blending ÇÒ ¿¡´Ï¸ÞÀÌ¼ÇÀÌ ÀÖÀ¸¸é..
+			if(0.0f != m_fBlendTime) // Blending ï¿½ï¿½ ï¿½ï¿½ï¿½Ï¸ï¿½ï¿½Ì¼ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½..
 			{
-				// °¡¼Ó Àû¿ëÇÏ´Â ºÎºÐ.. ºí·»µù ½ÃÀÛ ½ÃÁ¡¿£ ´À¸®°Ô.. Áß°£Á¡ÀÏ¼ö·Ï ºü¸£°Ô ³¡½ÃÁ¡¿£ ´À¸®°Ô..
+				// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½ ï¿½Îºï¿½.. ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½.. ï¿½ß°ï¿½ï¿½ï¿½ï¿½Ï¼ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½..
 				float fBlendHalf = m_fBlendTime / 2.0f;
 				float fBlendDelta = 1.0f;
 				if(m_fBlendTimeCur <= fBlendHalf)
@@ -678,7 +678,7 @@ void CN3Chr::Tick(float fFrm)
 				
 				m_fBlendTimeCur += fBlendDelta / s_fFrmPerSec;
 
-				if(m_fBlendTimeCur > m_fBlendTime) // Blending ÀÌ ³¡³µ´Ù.
+				if(m_fBlendTimeCur > m_fBlendTime) // Blending ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½.
 				{
 					m_fBlendTime = 0.0f;
 					m_fBlendTimeCur = 0.0f;
@@ -696,13 +696,13 @@ void CN3Chr::Tick(float fFrm)
 				if(m_fFrmCurUpper >= m_pAniCur->fFrmEndUpper)
 				{
 					m_fFrmCurUpper = m_pAniCur->fFrmStartUpper + (m_fFrmCurUpper - m_pAniCur->fFrmEndUpper);
-					if(m_nAniLoopCountCur > 0) // Animation Loop Count °¡ ÁöÁ¤µÇ¾î ÀÖÀ¸¸é..
+					if(m_nAniLoopCountCur > 0) // Animation Loop Count ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ç¾ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½..
 					{
 						m_nAniLoopCountCur--;
-						if(m_nAniLoopCountCur <= 0) // ÁöÁ¤µÈ ¼ö ¸¸Å­ ·çÇÎÀÌ ³¡³ª¸é..
+						if(m_nAniLoopCountCur <= 0) // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½Å­ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½..
 						{
 							float fFrmPrev = m_pAniCur->fFrmEndUpper;
-							this->AniCurSet(m_nAniPrev, 0, 0.3f); // ÀüÀÇ ¿¡´Ï¸ÞÀÌ¼ÇÀ¸·Î µ¹¸°´Ù..
+							this->AniCurSet(m_nAniPrev, 0, 0.3f); // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ï¸ï¿½ï¿½Ì¼ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½..
 							m_fFrmBlendUpper = fFrmPrev;
 							bBlendTick = true;
 						}
@@ -725,16 +725,16 @@ void CN3Chr::Tick(float fFrm)
 			{
 				m_pJointRef->Tick(m_fFrmCurUpper); // Joint Animation...
 				int nJI = 0;
-				m_pJointRef->MatricesGet(m_pMtxs, nJI); // Matrix °è»ê..
+				m_pJointRef->MatricesGet(m_pMtxs, nJI); // Matrix ï¿½ï¿½ï¿½..
 				
-				fFrm = m_fFrmCurUpper; // ÀüÀÇ ÇÁ·¹ÀÓÀ» ±â¾ïÇØ³õ´Â´Ù..
+				fFrm = m_fFrmCurUpper; // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ø³ï¿½ï¿½Â´ï¿½..
 			}
 		}
 		else
 		{
 			m_pJointRef->Tick(fFrm); // Joint Animation...
 			int nJI = 0;
-			m_pJointRef->MatricesGet(m_pMtxs, nJI); // Matrix °è»ê..
+			m_pJointRef->MatricesGet(m_pMtxs, nJI); // Matrix ï¿½ï¿½ï¿½..
 		}
 		
 
@@ -750,10 +750,10 @@ void CN3Chr::Tick(float fFrm)
 			if(pPlug->m_nTraceStep <= 0) continue;
 			if(nPlugTrace >= MAX_PLUG_TRACE) continue;
 
-			if(fFrm >= m_pAniCur->fFrmPlugTraceStart0 && fFrm <= m_pAniCur->fFrmPlugTraceEnd0) // ±ËÀû ÇÁ·¹ÀÓÀÇ ¾È¿¡ ÀÖÀ¸¸é..
+			if(fFrm >= m_pAniCur->fFrmPlugTraceStart0 && fFrm <= m_pAniCur->fFrmPlugTraceEnd0) // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½È¿ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½..
 			{
 				m_bRenderPlugTraces[nPlugTrace] = true;
-				if(m_fFrmPrev <= m_pAniCur->fFrmPlugTraceStart0) // ½ÃÀÛÁ¡¿¡ ¿À¸é..
+				if(m_fFrmPrev <= m_pAniCur->fFrmPlugTraceStart0) // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½..
 				{
 					vTrace.Set(0, pPlug->m_fTrace0, 0);
 					vTrace *= pPlug->m_Matrix;
@@ -765,7 +765,7 @@ void CN3Chr::Tick(float fFrm)
 					vTrace *= m_pMtxs[pPlug->m_nJointIndex];
 					m_vPlugTraces[nPlugTrace][1].v = vTrace;
 
-					// ¹«±â ±ËÀû °è»ê..
+					// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½..
 					for(i = 1; i <= pPlug->m_nTraceStep; i++)
 					{
 						m_vPlugTraces[nPlugTrace][i*2].v = m_vPlugTraces[nPlugTrace][0].v;
@@ -777,7 +777,7 @@ void CN3Chr::Tick(float fFrm)
 					DWORD dwTick = timeGetTime();
 					if(dwTick > m_dwTickPlugPrevs[nPlugTrace] + 20)
 					{
-						// ¹«±â ±ËÀû °è»ê.. ÇÏ³ª¾¿ µÚ·Î ¹Ì·é´Ù..
+						// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½.. ï¿½Ï³ï¿½ï¿½ï¿½ ï¿½Ú·ï¿½ ï¿½Ì·ï¿½ï¿½..
 						for(i = pPlug->m_nTraceStep; i > 0; i--)
 						{
 							m_vPlugTraces[nPlugTrace][i*2].v = m_vPlugTraces[nPlugTrace][(i-1)*2].v;
@@ -807,7 +807,7 @@ void CN3Chr::Tick(float fFrm)
 		}
 	}
 
-	m_fFrmPrev = fFrm; // ÀüÀÇ ÇÁ·¹ÀÓÀ» ±â¾ïÇØ³õ´Â´Ù..
+	m_fFrmPrev = fFrm; // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ø³ï¿½ï¿½Â´ï¿½..
 }
 
 void CN3Chr::Render(float fFrm)
@@ -827,7 +827,7 @@ void CN3Chr::Render(float fFrm)
 			bCubeCreated = true;
 		}
 
-		// ÀÏºÎ·¯ ÀçÁú, ÅØ½ºÃ³µéÀ» Àû¿ëÇÏÁö ¾Ê¾Ò´Ù..
+		// ï¿½ÏºÎ·ï¿½ ï¿½ï¿½ï¿½ï¿½, ï¿½Ø½ï¿½Ã³ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ê¾Ò´ï¿½..
 		CN3CPart* pPart = m_Parts.Get(2);
 		if(NULL == pPart) pPart = m_Parts.Get(0);
 		if(NULL != pPart)
@@ -856,7 +856,7 @@ void CN3Chr::Render(float fFrm)
 			int nVC = s_pBoxMesh->VertexCount();
 			__VertexT1* pVs = s_pBoxMesh->Vertices();
 			
-			s_lpD3DDev->SetVertexShader(FVF_VNT1);
+			s_lpD3DDev->SetFVF(FVF_VNT1);
 			s_lpD3DDev->DrawPrimitiveUP(D3DPT_TRIANGLELIST, nVC/3, pVs, sizeof(__VertexT1));
 			s_RenderInfo.nPolygon += nVC / 3;
 		}
@@ -865,7 +865,7 @@ void CN3Chr::Render(float fFrm)
 	}
 
 	s_lpD3DDev->SetTransform(D3DTS_WORLD, &m_Matrix);
-	this->BuildMesh(); // Çà·Ä¿¡ µû¶ó Á¡À§Ä¡ °è»ê..
+	this->BuildMesh(); // ï¿½ï¿½Ä¿ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ä¡ ï¿½ï¿½ï¿½..
 
 	CN3CPart* pPart = NULL;
 	void* pPos = NULL;
@@ -876,7 +876,7 @@ void CN3Chr::Render(float fFrm)
 		pPart->Render(m_nLOD);
 	}
 
-	// Plug - ºÙÀÌ´Â ºÎºÐ Rendering
+	// Plug - ï¿½ï¿½ï¿½Ì´ï¿½ ï¿½Îºï¿½ Rendering
 	CN3CPlug* pPlug = NULL;
 	int nPlugTrace = 0;
 	for(pPos = m_Plugs.Position(0); pPos; m_Plugs.Next(pPos))
@@ -888,7 +888,7 @@ void CN3Chr::Render(float fFrm)
 		if(nPlugTrace >= MAX_PLUG_TRACE) continue;
 		if(false == m_bRenderPlugTraces[nPlugTrace]) continue;
 
-		// ±ËÀû ±×¸®±â..
+		// ï¿½ï¿½ï¿½ï¿½ ï¿½×¸ï¿½ï¿½ï¿½..
 		DWORD dwPrevAlpha, dwCull, dwLgt, dwPrevAlphaOp, dwA1;
 		s_lpD3DDev->GetRenderState( D3DRS_CULLMODE, &dwCull);
 		s_lpD3DDev->GetRenderState(D3DRS_ALPHABLENDENABLE, &dwPrevAlpha);
@@ -914,7 +914,7 @@ void CN3Chr::Render(float fFrm)
 
 		
 		s_lpD3DDev->SetTransform(D3DTS_WORLD, &m_Matrix);
-		s_lpD3DDev->SetVertexShader(FVF_CV);
+		s_lpD3DDev->SetFVF(FVF_CV);
 		
 		s_lpD3DDev->DrawPrimitiveUP(D3DPT_TRIANGLESTRIP, pPlug->m_nTraceStep * 2, m_vPlugTraces[nPlugTrace], sizeof(__VertexColor));
 			
@@ -935,9 +935,9 @@ void CN3Chr::Render2(float fFrm)
 
 	CN3Base::s_RenderInfo.nChr++;
 
-	this->BuildMesh(); // Çà·Ä¿¡ µû¶ó Á¡À§Ä¡ °è»ê..
+	this->BuildMesh(); // ï¿½ï¿½Ä¿ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ä¡ ï¿½ï¿½ï¿½..
 
-	// Plug - ºÙÀÌ´Â ºÎºÐ Rendering
+	// Plug - ï¿½ï¿½ï¿½Ì´ï¿½ ï¿½Îºï¿½ Rendering
 	CN3CPlug* pPlug = NULL;
 	void* pPos = m_Plugs.Position(0);
 	pPlug = m_Plugs.Get(pPos);
@@ -973,12 +973,12 @@ void CN3Chr::BuildMesh()
 		__Vector3 vFinal;
 		int nAffect = 0;
 		float* pfWeights = NULL;
-		for(j = 0; j < nVC; j++) // j < m_nBoneVertices ¿Í °°´Ù..
+		for(j = 0; j < nVC; j++) // j < m_nBoneVertices ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½..
 		{
 			nAffect = pVSrc[j].nAffect;
 			if(1 == nAffect)
 			{
-				// ´ÜÀÏ »À´ë...
+				// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½...
 				nJIndex = pVSrc[j].pnJoints[0];
 				pVDest[j].v = (pVSrc[j].vOrigin * m_pMtxInverses[nJIndex]) * m_pMtxs[nJIndex];
 			}
@@ -1015,12 +1015,12 @@ void CN3Chr::BuildMesh()
 		{
 			int nAffect = 0;
 			float* pfWeights = NULL;
-			for(j = 0; j < nVC; j++) // j < m_nBoneVertices ¿Í °°´Ù..
+			for(j = 0; j < nVC; j++) // j < m_nBoneVertices ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½..
 			{
 				nAffect = pVSrc[j].nAffect;
 				if(1 == nAffect)
 				{
-					// ´ÜÀÏ »À´ë...
+					// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½...
 					nJIndex = pVSrc[j].pnJoints[0];
 					pVDest[j] = (pVSrc[j].vOrigin * m_pMtxInverses[nJIndex]) * m_pMtxs[nJIndex];
 				}
@@ -1047,14 +1047,14 @@ void CN3Chr::Init()
 {
 	if(NULL == m_pJointRef) return;
 
-	// °üÀýÀÌ ¸î°³ ÀÖ´ÂÁö °è»êÇÏ°í.. Æ÷ÀÎÅÍ ÇÒ´ç..
+	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½î°³ ï¿½Ö´ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ï°ï¿½.. ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ò´ï¿½..
 	int nJC = 0;
 	m_pJointRef->NodeCount(nJC);
 	delete [] m_pMtxInverses; m_pMtxInverses = new __Matrix44[nJC];
 	delete [] m_pMtxs; m_pMtxs = new __Matrix44[nJC];
 	
 	int nJI = 0;
-	m_pJointRef->Tick(0); // ÃÊ±â¿¡ °üÀý À§Ä¡ °è»ê..
+	m_pJointRef->Tick(0); // ï¿½Ê±â¿¡ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ä¡ ï¿½ï¿½ï¿½..
 	m_pJointRef->MatricesGet(m_pMtxs, nJI);
 	
 	if(nJC > 0)
@@ -1063,12 +1063,12 @@ void CN3Chr::Init()
 		m_vMax.Set(-100000.0f, -100000.0f, -100000.0f);
 
 		__Vector3 vTmp;
-		for(int i = 0; i < nJC; i++) // °üÀý °¹¼ö ¸¸Å­ °¢ °üÀýÀÇ ÂüÁ¶ Æ÷ÀÎÅÍ¿Í ¿ªÇà·ÄÀ» ¾ò¾î³õ´Â´Ù..
+		for(int i = 0; i < nJC; i++) // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Å­ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Í¿ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Â´ï¿½..
 		{
 			float fTmp = 1.0f;
-			::D3DXMatrixInverse(&m_pMtxInverses[i], &fTmp, &m_pMtxs[i]); // ·ÎÄÃ Ãà¿¡ ´ëÇÑ ¿ªÇà·ÄÀ» ±¸ÇÑ´Ù..
+			::D3DXMatrixInverse(&m_pMtxInverses[i], &fTmp, &m_pMtxs[i]); // ï¿½ï¿½ï¿½ï¿½ ï¿½à¿¡ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ñ´ï¿½..
 
-			// °¢ Á¶ÀÎÆ®ÀÇ °üÀý À§Ä¡ °ª¿¡ ´ëÇØ ÃÖ´ë ÃÖ¼Ò°ªÀ» Ã£´Â´Ù.
+			// ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ä¡ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ö´ï¿½ ï¿½Ö¼Ò°ï¿½ï¿½ï¿½ Ã£ï¿½Â´ï¿½.
 			vTmp = m_pMtxs[i].Pos();
 			if(vTmp.x < m_vMin.x) m_vMin.x = vTmp.x;
 			if(vTmp.y < m_vMin.y) m_vMin.y = vTmp.y;
@@ -1078,7 +1078,7 @@ void CN3Chr::Init()
 			if(vTmp.z > m_vMax.z) m_vMax.z = vTmp.z;
 		}
 
-		m_fRadius = (m_vMax - m_vMin).Magnitude(); // ¹ÝÁö¸§ Á¤ÇÏ±â..
+		m_fRadius = (m_vMax - m_vMin).Magnitude(); // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ï±ï¿½..
 	}
 	else
 	{
@@ -1087,19 +1087,19 @@ void CN3Chr::Init()
 		m_fRadius = 0.0f;
 	}
 
-	// Ãæµ¹ Ã¼Å©¸¦ À§ÇÑ Æú¸®°ï.. Å©±â¿¡ ¸Â°Ô º¯È¯..
+	// ï¿½æµ¹ Ã¼Å©ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½.. Å©ï¿½â¿¡ ï¿½Â°ï¿½ ï¿½ï¿½È¯..
 	if(NULL == m_pMeshCollision) m_pMeshCollision = new CN3VMesh();
 	m_pMeshCollision->CreateCube(m_vMin, m_vMax);
 
-/*	m_vCollisionBoxes[0].Set(vMin.x, vMax.y, vMin.z); // Ãæµ¹ Ã¼Å©¸¦ À§ÇÑ Æú¸®°ï
-	m_vCollisionBoxes[1].Set(vMax.x, vMax.y, vMin.z); // Ãæµ¹ Ã¼Å©¸¦ À§ÇÑ Æú¸®°ï
-	m_vCollisionBoxes[2].Set(vMax.x, vMin.y, vMin.z); // Ãæµ¹ Ã¼Å©¸¦ À§ÇÑ Æú¸®°ï
-	m_vCollisionBoxes[3].Set(vMin.x, vMin.y, vMin.z); // Ãæµ¹ Ã¼Å©¸¦ À§ÇÑ Æú¸®°ï
+/*	m_vCollisionBoxes[0].Set(vMin.x, vMax.y, vMin.z); // ï¿½æµ¹ Ã¼Å©ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	m_vCollisionBoxes[1].Set(vMax.x, vMax.y, vMin.z); // ï¿½æµ¹ Ã¼Å©ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	m_vCollisionBoxes[2].Set(vMax.x, vMin.y, vMin.z); // ï¿½æµ¹ Ã¼Å©ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	m_vCollisionBoxes[3].Set(vMin.x, vMin.y, vMin.z); // ï¿½æµ¹ Ã¼Å©ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	
-	m_vCollisionBoxes[4].Set(vMax.x, vMax.y, vMax.z); // Ãæµ¹ Ã¼Å©¸¦ À§ÇÑ Æú¸®°ï
-	m_vCollisionBoxes[5].Set(vMin.x, vMax.y, vMax.z); // Ãæµ¹ Ã¼Å©¸¦ À§ÇÑ Æú¸®°ï
-	m_vCollisionBoxes[6].Set(vMin.x, vMin.y, vMax.z); // Ãæµ¹ Ã¼Å©¸¦ À§ÇÑ Æú¸®°ï
-	m_vCollisionBoxes[7].Set(vMax.x, vMin.y, vMax.z); // Ãæµ¹ Ã¼Å©¸¦ À§ÇÑ Æú¸®°ï
+	m_vCollisionBoxes[4].Set(vMax.x, vMax.y, vMax.z); // ï¿½æµ¹ Ã¼Å©ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	m_vCollisionBoxes[5].Set(vMin.x, vMax.y, vMax.z); // ï¿½æµ¹ Ã¼Å©ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	m_vCollisionBoxes[6].Set(vMin.x, vMin.y, vMax.z); // ï¿½æµ¹ Ã¼Å©ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	m_vCollisionBoxes[7].Set(vMax.x, vMin.y, vMax.z); // ï¿½æµ¹ Ã¼Å©ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 */
 }
 
@@ -1108,7 +1108,7 @@ void CN3Chr::JointSet(const char* szFN)
 	if(m_pJointRef) s_MngJoint.Delete(m_pJointRef);
 	m_pJointRef = s_MngJoint.Get(szFN);
 
-	this->Init(); // ÃÊ±âÈ­...
+	this->Init(); // ï¿½Ê±ï¿½È­...
 }
 
 int CN3Chr::PartAdd()
@@ -1141,7 +1141,7 @@ void CN3Chr::PartSet(int nPart, const char *szFN)
 	CN3CPart* pPart = m_Parts.Get(nPart);
 	if(pPart == NULL || pPart->Name() == NULL) return;
 
-	if(strcmp(szFN, pPart->Name()) == 0) return; // °°Àº µ¥ÀÌÅÍ¸é ³Ñ¾î°£´Ù..
+	if(strcmp(szFN, pPart->Name()) == 0) return; // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Í¸ï¿½ ï¿½Ñ¾î°£ï¿½ï¿½..
 
 	s_MngCPart.Delete(pPart);
 	pPart = s_MngCPart.Get(szFN);
@@ -1167,7 +1167,7 @@ void CN3Chr::PlugSet(int nPlug, const char *szFN)
 	
 	CN3CPlug* pPlug = m_Plugs.Get(nPlug);
 	if(pPlug == NULL || pPlug->Name() == NULL) return;
-	if(strcmp(szFN, pPlug->Name()) == 0) return; // °°Àº µ¥ÀÌÅÍ¸é ³Ñ¾î°£´Ù..
+	if(strcmp(szFN, pPlug->Name()) == 0) return; // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Í¸ï¿½ ï¿½Ñ¾î°£ï¿½ï¿½..
 
 	pPlug->Release();
 	if(lstrlen(szFN) == 0) return;
@@ -1187,7 +1187,7 @@ void CN3Chr::CollisionSkinSet(const char *szFN)
 
 void CN3Chr::RemakePlugTracePolygons()
 {
-	int nPlugTrace = 0; // ¸î¹øÂ°¿¡ ³Ö¾î¾ß ÇÏ³ª...
+	int nPlugTrace = 0; // ï¿½ï¿½ï¿½Â°ï¿½ï¿½ ï¿½Ö¾ï¿½ï¿½ ï¿½Ï³ï¿½...
 	CN3CPlug* pPlug = NULL;
 	for(void* pPos = m_Plugs.Position(0); pPos; m_Plugs.Next(pPos))
 	{
@@ -1201,7 +1201,7 @@ void CN3Chr::RemakePlugTracePolygons()
 		DWORD dwR = (pPlug->m_crTrace & 0x00ff0000) >> 16;
 		DWORD dwG = (pPlug->m_crTrace & 0x0000ff00) >> 8;
 		DWORD dwB = (pPlug->m_crTrace & 0x000000ff);
-		for(int i = 0; i < pPlug->m_nTraceStep + 1; i++) // ´Ü°èÀûÀ¸·Î »öÀ» Á¤ÇØÁØ´Ù..
+		for(int i = 0; i < pPlug->m_nTraceStep + 1; i++) // ï¿½Ü°ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ø´ï¿½..
 		{
 			m_vPlugTraces[nPlugTrace][i*2+1].color = m_vPlugTraces[nPlugTrace][i*2].color =	
 				((dwA * (pPlug->m_nTraceStep - i) / pPlug->m_nTraceStep) << 24) | 
@@ -1244,11 +1244,11 @@ int CN3Chr::AniCurSet(int nAni, int nLoopCount, float fBlendTime)
 
 		if(fBlendTime > 0)
 		{
-			m_fFrmBlendUpper = m_fFrmCurUpper; // Blending ÇÒ ¿¡´Ï¸ÞÀÌ¼Ç Frame..
+			m_fFrmBlendUpper = m_fFrmCurUpper; // Blending ï¿½ï¿½ ï¿½ï¿½ï¿½Ï¸ï¿½ï¿½Ì¼ï¿½ Frame..
 		}
 		else
 		{
-			m_fFrmBlendUpper = m_pAniCur->fFrmStartUpper; // Blending ÇÒ ¿¡´Ï¸ÞÀÌ¼Ç Frame..
+			m_fFrmBlendUpper = m_pAniCur->fFrmStartUpper; // Blending ï¿½ï¿½ ï¿½ï¿½ï¿½Ï¸ï¿½ï¿½Ì¼ï¿½ Frame..
 		}
 
 		m_fFrmCurUpper = m_pAniCur->fFrmStartUpper;
@@ -1285,7 +1285,7 @@ int  CN3Chr::AniCurSet(const char *szName, int nLoopCount)
 
 void CN3Chr::AniDefaultSet()
 {
-	// ±âº»ÀûÀÎ Animation Control ¸¸µé±â..
+	// ï¿½âº»ï¿½ï¿½ï¿½ï¿½ Animation Control ï¿½ï¿½ï¿½ï¿½ï¿½..
 	if(s_MngAniCtrl.IsExist("Chr\\Default.N3Anim") == false)
 	{
 		CN3AnimControl* pAniCtrlDefault = new CN3AnimControl();
@@ -1319,7 +1319,7 @@ bool CN3Chr::CheckCollisionByBox(int xScreen, int yScreen)
 	static __Vector3 svColls[8];
 	for(int i = 0; i < 8; i++)
 	{
-		svColls[i] = m_vCollisionBoxes[i] * m_Matrix; // ·ÎÄÃ Ãæµ¹ ¹Ú½º¸¦ ¿ùµå Çà·Ä·Î °öÇØÁÖ°í..
+		svColls[i] = m_vCollisionBoxes[i] * m_Matrix; // ï¿½ï¿½ï¿½ï¿½ ï¿½æµ¹ ï¿½Ú½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ä·ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ö°ï¿½..
 	}
 
 	int nCI0, nCI1, nCI2; // Collision polygon index
@@ -1329,7 +1329,7 @@ bool CN3Chr::CheckCollisionByBox(int xScreen, int yScreen)
 		nCI1 = m_wCollisionIndices[i*3+1];
 		nCI2 = m_wCollisionIndices[i*3+2];
 
-		if(::IntersectTriangle(vPos, vDir, svColls[nCI0], svColls[nCI1], svColls[nCI2])) // Ã¹Â° º¤ÅÍ°¡ °ÉÄ¡¸é..
+		if(::IntersectTriangle(vPos, vDir, svColls[nCI0], svColls[nCI1], svColls[nCI2])) // Ã¹Â° ï¿½ï¿½ï¿½Í°ï¿½ ï¿½ï¿½Ä¡ï¿½ï¿½..
 		{
 			return true;
 		}
@@ -1348,7 +1348,7 @@ bool CN3Chr::CheckCollisionByBox(__Vector3& v0, __Vector3& v1, __Vector3 &vColli
 	static __Vector3 svColls[8];
 	for(int i = 0; i < 8; i++)
 	{
-		svColls[i] = m_vCollisionBoxes[i] * m_Matrix; // ·ÎÄÃ Ãæµ¹ ¹Ú½º¸¦ ¿ùµå Çà·Ä·Î °öÇØÁÖ°í..
+		svColls[i] = m_vCollisionBoxes[i] * m_Matrix; // ï¿½ï¿½ï¿½ï¿½ ï¿½æµ¹ ï¿½Ú½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ä·ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ö°ï¿½..
 	}
 
 	int nCI0, nCI1, nCI2; // Collision polygon index
@@ -1358,14 +1358,14 @@ bool CN3Chr::CheckCollisionByBox(__Vector3& v0, __Vector3& v1, __Vector3 &vColli
 		nCI1 = m_wCollisionIndices[i*3+1];
 		nCI2 = m_wCollisionIndices[i*3+2];
 
-		if(::IntersectTriangle(v0, vDir, svColls[nCI0], svColls[nCI1], svColls[nCI2])) // Ã¹Â° º¤ÅÍ°¡ °ÉÄ¡¸é..
+		if(::IntersectTriangle(v0, vDir, svColls[nCI0], svColls[nCI1], svColls[nCI2])) // Ã¹Â° ï¿½ï¿½ï¿½Í°ï¿½ ï¿½ï¿½Ä¡ï¿½ï¿½..
 		{
-			if(false == ::IntersectTriangle(v1, vDir, svColls[nCI0], svColls[nCI1], svColls[nCI2])) // µÑÂ°´Â ¾È °ÉÄ¡¸é..
+			if(false == ::IntersectTriangle(v1, vDir, svColls[nCI0], svColls[nCI1], svColls[nCI2])) // ï¿½ï¿½Â°ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½Ä¡ï¿½ï¿½..
 			{
-				// Ãæµ¹ÀÌ´Ù..
+				// ï¿½æµ¹ï¿½Ì´ï¿½..
 				float fT, fU, fV;
 				::IntersectTriangle(v0, vDir, svColls[nCI0], svColls[nCI1], svColls[nCI2], fT, fU, fV, &vCollision);
-				// ¹ý¼± º¤ÅÍ ±¸ÇÏ±â..
+				// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ï±ï¿½..
 				vNormal.Cross(svColls[nCI1] - svColls[nCI0], svColls[nCI2] - svColls[nCI1]);
 				return true;
 			}

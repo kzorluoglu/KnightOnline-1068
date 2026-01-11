@@ -30,9 +30,35 @@ static char THIS_FILE[]=__FILE__;
 #define new DEBUG_NEW
 #endif
 
+namespace
+{
+const char* UITypeName(eUI_TYPE t)
+{
+    switch (t)
+    {
+    case UI_TYPE_BASE:      return "BASE";
+    case UI_TYPE_IMAGE:     return "IMAGE";
+    case UI_TYPE_STRING:    return "STRING";
+    case UI_TYPE_BUTTON:    return "BUTTON";
+    case UI_TYPE_STATIC:    return "STATIC";
+    case UI_TYPE_PROGRESS:  return "PROGRESS";
+    case UI_TYPE_SCROLLBAR: return "SCROLLBAR";
+    case UI_TYPE_TRACKBAR:  return "TRACKBAR";
+    case UI_TYPE_EDIT:      return "EDIT";
+    case UI_TYPE_AREA:      return "AREA";
+    case UI_TYPE_TOOLTIP:   return "TOOLTIP";
+    case UI_TYPE_LIST:      return "LIST";
+#ifdef _REPENT
+    case UI_TYPE_ICONSLOT:  return "ICONSLOT";
+#endif
+    default:                return "UNKNOWN";
+    }
+}
+}
+
 CN3UIEdit* CN3UIBase::s_pFocusedEdit = NULL;
 CN3UITooltip* CN3UIBase::s_pTooltipCtrl = NULL;
-std::string CN3UIStatic::s_szStringTmp; // �ӽú���..
+std::string CN3UIStatic::s_szStringTmp; // ´┐¢Ë¢├║´┐¢´┐¢´┐¢..
 
 CN3UIBase::CN3UIBase()
 {
@@ -56,7 +82,7 @@ CN3UIBase::CN3UIBase()
 
 CN3UIBase::~CN3UIBase()
 {
-	if(m_pParent) m_pParent->RemoveChild(this);	// �θ��� �ڽĿ��� ���� �����
+	if(m_pParent) m_pParent->RemoveChild(this);	// ´┐¢╬©´┐¢´┐¢´┐¢ ´┐¢┌¢─┐´┐¢´┐¢´┐¢ ´┐¢´┐¢´┐¢´┐¢ ´┐¢´┐¢´┐¢´┐¢´┐¢
 
 	CN3Base::s_SndMgr.ReleaseObj(&m_pSnd_OpenUI);
 	CN3Base::s_SndMgr.ReleaseObj(&m_pSnd_CloseUI);
@@ -64,8 +90,8 @@ CN3UIBase::~CN3UIBase()
 	while(!m_Children.empty())
 	{
 		CN3UIBase* pChild = m_Children.front();
-		if (pChild) delete pChild;	// �ڽ��� delete�Ǹ鼭 �θ��� list������ �ڵ����� ���ŵȴ�.
-									// ���� ����Ʈ���� ���� ����� �κ��� ��� �ȴ�.
+		if (pChild) delete pChild;	// ´┐¢┌¢´┐¢´┐¢´┐¢ delete´┐¢Ã©Ú╝¡ ´┐¢╬©´┐¢´┐¢´┐¢ list´┐¢´┐¢´┐¢´┐¢´┐¢´┐¢ ´┐¢┌Á´┐¢´┐¢´┐¢´┐¢´┐¢ ´┐¢´┐¢´┐¢┼Á╚┤´┐¢.
+									// ´┐¢´┐¢´┐¢´┐¢ ´┐¢´┐¢´┐¢´┐¢ã«´┐¢´┐¢´┐¢´┐¢ ´┐¢´┐¢´┐¢´┐¢ ´┐¢´┐¢´┐¢´┐¢´┐¢ ´┐¢╬║´┐¢´┐¢´┐¢ ´┐¢´┐¢´┐¢¯ÁÁ ´┐¢╚┤´┐¢.
 	}
 }
 
@@ -89,8 +115,8 @@ void CN3UIBase::Release()
 	while(!m_Children.empty())
 	{
 		CN3UIBase* pChild = m_Children.front();
-		if (pChild) delete pChild;	// �ڽ��� delete�Ǹ鼭 �θ��� list������ �ڵ����� ���ŵȴ�.
-									// ���� ����Ʈ���� ���� ����� �κ��� ��� �ȴ�.
+		if (pChild) delete pChild;	// ´┐¢┌¢´┐¢´┐¢´┐¢ delete´┐¢Ã©Ú╝¡ ´┐¢╬©´┐¢´┐¢´┐¢ list´┐¢´┐¢´┐¢´┐¢´┐¢´┐¢ ´┐¢┌Á´┐¢´┐¢´┐¢´┐¢´┐¢ ´┐¢´┐¢´┐¢┼Á╚┤´┐¢.
+									// ´┐¢´┐¢´┐¢´┐¢ ´┐¢´┐¢´┐¢´┐¢ã«´┐¢´┐¢´┐¢´┐¢ ´┐¢´┐¢´┐¢´┐¢ ´┐¢´┐¢´┐¢´┐¢´┐¢ ´┐¢╬║´┐¢´┐¢´┐¢ ´┐¢´┐¢´┐¢¯ÁÁ ´┐¢╚┤´┐¢.
 	}
 
 	CN3BaseFileAccess::Release();
@@ -135,10 +161,10 @@ POINT CN3UIBase::GetPos() const
 	return p;
 }
 
-// ��ġ �ٲٱ�
+// ´┐¢´┐¢─í ´┐¢┘▓┘▒´┐¢
 void CN3UIBase::SetPos(int x, int y)
 {
-	// ������ ���� ���ϱ�
+	// ´┐¢´┐¢´┐¢´┐¢´┐¢´┐¢ ´┐¢´┐¢´┐¢´┐¢ ´┐¢´┐¢´┐¢¤▒´┐¢
 	int dx, dy;
 	dx = x - m_rcRegion.left;
 	dy = y - m_rcRegion.top;
@@ -155,19 +181,19 @@ void CN3UIBase::SetPosCenter()
 	int iWVP = CN3Base::s_CameraData.vp.Width;
 	int iHVP = CN3Base::s_CameraData.vp.Height;
 
-	// ������ ���� ���ϱ�
+	// ´┐¢´┐¢´┐¢´┐¢´┐¢´┐¢ ´┐¢´┐¢´┐¢´┐¢ ´┐¢´┐¢´┐¢¤▒´┐¢
 	MoveOffset(((iWVP - iW) / 2) - pt.x, ((iHVP - iH) / 2) - pt.y);
 }
 
-// offset��ŭ �̵����ش�.(children�� �̵�)
+// offset´┐¢´┐¢┼¡ ´┐¢╠Á´┐¢´┐¢´┐¢´┐¢Ï┤´┐¢.(children´┐¢´┐¢ ´┐¢╠Á´┐¢)
 BOOL CN3UIBase::MoveOffset(int iOffsetX, int iOffsetY)
 {
 	if (0 == iOffsetX && 0 == iOffsetY) return FALSE;
-	// ui ����
+	// ui ´┐¢´┐¢´┐¢´┐¢
 	m_rcRegion.left += iOffsetX;		m_rcRegion.top += iOffsetY;
 	m_rcRegion.right += iOffsetX;		m_rcRegion.bottom += iOffsetY;
 
-	// movable ����
+	// movable ´┐¢´┐¢´┐¢´┐¢
 	if(	m_rcMovable.right - m_rcMovable.left != 0 &&
 		m_rcMovable.bottom - m_rcMovable.top != 0 )
 	{
@@ -175,7 +201,7 @@ BOOL CN3UIBase::MoveOffset(int iOffsetX, int iOffsetY)
 		m_rcMovable.right += iOffsetX;		m_rcMovable.bottom += iOffsetY;
 	}
 
-	// children ��ǥ ����
+	// children ´┐¢´┐¢ÃÑ ´┐¢´┐¢´┐¢´┐¢
 	CN3UIBase* pCUI = NULL; // Child UI...
 	for(UIListItor itor = m_Children.begin(); m_Children.end() != itor; ++itor)
 	{
@@ -186,7 +212,7 @@ BOOL CN3UIBase::MoveOffset(int iOffsetX, int iOffsetY)
 	return TRUE;
 }
 
-//	�� (x,y)�� �����ȿ� ������ true..
+//	´┐¢´┐¢ (x,y)´┐¢´┐¢ ´┐¢´┐¢´┐¢´┐¢´┐¢╚┐´┐¢ ´┐¢´┐¢´┐¢´┐¢´┐¢´┐¢ true..
 bool CN3UIBase::IsIn(int x, int y)
 {
 	if(x<m_rcRegion.left || x>m_rcRegion.right || y<m_rcRegion.top || y>m_rcRegion.bottom) return false;
@@ -200,9 +226,9 @@ void CN3UIBase::SetSize(int iWidth, int iHeight)
 	SetRegion(rc);
 }
 
-bool CN3UIBase::ReceiveMessage(CN3UIBase* pSender, DWORD dwMsg) // �޽����� �޴´�.. ������, msg
+bool CN3UIBase::ReceiveMessage(CN3UIBase* pSender, DWORD dwMsg) // ´┐¢Ì¢´┐¢´┐¢´┐¢´┐¢´┐¢ ´┐¢Ì┤┬┤´┐¢.. ´┐¢´┐¢´┐¢´┐¢´┐¢´┐¢, msg
 {
-	if(m_pParent && pSender) m_pParent->ReceiveMessage(pSender, dwMsg); // �θ� ������ �׳ѿ��Ե� ������..
+	if(m_pParent && pSender) m_pParent->ReceiveMessage(pSender, dwMsg); // ´┐¢╬©´┐¢ ´┐¢´┐¢´┐¢´┐¢´┐¢´┐¢ ´┐¢Î│Ð┐´┐¢´┐¢ÈÁ´┐¢ ´┐¢´┐¢´┐¢´┐¢´┐¢´┐¢..
 	return true;
 }
 
@@ -226,14 +252,62 @@ bool CN3UIBase::Load(HANDLE hFile)
 	CN3BaseFileAccess::Load(hFile);
 	DWORD dwRWC = NULL;
 
-	// children ����
-	int iCC = 0;
-	ReadFile(hFile, &iCC, sizeof(iCC), &dwRWC, NULL); // children count
+    // children (1097 UIF normally uses 16-bit count/version, but some files pack count as 32-bit followed by 16-bit version)
+    DWORD dwCountPos = SetFilePointer(hFile, 0, NULL, FILE_CURRENT);
+    short wCC = 0, wVer = 0;
+    ReadFile(hFile, &wCC, 2, &dwRWC, NULL);
+    ReadFile(hFile, &wVer, 2, &dwRWC, NULL);
+    int iCC = wCC;
+    bool bCountReparsed = false;
+
+    // Peek at the first child type to detect misalignment (e.g. count stored as 32-bit, version as 16-bit).
+    DWORD dwAfterCount = SetFilePointer(hFile, 0, NULL, FILE_CURRENT);
+    eUI_TYPE ePeekType = UI_TYPE_BASE;
+    ReadFile(hFile, &ePeekType, sizeof(ePeekType), &dwRWC, NULL);
+    bool bLooksMisaligned = ((ePeekType & 0xFFFF) == 0 && (ePeekType >> 16) > 0 && (ePeekType >> 16) < 256);
+    if (bLooksMisaligned)
+    {
+        SetFilePointer(hFile, dwCountPos, NULL, FILE_BEGIN);
+        int iCC32 = 0;
+        ReadFile(hFile, &iCC32, 4, &dwRWC, NULL);
+        ReadFile(hFile, &wVer, 2, &dwRWC, NULL);
+        iCC = iCC32;
+        bCountReparsed = true;
+#ifdef _N3GAME
+        CLogWriter::Write("CN3UIBase::Load - detected misaligned child header, using 32-bit count (%d) and 16-bit version (%d)", iCC, wVer);
+#endif
+        dwAfterCount = dwCountPos + 6;
+    }
+    else
+    {
+        dwAfterCount = dwCountPos + 4;
+    }
+    SetFilePointer(hFile, dwAfterCount, NULL, FILE_BEGIN);
+
+    if (iCC < 0)
+    {
+#ifdef _N3GAME
+        CLogWriter::Write("CN3UIBase::Load - negative child count %d detected, clamping to 0 (ver %d)", iCC, wVer);
+#endif
+        iCC = 0;
+    }
+#ifdef _N3GAME
+    if (iCC > 0) CLogWriter::Write("CN3UIBase::Load - loading %d children (ver %d)%s", iCC, wVer, (bCountReparsed ? " [reparsed]" : ""));
+#endif
+
 	eUI_TYPE eChildUIType;
 	for(int i = 0; i < iCC; i++)
 	{
 		CN3UIBase* pChild = NULL;
-		ReadFile(hFile, &eChildUIType, sizeof(eChildUIType), &dwRWC, NULL); // child�� ui type
+        DWORD dwFilePosBeforeChild = 0;
+#ifdef _N3GAME
+        dwFilePosBeforeChild = SetFilePointer(hFile, 0, NULL, FILE_CURRENT);
+#endif
+		ReadFile(hFile, &eChildUIType, sizeof(eChildUIType), &dwRWC, NULL); // child UI type
+
+#ifdef _N3GAME
+        CLogWriter::Write("CN3UIBase::Load child %d/%d type=%s(%d) parent=%p file_pos=%lu BEGIN", i + 1, iCC, UITypeName(eChildUIType), eChildUIType, this, dwFilePosBeforeChild);
+#endif
 
 		switch(eChildUIType)
 		{
@@ -251,19 +325,27 @@ bool CN3UIBase::Load(HANDLE hFile)
 		case UI_TYPE_ICONSLOT:		pChild = new CN3UIIconSlot();		break;
 #endif
 		case UI_TYPE_LIST:			pChild = new CN3UIList();			break;
+        default:
+#ifdef _N3GAME
+            CLogWriter::Write("CN3UIBase::Load child %d/%d unknown type=%d (parent=%p) - loading as BASE to continue", i + 1, iCC, eChildUIType, this);
+#endif
+            pChild = new CN3UIBase(); // fall back to bare container so we can continue reading UI
 		}
 		__ASSERT(pChild, "Unknown type UserInterface!!!");
 		pChild->Init(this);
-		pChild->Load(hFile);
+        bool bChildLoaded = pChild->Load(hFile);
+#ifdef _N3GAME
+        CLogWriter::Write("CN3UIBase::Load child %d/%d load result=%s type=%s(%d)", i + 1, iCC, (bChildLoaded ? "ok" : "FAIL"), UITypeName(eChildUIType), eChildUIType);
+#endif
 	}
 
 	// base ����
 	int iIDLen = 0;
-	ReadFile(hFile, &iIDLen, sizeof(iIDLen), &dwRWC, NULL);				// ui id length
+	ReadFile(hFile, &iIDLen, sizeof(iIDLen), &dwRWC, NULL);			// ui id length
 	if (iIDLen>0)
 	{
 		std::vector<char> buffer(iIDLen+1, NULL);
-		ReadFile(hFile, &buffer[0], iIDLen, &dwRWC, NULL);			// ui id
+		ReadFile(hFile, &buffer[0], iIDLen, &dwRWC, NULL);		// ui id
 		m_szID = &buffer[0];
 	}
 	else
@@ -309,7 +391,6 @@ bool CN3UIBase::Load(HANDLE hFile)
 	return true;
 }
 
-
 void CN3UIBase::Tick()
 {
 	for(UIListItor itor = m_Children.begin(); m_Children.end() != itor; ++itor)
@@ -321,7 +402,7 @@ void CN3UIBase::Tick()
 
 void CN3UIBase::Render()
 {
-	if (!m_bVisible) return;	// ������ ������ �ڽĵ��� render���� �ʴ´�.
+	if (!m_bVisible) return;	// ´┐¢´┐¢´┐¢´┐¢´┐¢´┐¢ ´┐¢´┐¢´┐¢´┐¢´┐¢´┐¢ ´┐¢┌¢─Á´┐¢´┐¢´┐¢ render´┐¢´┐¢´┐¢´┐¢ ´┐¢╩┤┬┤´┐¢.
 
 	for(UIListReverseItor itor = m_Children.rbegin(); m_Children.rend() != itor; ++itor)
 	{
@@ -344,7 +425,7 @@ DWORD CN3UIBase::MouseProc(DWORD dwFlags, const POINT& ptCur, const POINT& ptOld
 	DWORD dwRet = UI_MOUSEPROC_NONE;
 	if (!m_bVisible) return dwRet;
 
-	// UI �����̴� �ڵ�
+	// UI ´┐¢´┐¢´┐¢´┐¢´┐¢╠┤´┐¢ ´┐¢┌Á´┐¢
 	if (UI_STATE_COMMON_MOVE == m_eState)
 	{
 		if (dwFlags&UI_MOUSE_LBCLICKED)
@@ -359,43 +440,43 @@ DWORD CN3UIBase::MouseProc(DWORD dwFlags, const POINT& ptCur, const POINT& ptOld
 		return dwRet;
 	}
 
-	if(false == IsIn(ptCur.x, ptCur.y))	// ���� ���̸�
+	if(false == IsIn(ptCur.x, ptCur.y))	// ´┐¢´┐¢´┐¢´┐¢ ´┐¢´┐¢´┐¢╠©´┐¢
 	{
 		if(false == IsIn(ptOld.x, ptOld.y))
 		{
-			return dwRet;// ���� ��ǥ�� ���� ���̸� 
+			return dwRet;// ´┐¢´┐¢´┐¢´┐¢ ´┐¢´┐¢ÃÑ´┐¢´┐¢ ´┐¢´┐¢´┐¢´┐¢ ´┐¢´┐¢´┐¢╠©´┐¢ 
 		}
-		dwRet |= UI_MOUSEPROC_PREVINREGION;	// ���� ��ǥ�� ���� ���̾���.
+		dwRet |= UI_MOUSEPROC_PREVINREGION;	// ´┐¢´┐¢´┐¢´┐¢ ´┐¢´┐¢ÃÑ´┐¢´┐¢ ´┐¢´┐¢´┐¢´┐¢ ´┐¢´┐¢´┐¢╠¥´┐¢´┐¢´┐¢.
 	}
 	else
 	{
-		// tool tip ����
+		// tool tip ´┐¢´┐¢´┐¢´┐¢
 		if (s_pTooltipCtrl) s_pTooltipCtrl->SetText(m_szToolTip);
 	}
-	dwRet |= UI_MOUSEPROC_INREGION;	// �̹� ��ǥ�� ���� ���̴�.
+	dwRet |= UI_MOUSEPROC_INREGION;	// ´┐¢╠╣´┐¢ ´┐¢´┐¢ÃÑ´┐¢´┐¢ ´┐¢´┐¢´┐¢´┐¢ ´┐¢´┐¢´┐¢╠┤´┐¢.
 
 
 	//this_ui
 	if(m_pChildUI && m_pChildUI->IsVisible())
 		return dwRet;
 
-	// child���� �޼��� ����
+	// child´┐¢´┐¢´┐¢´┐¢ ´┐¢Ì╝´┐¢´┐¢´┐¢ ´┐¢´┐¢´┐¢´┐¢
 	for(UIListItor itor = m_Children.begin(); m_Children.end() != itor; ++itor)
 	{
 		CN3UIBase* pChild = (*itor);
 		DWORD dwChildRet = pChild->MouseProc(dwFlags, ptCur, ptOld);
 		if (UI_MOUSEPROC_DONESOMETHING & dwChildRet)
-		{	// �̰�쿡�� �հ� ��Ŀ���� ���� ����̴�.
-			// (�Ʒ� �ڵ�� dialog�� �����ϴ� ������ �ؾ� �Ѵ�. ���� ���Ƴ���)
-//			m_Children.erase(itor);			// �켱 ����Ʈ���� �����
-//			m_Children.push_front(pChild);	// �Ǿտ� �ִ´�. �׸��� ������ �� ���߿� �׸����� �Ϸ���
+		{	// ´┐¢╠░´┐¢ý┐í´┐¢´┐¢ ´┐¢ı░´┐¢ ´┐¢´┐¢─┐´┐¢´┐¢´┐¢´┐¢ ´┐¢´┐¢´┐¢´┐¢ ´┐¢´┐¢´┐¢´┐¢╠┤´┐¢.
+			// (´┐¢ãÀ´┐¢ ´┐¢┌Á´┐¢´┐¢ dialog´┐¢´┐¢ ´┐¢´┐¢´┐¢´┐¢´┐¢¤┤´┐¢ ´┐¢´┐¢´┐¢´┐¢´┐¢´┐¢ ´┐¢Ï¥´┐¢ ´┐¢Ð┤´┐¢. ´┐¢´┐¢´┐¢´┐¢ ´┐¢´┐¢´┐¢ã│´┐¢´┐¢´┐¢)
+//			m_Children.erase(itor);			// ´┐¢ý╝▒ ´┐¢´┐¢´┐¢´┐¢ã«´┐¢´┐¢´┐¢´┐¢ ´┐¢´┐¢´┐¢´┐¢´┐¢
+//			m_Children.push_front(pChild);	// ´┐¢Ã¥ı┐´┐¢ ´┐¢Í┤┬┤´┐¢. ´┐¢Î©´┐¢´┐¢´┐¢ ´┐¢´┐¢´┐¢´┐¢´┐¢´┐¢ ´┐¢´┐¢ ´┐¢´┐¢´┐¢▀┐´┐¢ ´┐¢Î©´┐¢´┐¢´┐¢´┐¢´┐¢ ´┐¢¤À´┐¢´┐¢´┐¢
 
 			dwRet |= (UI_MOUSEPROC_CHILDDONESOMETHING|UI_MOUSEPROC_DONESOMETHING);
 			return dwRet;
 		}
 	}
 
-	// UI �����̴� �ڵ�
+	// UI ´┐¢´┐¢´┐¢´┐¢´┐¢╠┤´┐¢ ´┐¢┌Á´┐¢
 	if (UI_STATE_COMMON_MOVE != m_eState && 
 			PtInRect(&m_rcMovable, ptCur) && (dwFlags&UI_MOUSE_LBCLICK) )
 	{
@@ -432,7 +513,7 @@ CN3UIBase* CN3UIBase::GetChildByID(const std::string& szID)
 	{
 		CN3UIBase* pChild = (*itor);
 //		if(pChild->m_szID == szID) return pChild;
-		if(lstrcmpi(pChild->m_szID.c_str(), szID.c_str()) == 0) return pChild; // ��ҹ��� �Ȱ����� �˻�..
+		if(lstrcmpi(pChild->m_szID.c_str(), szID.c_str()) == 0) return pChild; // ´┐¢´┐¢Ê╣´┐¢´┐¢´┐¢ ´┐¢╚░´┐¢´┐¢´┐¢´┐¢´┐¢ ´┐¢╦╗´┐¢..
 	}
 	return NULL;
 }
@@ -441,8 +522,8 @@ void CN3UIBase::SetVisible(bool bVisible)
 {
 	if (bVisible != m_bVisible)
 	{
-		if (bVisible) { if(m_pSnd_OpenUI) m_pSnd_OpenUI->Play(); }	// ���� �Ҹ�
-		else { if(m_pSnd_CloseUI) m_pSnd_CloseUI->Play(); }	// �ݴ� �Ҹ�
+		if (bVisible) { if(m_pSnd_OpenUI) m_pSnd_OpenUI->Play(); }	// ´┐¢´┐¢´┐¢´┐¢ ´┐¢Ê©´┐¢
+		else { if(m_pSnd_CloseUI) m_pSnd_CloseUI->Play(); }	// ´┐¢¦┤´┐¢ ´┐¢Ê©´┐¢
 	}
 	m_bVisible = bVisible;
 	if(!m_bVisible)
@@ -485,7 +566,7 @@ void CN3UIBase::SetVisibleWithNoSound(bool bVisible, bool bWork, bool bReFocus)
 #ifndef _N3TOOL
 void CN3UIBase::operator = (const CN3UIBase& other)
 {
-	Init(NULL);	// �ϴ� �θ�� ���� �ʱ�ȭ
+	Init(NULL);	// ´┐¢¤┤´┐¢ ´┐¢╬©´┐¢´┐¢ ´┐¢´┐¢´┐¢´┐¢ ´┐¢╩▒´┐¢╚¡
 
 	UIListItorConst it = other.m_Children.begin();
 	UIListItorConst itEnd = other.m_Children.end();
@@ -519,7 +600,7 @@ void CN3UIBase::operator = (const CN3UIBase& other)
 				*pUINew = *((CN3UIStatic*)pOtherChild); 
 				pChild = pUINew;
 			} 
-			break;	// static (���׸��� ���ڰ� ������ Ŭ����)
+			break;	// static (´┐¢´┐¢´┐¢Î©´┐¢´┐¢´┐¢ ´┐¢´┐¢´┐¢┌░´┐¢ ´┐¢´┐¢´┐¢´┐¢´┐¢´┐¢ ┼¼´┐¢´┐¢´┐¢´┐¢)
 		case UI_TYPE_PROGRESS:	
 			{ 
 				CN3UIProgress* pUINew = new CN3UIProgress();	
@@ -595,7 +676,7 @@ void CN3UIBase::operator = (const CN3UIBase& other)
 			break;	// icon slot
 #endif
 		}
-		if(pChild) pChild->SetParent(this);	// �θ� ����
+		if(pChild) pChild->SetParent(this);	// ´┐¢╬©´┐¢ ´┐¢´┐¢´┐¢´┐¢
 	}
 
 	m_bVisible = other.m_bVisible;
@@ -629,20 +710,20 @@ bool CN3UIBase::Save(HANDLE hFile)
 	CN3BaseFileAccess::Save(hFile);
 	DWORD dwRWC = NULL;
 
-	// child ����
+	// child ´┐¢´┐¢´┐¢´┐¢
 	int iCC = m_Children.size();
-	WriteFile(hFile, &iCC, sizeof(iCC), &dwRWC, NULL); // Child ���� ����..��..
+	WriteFile(hFile, &iCC, sizeof(iCC), &dwRWC, NULL); // Child ´┐¢´┐¢´┐¢´┐¢ ´┐¢´┐¢´┐¢´┐¢..´┐¢´┐¢..
 	for(UIListReverseItor itor = m_Children.rbegin(); m_Children.rend() != itor; ++itor)
-	// childadd�Ҷ� push_front�̹Ƿ� ������ �� �Ųٷ� �����ؾ� �Ѵ�.
+	// childadd´┐¢ÊÂ´┐¢ push_front´┐¢╠╣ÃÀ´┐¢ ´┐¢´┐¢´┐¢´┐¢´┐¢´┐¢ ´┐¢´┐¢ ´┐¢┼▓┘À´┐¢ ´┐¢´┐¢´┐¢´┐¢´┐¢Ï¥´┐¢ ´┐¢Ð┤´┐¢.
 	{
 		CN3UIBase* pChild = (*itor);
 		eUI_TYPE eUIType = pChild->UIType();
 
-		WriteFile(hFile, &eUIType, sizeof(eUIType), &dwRWC, NULL); // UI Type ����..
+		WriteFile(hFile, &eUIType, sizeof(eUIType), &dwRWC, NULL); // UI Type ´┐¢´┐¢´┐¢´┐¢..
 		pChild->Save(hFile);
 	}
 
-	// base ����
+	// base ´┐¢´┐¢´┐¢´┐¢
 	int iIDLen = 0;
 	iIDLen = m_szID.size();
 	WriteFile(hFile, &iIDLen, sizeof(iIDLen), &dwRWC, NULL);				// id length
@@ -653,17 +734,17 @@ bool CN3UIBase::Save(HANDLE hFile)
 	WriteFile(hFile, &m_dwReserved, sizeof(m_dwReserved), &dwRWC, NULL);	//	m_dwReserved
 
 	int iTooltipLen = m_szToolTip.size();
-	WriteFile(hFile, &iTooltipLen, sizeof(iTooltipLen), &dwRWC, NULL);		//	tooltip���ڿ� ����
+	WriteFile(hFile, &iTooltipLen, sizeof(iTooltipLen), &dwRWC, NULL);		//	tooltip´┐¢´┐¢´┐¢┌┐´┐¢ ´┐¢´┐¢´┐¢´┐¢
 	if (iTooltipLen>0) WriteFile(hFile, m_szToolTip.c_str(), iTooltipLen, &dwRWC, NULL);
 
 	int iSndFNLen = 0;
 	if (m_pSnd_OpenUI) iSndFNLen = m_pSnd_OpenUI->m_szFileName.size();
-	WriteFile(hFile, &iSndFNLen, sizeof(iSndFNLen), &dwRWC, NULL);		//	���� ���� ���ڿ� ����
+	WriteFile(hFile, &iSndFNLen, sizeof(iSndFNLen), &dwRWC, NULL);		//	´┐¢´┐¢´┐¢´┐¢ ´┐¢´┐¢´┐¢´┐¢ ´┐¢´┐¢´┐¢┌┐´┐¢ ´┐¢´┐¢´┐¢´┐¢
 	if (iSndFNLen>0) WriteFile(hFile, m_pSnd_OpenUI->m_szFileName.c_str(), iSndFNLen, &dwRWC, NULL);
 
 	iSndFNLen = 0;
 	if (m_pSnd_CloseUI) iSndFNLen = m_pSnd_CloseUI->m_szFileName.size();
-	WriteFile(hFile, &iSndFNLen, sizeof(iSndFNLen), &dwRWC, NULL);		//	���� ���� ���ڿ� ����
+	WriteFile(hFile, &iSndFNLen, sizeof(iSndFNLen), &dwRWC, NULL);		//	´┐¢´┐¢´┐¢´┐¢ ´┐¢´┐¢´┐¢´┐¢ ´┐¢´┐¢´┐¢┌┐´┐¢ ´┐¢´┐¢´┐¢´┐¢
 	if (iSndFNLen>0) WriteFile(hFile, m_pSnd_CloseUI->m_szFileName.c_str(), iSndFNLen, &dwRWC, NULL);
 	
 	return true;
@@ -671,7 +752,7 @@ bool CN3UIBase::Save(HANDLE hFile)
 
 void CN3UIBase::ChangeImagePath(const std::string& szPathOld, const std::string& szPathNew)
 {
-	// child ����
+	// child ´┐¢´┐¢´┐¢´┐¢
 	for(UIListItor itor = m_Children.begin(); m_Children.end() != itor; ++itor)
 	{
 		CN3UIBase* pChild = (*itor);
@@ -681,7 +762,7 @@ void CN3UIBase::ChangeImagePath(const std::string& szPathOld, const std::string&
 
 void CN3UIBase::ChangeFont(const std::string& szFont)
 {
-	// child ����
+	// child ´┐¢´┐¢´┐¢´┐¢
 	for(UIListItor itor = m_Children.begin(); m_Children.end() != itor; ++itor)
 	{
 		CN3UIBase* pChild = (*itor);
@@ -691,7 +772,7 @@ void CN3UIBase::ChangeFont(const std::string& szFont)
 
 void CN3UIBase::GatherImageFileName(std::set<std::string>& setImgFile)
 {
-	// child ����
+	// child ´┐¢´┐¢´┐¢´┐¢
 	for(UIListItor itor = m_Children.begin(); m_Children.end() != itor; ++itor)
 	{
 		CN3UIBase* pChild = (*itor);
@@ -722,7 +803,7 @@ void CN3UIBase::ResizeAutomaticalyByChild()
 	if(rcCur.right < rcMax.right) rcCur.right = rcMax.right;
 	if(rcCur.bottom < rcMax.bottom) rcCur.bottom = rcMax.bottom;
 //	this->SetRegion(rcCur);
-	m_rcRegion = rcCur;	// SetRegion�� �ع����� child�� ������ �ٲ������ ��찡 �����Ƿ� �� ������ �ٲٱ����� ���� �ִ´�.
+	m_rcRegion = rcCur;	// SetRegion´┐¢´┐¢ ´┐¢Ï╣´┐¢´┐¢´┐¢´┐¢´┐¢ child´┐¢´┐¢ ´┐¢´┐¢´┐¢´┐¢´┐¢´┐¢ ´┐¢┘▓´┐¢´┐¢´┐¢´┐¢´┐¢´┐¢ ´┐¢´┐¢ý░í ´┐¢´┐¢´┐¢´┐¢´┐¢ÃÀ´┐¢ ´┐¢´┐¢ ´┐¢´┐¢´┐¢´┐¢´┐¢´┐¢ ´┐¢┘▓┘▒´┐¢´┐¢´┐¢´┐¢´┐¢ ´┐¢´┐¢´┐¢´┐¢ ´┐¢Í┤┬┤´┐¢.
 }
 
 int CN3UIBase::IsMyChild(CN3UIBase* pUI)
@@ -832,16 +913,16 @@ bool CN3UIBase::MoveToUpper(CN3UIBase* pChild)
 
 void CN3UIBase::ArrangeZOrder()
 {
-	// ���� image�� ���׸��� �ǹǷ� child list���� �� �ڷ� ������.
-	// �ֳ��ϸ� �� �ڿ� �ִ°��� �� ���� �׷����Ƿ�
+	// ´┐¢´┐¢´┐¢´┐¢ image´┐¢´┐¢ ´┐¢´┐¢´┐¢Î©´┐¢´┐¢´┐¢ ´┐¢Ã╣ÃÀ´┐¢ child list´┐¢´┐¢´┐¢´┐¢ ´┐¢´┐¢ ´┐¢┌À´┐¢ ´┐¢´┐¢´┐¢´┐¢´┐¢´┐¢.
+	// ´┐¢Í│´┐¢´┐¢¤©´┐¢ ´┐¢´┐¢ ´┐¢┌┐´┐¢ ´┐¢Í┤┬░´┐¢´┐¢´┐¢ ´┐¢´┐¢ ´┐¢´┐¢´┐¢´┐¢ ´┐¢ÎÀ´┐¢´┐¢´┐¢´┐¢ÃÀ´┐¢
 	UIList tempList;
 	for(UIListItor itor = m_Children.begin(); m_Children.end() != itor;)
 	{
 		CN3UIBase* pChild = (*itor);
 		if(UI_TYPE_IMAGE == pChild->UIType())
 		{
-			itor = m_Children.erase(itor);	// ���� ��ġ���� �����
-			tempList.push_back(pChild);		// �ӽ� ���ۿ� ����
+			itor = m_Children.erase(itor);	// ´┐¢´┐¢´┐¢´┐¢ ´┐¢´┐¢─í´┐¢´┐¢´┐¢´┐¢ ´┐¢´┐¢´┐¢´┐¢´┐¢
+			tempList.push_back(pChild);		// ´┐¢Ë¢´┐¢ ´┐¢´┐¢´┐¢█┐´┐¢ ´┐¢´┐¢´┐¢´┐¢
 		}
 		else ++itor;
 	}
@@ -849,14 +930,14 @@ void CN3UIBase::ArrangeZOrder()
 	for(itor = tempList.begin(); tempList.end() != itor; ++itor)
 	{
 		CN3UIBase* pChild = (*itor);
-		m_Children.push_back(pChild);		// child list�� �ڿ� �ֱ�
+		m_Children.push_back(pChild);		// child list´┐¢´┐¢ ´┐¢┌┐´┐¢ ´┐¢Í▒´┐¢
 	}
 	tempList.clear();
 }
 
 void CN3UIBase::operator = (const CN3UIBase& other)
 {
-	Init(NULL);	// �ϴ� �θ�� ���� �ʱ�ȭ
+	Init(NULL);	// ´┐¢¤┤´┐¢ ´┐¢╬©´┐¢´┐¢ ´┐¢´┐¢´┐¢´┐¢ ´┐¢╩▒´┐¢╚¡
 
 	UIListItorConst it = other.m_Children.begin();
 	UIListItorConst itEnd = other.m_Children.end();
@@ -890,7 +971,7 @@ void CN3UIBase::operator = (const CN3UIBase& other)
 				*pUINew = *((CN3UIStatic*)pOtherChild); 
 				pChild = pUINew;
 			} 
-			break;	// static (���׸��� ���ڰ� ������ Ŭ����)
+			break;	// static (´┐¢´┐¢´┐¢Î©´┐¢´┐¢´┐¢ ´┐¢´┐¢´┐¢┌░´┐¢ ´┐¢´┐¢´┐¢´┐¢´┐¢´┐¢ ┼¼´┐¢´┐¢´┐¢´┐¢)
 		case UI_TYPE_PROGRESS:	
 			{ 
 				CN3UIProgress* pUINew = new CN3UIProgress();	
@@ -966,7 +1047,7 @@ void CN3UIBase::operator = (const CN3UIBase& other)
 			break;	// icon slot
 #endif
 		}
-		if(pChild) pChild->SetParent(this);	// �θ� ����
+		if(pChild) pChild->SetParent(this);	// ´┐¢╬©´┐¢ ´┐¢´┐¢´┐¢´┐¢
 	}
 
 	m_bVisible = other.m_bVisible;
@@ -990,7 +1071,7 @@ void CN3UIBase::SetSndOpen(const std::string& strFileName)
 	if (0 == strFileName.size()) return;
 
 	CN3BaseFileAccess tmpBase;
-	tmpBase.FileNameSet(strFileName);	// Base��ο� ���ؼ� ����� ��θ� �Ѱ��ش�.
+	tmpBase.FileNameSet(strFileName);	// Base´┐¢´┐¢╬┐´┐¢ ´┐¢´┐¢´┐¢Ï╝´┐¢ ´┐¢´┐¢´┐¢´┐¢´┐¢ ´┐¢´┐¢╬©´┐¢ ´┐¢Ð░´┐¢´┐¢Ï┤´┐¢.
 
 	SetCurrentDirectory(tmpBase.PathGet().c_str());
 	m_pSnd_OpenUI = s_SndMgr.CreateObj(tmpBase.FileName(), SNDTYPE_2D);
@@ -1002,7 +1083,7 @@ void CN3UIBase::SetSndClose(const std::string& strFileName)
 	if (0 == strFileName.size()) return;
 
 	CN3BaseFileAccess tmpBase;
-	tmpBase.FileNameSet(strFileName);	// Base��ο� ���ؼ� ����� ��θ� �Ѱ��ش�.
+	tmpBase.FileNameSet(strFileName);	// Base´┐¢´┐¢╬┐´┐¢ ´┐¢´┐¢´┐¢Ï╝´┐¢ ´┐¢´┐¢´┐¢´┐¢´┐¢ ´┐¢´┐¢╬©´┐¢ ´┐¢Ð░´┐¢´┐¢Ï┤´┐¢.
 
 	SetCurrentDirectory(tmpBase.PathGet().c_str());
 	m_pSnd_CloseUI = s_SndMgr.CreateObj(tmpBase.FileName(), SNDTYPE_2D);

@@ -13,7 +13,7 @@
 
 #define CLOAK_MAX_WIDTH		7
 #define CLOAK_MAX_HEIGHT	7
-#define CLOAK_SKIP_LINE		2	// ¸ÁÅä¿¡¼­ Àå½Ä¿ë ¹öÅØ½º°¡ µé¾î°¡ ÀÖ´Â ¶óÀÎ¼ö. ÀÌºÎºÐÀº ÀÌµ¿ÀÌ ¾ø´Ù. ok?
+#define CLOAK_SKIP_LINE		2	// ï¿½ï¿½ï¿½ä¿¡ï¿½ï¿½ ï¿½ï¿½Ä¿ï¿½ ï¿½ï¿½ï¿½Ø½ï¿½ï¿½ï¿½ ï¿½ï¿½î°¡ ï¿½Ö´ï¿½ ï¿½ï¿½ï¿½Î¼ï¿½. ï¿½ÌºÎºï¿½ï¿½ï¿½ ï¿½Ìµï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½. ok?
 
 enum e_Cloak_AnchorMovePattern {AMP_NONE=0, AMP_YAWCCW, AMP_YAWCW, AMP_MOVEX, AMP_MOVEY, AMP_MOVEZ, AMP_MOVEXZ, AMP_MOVEXZ2};
 
@@ -76,8 +76,8 @@ protected:
 	
 	
 	__Particle			*m_pParticle;	
-	D3DXVECTOR3			m_GravityForce;		// Áß·Â(.y)°¡ Ç×»óÀÖ¾î¾ß º¯ÇüÀÌ ÀÏ¾î³ªÁö ¾Ê´Â´Ù..
-	D3DXVECTOR3			m_Force;			// ¿ÜºÎ¿¡¼­ °¡ÇØÁö´Â Èû.
+	D3DXVECTOR3			m_GravityForce;		// ï¿½ß·ï¿½(.y)ï¿½ï¿½ ï¿½×»ï¿½ï¿½Ö¾ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ï¾î³ªï¿½ï¿½ ï¿½Ê´Â´ï¿½..
+	D3DXVECTOR3			m_Force;			// ï¿½ÜºÎ¿ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½.
 	
 
 	void				UpdateLocalForce();	

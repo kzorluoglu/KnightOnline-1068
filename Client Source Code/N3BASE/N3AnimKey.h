@@ -22,12 +22,12 @@ class CN3AnimKey : CN3Base
 	friend class CN3Joint;
 protected:
 	ANIMATION_KEY_TYPE m_eType; // Key Type - Position Rotation Scale
-	int		m_nCount; // Å° Ä«¿îÆ®
-	float	m_fSamplingRate; // Sampling Rate - Ç¥ÁØÀº 30 Frame Per Sec ÀÌ´Ù..
+	int		m_nCount; // Å° Ä«ï¿½ï¿½Æ®
+	float	m_fSamplingRate; // Sampling Rate - Ç¥ï¿½ï¿½ï¿½ï¿½ 30 Frame Per Sec ï¿½Ì´ï¿½..
 	void*	m_pDatas;
 
 public:
-	ANIMATION_KEY_TYPE Type() { return m_eType; } // Å° ÇüÅÂ, º¤ÅÍ¿ö ÄõÅÍ´Ï¾ð ÇüÅÂ°¡ ÀÖ´Ù..
+	ANIMATION_KEY_TYPE Type() { return m_eType; } // Å° ï¿½ï¿½ï¿½ï¿½, ï¿½ï¿½ï¿½Í¿ï¿½ ï¿½ï¿½ï¿½Í´Ï¾ï¿½ ï¿½ï¿½ï¿½Â°ï¿½ ï¿½Ö´ï¿½..
 	void	Add(CN3AnimKey& AKSrc, int nIndexS, int nIndexE);
 //	void	Translate(int nIndexStart, int nIndexEnd, float fDelta, int nKFlags);
 	bool DataGet(float fFrm, __Vector3& v)

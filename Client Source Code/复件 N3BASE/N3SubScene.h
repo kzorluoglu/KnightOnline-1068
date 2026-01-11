@@ -22,7 +22,7 @@ public:
 	CN3SubScene();
 	virtual ~CN3SubScene();
 
-	struct __ObjectInfo				// N3ShapeÀÇ À§Ä¡ È¸Àü È®´ë/Ãà¼Ò Á¤º¸
+	struct __ObjectInfo				// N3Shapeï¿½ï¿½ ï¿½ï¿½Ä¡ È¸ï¿½ï¿½ È®ï¿½ï¿½/ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	{
 		__Vector3		vPos;
 		__Vector3		vRot;

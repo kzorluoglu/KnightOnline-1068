@@ -205,7 +205,7 @@ void CPVSManager::DeleteTotalShapeLinkByiOrder(int iOrder)
 
 	pSI = *siit;
 
-	// ¸ÕÀú Áö¿öÁú Shape¸¦ °¡Áö°í ÀÖ´Â VolumeµéÀ» Ã£¾Æ¼­..	Ã³¸®ÇÑ´Ù..
+	// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Shapeï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ö´ï¿½ Volumeï¿½ï¿½ï¿½ï¿½ Ã£ï¿½Æ¼ï¿½..	Ã³ï¿½ï¿½ï¿½Ñ´ï¿½..
 	ShapePart* pSP = NULL;
 
 	CPortalVolume* pVol = NULL;
@@ -234,7 +234,7 @@ void CPVSManager::DeleteTotalShapeLinkByiOrder(int iOrder)
 	m_plShapeInfoList.erase(siit);
 }
 
-// Edit ¸ðµå..
+// Edit ï¿½ï¿½ï¿½..
 void CPVSManager::TickEdit()
 {
 	CPortalVolume* pVol = NULL;
@@ -358,7 +358,7 @@ void CPVSManager::RenderEdit()
 	}
 }
 
-// Compile ¸ðµå..
+// Compile ï¿½ï¿½ï¿½..
 void CPVSManager::TickCompile()
 {
 	CPortalVolume* pVol = NULL;
@@ -415,13 +415,13 @@ bool CPVSManager::StartExecuteMode()
 
 	if (iSize < 1)
 	{
-		AfxMessageBox("¼±ÅÃµÇ¾îÀÖ´Â VolumeÀÌ ¾ø½À´Ï´Ù....");
+		AfxMessageBox("ï¿½ï¿½ï¿½ÃµÇ¾ï¿½ï¿½Ö´ï¿½ Volumeï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½....");
 		return false;
 	}
 
 	m_pCurVol = pFrm->m_SelVolArray.GetAt(0);
 
-	// Camera¸¦ ¼ÂÆÃÇÑ´Ù..
+	// Cameraï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ñ´ï¿½..
 	m_vBackupEye = pFrm->m_Camera.EyePos();
 	m_vBackupAt  = pFrm->m_Camera.AtPos();
 
@@ -436,7 +436,7 @@ bool CPVSManager::StartExecuteMode()
 
 void CPVSManager::EndExecuteMode()
 {
-	// Camera ¼ÂÆÃÀ» º¹±¸ÇÑ´Ù..
+	// Camera ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ñ´ï¿½..
 	CMainFrame* pFrm = (CMainFrame* )AfxGetMainWnd();
 	pFrm->m_Camera.EyePosSet(m_vBackupEye);
 	pFrm->m_Camera.UpVectorSet(__Vector3(0.0f, 1.0f, 0.0f));
@@ -448,13 +448,13 @@ void CPVSManager::ExecuteCameraChange()
 {
 	if (m_pPvsList.size() < 1)
 	{
-		AfxMessageBox("¼±ÅÃ °¡´ÉÇÑ ¸®½ºÆ®°¡ ¾ø½À´Ï´Ù....");
+		AfxMessageBox("ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½....");
 		return;
 	}
 	
 	if (!m_pCurVol)
 	{
-		AfxMessageBox("¼±ÅÃµÇ¾îÀÖ´Â VolumeÀÌ ¾ø½À´Ï´Ù....");
+		AfxMessageBox("ï¿½ï¿½ï¿½ÃµÇ¾ï¿½ï¿½Ö´ï¿½ Volumeï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½....");
 		return;
 	}
 
@@ -478,7 +478,7 @@ void CPVSManager::RestoreExecuteCameraChange()
 	pFrm->m_Camera.Apply();
 }
 
-// Execute ¸ðµå..
+// Execute ï¿½ï¿½ï¿½..
 void CPVSManager::TickExecute()
 {
 	CPortalVolume* pVol = NULL;
@@ -558,7 +558,7 @@ void CPVSManager::TotalShapeRenderEdit()
 	CN3Base::s_lpD3DDev->SetTransform(D3DTS_WORLD, &mtxWorld);
 	CN3Base::s_lpD3DDev->SetTexture(0, NULL);
 
-	CN3Base::s_lpD3DDev->SetVertexShader(FVF_CV);	
+	CN3Base::s_lpD3DDev->SetFVF(FVF_CV);	
 	CN3Base::s_lpD3DDev->SetRenderState(D3DRS_FILLMODE, D3DFILL_SOLID);
 
 	ShapeInfo* pSI;
@@ -621,7 +621,7 @@ void CPVSManager::TotalCollisionRenderEdit()
 
 	CN3Base::s_lpD3DDev->SetTexture(0, NULL);
 
-	CN3Base::s_lpD3DDev->SetVertexShader(FVF_CV);	
+	CN3Base::s_lpD3DDev->SetFVF(FVF_CV);	
 	CN3Base::s_lpD3DDev->SetRenderState(D3DRS_FILLMODE, D3DFILL_SOLID);
 
 	ShapeInfo* pSI;
@@ -633,7 +633,7 @@ void CPVSManager::TotalCollisionRenderEdit()
 		{
 			pSI->m_pShape->Tick(-1000);
 
-			// ·ÎµùÇÒ¶§ ¹Ì¸® °è»êÇØ ³õÀº ¿ùµå Çà·Ä Àû¿ë..
+			// ï¿½Îµï¿½ï¿½Ò¶ï¿½ ï¿½Ì¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½..
 			__Matrix44 mtxBackup;
 			CN3Base::s_lpD3DDev->GetTransform(D3DTS_WORLD, &mtxBackup);
 			CN3Base::s_lpD3DDev->SetTransform(D3DTS_WORLD, &pSI->m_Matrix);
@@ -652,7 +652,7 @@ void CPVSManager::TotalCollisionRenderEdit()
 			pSI = *siit++;
 			pSI->m_pShape->Tick(-1000);
 
-			// ·ÎµùÇÒ¶§ ¹Ì¸® °è»êÇØ ³õÀº ¿ùµå Çà·Ä Àû¿ë..
+			// ï¿½Îµï¿½ï¿½Ò¶ï¿½ ï¿½Ì¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½..
 			__Matrix44 mtxBackup;
 			CN3Base::s_lpD3DDev->GetTransform(D3DTS_WORLD, &mtxBackup);
 			CN3Base::s_lpD3DDev->SetTransform(D3DTS_WORLD, &pSI->m_Matrix);
@@ -686,7 +686,7 @@ void CPVSManager::SplitShapeToVolumn(CDialog* pDlg)
 		pSI->m_pShape->Tick();
 		pSI->m_pShape->SetMaxLOD();
 		
-		// »Ç°µ´Ù..
+		// ï¿½Ç°ï¿½ï¿½ï¿½..
 		CPortalVolume* pVol = NULL;
 
 		iter it = m_pPvsList.begin();
@@ -698,7 +698,7 @@ void CPVSManager::SplitShapeToVolumn(CDialog* pDlg)
 
 			pVol = *it++;	
 
-			// ShapeÀÇÆú¸®°ï °¹¼ö¸¸Å­ µ¹¸é¼­.. ¸ÕÀú Transform ½ÃÅ°°í.. °Ë»ç.. 								
+			// Shapeï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Å­ ï¿½ï¿½ï¿½é¼­.. ï¿½ï¿½ï¿½ï¿½ Transform ï¿½ï¿½Å°ï¿½ï¿½.. ï¿½Ë»ï¿½.. 								
 			pVol->SplitAndMakeShape(pSI);
 			pVol->SplitAndMakeCollision(pSI);
 		}
@@ -723,7 +723,7 @@ void CPVSManager::DoAllCompile()
 {
 	if (m_pPvsList.size() < 1)
 	{
-		AfxMessageBox("¼±ÅÃ °¡´ÉÇÑ ¸®½ºÆ®°¡ ¾ø½À´Ï´Ù....");
+		AfxMessageBox("ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½....");
 		return;
 	}
 
@@ -816,7 +816,7 @@ void CPVSManager::ComputeVisibilty(CPortalVolume * const pVol)
 {
 	SetPriority(pVol);
 
-	// ·»´õ¸µ ¼Óµµ¸¦ ºü¸£°Ô ÇÏ±â À§ÇØ¼­.. ¿ì¼±¼øÀ§´ë·Î Á¤·ÄÇÑ ÈÄ.. ¼ø¼­´ë·Î ·»´õ¸µÇÑ´Ù..
+	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Óµï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ï±ï¿½ ï¿½ï¿½ï¿½Ø¼ï¿½.. ï¿½ì¼±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½.. ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ñ´ï¿½..
 	std::priority_queue< CPortalVolume*, std::vector<CPortalVolume*>, Myless<CPortalVolume*> > pQueue; 
 
 	CPortalVolume* pVolTo = NULL;
@@ -838,7 +838,7 @@ void CPVSManager::ComputeVisibilty(CPortalVolume * const pVol)
 		pQueue.pop();
 	}
 
-	// µð¹ö±×¿ë ÇÔ¼ö.. ^^
+	// ï¿½ï¿½ï¿½ï¿½×¿ï¿½ ï¿½Ô¼ï¿½.. ^^
 	DebugFunc();
 }
 
@@ -1005,7 +1005,7 @@ bool CPVSManager::Save(HANDLE hFile)
 	iT = pView->GetDlgItemInt(IDC_TOTAL_MOVE_Z);
 	WriteFile(hFile, &iT, sizeof(int), &dwNum, NULL);	
 
-	// ÀüÃ¼ Shape.. 
+	// ï¿½ï¿½Ã¼ Shape.. 
 	int iCount  = m_plShapeInfoList.size();
 	WriteFile(hFile, &iCount, sizeof(int), &dwNum, NULL);	
 
@@ -1017,7 +1017,7 @@ bool CPVSManager::Save(HANDLE hFile)
 		WriteFile(hFile, &pSI->m_iID, sizeof(int), &dwNum, NULL);
 		WriteCryptographString(hFile, pSI->m_strShapeFile);
 
-		// ShapeÀÇ µ¥ÀÌÅÍ ÀúÀå..
+		// Shapeï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½..
 		WriteFile(hFile, &pSI->m_iBelong, sizeof(int), &dwNum, NULL);	
 		WriteFile(hFile, &pSI->m_iEventID, sizeof(int), &dwNum, NULL);	
 		WriteFile(hFile, &pSI->m_iEventType, sizeof(int), &dwNum, NULL);	
@@ -1033,7 +1033,7 @@ bool CPVSManager::Save(HANDLE hFile)
 
 	while(it != m_pPvsList.end())
 	{
-		// ÀÚ½ÅÀÇ µ¥ÀÌÅÍ ÀúÀå..
+		// ï¿½Ú½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½..
 		pVol = *it++;
 		pVol->Save(hFile, m_bGameData);
 	}
@@ -1098,7 +1098,7 @@ bool CPVSManager::Load(HANDLE hFile)
 
 	if (!pFrm->m_pSceneSource)
 	{
-		AfxMessageBox("SourceList¸¦ LoadÇÏÁö ¸øÇß½À´Ï´Ù..Data´Â ·ÎµåµÇÁö ¾ÊÀ»°Í ÀÔ´Ï´Ù..");
+		AfxMessageBox("SourceListï¿½ï¿½ Loadï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ß½ï¿½ï¿½Ï´ï¿½..Dataï¿½ï¿½ ï¿½Îµï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ô´Ï´ï¿½..");
 		return false;
 	}
 
@@ -1117,7 +1117,7 @@ bool CPVSManager::Load(HANDLE hFile)
 	m_iTotalCount = 0;
 	m_iCurIndex = -1;
 
-	// ÀüÃ¼ Shape °¹¼ö ·Îµå..
+	// ï¿½ï¿½Ã¼ Shape ï¿½ï¿½ï¿½ï¿½ ï¿½Îµï¿½..
 	int iCount, iCount2;
 	ReadFile(hFile, &iCount, sizeof(int), &dwNum, NULL);
 
@@ -1126,11 +1126,11 @@ bool CPVSManager::Load(HANDLE hFile)
 		ShapeInfo*	pSI = new ShapeInfo;
 		ReadFile(hFile, &pSI->m_iID, sizeof(int), &dwNum, NULL);
 		
-		// ¹®ÀÚ¿­ ±æÀÌ..
+		// ï¿½ï¿½ï¿½Ú¿ï¿½ ï¿½ï¿½ï¿½ï¿½..
 		strSrc = ReadDecryptString(hFile);
 		pSI->m_strShapeFile = strSrc;
 
-		// SourceList¿¡¼­.. ShapeÀÇ Pointer¸¦ ¿¬°áÇÑ´Ù..
+		// SourceListï¿½ï¿½ï¿½ï¿½.. Shapeï¿½ï¿½ Pointerï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ñ´ï¿½..
 		pSI->m_pShape = pFrm->m_pSceneSource->ShapeGetByFileName(strSrc);
 		ASSERT(pSI->m_pShape);
 
@@ -1159,7 +1159,7 @@ bool CPVSManager::Load(HANDLE hFile)
 		m_pPvsList.push_back(pVol);
 	}
 
-	// ¸µÅ©µÈ ¾ÆÀÌµðµéÀ» ÀÐ¾î¼­ ¿¬°á½ÃÅ´..
+	// ï¿½ï¿½Å©ï¿½ï¿½ ï¿½ï¿½ï¿½Ìµï¿½ï¿½ï¿½ï¿½ ï¿½Ð¾î¼­ ï¿½ï¿½ï¿½ï¿½ï¿½Å´..
 	WVID wvid;
 	WVOL wvol;
 	IDAndPriority IDAP;
@@ -1269,7 +1269,7 @@ CPortalVolume* CPVSManager::GetPortalVolPointerByID(int iID)
 
 	while(it != m_pPvsList.end())
 	{
-		// ÀÚ½ÅÀÇ µ¥ÀÌÅÍ ÀúÀå..
+		// ï¿½Ú½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½..
 		pVol = *it++;
 		if (pVol->m_iID == iID)
 			return pVol;
@@ -1406,7 +1406,7 @@ CPortalVolume* CPVSManager::PickCollision(float fx, float fy)
 	while(it != m_pPvsList.end())
 	{
 		pVol = *it++;	
-		if(pVol->PickWithVolume(vPos, vDir, &vPick))		// ¾ç¸é Ã¼Å© ÇÒ±îÇÏ´Ù°¡.. 
+		if(pVol->PickWithVolume(vPos, vDir, &vPick))		// ï¿½ï¿½ï¿½ Ã¼Å© ï¿½Ò±ï¿½ï¿½Ï´Ù°ï¿½.. 
 		{
 			fDT = (vPick - CN3Base::s_CameraData.vEye).Magnitude();
 			if (fDT <= fDistMax)
@@ -1419,7 +1419,7 @@ CPortalVolume* CPVSManager::PickCollision(float fx, float fy)
 
 	return pVolNe;
 
-	// ¸ÕÀú Volume °¹¼ö¸¸Å­ µ¹¸é¼­.. Volume¿¡ ¸µ´ƒµÈ ShapeµéÀ» ¸ÕÀú °Ë»çÇÑ´Ù..	³ªÁß¿¡ ±¸Çö..
+	// ï¿½ï¿½ï¿½ï¿½ Volume ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Å­ ï¿½ï¿½ï¿½é¼­.. Volumeï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Shapeï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ë»ï¿½ï¿½Ñ´ï¿½..	ï¿½ï¿½ï¿½ß¿ï¿½ ï¿½ï¿½ï¿½ï¿½..
 }
 
 void CPVSManager::UpdatePosAll(float fx, float fy, float fz)

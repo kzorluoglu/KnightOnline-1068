@@ -54,7 +54,7 @@ void CN3Sun::Release()
 
 void CN3Sun::Render(__Matrix44& matView, __Matrix44& matProj)
 {
-	// ÇØ°¡ ±×·ÁÁö´Â È­¸é ÁÂÇ¥ °è»êÇÏ±â (2D·Î ±×¸®´Â ÀÌÀ¯´Â ¿Ö°îµÇ¾î¼­ º¸ÀÌ´Â°ÍÀ» ¸·±â À§ÇØ)
+	// ï¿½Ø°ï¿½ ï¿½×·ï¿½ï¿½ï¿½ï¿½ï¿½ È­ï¿½ï¿½ ï¿½ï¿½Ç¥ ï¿½ï¿½ï¿½ï¿½Ï±ï¿½ (2Dï¿½ï¿½ ï¿½×¸ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ö°ï¿½Ç¾î¼­ ï¿½ï¿½ï¿½Ì´Â°ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½)
 	__Matrix44 matWorld;
 	matWorld.RotationZ(m_fCurRadian);
 	__Matrix44 matFinal;
@@ -88,7 +88,7 @@ void CN3Sun::Render(__Matrix44& matView, __Matrix44& matProj)
 	s_lpD3DDev->SetTextureStageState(0, D3DTSS_COLOROP,   D3DTOP_MODULATE);
 	s_lpD3DDev->SetTextureStageState(0, D3DTSS_COLORARG1, D3DTA_TEXTURE);
 	s_lpD3DDev->SetTextureStageState(0, D3DTSS_COLORARG2, D3DTA_DIFFUSE);
-	s_lpD3DDev->SetVertexShader(FVF_TRANSFORMED);
+	s_lpD3DDev->SetFVF(FVF_TRANSFORMED);
 
 	RECT rcSun[NUM_SUNPART];
 	RECT rcScreen;	SetRect(&rcScreen, X, Y, X+Width, Y+Width);
@@ -102,9 +102,9 @@ void CN3Sun::Render(__Matrix44& matView, __Matrix44& matProj)
 		if ( rcSun[i].right < rcScreen.left ||
 			rcSun[i].bottom < rcScreen.top ||
 			rcSun[i].left > rcScreen.right ||
-			rcSun[i].top > rcScreen.bottom) continue;	// È­¸é ¹Û¿¡ ±×·ÁÁø´Ù.
+			rcSun[i].top > rcScreen.bottom) continue;	// È­ï¿½ï¿½ ï¿½Û¿ï¿½ ï¿½×·ï¿½ï¿½ï¿½ï¿½ï¿½.
 
-		// 2D·Î ±×¸®±â
+		// 2Dï¿½ï¿½ ï¿½×¸ï¿½ï¿½ï¿½
 		pSP->pVertices[0].x = rcSun[i].left;		pSP->pVertices[0].y = rcSun[i].top;
 		pSP->pVertices[1].x = rcSun[i].right;		pSP->pVertices[1].y = rcSun[i].top;
 		pSP->pVertices[2].x = rcSun[i].right;		pSP->pVertices[2].y = rcSun[i].bottom;
@@ -122,7 +122,7 @@ void CN3Sun::Render(__Matrix44& matView, __Matrix44& matProj)
 
 void CN3Sun::Tick()
 {
-	// ÇØÀÇ »ö, Å©±â º¯È­ °è»ê
+	// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½, Å©ï¿½ï¿½ ï¿½ï¿½È­ ï¿½ï¿½ï¿½
 	int i;
 	for(i=0; i<NUM_SUNPART; ++i)
 	{
@@ -150,7 +150,7 @@ void CN3Sun::Init(const std::string* pszFNs)
 		m_Parts[i].pVertices[3].Set( 0, 0, fZ, rhw, color, 0.0f, 1.0f);
 	}
 
-	m_Parts[SUNPART_SUN].Delta.ChangeDelta(0.1f); // ViewPort ¿¡¼­ »ó´ëÀûÀÎ Å©±â
+	m_Parts[SUNPART_SUN].Delta.ChangeDelta(0.1f); // ViewPort ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Å©ï¿½ï¿½
 	m_Parts[SUNPART_GLOW].Delta.ChangeDelta(0.25f);
 	m_Parts[SUNPART_FLARE].Delta.ChangeDelta(0.13f);
 }

@@ -9,7 +9,7 @@
 #pragma once
 #endif // _MSC_VER > 1000
 
-enum eQTNODESTATE { QTNODESTATE_CLIPPED = 0, QTNODESTATE_NOTRENDER, QTNODESTATE_RENDER, QTNODESTATE_UNKNOWN };	// ÄõµåÆ®¸® ³ëµåµéÀÇ »óÅÂ¼Ó¼º..
+enum eQTNODESTATE { QTNODESTATE_CLIPPED = 0, QTNODESTATE_NOTRENDER, QTNODESTATE_RENDER, QTNODESTATE_UNKNOWN };	// ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Â¼Ó¼ï¿½..
 enum eDIR { DIR_LEFT = 0, DIR_TOP, DIR_RIGHT, DIR_BOTTOM, DIR_NUM };
 
 class CLyTerrain;
@@ -17,10 +17,10 @@ class CLyTerrain;
 class CQTNode  
 {
 protected:
-	int								m_CenterX;	//Áß½ÉÁ¡ÀÇ ³ôÀÌÇÊµå¹è¿­»óÀÇ ÁÂÇ¥.
-	int								m_CenterZ;	//Áß½ÉÁ¡ÀÇ ³ôÀÌÇÊµå¹è¿­»óÀÇ ÁÂÇ¥.
+	int								m_CenterX;	//ï¿½ß½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Êµï¿½è¿­ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ç¥.
+	int								m_CenterZ;	//ï¿½ß½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Êµï¿½è¿­ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ç¥.
 	
-	int								m_Level;	//ÄõµåÆ®¸®»ó¿¡¼­ ±íÀÌ°ª..
+	int								m_Level;	//ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ï¿½ó¿¡¼ï¿½ ï¿½ï¿½ï¿½Ì°ï¿½..
 	eQTNODESTATE					m_State;	//
 		
 	CQTNode*						m_pFriend[DIR_NUM];
@@ -29,8 +29,8 @@ protected:
 	CLyTerrain*						m_pRefTerrain;
 
 public:
-	float			m_MinY;		//ÃÖÀúÁ¡
-	float			m_MaxY;		//ÃÖ°íÁ¡
+	float			m_MinY;		//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	float			m_MaxY;		//ï¿½Ö°ï¿½ï¿½ï¿½
 	int				GetCenterX() { return m_CenterX; }
 	int				GetCenterZ() { return m_CenterZ; }
 

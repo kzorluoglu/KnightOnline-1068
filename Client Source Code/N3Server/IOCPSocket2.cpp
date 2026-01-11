@@ -256,7 +256,7 @@ void CIOCPSocket2::ReceivedData(int length)
 
 	if( !strlen( m_pRecvBuff ) )
 		return;
-	m_pBuffer->PutData(m_pRecvBuff, length);		// ¹ÞÀº Data¸¦ ¹öÆÛ¿¡ ³Ö´Â´Ù
+	m_pBuffer->PutData(m_pRecvBuff, length);		// ï¿½ï¿½ï¿½ï¿½ Dataï¿½ï¿½ ï¿½ï¿½ï¿½Û¿ï¿½ ï¿½Ö´Â´ï¿½
 
 	char *pData = NULL;
 	char *pDecData = NULL;
@@ -265,7 +265,7 @@ void CIOCPSocket2::ReceivedData(int length)
 	{
 		if(pData)
 		{
-			Parsing(len, pData);//		½ÇÁ¦ ÆÄ½Ì ÇÔ¼ö...
+			Parsing(len, pData);//		ï¿½ï¿½ï¿½ï¿½ ï¿½Ä½ï¿½ ï¿½Ô¼ï¿½...
 
 			delete[] pData;
 			pData = NULL;

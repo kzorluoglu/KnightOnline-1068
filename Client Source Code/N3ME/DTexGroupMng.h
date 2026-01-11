@@ -22,11 +22,11 @@ typedef std::list<CDTexGroup*>::iterator it_DTexGroup;
 class CDTexGroupMng : public CN3Base
 {
 public:
-	std::list<CDTexGroup*>	m_Groups;	//±×·ì Å×ÀÌÅÍµéÀ» °¡Áö°í ÀÖ´Â ¸®½ºÆ®.
-	CDlgDTexGroupView*		m_pGroupView;	//½ÇÁ¦ ÀÛ¾÷ÇÒ¶§ ±×·ìµéÀ» º¸¿©ÁÖ´Â Ã¢.
+	std::list<CDTexGroup*>	m_Groups;	//ï¿½×·ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Íµï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ö´ï¿½ ï¿½ï¿½ï¿½ï¿½Æ®.
+	CDlgDTexGroupView*		m_pGroupView;	//ï¿½ï¿½ï¿½ï¿½ ï¿½Û¾ï¿½ï¿½Ò¶ï¿½ ï¿½×·ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ö´ï¿½ Ã¢.
 
-	DTEXATTR				m_SelectedDTex;	//ÀÛ¾÷½Ã ±×·ìÃ¢¿¡¼­ ¼±ÅÃÇÑ ±×·ì°ú ¼Ó¼º.
-	DTEXTILEATTR			m_SelectedDTexTile;	//ÀÛ¾÷½Ã ¼±ÅÃÇÑ ½ÇÁ¦ ÅØ½ºÃÄ Å¸ÀÏ.
+	DTEXATTR				m_SelectedDTex;	//ï¿½Û¾ï¿½ï¿½ï¿½ ï¿½×·ï¿½Ã¢ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½×·ï¿½ï¿½ ï¿½Ó¼ï¿½.
+	DTEXTILEATTR			m_SelectedDTexTile;	//ï¿½Û¾ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ø½ï¿½ï¿½ï¿½ Å¸ï¿½ï¿½.
 
 	CMainFrame*				m_pMainFrm;
 

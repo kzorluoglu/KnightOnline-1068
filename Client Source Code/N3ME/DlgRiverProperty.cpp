@@ -65,12 +65,12 @@ BOOL CDlgRiverProperty::OnInitDialog()
 	m_LPRiver.AddPropItem("Speed1", "", PIT_EDIT, "");
 	m_LPRiver.AddPropItem("meter / u", "", PIT_EDIT, "");
 	m_LPRiver.AddPropItem("meter / v", "", PIT_EDIT, "");
-	m_LPRiver.AddPropItem("Texture File", "", PIT_FILE, "Texture ·Î ¾µ¼ö ÀÖ´Â ±×¸² ÆÄÀÏ(*.DXT; *.BMP; *.TGA)|*.DXT; *.BMP; *.TGA|");
+	m_LPRiver.AddPropItem("Texture File", "", PIT_FILE, "Texture ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ö´ï¿½ ï¿½×¸ï¿½ ï¿½ï¿½ï¿½ï¿½(*.DXT; *.BMP; *.TGA)|*.DXT; *.BMP; *.TGA|");
 	m_LPRiver.AddPropItem("Animation Texture FPS", "", PIT_EDIT, "");
 	m_LPRiver.AddPropItem("Speed2", "", PIT_EDIT, "");
 	m_LPRiver.AddPropItem("meter / u2", "", PIT_EDIT, "");
 	m_LPRiver.AddPropItem("meter / v2", "", PIT_EDIT, "");
-	m_LPRiver.AddPropItem("Animation Texture File", "", PIT_FILE, "Texture ·Î ¾µ¼ö ÀÖ´Â ±×¸² ÆÄÀÏ(*.DXT; *.BMP; *.TGA)|*.DXT; *.BMP; *.TGA|");
+	m_LPRiver.AddPropItem("Animation Texture File", "", PIT_FILE, "Texture ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ö´ï¿½ ï¿½×¸ï¿½ ï¿½ï¿½ï¿½ï¿½(*.DXT; *.BMP; *.TGA)|*.DXT; *.BMP; *.TGA|");
 	
 	int nW = 100;
 	m_LPRiver.SetDividerWidth(nW);
@@ -240,7 +240,7 @@ BOOL CDlgRiverProperty::OnNotify(WPARAM wParam, LPARAM lParam, LRESULT* pResult)
 			{
 				if ( m_pRiverMng->SetRiverID(pSelRiver, (int)atoi(pItem->m_curValue)) == FALSE )
 				{
-					MessageBox("Á¸ÀçÇÏ´Â IDÀÔ´Ï´Ù.");
+					MessageBox("ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½ IDï¿½Ô´Ï´ï¿½.");
 					pItem->m_curValue.Format("%d", pSelRiver->GetRiverID());
 				}
 			}
@@ -250,7 +250,7 @@ BOOL CDlgRiverProperty::OnNotify(WPARAM wParam, LPARAM lParam, LRESULT* pResult)
 			else if (pItem->m_propName == "meter / v") pSelRiver->SetMeterPerV((float)atof(pItem->m_curValue));
 			else if (pItem->m_propName == "Texture File")
 			{
-				CN3Base tmp;	tmp.m_szName = pItem->m_curValue;		// »ó´ë°æ·Î·Î ¹Ù²Ù±â
+				CN3Base tmp;	tmp.m_szName = pItem->m_curValue;		// ï¿½ï¿½ï¿½ï¿½Î·ï¿½ ï¿½Ù²Ù±ï¿½
 				if (pSelRiver->SetTextureName(tmp.m_szName.c_str()) == FALSE)
 				{
 					CString strMsg;
@@ -266,15 +266,15 @@ BOOL CDlgRiverProperty::OnNotify(WPARAM wParam, LPARAM lParam, LRESULT* pResult)
 			else if (pItem->m_propName == "meter / v2") pSelRiver->SetMeterPerV2((float)atof(pItem->m_curValue));
 			else if (pItem->m_propName == "Animation Texture File")
 			{
-				// ¿¡´Ï¸ÞÀÌ¼Ç µÇ´Â ÅØ½ºÃÄ ÁöÁ¤ (°¹¼ö´Â ÆÄÀÏ ÀÌ¸§À¸·ÎºÎÅÍ ¾Ë¾Æ³½´Ù. µû¶ó¼­ ¸Ç ¸¶Áö¸·¹øÈ£ÆÄÀÏÀ» ÁöÁ¤ÇØ¾ßÇÔ)
+				// ï¿½ï¿½ï¿½Ï¸ï¿½ï¿½Ì¼ï¿½ ï¿½Ç´ï¿½ ï¿½Ø½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ (ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ì¸ï¿½ï¿½ï¿½ï¿½Îºï¿½ï¿½ï¿½ ï¿½Ë¾Æ³ï¿½ï¿½ï¿½. ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ø¾ï¿½ï¿½ï¿½)
 
-				CN3Base tmp;	tmp.m_szName = pItem->m_curValue;		// »ó´ë°æ·Î·Î ¹Ù²Ù±â
-				// È­ÀÏ ÀÌ¸§ ºÐ¸®
+				CN3Base tmp;	tmp.m_szName = pItem->m_curValue;		// ï¿½ï¿½ï¿½ï¿½Î·ï¿½ ï¿½Ù²Ù±ï¿½
+				// È­ï¿½ï¿½ ï¿½Ì¸ï¿½ ï¿½Ð¸ï¿½
 				char szDir[_MAX_DIR];
 				char szFName[_MAX_FNAME];
 				char szExt[_MAX_EXT];
 				_splitpath(tmp.m_szName.c_str(), NULL, szDir, szFName, szExt);
-				int iCount = atoi(szFName+lstrlen(szFName)-2) + 1;	// ÆÄÀÏ ÀÌ¸§ÀÇ ³¡¿¡ µÎÀÚ¸®¸¦ ¼ýÀÚ·Î º¯È¯
+				int iCount = atoi(szFName+lstrlen(szFName)-2) + 1;	// ï¿½ï¿½ï¿½ï¿½ ï¿½Ì¸ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ú¸ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ú·ï¿½ ï¿½ï¿½È¯
 				CString strFName = szDir; strFName += szFName;
 				strFName = strFName.Left(strFName.GetLength()-2);
 
@@ -302,11 +302,11 @@ void CDlgRiverProperty::OnOK()
 		if (pSelRiver && pSelRiver->TexGet())
 		{
 			if (m_pRiverMng->GetRiverMesh(pSelRiver->GetRiverID()) == NULL) CDialog::OnOK();
-			else MessageBox("Áßº¹µÇ´Â ¾ÆÀÌµð ÀÔ´Ï´Ù.");
+			else MessageBox("ï¿½ßºï¿½ï¿½Ç´ï¿½ ï¿½ï¿½ï¿½Ìµï¿½ ï¿½Ô´Ï´ï¿½.");
 		}
 		else
 		{
-			MessageBox("Texture¸¦ ÁöÁ¤ÇÏÁö ¾Ê¾Ò½À´Ï´Ù.");
+			MessageBox("Textureï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ê¾Ò½ï¿½ï¿½Ï´ï¿½.");
 		}
 	}
 }
@@ -335,7 +335,7 @@ void CDlgRiverProperty::OnButtonDeleteRiver()
 	CRiverMesh* pSelRiver = m_pRiverMng->GetSelRiver();
 	if (pSelRiver)
 	{
-		if (MessageBox("¼±ÅÃµÈ °­À» Áö¿ì½Ã°Ú½À´Ï±î?", "Remove river", MB_YESNO|MB_DEFBUTTON2) == IDNO) return;
+		if (MessageBox("ï¿½ï¿½ï¿½Ãµï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ã°Ú½ï¿½ï¿½Ï±ï¿½?", "Remove river", MB_YESNO|MB_DEFBUTTON2) == IDNO) return;
 		m_pRiverMng->RemoveRiverMesh(pSelRiver->GetRiverID());
 	}
 }

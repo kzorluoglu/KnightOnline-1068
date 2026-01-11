@@ -121,7 +121,7 @@ BOOL CDlgAddSoundGroup::OnInitDialog()
 void CDlgAddSoundGroup::OnBtnBgeName1() 
 {
 	DWORD dwFlags = OFN_EXPLORER | OFN_FILEMUSTEXIST | OFN_LONGNAMES | OFN_HIDEREADONLY;
-	CFileDialog dlg(TRUE, "wav", NULL, dwFlags, "WaveÆÄÀÏ(*.wav)|*.wav||", NULL);
+	CFileDialog dlg(TRUE, "wav", NULL, dwFlags, "Waveï¿½ï¿½ï¿½ï¿½(*.wav)|*.wav||", NULL);
 	
 	if(dlg.DoModal() == IDCANCEL) return;
 
@@ -133,7 +133,7 @@ void CDlgAddSoundGroup::OnBtnBgeName1()
 void CDlgAddSoundGroup::OnBtnBgeName2() 
 {
 	DWORD dwFlags = OFN_EXPLORER | OFN_FILEMUSTEXIST | OFN_LONGNAMES | OFN_HIDEREADONLY;
-	CFileDialog dlg(TRUE, "wav", NULL, dwFlags, "WaveÆÄÀÏ(*.wav)|*.wav||", NULL);
+	CFileDialog dlg(TRUE, "wav", NULL, dwFlags, "Waveï¿½ï¿½ï¿½ï¿½(*.wav)|*.wav||", NULL);
 	
 	if(dlg.DoModal() == IDCANCEL) return;
 
@@ -145,7 +145,7 @@ void CDlgAddSoundGroup::OnBtnBgeName2()
 void CDlgAddSoundGroup::OnBtnBgeName3() 
 {
 	DWORD dwFlags = OFN_EXPLORER | OFN_FILEMUSTEXIST | OFN_LONGNAMES | OFN_HIDEREADONLY;
-	CFileDialog dlg(TRUE, "wav", NULL, dwFlags, "WaveÆÄÀÏ(*.wav)|*.wav||", NULL);
+	CFileDialog dlg(TRUE, "wav", NULL, dwFlags, "Waveï¿½ï¿½ï¿½ï¿½(*.wav)|*.wav||", NULL);
 	
 	if(dlg.DoModal() == IDCANCEL) return;
 
@@ -157,7 +157,7 @@ void CDlgAddSoundGroup::OnBtnBgeName3()
 void CDlgAddSoundGroup::OnBtnBgeName4() 
 {
 	DWORD dwFlags = OFN_EXPLORER | OFN_FILEMUSTEXIST | OFN_LONGNAMES | OFN_HIDEREADONLY;
-	CFileDialog dlg(TRUE, "wav", NULL, dwFlags, "WaveÆÄÀÏ(*.wav)|*.wav||", NULL);
+	CFileDialog dlg(TRUE, "wav", NULL, dwFlags, "Waveï¿½ï¿½ï¿½ï¿½(*.wav)|*.wav||", NULL);
 	
 	if(dlg.DoModal() == IDCANCEL) return;
 
@@ -169,7 +169,7 @@ void CDlgAddSoundGroup::OnBtnBgeName4()
 void CDlgAddSoundGroup::OnBtnBgmName1() 
 {
 	DWORD dwFlags = OFN_EXPLORER | OFN_FILEMUSTEXIST | OFN_LONGNAMES | OFN_HIDEREADONLY;
-	CFileDialog dlg(TRUE, "wav", NULL, dwFlags, "WaveÆÄÀÏ(*.wav)|*.wav||", NULL);
+	CFileDialog dlg(TRUE, "wav", NULL, dwFlags, "Waveï¿½ï¿½ï¿½ï¿½(*.wav)|*.wav||", NULL);
 	
 	if(dlg.DoModal() == IDCANCEL) return;
 
@@ -181,7 +181,7 @@ void CDlgAddSoundGroup::OnBtnBgmName1()
 void CDlgAddSoundGroup::OnBtnBgmName2() 
 {
 	DWORD dwFlags = OFN_EXPLORER | OFN_FILEMUSTEXIST | OFN_LONGNAMES | OFN_HIDEREADONLY;
-	CFileDialog dlg(TRUE, "wav", NULL, dwFlags, "WaveÆÄÀÏ(*.wav)|*.wav||", NULL);
+	CFileDialog dlg(TRUE, "wav", NULL, dwFlags, "Waveï¿½ï¿½ï¿½ï¿½(*.wav)|*.wav||", NULL);
 	
 	if(dlg.DoModal() == IDCANCEL) return;
 
@@ -193,7 +193,7 @@ void CDlgAddSoundGroup::OnBtnBgmName2()
 void CDlgAddSoundGroup::OnBtnBgmName3() 
 {
 	DWORD dwFlags = OFN_EXPLORER | OFN_FILEMUSTEXIST | OFN_LONGNAMES | OFN_HIDEREADONLY;
-	CFileDialog dlg(TRUE, "wav", NULL, dwFlags, "WaveÆÄÀÏ(*.wav)|*.wav||", NULL);
+	CFileDialog dlg(TRUE, "wav", NULL, dwFlags, "Waveï¿½ï¿½ï¿½ï¿½(*.wav)|*.wav||", NULL);
 	
 	if(dlg.DoModal() == IDCANCEL) return;
 
@@ -205,7 +205,7 @@ void CDlgAddSoundGroup::OnBtnBgmName3()
 void CDlgAddSoundGroup::OnBtnBgmName4() 
 {
 	DWORD dwFlags = OFN_EXPLORER | OFN_FILEMUSTEXIST | OFN_LONGNAMES | OFN_HIDEREADONLY;
-	CFileDialog dlg(TRUE, "wav", NULL, dwFlags, "WaveÆÄÀÏ(*.wav)|*.wav||", NULL);
+	CFileDialog dlg(TRUE, "wav", NULL, dwFlags, "Waveï¿½ï¿½ï¿½ï¿½(*.wav)|*.wav||", NULL);
 	
 	if(dlg.DoModal() == IDCANCEL) return;
 
@@ -221,7 +221,7 @@ void CDlgAddSoundGroup::OnOK()
 	GetDlgItemText(IDC_EDT_GROUPNAME, m_SndInfo.szName, 256);
 	if(m_SndInfo.szName[0]==0)
 	{
-		AfxMessageBox("¹­À½ÀÌ¸§À» ÀÔ·ÂÇÏ¼Å¾ß ÇØ¿ä.\n¾Õ¸Ó¸®¿¡ ¶ç¾î¾²±â ÇÏ¸é ¾ÈµÇ´Â°Å ¾ËÁÒ?^^");
+		AfxMessageBox("ï¿½ï¿½ï¿½ï¿½ï¿½Ì¸ï¿½ï¿½ï¿½ ï¿½Ô·ï¿½ï¿½Ï¼Å¾ï¿½ ï¿½Ø¿ï¿½.\nï¿½Õ¸Ó¸ï¿½ï¿½ï¿½ ï¿½ï¿½î¾²ï¿½ï¿½ ï¿½Ï¸ï¿½ ï¿½ÈµÇ´Â°ï¿½ ï¿½ï¿½ï¿½ï¿½?^^");
 		return;
 	}
 

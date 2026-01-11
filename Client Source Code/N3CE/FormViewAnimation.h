@@ -21,7 +21,7 @@ class CFormViewAnimation : public CFormView
 {
 public:
 	BOOL		m_bUpdatingNow;
-	__AnimData	m_AnimDataTemp; // ÀÓ½Ã º¹»ç ¹× ºÙÀÌ±â¿ë..
+	__AnimData	m_AnimDataTemp; // ï¿½Ó½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½Ì±ï¿½ï¿½..
 
 public:
 	static int SortByName(const void *pArg1, const void *pArg2);

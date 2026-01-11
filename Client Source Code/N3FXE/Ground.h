@@ -12,8 +12,8 @@ class CN3Texture;
 class CGround : public CN3Base  
 {
 public:
-	int			m_iSize;	//ÇÑº¯ÀÇ ±æÀÌ..
-	int			m_iTileSize;	//Å¸ÀÏÀÇ ±æÀÌ..
+	int			m_iSize;	//ï¿½Ñºï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½..
+	int			m_iTileSize;	//Å¸ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½..
 	__VertexT1* m_pVB;
 	CN3Texture* m_pTile;
 	

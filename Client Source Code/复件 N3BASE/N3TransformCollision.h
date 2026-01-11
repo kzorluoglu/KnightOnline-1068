@@ -16,10 +16,10 @@
 class CN3TransformCollision : public CN3Transform  
 {
 protected:
-	float		m_fRadius; // ¹ÝÁö¸§..
-	__Vector3	m_vMin, m_vMax; // ÃÖ´ë ÃÖ¼ÒÁ¡..
-	CN3VMesh*	m_pMeshCollision; // Ãæµ¹ Ã¼Å©¿ë ¸Þ½Ã..
-	CN3VMesh*	m_pMeshClimb; // ±â¾î ¿Ã¶ó°¡´Â Ãæµ¹ Ã¼Å©¿ë ¸Þ½Ã..
+	float		m_fRadius; // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½..
+	__Vector3	m_vMin, m_vMax; // ï¿½Ö´ï¿½ ï¿½Ö¼ï¿½ï¿½ï¿½..
+	CN3VMesh*	m_pMeshCollision; // ï¿½æµ¹ Ã¼Å©ï¿½ï¿½ ï¿½Þ½ï¿½..
+	CN3VMesh*	m_pMeshClimb; // ï¿½ï¿½ï¿½ ï¿½Ã¶ó°¡´ï¿½ ï¿½æµ¹ Ã¼Å©ï¿½ï¿½ ï¿½Þ½ï¿½..
 
 public:
 	void FindMinMax();
@@ -30,11 +30,11 @@ public:
 	void RenderCollisionMesh();
 	void RenderClimbMesh();
 
-//	By : Dino ( On 2001-08-27 ¿ÀÈÄ 9:15:24 )
-//	ÁÖ¾îÁø ÁöÁ¡ÀÌ m_fRadius ¹üÀ§¾È¿¡ ÀÖ´ÂÁö Ã¼Å©
+//	By : Dino ( On 2001-08-27 ï¿½ï¿½ï¿½ï¿½ 9:15:24 )
+//	ï¿½Ö¾ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ m_fRadius ï¿½ï¿½ï¿½ï¿½ï¿½È¿ï¿½ ï¿½Ö´ï¿½ï¿½ï¿½ Ã¼Å©
 	BOOL IsInRadius(__Vector3& vCheckPos)	{return ((vCheckPos - m_vPos).Magnitude() > m_fRadius ? FALSE : TRUE);}
 	BOOL IsInRadiusXZ(float fX, float fZ) {fX -= m_vPos.x; fZ -= m_vPos.z; return (sqrtf(fX*fX + fZ*fZ) > m_fRadius ? FALSE : TRUE);}
-//	~(By Dino On 2001-08-27 ¿ÀÈÄ 9:15:24 )
+//	~(By Dino On 2001-08-27 ï¿½ï¿½ï¿½ï¿½ 9:15:24 )
 
 	BOOL CheckCollision(int x, int y, __Vector3* pVCol = NULL, __Vector3* pVNormal = NULL, __Vector3* pVPolygon = NULL);
 	BOOL CheckCollision(__Vector3 &vPos, __Vector3 &vDir, __Vector3* pVCol = NULL, __Vector3* pVNormal = NULL, __Vector3* pVPolygon = NULL);

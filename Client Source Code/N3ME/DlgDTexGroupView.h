@@ -20,7 +20,7 @@ public:
 	CN3Texture*				m_pPrevTex;
 	RECT					m_PrevTexRect;
 
-	int						m_iRadioState; //	0 ÀÚµ¿Âï±â 2 °­Á¦Âï±â 3 °­Á¦Ç®Å¸ÀÏ Âï±â
+	int						m_iRadioState; //	0 ï¿½Úµï¿½ï¿½ï¿½ï¿½ 2 ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ 3 ï¿½ï¿½ï¿½ï¿½Ç®Å¸ï¿½ï¿½ ï¿½ï¿½ï¿½
 
 public:
 	CDTexGroupMng* m_pDTexGroupMng;

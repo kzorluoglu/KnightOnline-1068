@@ -10,14 +10,14 @@
 #include "N3FXPartBase.h"
 
 //
-//	¹Ù´Ú¿¡ ±×¸®´Â ÆÇ¶§±â..
-//	triangle fanÀ¸·Î ±×¸®°í »ï°¢Çü ¿©´ü°³·Î ±×¸°´Ù..
+//	ï¿½Ù´Ú¿ï¿½ ï¿½×¸ï¿½ï¿½ï¿½ ï¿½Ç¶ï¿½ï¿½ï¿½..
+//	triangle fanï¿½ï¿½ï¿½ï¿½ ï¿½×¸ï¿½ï¿½ï¿½ ï¿½ï°¢ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½×¸ï¿½ï¿½ï¿½..
 //
 
 class CN3FXPartBottomBoard : public CN3FXPartBase  
 {
 public:
-	float				m_fSizeX;			//	º¸µåÀÇ Å©±â
+	float				m_fSizeX;			//	ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Å©ï¿½ï¿½
 	float				m_fSizeZ;
 
 	bool				m_bTexLoop;
@@ -35,7 +35,7 @@ public:
 	float				m_fCurrScaleVelX;
 	float				m_fCurrScaleVelZ;
 
-	float				m_fCurrSizeX;			//	º¸µåÀÇ Å©±â
+	float				m_fCurrSizeX;			//	ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Å©ï¿½ï¿½
 	float				m_fCurrSizeZ;
 
 	float				m_fGap;
@@ -48,13 +48,13 @@ protected:
 	bool	IsDead();
 
 public:
-	void	Init();									//	°¢Á¾ º¯¼öµéÀ» Ã³À½ ·ÎµùÇÑ »óÅÂ·Î ÃÊ±âÈ­...
-	void	Start();								//	ÆÄÆ® ±¸µ¿ ½ÃÀÛ.
-	void	Stop();									//	ÆÄÆ® ±¸µ¿ ¸ØÃã..
+	void	Init();									//	ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Ã³ï¿½ï¿½ ï¿½Îµï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Â·ï¿½ ï¿½Ê±ï¿½È­...
+	void	Start();								//	ï¿½ï¿½Æ® ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½.
+	void	Stop();									//	ï¿½ï¿½Æ® ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½..
 	bool	Tick();									//	ticktick...
-	void	Render();								//	È­¸é¿¡ »Ñ¸®±â..
-	bool	Load(HANDLE hFile);						//	°ÔÀÓÆÄÀÏ ºÒ·¯¿À±â.
-	bool	Save(HANDLE hFile);						//	°ÔÀÓÆÄÀÏ ÀúÀå¿À±â.
+	void	Render();								//	È­ï¿½é¿¡ ï¿½Ñ¸ï¿½ï¿½ï¿½..
+	bool	Load(HANDLE hFile);						//	ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ò·ï¿½ï¿½ï¿½ï¿½ï¿½.
+	bool	Save(HANDLE hFile);						//	ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½.
 	void	Duplicate(CN3FXPartBottomBoard* pSrc);
 
 public:

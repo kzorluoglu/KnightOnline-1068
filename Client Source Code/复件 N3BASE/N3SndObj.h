@@ -34,7 +34,7 @@ protected:
 	float					m_fTmpSecPerFrm;
 
 public:
-	std::string				m_szFileName;	//ÆÄÀÏÀÌ¸§...(ID ´ë¿ë).
+	std::string				m_szFileName;	//ï¿½ï¿½ï¿½ï¿½ï¿½Ì¸ï¿½...(ID ï¿½ï¿½ï¿½).
 	
 
 protected:
@@ -66,7 +66,7 @@ public:
 	int		GetMaxVolume() { return m_iMaxVolume; }
 
 	void	Init();
-	void	Release(); // ÂüÁ¶ Ä«¿îÆ®¸¦ ¸®ÅÏ ÇØÁØ´Ù.. »ç¿îµå ¸Å´ÏÀú¿¡¼­´Â ÀÌ ÂüÁ¶ Ä«¿îÆ®¸¦ º¸°í ¸Ê¿¡¼­ Áö¿î´Ù..
+	void	Release(); // ï¿½ï¿½ï¿½ï¿½ Ä«ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ø´ï¿½.. ï¿½ï¿½ï¿½ï¿½ ï¿½Å´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ Ä«ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ê¿ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½..
 	virtual bool Create(const std::string& szFN, e_SndType eType);
 	bool	Duplicate(CN3SndObj* pSrc, e_SndType eType, D3DVECTOR* pPos = NULL);
 

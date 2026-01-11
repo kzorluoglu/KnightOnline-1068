@@ -21,10 +21,10 @@ CN3UIList::CN3UIList()
 {
 	m_eType = UI_TYPE_LIST;
 
-	m_iCurSel = 0;		// ÇöÀç ¼±ÅÃ..
+	m_iCurSel = 0;		// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½..
 	m_pScrollBarRef = NULL;
 
-	m_szFontName = "±¼¸²Ã¼";
+	m_szFontName = "ï¿½ï¿½ï¿½ï¿½Ã¼";
 	m_dwFontHeight = 10;
 	m_bFontBold = FALSE;
 	m_bFontItalic = FALSE;
@@ -45,11 +45,11 @@ void CN3UIList::Release()
 //		delete (*it);
 //	}
 
-	m_ListString.clear(); // ¾îÂ÷ÇÇ ÀÚ½ÄÀº ´ÙÁö¿ì´Ï±î... ¸®½ºÆ®ÀÇ Æ÷ÀÎÅÍ¸¦ Delete ÇÒ ÇÊ¿ä ¾ø´Ù..
+	m_ListString.clear(); // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ú½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï±ï¿½... ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Í¸ï¿½ Delete ï¿½ï¿½ ï¿½Ê¿ï¿½ ï¿½ï¿½ï¿½ï¿½..
 	m_iCurSel = 0;
 	m_pScrollBarRef = NULL;
 
-	m_szFontName = "±¼¸²Ã¼";
+	m_szFontName = "ï¿½ï¿½ï¿½ï¿½Ã¼";
 	m_dwFontHeight = 10;
 	m_bFontBold = FALSE;
 	m_bFontItalic = FALSE;
@@ -268,10 +268,10 @@ bool CN3UIList::Load(HANDLE hFile)
 {
 	bool bSuccess = CN3UIBase::Load(hFile);
 
-	// font Á¤º¸
+	// font ï¿½ï¿½ï¿½ï¿½
 	DWORD dwNum;
 	int iStrLen = 0;
-	ReadFile(hFile, &iStrLen, sizeof(iStrLen), &dwNum, NULL);			// font ÀÌ¸§ ±æÀÌ 
+	ReadFile(hFile, &iStrLen, sizeof(iStrLen), &dwNum, NULL);			// font ï¿½Ì¸ï¿½ ï¿½ï¿½ï¿½ï¿½ 
 	__ASSERT(iStrLen>0, "No font name");
 	if (iStrLen>0)
 	{
@@ -283,7 +283,7 @@ bool CN3UIList::Load(HANDLE hFile)
 		ReadFile(hFile, &m_bFontItalic, 4, &dwNum, NULL);	// font flag (bold, italic)
 	}
 
-	// Child Áß¿¡ Scroll Bar °¡ ÀÖ´ÂÁö Ã£¾Æº»´Ù.
+	// Child ï¿½ß¿ï¿½ Scroll Bar ï¿½ï¿½ ï¿½Ö´ï¿½ï¿½ï¿½ Ã£ï¿½Æºï¿½ï¿½ï¿½.
 	for(UIListItor itor = m_Children.begin(); m_Children.end() != itor; ++itor)
 	{
 		CN3UIBase* pUI = *itor;
@@ -297,7 +297,7 @@ bool CN3UIList::Load(HANDLE hFile)
 //			if(	pString->GetFontName != m_szFontName ||
 //				pString->GetFontHeight() != m_dwFontHeight ||
 //				m_bFontBold != (pString->GetFontFlags() & D3DFONT_BOLD) ||
-//				m_bFontItalic != (pString->GetFontFlags() & D3DFONT_ITALIC) ) // ÆùÆ®°¡ ´Ù¸£¸é.. Àû¿ë
+//				m_bFontItalic != (pString->GetFontFlags() & D3DFONT_ITALIC) ) // ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½Ù¸ï¿½ï¿½ï¿½.. ï¿½ï¿½ï¿½ï¿½
 //			{
 //				pString->SetFont(m_szFontName, m_dwFontHeight, m_bFontBold, m_bFontItalic);
 //			}
@@ -314,10 +314,10 @@ bool CN3UIList::Save(HANDLE hFile)
 	
 	DWORD dwNum;
 	
-	// font Á¤º¸
+	// font ï¿½ï¿½ï¿½ï¿½
 	int iStrLen = m_szFontName.size();
 	__ASSERT(iStrLen>0, "No font name");
-	WriteFile(hFile, &iStrLen, sizeof(iStrLen), &dwNum, NULL);			// font ÀÌ¸§ ±æÀÌ 
+	WriteFile(hFile, &iStrLen, sizeof(iStrLen), &dwNum, NULL);			// font ï¿½Ì¸ï¿½ ï¿½ï¿½ï¿½ï¿½ 
 	if (iStrLen>0)
 	{
 		WriteFile(hFile, m_szFontName.c_str(), iStrLen, &dwNum, NULL);				// string
@@ -349,7 +349,7 @@ DWORD CN3UIList::MouseProc(DWORD dwFlags, const POINT& ptCur, const POINT& ptOld
 	DWORD dwRet = UI_MOUSEPROC_NONE;
 	if (!m_bVisible || UI_STATE_LIST_DISABLE == m_eState) return dwRet;
 
-	// Æ¯Á¤ ÀÌº¥Æ®¿¡ ´ëÇØ ¸Þ½ÃÁö Àü¼Û..
+	// Æ¯ï¿½ï¿½ ï¿½Ìºï¿½Æ®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Þ½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½..
 	if(IsIn(ptCur.x, ptCur.y) && ((dwFlags & UI_MOUSE_LBCLICK) || (dwFlags & UI_MOUSE_LBDBLCLK)) )	
 	{
 		RECT rc = this->GetRegion(), rcStr;
@@ -372,12 +372,12 @@ DWORD CN3UIList::MouseProc(DWORD dwFlags, const POINT& ptCur, const POINT& ptOld
 				m_iCurSel = i;
 				if(dwFlags & UI_MOUSE_LBCLICK)
 				{
-					if(m_pParent) m_pParent->ReceiveMessage(this, UIMSG_LIST_SELCHANGE); // ºÎ¸ð¿¡°Ô ¹öÆ° Å¬¸¯ ÅëÁö..
+					if(m_pParent) m_pParent->ReceiveMessage(this, UIMSG_LIST_SELCHANGE); // ï¿½Î¸ð¿¡°ï¿½ ï¿½ï¿½Æ° Å¬ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½..
 					dwRet |= UIMSG_LIST_SELCHANGE;
 				}
 				else
 				{
-					if(m_pParent) m_pParent->ReceiveMessage(this, UIMSG_LIST_DBLCLK); // ºÎ¸ð¿¡°Ô ¹öÆ° Å¬¸¯ ÅëÁö..
+					if(m_pParent) m_pParent->ReceiveMessage(this, UIMSG_LIST_DBLCLK); // ï¿½Î¸ð¿¡°ï¿½ ï¿½ï¿½Æ° Å¬ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½..
 					dwRet |= UIMSG_LIST_DBLCLK;
 				}
 				dwRet |= UI_MOUSEPROC_DONESOMETHING;
@@ -401,7 +401,7 @@ void CN3UIList::Render()
 		CN3UIString* pStr = *it;
 		if(pStr)
 		{
-			RECT rc = pStr->GetRegion(); // ¼±ÅÃ Ç¥½Ã
+			RECT rc = pStr->GetRegion(); // ï¿½ï¿½ï¿½ï¿½ Ç¥ï¿½ï¿½
 		
 			__VertexTransformedColor vLines[5];
 			vLines[0].Set(rc.left, rc.top, UI_DEFAULT_Z, UI_DEFAULT_RHW, 0xff00ff00);
@@ -432,7 +432,7 @@ void CN3UIList::Render()
 			CN3Base::s_lpD3DDev->SetTextureStageState(0, D3DTSS_ALPHAOP, D3DTOP_SELECTARG1);
 			CN3Base::s_lpD3DDev->SetTextureStageState(0, D3DTSS_ALPHAARG1, D3DTA_DIFFUSE);
 
-			CN3Base::s_lpD3DDev->SetVertexShader(FVF_TRANSFORMEDCOLOR);
+			CN3Base::s_lpD3DDev->SetFVF(FVF_TRANSFORMEDCOLOR);
 			CN3Base::s_lpD3DDev->DrawPrimitiveUP(D3DPT_LINESTRIP, 4, vLines, sizeof(__VertexTransformedColor));
 			
 			CN3Base::s_lpD3DDev->SetRenderState(D3DRS_ZENABLE, dwZ);
@@ -444,7 +444,7 @@ void CN3UIList::Render()
 			CN3Base::s_lpD3DDev->SetTextureStageState(0, D3DTSS_COLORARG1, dwCA1);
 			CN3Base::s_lpD3DDev->SetTextureStageState(0, D3DTSS_ALPHAOP, dwAOP);
 			CN3Base::s_lpD3DDev->SetTextureStageState(0, D3DTSS_ALPHAARG1, dwAA1);
-			CN3Base::s_lpD3DDev->SetVertexShader(dwVertexShader); 
+			CN3Base::s_lpD3DDev->SetFVF(dwVertexShader); 
 		}
 	}
 }

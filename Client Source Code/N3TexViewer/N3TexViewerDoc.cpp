@@ -94,16 +94,16 @@ BOOL CN3TexViewerDoc::OnOpenDocument(LPCTSTR lpszPathName)
 	if (!CDocument::OnOpenDocument(lpszPathName))
 		return FALSE;
 
-	this->FindFiles(); // ÆÄÀÏÀ» Ã£°í..
+	this->FindFiles(); // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Ã£ï¿½ï¿½..
 	
 	// TODO: Add your specialized creation code here
 	m_pTexAlpha->Release();
 	if(NULL == m_pTex->LoadFromFile(lpszPathName)) return FALSE;
 	
 	////////////////////////////////////////////////////////////////////////////////
-	// Alpha Texture »ý¼º...
+	// Alpha Texture ï¿½ï¿½ï¿½ï¿½...
 	m_pTexAlpha->Create(m_pTex->Width(), m_pTex->Height(), D3DFMT_A8R8G8B8, FALSE);
-	LPDIRECT3DSURFACE8 lpSurf, lpSurf2;
+	LPDIRECT3DSURFACE9 lpSurf, lpSurf2;
 	if(m_pTexAlpha->Get())
 	{
 		m_pTexAlpha->Get()->GetSurfaceLevel(0, &lpSurf);
@@ -128,7 +128,7 @@ BOOL CN3TexViewerDoc::OnOpenDocument(LPCTSTR lpszPathName)
 		lpSurf->UnlockRect();
 		lpSurf->Release(); lpSurf = NULL;
 	}
-	// Alpha Texture »ý¼º...
+	// Alpha Texture ï¿½ï¿½ï¿½ï¿½...
 	////////////////////////////////////////////////////////////////////////////////
 
 	char szDrv[_MAX_DRIVE], szDir[_MAX_DIR], szFN[_MAX_FNAME], szExt[_MAX_EXT];
@@ -147,7 +147,7 @@ BOOL CN3TexViewerDoc::OnSaveDocument(LPCTSTR lpszPathName)
 	char szDrv[_MAX_DRIVE], szDir[_MAX_DIR], szFN[_MAX_FNAME], szExt[_MAX_EXT];
 	::_splitpath(lpszPathName, szDrv, szDir, szFN, szExt);
 
-	if(lstrcmpi(szExt, ".DXT") == 0) // È®ÀåÀÚ°¡ DXT ¸é ±×³É ÀúÀå..
+	if(lstrcmpi(szExt, ".DXT") == 0) // È®ï¿½ï¿½ï¿½Ú°ï¿½ DXT ï¿½ï¿½ ï¿½×³ï¿½ ï¿½ï¿½ï¿½ï¿½..
 	{
 		CDocument::OnSaveDocument(lpszPathName);
 
@@ -157,7 +157,7 @@ BOOL CN3TexViewerDoc::OnSaveDocument(LPCTSTR lpszPathName)
 	}
 	else 
 	{
-		MessageBox(::GetActiveWindow(), "È®ÀåÀÚ¸¦ DXT ·Î ¹Ù²Ù¾î¾ß ÇÕ´Ï´Ù. Save As ·Î ÀúÀåÇØÁÖ¼¼¿ä.", "ÀúÀå ½ÇÆÐ", MB_OK);
+		MessageBox(::GetActiveWindow(), "È®ï¿½ï¿½ï¿½Ú¸ï¿½ DXT ï¿½ï¿½ ï¿½Ù²Ù¾ï¿½ï¿½ ï¿½Õ´Ï´ï¿½. Save As ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö¼ï¿½ï¿½ï¿½.", "ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½", MB_OK);
 
 		return FALSE;
 	}

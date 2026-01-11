@@ -20,16 +20,16 @@ static char THIS_FILE[]=__FILE__;
 //////////////////////////////////////////////////////////////////////
 CN3Mng<CN3Texture>	CN3Base::s_MngTex; // Texture Manager
 CN3Mng<CN3Mesh>		CN3Base::s_MngMesh; // Mesh Manager
-CN3Mng<CN3VMesh>	CN3Base::s_MngVMesh; // ´Ü¼øÈ÷ Æú¸®°ï¸¸ °®°í ÀÖ´Â ¸Þ½Ã - ÁÖ·Î Ãæµ¹ Ã¼Å©¿¡ ¾´´Ù..
+CN3Mng<CN3VMesh>	CN3Base::s_MngVMesh; // ï¿½Ü¼ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¸¸ ï¿½ï¿½ï¿½ï¿½ ï¿½Ö´ï¿½ ï¿½Þ½ï¿½ - ï¿½Ö·ï¿½ ï¿½æµ¹ Ã¼Å©ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½..
 CN3Mng<CN3PMesh>	CN3Base::s_MngPMesh; // Progressive Mesh Manager
 CN3Mng<CN3Joint>	CN3Base::s_MngJoint; // Joint Manager
-CN3Mng<CN3CPart>	CN3Base::s_MngCPart; // Character ¿¡ ¾²´Â Part Manager
+CN3Mng<CN3CPart>	CN3Base::s_MngCPart; // Character ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ Part Manager
 CN3Mng<CN3AnimControl>	CN3Base::s_MngAniCtrl; // Animation Manager
 
-LPDIRECT3DDEVICE8 CN3Base::s_lpD3DDev = NULL; // ÂüÁ¶ Æ÷ÀÎÅÍ.. ¸Ú´ë·Î ÇØÁ¦ÇÏ¸é ¾ÈµÈ´Ù..
-D3DPRESENT_PARAMETERS CN3Base::s_DevParam; // Device »ý¼º Present Parameter
-D3DCAPS8 CN3Base::s_DevCaps; // Device È£È¯¼º...
-DWORD CN3Base::s_dwTextureCaps = 0; // Texture È£È¯¼º..
+LPDIRECT3DDEVICE8 CN3Base::s_lpD3DDev = NULL; // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½.. ï¿½Ú´ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï¸ï¿½ ï¿½ÈµÈ´ï¿½..
+D3DPRESENT_PARAMETERS CN3Base::s_DevParam; // Device ï¿½ï¿½ï¿½ï¿½ Present Parameter
+D3DCAPS8 CN3Base::s_DevCaps; // Device È£È¯ï¿½ï¿½...
+DWORD CN3Base::s_dwTextureCaps = 0; // Texture È£È¯ï¿½ï¿½..
 CN3Base::__CameraData CN3Base::s_CameraData; // Camera Data
 CN3Base::__RenderInfo CN3Base::s_RenderInfo; // Rendering Information
 CN3Base::__ResrcInfo CN3Base::s_ResrcInfo; // Rendering Information
@@ -37,15 +37,15 @@ float CN3Base::s_fFrmPerSec = 30.0f; // Frame Per Second
 char CN3Base::s_szPath[512] = "";
 
 HWND CN3Base::s_hWndDevice; // Device Window Handle
-HWND CN3Base::s_hWndPresent; // ÃÖ±Ù¿¡ Present ÇÑ Window Handle
-HWND CN3Base::s_hWndBase; // Init ÇÒ¶§ ¾´ Window Handle
+HWND CN3Base::s_hWndPresent; // ï¿½Ö±Ù¿ï¿½ Present ï¿½ï¿½ Window Handle
+HWND CN3Base::s_hWndBase; // Init ï¿½Ò¶ï¿½ ï¿½ï¿½ Window Handle
 
 
-LARGE_INTEGER CN3Base::s_TimePrev; // ½Ã°£..
+LARGE_INTEGER CN3Base::s_TimePrev; // ï¿½Ã°ï¿½..
 
 CN3Base::CN3Base()
 {
-	m_dwType = OBJ_BASE; // "MESH", "CAMERA", "SCENE", "???" .... µîµîµî...
+	m_dwType = OBJ_BASE; // "MESH", "CAMERA", "SCENE", "???" .... ï¿½ï¿½ï¿½ï¿½...
 	m_szName = NULL;
 	m_szFileName = NULL;
 }
@@ -117,7 +117,7 @@ bool CN3Base::Save(HANDLE hFile)
 bool CN3Base::LoadFromFile()
 {
 	char szFullPath[_MAX_PATH] = "";
-	if(strstr(m_szFileName, ":") || strstr(m_szFileName, "\\\\") || strstr(m_szFileName, "//")) // ¹®ÀÚ¿­¿¡ ':', '\\', '//' ÀÌ µé¾î ÀÖÀ¸¸é ÀüÃ¼ °æ·ÎÀÌ´Ù..
+	if(strstr(m_szFileName, ":") || strstr(m_szFileName, "\\\\") || strstr(m_szFileName, "//")) // ï¿½ï¿½ï¿½Ú¿ï¿½ï¿½ï¿½ ':', '\\', '//' ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ã¼ ï¿½ï¿½ï¿½ï¿½Ì´ï¿½..
 	{
 		lstrcpy(szFullPath, m_szFileName);
 	}
@@ -154,7 +154,7 @@ bool CN3Base::LoadFromFile(const char* szFileName)
 bool CN3Base::SaveToFile()
 {
 	char szFullPath[_MAX_PATH] = "";
-	if(strstr(m_szFileName, ":") || strstr(m_szFileName, "\\\\") || strstr(m_szFileName, "//")) // ¹®ÀÚ¿­¿¡ ':', '\\', '//' ÀÌ µé¾î ÀÖÀ¸¸é ÀüÃ¼ °æ·ÎÀÌ´Ù..
+	if(strstr(m_szFileName, ":") || strstr(m_szFileName, "\\\\") || strstr(m_szFileName, "//")) // ï¿½ï¿½ï¿½Ú¿ï¿½ï¿½ï¿½ ':', '\\', '//' ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ã¼ ï¿½ï¿½ï¿½ï¿½Ì´ï¿½..
 	{
 		lstrcpy(szFullPath, m_szFileName);
 	}
@@ -235,7 +235,7 @@ void CN3Base::PathSet(const char* szPath)
 	}
 
 	lstrcpy(s_szPath, szPath);
-	CharLower(s_szPath); // ¹Ýµå½Ã ¼Ò¹®ÀÚ·Î ¸¸µé¾î ÁØ´Ù..
+	CharLower(s_szPath); // ï¿½Ýµï¿½ï¿½ ï¿½Ò¹ï¿½ï¿½Ú·ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ø´ï¿½..
 	if(s_szPath[n-1] != '\\')
 	{
 		s_szPath[n] = '\\';
@@ -268,15 +268,15 @@ void CN3Base::FileNameSet(const char* szFileName)
 	if(nL <= 0) return;
 
 	char szFNTmp[512];
-	lstrcpy(szFNTmp, szFileName); // ÀÓ½Ã·Î º¹»çÇÏ°í..
-	CharLower(szFNTmp); // ¸ðµÎ ¼Ò¹®ÀÚ·Î ¸¸µç´Ù..
+	lstrcpy(szFNTmp, szFileName); // ï¿½Ó½Ã·ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï°ï¿½..
+	CharLower(szFNTmp); // ï¿½ï¿½ï¿½ ï¿½Ò¹ï¿½ï¿½Ú·ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½..
 
-	// ¹®ÀÚ¿­¿¡ Base Path ¿Í ÀÏÄ¡ÇÏ´Â ÀÌ¸§ÀÌ ÀÖ´ÂÁö º»´Ù.
+	// ï¿½ï¿½ï¿½Ú¿ï¿½ï¿½ï¿½ Base Path ï¿½ï¿½ ï¿½ï¿½Ä¡ï¿½Ï´ï¿½ ï¿½Ì¸ï¿½ï¿½ï¿½ ï¿½Ö´ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½.
 	char* szFNFinal = NULL;
 	if(s_szPath[0])
 	{
 		char* szBasePath = strstr(szFNTmp, s_szPath);
-		if(szBasePath) // ÀÏÄ¡ÇÏ¸é..
+		if(szBasePath) // ï¿½ï¿½Ä¡ï¿½Ï¸ï¿½..
 		{
 			nL = lstrlen(s_szPath);
 			szFNFinal = szBasePath + nL;
@@ -322,7 +322,7 @@ void CN3Base::RenderLines(const __Vector3 *pvLines, int nCount, D3DCOLOR color)
 
 	static __VertexColor svLines[512];
 
-	s_lpD3DDev->SetVertexShader(FVF_CV);
+	s_lpD3DDev->SetFVF(FVF_CV);
 
 	int nRepeat = nCount/512;
 	for(int i = 0; i < nRepeat; i++)

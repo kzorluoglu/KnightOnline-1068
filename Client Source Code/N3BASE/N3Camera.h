@@ -29,15 +29,15 @@ public:
 	void		LookAt(const __Vector3& vEye, __Vector3& vAt, __Vector3& vUp);
 	__Vector3	EyePos() { return m_vPos; }
 	__Vector3	AtPos() { return m_vAt; }
-	__Vector3	UpVector() { return m_vScale; } // Rotation Àº LookAt Position Ã³·³, Scale Àº UpVector Ã³·³ ¾´´Ù..
-	__Vector3	Dir() {__Vector3 vDir = m_vAt - m_vPos; vDir.Normalize(); return vDir;} // ¹æÇâÀ» µÇµ¹¸°´Ù.
+	__Vector3	UpVector() { return m_vScale; } // Rotation ï¿½ï¿½ LookAt Position Ã³ï¿½ï¿½, Scale ï¿½ï¿½ UpVector Ã³ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½..
+	__Vector3	Dir() {__Vector3 vDir = m_vAt - m_vPos; vDir.Normalize(); return vDir;} // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Çµï¿½ï¿½ï¿½ï¿½ï¿½.
 
 	void		EyePosSet(const __Vector3& v) { m_vPos = v; }
 	void		EyePosSet(float x, float y, float z) { m_vPos.Set(x, y, z); }
 	void		AtPosSet(const __Vector3& v) { m_vAt = v; } 
 	void		AtPosSet(float x, float y, float z) { m_vAt.Set(x, y, z); }
-	void		UpVectorSet(const __Vector3& v) { m_vScale = v; } // Scale Àº UpVector Ã³·³ ¾´´Ù..
-	void		UpVectorSet(float x, float y, float z) { m_vScale.Set(x, y, z); } // Scale Àº UpVector Ã³·³ ¾´´Ù..
+	void		UpVectorSet(const __Vector3& v) { m_vScale = v; } // Scale ï¿½ï¿½ UpVector Ã³ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½..
+	void		UpVectorSet(float x, float y, float z) { m_vScale.Set(x, y, z); } // Scale ï¿½ï¿½ UpVector Ã³ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½..
 
 	bool		Load(HANDLE hFile);
 
@@ -54,9 +54,9 @@ public:
 	CN3Camera();
 	virtual ~CN3Camera();
 
-	void		Tick(float fFrm = FRAME_SELFPLAY); // Ä«¸Þ¶ó°ª¸¸ ´Ü¼øÈ÷ ¼¼ÆÃÇÏ±â¸¸ ÇÑ´Ù..
+	void		Tick(float fFrm = FRAME_SELFPLAY); // Ä«ï¿½Þ¶ó°ª¸ï¿½ ï¿½Ü¼ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï±â¸¸ ï¿½Ñ´ï¿½..
 	void		Render(float fUnitSize = 1.0f);
-	void		Apply(); // ¼¼ÆÃµÈ Ä«¸Þ¶ó°ªÀ» ½ÇÁ¦ D3DDevice ¿¡ Àû¿ë
+	void		Apply(); // ï¿½ï¿½ï¿½Ãµï¿½ Ä«ï¿½Þ¶ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ D3DDevice ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 };
 
 #endif // !defined(AFX_N3Camera_h__INCLUDED_)

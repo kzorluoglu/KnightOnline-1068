@@ -77,21 +77,21 @@ bool CN3ShapeMgr::Load(HANDLE hFile)
 		__ASSERT(nL > 0, "Error : Shape has null name");
 		if(nL <= 0) continue;
 
-		ReadFile(hFile, szFN, nL, &dwRWC, NULL); szFN[nL] = NULL; // Shape ÆÄÀÏ ÀÌ¸§..
+		ReadFile(hFile, szFN, nL, &dwRWC, NULL); szFN[nL] = NULL; // Shape ï¿½ï¿½ï¿½ï¿½ ï¿½Ì¸ï¿½..
 
 		if(m_pShapes[i]) delete m_pShapes[i];
 		m_pShapes[i] = new CN3Shape();
 		m_pShapes[i]->LoadFromFile(szFN);
 
-		ReadFile(hFile, &v, sizeof(__Vector3), &dwRWC, NULL); // À§Ä¡
+		ReadFile(hFile, &v, sizeof(__Vector3), &dwRWC, NULL); // ï¿½ï¿½Ä¡
 		m_pShapes[i]->PosSet(v);
-		ReadFile(hFile, &qt, sizeof(__Quaternion), &dwRWC, NULL); // È¸Àü
+		ReadFile(hFile, &qt, sizeof(__Quaternion), &dwRWC, NULL); // È¸ï¿½ï¿½
 		m_pShapes[i]->RotSet(qt);
-		ReadFile(hFile, &v, sizeof(__Vector3), &dwRWC, NULL); // ½ºÄÉÀÏ
+		ReadFile(hFile, &v, sizeof(__Vector3), &dwRWC, NULL); // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		m_pShapes[i]->ScaleSet(v);
 	}
 
-	// Ãæµ¹ Ã¼Å© Æú¸®°ï µ¥ÀÌÅÍ ¾²±â..
+	// ï¿½æµ¹ Ã¼Å© ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½..
 	ReadFile(hFile, &m_nCollisionFaceCount, 4, &dwRWC, NULL);
 	delete [] m_pvCollisions; m_pvCollisions = NULL;
 	if(m_nCollisionFaceCount > 0)
@@ -100,7 +100,7 @@ bool CN3ShapeMgr::Load(HANDLE hFile)
 		ReadFile(hFile, m_pvCollisions, sizeof(__Vector3) * m_nCollisionFaceCount * 3, &dwRWC, NULL);
 	}
 
-	// Cell Data ¾²±â.
+	// Cell Data ï¿½ï¿½ï¿½ï¿½.
 	BOOL bExist = FALSE;
 	for(int z = 0; z < MAX_CELL_MAIN; z++)
 	{
@@ -109,7 +109,7 @@ bool CN3ShapeMgr::Load(HANDLE hFile)
 			if(m_pCells[x][z]) delete m_pCells[x][z];
 			m_pCells[x][z] = NULL;
 
-			ReadFile(hFile, &bExist, 4, &dwRWC, NULL); // µ¥ÀÌÅÍ°¡ ÀÖ´Â ¼¿ÀÎÁö ¾²°í..
+			ReadFile(hFile, &bExist, 4, &dwRWC, NULL); // ï¿½ï¿½ï¿½ï¿½ï¿½Í°ï¿½ ï¿½Ö´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½..
 			if(FALSE == bExist) continue;
 
 			m_pCells[x][z] = new __CellMain;
@@ -136,30 +136,30 @@ bool CN3ShapeMgr::Save(HANDLE hFile)
 		WriteFile(hFile, &nL, 4, &dwRWC, NULL); // Mesh FileName
 		if(nL <= 0) continue;
 		
-		WriteFile(hFile, m_pShapes[i]->FileName(), nL, &dwRWC, NULL); // Shape ÆÄÀÏ ÀÌ¸§..
+		WriteFile(hFile, m_pShapes[i]->FileName(), nL, &dwRWC, NULL); // Shape ï¿½ï¿½ï¿½ï¿½ ï¿½Ì¸ï¿½..
 		v = m_pShapes[i]->Pos();
-		WriteFile(hFile, &v, sizeof(__Vector3), &dwRWC, NULL); // À§Ä¡
+		WriteFile(hFile, &v, sizeof(__Vector3), &dwRWC, NULL); // ï¿½ï¿½Ä¡
 		qt = m_pShapes[i]->Rot();
-		WriteFile(hFile, &qt, sizeof(__Quaternion), &dwRWC, NULL); // È¸Àü
+		WriteFile(hFile, &qt, sizeof(__Quaternion), &dwRWC, NULL); // È¸ï¿½ï¿½
 		v = m_pShapes[i]->Scale();
-		WriteFile(hFile, &v, sizeof(__Vector3), &dwRWC, NULL); // ½ºÄÉÀÏ
+		WriteFile(hFile, &v, sizeof(__Vector3), &dwRWC, NULL); // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	}
 
-	// Ãæµ¹ Ã¼Å© Æú¸®°ï µ¥ÀÌÅÍ ¾²±â..
+	// ï¿½æµ¹ Ã¼Å© ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½..
 	WriteFile(hFile, &m_nCollisionFaceCount, 4, &dwRWC, NULL);
 	if(m_nCollisionFaceCount > 0)
 	{
 		WriteFile(hFile, m_pvCollisions, sizeof(__Vector3) * m_nCollisionFaceCount * 3, &dwRWC, NULL);
 	}
 
-	// Cell Data ¾²±â.
+	// Cell Data ï¿½ï¿½ï¿½ï¿½.
 	for(int z = 0; z < MAX_CELL_MAIN; z++)
 	{
 		for(int x = 0; x < MAX_CELL_MAIN; x++)
 		{
 			BOOL bExist = FALSE;
 			if(m_pCells[x][z]) bExist = TRUE;
-			WriteFile(hFile, &bExist, 4, &dwRWC, NULL); // µ¥ÀÌÅÍ°¡ ÀÖ´Â ¼¿ÀÎÁö ¾²°í..
+			WriteFile(hFile, &bExist, 4, &dwRWC, NULL); // ï¿½ï¿½ï¿½ï¿½ï¿½Í°ï¿½ ï¿½Ö´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½..
 
 			if(NULL == m_pCells[x][z]) continue;
 
@@ -170,7 +170,7 @@ bool CN3ShapeMgr::Save(HANDLE hFile)
 	return true;
 }
 
-void CN3ShapeMgr::Create(int nCellWidthCount, int nCellLengthCount) // Cell °¹¼ö¸¦ ³Ö´Â´Ù. 
+void CN3ShapeMgr::Create(int nCellWidthCount, int nCellLengthCount) // Cell ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ö´Â´ï¿½. 
 {
 	if(nCellWidthCount <= 0 || nCellLengthCount <= 0) return;
 
@@ -183,7 +183,7 @@ void CN3ShapeMgr::Create(int nCellWidthCount, int nCellLengthCount) // Cell °¹¼ö
 void CN3ShapeMgr::GenerateCollisionData()
 {
 	int nFC = 0;
-	for(int i = 0; i < m_nShapeCount; i++) // Shape ¿¡ ÀÖ´Â Ãæµ¹ ¸Þ½Ã ¸¸Å­ »ý¼º.
+	for(int i = 0; i < m_nShapeCount; i++) // Shape ï¿½ï¿½ ï¿½Ö´ï¿½ ï¿½æµ¹ ï¿½Þ½ï¿½ ï¿½ï¿½Å­ ï¿½ï¿½ï¿½ï¿½.
 	{
 		CN3VMesh* pVM = m_pShapes[i]->CollisionMesh();
 		if (NULL == pVM) continue;
@@ -203,11 +203,11 @@ void CN3ShapeMgr::GenerateCollisionData()
 	
 	m_nCollisionFaceCount = nFC;
 	delete [] m_pvCollisions; m_pvCollisions = NULL;
-	m_pvCollisions = new __Vector3[nFC * 3]; // Ãæµ¹ Æú¸®°ï »ý¼º
+	m_pvCollisions = new __Vector3[nFC * 3]; // ï¿½æµ¹ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	memset(m_pvCollisions, 0, sizeof(__Vector3) * nFC * 3);
 
 	int nCPC = 0; // Collision Polygon Count
-	for(i = 0; i < m_nShapeCount; i++) // Shape ¿¡ ÀÖ´Â Ãæµ¹ ¸Þ½Ã ¸¸Å­ µ¥ÀÌÅÍ º¹»ç..
+	for(i = 0; i < m_nShapeCount; i++) // Shape ï¿½ï¿½ ï¿½Ö´ï¿½ ï¿½æµ¹ ï¿½Þ½ï¿½ ï¿½ï¿½Å­ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½..
 	{
 		CN3VMesh* pVMesh = m_pShapes[i]->CollisionMesh();
 		if (NULL == pVMesh) continue;
@@ -218,7 +218,7 @@ void CN3ShapeMgr::GenerateCollisionData()
 			WORD* pwIs = pVMesh->Indices();
 			for(int j = 0; j < nIC; j++)
 			{
-				m_pvCollisions[nCPC++] = pVSrc[pwIs[j]] * m_pShapes[i]->m_Matrix; // ¿ùµå À§Ä¡ÀÌ´Ù.
+				m_pvCollisions[nCPC++] = pVSrc[pwIs[j]] * m_pShapes[i]->m_Matrix; // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ä¡ï¿½Ì´ï¿½.
 			}
 		}
 		else 
@@ -226,12 +226,12 @@ void CN3ShapeMgr::GenerateCollisionData()
 			int nVC = pVMesh->VertexCount();
 			for(int j = 0; j < nVC; j++)
 			{
-				m_pvCollisions[nCPC++] = pVSrc[j] * m_pShapes[i]->m_Matrix; // ¿ùµå À§Ä¡ÀÌ´Ù.
+				m_pvCollisions[nCPC++] = pVSrc[j] * m_pShapes[i]->m_Matrix; // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ä¡ï¿½Ì´ï¿½.
 			}
 		}
 	}
 
-	// °¢ ¼±ºÐÀÌ ¼¿¿¡ °ÉÃÄ ÀÖ´ÂÁö È¤Àº Æ÷ÇÔµÇ¾î ÀÖ´ÂÁö µîµî ÆÇ´ÜÇØ¼­ ÀÎµ¦½º »ý¼ºÀ» ÇÑ´Ù.
+	// ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ö´ï¿½ï¿½ï¿½ È¤ï¿½ï¿½ ï¿½ï¿½ï¿½ÔµÇ¾ï¿½ ï¿½Ö´ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½Ç´ï¿½ï¿½Ø¼ï¿½ ï¿½Îµï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ñ´ï¿½.
 	for(i = 0; i < nFC; i++)
 	{
 		__Vector3 vEdge[3][2];
@@ -243,10 +243,10 @@ void CN3ShapeMgr::GenerateCollisionData()
 		vEdge[2][0] = m_pvCollisions[i*3+2];
 		vEdge[2][1] = m_pvCollisions[i*3];
 
-		// °ÉÃÄ ÀÖ´Â ¸Þ½Ã ¸¸Å­ »ý¼º...
+		// ï¿½ï¿½ï¿½ï¿½ ï¿½Ö´ï¿½ ï¿½Þ½ï¿½ ï¿½ï¿½Å­ ï¿½ï¿½ï¿½ï¿½...
 		for(int j = 0; j < 3; j++)
 		{
-			// ¹üÀ§¸¦ Á¤ÇÏ°í..
+			// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ï°ï¿½..
 			int xx1 = 0, xx2 = 0, zz1 = 0, zz2 = 0;
 
 			if(vEdge[j][0].x < vEdge[j][1].x) 
@@ -272,7 +272,7 @@ void CN3ShapeMgr::GenerateCollisionData()
 				zz2 = (int)(vEdge[j][0].z / CELL_SUB_SIZE);
 			}
 
-			for(int z = zz1; z <= zz2; z++) // ¹üÀ§¸¸Å­ Ã³¸®..
+			for(int z = zz1; z <= zz2; z++) // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Å­ Ã³ï¿½ï¿½..
 			{
 				float fZMin = (float)(z * CELL_SUB_SIZE);
 				float fZMax = (float)((z+1) * CELL_SUB_SIZE);
@@ -293,18 +293,18 @@ void CN3ShapeMgr::GenerateCollisionData()
 					if(vEdge[j][1].x < fXMin) dwOC1 |= 0x000f;
 					
 					bool bWriteID = false;
-					if(dwOC0 & dwOC1) bWriteID = false; // µÎ ³¡Á¡ÀÌ °°Àº º¯ÀÇ ¿ÜºÎ¿¡ ÀÖ´Ù.
-					else if(dwOC0 == 0 && dwOC1 == 0) bWriteID = true;// ¼±ºÐÀÌ »ç°¢Çü ³»ºÎ¿¡ ÀÖÀ½
-					else if((dwOC0 == 0 && dwOC1 != 0) || (dwOC0 != 0 && dwOC1 == 0)) bWriteID = true;// ¼±ºÐ ÇÑÁ¡Àº ¼¿ÀÇ ³»ºÎ¿¡ ÇÑÁ¡Àº ¿ÜºÎ¿¡ ÀÖÀ½.
-					else if((dwOC0 & dwOC1) == 0) // µÎ …LÁ¡ ¸ðµÎ ¼¿ ¿ÜºÎ¿¡ ÀÖÁö¸¸ ÆÇ´ÜÀ» ´Ù½Ã ÇØ¾ß ÇÑ´Ù.
+					if(dwOC0 & dwOC1) bWriteID = false; // ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ÜºÎ¿ï¿½ ï¿½Ö´ï¿½.
+					else if(dwOC0 == 0 && dwOC1 == 0) bWriteID = true;// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ç°¢ï¿½ï¿½ ï¿½ï¿½ï¿½Î¿ï¿½ ï¿½ï¿½ï¿½ï¿½
+					else if((dwOC0 == 0 && dwOC1 != 0) || (dwOC0 != 0 && dwOC1 == 0)) bWriteID = true;// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Î¿ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ÜºÎ¿ï¿½ ï¿½ï¿½ï¿½ï¿½.
+					else if((dwOC0 & dwOC1) == 0) // ï¿½ï¿½ ï¿½Lï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ÜºÎ¿ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ç´ï¿½ï¿½ï¿½ ï¿½Ù½ï¿½ ï¿½Ø¾ï¿½ ï¿½Ñ´ï¿½.
 					{
-						float fXCross = vEdge[j][0].x + (fZMax - vEdge[j][0].z) * (vEdge[j][1].x - vEdge[j][0].x) / (vEdge[j][1].z - vEdge[j][0].z); // À§ÀÇ º¯°úÀÇ ±³Â÷Á¡À» °è»êÇÏ°í..
-						if(fXCross < fXMin) bWriteID = false; // ¿ÏÀüÈ÷ ¿Ü°û¿¡ ÀÖ´Ù.
-						else bWriteID = true; // °ÉÃ³ÀÖ´Ù.
+						float fXCross = vEdge[j][0].x + (fZMax - vEdge[j][0].z) * (vEdge[j][1].x - vEdge[j][0].x) / (vEdge[j][1].z - vEdge[j][0].z); // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ï°ï¿½..
+						if(fXCross < fXMin) bWriteID = false; // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ü°ï¿½ï¿½ï¿½ ï¿½Ö´ï¿½.
+						else bWriteID = true; // ï¿½ï¿½Ã³ï¿½Ö´ï¿½.
 					}
 
 
-					if(bWriteID) // Ãæµ¹ Á¤º¸¸¦ ½á¾ß ÇÑ´Ù..
+					if(bWriteID) // ï¿½æµ¹ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½Ñ´ï¿½..
 					{
 						int nX = x / CELL_MAIN_DEVIDE;
 						int nZ = z / CELL_MAIN_DEVIDE;
@@ -321,7 +321,7 @@ void CN3ShapeMgr::GenerateCollisionData()
 						int nCCPC = pSubCell->nCCPolyCount; // Collision Check Polygon Count
 
 						bool bOverlapped = false;
-						for(int k = 0; k < nCCPC; k++) // Áßº¹ µÇ´ÂÁö Ã¼Å©
+						for(int k = 0; k < nCCPC; k++) // ï¿½ßºï¿½ ï¿½Ç´ï¿½ï¿½ï¿½ Ã¼Å©
 						{
 							if(i * 3 == pSubCell->pwCCVertIndices[k*3]) 
 							{
@@ -330,25 +330,25 @@ void CN3ShapeMgr::GenerateCollisionData()
 							}
 						}
 
-						if(false == bOverlapped) // Áßº¹µÈ°Ô ¾øÀ¸¸é..
+						if(false == bOverlapped) // ï¿½ßºï¿½ï¿½È°ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½..
 						{
-							if(0 == nCCPC) // Ã· »ý¼º µÇ¾úÀ¸¸é..
+							if(0 == nCCPC) // Ã· ï¿½ï¿½ï¿½ï¿½ ï¿½Ç¾ï¿½ï¿½ï¿½ï¿½ï¿½..
 							{
 								pSubCell->pwCCVertIndices = new WORD[(nCCPC+1)*3];
 							}
-							else // ÀÌ¹Ì ÀÖÀ¸¸é..
+							else // ï¿½Ì¹ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½..
 							{
 								WORD* pwBack = pSubCell->pwCCVertIndices;
 								pSubCell->pwCCVertIndices = new WORD[(nCCPC+1)*3];
-								memcpy(pSubCell->pwCCVertIndices, pwBack, nCCPC * 3 * 2); // Á¡¼¼°³°¡ ÇÏ³ªÀÇ Æú¸®°ïÀÌ°í ¿öµå ÀÎµ¦½ºÀÌ¹Ç·Î..
+								memcpy(pSubCell->pwCCVertIndices, pwBack, nCCPC * 3 * 2); // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ï³ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ì°ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Îµï¿½ï¿½ï¿½ï¿½Ì¹Ç·ï¿½..
 								delete [] pwBack;
 							}
 							
-							pSubCell->pwCCVertIndices[nCCPC*3+0] = i * 3 + 0; // ÀÎµ¦½º ÀúÀå..
-							pSubCell->pwCCVertIndices[nCCPC*3+1] = i * 3 + 1; // ÀÎµ¦½º ÀúÀå..
-							pSubCell->pwCCVertIndices[nCCPC*3+2] = i * 3 + 2; // ÀÎµ¦½º ÀúÀå..
+							pSubCell->pwCCVertIndices[nCCPC*3+0] = i * 3 + 0; // ï¿½Îµï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½..
+							pSubCell->pwCCVertIndices[nCCPC*3+1] = i * 3 + 1; // ï¿½Îµï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½..
+							pSubCell->pwCCVertIndices[nCCPC*3+2] = i * 3 + 2; // ï¿½Îµï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½..
 
-							pSubCell->nCCPolyCount++; // Collision Check Polygon Count ¸¦ ´Ã¸°´Ù.
+							pSubCell->nCCPolyCount++; // Collision Check Polygon Count ï¿½ï¿½ ï¿½Ã¸ï¿½ï¿½ï¿½.
 						}
 					}
 				}
@@ -384,11 +384,11 @@ int CN3ShapeMgr::Add(CN3Shape *pShape)
 	}
 
 	int nSC = m_pCells[nX][nZ]->nShapeCount;
-	if(0 == nSC) // Ã· »ý¼º µÇ¾úÀ¸¸é..
+	if(0 == nSC) // Ã· ï¿½ï¿½ï¿½ï¿½ ï¿½Ç¾ï¿½ï¿½ï¿½ï¿½ï¿½..
 	{
 		m_pCells[nX][nZ]->pwShapeIndices = new WORD[nSC+1];
 	}
-	else // ÀÌ¹Ì ÀÖÀ¸¸é..
+	else // ï¿½Ì¹ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½..
 	{
 		WORD* pwBack = m_pCells[nX][nZ]->pwShapeIndices;
 		m_pCells[nX][nZ]->pwShapeIndices = new WORD[nSC+1];
@@ -396,10 +396,10 @@ int CN3ShapeMgr::Add(CN3Shape *pShape)
 		delete [] pwBack;
 	}
 	
-	m_pCells[nX][nZ]->pwShapeIndices[nSC] = m_nShapeCount; // ÀÎµ¦½º ÀúÀå..
+	m_pCells[nX][nZ]->pwShapeIndices[nSC] = m_nShapeCount; // ï¿½Îµï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½..
 
-	m_nShapeCount++; // Shape Count ¸¦ ´Ã¸°´Ù.
-	m_pCells[nX][nZ]->nShapeCount++; // Shape Count ¸¦ ´Ã¸°´Ù.
+	m_nShapeCount++; // Shape Count ï¿½ï¿½ ï¿½Ã¸ï¿½ï¿½ï¿½.
+	m_pCells[nX][nZ]->nShapeCount++; // Shape Count ï¿½ï¿½ ï¿½Ã¸ï¿½ï¿½ï¿½.
 
 	return m_nShapeCount - 1;
 }
@@ -415,7 +415,7 @@ void CN3ShapeMgr::Tick()
 	CN3Shape* pShpCur = NULL;
 	int nShp = 0, nSI = 0;
 	m_ShapesToRender.Release();
-	// ·»´õ¸µ ¸®½ºÆ® ºñ¿ì°í..
+	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ï¿½ï¿½ï¿½..
 	
 	for(int zM = zMainS; zM < zMainE; zM++)
 	{
@@ -468,16 +468,16 @@ bool CN3ShapeMgr::CheckCollision(__Vector3 &vPos, __Vector3 &vPosNext, __Vector3
 		nIndex0 = pCell->pwCCVertIndices[i*3];
 		nIndex1 = pCell->pwCCVertIndices[i*3+1];
 		nIndex2 = pCell->pwCCVertIndices[i*3+2];
-		bCol0 = ::IntersectTriangle(vPos, vDir, m_pvCollisions[nIndex0], m_pvCollisions[nIndex1], m_pvCollisions[nIndex2]); // ÇöÀçÀ§Ä¡¿Í ¹æÇâ¿¡¼­ Ãæµ¹ÀÌ ÀÖ°í..
+		bCol0 = ::IntersectTriangle(vPos, vDir, m_pvCollisions[nIndex0], m_pvCollisions[nIndex1], m_pvCollisions[nIndex2]); // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä¡ï¿½ï¿½ ï¿½ï¿½ï¿½â¿¡ï¿½ï¿½ ï¿½æµ¹ï¿½ï¿½ ï¿½Ö°ï¿½..
 		if(bCol0)
 		{
-			bCol1 = ::IntersectTriangle(vPosNext, vDir, m_pvCollisions[nIndex0], m_pvCollisions[nIndex1], m_pvCollisions[nIndex2]); // ´ÙÀ½ À§Ä¡¿Í ¹æÇà¿¡¼­ Ãæµ¹ÀÌ ÀÖÀ¸¸é..
+			bCol1 = ::IntersectTriangle(vPosNext, vDir, m_pvCollisions[nIndex0], m_pvCollisions[nIndex1], m_pvCollisions[nIndex2]); // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ä¡ï¿½ï¿½ ï¿½ï¿½ï¿½à¿¡ï¿½ï¿½ ï¿½æµ¹ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½..
 			if(bCol1)
 			{
 				if(pvCol)
 				{
 					float fT, fU, fV;
-					::IntersectTriangle(vPosNext, vDir, m_pvCollisions[nIndex0], m_pvCollisions[nIndex1], m_pvCollisions[nIndex2], fT, fU, fV, pvCol); // ´ÙÀ½ À§Ä¡¿Í ¹æÇà¿¡¼­ Ãæµ¹ÀÌ ÀÖÀ¸¸é..
+					::IntersectTriangle(vPosNext, vDir, m_pvCollisions[nIndex0], m_pvCollisions[nIndex1], m_pvCollisions[nIndex2], fT, fU, fV, pvCol); // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ä¡ï¿½ï¿½ ï¿½ï¿½ï¿½à¿¡ï¿½ï¿½ ï¿½æµ¹ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½..
 				}
 				if(pvNormal)
 				{
@@ -513,7 +513,7 @@ void CN3ShapeMgr::RenderCollision(__Vector3 &vPos)
 
 	int nFC = pSubCell->nCCPolyCount;
 	WORD* pwIndices = pSubCell->pwCCVertIndices;
-	s_lpD3DDev->SetVertexShader(D3DFVF_XYZ);
+	s_lpD3DDev->SetFVF(D3DFVF_XYZ);
 	s_lpD3DDev->DrawIndexedPrimitiveUP(D3DPT_TRIANGLELIST, 0, m_nCollisionFaceCount * 3, nFC, pwIndices, D3DFMT_INDEX16, m_pvCollisions, sizeof(__Vector3));
 
 	s_lpD3DDev->SetRenderState(D3DRS_FILLMODE, dwFillPrev);

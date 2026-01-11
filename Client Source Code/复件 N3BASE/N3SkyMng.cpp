@@ -15,7 +15,7 @@
 #include "N3GERain.h"
 #include "N3GESnow.h"
 
-#ifdef _N3GAME // °ÔÀÓÀÌ ¾Æ´Ñ Åø¿¡¼­´Â ÇÊ¿ä¾ø´Ù...
+#ifdef _N3GAME // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Æ´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ê¿ï¿½ï¿½ï¿½ï¿½...
 #include "N3SndObj.h"
 #include "N3SndMgr.h"
 #endif // #ifdef _N3GAME
@@ -57,7 +57,7 @@ CN3SkyMng::CN3SkyMng()
 
 	m_iHourFix = 0;
 
-#ifdef _N3GAME // °ÔÀÓÀÌ ¾Æ´Ñ Åø¿¡¼­´Â ÇÊ¿ä¾ø´Ù...
+#ifdef _N3GAME // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Æ´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ê¿ï¿½ï¿½ï¿½ï¿½...
 	m_pSnd_Weather_Snow = NULL;
 	m_pSnd_Weather_Rain = NULL;
 #endif // #ifdef _N3GAME
@@ -81,13 +81,13 @@ CN3SkyMng::~CN3SkyMng()
 	if (m_pGERain) {delete m_pGERain; m_pGERain = NULL;}
 	if (m_pGESnow) {delete m_pGESnow; m_pGESnow = NULL;}
 
-#ifdef _N3GAME // °ÔÀÓÀÌ ¾Æ´Ñ Åø¿¡¼­´Â ÇÊ¿ä¾ø´Ù...
+#ifdef _N3GAME // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Æ´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ê¿ï¿½ï¿½ï¿½ï¿½...
 	CN3Base::s_SndMgr.ReleaseObj(&m_pSnd_Weather_Snow);
 	CN3Base::s_SndMgr.ReleaseObj(&m_pSnd_Weather_Rain);
 #endif // #ifdef _N3GAME
 }
 
-#ifdef _N3GAME // °ÔÀÓÀÌ ¾Æ´Ñ Åø¿¡¼­´Â ÇÊ¿ä¾ø´Ù...
+#ifdef _N3GAME // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Æ´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ê¿ï¿½ï¿½ï¿½ï¿½...
 void CN3SkyMng::ReleaseSound()
 {	
 	CN3Base::s_SndMgr.ReleaseObj(&m_pSnd_Weather_Snow);
@@ -120,7 +120,7 @@ void CN3SkyMng::Release()
 	if (m_pGERain) {delete m_pGERain; m_pGERain = NULL;}
 	if (m_pGESnow) {delete m_pGESnow; m_pGESnow = NULL;}
 
-#ifdef _N3GAME // °ÔÀÓÀÌ ¾Æ´Ñ Åø¿¡¼­´Â ÇÊ¿ä¾ø´Ù...
+#ifdef _N3GAME // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Æ´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ê¿ï¿½ï¿½ï¿½ï¿½...
 	CN3Base::s_SndMgr.ReleaseObj(&m_pSnd_Weather_Snow);
 	CN3Base::s_SndMgr.ReleaseObj(&m_pSnd_Weather_Rain);
 #endif // #ifdef _N3GAME
@@ -150,14 +150,14 @@ void CN3SkyMng::Render()
 	if (D3DZB_FALSE != dwZEnable) s_lpD3DDev->SetRenderState( D3DRS_ZENABLE, D3DZB_FALSE );
     if (FALSE != dwFog) s_lpD3DDev->SetRenderState( D3DRS_FOGENABLE, FALSE );
 	if (FALSE != dwLighting) s_lpD3DDev->SetRenderState( D3DRS_LIGHTING, FALSE );
-	s_lpD3DDev->SetTextureStageState( 0, D3DTSS_ALPHAOP,   D3DTOP_SELECTARG1 );	// default ¼öÄ¡ ÀÌ´Ù.
-	s_lpD3DDev->SetTextureStageState( 0, D3DTSS_ALPHAARG1, D3DTA_TEXTURE );		// default ¼öÄ¡ ÀÌ´Ù.
+	s_lpD3DDev->SetTextureStageState( 0, D3DTSS_ALPHAOP,   D3DTOP_SELECTARG1 );	// default ï¿½ï¿½Ä¡ ï¿½Ì´ï¿½.
+	s_lpD3DDev->SetTextureStageState( 0, D3DTSS_ALPHAARG1, D3DTA_TEXTURE );		// default ï¿½ï¿½Ä¡ ï¿½Ì´ï¿½.
 
-	if (m_pSky) m_pSky->Render();							// ÇÏ´Ã
-	if (m_pStar) m_pStar->Render();							// º°
-	if (m_pMoon) m_pMoon->Render(matView, s_CameraData.mtxProjection);							// ´Þ
-	if (m_pSun)	 m_pSun->Render(matView, s_CameraData.mtxProjection);							// ÇØ
-	if (m_pCloud) m_pCloud->Render();						// ±¸¸§
+	if (m_pSky) m_pSky->Render();							// ï¿½Ï´ï¿½
+	if (m_pStar) m_pStar->Render();							// ï¿½ï¿½
+	if (m_pMoon) m_pMoon->Render(matView, s_CameraData.mtxProjection);							// ï¿½ï¿½
+	if (m_pSun)	 m_pSun->Render(matView, s_CameraData.mtxProjection);							// ï¿½ï¿½
+	if (m_pCloud) m_pCloud->Render();						// ï¿½ï¿½ï¿½ï¿½
 
     // Restore the modified renderstates
 	if (TRUE != dwAlphaBlend) s_lpD3DDev->SetRenderState( D3DRS_ALPHABLENDENABLE, dwAlphaBlend );
@@ -191,21 +191,21 @@ void CN3SkyMng::RenderWeather()
 void CN3SkyMng::Tick()
 {
 	DWORD dwCurTickCount = timeGetTime();
-	__ASSERT(dwCurTickCount >= m_dwCheckTick,"À½¼öÀÌ´Ù.");
+	__ASSERT(dwCurTickCount >= m_dwCheckTick,"ï¿½ï¿½ï¿½ï¿½ï¿½Ì´ï¿½.");
 	DWORD dwCurGameTime = m_dwCheckGameTime + (DWORD)((dwCurTickCount - m_dwCheckTick)*TIME_REAL_PER_GAME*0.001f);
 	if (!m_DayChanges.empty())
 	{
-		// dwCurGameTime °¡ 24*60*60À» ³Ñ¾úÀ» °æ¿ì
+		// dwCurGameTime ï¿½ï¿½ 24*60*60ï¿½ï¿½ ï¿½Ñ¾ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
 		if ( dwCurGameTime>86400)
 		{
 			m_iDayChangeCurPos = 0;
-			__ASSERT(m_dwCheckGameTime < 86400, "½Ã°£ÀÌ ÀÌ»óÇØ¿ä");
-			m_dwCheckTick += (int)((86400 - m_dwCheckGameTime)*TIME_GAME_PER_REAL);	// CheckTickÀ» °ÔÀÓ 0½Ã¿¡ ¸Â°Ô ´Ù½Ã ¼³Á¤
+			__ASSERT(m_dwCheckGameTime < 86400, "ï¿½Ã°ï¿½ï¿½ï¿½ ï¿½Ì»ï¿½ï¿½Ø¿ï¿½");
+			m_dwCheckTick += (int)((86400 - m_dwCheckGameTime)*TIME_GAME_PER_REAL);	// CheckTickï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ 0ï¿½Ã¿ï¿½ ï¿½Â°ï¿½ ï¿½Ù½ï¿½ ï¿½ï¿½ï¿½ï¿½
 			dwCurGameTime -= 86400;
-			m_dwCheckGameTime = 0;	// ±âÁØ °ÔÀÓ½Ã°£À» 0½Ã·Î..
+			m_dwCheckGameTime = 0;	// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ó½Ã°ï¿½ï¿½ï¿½ 0ï¿½Ã·ï¿½..
 
-			m_iDay++; // ³¯Â¥ Áõ°¡..
-			m_pMoon->SetMoonPhase(m_iMonth*30 + m_iDay); // ´Þ¸ð¾çÀ» º¯È­½ÃÅ°°í..
+			m_iDay++; // ï¿½ï¿½Â¥ ï¿½ï¿½ï¿½ï¿½..
+			m_pMoon->SetMoonPhase(m_iMonth*30 + m_iDay); // ï¿½Þ¸ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È­ï¿½ï¿½Å°ï¿½ï¿½..
 			if(m_iDay > 30)
 			{
 				m_iDay = 0;
@@ -218,9 +218,9 @@ void CN3SkyMng::Tick()
 			}
 		}
 
-		// ÇØÀÇ À§Ä¡ °è»ê
+		// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ä¡ ï¿½ï¿½ï¿½
 		float fAngleTime = 0;
-		if(m_iHourFix > 0) fAngleTime = (m_iHourFix * 3600.0f / 86400.0f) * 360.0f;// ÇØ¿Í ´ÞÀÇ À§Ä¡°¡ °íÁ¤µÅ¾ß ÇÑ´Ù¸é..
+		if(m_iHourFix > 0) fAngleTime = (m_iHourFix * 3600.0f / 86400.0f) * 360.0f;// ï¿½Ø¿ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ä¡ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Å¾ï¿½ ï¿½Ñ´Ù¸ï¿½..
 		else fAngleTime = (dwCurGameTime / 86400.0f) * 360.0f;
 
 		if(m_pSun) m_pSun->SetCurAngle(fAngleTime + 270.0f);
@@ -230,46 +230,46 @@ void CN3SkyMng::Tick()
 			m_DayChanges[m_iDayChangeCurPos].dwWhen < dwCurGameTime)
 		{
 			__SKY_DAYCHANGE* pSDC = &(m_DayChanges[m_iDayChangeCurPos]);
-			// ½ÇÇàÇÒ ¸í·ÉÀÇ ½Ã°£°ú ÇöÀç ½Ã°£ Â÷ÀÌ
+			// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ã°ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ã°ï¿½ ï¿½ï¿½ï¿½ï¿½
 			DWORD dwDiffTime = dwCurGameTime - pSDC->dwWhen;
 
-			// º¯È­¿¡ °É¸®´Â ½Ã°£ Á¶Á¤ 
-			float fTakeTime = pSDC->fHowLong - dwDiffTime*TIME_GAME_PER_REAL;	// °É¸®´Â ½Ã°£
+			// ï¿½ï¿½È­ï¿½ï¿½ ï¿½É¸ï¿½ï¿½ï¿½ ï¿½Ã°ï¿½ ï¿½ï¿½ï¿½ï¿½ 
+			float fTakeTime = pSDC->fHowLong - dwDiffTime*TIME_GAME_PER_REAL;	// ï¿½É¸ï¿½ï¿½ï¿½ ï¿½Ã°ï¿½
 			if (fTakeTime<0.0f)
 			{
-				TRACE("!!!!! ÇÏ´ÃÀÌ Áï½Ã º¯È­µÊ !!!!!\n");
-				fTakeTime = 0.0f;	// 0º¸´Ù ÀÛÀ¸¸é Áï½Ã º¯È­ÇÏ°Ô ÇÏÀÚ
+				TRACE("!!!!! ï¿½Ï´ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½È­ï¿½ï¿½ !!!!!\n");
+				fTakeTime = 0.0f;	// 0ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½È­ï¿½Ï°ï¿½ ï¿½ï¿½ï¿½ï¿½
 			}
 
-			// ÇÏ´Ã º¯È­¸í·É ½ÇÇàÇÏ±â
-			if (SW_CLEAR == m_eWeather ||	// ¸¼Àº ³¯¾¾ÀÌ°Å³ª
+			// ï¿½Ï´ï¿½ ï¿½ï¿½È­ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï±ï¿½
+			if (SW_CLEAR == m_eWeather ||	// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ì°Å³ï¿½
 				(SDC_SKYCOLOR != pSDC->eSkyDayChange && SDC_FOGCOLOR != pSDC->eSkyDayChange &&
 				SDC_SUNCOLOR != pSDC->eSkyDayChange && SDC_FLARECOLOR != pSDC->eSkyDayChange && SDC_GLOWCOLOR != pSDC->eSkyDayChange &&
 				SDC_CLOUD1COLOR != pSDC->eSkyDayChange && SDC_CLOUD2COLOR != pSDC->eSkyDayChange &&
-				SDC_CLOUDTEX != pSDC->eSkyDayChange))	// ³¯¾¾ º¯È­¿ä¼Ò°¡ ¾Æ´Ò°æ¿ì
+				SDC_CLOUDTEX != pSDC->eSkyDayChange))	// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È­ï¿½ï¿½Ò°ï¿½ ï¿½Æ´Ò°ï¿½ï¿½
 			{	
 				ChangeSky(pSDC, fTakeTime);
 			}
 			m_iDayChangeCurPos++;
 		}
 
-		// ³¯¾¾ º¯È­¿¡ µû¸¥ ÇÏ´Ã º¯È­¸í·É ½ÇÇàÇÏ±â
+		// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È­ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ï´ï¿½ ï¿½ï¿½È­ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï±ï¿½
 		if (!m_WeatherChanges.empty())
 		{
 			while(m_iWeatherChangeCurPos < m_WeatherChanges.size() &&
 				m_WeatherChanges[m_iWeatherChangeCurPos].dwWhen < dwCurGameTime )
 			{
 				__SKY_DAYCHANGE* pSDC = &(m_WeatherChanges[m_iWeatherChangeCurPos]);
-				// ½ÇÇàÇÒ ¸í·ÉÀÇ ½Ã°£°ú ÇöÀç ½Ã°£ Â÷ÀÌ
+				// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ã°ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ã°ï¿½ ï¿½ï¿½ï¿½ï¿½
 				DWORD dwDiffTime = dwCurGameTime - pSDC->dwWhen;
 
-				// º¯È­¿¡ °É¸®´Â ½Ã°£ Á¶Á¤ 
-				float fTakeTime = pSDC->fHowLong - dwDiffTime*TIME_GAME_PER_REAL;	// °É¸®´Â ½Ã°£
-				if (fTakeTime<0.0f)	fTakeTime = 0.0f;	// 0º¸´Ù ÀÛÀ¸¸é Áï½Ã º¯È­ÇÏ°Ô ÇÏÀÚ
-				ChangeSky(pSDC, fTakeTime);	// º¯È­½ÃÅ°±â
+				// ï¿½ï¿½È­ï¿½ï¿½ ï¿½É¸ï¿½ï¿½ï¿½ ï¿½Ã°ï¿½ ï¿½ï¿½ï¿½ï¿½ 
+				float fTakeTime = pSDC->fHowLong - dwDiffTime*TIME_GAME_PER_REAL;	// ï¿½É¸ï¿½ï¿½ï¿½ ï¿½Ã°ï¿½
+				if (fTakeTime<0.0f)	fTakeTime = 0.0f;	// 0ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½È­ï¿½Ï°ï¿½ ï¿½ï¿½ï¿½ï¿½
+				ChangeSky(pSDC, fTakeTime);	// ï¿½ï¿½È­ï¿½ï¿½Å°ï¿½ï¿½
 				m_iWeatherChangeCurPos++;
 			}
-			// ³¯¾¾ º¯È­ queue »èÁ¦ÇÏ±â
+			// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È­ queue ï¿½ï¿½ï¿½ï¿½ï¿½Ï±ï¿½
 			if (m_iWeatherChangeCurPos>=m_WeatherChanges.size())
 			{
 				m_WeatherChanges.clear();
@@ -325,7 +325,7 @@ bool CN3SkyMng::DayChangeParse(FILE* fp, __SKY_DAYCHANGE* pDayChange)
 	char* pResult1 = fgets(szLine1, 256, fp);
 	if(NULL == pResult0 || NULL == pResult1) return false;
 
-	pDayChange->Init(); // ÃÊ±âÈ­ ÇØÁÖ°í..
+	pDayChange->Init(); // ï¿½Ê±ï¿½È­ ï¿½ï¿½ï¿½Ö°ï¿½..
 	
 	pDayChange->szName = szLine0;
 	if(pDayChange->szName.size() >= 2)
@@ -406,7 +406,7 @@ bool CN3SkyMng::LoadFromTextFile(const char* szIniFN)
 				{
 					char szErrLine[128];
 					sprintf(szErrLine, "From \"DayChage Count : \" -> Line : %d", i);
-					MessageBox(CN3Base::s_hWndBase, szErrLine, "ÇÏ´Ã È¯°æ¼³Á¤ µ¥ÀÌÅÍ Parsing ½ÇÆÐ", MB_OK);
+					MessageBox(CN3Base::s_hWndBase, szErrLine, "ï¿½Ï´ï¿½ È¯ï¿½æ¼³ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Parsing ï¿½ï¿½ï¿½ï¿½", MB_OK);
 					this->Release();
 					return false;
 				}
@@ -414,7 +414,7 @@ bool CN3SkyMng::LoadFromTextFile(const char* szIniFN)
 		}
 	}
 
-	fclose(fp); // ÆÄÀÏ ´Ý±â..
+	fclose(fp); // ï¿½ï¿½ï¿½ï¿½ ï¿½Ý±ï¿½..
 
 	if(NULL == m_pSky) m_pSky = new CN3Sky();
 	m_pSky->Init();
@@ -437,7 +437,7 @@ bool CN3SkyMng::LoadFromTextFile(const char* szIniFN)
 		if(NULL == m_pLightColorAmbients[i]) m_pLightColorAmbients[i] = new CN3ColorChange();
 	}
 
-	std::vector<__SKY_DAYCHANGE>(m_DayChanges).swap(m_DayChanges); // ¿ë·®À» µü ¸ÂÃß±â..
+	std::vector<__SKY_DAYCHANGE>(m_DayChanges).swap(m_DayChanges); // ï¿½ë·®ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ß±ï¿½..
 
 	qsort(&(m_DayChanges[0]), m_DayChanges.size(), sizeof(__SKY_DAYCHANGE), CompareTime);
 	SetCheckGameTime(CONVERT_SEC(10,0,0));
@@ -481,7 +481,7 @@ bool CN3SkyMng::SaveToTextFile(const char* szIniFN)
 		this->DayChangeWrite(fp, &(m_DayChanges[i]));
 	}
 
-	fclose(fp); // ÆÄÀÏ ´Ý±â..
+	fclose(fp); // ï¿½ï¿½ï¿½ï¿½ ï¿½Ý±ï¿½..
 
 	return true;
 }
@@ -515,13 +515,13 @@ void CN3SkyMng::InitToDefaultHardCoding()
 		m_pLightColorAmbients[i] = new CN3ColorChange();
 	}
 
-	// ÀÓ½Ã hard coding
+	// ï¿½Ó½ï¿½ hard coding
 	__SKY_DAYCHANGE tmpDayChange;
 	m_DayChanges.reserve(64);
 	DWORD dwTime = 0;
 
-	// ÇØ¶ß±â..
-	dwTime = CONVERT_SEC(5,0,0); // 5½Ã¿¡ ÇØ°¡ ¶á´Ù..
+	// ï¿½Ø¶ß±ï¿½..
+	dwTime = CONVERT_SEC(5,0,0); // 5ï¿½Ã¿ï¿½ ï¿½Ø°ï¿½ ï¿½ï¿½ï¿½..
 	
 	tmpDayChange.Init("SunRise - SkyColor", SDC_SKYCOLOR, dwTime, D3DCOLOR_ARGB(255, 165, 115, 85), 0, 180.0f);
 	m_DayChanges.push_back(tmpDayChange);
@@ -554,8 +554,8 @@ void CN3SkyMng::InitToDefaultHardCoding()
 	m_DayChanges.push_back(tmpDayChange);
 
 
-	// ÇÑ³·..
-	dwTime = CONVERT_SEC(6,0,0); // 6½ÃºÎÅÍ ³·ÀÌ´Ù..
+	// ï¿½Ñ³ï¿½..
+	dwTime = CONVERT_SEC(6,0,0); // 6ï¿½Ãºï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ì´ï¿½..
 
 	tmpDayChange.Init("Noon - StarCount", SDC_STARCOUNT, dwTime, 0, 0, 300.0f);
 	m_DayChanges.push_back(tmpDayChange);
@@ -591,12 +591,12 @@ void CN3SkyMng::InitToDefaultHardCoding()
 	m_DayChanges.push_back(tmpDayChange);
 
 
-	tmpDayChange.Init("Noon - MoonPhase", SDC_MOONPHASE, CONVERT_SEC(12,0,0), 0, 0, 0); // ³· 12½Ã¿¡ ´Þ ¸ð¾ç º¯È­
+	tmpDayChange.Init("Noon - MoonPhase", SDC_MOONPHASE, CONVERT_SEC(12,0,0), 0, 0, 0); // ï¿½ï¿½ 12ï¿½Ã¿ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½È­
 	m_DayChanges.push_back(tmpDayChange);
 
 
-	// ÇØÁú¶§..
-	dwTime = CONVERT_SEC(20,0,0); // Àú³á 8½Ã¿¡ ÇØ°¡ Áö±â ½ÃÀÛÇÑ´Ù..
+	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½..
+	dwTime = CONVERT_SEC(20,0,0); // ï¿½ï¿½ï¿½ï¿½ 8ï¿½Ã¿ï¿½ ï¿½Ø°ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ñ´ï¿½..
 
 	tmpDayChange.Init("SunSet - SkyColor", SDC_SKYCOLOR, dwTime, D3DCOLOR_ARGB(255, 98, 115, 125), 0, 180.0f);
 	m_DayChanges.push_back(tmpDayChange);
@@ -630,8 +630,8 @@ void CN3SkyMng::InitToDefaultHardCoding()
 
 
 
-	// ¿ÏÀüÈ÷ ÇØ°¡ Áü..
-	dwTime = CONVERT_SEC(21,0,0); // Àú³á 9½Ã¿¡ ¿ÏÀüÈ÷ ÇØ°¡ Áø´Ù.
+	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ø°ï¿½ ï¿½ï¿½..
+	dwTime = CONVERT_SEC(21,0,0); // ï¿½ï¿½ï¿½ï¿½ 9ï¿½Ã¿ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ø°ï¿½ ï¿½ï¿½ï¿½ï¿½.
 
 	tmpDayChange.Init("MidNight - SkyColor", SDC_SKYCOLOR, dwTime, D3DCOLOR_ARGB(255, 15, 18, 49), 0, 180.0f);
 	m_DayChanges.push_back(tmpDayChange);
@@ -642,13 +642,13 @@ void CN3SkyMng::InitToDefaultHardCoding()
 	tmpDayChange.Init("MidNight - StarCount", SDC_STARCOUNT, dwTime, MAX_STAR, 0, 300.0f);
 	m_DayChanges.push_back(tmpDayChange);
 
-	tmpDayChange.Init("MidNight - SunColor", SDC_SUNCOLOR, dwTime, D3DCOLOR_ARGB(255, 30, 36, 85), 0, 150.0f); // Çª¸£½º¸§
+	tmpDayChange.Init("MidNight - SunColor", SDC_SUNCOLOR, dwTime, D3DCOLOR_ARGB(255, 30, 36, 85), 0, 150.0f); // Çªï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	m_DayChanges.push_back(tmpDayChange);
 
-	tmpDayChange.Init("MidNight - GlowColor", SDC_GLOWCOLOR, dwTime, D3DCOLOR_ARGB(255, 15, 18, 49), 0, 150.0f); // ÇÏ´Ã°ú µ¿
+	tmpDayChange.Init("MidNight - GlowColor", SDC_GLOWCOLOR, dwTime, D3DCOLOR_ARGB(255, 15, 18, 49), 0, 150.0f); // ï¿½Ï´Ã°ï¿½ ï¿½ï¿½
 	m_DayChanges.push_back(tmpDayChange);
 
-	tmpDayChange.Init("MidNight - FlareColor", SDC_FLARECOLOR, dwTime, D3DCOLOR_ARGB(255, 15, 18, 49), 0, 150.0f); // ÇÏ´Ã°ú µ¿
+	tmpDayChange.Init("MidNight - FlareColor", SDC_FLARECOLOR, dwTime, D3DCOLOR_ARGB(255, 15, 18, 49), 0, 150.0f); // ï¿½Ï´Ã°ï¿½ ï¿½ï¿½
 	m_DayChanges.push_back(tmpDayChange);
 
 	tmpDayChange.Init("MidNight - Cloud1Color", SDC_CLOUD1COLOR, dwTime, D3DCOLOR_ARGB(255, 151, 144, 160), 0, 150.0f);
@@ -667,7 +667,7 @@ void CN3SkyMng::InitToDefaultHardCoding()
 	m_DayChanges.push_back(tmpDayChange);
 
 	
-	std::vector<__SKY_DAYCHANGE>(m_DayChanges).swap(m_DayChanges); // ¿ë·®À» µü ¸ÂÃß±â..
+	std::vector<__SKY_DAYCHANGE>(m_DayChanges).swap(m_DayChanges); // ï¿½ë·®ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ß±ï¿½..
 
 	qsort(&(m_DayChanges[0]), m_DayChanges.size(), sizeof(__SKY_DAYCHANGE), CompareTime);
 	SetCheckGameTime(CONVERT_SEC(10,0,0));
@@ -675,7 +675,7 @@ void CN3SkyMng::InitToDefaultHardCoding()
 #endif // #ifdef _N3TOOL
 
 
-//	CheckGameTimeÀ» Á¤ÇØÁÖ°í ÇöÀç½Ã°£À» ´Ù½Ã ¼¼ÆÃÇÑ´Ù.(Æ¯Á¤ ½Ã°£À¸·Î °­Á¦ÀûÀ¸·Î ¸¸µé¶§ È£ÃâÇÑ´Ù.)
+//	CheckGameTimeï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ö°ï¿½ ï¿½ï¿½ï¿½ï¿½Ã°ï¿½ï¿½ï¿½ ï¿½Ù½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ñ´ï¿½.(Æ¯ï¿½ï¿½ ï¿½Ã°ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½é¶§ È£ï¿½ï¿½ï¿½Ñ´ï¿½.)
 void CN3SkyMng::SetCheckGameTime(DWORD dwCheckGameTime)
 {
 	dwCheckGameTime %= 86400;
@@ -683,84 +683,84 @@ void CN3SkyMng::SetCheckGameTime(DWORD dwCheckGameTime)
 	m_dwCheckGameTime = dwCheckGameTime;
 	m_dwCheckTick = dwCheckTick;
 
-	// ÇØ¿Í ´ÞÀÇ °¢µµ °è»ê.
+	// ï¿½Ø¿ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½.
 	m_pSun->SetCurAngle(dwCheckGameTime/86400.0f*360.0f  + 270.0f);
 	m_pMoon->SetCurAngle(dwCheckGameTime/86400.0f*360.0f  + 90.0f);
 
 	if (m_DayChanges.empty()) return;
 
-	// Å¥¿¡¼­ ÇöÀç °ÔÀÓ½Ã°£¿¡ ¸Â´Â ¼ø¼­¸¦ Ã£´Â´Ù.
+	// Å¥ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ó½Ã°ï¿½ï¿½ï¿½ ï¿½Â´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Ã£ï¿½Â´ï¿½.
 	m_iDayChangeCurPos = 0;
 	int iDCC = m_DayChanges.size();
 	while(m_iDayChangeCurPos<iDCC &&
 		m_DayChanges[m_iDayChangeCurPos].dwWhen < dwCheckGameTime) ++m_iDayChangeCurPos;
 	if (m_iDayChangeCurPos >= iDCC) m_iDayChangeCurPos = iDCC - 1;
 
-	// ÇöÀç °ÔÀÓ½Ã°£¿¡¼­ °¢ sky»óÅÂº°·Î °¡Àå ÃÖ±Ù¿¡ º¯°æµÈ °ªÀ» Ã£¾Æ¼­ °ªÀ» ÁöÁ¤ÇØÁØ´Ù.
+	// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ó½Ã°ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ skyï¿½ï¿½ï¿½Âºï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ö±Ù¿ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ Ã£ï¿½Æ¼ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ø´ï¿½.
 	int i;
 	for(i=0; i<NUM_SKYDAYCHANGE; ++i)
 	{
 		if (i == SDC_MOONPHASE) continue;
 
 		int iPos = GetLatestChange((eSKY_DAYCHANGE)i, m_iDayChangeCurPos);
-		if (iPos<0) continue;	// ÇÑ¹ÙÄû¸¦ ´Ù µ¹¾Ò´Âµ¥µµ º¯È­°ªÀ» Ã£À» ¼ö ¾ø´Ù.
+		if (iPos<0) continue;	// ï¿½Ñ¹ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½Ò´Âµï¿½ï¿½ï¿½ ï¿½ï¿½È­ï¿½ï¿½ï¿½ï¿½ Ã£ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½.
 		__SKY_DAYCHANGE* pSDC = &(m_DayChanges[iPos]);
-		DWORD dwEnd = pSDC->dwWhen + (DWORD)(TIME_REAL_PER_GAME * pSDC->fHowLong);	// º¯È­°¡ ³¡³ª´Â ½Ã°£
-		if (dwEnd>86400) dwEnd -= 86400;	// 24½Ã°£ÀÌ ³Ñ¾úÀ»°æ¿ì 24½Ã°£À» »©ÁØ´Ù.
+		DWORD dwEnd = pSDC->dwWhen + (DWORD)(TIME_REAL_PER_GAME * pSDC->fHowLong);	// ï¿½ï¿½È­ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ã°ï¿½
+		if (dwEnd>86400) dwEnd -= 86400;	// 24ï¿½Ã°ï¿½ï¿½ï¿½ ï¿½Ñ¾ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ 24ï¿½Ã°ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ø´ï¿½.
 		if ( dwEnd < dwCheckGameTime)
-		{	// ÇöÀç °×½Ã°£¿¡¼­ º¯È­°¡ ÀÌ¹Ì ³¡³µÀ» °æ¿ì
+		{	// ï¿½ï¿½ï¿½ï¿½ ï¿½×½Ã°ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È­ï¿½ï¿½ ï¿½Ì¹ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
 			ChangeSky(pSDC, 0.0f);
 		}
 		else
-		{	// ÇöÀç °×½Ã°£¿¡¼­ º¯È­°¡ ÁøÇàÁßÀÎ °æ¿ì
+		{	// ï¿½ï¿½ï¿½ï¿½ ï¿½×½Ã°ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È­ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
 			int iPrevPos = GetLatestChange((eSKY_DAYCHANGE)i, iPos);
-			__ASSERT(iPrevPos>=0, "¿©±â¿¡ ¿Ã¸®°¡ ¾ø´Ù");
+			__ASSERT(iPrevPos>=0, "ï¿½ï¿½ï¿½â¿¡ ï¿½Ã¸ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½");
 			__SKY_DAYCHANGE* pPrevSDC = &(m_DayChanges[iPrevPos]);
-			ChangeSky(pPrevSDC, 0.0f);	// ÀÌÀü »óÅÂ·Î ¸¸µé±â
+			ChangeSky(pPrevSDC, 0.0f);	// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Â·ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½
 
-			// º¯È­»óÅÂ·Î ¸¸µé±â
-			// ½ÇÇàÇÒ ¸í·ÉÀÇ ½Ã°£°ú ÇöÀç ½Ã°£ Â÷ÀÌ
+			// ï¿½ï¿½È­ï¿½ï¿½ï¿½Â·ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½
+			// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ã°ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ã°ï¿½ ï¿½ï¿½ï¿½ï¿½
 			DWORD dwDiffTime = dwCheckGameTime - pSDC->dwWhen;
-			// º¯È­¿¡ °É¸®´Â ½Ã°£ Á¶Á¤ 
-			float fTakeTime = pSDC->fHowLong - dwDiffTime*TIME_GAME_PER_REAL;	// °É¸®´Â ½Ã°£
-			if (fTakeTime<0.0f) fTakeTime = 0.0f;	// 0º¸´Ù ÀÛÀ¸¸é Áï½Ã º¯È­ÇÏ°Ô ÇÏÀÚ
+			// ï¿½ï¿½È­ï¿½ï¿½ ï¿½É¸ï¿½ï¿½ï¿½ ï¿½Ã°ï¿½ ï¿½ï¿½ï¿½ï¿½ 
+			float fTakeTime = pSDC->fHowLong - dwDiffTime*TIME_GAME_PER_REAL;	// ï¿½É¸ï¿½ï¿½ï¿½ ï¿½Ã°ï¿½
+			if (fTakeTime<0.0f) fTakeTime = 0.0f;	// 0ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½È­ï¿½Ï°ï¿½ ï¿½ï¿½ï¿½ï¿½
 			ChangeSky(pSDC, fTakeTime);
 		}
 	}
 }
 
-// m_DayChanges¿¡¼­ ÁöÁ¤µÈ À§Ä¡(iPos) ÀÌÀüÀÇ °¡Àå ÃÖ±Ù¿¡ º¯È­ÇÏ´Â À§Ä¡ ¾ò¾î¿À±â
+// m_DayChangesï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ä¡(iPos) ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ö±Ù¿ï¿½ ï¿½ï¿½È­ï¿½Ï´ï¿½ ï¿½ï¿½Ä¡ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 int CN3SkyMng::GetLatestChange(eSKY_DAYCHANGE eSDC, int iPos)
 {
 	int iFind = iPos-1;
 	if (iFind<0 || iFind >= m_DayChanges.size()) iFind = m_DayChanges.size()-1;
 	while(iFind>=0)
 	{
-		if (m_DayChanges[iFind].eSkyDayChange == eSDC) break;	// °¡Àå ÃÖ±ÙÀÇ º¯È­¸¦ Ã£¾Ò´Ù.
+		if (m_DayChanges[iFind].eSkyDayChange == eSDC) break;	// ï¿½ï¿½ï¿½ï¿½ ï¿½Ö±ï¿½ï¿½ï¿½ ï¿½ï¿½È­ï¿½ï¿½ Ã£ï¿½Ò´ï¿½.
 		--iFind;
 	}
 
 	if (iFind<0)
 	{
-		// ¸Ç µÚ¿¡¼­ºÎÅÍ ´Ù½Ã °Ë»ö
+		// ï¿½ï¿½ ï¿½Ú¿ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ù½ï¿½ ï¿½Ë»ï¿½
 		iFind = m_DayChanges.size()-1;
 		while(iFind>=0)
 		{
-			if (m_DayChanges[iFind].eSkyDayChange == eSDC) break;	// °¡Àå ÃÖ±ÙÀÇ º¯È­¸¦ Ã£¾Ò´Ù.
-			if (iPos > iFind) {iFind = -1; break;}	// ÇÑ¹ÙÄû¸¦ ´Ù µ¹¾Ò´Âµ¥µµ º¯È­°ªÀ» Ã£À» ¼ö ¾ø´Ù.
+			if (m_DayChanges[iFind].eSkyDayChange == eSDC) break;	// ï¿½ï¿½ï¿½ï¿½ ï¿½Ö±ï¿½ï¿½ï¿½ ï¿½ï¿½È­ï¿½ï¿½ Ã£ï¿½Ò´ï¿½.
+			if (iPos > iFind) {iFind = -1; break;}	// ï¿½Ñ¹ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½Ò´Âµï¿½ï¿½ï¿½ ï¿½ï¿½È­ï¿½ï¿½ï¿½ï¿½ Ã£ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½.
 			--iFind;
 		}
 	}
 	return iFind;
 }
 
-// ÇÏ´ÃÀÇ »óÅÂ¸¦ ¹Ù²Ù±â (pSDC->fHowLong °ª°ú fTakeTime°ªÀ» ºñ±³ÇÏ¿© Á¤È®ÇÑ º¯È­À²À» °è»êÇÏ¿© ÁØ´Ù.)
+// ï¿½Ï´ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Â¸ï¿½ ï¿½Ù²Ù±ï¿½ (pSDC->fHowLong ï¿½ï¿½ï¿½ï¿½ fTakeTimeï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ï¿ï¿½ ï¿½ï¿½È®ï¿½ï¿½ ï¿½ï¿½È­ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ï¿ï¿½ ï¿½Ø´ï¿½.)
 void CN3SkyMng::ChangeSky(__SKY_DAYCHANGE* pSDC, float fTakeTime)
 {
 	if (NULL == pSDC) return;
 	float fPercentage = 1.0f - fTakeTime/pSDC->fHowLong;
 
-	// ÇÏ´Ã º¯È­¸í·É ½ÇÇàÇÏ±â
+	// ï¿½Ï´ï¿½ ï¿½ï¿½È­ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï±ï¿½
 	switch(pSDC->eSkyDayChange)
 	{
 	case SDC_SKYCOLOR:
@@ -775,24 +775,24 @@ void CN3SkyMng::ChangeSky(__SKY_DAYCHANGE* pSDC, float fTakeTime)
 		m_pStar->SetStar(pSDC->dwParam1, fTakeTime);
 		break;
 	case SDC_MOONPHASE:
-		m_pMoon->SetMoonPhase(m_pMoon->GetMoonPhaseIndex()+1);	// phase index¸¦ ÇÏ³ª Áõ°¡½ÃÅ²´Ù.
+		m_pMoon->SetMoonPhase(m_pMoon->GetMoonPhaseIndex()+1);	// phase indexï¿½ï¿½ ï¿½Ï³ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Å²ï¿½ï¿½.
 		break;
 	case SDC_SUNCOLOR:
-		m_pSun->m_Parts[SUNPART_SUN].Color.ChangeColor(pSDC->dwParam1, pSDC->fHowLong); // »ö
+		m_pSun->m_Parts[SUNPART_SUN].Color.ChangeColor(pSDC->dwParam1, pSDC->fHowLong); // ï¿½ï¿½
 		m_pSun->m_Parts[SUNPART_SUN].Color.SetPercentage(fPercentage);
-		m_pSun->m_Parts[SUNPART_SUN].Delta.ChangeDelta(pSDC->dwParam2/1000.0f, pSDC->fHowLong); // Å©±â..
+		m_pSun->m_Parts[SUNPART_SUN].Delta.ChangeDelta(pSDC->dwParam2/1000.0f, pSDC->fHowLong); // Å©ï¿½ï¿½..
 		m_pSun->m_Parts[SUNPART_SUN].Delta.SetPercentage(fPercentage);
 		break;
 	case SDC_GLOWCOLOR:
-		m_pSun->m_Parts[SUNPART_GLOW].Color.ChangeColor(pSDC->dwParam1, pSDC->fHowLong); // »ö
+		m_pSun->m_Parts[SUNPART_GLOW].Color.ChangeColor(pSDC->dwParam1, pSDC->fHowLong); // ï¿½ï¿½
 		m_pSun->m_Parts[SUNPART_GLOW].Color.SetPercentage(fPercentage);
-		m_pSun->m_Parts[SUNPART_GLOW].Delta.ChangeDelta(pSDC->dwParam2/1000.0f, pSDC->fHowLong); // Å©±â..
+		m_pSun->m_Parts[SUNPART_GLOW].Delta.ChangeDelta(pSDC->dwParam2/1000.0f, pSDC->fHowLong); // Å©ï¿½ï¿½..
 		m_pSun->m_Parts[SUNPART_GLOW].Delta.SetPercentage(fPercentage);
 		break;
 	case SDC_FLARECOLOR:
-		m_pSun->m_Parts[SUNPART_FLARE].Color.ChangeColor(pSDC->dwParam1, pSDC->fHowLong); // »ö
+		m_pSun->m_Parts[SUNPART_FLARE].Color.ChangeColor(pSDC->dwParam1, pSDC->fHowLong); // ï¿½ï¿½
 		m_pSun->m_Parts[SUNPART_FLARE].Color.SetPercentage(fPercentage);
-		m_pSun->m_Parts[SUNPART_FLARE].Delta.ChangeDelta(pSDC->dwParam2/1000.0f, pSDC->fHowLong); // Å©±â..
+		m_pSun->m_Parts[SUNPART_FLARE].Delta.ChangeDelta(pSDC->dwParam2/1000.0f, pSDC->fHowLong); // Å©ï¿½ï¿½..
 		m_pSun->m_Parts[SUNPART_FLARE].Delta.SetPercentage(fPercentage);
 		break;
 	case SDC_CLOUD1COLOR:
@@ -842,130 +842,130 @@ int CN3SkyMng::CompareTime(const void* pArg1, const void* pArg2)
 
 void CN3SkyMng::SetWeather(eSKY_WEATHER eWeather, int iPercentage)
 {
-	// ³¯¾¾¿¡ º¯ÇÏ´Â °Íµé : SDC_SKYCOLOR, SDC_FOGCOLOR, SDC_CLOUD1COLOR, SDC_CLOUD2COLOR, SDC_CLOUDTEX
-	eSKY_WEATHER ePrevWeather = m_eWeather;	// ÀÌÀü ³¯¾¾
+	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ï´ï¿½ ï¿½Íµï¿½ : SDC_SKYCOLOR, SDC_FOGCOLOR, SDC_CLOUD1COLOR, SDC_CLOUD2COLOR, SDC_CLOUDTEX
+	eSKY_WEATHER ePrevWeather = m_eWeather;	// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	m_eWeather = eWeather;
 
-	// ÇöÀç °ÔÀÓ ½Ã°£ ±¸ÇÏ±â
+	// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ã°ï¿½ ï¿½ï¿½ï¿½Ï±ï¿½
 	DWORD dwCurTickCount = timeGetTime();
-	__ASSERT(dwCurTickCount >= m_dwCheckTick,"À½¼öÀÌ´Ù.");
+	__ASSERT(dwCurTickCount >= m_dwCheckTick,"ï¿½ï¿½ï¿½ï¿½ï¿½Ì´ï¿½.");
 	DWORD dwCurGameTime = m_dwCheckGameTime + (DWORD)((dwCurTickCount - m_dwCheckTick)*TIME_REAL_PER_GAME*0.001f);
 	BOOL	IsNight = (dwCurGameTime < CONVERT_SEC(6,0,0) || dwCurGameTime > CONVERT_SEC(19,0,0));
 
-	if(SW_CLEAR == m_eWeather) // ¸¼Àº ³¯¾¾. ÆÛ¼¾Æ®´Â ¾È°³...
+	if(SW_CLEAR == m_eWeather) // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½. ï¿½Û¼ï¿½Æ®ï¿½ï¿½ ï¿½È°ï¿½...
 	{
-		if (SW_CLEAR == ePrevWeather) return;	// ÀÌÀü ³¯¾¾°¡ ¸¼¾ÒÀ¸¸é º¯È­½ÃÅ°Áö ¾Ê´Â´Ù.
-		int iAfterNSecPos = GetDayChangePos_AfterNSec(dwCurGameTime, 10);	// 60ÃÊ ÈÄ¿¡ DayChangePos±¸ÇÏ±â
+		if (SW_CLEAR == ePrevWeather) return;	// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È­ï¿½ï¿½Å°ï¿½ï¿½ ï¿½Ê´Â´ï¿½.
+		int iAfterNSecPos = GetDayChangePos_AfterNSec(dwCurGameTime, 10);	// 60ï¿½ï¿½ ï¿½Ä¿ï¿½ DayChangePosï¿½ï¿½ï¿½Ï±ï¿½
 		float fHowLong = 10.0f;
 		DWORD dwWhen = dwCurGameTime + CONVERT_SEC(0, 0,0);
 		DWORD dwParam1 = 0, dwParam2 = 0;
 
-		// ³¯¾¾ º¯È­ Å¥ ¸¸µé±â
+		// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È­ Å¥ ï¿½ï¿½ï¿½ï¿½ï¿½
 		m_WeatherChanges.clear();
 		m_iWeatherChangeCurPos = 0;
 		m_WeatherChanges.reserve(16);
 		__SKY_DAYCHANGE tmpWeatherChange;
 		int iPos = 0;
 
-		// ÇØ
-		iPos = GetLatestChange(SDC_SUNCOLOR, iAfterNSecPos); // NÃÊ ÈÄ¿¡ °¡Àå ÃÖ±Ù¿¡ º¯ÇÑ ÇÏ´Ã º¯È­ À§Ä¡ ±¸ÇÏ±â
+		// ï¿½ï¿½
+		iPos = GetLatestChange(SDC_SUNCOLOR, iAfterNSecPos); // Nï¿½ï¿½ ï¿½Ä¿ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ö±Ù¿ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ï´ï¿½ ï¿½ï¿½È­ ï¿½ï¿½Ä¡ ï¿½ï¿½ï¿½Ï±ï¿½
 		if (iPos>=0) { dwParam1 = m_DayChanges[iPos].dwParam1; dwParam2 = m_DayChanges[iPos].dwParam2; }
 		else { dwParam1 = D3DCOLOR_ARGB(255, 255, 255, 255); dwParam2 = 100; }
 		tmpWeatherChange.Init("Sun", SDC_SUNCOLOR, dwWhen, dwParam1, dwParam2, fHowLong);
 		m_WeatherChanges.push_back(tmpWeatherChange);
 
-		// ÇØÀÇ flare
-		iPos = GetLatestChange(SDC_FLARECOLOR, iAfterNSecPos); // NÃÊ ÈÄ¿¡ °¡Àå ÃÖ±Ù¿¡ º¯ÇÑ ÇÏ´Ã º¯È­ À§Ä¡ ±¸ÇÏ±â
+		// ï¿½ï¿½ï¿½ï¿½ flare
+		iPos = GetLatestChange(SDC_FLARECOLOR, iAfterNSecPos); // Nï¿½ï¿½ ï¿½Ä¿ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ö±Ù¿ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ï´ï¿½ ï¿½ï¿½È­ ï¿½ï¿½Ä¡ ï¿½ï¿½ï¿½Ï±ï¿½
 		if (iPos>=0) { dwParam1 = m_DayChanges[iPos].dwParam1; dwParam2 = m_DayChanges[iPos].dwParam2; }
 		else { dwParam1 = D3DCOLOR_ARGB(255, 255, 255, 255); dwParam2 = 100; }
 		tmpWeatherChange.Init("Flare", SDC_FLARECOLOR, dwWhen, dwParam1, dwParam2, fHowLong);
 		m_WeatherChanges.push_back(tmpWeatherChange);
 
-		// ÇØÀÇ glow
-		iPos = GetLatestChange(SDC_GLOWCOLOR, iAfterNSecPos); // NÃÊ ÈÄ¿¡ °¡Àå ÃÖ±Ù¿¡ º¯ÇÑ ÇÏ´Ã º¯È­ À§Ä¡ ±¸ÇÏ±â
+		// ï¿½ï¿½ï¿½ï¿½ glow
+		iPos = GetLatestChange(SDC_GLOWCOLOR, iAfterNSecPos); // Nï¿½ï¿½ ï¿½Ä¿ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ö±Ù¿ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ï´ï¿½ ï¿½ï¿½È­ ï¿½ï¿½Ä¡ ï¿½ï¿½ï¿½Ï±ï¿½
 		if (iPos>=0) { dwParam1 = m_DayChanges[iPos].dwParam1; dwParam2 = m_DayChanges[iPos].dwParam2; }
 		else { dwParam1 = D3DCOLOR_ARGB(255, 255, 255, 255); dwParam2 = 100; }
 		tmpWeatherChange.Init("Glow", SDC_GLOWCOLOR, dwWhen, dwParam1, dwParam2, fHowLong);
 		m_WeatherChanges.push_back(tmpWeatherChange);
 
-		// ÇÏ´Ã»ö
-		iPos = GetLatestChange(SDC_SKYCOLOR, iAfterNSecPos); // NÃÊ ÈÄ¿¡ °¡Àå ÃÖ±Ù¿¡ º¯ÇÑ ÇÏ´Ã º¯È­ À§Ä¡ ±¸ÇÏ±â
+		// ï¿½Ï´Ã»ï¿½
+		iPos = GetLatestChange(SDC_SKYCOLOR, iAfterNSecPos); // Nï¿½ï¿½ ï¿½Ä¿ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ö±Ù¿ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ï´ï¿½ ï¿½ï¿½È­ ï¿½ï¿½Ä¡ ï¿½ï¿½ï¿½Ï±ï¿½
 		if (iPos>=0) { dwParam1 = m_DayChanges[iPos].dwParam1; dwParam2 = m_DayChanges[iPos].dwParam2; }
 		else { dwParam1 = D3DCOLOR_ARGB(255, 255, 255, 255); dwParam2 = 100; }
 		tmpWeatherChange.Init("Sky", SDC_SKYCOLOR, dwWhen, dwParam1, dwParam2, fHowLong);
 		m_WeatherChanges.push_back(tmpWeatherChange);
 
-		// ¾È°³»ö
-		iPos = GetLatestChange(SDC_FOGCOLOR, iAfterNSecPos); // NÃÊ ÈÄ¿¡ °¡Àå ÃÖ±Ù¿¡ º¯ÇÑ ÇÏ´Ã º¯È­ À§Ä¡ ±¸ÇÏ±â
+		// ï¿½È°ï¿½ï¿½ï¿½
+		iPos = GetLatestChange(SDC_FOGCOLOR, iAfterNSecPos); // Nï¿½ï¿½ ï¿½Ä¿ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ö±Ù¿ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ï´ï¿½ ï¿½ï¿½È­ ï¿½ï¿½Ä¡ ï¿½ï¿½ï¿½Ï±ï¿½
 		if (iPos>=0) { dwParam1 = m_DayChanges[iPos].dwParam1; dwParam2 = m_DayChanges[iPos].dwParam2; }
 		else { dwParam1 = D3DCOLOR_ARGB(255, 255, 255, 255); dwParam2 = 100; }
 		tmpWeatherChange.Init("Fog", SDC_FOGCOLOR, dwWhen, dwParam1, dwParam2, fHowLong);
 		m_WeatherChanges.push_back(tmpWeatherChange);
 
-		// ±¸¸§ 1 »ö
-		iPos = GetLatestChange(SDC_CLOUD1COLOR, iAfterNSecPos); // NÃÊ ÈÄ¿¡ °¡Àå ÃÖ±Ù¿¡ º¯ÇÑ ÇÏ´Ã º¯È­ À§Ä¡ ±¸ÇÏ±â
+		// ï¿½ï¿½ï¿½ï¿½ 1 ï¿½ï¿½
+		iPos = GetLatestChange(SDC_CLOUD1COLOR, iAfterNSecPos); // Nï¿½ï¿½ ï¿½Ä¿ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ö±Ù¿ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ï´ï¿½ ï¿½ï¿½È­ ï¿½ï¿½Ä¡ ï¿½ï¿½ï¿½Ï±ï¿½
 		if (iPos>=0) { dwParam1 = m_DayChanges[iPos].dwParam1; dwParam2 = m_DayChanges[iPos].dwParam2; }
 		else { dwParam1 = D3DCOLOR_ARGB(255, 255, 255, 255); dwParam2 = 100; }
 		tmpWeatherChange.Init("Cloud1", SDC_CLOUD1COLOR, dwWhen, dwParam1, dwParam2, fHowLong);
 		m_WeatherChanges.push_back(tmpWeatherChange);
 
-		// ±¸¸§ 2»ö 
-		iPos = GetLatestChange(SDC_CLOUD2COLOR, iAfterNSecPos); // NÃÊ ÈÄ¿¡ °¡Àå ÃÖ±Ù¿¡ º¯ÇÑ ÇÏ´Ã º¯È­ À§Ä¡ ±¸ÇÏ±â
+		// ï¿½ï¿½ï¿½ï¿½ 2ï¿½ï¿½ 
+		iPos = GetLatestChange(SDC_CLOUD2COLOR, iAfterNSecPos); // Nï¿½ï¿½ ï¿½Ä¿ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ö±Ù¿ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ï´ï¿½ ï¿½ï¿½È­ ï¿½ï¿½Ä¡ ï¿½ï¿½ï¿½Ï±ï¿½
 		if (iPos>=0) { dwParam1 = m_DayChanges[iPos].dwParam1; dwParam2 = m_DayChanges[iPos].dwParam2; }
 		else { dwParam1 = D3DCOLOR_ARGB(255, 255, 255, 255); dwParam2 = 100; }
 		tmpWeatherChange.Init("Cloud2", SDC_CLOUD2COLOR, dwWhen, dwParam1, dwParam2, fHowLong);
 		m_WeatherChanges.push_back(tmpWeatherChange);
 		
-		// ±¸¸§ ÅØ½ºÃÄ - ¹Ì¸® ¹Ù²î°Ô ÇÑ´Ù..
-		iPos = GetLatestChange(SDC_CLOUDTEX, iAfterNSecPos); // NÃÊ ÈÄ¿¡ °¡Àå ÃÖ±Ù¿¡ º¯ÇÑ ÇÏ´Ã º¯È­ À§Ä¡ ±¸ÇÏ±â
+		// ï¿½ï¿½ï¿½ï¿½ ï¿½Ø½ï¿½ï¿½ï¿½ - ï¿½Ì¸ï¿½ ï¿½Ù²ï¿½ï¿½ ï¿½Ñ´ï¿½..
+		iPos = GetLatestChange(SDC_CLOUDTEX, iAfterNSecPos); // Nï¿½ï¿½ ï¿½Ä¿ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ö±Ù¿ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ï´ï¿½ ï¿½ï¿½È­ ï¿½ï¿½Ä¡ ï¿½ï¿½ï¿½Ï±ï¿½
 		if (iPos>=0) { dwParam1 = m_DayChanges[iPos].dwParam1; dwParam2 = m_DayChanges[iPos].dwParam2; }
 		else { dwParam1 = CLOUD_WISPS; dwParam2 = CLOUD_PUFFS; }
 		tmpWeatherChange.Init("CloudTex", SDC_CLOUDTEX, dwCurGameTime, dwParam1, dwParam2, 10.0f);
 		m_WeatherChanges.push_back(tmpWeatherChange);
 
-		// ¶óÀÌÆ® 0
-		iPos = GetLatestChange(SDC_LIGHT0COLOR, iAfterNSecPos); // NÃÊ ÈÄ¿¡ °¡Àå ÃÖ±Ù¿¡ º¯ÇÑ ÇÏ´Ã º¯È­ À§Ä¡ ±¸ÇÏ±â
+		// ï¿½ï¿½ï¿½ï¿½Æ® 0
+		iPos = GetLatestChange(SDC_LIGHT0COLOR, iAfterNSecPos); // Nï¿½ï¿½ ï¿½Ä¿ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ö±Ù¿ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ï´ï¿½ ï¿½ï¿½È­ ï¿½ï¿½Ä¡ ï¿½ï¿½ï¿½Ï±ï¿½
 		if (iPos>=0) { dwParam1 = m_DayChanges[iPos].dwParam1; dwParam2 = m_DayChanges[iPos].dwParam2; }
 		else { dwParam1 = D3DCOLOR_ARGB(255, 255, 255, 255); dwParam2 = 100; }
 		tmpWeatherChange.Init("Light0", SDC_LIGHT0COLOR, dwWhen, dwParam1, dwParam2, fHowLong);
 		m_WeatherChanges.push_back(tmpWeatherChange);
 		
-		// ¶óÀÌÆ® 1
-		iPos = GetLatestChange(SDC_LIGHT1COLOR, iAfterNSecPos); // NÃÊ ÈÄ¿¡ °¡Àå ÃÖ±Ù¿¡ º¯ÇÑ ÇÏ´Ã º¯È­ À§Ä¡ ±¸ÇÏ±â
+		// ï¿½ï¿½ï¿½ï¿½Æ® 1
+		iPos = GetLatestChange(SDC_LIGHT1COLOR, iAfterNSecPos); // Nï¿½ï¿½ ï¿½Ä¿ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ö±Ù¿ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ï´ï¿½ ï¿½ï¿½È­ ï¿½ï¿½Ä¡ ï¿½ï¿½ï¿½Ï±ï¿½
 		if (iPos>=0) { dwParam1 = m_DayChanges[iPos].dwParam1; dwParam2 = m_DayChanges[iPos].dwParam2; }
 		else { dwParam1 = D3DCOLOR_ARGB(255, 255, 255, 255); dwParam2 = 100; }
 		tmpWeatherChange.Init("Light1", SDC_LIGHT1COLOR, dwWhen, dwParam1, dwParam2, fHowLong);
 		m_WeatherChanges.push_back(tmpWeatherChange);
 
-		// ¶óÀÌÆ® 2
-		iPos = GetLatestChange(SDC_LIGHT2COLOR, iAfterNSecPos); // NÃÊ ÈÄ¿¡ °¡Àå ÃÖ±Ù¿¡ º¯ÇÑ ÇÏ´Ã º¯È­ À§Ä¡ ±¸ÇÏ±â
+		// ï¿½ï¿½ï¿½ï¿½Æ® 2
+		iPos = GetLatestChange(SDC_LIGHT2COLOR, iAfterNSecPos); // Nï¿½ï¿½ ï¿½Ä¿ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ö±Ù¿ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ï´ï¿½ ï¿½ï¿½È­ ï¿½ï¿½Ä¡ ï¿½ï¿½ï¿½Ï±ï¿½
 		if (iPos>=0) { dwParam1 = m_DayChanges[iPos].dwParam1; dwParam2 = m_DayChanges[iPos].dwParam2; }
 		else { dwParam1 = D3DCOLOR_ARGB(255, 255, 255, 255); dwParam2 = 100; }
 		tmpWeatherChange.Init("Light2", SDC_LIGHT2COLOR, dwWhen, dwParam1, dwParam2, fHowLong);
 		m_WeatherChanges.push_back(tmpWeatherChange);
 
 
-		// ¿ø·¡´ë·Î ³¯¾¾ µ¹¸®±â..
-		iAfterNSecPos = GetDayChangePos_AfterNSec(dwCurGameTime, 10);	// 10ÃÊ ÈÄ¿¡ DayChangePos±¸ÇÏ±â
+		// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½..
+		iAfterNSecPos = GetDayChangePos_AfterNSec(dwCurGameTime, 10);	// 10ï¿½ï¿½ ï¿½Ä¿ï¿½ DayChangePosï¿½ï¿½ï¿½Ï±ï¿½
 
-		std::vector<__SKY_DAYCHANGE>(m_WeatherChanges).swap(m_WeatherChanges); // ¿ë·®À» µü ¸ÂÃß±â..
+		std::vector<__SKY_DAYCHANGE>(m_WeatherChanges).swap(m_WeatherChanges); // ï¿½ë·®ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ß±ï¿½..
 		qsort(&(m_WeatherChanges[0]), m_WeatherChanges.size(), sizeof(__SKY_DAYCHANGE), CompareTime);
 
 
-		// ³¯¾¾ ÁÁ´Ù~
+		// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½~
 		if (m_pGESnow) m_pGESnow->FadeSet(3.0f, false);
 		if (m_pGERain) m_pGERain->FadeSet(3.0f, false);
-#ifdef _N3GAME // °ÔÀÓÀÌ ¾Æ´Ñ Åø¿¡¼­´Â ÇÊ¿ä¾ø´Ù...
+#ifdef _N3GAME // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Æ´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ê¿ï¿½ï¿½ï¿½ï¿½...
 		if (m_pSnd_Weather_Rain) m_pSnd_Weather_Rain->Stop(5.0f);
 		if (m_pSnd_Weather_Snow) m_pSnd_Weather_Snow->Stop(5.0f);
 #endif // #ifdef _N3GAME
 	}
-	else if(SW_RAINY == m_eWeather || SW_SNOW == m_eWeather) // ºñ, ´« ¿È
+	else if(SW_RAINY == m_eWeather || SW_SNOW == m_eWeather) // ï¿½ï¿½, ï¿½ï¿½ ï¿½ï¿½
 	{
-		if (SW_CLEAR != ePrevWeather) return;	// ÀÌÀü ³¯¾¾°¡ ¸¼Àº³¯ÀÌ ¾Æ´Ï¸é º¯È­½ÃÅ°Áö ¾Ê´Â´Ù.
+		if (SW_CLEAR != ePrevWeather) return;	// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Æ´Ï¸ï¿½ ï¿½ï¿½È­ï¿½ï¿½Å°ï¿½ï¿½ ï¿½Ê´Â´ï¿½.
 		float fHowLong = 10.0f;
 
-		// ³¯¾¾ º¯È­ Å¥ ¸¸µé±â
+		// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È­ Å¥ ï¿½ï¿½ï¿½ï¿½ï¿½
 		m_WeatherChanges.clear();
 		m_iWeatherChangeCurPos = 0;
 		m_WeatherChanges.reserve(16);
@@ -974,48 +974,48 @@ void CN3SkyMng::SetWeather(eSKY_WEATHER eWeather, int iPercentage)
 		float fDelta = (0.5f + 0.3f * (100 - iPercentage) / 100.0f);
 		DWORD dwWhen = dwCurGameTime + CONVERT_SEC(0, 0, 10);
 
-		// ¶óÀÌÆ® ¼¼ÆÃ º¯¼ö ±¸ÇÏ±â..
+		// ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ï±ï¿½..
 		__ColorValue crLgt(1,1,1,1);
-		int iAfterNSecPos = GetDayChangePos_AfterNSec(dwCurGameTime, 10);	// 60ÃÊ ÈÄ¿¡ DayChangePos±¸ÇÏ±â
-		int iPos = GetLatestChange(SDC_LIGHT1COLOR, iAfterNSecPos); // ÁöÇü¿¡ ³»¸®ÂØ´Â ºû
+		int iAfterNSecPos = GetDayChangePos_AfterNSec(dwCurGameTime, 10);	// 60ï¿½ï¿½ ï¿½Ä¿ï¿½ DayChangePosï¿½ï¿½ï¿½Ï±ï¿½
+		int iPos = GetLatestChange(SDC_LIGHT1COLOR, iAfterNSecPos); // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ø´ï¿½ ï¿½ï¿½
 		if (iPos>=0) { crLgt = m_DayChanges[iPos].dwParam1; }
 		float fDelta2 = (crLgt.r + crLgt.g + crLgt.b) / 3.0f;
 		fDelta2 = 1.0f - fDelta2 * 0.8f * (iPercentage/100.0f);
 
 
-		// ÇØ
+		// ï¿½ï¿½
 		tmpWeatherChange.Init("Sun", SDC_SUNCOLOR, dwWhen, 0xff000000, this->GetSunRatio() * 1000, fHowLong);
 		m_WeatherChanges.push_back(tmpWeatherChange);
 
-		// ÇØÀÇ flare
+		// ï¿½ï¿½ï¿½ï¿½ flare
 		tmpWeatherChange.Init("Flare", SDC_FLARECOLOR, dwWhen, 0xff000000, this->GetFlareRatio() * 1000, fHowLong);
 		m_WeatherChanges.push_back(tmpWeatherChange);
 
-		// ÇØÀÇ glow
+		// ï¿½ï¿½ï¿½ï¿½ glow
 		tmpWeatherChange.Init("Glow", SDC_GLOWCOLOR, dwWhen, 0xff000000, this->GetGlowRatio() * 1000, fHowLong);
 		m_WeatherChanges.push_back(tmpWeatherChange);
 
-		//  ÇÏ´Ã»ö
+		//  ï¿½Ï´Ã»ï¿½
 		crTmp1 = this->GetSkyColor(); crTmp1 *= fDelta; crTmp1.a = 1.0f;
 		tmpWeatherChange.Init("Sky", SDC_SKYCOLOR, dwWhen, crTmp1.ToD3DCOLOR(), 0, fHowLong);
 		m_WeatherChanges.push_back(tmpWeatherChange);
 
-		//  ¾È°³»ö
+		//  ï¿½È°ï¿½ï¿½ï¿½
 		crTmp1 = this->GetFogColor(); crTmp1 *= fDelta2; crTmp1.a = 1.0f;
 		tmpWeatherChange.Init("Fog", SDC_FOGCOLOR, dwWhen, crTmp1.ToD3DCOLOR(), 0, fHowLong);
 		m_WeatherChanges.push_back(tmpWeatherChange);
 
-		// ±¸¸§»ö1
+		// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½1
 		crTmp1 = this->GetCloud1Color(); crTmp1 *= fDelta * 0.75f; crTmp1.a = 1.0f;
 		tmpWeatherChange.Init("Cloud1Color", SDC_CLOUD1COLOR, dwWhen, crTmp1.ToD3DCOLOR(), 0, fHowLong);
 		m_WeatherChanges.push_back(tmpWeatherChange);
 
-		// ±¸¸§»ö2 - Á»´õ ¾îµÓ°Ô ÇÑ´Ù..
+		// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½2 - ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ó°ï¿½ ï¿½Ñ´ï¿½..
 		crTmp1 = this->GetCloud2Color(); crTmp1 *= fDelta * 0.5f; crTmp1.a = 1.0f;
 		tmpWeatherChange.Init("Cloud2Color", SDC_CLOUD2COLOR, dwWhen, crTmp1.ToD3DCOLOR(), 0, fHowLong);
 		m_WeatherChanges.push_back(tmpWeatherChange);
 		
-		// ±¸¸§ ÅØ½ºÃÄ
+		// ï¿½ï¿½ï¿½ï¿½ ï¿½Ø½ï¿½ï¿½ï¿½
 		DWORD dwTex1, dwTex2;
 		if (iPercentage>80)			{ dwTex1 = CLOUD_OVERCAST;	dwTex2 = CLOUD_DENSE; }
 		else if (iPercentage>60)	{ dwTex1 = CLOUD_DENSE;		dwTex2 = CLOUD_STREAKS; }
@@ -1024,19 +1024,19 @@ void CN3SkyMng::SetWeather(eSKY_WEATHER eWeather, int iPercentage)
 		tmpWeatherChange.Init("CloudTex", SDC_CLOUDTEX, dwCurGameTime, dwTex1, dwTex2, 10.0f);
 		m_WeatherChanges.push_back(tmpWeatherChange);
 
-		// ¶óÀÌÆ® 0
+		// ï¿½ï¿½ï¿½ï¿½Æ® 0
 		crTmp1 = this->GetLightDiffuseColor(0); crTmp1 *= fDelta2; crTmp1.a = 1.0f;
 		crTmp2 = this->GetLightAmbientColor(0); crTmp2 *= fDelta2; crTmp2.a = 1.0f;
 		tmpWeatherChange.Init("Light0", SDC_LIGHT0COLOR, dwWhen, crTmp1.ToD3DCOLOR(), crTmp2.ToD3DCOLOR(), fHowLong);
 		m_WeatherChanges.push_back(tmpWeatherChange);
 		
-		// ¶óÀÌÆ® 1
+		// ï¿½ï¿½ï¿½ï¿½Æ® 1
 		crTmp1 = this->GetLightDiffuseColor(1); crTmp1 *= fDelta2; crTmp1.a = 1.0f;
 		crTmp2 = this->GetLightAmbientColor(1); crTmp2 *= fDelta2; crTmp2.a = 1.0f;
 		tmpWeatherChange.Init("Light1", SDC_LIGHT1COLOR, dwWhen, crTmp1.ToD3DCOLOR(), crTmp2.ToD3DCOLOR(), fHowLong);
 		m_WeatherChanges.push_back(tmpWeatherChange);
 		
-		// ¶óÀÌÆ® 2
+		// ï¿½ï¿½ï¿½ï¿½Æ® 2
 		crTmp1 = this->GetLightDiffuseColor(2); crTmp1 *= fDelta2; crTmp1.a = 1.0f;
 		crTmp2 = this->GetLightAmbientColor(2); crTmp2 *= fDelta2; crTmp2.a = 1.0f;
 		tmpWeatherChange.Init("Light2", SDC_LIGHT2COLOR, dwWhen, crTmp1.ToD3DCOLOR(), crTmp2.ToD3DCOLOR(), fHowLong);
@@ -1044,7 +1044,7 @@ void CN3SkyMng::SetWeather(eSKY_WEATHER eWeather, int iPercentage)
 
 
 		
-		std::vector<__SKY_DAYCHANGE>(m_WeatherChanges).swap(m_WeatherChanges); // ¿ë·®À» µü ¸ÂÃß±â..
+		std::vector<__SKY_DAYCHANGE>(m_WeatherChanges).swap(m_WeatherChanges); // ï¿½ë·®ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ß±ï¿½..
 		qsort(&(m_WeatherChanges[0]), m_WeatherChanges.size(), sizeof(m_WeatherChanges[0]), CompareTime);
 
 
@@ -1061,13 +1061,13 @@ void CN3SkyMng::SetWeather(eSKY_WEATHER eWeather, int iPercentage)
 			float fRainLength = 0.4f + 0.6f * fPercent;
 
 			m_fCellSize = 20.0f;
-			m_pGERain->Create(fDensity, m_fCellSize, fHeight, fRainLength, vVelocity, 10.0f);	// ºñ
+			m_pGERain->Create(fDensity, m_fCellSize, fHeight, fRainLength, vVelocity, 10.0f);	// ï¿½ï¿½
 			m_pGERain->SetActive(TRUE);
 
-#ifdef _N3GAME // °ÔÀÓÀÌ ¾Æ´Ñ Åø¿¡¼­´Â ÇÊ¿ä¾ø´Ù...
+#ifdef _N3GAME // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Æ´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ê¿ï¿½ï¿½ï¿½ï¿½...
 			if(m_pSnd_Weather_Snow) m_pSnd_Weather_Snow->Stop(5.0f);
 			CN3Base::s_SndMgr.ReleaseObj(&m_pSnd_Weather_Rain);
-			m_pSnd_Weather_Rain = CN3Base::s_SndMgr.CreateObj(201);	// ºñ¿À´Â ¼Ò¸®..
+			m_pSnd_Weather_Rain = CN3Base::s_SndMgr.CreateObj(201);	// ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ò¸ï¿½..
 			if(m_pSnd_Weather_Rain)
 			{
 				int iMaxVol = (int)(70 * fPercent);
@@ -1087,13 +1087,13 @@ void CN3SkyMng::SetWeather(eSKY_WEATHER eWeather, int iPercentage)
 			float fSnowSize = 0.1f + 0.1f * fPercent;
 
 			m_fCellSize = 20.0f;
-			m_pGESnow->Create(fDensity, m_fCellSize, fHeight, fSnowSize, vVelocity, 10.0f);	// ºñ
+			m_pGESnow->Create(fDensity, m_fCellSize, fHeight, fSnowSize, vVelocity, 10.0f);	// ï¿½ï¿½
 			m_pGESnow->SetActive(TRUE);
 
-#ifdef _N3GAME // °ÔÀÓÀÌ ¾Æ´Ñ Åø¿¡¼­´Â ÇÊ¿ä¾ø´Ù...
+#ifdef _N3GAME // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Æ´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ê¿ï¿½ï¿½ï¿½ï¿½...
 			if(m_pSnd_Weather_Rain) m_pSnd_Weather_Rain->Stop(5.0f);
 			CN3Base::s_SndMgr.ReleaseObj(&m_pSnd_Weather_Snow);
-			m_pSnd_Weather_Snow = CN3Base::s_SndMgr.CreateObj(200);	// ¹Ù¶÷¼Ò¸®..
+			m_pSnd_Weather_Snow = CN3Base::s_SndMgr.CreateObj(200);	// ï¿½Ù¶ï¿½ï¿½Ò¸ï¿½..
 			if(m_pSnd_Weather_Snow)
 			{
 				int iMaxVol = (int)(70 * fPercent);
@@ -1106,7 +1106,7 @@ void CN3SkyMng::SetWeather(eSKY_WEATHER eWeather, int iPercentage)
 	}
 }
 
-void CN3SkyMng::SunAndMoonDirectionFixByHour(int iHour) // ÇØ¿Í ´Þ °¢µµ °ü¸®
+void CN3SkyMng::SunAndMoonDirectionFixByHour(int iHour) // ï¿½Ø¿ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 {
 	m_iHourFix = iHour;
 }
@@ -1114,10 +1114,10 @@ void CN3SkyMng::SunAndMoonDirectionFixByHour(int iHour) // ÇØ¿Í ´Þ °¢µµ °ü¸®
 void CN3SkyMng::GetGameTime(int* piYear, int* piMonth, int* piDay, int* piHour, int*piMin)
 {
 	DWORD dwCurTickCount = timeGetTime();
-	__ASSERT(dwCurTickCount >= m_dwCheckTick,"À½¼öÀÌ´Ù.");
+	__ASSERT(dwCurTickCount >= m_dwCheckTick,"ï¿½ï¿½ï¿½ï¿½ï¿½Ì´ï¿½.");
 	DWORD dwCurGameTime = m_dwCheckGameTime + (DWORD)((dwCurTickCount - m_dwCheckTick)*TIME_REAL_PER_GAME*0.001f);
 
-	// dwCurGameTime - ÃÊ
+	// dwCurGameTime - ï¿½ï¿½
 	int iSecond = dwCurGameTime%3600;
 
 	if(piYear)	*piYear = m_iYear;
@@ -1140,16 +1140,16 @@ void CN3SkyMng::SetGameTime(int iYear, int iMonth, int iDay, int iHour, int iMin
 
 int	CN3SkyMng::GetDayChangePos_AfterNSec(DWORD dwCurGameTime, float fSec)
 {
-	// nÃÊ ÈÄÀÇ Ã¼Å©ÇÒ °ÔÀÓ ½Ã°£À» °è»ê
-	DWORD dwCheckGameTime = dwCurGameTime + (DWORD)(fSec*TIME_REAL_PER_GAME);	// 150ÃÊ ÈÄ °ÔÀÓ½Ã°£
+	// nï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ Ã¼Å©ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ã°ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
+	DWORD dwCheckGameTime = dwCurGameTime + (DWORD)(fSec*TIME_REAL_PER_GAME);	// 150ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½Ó½Ã°ï¿½
 	int iCheckDayChangeCurPos = m_iDayChangeCurPos;
-	if (dwCheckGameTime>86400)	// Ã¼Å© ½Ã°£ÀÌ °ÔÀÓ½Ã°£ÀÇ 24½Ã¸¦ ³ÑÀ¸¸é
+	if (dwCheckGameTime>86400)	// Ã¼Å© ï¿½Ã°ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ó½Ã°ï¿½ï¿½ï¿½ 24ï¿½Ã¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	{
 		iCheckDayChangeCurPos = 0;
 		dwCheckGameTime %= 86400;
 	}
 
-	// nÃÊÈÄÀÇ queueÀÇ À§Ä¡ Ã£±â
+	// nï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ queueï¿½ï¿½ ï¿½ï¿½Ä¡ Ã£ï¿½ï¿½
 	while(iCheckDayChangeCurPos<m_DayChanges.size() &&
 		m_DayChanges[m_iDayChangeCurPos].dwWhen < dwCheckGameTime) ++iCheckDayChangeCurPos;
 	if (iCheckDayChangeCurPos >= m_DayChanges.size()) iCheckDayChangeCurPos = m_DayChanges.size() - 1;
@@ -1305,7 +1305,7 @@ bool CN3SkyMng::Load(HANDLE hFile)
 			m_DayChanges[i].Load(hFile);
 		}
 
-		qsort(&(m_DayChanges[0]), m_DayChanges.size(), sizeof(__SKY_DAYCHANGE), CompareTime); // ½Ã°£¼øÀ¸·Î Á¤·Ä
+		qsort(&(m_DayChanges[0]), m_DayChanges.size(), sizeof(__SKY_DAYCHANGE), CompareTime); // ï¿½Ã°ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	}
 
 	SetCheckGameTime(CONVERT_SEC(10,0,0));
@@ -1453,7 +1453,7 @@ const char* CN3SkyMng::CloudTextureFileName(int iIndex)
 #endif
 
 /*
-void CN3SkyMng::ColorDeltaSet(int iPercentage, float fHowLong) // ÇöÀç ÇÏ´Ã, ¾È°³ »öÀ» ÆÛ¼¾Æ® ´ÜÀ§·Î º¯È­½ÃÅ²´Ù.. ºñ, ´« ¿Ã¶§ ¾´´Ù..
+void CN3SkyMng::ColorDeltaSet(int iPercentage, float fHowLong) // ï¿½ï¿½ï¿½ï¿½ ï¿½Ï´ï¿½, ï¿½È°ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Û¼ï¿½Æ® ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È­ï¿½ï¿½Å²ï¿½ï¿½.. ï¿½ï¿½, ï¿½ï¿½ ï¿½Ã¶ï¿½ ï¿½ï¿½ï¿½ï¿½..
 {
 	if(iPercentage < 0) iPercentage = 0;
 	if(iPercentage > 100) iPercentage = 100;
@@ -1472,7 +1472,7 @@ void CN3SkyMng::ColorDeltaSet(int iPercentage, float fHowLong) // ÇöÀç ÇÏ´Ã, ¾È°
 	m_pSky->m_FogColor.ChangeColor(crFinalFog, fHowLong);
 	m_pSky->m_SkyColor.ChangeColor(crFinalSky, fHowLong);
 
-#ifdef _N3GAME // °ÔÀÓÀÌ ¾Æ´Ñ Åø¿¡¼­´Â ÇÊ¿ä¾ø´Ù...
+#ifdef _N3GAME // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Æ´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ê¿ï¿½ï¿½ï¿½ï¿½...
 	if(m_pSnd_Weather_Snow) m_pSnd_Weather_Snow->Stop(5.0f);
 	if(m_pSnd_Weather_Rain) m_pSnd_Weather_Rain->Stop(5.0f);
 #endif // #ifdef _N3GAME

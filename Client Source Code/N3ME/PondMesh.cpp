@@ -33,12 +33,12 @@ CPondMesh::~CPondMesh()
 void CPondMesh::Release()
 {
 	m_iPondID = -1;
-	m_fWaterHeight = 0.0f;	//	¹°³ôÀÌ
-	m_iWaterScaleWidth = 4;	//	°¡·Î¹æÇâÀÇ Á¡ÀÇ °¹¼ö	
-	m_iWaterScaleHeight = 6;//	¼¼·Î¹æÇâÀÇ Á¡ÀÇ °¹¼ö	
+	m_fWaterHeight = 0.0f;	//	ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	m_iWaterScaleWidth = 4;	//	ï¿½ï¿½ï¿½Î¹ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½	
+	m_iWaterScaleHeight = 6;//	ï¿½ï¿½ï¿½Î¹ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½	
 	m_iBackUpWidht = 0;
 	m_iBackUpHeight = 0;
-	m_dwPondAlpha = 0x88ffffff;		//	¹°ÀÇ ¾ËÆÄ	
+	m_dwPondAlpha = 0x88ffffff;		//	ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½	
 	m_fTU = 50.0f;	
 	m_fTV = 50.0f;	
 	
@@ -68,18 +68,18 @@ void CPondMesh::Render()
 	__Matrix44 matWorld;	matWorld.Identity();
 	s_lpD3DDev->SetTransform(D3DTS_WORLD, &matWorld);
 
-	//	¿µ¿ª »óÀÚ ±×¸®±â
+	//	ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½×¸ï¿½ï¿½ï¿½
 	{
 		s_lpD3DDev->SetTexture(0, NULL);
 		s_lpD3DDev->SetTextureStageState(0, D3DTSS_COLOROP, D3DTOP_SELECTARG1);
 		s_lpD3DDev->SetTextureStageState(0, D3DTSS_COLORARG1, D3DTA_DIFFUSE);
-		s_lpD3DDev->SetVertexShader(FVF_XYZCOLOR);
+		s_lpD3DDev->SetFVF(FVF_XYZCOLOR);
 
 		s_lpD3DDev->DrawPrimitiveUP(D3DPT_LINESTRIP, 4, m_ViewRect, sizeof(__VertexXyzColor));
 	}
 
 
-	s_lpD3DDev->SetVertexShader(FVF_XYZT2);
+	s_lpD3DDev->SetFVF(FVF_XYZT2);
 	// Texture state
 	if (m_pTexture && m_iVC>2  && m_iIC>0)
 	{
@@ -93,14 +93,14 @@ void CPondMesh::Render()
 		s_lpD3DDev->GetTextureStageState(0, D3DTSS_ALPHAOP, &dwAlphaOP);
 		s_lpD3DDev->GetTextureStageState(0, D3DTSS_ALPHAARG1, &dwAlphaArg1);
 
-		if ((m_dwPondAlpha & 0xff000000) != 0xff000000)	// alpha factor ¼³Á¤ÇÏ±â
+		if ((m_dwPondAlpha & 0xff000000) != 0xff000000)	// alpha factor ï¿½ï¿½ï¿½ï¿½ï¿½Ï±ï¿½
 		{
-			// render state ¼¼ÆÃ
+			// render state ï¿½ï¿½ï¿½ï¿½
 			s_lpD3DDev->SetRenderState(D3DRS_ALPHABLENDENABLE, TRUE);
 			s_lpD3DDev->SetRenderState(D3DRS_DESTBLEND, D3DBLEND_INVSRCALPHA);
 			s_lpD3DDev->SetRenderState(D3DRS_SRCBLEND, D3DBLEND_SRCALPHA);
-			s_lpD3DDev->SetRenderState(D3DRS_TEXTUREFACTOR, m_dwPondAlpha);	// alpha factor ¼³Á¤
-			// texture state ¼¼ÆÃ(alpha)
+			s_lpD3DDev->SetRenderState(D3DRS_TEXTUREFACTOR, m_dwPondAlpha);	// alpha factor ï¿½ï¿½ï¿½ï¿½
+			// texture state ï¿½ï¿½ï¿½ï¿½(alpha)
 			s_lpD3DDev->SetTextureStageState(0, D3DTSS_ALPHAOP, D3DTOP_SELECTARG1);
 			s_lpD3DDev->SetTextureStageState(0, D3DTSS_ALPHAARG1, D3DTA_TFACTOR);
 			s_lpD3DDev->SetTextureStageState(1, D3DTSS_ALPHAOP, D3DTOP_DISABLE);
@@ -156,7 +156,7 @@ void CPondMesh::Render()
 	}
 }
 
-void CPondMesh::RenderVertexPoint()	// Àßº¸ÀÌ°Ô Á¡¸¸ ´Ù½Ã ±×¸®±â
+void CPondMesh::RenderVertexPoint()	// ï¿½ßºï¿½ï¿½Ì°ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ù½ï¿½ ï¿½×¸ï¿½ï¿½ï¿½
 {
 	if (m_iVC == 0 && m_iRectVC==0) return;
 	HRESULT hr;
@@ -171,15 +171,15 @@ void CPondMesh::RenderVertexPoint()	// Àßº¸ÀÌ°Ô Á¡¸¸ ´Ù½Ã ±×¸®±â
 	s_lpD3DDev->GetTransform(D3DTS_VIEW, &matView);
 	s_lpD3DDev->GetTransform(D3DTS_PROJECTION, &matProj);
 	D3DXMatrixMultiply(&matVP, &matView, &matProj);
-	D3DVIEWPORT8 vp = s_CameraData.vp;
+	D3DVIEWPORT9 vp = s_CameraData.vp;
 
 	__VertexTransformedColor Vertices[4];
 	D3DCOLOR clr = D3DCOLOR_ARGB(0xff, 0xff, 0x00, 0x00);
-	s_lpD3DDev->SetVertexShader(FVF_TRANSFORMEDCOLOR);
+	s_lpD3DDev->SetFVF(FVF_TRANSFORMEDCOLOR);
 
 	int i;
 	D3DXVECTOR4 v;
-	//	È­¸é»ó¿¡ »¡°£Á¡
+	//	È­ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	for (i=0; i<=m_iVC; ++i)
 	{
 		D3DXVec3Transform(&v, (D3DXVECTOR3*)(&(m_pViewVts[i])), &matVP);
@@ -192,7 +192,7 @@ void CPondMesh::RenderVertexPoint()	// Àßº¸ÀÌ°Ô Á¡¸¸ ´Ù½Ã ±×¸®±â
 		if (iScreenX >= (int)vp.X && iScreenX <= (int)vp.Width &&
 			iScreenY >= (int)vp.Y && iScreenY <= (int)vp.Height)
 		{
-			// set X (Á¡À» ÂïÀ¸¸é 1ÇÈ¼¿¹Û¿¡ ¾ÈÂïÀ¸¹Ç·Î XÇ¥½Ã¸¦ ±×¸°´Ù.
+			// set X (ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ 1ï¿½È¼ï¿½ï¿½Û¿ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ç·ï¿½ XÇ¥ï¿½Ã¸ï¿½ ï¿½×¸ï¿½ï¿½ï¿½.
 			Vertices[0].Set(float(iScreenX-2), float(iScreenY-2), 0.5f, 0.5f, clr);
 			Vertices[1].Set(float(iScreenX+2), float(iScreenY+2), 0.5f, 0.5f, clr);
 			Vertices[2].Set(float(iScreenX+2), float(iScreenY-2), 0.5f, 0.5f, clr);
@@ -202,7 +202,7 @@ void CPondMesh::RenderVertexPoint()	// Àßº¸ÀÌ°Ô Á¡¸¸ ´Ù½Ã ±×¸®±â
 		}
 	}
 
-	//	¿µ¿ªÀ» ³ªÅ¸³»´Â Á¡
+	//	ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Å¸ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½
 	for(i=0;i<m_iRectVC;++i)
 	{
 		D3DXVec3Transform(&v, (D3DXVECTOR3*)(&(m_pRectVts[i])), &matVP);
@@ -215,7 +215,7 @@ void CPondMesh::RenderVertexPoint()	// Àßº¸ÀÌ°Ô Á¡¸¸ ´Ù½Ã ±×¸®±â
 		if (iScreenX >= (int)vp.X && iScreenX <= (int)vp.Width &&
 			iScreenY >= (int)vp.Y && iScreenY <= (int)vp.Height)
 		{
-			// set X (Á¡À» ÂïÀ¸¸é 1ÇÈ¼¿¹Û¿¡ ¾ÈÂïÀ¸¹Ç·Î XÇ¥½Ã¸¦ ±×¸°´Ù.
+			// set X (ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ 1ï¿½È¼ï¿½ï¿½Û¿ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ç·ï¿½ XÇ¥ï¿½Ã¸ï¿½ ï¿½×¸ï¿½ï¿½ï¿½.
 			Vertices[0].Set(float(iScreenX-2), float(iScreenY-2), 0.5f, 0.5f, clr);
 			Vertices[1].Set(float(iScreenX+2), float(iScreenY+2), 0.5f, 0.5f, clr);
 			Vertices[2].Set(float(iScreenX+2), float(iScreenY-2), 0.5f, 0.5f, clr);
@@ -234,8 +234,8 @@ void CPondMesh::SetWaterHeight(float fHeight)
 	for(int i=0;i<5;++i)
 		m_vDrawBox[i].y = fHeight;
 
-	MakeDrawRect(m_vDrawBox);	//	¿Ü°û¼± ´Ù½Ã ¸¸µë
-	UpdateWaterHeight();	//	°¢Á¡µéÀ» ÁöÁ¤ÇÑ ³ôÀÌ·Î ¿Ã¸²
+	MakeDrawRect(m_vDrawBox);	//	ï¿½Ü°ï¿½ï¿½ï¿½ ï¿½Ù½ï¿½ ï¿½ï¿½ï¿½ï¿½
+	UpdateWaterHeight();	//	ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ì·ï¿½ ï¿½Ã¸ï¿½
 }
 
 void CPondMesh::UpdateWaterHeight()
@@ -257,20 +257,20 @@ void CPondMesh::UpdateMovePos(__Vector3 vMovingPos)
 	}
 }
 
-void CPondMesh::MakeDrawRect(__Vector3* p4vPos)	//	È­¸é¿¡ º¸ÀÏ ¿¬¸øÀÇ ¿µ¿ªÅ×µÎ¸® ¸¸µç´Ù
+void CPondMesh::MakeDrawRect(__Vector3* p4vPos)	//	È­ï¿½é¿¡ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½×µÎ¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½
 {
 	if(p4vPos==NULL) return;
 
 	memcpy(m_vDrawBox,p4vPos,sizeof(__Vector3)*4);
-	m_fWaterHeight = p4vPos[0].y;	//	¹°ÀÇ ³ôÀÌ¸¦ ¹Þ´Â´Ù
-	p4vPos = NULL;	//	¸Þ¸ð¸®¿¡¼­ ÀÌ»óÇÑ °á°ú°ú ³ª¿Ã±îºÁ..
+	m_fWaterHeight = p4vPos[0].y;	//	ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ì¸ï¿½ ï¿½Þ´Â´ï¿½
+	p4vPos = NULL;	//	ï¿½Þ¸ð¸®¿ï¿½ï¿½ï¿½ ï¿½Ì»ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ã±ï¿½ï¿½..
 
 	//----------------------------------------------------------------------------
 	DWORD color = 0xffffff00;
-	m_ViewRect[0].Set(m_vDrawBox[0],color);	//	À§Á¡
-	m_ViewRect[1].Set(m_vDrawBox[1],color);	//	À§Á¡
-	m_ViewRect[2].Set(m_vDrawBox[2],color);	//	¾Æ·¡Á¡
-	m_ViewRect[3].Set(m_vDrawBox[3],color);	//	¾Æ·¡Á¡
+	m_ViewRect[0].Set(m_vDrawBox[0],color);	//	ï¿½ï¿½ï¿½ï¿½
+	m_ViewRect[1].Set(m_vDrawBox[1],color);	//	ï¿½ï¿½ï¿½ï¿½
+	m_ViewRect[2].Set(m_vDrawBox[2],color);	//	ï¿½Æ·ï¿½ï¿½ï¿½
+	m_ViewRect[3].Set(m_vDrawBox[3],color);	//	ï¿½Æ·ï¿½ï¿½ï¿½
 	m_ViewRect[4] = m_ViewRect[0];
 	//----------------------------------------------------------------------------
 
@@ -280,9 +280,9 @@ void CPondMesh::MakeDrawRect(__Vector3* p4vPos)	//	È­¸é¿¡ º¸ÀÏ ¿¬¸øÀÇ ¿µ¿ªÅ×µÎ¸®
 void CPondMesh::UpdateDrawPos()
 {
 	m_iRectVC = 0;
-	//	À§,¾Æ·¡Á¡µé ¼¼ÆÃ
+	//	ï¿½ï¿½,ï¿½Æ·ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	m_fWaterScaleX = SettingDrawPos(m_vDrawBox[0],m_vDrawBox[1],m_vDrawBox[3],m_vDrawBox[2],m_iWaterScaleWidth);
-	//	ÁÂ¿ìÁ¡µé ¼¼ÆÃ
+	//	ï¿½Â¿ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	m_fWaterScaleZ = SettingDrawPos(m_vDrawBox[0],m_vDrawBox[3],m_vDrawBox[1],m_vDrawBox[2],m_iWaterScaleHeight);
 }
 
@@ -294,10 +294,10 @@ float CPondMesh::SettingDrawPos(__Vector3 vPos1,__Vector3 vPos2,__Vector3 vPos3,
 	float fLength;
 
 	LinePos = vPos2-vPos1;
-	fLength = LinePos.Magnitude(); fLength /= (iLinePosNum+1);	//	±æÀÌ±¸ÇÏ°í,³¡¿¡³ÖÀ» Á¡»©°í À§Ä¡ÇÒ Á¡µé °è»ê
-	LinePos.Normalize(); LinePos *= fLength;	//	±æÀÌ1mÀÎ ¹éÅÍ¸¦ ±¸ÇÏ°í,Á¡°£ÀÇ °Å¸®¸¦ ÀÔ·Â
+	fLength = LinePos.Magnitude(); fLength /= (iLinePosNum+1);	//	ï¿½ï¿½ï¿½Ì±ï¿½ï¿½Ï°ï¿½,ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ä¡ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
+	LinePos.Normalize(); LinePos *= fLength;	//	ï¿½ï¿½ï¿½ï¿½1mï¿½ï¿½ ï¿½ï¿½ï¿½Í¸ï¿½ ï¿½ï¿½ï¿½Ï°ï¿½,ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Å¸ï¿½ï¿½ï¿½ ï¿½Ô·ï¿½
 
-	//	ÀÔ·Â½ÃÀÛ
+	//	ï¿½Ô·Â½ï¿½ï¿½ï¿½
 	for (int i=1;i<iLinePosNum+1;++i)
 	{
 		vPos2 = vPos1 + LinePos*(float)i;
@@ -325,10 +325,10 @@ void CPondMesh::MakePondPos()
 		m_iBackUpHeight = m_iWaterScaleHeight;
 	}
 
-	ASSERT(MAX_PONDMESH_VERTEX>m_iWaterScaleWidth*m_iWaterScaleHeight);	//	¾ÕÀ¸·Î ¸¸µé¾îÁú Á¡ÀÇ¼ýÀÚ°¡ max¿¡ ´ÞÇÏ´ÂÁö È®ÀÎ
+	ASSERT(MAX_PONDMESH_VERTEX>m_iWaterScaleWidth*m_iWaterScaleHeight);	//	ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ç¼ï¿½ï¿½Ú°ï¿½ maxï¿½ï¿½ ï¿½ï¿½ï¿½Ï´ï¿½ï¿½ï¿½ È®ï¿½ï¿½
 	int ix,iz,itemp;
 
-	//	¹æÇâÀÇ Á¡µéÀÇ À§Ä¡¸¦ ¹ÞÀºµÚ
+	//	ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ä¡ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	float *fX,fY,*fZ;
 	fX = new float [m_iWaterScaleWidth];
 	for(ix=0; ix<m_iWaterScaleWidth; ++ix) fX[ix] = m_pRectVts[ix].x;
@@ -342,8 +342,8 @@ void CPondMesh::MakePondPos()
 
 
 	__Vector3 vPos;
-	m_iVC = 0 , m_iIC = 0;	//	ÃÊ±âÈ­
-	//	ÀÏ´Ü Á¡µéÀ» ÂÓ »Ñ¸°´Ù
+	m_iVC = 0 , m_iIC = 0;	//	ï¿½Ê±ï¿½È­
+	//	ï¿½Ï´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½Ñ¸ï¿½ï¿½ï¿½
 	for(iz=0; iz<m_iWaterScaleHeight; ++iz)
 	{
 		for(ix=0; ix<m_iWaterScaleWidth; ++ix)
@@ -385,9 +385,9 @@ void CPondMesh::MakeIndex()
 	}
 
 	int j,k;
-	int m = m_iWaterScaleWidth;	//	´ÙÀ½ÁÙ
+	int m = m_iWaterScaleWidth;	//	ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	int x=0,y=m;
-	WORD* indexPtr = m_pdwIndex;	//	»ï°¢ÇüÀ» ºÎ¸¦ À§Ä¡ ¼³Á¤
+	WORD* indexPtr = m_pdwIndex;	//	ï¿½ï°¢ï¿½ï¿½ï¿½ï¿½ ï¿½Î¸ï¿½ ï¿½ï¿½Ä¡ ï¿½ï¿½ï¿½ï¿½
 
 	--m;
 	for (j=0; j<m_iWaterScaleHeight; j++)
@@ -420,7 +420,7 @@ void CPondMesh::ReCalcUV()
 	__Vector3* pVertices= m_pVertices;
 	__VertexXyzT2* ptmpVertices = m_pViewVts;
 	
-	//	ÁÙ¿¡ ´ëÇÑ º¯°æ(x,z¿¡ ´ëÇØ)
+	//	ï¿½Ù¿ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½(x,zï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½)
 	for (i=0;i<m_iWaterScaleHeight;++i)
 	{	
 		ptmpVertices->tu = ptmpVertices->x/fTu;
@@ -442,8 +442,8 @@ void CPondMesh::ReCalcUV()
 
 void CPondMesh::ReCalcVexUV()
 {
-	__Vector3		pBakVertices[MAX_PONDMESH_VERTEX];	//	ÀúÀå,¹é¾÷¿ëÀ¸·Î ¾²ÀÌ´Â °ª
-	__VertexXyzT2	pBakViewVts[MAX_PONDMESH_VERTEX];	//	È­¸é¿¡ »Ñ·ÁÁö´Â °ª
+	__Vector3		pBakVertices[MAX_PONDMESH_VERTEX];	//	ï¿½ï¿½ï¿½ï¿½,ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ì´ï¿½ ï¿½ï¿½
+	__VertexXyzT2	pBakViewVts[MAX_PONDMESH_VERTEX];	//	È­ï¿½é¿¡ ï¿½Ñ·ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½
 
 	for(int i=0;i<m_iVC;++i)
 	{
@@ -497,21 +497,21 @@ void CPondMesh::InputSelectPos(float fX,float fY,float fZ,int iVC)
 	}
 	else
 	{
-		//	¼±ÅÃÇÑ Á¡µéÀÇ ÃÖ´ë¿µ¿ªÀ» Àâ°í
+		//	ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ö´ë¿µï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
 		if(m_vSelectBox[0].x > fX) m_vSelectBox[0].x = fX;
 		if(m_vSelectBox[1].x < fX) m_vSelectBox[1].x = fX;
 		if(m_vSelectBox[0].z > fZ) m_vSelectBox[0].z = fZ;
 		if(m_vSelectBox[1].z < fZ) m_vSelectBox[1].z = fZ;
 	}
 
-	//	³ôÀÌ°¡ Æ²·ÁÁö¸é ³ôÀÌ¸¦ Àç ¼³Á¤
+	//	ï¿½ï¿½ï¿½Ì°ï¿½ Æ²ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ì¸ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	if(m_vSelectBox[0].y != fY)
 	{
 		SetWaterHeight(fY);
 		m_vSelectBox[0].y = fY;
 	}
 
-	if(iVC>-1)	//	ÀüÃ¼ ¼±ÅÃÀÌ ¾Æ´Ñ ÀÏºÎ¼±ÅÃ½Ã
+	if(iVC>-1)	//	ï¿½ï¿½Ã¼ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Æ´ï¿½ ï¿½ÏºÎ¼ï¿½ï¿½Ã½ï¿½
 	{
 		int iHeight = iVC/m_iWaterScaleWidth;
 		int iWidth = iVC%m_iWaterScaleWidth;
@@ -529,7 +529,7 @@ void CPondMesh::InputSelectPos(float fX,float fY,float fZ,int iVC)
 			}
 		}
 
-		//	¼±ÅÃÇÑ Á¡µéÀ» ÀÓ½Ã·Î °¡Áö°í ÀÖÀ½
+		//	ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ó½Ã·ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 		pSelpo = new __SELECT_PO;
 		pSelpo->ix = iWidth;
 		pSelpo->iz = iHeight;
@@ -540,23 +540,23 @@ void CPondMesh::InputSelectPos(float fX,float fY,float fZ,int iVC)
 
 BOOL CPondMesh::InputDummyMovingPos(__Vector3 vDummyMovingPos,BOOL bMovePond)
 {
-	//	¿òÁ÷¿©¾ßÇÒ ÀÌÀ¯°¡ ¾ø´Ù
+	//	ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	if(vDummyMovingPos.x == 0.0f && vDummyMovingPos.y == 0.0f && vDummyMovingPos.z == 0.0f) return FALSE;
 	BOOL bDrawBoxMove = FALSE;
 
-	//	¼±ÅÃÇÑ Á¡µé¿µ¿ªÀÇ ¿òÁ÷ÀÓ
+	//	ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½é¿µï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	m_vSelectBox[0] += vDummyMovingPos;
 	m_vSelectBox[1] += vDummyMovingPos;
 
 	if(vDummyMovingPos.y!=0)
-		SetWaterHeight(m_vSelectBox[0].y);	//	³ôÀÌ¸¦ Ã¼Å©
+		SetWaterHeight(m_vSelectBox[0].y);	//	ï¿½ï¿½ï¿½Ì¸ï¿½ Ã¼Å©
 
-	//	¿¬¸ø ¿µ¿ªÁÙ Ã³¸®
+	//	ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Ã³ï¿½ï¿½
 	if(bMovePond)
 	{		
 		for(int i=0;i<4;++i) m_vDrawBox[i] += vDummyMovingPos;
-		MakeDrawRect(m_vDrawBox);	//	°¡ÀåÀÚ¸® Á¡µé Àç °è»ê
-		UpdateMovePos(vDummyMovingPos);	//	¹é¾÷¿ë °è»ê Á¡µé Àç °è»ê
+		MakeDrawRect(m_vDrawBox);	//	ï¿½ï¿½ï¿½ï¿½ï¿½Ú¸ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½
+		UpdateMovePos(vDummyMovingPos);	//	ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½
 	}
 	else
 	{
@@ -567,7 +567,7 @@ BOOL CPondMesh::InputDummyMovingPos(__Vector3 vDummyMovingPos,BOOL bMovePond)
 		else if(m_vSelectBox[1].z > m_vDrawBox[2].z) { SetBottom(m_vSelectBox[1].z); bDrawBoxMove = TRUE;}
 
 		if(vDummyMovingPos.x!=0 || vDummyMovingPos.z!=0)
-			MovingPos();	//	´õ¹ÌÀÇ ¿òÁ÷ÀÓ¿¡ µû¶ó Á¡µé ¿òÁ÷ÀÓ
+			MovingPos();	//	ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ó¿ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	}	
 
 	return bDrawBoxMove;
@@ -578,7 +578,7 @@ void CPondMesh::SetTop(float fTop)			{m_vDrawBox[0].z = fTop	  ,m_vDrawBox[1].z 
 void CPondMesh::SetRight(float fRight)		{m_vDrawBox[0].x = fRight ,m_vDrawBox[3].x = fRight; MakeDrawRect(m_vDrawBox);}
 void CPondMesh::SetBottom(float fBottom)	{m_vDrawBox[2].z = fBottom,m_vDrawBox[3].z = fBottom;MakeDrawRect(m_vDrawBox);}
 
-//	±âº»ÀûÀ¸·Î ¼±ÅÃµÈ Á¡µéÀº ÀÌ¹Ì ¿òÁ÷ÀÎ »óÅÂ·Î ¿øº»ÀÌ¶ó ÇÒ¼öÀÖ´Â m_pVerticesÂüÁ¶ÇØ¼­ ¿òÁ÷ÀÏ ¿¹»óÁ¡À» °è»ê
+//	ï¿½âº»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ãµï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ì¹ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Â·ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ì¶ï¿½ ï¿½Ò¼ï¿½ï¿½Ö´ï¿½ m_pVerticesï¿½ï¿½ï¿½ï¿½ï¿½Ø¼ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
 void CPondMesh::MovingPos()
 {
 	int iSize = m_vSelect.size();
@@ -603,61 +603,61 @@ void CPondMesh::CalcuWidth(int iSx,int iSy,int iEx,int iEy)
 
 	int iHeightNum = iSy*m_iWaterScaleWidth;
 	//	----------------------------------------------------------------------------------
-	//	°è»êÇØ¾ßÇÒ Ã¹Á¡À» ±¸ÇÑ´Ù
-	__Vector3 vBakPick = *(m_pVertices + iHeightNum + iSx);	//	¹é¾÷µÈ ÀüÀÇ ÁÂÇ¥(ÂüÁ¶ÇÏ¿© »õ·Î¿î ÁÂÇ¥ °è»ê)
-	__Vector3 vNowPick = *(m_pViewVts + iHeightNum + iSx);	//	ÇöÀç ÁöÁ¤µÈ Á¡(³ªÁß¿¡ ¿©·¯°³ ÁöÁ¤µÇ°Ô)
-	__Vector3* pLRVertices = m_pVertices + iHeightNum;		//	°è»êÇÒ Ã¹ Á¡(¹é¾÷¿ë)
-	__VertexXyzT2* pLRViewVer = m_pViewVts + iHeightNum;	//	°è»êÇÒ Ã¹ Á¡(ÇöÀç¿ë)
+	//	ï¿½ï¿½ï¿½ï¿½Ø¾ï¿½ï¿½ï¿½ Ã¹ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ñ´ï¿½
+	__Vector3 vBakPick = *(m_pVertices + iHeightNum + iSx);	//	ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ç¥(ï¿½ï¿½ï¿½ï¿½ï¿½Ï¿ï¿½ ï¿½ï¿½ï¿½Î¿ï¿½ ï¿½ï¿½Ç¥ ï¿½ï¿½ï¿½)
+	__Vector3 vNowPick = *(m_pViewVts + iHeightNum + iSx);	//	ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½(ï¿½ï¿½ï¿½ß¿ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ç°ï¿½)
+	__Vector3* pLRVertices = m_pVertices + iHeightNum;		//	ï¿½ï¿½ï¿½ï¿½ï¿½ Ã¹ ï¿½ï¿½(ï¿½ï¿½ï¿½ï¿½ï¿½)
+	__VertexXyzT2* pLRViewVer = m_pViewVts + iHeightNum;	//	ï¿½ï¿½ï¿½ï¿½ï¿½ Ã¹ ï¿½ï¿½(ï¿½ï¿½ï¿½ï¿½ï¿½)
 	//	----------------------------------------------------------------------------------
 
 	//	----------------------------------------------------------------------------------
-	// À§Ä¡¿¡ ÇØ´çÇÏ´Â¾çÂÊ ³¡ÀÇÁ¡À» °¡Áø´Ù
+	// ï¿½ï¿½Ä¡ï¿½ï¿½ ï¿½Ø´ï¿½ï¿½Ï´Â¾ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	__Vector3 *pvLeft,*pvRight,*pvTop,*pvBottom;
-	pvRight = pLRVertices;	//	Ã³À½½ÃÀÛÀÌ ¿À¸¥ÂÊºÎÅÍÀÌ´Ù
+	pvRight = pLRVertices;	//	Ã³ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Êºï¿½ï¿½ï¿½ï¿½Ì´ï¿½
 	pvLeft = pvRight + m_iWaterScaleWidth-1;
 	pvTop = m_pVertices + iSx;
 	pvBottom = m_pVertices + m_iVC - m_iWaterScaleWidth + 1;
 	//	----------------------------------------------------------------------------------
 
-	//	»õ·Î¿î ÁÂÇ¥ °è»ê
+	//	ï¿½ï¿½ï¿½Î¿ï¿½ ï¿½ï¿½Ç¥ ï¿½ï¿½ï¿½
 	int iIntervalNum,j;
 	float fx1,fx2,fnx1,fnx2;
 	float fny1,fny2;
 	float ftemp;
 	
 	//	----------------------------------------------------------------------------------
-	iIntervalNum = iSx-1;	//	ÁÂ¿ì °¢ ÇÑÁ¡¾¿ »©±â¿¡
+	iIntervalNum = iSx-1;	//	ï¿½Â¿ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½â¿¡
 	if(iIntervalNum>0)
 	{
-		++pLRVertices, ++pLRViewVer;	//	¿À¸¥ÂÊ
+		++pLRVertices, ++pLRViewVer;	//	ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		fny2 = vNowPick.z-vBakPick.z;
 		for(j=0 ; j<iIntervalNum ; ++j,++pLRVertices,++pLRViewVer,++pvTop,++pvBottom)
 		{
-			// »çÀÌÀÇ Á¡¸¶´Ù °Å¸®ºñÀ²À» ±¸ÇØ »õ·Î¿î À§Ä¡¸¦ ±¸ÇÑ´Ù
-			fx2 = pvRight->x - vBakPick.x;	//	ÁÂ¿ìÀÇ ºñÀ²±¸ÇÔ
+			// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Å¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Î¿ï¿½ ï¿½ï¿½Ä¡ï¿½ï¿½ ï¿½ï¿½ï¿½Ñ´ï¿½
+			fx2 = pvRight->x - vBakPick.x;	//	ï¿½Â¿ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 			if(fx2!=0)
 			{
 				fx1 = pvRight->x - pLRVertices->x;
 				ftemp = fx1/fx2;
 
-				//	¿À¸¥³¡Á¡x-¹é¾÷Á¡x : ¿À¸¥³¡Á¡x-ÇöÀç°è»êÇÏ´ÂÁ¡x =  ¿À¸¥³¡Á¡x-»õ·Î¿îÁ¡x : ±¸ÇÒÁ¡x
+				//	ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½x-ï¿½ï¿½ï¿½ï¿½ï¿½x : ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½x-ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½ï¿½ï¿½x =  ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½x-ï¿½ï¿½ï¿½Î¿ï¿½ï¿½ï¿½x : ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½x
 				fnx2 = pvRight->x - vNowPick.x;
 				fnx1 = fnx2*ftemp;
-				pLRViewVer->x = pvRight->x - fnx1;	//	xÀÇ »õ·Î¿îÁ¡ ÀÔ·Â
+				pLRViewVer->x = pvRight->x - fnx1;	//	xï¿½ï¿½ ï¿½ï¿½ï¿½Î¿ï¿½ï¿½ï¿½ ï¿½Ô·ï¿½
 
-				//	¿À¸¥³¡Á¡x-¹é¾÷Á¡x : ¿À¸¥³¡Á¡x-ÇöÀç°è»êÇÏ´ÂÁ¡x =  »õ·Î¿îÁ¡z-¹é¾÷Á¡z : ±¸ÇÒº¯È­·®z
+				//	ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½x-ï¿½ï¿½ï¿½ï¿½ï¿½x : ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½x-ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½ï¿½ï¿½x =  ï¿½ï¿½ï¿½Î¿ï¿½ï¿½ï¿½z-ï¿½ï¿½ï¿½ï¿½ï¿½z : ï¿½ï¿½ï¿½Òºï¿½È­ï¿½ï¿½z
 				fny1 = fny2*ftemp;
-				pLRViewVer->z += fny1;				//	zÀÇ º¯È­·® ´õÇÔ
+				pLRViewVer->z += fny1;				//	zï¿½ï¿½ ï¿½ï¿½È­ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 			}
 		}
 	}
 	//	----------------------------------------------------------------------------------
 
 	//	----------------------------------------------------------------------------------
-	iIntervalNum = m_iWaterScaleWidth - iSx-2;	//	ÁÂ¿ì °¢ ÇÑÁ¡¾¿ »©±â¿¡
+	iIntervalNum = m_iWaterScaleWidth - iSx-2;	//	ï¿½Â¿ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½â¿¡
 	if(iIntervalNum>0)
 	{
-		++pLRVertices, ++pLRViewVer;	//	¿ÞÂÊ
+		++pLRVertices, ++pLRViewVer;	//	ï¿½ï¿½ï¿½ï¿½
 		fny2 = vNowPick.z-vBakPick.z;
 		for(j=0 ; j<iIntervalNum ; ++j,++pLRVertices,++pLRViewVer,++pvTop,++pvBottom)
 		{
@@ -669,10 +669,10 @@ void CPondMesh::CalcuWidth(int iSx,int iSy,int iEx,int iEy)
 
 				fnx2 = vNowPick.x - pvLeft->x;
 				fnx1 = fnx2*ftemp;
-				pLRViewVer->x = pvLeft->x + fnx1;		//	xÀÇ »õ·Î¿îÁ¡ ÀÔ·Â
+				pLRViewVer->x = pvLeft->x + fnx1;		//	xï¿½ï¿½ ï¿½ï¿½ï¿½Î¿ï¿½ï¿½ï¿½ ï¿½Ô·ï¿½
 
 				fny1 = fny2*ftemp;
-				pLRViewVer->z += fny1;					//	zÀÇ º¯È­·® ´õÇÔ
+				pLRViewVer->z += fny1;					//	zï¿½ï¿½ ï¿½ï¿½È­ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 			}
 		}
 	}
@@ -686,18 +686,18 @@ void CPondMesh::SetAllPos(int iSx,int iSy,int iEx,int iEy)
 {
 	if(iSx<0 || iSx>m_iWaterScaleWidth || iSy<0 || iSy >m_iWaterScaleHeight) return;
 
-	//	°è»êÇØ¾ßÇÒ Ã¹Á¡À» ±¸ÇÑ´Ù
+	//	ï¿½ï¿½ï¿½ï¿½Ø¾ï¿½ï¿½ï¿½ Ã¹ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ñ´ï¿½
 	__Vector3* pTBVertices = m_pVertices + iSx;
 	__VertexXyzT2* pTBViewVer = m_pViewVts + iSx;
 
-	// À§Ä¡¿¡ ÇØ´çÇÏ´Â¾çÂÊ ³¡ÀÇÁ¡À» °¡Áø´Ù
+	// ï¿½ï¿½Ä¡ï¿½ï¿½ ï¿½Ø´ï¿½ï¿½Ï´Â¾ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	__Vector3 vTop,vBottom,vCenter,vNowCenter;
 	vTop = *pTBVertices;	
 	vBottom = *(m_pVertices + m_iVC - m_iWaterScaleWidth + iSx);
-	vCenter = *(m_pVertices + m_iWaterScaleWidth*iSy + iSx);	//	ÇöÀç ÁöÁ¤µÈ Á¡(³ªÁß¿¡ ¿©·¯°³ ÁöÁ¤µÇ°Ô)
-	vNowCenter = *(m_pViewVts + m_iWaterScaleWidth*iSy + iSx);	//	¹é¾÷µÈ ÀüÀÇ ÁÂÇ¥(ÂüÁ¶ÇÏ¿© »õ·Î¿î ÁÂÇ¥ °è»ê)
+	vCenter = *(m_pVertices + m_iWaterScaleWidth*iSy + iSx);	//	ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½(ï¿½ï¿½ï¿½ß¿ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ç°ï¿½)
+	vNowCenter = *(m_pViewVts + m_iWaterScaleWidth*iSy + iSx);	//	ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ç¥(ï¿½ï¿½ï¿½ï¿½ï¿½Ï¿ï¿½ ï¿½ï¿½ï¿½Î¿ï¿½ ï¿½ï¿½Ç¥ ï¿½ï¿½ï¿½)
 
-	//	»õ·Î¿î ÁÂÇ¥ °è»ê
+	//	ï¿½ï¿½ï¿½Î¿ï¿½ ï¿½ï¿½Ç¥ ï¿½ï¿½ï¿½
 	int iIntervalNum,j;
 	float fy1,fy2,fny1,fny2;
 	float fnx1,fnx2;
@@ -714,14 +714,14 @@ void CPondMesh::SetAllPos(int iSx,int iSy,int iEx,int iEy)
 			fny2 = vTop.z - vNowCenter.z;
 			for(j=0 ; j<iIntervalNum ; ++j,pTBVertices+=m_iWaterScaleWidth,pTBViewVer+=m_iWaterScaleWidth)
 			{
-				fy1 = pTBVertices->z - vTop.z; 	//	ÁÂ¿ìÀÇ ºñÀ²±¸ÇÔ
+				fy1 = pTBVertices->z - vTop.z; 	//	ï¿½Â¿ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 				ftemp = fy1/fy2;
 
 				fnx1 = fnx2*ftemp;
-				pTBViewVer->x += fnx1;			//	xÀÇ º¯È­·® ´õÇÔ
+				pTBViewVer->x += fnx1;			//	xï¿½ï¿½ ï¿½ï¿½È­ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 
 				fny1 = fny2*ftemp;
-				pTBViewVer->z = vTop.z - fny1;	//	zÀÇ »õ·Î¿îÁ¡ ÀÔ·Â
+				pTBViewVer->z = vTop.z - fny1;	//	zï¿½ï¿½ ï¿½ï¿½ï¿½Î¿ï¿½ï¿½ï¿½ ï¿½Ô·ï¿½
 			}
 		}
 	}
@@ -741,10 +741,10 @@ void CPondMesh::SetAllPos(int iSx,int iSy,int iEx,int iEy)
 				ftemp = fy1/fy2;
 
 				fnx1 = fnx2*ftemp;
-				pTBViewVer->x += fnx1;				//	xÀÇ º¯È­·® ´õÇÔ
+				pTBViewVer->x += fnx1;				//	xï¿½ï¿½ ï¿½ï¿½È­ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 
 				fny1 = fny2*ftemp;
-				pTBViewVer->z = vBottom.z + fny1;	//	zÀÇ »õ·Î¿îÁ¡ ÀÔ·Â
+				pTBViewVer->z = vBottom.z + fny1;	//	zï¿½ï¿½ ï¿½ï¿½ï¿½Î¿ï¿½ï¿½ï¿½ ï¿½Ô·ï¿½
 			}
 
 		}
@@ -779,8 +779,8 @@ bool CPondMesh::Load1001(HANDLE hFile)
 	DWORD dwNum;
 	int iLen; char szTextueFName[_MAX_PATH];
 
-	ReadFile(hFile, &m_iPondID, sizeof(m_iPondID), &dwNum, NULL);		// ¿¬¸ø ¹øÈ£
-	ReadFile(hFile, &m_dwPondAlpha, sizeof(m_dwPondAlpha), &dwNum, NULL);		// ¿¬¸ø ¾ËÆÄ
+	ReadFile(hFile, &m_iPondID, sizeof(m_iPondID), &dwNum, NULL);		// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È£
+	ReadFile(hFile, &m_dwPondAlpha, sizeof(m_dwPondAlpha), &dwNum, NULL);		// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	ReadFile(hFile, &m_fWaterHeight, sizeof(m_fWaterHeight), &dwNum, NULL);
 	ReadFile(hFile, &m_iWaterScaleWidth, sizeof(m_iWaterScaleWidth), &dwNum, NULL);
 	ReadFile(hFile, &m_iWaterScaleHeight, sizeof(m_iWaterScaleHeight), &dwNum, NULL);
@@ -790,13 +790,13 @@ bool CPondMesh::Load1001(HANDLE hFile)
 	ReadFile(hFile, &m_fWaterScaleZ, sizeof(m_fWaterScaleZ), &dwNum, NULL);
 	ReadFile(hFile, &m_bUVState, sizeof(m_bUVState), &dwNum, NULL);
 
-	ReadFile(hFile, m_vDrawBox, sizeof(m_vDrawBox), &dwNum, NULL);				// ÇÑÁÙ¿¡ ÀÖ´Â Á¡ °¹¼ö
+	ReadFile(hFile, m_vDrawBox, sizeof(m_vDrawBox), &dwNum, NULL);				// ï¿½ï¿½ï¿½Ù¿ï¿½ ï¿½Ö´ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 
-	ReadFile(hFile, &m_iVC, sizeof(m_iVC), &dwNum, NULL);				// Á¡ °¹¼ö
+	ReadFile(hFile, &m_iVC, sizeof(m_iVC), &dwNum, NULL);				// ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	if (m_iVC>0)
 	{
 		ReadFile(hFile, m_pViewVts, m_iVC*sizeof(__VertexXyzT2), &dwNum, NULL);	// vertex buffer
-		ReInputBackPos();	//	¹é¾÷¿ë¿¡ »õ·ÎÁÂÇ¥ÀÔ·Â
+		ReInputBackPos();	//	ï¿½ï¿½ï¿½ï¿½ë¿¡ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ç¥ï¿½Ô·ï¿½
 	}
 	ReadFile(hFile, &m_iIC, sizeof(m_iIC), &dwNum, NULL);				// IndexBuffer Count.
 
@@ -809,8 +809,8 @@ bool CPondMesh::Load1001(HANDLE hFile)
 	}
 
 	
-	MakeIndex();	//	ÀÎµ¦½º¸¦ ´Ù½Ã °è»ê
-	MakeDrawRect(m_vDrawBox);	//	¿µ¿ª¶óÀÎ ¼³Á¤
+	MakeIndex();	//	ï¿½Îµï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ù½ï¿½ ï¿½ï¿½ï¿½
+	MakeDrawRect(m_vDrawBox);	//	ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 
 	m_iBackUpWidht = m_iWaterScaleWidth;
 	m_iBackUpHeight = m_iWaterScaleHeight;
@@ -825,15 +825,15 @@ bool CPondMesh::Load1000(HANDLE hFile)
 	int iLen; char szTextueFName[_MAX_PATH];
 	float fScaleTemp;
 
-	ReadFile(hFile, &m_iPondID, sizeof(m_iPondID), &dwNum, NULL);			// ¿¬¸ø ¹øÈ£
-	ReadFile(hFile, &m_dwPondAlpha, sizeof(m_dwPondAlpha), &dwNum, NULL);	// ¿¬¸ø ¾ËÆÄ
+	ReadFile(hFile, &m_iPondID, sizeof(m_iPondID), &dwNum, NULL);			// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È£
+	ReadFile(hFile, &m_dwPondAlpha, sizeof(m_dwPondAlpha), &dwNum, NULL);	// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 
-	ReadFile(hFile, &m_iWaterScaleWidth, sizeof(m_iWaterScaleWidth), &dwNum, NULL);	// ÇÑÁÙ¿¡ ÀÖ´Â Á¡ °¹¼ö
+	ReadFile(hFile, &m_iWaterScaleWidth, sizeof(m_iWaterScaleWidth), &dwNum, NULL);	// ï¿½ï¿½ï¿½Ù¿ï¿½ ï¿½Ö´ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 
 	ReadFile(hFile, &fScaleTemp, sizeof(fScaleTemp), &dwNum, NULL);
 	ReadFile(hFile, &fScaleTemp, sizeof(fScaleTemp), &dwNum, NULL);
 
-	ReadFile(hFile, &m_iVC, sizeof(m_iVC), &dwNum, NULL);			// Á¡ °¹¼ö
+	ReadFile(hFile, &m_iVC, sizeof(m_iVC), &dwNum, NULL);			// ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	if (m_iVC>0)	ReadFile(hFile, m_pVertices, m_iVC*sizeof(__Vector3), &dwNum, NULL);	// vertex buffer
 	ReadFile(hFile, &m_iIC, sizeof(m_iIC), &dwNum, NULL);			// IndexBufferCount.
 	ReadFile(hFile, &iLen, sizeof(iLen), &dwNum, NULL);				// texture name length
@@ -869,7 +869,7 @@ bool CPondMesh::Load1000(HANDLE hFile)
 	m_vDrawBox[0].x += 1.0f, m_vDrawBox[3].x += 1.0f, m_vDrawBox[1].x -= 1.0f, m_vDrawBox[2].x -= 1.0f;
 	m_vDrawBox[0].z -= 1.0f, m_vDrawBox[3].z -= 1.0f, m_vDrawBox[1].z += 1.0f, m_vDrawBox[2].z += 1.0f;
 
-	MakeDrawRect(m_vDrawBox);	//	¿Ü°û¼± ´Ù½Ã ¸¸µë
+	MakeDrawRect(m_vDrawBox);	//	ï¿½Ü°ï¿½ï¿½ï¿½ ï¿½Ù½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	//	---------------------------------------------------------------------------------------------------------
 
 	return 0;
@@ -882,20 +882,20 @@ bool CPondMesh::Load(HANDLE hFile)
 	int iLen; char szTextueFName[_MAX_PATH];
 	float fScaleTemp;
 
-	ReadFile(hFile, &m_iPondID, sizeof(m_iPondID), &dwNum, NULL);		// ¿¬¸ø ¹øÈ£
+	ReadFile(hFile, &m_iPondID, sizeof(m_iPondID), &dwNum, NULL);		// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È£
 
 	m_dwPondAlpha = 0xddffffff;
 
-	ReadFile(hFile, &m_iWaterScaleWidth, sizeof(int), &dwNum, NULL);				// ÇÑÁÙ¿¡ ÀÖ´Â Á¡ °¹¼ö
+	ReadFile(hFile, &m_iWaterScaleWidth, sizeof(int), &dwNum, NULL);				// ï¿½ï¿½ï¿½Ù¿ï¿½ ï¿½Ö´ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 
 	ReadFile(hFile, &fScaleTemp, sizeof(fScaleTemp), &dwNum, NULL);
 	ReadFile(hFile, &fScaleTemp, sizeof(fScaleTemp), &dwNum, NULL);
 
-	ReadFile(hFile, &m_iVC, sizeof(m_iVC), &dwNum, NULL);			// Á¡ °¹¼ö
+	ReadFile(hFile, &m_iVC, sizeof(m_iVC), &dwNum, NULL);			// ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	if (m_iVC>0)
 	{
 		ReadFile(hFile, m_pViewVts, m_iVC*sizeof(__VertexXyzT2), &dwNum, NULL);	// vertex buffer
-		ReInputBackPos();	//	¹é¾÷¿ë¿¡ »õ·ÎÁÂÇ¥ÀÔ·Â
+		ReInputBackPos();	//	ï¿½ï¿½ï¿½ï¿½ë¿¡ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ç¥ï¿½Ô·ï¿½
 	}
 	ReadFile(hFile, &m_iIC, sizeof(m_iIC), &dwNum, NULL);			// IndexBufferCount.
 	ReadFile(hFile, &iLen, sizeof(iLen), &dwNum, NULL);				// texture name length
@@ -928,7 +928,7 @@ bool CPondMesh::Load(HANDLE hFile)
 	m_vDrawBox[0].x += 1.0f, m_vDrawBox[3].x += 1.0f, m_vDrawBox[1].x -= 1.0f, m_vDrawBox[2].x -= 1.0f;
 	m_vDrawBox[0].z -= 1.0f, m_vDrawBox[3].z -= 1.0f, m_vDrawBox[1].z += 1.0f, m_vDrawBox[2].z += 1.0f;
 
-	MakeDrawRect(m_vDrawBox);	//	¿Ü°û¼± ´Ù½Ã ¸¸µë
+	MakeDrawRect(m_vDrawBox);	//	ï¿½Ü°ï¿½ï¿½ï¿½ ï¿½Ù½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	//	---------------------------------------------------------------------------------------------------------
 
 	return 0;
@@ -938,8 +938,8 @@ bool CPondMesh::Save(HANDLE hFile)
 {
 	DWORD dwNum = 0;
 
-	WriteFile(hFile, &m_iPondID, sizeof(m_iPondID), &dwNum, NULL);		// ¿¬¸ø ¹øÈ£
-	WriteFile(hFile, &m_dwPondAlpha, sizeof(m_dwPondAlpha), &dwNum, NULL);		// ¿¬¸ø ¾ËÆÄ
+	WriteFile(hFile, &m_iPondID, sizeof(m_iPondID), &dwNum, NULL);		// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È£
+	WriteFile(hFile, &m_dwPondAlpha, sizeof(m_dwPondAlpha), &dwNum, NULL);		// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	WriteFile(hFile, &m_fWaterHeight, sizeof(m_fWaterHeight), &dwNum, NULL);
 	WriteFile(hFile, &m_iWaterScaleWidth, sizeof(m_iWaterScaleWidth), &dwNum, NULL);
 	WriteFile(hFile, &m_iWaterScaleHeight, sizeof(m_iWaterScaleHeight), &dwNum, NULL);
@@ -949,9 +949,9 @@ bool CPondMesh::Save(HANDLE hFile)
 	WriteFile(hFile, &m_fWaterScaleZ, sizeof(m_fWaterScaleZ), &dwNum, NULL);
 	WriteFile(hFile, &m_bUVState, sizeof(m_bUVState), &dwNum, NULL);
 
-	WriteFile(hFile, m_vDrawBox, sizeof(m_vDrawBox), &dwNum, NULL);				// ÇÑÁÙ¿¡ ÀÖ´Â Á¡ °¹¼ö
+	WriteFile(hFile, m_vDrawBox, sizeof(m_vDrawBox), &dwNum, NULL);				// ï¿½ï¿½ï¿½Ù¿ï¿½ ï¿½Ö´ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 
-	WriteFile(hFile, &m_iVC, sizeof(m_iVC), &dwNum, NULL);				// Á¡ °¹¼ö
+	WriteFile(hFile, &m_iVC, sizeof(m_iVC), &dwNum, NULL);				// ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	if (m_iVC>0) WriteFile(hFile, m_pViewVts, m_iVC*sizeof(__VertexXyzT2), &dwNum, NULL);	// vertex buffer
 	WriteFile(hFile, &m_iIC, sizeof(m_iIC), &dwNum, NULL);				// IndexBuffer Count.
 
@@ -969,15 +969,15 @@ bool CPondMesh::Save(HANDLE hFile)
 
 void CPondMesh::Rotation(__Matrix44 mRot,__Vector3 vCenter)
 {
-	//	¹é¾÷(µÇµ¹¾Æ°¨)À» ÇÒ ¼öÀÖ´Ù.
+	//	ï¿½ï¿½ï¿½(ï¿½Çµï¿½ï¿½Æ°ï¿½)ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½Ö´ï¿½.
 //	if(m_bThisBackup==FALSE) m_bThisBackup = TRUE;
 
-	//	Áß°£°ªÀ» Áß½ÉÀ¸·Î È¸Àü½ÃÅ²´Ù
+	//	ï¿½ß°ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ß½ï¿½ï¿½ï¿½ï¿½ï¿½ È¸ï¿½ï¿½ï¿½ï¿½Å²ï¿½ï¿½
 	int nCount;
 	__VertexXyzT2* pViewVts = m_pViewVts;
 
 	__Vector3 vPos,vStPos;
-//	vStPos = pViewVts[(m_iVC+m_iLastVertexNum)/2].v;	//	ÇöÀç ¿¬¸øÀÇ Áß°£ À§Ä¡±¸ÇÔ
+//	vStPos = pViewVts[(m_iVC+m_iLastVertexNum)/2].v;	//	ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ß°ï¿½ ï¿½ï¿½Ä¡ï¿½ï¿½ï¿½ï¿½
 	vStPos = vCenter;
 	for(nCount = 0 ;nCount<m_iVC ; nCount++)
 	{
@@ -1003,7 +1003,7 @@ void CPondMesh::SetVtx()
 	int i,j;
 	int iNumVertex = m_iVC/m_iWaterScaleWidth;
 
-	//	 Ã³À½ ÇÑ ÁÙ¿¡ ´ëÇØ x¹æÇâ¸¸ º¯ÇÔ
+	//	 Ã³ï¿½ï¿½ ï¿½ï¿½ ï¿½Ù¿ï¿½ ï¿½ï¿½ï¿½ï¿½ xï¿½ï¿½ï¿½â¸¸ ï¿½ï¿½ï¿½ï¿½
 	pVtx->Set(pViewVtx->x,pViewVtx->y,pViewVtx->z);
 
 	for (j=1;j<m_iWaterScaleWidth;j++)
@@ -1015,7 +1015,7 @@ void CPondMesh::SetVtx()
 	pVtx += m_iWaterScaleWidth;
 	pViewVtx += m_iWaterScaleWidth;
 	
-	//	ÁÙ¿¡ ´ëÇÑ x,z¿¡ ´ëÇÑ º¯È¯
+	//	ï¿½Ù¿ï¿½ ï¿½ï¿½ï¿½ï¿½ x,zï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È¯
 	for(i = 1 ;i<iNumVertex ; i++)
 	{
 		pVtx->x = (pVtx-m_iWaterScaleWidth)->x + (pViewVtx->x-(pViewVtx-m_iWaterScaleWidth)->x) / tempX;
@@ -1033,7 +1033,7 @@ void CPondMesh::SetVtx()
 	}
 
 
-	//	Àç Á¶Á¤(È­¸é¿¡ Á¤È®È÷ ³ª¿À°Ô ÇÏ±â À§ÇØ)
+	//	ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½(È­ï¿½é¿¡ ï¿½ï¿½È®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ï±ï¿½ ï¿½ï¿½ï¿½ï¿½)
 	ReCalcUV();
 
 	m_bThisFixPosion = TRUE;
@@ -1078,9 +1078,9 @@ int CPondMesh::AddVertex(__Vector3* pvPos)
 {
 //	ASSERT(MAX_PONDMESH_VERTEX>m_iVC+2 && (m_iVC%2) == 0);
 //	ASSERT(m_iVC<2);
-	ASSERT(MAX_PONDMESH_VERTEX>m_iVC+m_iWaterScaleWidth*m_iWaterScaleHeight);	//	¾ÕÀ¸·Î ¸¸µé¾îÁú Á¡ÀÇ¼ýÀÚ°¡ max¿¡ ´ÞÇÏ´ÂÁö È®ÀÎ
+	ASSERT(MAX_PONDMESH_VERTEX>m_iVC+m_iWaterScaleWidth*m_iWaterScaleHeight);	//	ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ç¼ï¿½ï¿½Ú°ï¿½ maxï¿½ï¿½ ï¿½ï¿½ï¿½Ï´ï¿½ï¿½ï¿½ È®ï¿½ï¿½
 
-	//	Ã¹ ½ÃÀÛÁ¡°ú µÎ¹øÂ°Á¡À¸·Î 4m¾¿ ²÷¾î ³ÖÀ½
+	//	Ã¹ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Î¹ï¿½Â°ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ 4mï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	m_pVertices[m_iVC] = vPos1;
 	m_pViewVts[m_iVC].Set(vPos1,0,0,0,0);
 
@@ -1125,7 +1125,7 @@ int CPondMesh::AddVertex()
 		return m_iVC;
 	}
 
-	// ±âÁ¸ ¸¶Áö¸· µÎÁ¡°ú Á÷°¢ÀÎ ¹æÇâ ±¸ÇÏ±â(4mÀÇ °Å¸®·Î ÂïÀÎ´Ù)
+	// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ï±ï¿½(4mï¿½ï¿½ ï¿½Å¸ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Î´ï¿½)
 	__Vector3 v1, v2, v3, vDir, vDiff, vScaleDiff;
 	v1 = m_pVertices[m_iVC-2];	v2 = m_pVertices[m_iVC-1];
 

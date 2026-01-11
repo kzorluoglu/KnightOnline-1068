@@ -137,7 +137,7 @@ void CDlgDTexGroupView::OnSelchangedTreeDtexGroup(NMHDR* pNMHDR, LRESULT* pResul
 	HTREEITEM hChild = m_Tree.GetChildItem(hTree);
 	HTREEITEM hParent = m_Tree.GetParentItem(hTree);
 
-	if(hParent==NULL)// ±× ±×·ìÀÇ ´ëÇ¥ÀûÀÎ ½æ³×ÀÏ¸¸ º¸¿©ÁÖÀÚ..
+	if(hParent==NULL)// ï¿½ï¿½ ï¿½×·ï¿½ï¿½ï¿½ ï¿½ï¿½Ç¥ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ï¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½..
 	{
 		hTree = m_Tree.GetChildItem(hTree);
 		hTree = m_Tree.GetChildItem(hTree);

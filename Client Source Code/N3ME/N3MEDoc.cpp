@@ -47,8 +47,8 @@ BOOL CN3MEDoc::OnNewDocument()
 	// TODO: add reinitialization code here
 	// (SDI documents will reuse this document)
 
-	// ¸Ç Ã³À½ ½ÇÇàÇÒ¶§ AfxGetMainWnd()ÇÔ¼ö°¡ CMainFrame* À» ³Ñ°ÜÁÖÁö ¾Ê°í
-	// ActiveWindow()¸¦ ³Ñ°ÜÁÖ±â ¶§¹®¿¡ ¾Æ·¡ ¹æ½ÄÀ» »ç¿ë
+	// ï¿½ï¿½ Ã³ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ò¶ï¿½ AfxGetMainWnd()ï¿½Ô¼ï¿½ï¿½ï¿½ CMainFrame* ï¿½ï¿½ ï¿½Ñ°ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ê°ï¿½
+	// ActiveWindow()ï¿½ï¿½ ï¿½Ñ°ï¿½ï¿½Ö±ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Æ·ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
 	CWinThread* pThread = AfxGetThread();
 	if (pThread)
 	{

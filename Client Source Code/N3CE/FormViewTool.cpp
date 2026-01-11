@@ -99,12 +99,12 @@ void CFormViewTool::OnBMakeSmooth()
 			CN3Skin* pSkin = pPart->Skin(j);
 			if(NULL == pSkin) continue;
 
-			pSkin->ReGenerateSmoothNormal(); // ¹ý¼± º¤ÅÍ¸¦ ¸¸µé°í.. // ºÎµå·´°Ô °Ô»ê..
+			pSkin->ReGenerateSmoothNormal(); // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Í¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½.. // ï¿½Îµå·´ï¿½ï¿½ ï¿½Ô»ï¿½..
 		}
 	}
 
 	CMainFrame* pFrm = (CMainFrame*)AfxGetMainWnd();
-	pFrm->GetPaneRender()->InvalidateRect(NULL, FALSE); // ·»´õ¸µ..
+	pFrm->GetPaneRender()->InvalidateRect(NULL, FALSE); // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½..
 }
 
 void CFormViewTool::OnInitialUpdate() 
@@ -137,7 +137,7 @@ void CFormViewTool::OnUpdate(CView* pSender, LPARAM lHint, CObject* pHint)
 void CFormViewTool::OnSelchangeCbLod() 
 {
 	CMainFrame* pFrm = (CMainFrame*)AfxGetMainWnd();
-	pFrm->GetPaneRender()->InvalidateRect(NULL, FALSE); // ·»´õ¸µ..
+	pFrm->GetPaneRender()->InvalidateRect(NULL, FALSE); // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½..
 }
 
 void CFormViewTool::OnBAddTestSound0() 
@@ -255,9 +255,9 @@ void CFormViewTool::OnSize(UINT nType, int cx, int cy)
 	if(m_ListSound0.GetSafeHwnd() != NULL)
 	{
 		CRect rcOrg, rcClient;
-		m_ListSound0.GetWindowRect(rcOrg); // ±×·¡ÇÁ ÄÁÆ®·ÑÀÇ ¿ø·¡ È­¸é ÁÂÇ¥¸¦ 
+		m_ListSound0.GetWindowRect(rcOrg); // ï¿½×·ï¿½ï¿½ï¿½ ï¿½ï¿½Æ®ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ È­ï¿½ï¿½ ï¿½ï¿½Ç¥ï¿½ï¿½ 
 		this->GetClientRect(rcClient); // 
-		this->ClientToScreen(rcClient); // È­¸é ÁÂÇ¥·Î ¹Ù²Ù°í..
+		this->ClientToScreen(rcClient); // È­ï¿½ï¿½ ï¿½ï¿½Ç¥ï¿½ï¿½ ï¿½Ù²Ù°ï¿½..
 
 		int cx2 = rcClient.right - rcOrg.left - 5;
 		int cy2 = rcOrg.Height();
@@ -268,9 +268,9 @@ void CFormViewTool::OnSize(UINT nType, int cx, int cy)
 	if(m_ListSound1.GetSafeHwnd() != NULL)
 	{
 		CRect rcOrg, rcClient;
-		m_ListSound1.GetWindowRect(rcOrg); // ±×·¡ÇÁ ÄÁÆ®·ÑÀÇ ¿ø·¡ È­¸é ÁÂÇ¥¸¦ 
+		m_ListSound1.GetWindowRect(rcOrg); // ï¿½×·ï¿½ï¿½ï¿½ ï¿½ï¿½Æ®ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ È­ï¿½ï¿½ ï¿½ï¿½Ç¥ï¿½ï¿½ 
 		this->GetClientRect(rcClient); // 
-		this->ClientToScreen(rcClient); // È­¸é ÁÂÇ¥·Î ¹Ù²Ù°í..
+		this->ClientToScreen(rcClient); // È­ï¿½ï¿½ ï¿½ï¿½Ç¥ï¿½ï¿½ ï¿½Ù²Ù°ï¿½..
 
 		int cx2 = rcClient.right - rcOrg.left - 5;
 		int cy2 = rcOrg.Height();

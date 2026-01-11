@@ -51,8 +51,8 @@ public:
 		_RIVER_DIFF			*pDiff;
 
 		BOOL				m_bTick2Rand;
-		__Vector3			m_vCenterPo;	//	°­ÀÇ Áß°£ÁöÁ¡
-		float				m_fRadius;		//	°­ÀÇ Áö¸§
+		__Vector3			m_vCenterPo;	//	ï¿½ï¿½ï¿½ï¿½ ï¿½ß°ï¿½ï¿½ï¿½ï¿½ï¿½
+		float				m_fRadius;		//	ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 
 		_RIVER_INFO() {
 			pVertices = NULL; pwIndex = NULL; pDiff = NULL;

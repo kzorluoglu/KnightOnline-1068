@@ -205,16 +205,16 @@ bool CFXMgr::Load(HANDLE hFile)
 	this->Release();
 
 	DWORD dwRWC = 0;
-	ReadFile(hFile, &m_nEffectCount, 4, &dwRWC, NULL); // Çì´õ ÀÐ°í..
+	ReadFile(hFile, &m_nEffectCount, 4, &dwRWC, NULL); // ï¿½ï¿½ï¿½ ï¿½Ð°ï¿½..
 	
 	int nFN = 0;
 	char szFN[256] = "";
 	for(int i = 0; i < m_nEffectCount; i++)
 	{
-		ReadFile(hFile, &nFN, 4, &dwRWC, NULL); // Çì´õ ÀÐ°í..
+		ReadFile(hFile, &nFN, 4, &dwRWC, NULL); // ï¿½ï¿½ï¿½ ï¿½Ð°ï¿½..
 		if(nFN > 0)
 		{
-			ReadFile(hFile, szFN, nFN, &dwRWC, NULL); // Çì´õ ÀÐ°í..
+			ReadFile(hFile, szFN, nFN, &dwRWC, NULL); // ï¿½ï¿½ï¿½ ï¿½Ð°ï¿½..
 			szFN[nFN] = NULL;
 
 			this->EffectAddFromFile(szFN); // Effect Add

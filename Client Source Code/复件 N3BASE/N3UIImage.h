@@ -1,5 +1,5 @@
 // N3UIImage.h: interface for the CN3UIImage class.
-// º¸°­ÇØ¾ß ÇÒ Á¡ : animationµÇ´Â ÀÌ¹ÌÁöµµ ±×¸®µµ·Ï °¡´ÉÇÏ°Ô ÇÏÀÚ..
+// ï¿½ï¿½ï¿½ï¿½ï¿½Ø¾ï¿½ ï¿½ï¿½ ï¿½ï¿½ : animationï¿½Ç´ï¿½ ï¿½Ì¹ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½×¸ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï°ï¿½ ï¿½ï¿½ï¿½ï¿½..
 //////////////////////////////////////////////////////////////////////
 
 #if !defined(AFX_N3UIIMAGE_H__80AE123C_5A12_4A0E_9CF0_511ED98BB896__INCLUDED_)
@@ -15,7 +15,7 @@ class N3Texture;
 class CN3UIImage : public CN3UIBase  
 {
 #ifdef _N3TOOL
-friend class CPropertyView;	// Åø¿¡¼­ °¢ º¯¼öµéÀ» Á¢±ÙÇÏ±â À§ÇØ¼­ 
+friend class CPropertyView;	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï±ï¿½ ï¿½ï¿½ï¿½Ø¼ï¿½ 
 #endif
 
 public:
@@ -26,41 +26,41 @@ public:
 public:
 	__FLOAT_RECT*			GetUVRect() {return &m_frcUVRect;}
 protected:
-	LPDIRECT3DVERTEXBUFFER8 m_pVB;			// vertex buffer
-	CN3Texture*				m_pTexRef;		// texture ÂüÁ¶ Æ÷ÀÎÅÍ (s_TexMng¿¡¼­ °ü¸®ÇÏ¹Ç·Î ÂüÁ¶Æ÷ÀÎÅÍÀÌ´Ù.)
-	std::string				m_szTexFN;		// ÅØ½ºÃ³ ÀÌ¸§.. µû·Î °®°í ÀÖ´Â ÀÌÀ¯´Â Åø¿¡¼­ ÅØ½ºÃ³ ºÎ¸£±â°¡ ½ÇÆÐÇÒ °æ¿ì¸¦ ´ëºñÇØ¼­ÀÌ´Ù.
-	__FLOAT_RECT			m_frcUVRect;	// uv ÁÂÇ¥¸¦ ÀúÀå
-	D3DCOLOR				m_Color;		// Ä®¶ó(¹è°æ ÀÌ¹ÌÁö°¡ ¾øÀ»°æ¿ì »ç¿ëµÈ´Ù.)
+	LPDIRECT3DVERTEXBUFFER9 m_pVB;			// vertex buffer
+	CN3Texture*				m_pTexRef;		// texture ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ (s_TexMngï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï¹Ç·ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ì´ï¿½.)
+	std::string				m_szTexFN;		// ï¿½Ø½ï¿½Ã³ ï¿½Ì¸ï¿½.. ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ö´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ø½ï¿½Ã³ ï¿½Î¸ï¿½ï¿½â°¡ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ì¸¦ ï¿½ï¿½ï¿½ï¿½Ø¼ï¿½ï¿½Ì´ï¿½.
+	__FLOAT_RECT			m_frcUVRect;	// uv ï¿½ï¿½Ç¥ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+	D3DCOLOR				m_Color;		// Ä®ï¿½ï¿½(ï¿½ï¿½ï¿½ ï¿½Ì¹ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½È´ï¿½.)
 
-	float					m_fAnimFrame;	// 1ÃÊ´ç ±×·ÁÁö´Â ÀÌ¹ÌÁöÀÇ ¼ö
-	int						m_iAnimCount;	// AnimateµÇ´Â ÀÌ¹ÌÁö ¼ö(LoadÇÒ ¶§ childÀÇ ¼ýÀÚ·Î ÆÄ¾Ç)
-	int						m_fCurAnimFrame;	// ÇöÀç ±×·ÁÁú animate frame index (¼Ò¼ö´Â ¹ö¸®°í »ç¿ëÇÏÀÚ)
-	CN3UIImage**			m_pAnimImagesRef;	// Animate µÉ ÀÚ½Ä ÀÌ¹ÌÁöµé ÂüÁ¶ Æ÷ÀÎÅÍµé
+	float					m_fAnimFrame;	// 1ï¿½Ê´ï¿½ ï¿½×·ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ì¹ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½
+	int						m_iAnimCount;	// Animateï¿½Ç´ï¿½ ï¿½Ì¹ï¿½ï¿½ï¿½ ï¿½ï¿½(Loadï¿½ï¿½ ï¿½ï¿½ childï¿½ï¿½ ï¿½ï¿½ï¿½Ú·ï¿½ ï¿½Ä¾ï¿½)
+	int						m_fCurAnimFrame;	// ï¿½ï¿½ï¿½ï¿½ ï¿½×·ï¿½ï¿½ï¿½ animate frame index (ï¿½Ò¼ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½)
+	CN3UIImage**			m_pAnimImagesRef;	// Animate ï¿½ï¿½ ï¿½Ú½ï¿½ ï¿½Ì¹ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Íµï¿½
 
 //	Operations
 public:
 	D3DCOLOR	GetColor()	{ return m_Color; }
 
-	CN3Texture*		GetTex() const { return m_pTexRef; }	// Texture Æ÷ÀÎÅÍ ¾ò±â
-	void			SetTex(const std::string& szFN);		// Texture ÁöÁ¤
-	void			SetUVRect(float left, float top, float right, float bottom);	// imageÀÇ uvÁÂÇ¥ ÁöÁ¤
-	void			SetColor(D3DCOLOR color);				// Ä®¶ó ÁöÁ¤
+	CN3Texture*		GetTex() const { return m_pTexRef; }	// Texture ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
+	void			SetTex(const std::string& szFN);		// Texture ï¿½ï¿½ï¿½ï¿½
+	void			SetUVRect(float left, float top, float right, float bottom);	// imageï¿½ï¿½ uvï¿½ï¿½Ç¥ ï¿½ï¿½ï¿½ï¿½
+	void			SetColor(D3DCOLOR color);				// Ä®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 
-	virtual void	SetRegion(const RECT& Rect);					// ¿µ¿ª ÁöÁ¤
+	virtual void	SetRegion(const RECT& Rect);					// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	virtual BOOL	MoveOffset(int iOffsetX, int iOffsetY);
 	virtual void	Release();								// Release
 	virtual void	Tick();									// Tick
-	virtual void	Render();								// ±×¸®±â
+	virtual void	Render();								// ï¿½×¸ï¿½ï¿½ï¿½
 	virtual void	RenderIconWrapper();
-	virtual void	Init(CN3UIBase* pParent);				// ÃÊ±âÈ­
+	virtual void	Init(CN3UIBase* pParent);				// ï¿½Ê±ï¿½È­
 	virtual bool	Load(HANDLE hFile);
 
 	virtual void	operator = (const CN3UIImage& other);
 
 protected:
-	bool			CreateVB();								// 4°³ÀÇ vertex¸¦ °¡Áø vertex buffer »ý¼º
-	virtual void	SetVB();								// vertex buffer ´Ù½Ã ¼¼ÆÃ
-// tool¿¡¼­ »ç¿ëÇÏ´Â ÇÔ¼öµé
+	bool			CreateVB();								// 4ï¿½ï¿½ï¿½ï¿½ vertexï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ vertex buffer ï¿½ï¿½ï¿½ï¿½
+	virtual void	SetVB();								// vertex buffer ï¿½Ù½ï¿½ ï¿½ï¿½ï¿½ï¿½
+// toolï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ï´ï¿½ ï¿½Ô¼ï¿½ï¿½ï¿½
 #ifdef _N3TOOL
 public:
 	virtual bool	Save(HANDLE hFile);

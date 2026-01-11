@@ -62,9 +62,9 @@ BOOL C3DMap::LoadMap(HANDLE hFile)
 	DWORD dwNum;
 	BOOL ret = FALSE;
 
-	LoadTerrain(hFile);	// ÁöÇü ·Îµå
+	LoadTerrain(hFile);	// ï¿½ï¿½ï¿½ï¿½ ï¿½Îµï¿½
 
-	ret = ReadFile(hFile, &m_nVMeshCount, sizeof(int), &dwNum, NULL);		// VMesh °¹¼ö(Vertual Mesh)
+	ret = ReadFile(hFile, &m_nVMeshCount, sizeof(int), &dwNum, NULL);		// VMesh ï¿½ï¿½ï¿½ï¿½(Vertual Mesh)
 	if( !ret )
 		return FALSE;
 
@@ -74,7 +74,7 @@ BOOL C3DMap::LoadMap(HANDLE hFile)
 	m_pVMesh = new CN3VMesh[m_nVMeshCount];	
 	for(int i=0; i<m_nVMeshCount; ++i)
 	{
-		m_pVMesh[i].Load(hFile);								// °¹¼ö¸¸Å­ ·Îµù
+		m_pVMesh[i].Load(hFile);								// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Å­ ï¿½Îµï¿½
 	}
 
 	m_nXRegion = (m_nMapSize*(int)m_fUnitDist)/VIEW_DIST;
@@ -88,7 +88,7 @@ BOOL C3DMap::LoadMap(HANDLE hFile)
 void C3DMap::LoadTerrain(HANDLE hFile)
 {
 	DWORD dwRWC;
-	ReadFile(hFile, &m_nMapSize, sizeof(int), &dwRWC, NULL);	// °¡·Î¼¼·Î Á¤º¸°¡ ¸î°³¾¿ÀÎ°¡?
+	ReadFile(hFile, &m_nMapSize, sizeof(int), &dwRWC, NULL);	// ï¿½ï¿½ï¿½Î¼ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½î°³ï¿½ï¿½ï¿½Î°ï¿½?
 	ReadFile(hFile, &m_fUnitDist, sizeof(float), &dwRWC, NULL);
 
 	m_vNormal = new __Vector3[m_nMapSize*m_nMapSize];
@@ -99,14 +99,14 @@ void C3DMap::LoadTerrain(HANDLE hFile)
 	{
 		for(x=0;x<m_nMapSize;x++)
 		{
-			ReadFile(hFile, &(m_fHeight[x + (m_nMapSize*z)]), sizeof(float), &dwRWC, NULL);	// ³ôÀÌ°ª ÀÐ¾î¿À±â
+			ReadFile(hFile, &(m_fHeight[x + (m_nMapSize*z)]), sizeof(float), &dwRWC, NULL);	// ï¿½ï¿½ï¿½Ì°ï¿½ ï¿½Ð¾ï¿½ï¿½ï¿½ï¿½
 		}
 	}
 	for(z=0;z<m_nMapSize;z++)
 	{
 		for(x=0;x<m_nMapSize;x++)
 		{
-			ReadFile(hFile, &(m_vNormal[x + (m_nMapSize*z)]), sizeof(__Vector3), &dwRWC, NULL);	// Á¡ÀÇ Normal°ª
+			ReadFile(hFile, &(m_vNormal[x + (m_nMapSize*z)]), sizeof(__Vector3), &dwRWC, NULL);	// ï¿½ï¿½ï¿½ï¿½ Normalï¿½ï¿½
 		}
 	}
 }
@@ -139,7 +139,7 @@ float C3DMap::GetHeight(float x, float z)
 	int iX, iZ;
 	iX = (int)(x/m_fUnitDist);
 	iZ = (int)(z/m_fUnitDist);
-	//_ASSERT( iX, iZ°¡ ¹üÀ§³»¿¡ ÀÖ´Â °ªÀÎÁö Ã¼Å©ÇÏ±â);
+	//_ASSERT( iX, iZï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ö´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Ã¼Å©ï¿½Ï±ï¿½);
 
 	float y;
 	float h1, h2, h3;
@@ -161,9 +161,9 @@ float C3DMap::GetHeight(float x, float z)
 
 			//if (dX == 1.0f) return h2;
 
-			float h12 = h1+(h2-h1)*dX;	// h1°ú h2»çÀÌÀÇ ³ôÀÌ°ª
-			float h32 = h3+(h2-h3)*dX;	// h3°ú h2»çÀÌÀÇ ³ôÀÌ°ª
-			y = h32 + (h12-h32)*((dZ)/(1.0f-dX));	// Ã£°íÀÚ ÇÏ´Â ³ôÀÌ°ª
+			float h12 = h1+(h2-h1)*dX;	// h1ï¿½ï¿½ h2ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ì°ï¿½
+			float h32 = h3+(h2-h3)*dX;	// h3ï¿½ï¿½ h2ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ì°ï¿½
+			y = h32 + (h12-h32)*((dZ)/(1.0f-dX));	// Ã£ï¿½ï¿½ï¿½ï¿½ ï¿½Ï´ï¿½ ï¿½ï¿½ï¿½Ì°ï¿½
 		}
 		else
 		{
@@ -173,9 +173,9 @@ float C3DMap::GetHeight(float x, float z)
 
 			if (dX == 0.0f) return h1;
 
-			float h12 = h1+(h2-h1)*dX;	// h1°ú h2»çÀÌÀÇ ³ôÀÌ°ª
-			float h13 = h1+(h3-h1)*dX;	// h1°ú h3»çÀÌÀÇ ³ôÀÌ°ª
-			y = h13 + (h12-h13)*((1.0f-dZ)/(dX));	// Ã£°íÀÚ ÇÏ´Â ³ôÀÌ°ª
+			float h12 = h1+(h2-h1)*dX;	// h1ï¿½ï¿½ h2ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ì°ï¿½
+			float h13 = h1+(h3-h1)*dX;	// h1ï¿½ï¿½ h3ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ì°ï¿½
+			y = h13 + (h12-h13)*((1.0f-dZ)/(dX));	// Ã£ï¿½ï¿½ï¿½ï¿½ ï¿½Ï´ï¿½ ï¿½ï¿½ï¿½Ì°ï¿½
 		}
 	}
 	else
@@ -188,9 +188,9 @@ float C3DMap::GetHeight(float x, float z)
 
 			//if (dX == 1.0f) return h2;
 
-			float h12 = h1+(h2-h1)*dX;	// h1°ú h2»çÀÌÀÇ ³ôÀÌ°ª
-			float h32 = h3+(h2-h3)*dX;	// h3°ú h2»çÀÌÀÇ ³ôÀÌ°ª
-			y = h12 + (h32-h12)*((1.0f-dZ)/(1.0f-dX));	// Ã£°íÀÚ ÇÏ´Â ³ôÀÌ°ª
+			float h12 = h1+(h2-h1)*dX;	// h1ï¿½ï¿½ h2ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ì°ï¿½
+			float h32 = h3+(h2-h3)*dX;	// h3ï¿½ï¿½ h2ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ì°ï¿½
+			y = h12 + (h32-h12)*((1.0f-dZ)/(1.0f-dX));	// Ã£ï¿½ï¿½ï¿½ï¿½ ï¿½Ï´ï¿½ ï¿½ï¿½ï¿½Ì°ï¿½
 		}
 		else
 		{
@@ -200,9 +200,9 @@ float C3DMap::GetHeight(float x, float z)
 
 			if (dX == 0.0f) return h1;
 
-			float h12 = h1+(h2-h1)*dX;	// h1°ú h2»çÀÌÀÇ ³ôÀÌ°ª
-			float h13 = h1+(h3-h1)*dX;	// h1°ú h3»çÀÌÀÇ ³ôÀÌ°ª
-			y = h12 + (h13-h12)*((dZ)/(dX));	// Ã£°íÀÚ ÇÏ´Â ³ôÀÌ°ª
+			float h12 = h1+(h2-h1)*dX;	// h1ï¿½ï¿½ h2ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ì°ï¿½
+			float h13 = h1+(h3-h1)*dX;	// h1ï¿½ï¿½ h3ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ì°ï¿½
+			y = h12 + (h13-h12)*((dZ)/(dX));	// Ã£ï¿½ï¿½ï¿½ï¿½ ï¿½Ï´ï¿½ ï¿½ï¿½ï¿½Ì°ï¿½
 		}
 	}
 	return y;

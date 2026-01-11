@@ -17,10 +17,10 @@ const int NUM_CUBEVERTEX = 36;
 
 struct __DUMMYCUBE
 {
-	int iType;		// Center , X, Y, Z Á¾·ù ±¸ºÐ.
-	__VertexXyzNormalColor	Vertices[NUM_CUBEVERTEX];	// Å¥ºêÀÇ ±¸¼º Á¡µé
-	__Vector3				vCenterPos;	// Å¥ºêÀÇ °¡¿îµ¥ Á¡
-	float					fDistance;	// Ä«¸Þ¶ó¿ÍÀÇ °Å¸®
+	int iType;		// Center , X, Y, Z ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½.
+	__VertexXyzNormalColor	Vertices[NUM_CUBEVERTEX];	// Å¥ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+	__Vector3				vCenterPos;	// Å¥ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½îµ¥ ï¿½ï¿½
+	float					fDistance;	// Ä«ï¿½Þ¶ï¿½ï¿½ï¿½ï¿½ ï¿½Å¸ï¿½
 };
 
 class CLyTerrain;
@@ -36,29 +36,29 @@ public:
 // Attributes
 public:
 protected:
-	__DUMMYCUBE			m_DummyCubes[NUM_DUMMY];	// 4°³ÀÇ Å¥ºê(center, x, y, z);
-	__VertexXyzColor	m_LineVertices[6];			// 4°³ÀÇ Å¥ºê¸¦ ÀÌ¾îÁÖ´Â ¼±À» ±¸¼ºÇÏ´Â Á¡
-	CTypedPtrArray<CPtrArray, CN3Transform*> m_SelObjArray;	// MapMng¿¡¼­ ¼±ÅÃµÈ °´Ã¼µé
-	__DUMMYCUBE*		m_pSortedCubes[NUM_DUMMY];	// Cube °Å¸®¿¡ µû¶ó Á¤·ÄµÈ Æ÷ÀÎÅÍ
-	__DUMMYCUBE*		m_pSelectedCube;			// ¼±ÅÃµÈ Å¥ºê
-	__Vector3			m_vPrevPos;	// ÀÌ¹ø ¸¶¿ì½º µå·¡±× ÀÌÀü¿¡ À§Ä¡ È¸Àü È®´ë/Ãà¼Ò°ª
-	__Quaternion		m_qPrevRot;	// ÀÌ¹ø ¸¶¿ì½º µå·¡±× ÀÌÀü¿¡ À§Ä¡ È¸Àü È®´ë/Ãà¼Ò°ª
-	__Vector3*			m_vPrevScaleArray;	// ÀÌ¹ø ¸¶¿ì½º µå·¡±× ÀÌÀü¿¡ È®´ë/Ãà¼Ò°ªµé (¼±ÅÃµÈ °´Ã¼µé ¸ðµÎÀÇ °ªÀ» °¡Áö°í ÀÖ¾î¾ß ÇÏ±â ¶§¹®¿¡ ¹è¿­)
+	__DUMMYCUBE			m_DummyCubes[NUM_DUMMY];	// 4ï¿½ï¿½ï¿½ï¿½ Å¥ï¿½ï¿½(center, x, y, z);
+	__VertexXyzColor	m_LineVertices[6];			// 4ï¿½ï¿½ï¿½ï¿½ Å¥ï¿½ê¸¦ ï¿½Ì¾ï¿½ï¿½Ö´ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½ ï¿½ï¿½
+	CTypedPtrArray<CPtrArray, CN3Transform*> m_SelObjArray;	// MapMngï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ãµï¿½ ï¿½ï¿½Ã¼ï¿½ï¿½
+	__DUMMYCUBE*		m_pSortedCubes[NUM_DUMMY];	// Cube ï¿½Å¸ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Äµï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	__DUMMYCUBE*		m_pSelectedCube;			// ï¿½ï¿½ï¿½Ãµï¿½ Å¥ï¿½ï¿½
+	__Vector3			m_vPrevPos;	// ï¿½Ì¹ï¿½ ï¿½ï¿½ï¿½ì½º ï¿½å·¡ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ä¡ È¸ï¿½ï¿½ È®ï¿½ï¿½/ï¿½ï¿½Ò°ï¿½
+	__Quaternion		m_qPrevRot;	// ï¿½Ì¹ï¿½ ï¿½ï¿½ï¿½ì½º ï¿½å·¡ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ä¡ È¸ï¿½ï¿½ È®ï¿½ï¿½/ï¿½ï¿½Ò°ï¿½
+	__Vector3*			m_vPrevScaleArray;	// ï¿½Ì¹ï¿½ ï¿½ï¿½ï¿½ì½º ï¿½å·¡ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ È®ï¿½ï¿½/ï¿½ï¿½Ò°ï¿½ï¿½ï¿½ (ï¿½ï¿½ï¿½Ãµï¿½ ï¿½ï¿½Ã¼ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ö¾ï¿½ï¿½ ï¿½Ï±ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½è¿­)
 
 // Operations
 public:
 	virtual void Tick();
 	virtual void Render();
 	virtual void Release();
-	virtual void SetSelObj(CN3Transform* pObj);		// ¼±ÅÃµÈ °´Ã¼ ¹Ù²Ù±â
-	virtual void AddSelObj(CN3Transform* pObj);	// ¼±ÅÃµÈ °´Ã¼ Ãß°¡
-	virtual BOOL MouseMsgFilter(LPMSG pMsg);	// ¸¶¿ì½º ¸Þ¼¼Áö Ã³¸®
-	void GetPickRay(POINT point, __Vector3& vDir, __Vector3& vOrig);	// ¸¶¿ì½º Æ÷ÀÎÅÍ°¡ °¡¸®Å°´Â ÂÊÀ¸·Î »¸¾î³ª°¡´Â ¼± ¾ò´Â ÇÔ¼ö
+	virtual void SetSelObj(CN3Transform* pObj);		// ï¿½ï¿½ï¿½Ãµï¿½ ï¿½ï¿½Ã¼ ï¿½Ù²Ù±ï¿½
+	virtual void AddSelObj(CN3Transform* pObj);	// ï¿½ï¿½ï¿½Ãµï¿½ ï¿½ï¿½Ã¼ ï¿½ß°ï¿½
+	virtual BOOL MouseMsgFilter(LPMSG pMsg);	// ï¿½ï¿½ï¿½ì½º ï¿½Þ¼ï¿½ï¿½ï¿½ Ã³ï¿½ï¿½
+	void GetPickRay(POINT point, __Vector3& vDir, __Vector3& vOrig);	// ï¿½ï¿½ï¿½ì½º ï¿½ï¿½ï¿½ï¿½ï¿½Í°ï¿½ ï¿½ï¿½ï¿½ï¿½Å°ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½î³ªï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½Ô¼ï¿½
 protected:
-	__DUMMYCUBE* Pick(int x, int y);	// Å¥ºê picking
-	void InitDummyCube(int iType, __DUMMYCUBE* pDummyCube, __Vector3& vOffset, D3DCOLOR color);	// Å¥ºê ÃÊ±âÈ­
-	static int SortCube(const void* pArg1, const void* pArg2);	// Å¥ºê Ä«¸Þ¶ó °Å¸®¿¡ ´ëÇÑ Á¤·ÄÇÔ¼ö
-	virtual void TransDiff(__Vector3* pvDiffPos, __Quaternion* pvDiffRot, __Vector3* pvDiffScale);		// Â÷ÀÌ¸¸Å­ ¼±ÅÃµÈ ¿À¹ÇÁ§Æ®µéÀ» º¯Çü½ÃÅ²´Ù.
+	__DUMMYCUBE* Pick(int x, int y);	// Å¥ï¿½ï¿½ picking
+	void InitDummyCube(int iType, __DUMMYCUBE* pDummyCube, __Vector3& vOffset, D3DCOLOR color);	// Å¥ï¿½ï¿½ ï¿½Ê±ï¿½È­
+	static int SortCube(const void* pArg1, const void* pArg2);	// Å¥ï¿½ï¿½ Ä«ï¿½Þ¶ï¿½ ï¿½Å¸ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ô¼ï¿½
+	virtual void TransDiff(__Vector3* pvDiffPos, __Quaternion* pvDiffRot, __Vector3* pvDiffScale);		// ï¿½ï¿½ï¿½Ì¸ï¿½Å­ ï¿½ï¿½ï¿½Ãµï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Å²ï¿½ï¿½.
 };
 
 #endif // !defined(AFX_TRANSDUMMY_H__EBD00CDE_FCE8_411E_A7A3_020D137904E2__INCLUDED_)

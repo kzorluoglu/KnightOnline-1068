@@ -138,7 +138,7 @@ void CN3IndoorView::TickRender()
 	pFrm->m_Eng.s_lpD3DDev->EndScene();
 	pFrm->m_Eng.Present(m_hWnd);
 
-	// ÇÁ·¹ÀÓ Ç¥½Ã
+	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Ç¥ï¿½ï¿½
 	DWORD dwTick = GetTickCount();
 	static DWORD dwTickPrev = dwTick;
 	static CString szFPS;
@@ -195,7 +195,7 @@ BOOL CN3IndoorView::ExecuteModeMsgFilter(MSG* pMsg)
 				float fRY = 0.01f;
 				switch(pMsg->wParam)
 				{
-					case 0x41:					// ¿ÞÂÊ..
+					case 0x41:					// ï¿½ï¿½ï¿½ï¿½..
 						if (m_bExecuteCameraTop) 
 						{
 							pView->RestoreExecuteCameraChange();
@@ -211,7 +211,7 @@ BOOL CN3IndoorView::ExecuteModeMsgFilter(MSG* pMsg)
 						}
 						break;
 
-					case 0x44:					// ¿À¸¥ÂÊ..
+					case 0x44:					// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½..
 						if (m_bExecuteCameraTop) 
 						{
 							pView->RestoreExecuteCameraChange();
@@ -227,7 +227,7 @@ BOOL CN3IndoorView::ExecuteModeMsgFilter(MSG* pMsg)
 						}
 						break;
 
-					case 0x57:					// ÀüÁø..
+					case 0x57:					// ï¿½ï¿½ï¿½ï¿½..
 						if (m_bExecuteCameraTop) 
 						{
 							pView->RestoreExecuteCameraChange();
@@ -249,7 +249,7 @@ BOOL CN3IndoorView::ExecuteModeMsgFilter(MSG* pMsg)
 						}
 						break;
 
-					case 0x53:					// ÈÄÁø..
+					case 0x53:					// ï¿½ï¿½ï¿½ï¿½..
 						if (m_bExecuteCameraTop) 
 						{
 							pView->RestoreExecuteCameraChange();
@@ -271,7 +271,7 @@ BOOL CN3IndoorView::ExecuteModeMsgFilter(MSG* pMsg)
 						}
 						break;
 
-					case 0x58:					// ¹ØÀ¸·Î..
+					case 0x58:					// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½..
 						if (m_bExecuteCameraTop) 
 						{
 							pView->RestoreExecuteCameraChange();
@@ -287,7 +287,7 @@ BOOL CN3IndoorView::ExecuteModeMsgFilter(MSG* pMsg)
 						}
 						break;
 
-					case 0x43:					// À§·Î..
+					case 0x43:					// ï¿½ï¿½ï¿½ï¿½..
 						if (m_bExecuteCameraTop) 
 						{
 							pView->RestoreExecuteCameraChange();
@@ -331,7 +331,7 @@ void CN3IndoorView::RenderDragRect(RECT* rc)
 	hr = pD3DDev->SetTextureStageState( 0, D3DTSS_COLOROP, D3DTOP_SELECTARG1);
 	hr = pD3DDev->SetTextureStageState( 0, D3DTSS_COLORARG1, D3DTA_DIFFUSE);
 
-	hr = pD3DDev->SetVertexShader( FVF_TRANSFORMEDCOLOR );
+	hr = pD3DDev->SetFVF( FVF_TRANSFORMEDCOLOR );
 	hr = pD3DDev->DrawPrimitiveUP( D3DPT_LINESTRIP, 4, Vertices, sizeof(__VertexTransformedColor));
 }
 
@@ -351,7 +351,7 @@ BOOL CN3IndoorView::CustomCameraMove(MSG* pMsg)
 
 	if (pFrm->m_pDummy && pFrm->m_pDummy->MouseMsgFilter(pMsg))	return TRUE;
 
-	// ³ª¸ÓÁö °´Ã¼ ¼±ÅÃ ¹× ¹èÄ¡
+	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ã¼ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½Ä¡
 	static BOOL bSelectDrag = FALSE;
 	switch(pMsg->message)
 	{
@@ -399,7 +399,7 @@ BOOL CN3IndoorView::CustomCameraMove(MSG* pMsg)
 			}
 			break;
 
-		case WM_LBUTTONDOWN:	// °´Ã¼ ¼±ÅÃ
+		case WM_LBUTTONDOWN:	// ï¿½ï¿½Ã¼ ï¿½ï¿½ï¿½ï¿½
 			{
 				if (!::_IsKeyDown(VK_MENU))
 				{
@@ -423,11 +423,11 @@ BOOL CN3IndoorView::CustomCameraMove(MSG* pMsg)
 			}
 			break;
 
-		case WM_LBUTTONUP:	// °´Ã¼ ¼±ÅÃ
+		case WM_LBUTTONUP:	// ï¿½ï¿½Ã¼ ï¿½ï¿½ï¿½ï¿½
 			{
 				if (bSelectDrag)
 				{
-					if (abs(m_rcSelDrag.left-point.x)<6 && abs(m_rcSelDrag.top-point.y) < 6) // Å¬¸¯ÇÑ°É·Î °£ÁÖ
+					if (abs(m_rcSelDrag.left-point.x)<6 && abs(m_rcSelDrag.top-point.y) < 6) // Å¬ï¿½ï¿½ï¿½Ñ°É·ï¿½ ï¿½ï¿½ï¿½ï¿½
 					{
 						CPortalVolume* pVol = NULL;
 						pVol = pView->m_PVSMgr.PickCollision(point.x, point.y);
@@ -436,7 +436,7 @@ BOOL CN3IndoorView::CustomCameraMove(MSG* pMsg)
 					}
 					else
 					{	
-					   // µå·¹±× ÇÑ °Í
+					   // ï¿½å·¹ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½
 						if (m_rcSelDrag.left > point.x)
 						{	m_rcSelDrag.right = m_rcSelDrag.left; m_rcSelDrag.left = point.x; }
 						else m_rcSelDrag.right = point.x;
@@ -449,7 +449,7 @@ BOOL CN3IndoorView::CustomCameraMove(MSG* pMsg)
 					bSelectDrag = FALSE;
 					m_rcSelDrag.left = m_rcSelDrag.top = m_rcSelDrag.right = m_rcSelDrag.bottom = 0;
 
-					// À§Ä¡, È¸Àü°ªµîÀ» ¾÷µ¥ÀÌÆ®ÇÑ´Ù.
+					// ï¿½ï¿½Ä¡, È¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®ï¿½Ñ´ï¿½.
 					
 					return TRUE;
 				}

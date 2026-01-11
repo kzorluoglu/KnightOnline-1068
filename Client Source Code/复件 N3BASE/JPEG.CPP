@@ -63,10 +63,10 @@ void CJpeg::LoadJPG(LPCSTR FileName)
 		FindSOF(); // Frame Header Loading
 		FindSOS(); // Scan Header Loading & Decoding
 		
-		if( (*pByte == 0xff) && (*(pByte+1) == 0xd9) ) // ³¡À» ¸¸³µÀ» ¶§
+		if( (*pByte == 0xff) && (*(pByte+1) == 0xd9) ) // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½
 			break;
 		Count++;
-		if(Count > 50) // Loop°¡ ³¡³¯ °¡´É¼ºÀÌ °ÅÀÇ ¾øÀ» ¶§
+		if(Count > 50) // Loopï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½É¼ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½
 			break;		
 	}
 
@@ -86,7 +86,7 @@ void CJpeg::FindDHT()
 	if( (m_pBuf[m_Index] == 0xff) && (m_pBuf[m_Index+1] == 0xc4) )
 	{
 		WORD SegSize = m_pBuf[m_Index+2]*256 + m_pBuf[m_Index+3];
-		//¹öÆÛÀÇ ÇöÀç À§Ä¡¸¦ Æ÷ÀÎÅÍ·Î ¼³Á¤ÇÑ´Ù.
+		//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ä¡ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Í·ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ñ´ï¿½.
 		BYTE *p = &m_pBuf[m_Index+4];		
 
 		do
@@ -97,7 +97,7 @@ void CJpeg::FindDHT()
 			BYTE Th = *p; // Table Number
 			memcpy(BITS, p, 17);
 			p = p + 17;
-			//17°³ÀÇ °ªÀ» ¸ðµÎ ´õÇØ¼­ Num¿¡ ÀúÀå
+			//17ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ø¼ï¿½ Numï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 			for(i=1; i<17; i++)
 				Num = Num + BITS[i];		
 
@@ -106,9 +106,9 @@ void CJpeg::FindDHT()
 			TbH[Th].HUFFCODE = new WORD[Num+1];			
 			TbH[Th].HUFFSIZE = new BYTE[Num+1];
 			TbH[Th].HUFFVAL = new BYTE[Num+1];
-			//Huffman Value °ªÀ» NumÅ©±â¸¸Å­ p¿¡¼­ ÀÐ´Â´Ù.
+			//Huffman Value ï¿½ï¿½ï¿½ï¿½ NumÅ©ï¿½â¸¸Å­ pï¿½ï¿½ï¿½ï¿½ ï¿½Ð´Â´ï¿½.
 			memcpy(TbH[Th].HUFFVAL, p, Num);			
-			//p°¡ Áõ°¡
+			//pï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 			p = p + Num;
 
 			
@@ -262,7 +262,7 @@ void CJpeg::FindSOS()
 
 		m_Index = m_Index + SegSize + 2;
 
-		// ÃÖ´ë Sampling Factor ±¸ÇÔ //
+		// ï¿½Ö´ï¿½ Sampling Factor ï¿½ï¿½ï¿½ï¿½ //
 		Hmax = Vmax = 0;
 		for(i=0; i<FrameHeader.Nf; i++)
 		{
@@ -272,11 +272,11 @@ void CJpeg::FindSOS()
 				Vmax = FrameHeader.V[i];
 		}
 		
-		// ½ÇÁ¦ ÀÌ¹ÌÁö »çÀÌÁî ÀúÀå //
+		// ï¿½ï¿½ï¿½ï¿½ ï¿½Ì¹ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ //
 		m_rWidth = FrameHeader.X;
 		m_rHeight = FrameHeader.Y;
 		
-		// ÀÌ¹ÌÁö »çÀÌÁî¸¦ MCU Å©±â¿¡ ¸Â¾Æ ¶³¾îÁöµµ·Ï ´Ù½Ã °è»ê //		
+		// ï¿½Ì¹ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½î¸¦ MCU Å©ï¿½â¿¡ ï¿½Â¾ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ù½ï¿½ ï¿½ï¿½ï¿½ //		
 		if(FrameHeader.X % (8 * Hmax) != 0)
 			FrameHeader.X = (FrameHeader.X / (8*Hmax) + 1)*(8*Hmax);
 		if(FrameHeader.Y % (8 * Vmax) != 0)
@@ -369,8 +369,8 @@ void CJpeg::DecodeAC(int Th)
 	memset((LPSTR)&ZZ[1], 0, 63 * sizeof(short));
 	BYTE RS, SSSS, RRRR, R;
 
-	// RRRR : ZZ¿¡¼­ 0 ÀÌ ¾Æ´Ñ Àü °ªÀ¸·ÎºÎÅÍÀÇ »ó´ëÀûÀÎ À§Ä¡
-	// SSSS : 0ÀÌ ¾Æ´Ñ °ªÀÇ ¹üÀ§(category)
+	// RRRR : ZZï¿½ï¿½ï¿½ï¿½ 0 ï¿½ï¿½ ï¿½Æ´ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Îºï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ä¡
+	// SSSS : 0ï¿½ï¿½ ï¿½Æ´ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½(category)
 	
 
 	while(TRUE)
@@ -591,10 +591,10 @@ void CJpeg::Decode()
 
 	MCU = new SET[Vmax * Hmax * 64];
 
-	// NextByte ÇÔ¼ö¸¦ À§ÇÑ Æ÷ÀÎÅÍ ¸®¼Â //
+	// NextByte ï¿½Ô¼ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ //
 	pByte = &m_pBuf[m_Index];
 	
-	// ½ÇÁúÀûÀÎ Decoding Procedure //
+	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Decoding Procedure //
 	int Count = 0;///
 	
 	for(i=0; i<my; i++)
@@ -620,7 +620,7 @@ void CJpeg::Decode()
 
 
 
-	// RGB ·Î ¹Ù²Þ //
+	// RGB ï¿½ï¿½ ï¿½Ù²ï¿½ //
 	ConvertYUV2RGB();
 
 }
@@ -694,7 +694,7 @@ void CJpeg::ConvertYUV2RGB()
 		delete [] m_pData;
 		m_pData = pBuf2;
 
-		// º»·¡ÀÇ ÀÌ¹ÌÁö »çÀÌÁî·Î º¹¿ø //
+		// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ì¹ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ //
 		FrameHeader.X = m_rWidth;
 		FrameHeader.Y = m_rHeight;
 	}
@@ -719,18 +719,18 @@ void CJpeg::SaveJPG(LPCSTR FileName, int Width, int Height, BYTE *pp)
 	m_rWidth = Width;
 	m_rHeight = Height;	
 	
-	int BMPWidth = (Width * 3 + 3)/4*4; // BITMAPÀÇ 4ÀÇ ¹è¼öÀÎ ³ÐÀÌ
+	int BMPWidth = (Width * 3 + 3)/4*4; // BITMAPï¿½ï¿½ 4ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	int bWidth = Width;
 	int bHeight = Height;
 
 	if(Width % 8 != 0)
-		bWidth = (Width/8 + 1)*8; // bWidth ´Â 8ÀÇ ¹è¼ö·Î ¸¸µç ³ÐÀÌ
+		bWidth = (Width/8 + 1)*8; // bWidth ï¿½ï¿½ 8ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	if(Height % 8 != 0)
-		bHeight = (Height/8 + 1)*8; // bHeight ´Â 8ÀÇ ¹è¼ö·Î ¸¸µç ³ôÀÌ
+		bHeight = (Height/8 + 1)*8; // bHeight ï¿½ï¿½ 8ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 
 	int i, j, k;
 
-	// Huffman Table ÃÊ±âÈ­ //
+	// Huffman Table ï¿½Ê±ï¿½È­ //
 	for(i=0; i<20; i++)
 	{
 		if(TbH[i].Flag)
@@ -746,24 +746,24 @@ void CJpeg::SaveJPG(LPCSTR FileName, int Width, int Height, BYTE *pp)
 	if (fh == INVALID_HANDLE_VALUE)
 		return;
 	PutSOI(fh);						// Start Of Image //
-	PutDQT(fh);						// Quantization Table ÀúÀå //
-	PutDHT(fh);						// Huffman Table ÀúÀå //
-	PutSOF(fh, Width, Height);		// FrameHeader ÀúÀå //
-	PutSOS(fh);						// Scan Header ÀúÀå //
+	PutDQT(fh);						// Quantization Table ï¿½ï¿½ï¿½ï¿½ //
+	PutDHT(fh);						// Huffman Table ï¿½ï¿½ï¿½ï¿½ //
+	PutSOF(fh, Width, Height);		// FrameHeader ï¿½ï¿½ï¿½ï¿½ //
+	PutSOS(fh);						// Scan Header ï¿½ï¿½ï¿½ï¿½ //
 
 
-	// ¹öÆÛ¸¦ ¸¶·ÃÇÕ½Ã´Ù! //
+	// ï¿½ï¿½ï¿½Û¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Õ½Ã´ï¿½! //
 	if(m_pData != NULL)
 		delete [] m_pData;	
 	m_pData = new BYTE[(bWidth * 3) * bHeight];
 
-	memset(m_pData, 0, (bWidth * 3) * bHeight); // 0À¸·Î ÃÊ±âÈ­ //
+	memset(m_pData, 0, (bWidth * 3) * bHeight); // 0ï¿½ï¿½ï¿½ï¿½ ï¿½Ê±ï¿½È­ //
 
-	// 8ÀÇ ¹è¼ö¿¡ ¸Âµµ·Ï ¹öÆÛ¸¦ ¸¸µé¾î¼­ ¿ø·¡ ÀÌ¹ÌÁö¸¦ º¹»çÇÕ´Ï´Ù //
+	// 8ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Âµï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Û¸ï¿½ ï¿½ï¿½ï¿½ï¿½î¼­ ï¿½ï¿½ï¿½ï¿½ ï¿½Ì¹ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Õ´Ï´ï¿½ //
 	for(i=0; i<Height; i++)
 		memcpy(&m_pData[i*(bWidth*3)], &pp[i*BMPWidth], BMPWidth);
 
-	// RGB Color¸¦ YCbCr Color·Î º¯È¯ÇÕ´Ï´Ù. //
+	// RGB Colorï¿½ï¿½ YCbCr Colorï¿½ï¿½ ï¿½ï¿½È¯ï¿½Õ´Ï´ï¿½. //
 	float R, G, B;
 	float y, cb, cr;
 	BYTE *pos;	
@@ -878,8 +878,8 @@ void CJpeg::SaveJPG(LPCSTR FileName, int Width, int Height, BYTE *pp)
 	delete [] DC2;
 	delete [] DC3;	
 
-	/* AC ÇãÇÁ¸¸ Å×ÀÌºí °Ë»öÀ» ºü¸£°Ô ÇÏ±â À§ÇÏ¿©
-	   ÇãÇÁ¸¸ Å×ÀÌºí ±¸Á¶Ã¼¿¡ ÀÖ´Â *PT¸¦ ¼³Á¤ÇÑ´Ù. */
+	/* AC ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ìºï¿½ ï¿½Ë»ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ï±ï¿½ ï¿½ï¿½ï¿½Ï¿ï¿½
+	   ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ìºï¿½ ï¿½ï¿½ï¿½ï¿½Ã¼ï¿½ï¿½ ï¿½Ö´ï¿½ *PTï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ñ´ï¿½. */
 
 
 	int Num, iTh[4] = {16, 17}, Th, key;
@@ -908,9 +908,9 @@ void CJpeg::SaveJPG(LPCSTR FileName, int Width, int Height, BYTE *pp)
 
 	/* HUFFMAN CODE ENCODEING!! */
 	 
-	m_pBuf = new BYTE[bWidth * bHeight * 3]; // ½ÇÁ¦·Î ÀÎÄÚµùµÈ µ¥ÀÌÅÍ°¡ ÀúÀåµÉ ¹öÆÛ
-	m_Index = 0; // ÀÎµ¦½º ¸®¼Â
-	cnt = 0; // BitÃÑ ¸®¼Â 
+	m_pBuf = new BYTE[bWidth * bHeight * 3]; // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Úµï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Í°ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+	m_Index = 0; // ï¿½Îµï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+	cnt = 0; // Bitï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ 
 	
 	hEncode(bWidth, bHeight);
 
@@ -924,7 +924,7 @@ void CJpeg::SaveJPG(LPCSTR FileName, int Width, int Height, BYTE *pp)
 	PutEOI(fh);
 	
 	
-	// ÀÓ½Ã ¸Þ¸ð¸® ¸ðµÎ ÇØÁ¦ //
+	// ï¿½Ó½ï¿½ ï¿½Þ¸ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ //
 
 	for(i=0; i<2; i++)
 	{
@@ -945,7 +945,7 @@ void CJpeg::SaveJPG(LPCSTR FileName, int Width, int Height, BYTE *pp)
 	delete [] Cb;
 	delete [] Cr;
 
-	// ÆÄÀÏ Æó¼â //
+	// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ //
 
 	CloseHandle(fh);
 	
@@ -953,7 +953,7 @@ void CJpeg::SaveJPG(LPCSTR FileName, int Width, int Height, BYTE *pp)
 
 void CJpeg::PutSOI(HANDLE hFile)
 {
-	// SOI ÀúÀå //
+	// SOI ï¿½ï¿½ï¿½ï¿½ //
 	DWORD dwWritten;
 	WORD Marker = (0xd8 << 8) | 0xff;
 	WriteFile(hFile,(LPSTR)&Marker,2,&dwWritten,NULL);
@@ -1095,7 +1095,7 @@ void CJpeg::PutDQT(HANDLE hFile)
 
 void CJpeg::DCT(short * pos, int bWidth, BOOL Flag)
 {
-	// DCT ºÐ¸¸ ¾Æ´Ï¶ó, DCT ÈÄÀÇ Zigzag ±îÁö... °Ô´Ù°¡ Quantization ±îÁö!?//
+	// DCT ï¿½Ð¸ï¿½ ï¿½Æ´Ï¶ï¿½, DCT ï¿½ï¿½ï¿½ï¿½ Zigzag ï¿½ï¿½ï¿½ï¿½... ï¿½Ô´Ù°ï¿½ Quantization ï¿½ï¿½ï¿½ï¿½!?//
 	
 	BYTE Qtb0[64] ={16, 11, 12, 14, 12, 10, 16, 14, 
 					13, 14, 18, 17, 16, 19, 24, 40, 
@@ -1191,8 +1191,8 @@ void CJpeg::Zigzag2()
 
 void CJpeg::PutDHT(HANDLE hFile)
 {
-	/* standard ÇãÇÁ¸¸ Å×ÀÌºíÀ» ÀÐ¾îµé¿©¼­ ¸â¹ö ±¸Á¶Ã¼¿¡ ¼³Á¤ÇÑ
-	   ÈÄ ÀúÀåÇÏ°íÀÚ ÇÏ´Â ÆÄÀÏ¿¡ Àû¾î³Ö´Â ÇÔ¼öÀÔ´Ï´Ù. */	
+	/* standard ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ìºï¿½ï¿½ï¿½ ï¿½Ð¾ï¿½é¿©ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ã¼ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	   ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï°ï¿½ï¿½ï¿½ ï¿½Ï´ï¿½ ï¿½ï¿½ï¿½Ï¿ï¿½ ï¿½ï¿½ï¿½ï¿½Ö´ï¿½ ï¿½Ô¼ï¿½ï¿½Ô´Ï´ï¿½. */	
 	
 	m_pBuf = new BYTE[421];	
 	BYTE HuffTb[421] = {255, 196, 1, 162, 0, 0, 1, 5, 1, 1, 1, 
@@ -1241,7 +1241,7 @@ void CJpeg::PutDHT(HANDLE hFile)
 						231, 232, 233, 234, 242, 243, 244, 245, 
 						246, 247, 248, 249, 250, 255};
 	memcpy(m_pBuf, HuffTb, 421);
-	m_Index = 0; // Huffman TableÀ» ÀÐ¾îµéÀÌ±â À§ÇÏ¿© Index¸¦ Reset
+	m_Index = 0; // Huffman Tableï¿½ï¿½ ï¿½Ð¾ï¿½ï¿½ï¿½Ì±ï¿½ ï¿½ï¿½ï¿½Ï¿ï¿½ Indexï¿½ï¿½ Reset
 	FindDHT();
 	//_lwrite(hFile, (LPSTR)m_pBuf, 420);
 	DWORD	dwWritten;
@@ -1249,7 +1249,7 @@ void CJpeg::PutDHT(HANDLE hFile)
 	delete [] m_pBuf;
 }
 
-// ÁÖ¾îÁø °ªÀÌ ¾î´À ÄÉÆ¼°í¸®¿¡ ¼Ò¼ÓµÇ´Â Áö¸¦ ¹ÝÈ¯ÇÏ´Â ÇÔ¼ö //
+// ï¿½Ö¾ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½Æ¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ò¼ÓµÇ´ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È¯ï¿½Ï´ï¿½ ï¿½Ô¼ï¿½ //
 BYTE CJpeg::GetCategory(short V)
 {	
 	BYTE Num = 0;
@@ -1391,7 +1391,7 @@ void CJpeg::ShotBit(BYTE Bit)
 		cnt = 0;
 		m_pBuf[m_Index] = Bullet;
 		m_Index++;
-		if(Bullet == 0xff) // 0xff°¡ ³ª¿À¸é 0x00À¸·Î Byte Stuffing!!
+		if(Bullet == 0xff) // 0xffï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ 0x00ï¿½ï¿½ï¿½ï¿½ Byte Stuffing!!
 		{
 			m_pBuf[m_Index] = 0x00;
 			m_Index++;
@@ -1402,7 +1402,7 @@ void CJpeg::ShotBit(BYTE Bit)
 
 void CJpeg::PutEOI(HANDLE hFile)
 {
-	// EOI ÀúÀå //
+	// EOI ï¿½ï¿½ï¿½ï¿½ //
 	WORD Marker = (0xd9 << 8) | 0xff;
 	DWORD	dwWritten;
 	WriteFile(hFile,(LPSTR)&Marker,2,&dwWritten,NULL);

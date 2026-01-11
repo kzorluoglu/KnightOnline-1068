@@ -1,10 +1,10 @@
 //////////////////////////////////////////////////
 //	Commented By : Lynus
-//	Commented On 2001-04-12 ¿ÀÈÄ 5:09:28
+//	Commented On 2001-04-12 ï¿½ï¿½ï¿½ï¿½ 5:09:28
 //
 //	CStreamSoundObj class (SoundObj.h)
 //
-//	End Of Comment (By Lynus On 2001-04-12 ¿ÀÈÄ 5:09:28 )
+//	End Of Comment (By Lynus On 2001-04-12 ï¿½ï¿½ï¿½ï¿½ 5:09:28 )
 //////////////////////////////////////////////////
 
 #ifndef __STREAMSOUNDOBJ_H_
@@ -17,17 +17,17 @@ class CN3SndEng;
 class CStreamSoundObj : public CN3SndObj
 {
 	private:
-		int					m_PlayTime;		//waveÆÄÀÏÀÇ ÀüÃ¼ ÇÃ·¹ÀÌ Å¸ÀÓ.
+		int					m_PlayTime;		//waveï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ã¼ ï¿½Ã·ï¿½ï¿½ï¿½ Å¸ï¿½ï¿½.
 		int					m_FinalByte;
 				
 		DSBUFFERDESC		m_dsbd;
 		DWORD				m_BufferSize;
-		DWORD				m_BlockSize;	//buffer¸¦ ÃÊ´ÜÀ§·Î ³ª´« °Í.
+		DWORD				m_BlockSize;	//bufferï¿½ï¿½ ï¿½Ê´ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½.
 		
-		int					m_CurrState;	//ÇöÀç ¾î´À ºí·°¿¡ ÀÖ´ÂÁö..
-		int					m_PrevState;	//Áö±Ý ¹Ù·Î Àü¿¡ ¾î´À ºí·°¿¡ ÀÖ¾ú´ÂÁö..
-		DWORD				m_CurrPos;		//ÇöÀç ¹öÆÛ¿¡¼­ÀÇ À§Ä¡ 
-		int					m_PastTime;		//ÀüÃ¼ ÇÃ·¹ÀÌ Å¸ÀÓ¿¡¼­ ³²Àº ½Ã°£
+		int					m_CurrState;	//ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ö´ï¿½ï¿½ï¿½..
+		int					m_PrevState;	//ï¿½ï¿½ï¿½ï¿½ ï¿½Ù·ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ö¾ï¿½ï¿½ï¿½ï¿½ï¿½..
+		DWORD				m_CurrPos;		//ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Û¿ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ä¡ 
+		int					m_PastTime;		//ï¿½ï¿½Ã¼ ï¿½Ã·ï¿½ï¿½ï¿½ Å¸ï¿½Ó¿ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ã°ï¿½
 
 		//related wave data
 		WAVEFORMATEX		m_WaveFormat;

@@ -17,11 +17,11 @@ public:
 
 	void	PutData(char *pData, int len);
 	void	GetData(char *pData, int len);
-	int		GetOutData(char *pData); //HeadPos, º¯È­
+	int		GetOutData(char *pData); //HeadPos, ï¿½ï¿½È­
 	void	PutData(char& data);
 	char&	GetHeadData(){return m_pBuffer[m_iHeadPos];}
 	//1 Byte Operation;
-	//false : ¸ðµçµ¥ÀÌÅÍ ´ÙºüÁü, TRUE: Á¤»óÀûÀ¸·Î ÁøÇàÁß
+	//false : ï¿½ï¿½çµ¥ï¿½ï¿½ï¿½ï¿½ ï¿½Ùºï¿½ï¿½ï¿½, TRUE: ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	BOOL	HeadIncrease(int increasement=1);
 	void	SetEmpty() {m_iHeadPos=0; m_iTailPos=0;}
 
@@ -30,10 +30,10 @@ public:
 	int&	GetTailPos() {return m_iTailPos;}
 	int		GetValidCount();
 protected:
-	//over flow ¸ÕÀú Á¡°ËÇÑ ÈÄ IndexOverFlow Á¡°Ë
+	//over flow ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ IndexOverFlow ï¿½ï¿½ï¿½ï¿½
 	BOOL	IsOverFlowCondition(int &len) {return (len >= m_iBufSize-GetValidCount()) ? TRUE: FALSE;}
 	BOOL	IsIndexOverFlow(int &len) {return (len+m_iTailPos>=m_iBufSize) ? TRUE:FALSE;}
-	void	BufferResize(); //overflow condition ÀÏ¶§ size¸¦ ÇöÀçÀÇ µÎ¹è·Î ´Ã¸²
+	void	BufferResize(); //overflow condition ï¿½Ï¶ï¿½ sizeï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Î¹ï¿½ï¿½ ï¿½Ã¸ï¿½
 protected:
 	int		m_iBufSize;
 	char	*m_pBuffer;

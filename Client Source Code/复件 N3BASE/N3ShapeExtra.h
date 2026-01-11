@@ -18,9 +18,9 @@ class CN3ShapeExtra : public CN3Shape
 	{
 		friend CN3ShapeExtra;
 	public:
-		__Vector3	m_vRotationAxis; // È¸ÀüÃà..
-		float		m_fRadian; // ÇöÀç È¸ÀüÇÑ °¢µµ..
-		float		m_fRotationPerSec; // ÃÊ´ç È¸Àü.. Radian...
+		__Vector3	m_vRotationAxis; // È¸ï¿½ï¿½ï¿½ï¿½..
+		float		m_fRadian; // ï¿½ï¿½ï¿½ï¿½ È¸ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½..
+		float		m_fRotationPerSec; // ï¿½Ê´ï¿½ È¸ï¿½ï¿½.. Radian...
 
 	public:
 		void Tick(DWORD dwTime);

@@ -26,12 +26,12 @@ protected:
 // Operations
 public:
 	BOOL Create(LPCTSTR strMessage, int nSize, int MaxValue);	
-	// nSize : progress barÀÇ °¡·Î pixel Å©±â
-	// MaxValue : progress barÀÇ stepÀÇ ÃÖ´ë°ª
+	// nSize : progress barï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ pixel Å©ï¿½ï¿½
+	// MaxValue : progress barï¿½ï¿½ stepï¿½ï¿½ ï¿½Ö´ë°ª
 
-	CStatusBar* GetStatusBar();		// MainFrame¿¡¼­ StatusBar Æ÷ÀÎÅÍ ¾ò¾î¿À±â
-	void Resize();					// À§Ä¡¿Í Å©±â Á¶Á¤
-	void Clear();					// ÃÊ±âÈ­
+	CStatusBar* GetStatusBar();		// MainFrameï¿½ï¿½ï¿½ï¿½ StatusBar ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	void Resize();					// ï¿½ï¿½Ä¡ï¿½ï¿½ Å©ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+	void Clear();					// ï¿½Ê±ï¿½È­
 
 // Overrides
 	// ClassWizard generated virtual function overrides

@@ -21,24 +21,24 @@ public:
 protected:
 	struct __SnowParticle
 	{
-		__Vector3	vPos;							// È¸Àü ¹Ý°æÀÇ ÁÜ½É
-		__Vector3	vOffset1, vOffset2, vOffset3;	// Á¡ 1 2 3ÀÌ ÆÄÆ¼Å¬ ÁßÁ¡¿¡¼­ ¶³¾îÁø Á¤µµ
-		float		fRadius;						// È¸Àü ¹Ý°æ
-		float		fRadian;						// ÇöÀç È¸ÀüµÈ °¢µµ
-		//float		fRVel							// È¸Àü°¢¼Óµµ (¿ì¼± ÀÏÁ¤ÇÏ´Ù°í °¡Á¤)
-		// __Vector3 vVelocity						// ¶³¾îÁö´Â ¼Óµµ(¿ì¼± ¸ðµÎ °°´Ù°í °¡Á¤)
+		__Vector3	vPos;							// È¸ï¿½ï¿½ ï¿½Ý°ï¿½ï¿½ï¿½ ï¿½Ü½ï¿½
+		__Vector3	vOffset1, vOffset2, vOffset3;	// ï¿½ï¿½ 1 2 3ï¿½ï¿½ ï¿½ï¿½Æ¼Å¬ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+		float		fRadius;						// È¸ï¿½ï¿½ ï¿½Ý°ï¿½
+		float		fRadian;						// ï¿½ï¿½ï¿½ï¿½ È¸ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+		//float		fRVel							// È¸ï¿½ï¿½ï¿½ï¿½ï¿½Óµï¿½ (ï¿½ì¼± ï¿½ï¿½ï¿½ï¿½ï¿½Ï´Ù°ï¿½ ï¿½ï¿½ï¿½ï¿½)
+		// __Vector3 vVelocity						// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Óµï¿½(ï¿½ì¼± ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ù°ï¿½ ï¿½ï¿½ï¿½ï¿½)
 	};
 
 // Attributes
 public:
 	void SetVelocity(__Vector3& v) {m_vVelocity = v;}
 protected:
-	float		m_fWidth;		// ´«ÀÌ ¶³¾îÁö´Â °ø°£ÀÇ ³Êºñ
-	float		m_fHeight;		// ´«ÀÌ ¶³¾îÁö´Â °ø°£ÀÇ ³ôÀÌ
-	float		m_fSnowSize;	// ´« ÇÏ³ªÀÇ Å©±â
-	__Vector3	m_vVelocity;	// ÀüÃ¼ÀûÀ¸·Î ¶³¾îÁö´Â ¹æÇâ°ú ¼Óµµ
-	CN3Texture*	m_pTex;			// ´« ÅØ½ºÃÄ
-	__SnowParticle*	m_pSnowParticle;	// ´«¼ÛÀÌ Á¤º¸
+	float		m_fWidth;		// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Êºï¿½
+	float		m_fHeight;		// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+	float		m_fSnowSize;	// ï¿½ï¿½ ï¿½Ï³ï¿½ï¿½ï¿½ Å©ï¿½ï¿½
+	__Vector3	m_vVelocity;	// ï¿½ï¿½Ã¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Óµï¿½
+	CN3Texture*	m_pTex;			// ï¿½ï¿½ ï¿½Ø½ï¿½ï¿½ï¿½
+	__SnowParticle*	m_pSnowParticle;	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 
 // Operations
 public:

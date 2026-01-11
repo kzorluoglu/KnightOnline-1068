@@ -22,7 +22,7 @@ public:
 	CDlgShapeList(CWnd* pParent = NULL);   // standard constructor
 
 	CN3Scene* m_pSceneRef;
-	BOOL	m_IsSourceObj;		// Display¿ëÀÌ³Ä? (Åø¿¡¼­ ¿ÀºêÁ§Æ® ¸ñ·Ï)
+	BOOL	m_IsSourceObj;		// Displayï¿½ï¿½ï¿½Ì³ï¿½? (ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ï¿½ï¿½)
 	CMapMng* m_pMapMng;
 
 // Dialog Data

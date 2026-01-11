@@ -15,8 +15,8 @@ static char THIS_FILE[]=__FILE__;
 // CN3ShapeExtraPart
 CN3ShapeExtra::CN3ShapeExtraPart::CN3ShapeExtraPart()
 {
-	m_vRotationAxis.Set(0,1,0); // È¸ÀüÃà..
-	m_fRotationPerSec = 0.0f; // ÃÊ´ç È¸Àü.. Radian...
+	m_vRotationAxis.Set(0,1,0); // È¸ï¿½ï¿½ï¿½ï¿½..
+	m_fRotationPerSec = 0.0f; // ï¿½Ê´ï¿½ È¸ï¿½ï¿½.. Radian...
 }
 
 CN3ShapeExtra::CN3ShapeExtraPart::~CN3ShapeExtraPart()
@@ -28,7 +28,7 @@ void CN3ShapeExtra::CN3ShapeExtraPart::Tick(DWORD dwTime)
 	CPart::Tick(dwTime);
 	if(m_bOutOfCameraRange) return;
 
-	// È¸Àü...
+	// È¸ï¿½ï¿½...
 	if(m_fRotationPerSec != 0.0f)
 	{
 		m_fRadian += m_fRotationPerSec / s_fFrmPerSec;
@@ -90,22 +90,22 @@ bool CN3ShapeExtra::Load(HANDLE hFile)
 	{
 		CN3ShapeExtraPart* pPDE = m_PartExtras.Get(pPos);
 
-		CN3PMeshInstance* pPMITmp = pPDE->m_pPMInst; // ÀÓ½Ã·Î Æ÷ÀÎÅÍ º¸°ü..
-		ReadFile(hFile, pPDE, sizeof(CN3ShapeExtraPart), &dwRWC, NULL); // Part Extra Data ÀÐ±â..
+		CN3PMeshInstance* pPMITmp = pPDE->m_pPMInst; // ï¿½Ó½Ã·ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½..
+		ReadFile(hFile, pPDE, sizeof(CN3ShapeExtraPart), &dwRWC, NULL); // Part Extra Data ï¿½Ð±ï¿½..
 		pPDE->m_pPMInst = pPMITmp;
 
 		ReadFile(hFile, &nL, 4, &dwRWC, NULL); // Mesh FileName
 		__ASSERT(nL > 0, "FileName length is less than 0");
-		ReadFile(hFile, szFN, nL, &dwRWC, NULL); szFN[nL] = NULL; // ¸Þ½Ã ÆÄÀÏ ÀÌ¸§..
+		ReadFile(hFile, szFN, nL, &dwRWC, NULL); szFN[nL] = NULL; // ï¿½Þ½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ì¸ï¿½..
 		pPDE->m_pPMInst->Create(s_MngPMesh.Get(szFN));
 
-		pPDE->TexAlloc(pPDE->m_nTexCount); // Texture Pointer Pointer ÇÒ´ç..
-		for(int j = 0; j < pPDE->m_nTexCount; j++) // Texture Count ¸¸Å­ ÆÄÀÏ ÀÌ¸§ ÀÐ¾î¼­ ÅØ½ºÃ³ ºÎ¸£±â..
+		pPDE->TexAlloc(pPDE->m_nTexCount); // Texture Pointer Pointer ï¿½Ò´ï¿½..
+		for(int j = 0; j < pPDE->m_nTexCount; j++) // Texture Count ï¿½ï¿½Å­ ï¿½ï¿½ï¿½ï¿½ ï¿½Ì¸ï¿½ ï¿½Ð¾î¼­ ï¿½Ø½ï¿½Ã³ ï¿½Î¸ï¿½ï¿½ï¿½..
 		{
 			ReadFile(hFile, &nL, 4, &dwRWC, NULL);
 			if(nL > 0)
 			{
-				ReadFile(hFile, szFN, nL, &dwRWC, NULL); szFN[nL] = NULL; // ÅØ½ºÃ³ ÆÄÀÏ ÀÌ¸§..
+				ReadFile(hFile, szFN, nL, &dwRWC, NULL); szFN[nL] = NULL; // ï¿½Ø½ï¿½Ã³ ï¿½ï¿½ï¿½ï¿½ ï¿½Ì¸ï¿½..
 				pPDE->m_ppTexRefs[j] = s_MngTex.Get(szFN);
 			}
 		}
@@ -116,13 +116,13 @@ bool CN3ShapeExtra::Load(HANDLE hFile)
 	{
 		CN3ShapeExtraPart* pPDE = m_PartExtras.Get(pPos);
 
-		CN3PMeshInstance* pPMITmp = pPDE->m_pPMInst; // ÀÓ½Ã·Î Æ÷ÀÎÅÍ º¸°ü..
-		ReadFile(hFile, pPDE, sizeof(CN3ShapeExtraPart), &dwRWC, NULL); // Part Extra Data ÀÐ±â..
+		CN3PMeshInstance* pPMITmp = pPDE->m_pPMInst; // ï¿½Ó½Ã·ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½..
+		ReadFile(hFile, pPDE, sizeof(CN3ShapeExtraPart), &dwRWC, NULL); // Part Extra Data ï¿½Ð±ï¿½..
 		pPDE->m_pPMInst = pPMITmp;
 
 		ReadFile(hFile, &nL, 4, &dwRWC, NULL); // Mesh FileName
 		__ASSERT(nL > 0, "FileName length is less than 0");
-		ReadFile(hFile, szFN, nL, &dwRWC, NULL); szFN[nL] = NULL; // ¸Þ½Ã ÆÄÀÏ ÀÌ¸§..
+		ReadFile(hFile, szFN, nL, &dwRWC, NULL); szFN[nL] = NULL; // ï¿½Þ½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ì¸ï¿½..
 		pPDE->m_pPMInst->Create(s_MngPMesh.Get(szFN));
 	}
 */
@@ -144,23 +144,23 @@ bool CN3ShapeExtra::Save(HANDLE hFile)
 	{
 		CN3ShapeExtraPart* pPDE = m_PartExtras.Get(pPos);
 
-		WriteFile(hFile, pPDE, sizeof(CN3ShapeExtraPart), &dwRWC, NULL); // Part Extra Data ÀÐ±â..
+		WriteFile(hFile, pPDE, sizeof(CN3ShapeExtraPart), &dwRWC, NULL); // Part Extra Data ï¿½Ð±ï¿½..
 
 		CN3PMesh* pPMesh = pPDE->Mesh();
 		if(pPMesh) nL = lstrlen(pPMesh->Name());
 		else nL = 0;
 		
 		WriteFile(hFile, &nL, 4, &dwRWC, NULL); // Mesh FileName
-		if(nL > 0) WriteFile(hFile, pPMesh->Name(), nL, &dwRWC, NULL); // ¸Þ½Ã ÆÄÀÏ ÀÌ¸§..
+		if(nL > 0) WriteFile(hFile, pPMesh->Name(), nL, &dwRWC, NULL); // ï¿½Þ½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ì¸ï¿½..
 
-		for(int j = 0; j < pPDE->m_nTexCount; j++) // Texture Count ¸¸Å­ ÆÄÀÏ ÀÌ¸§ ÀÐ¾î¼­ ÅØ½ºÃ³ ºÎ¸£±â..
+		for(int j = 0; j < pPDE->m_nTexCount; j++) // Texture Count ï¿½ï¿½Å­ ï¿½ï¿½ï¿½ï¿½ ï¿½Ì¸ï¿½ ï¿½Ð¾î¼­ ï¿½Ø½ï¿½Ã³ ï¿½Î¸ï¿½ï¿½ï¿½..
 		{
 			CN3Texture* pTex = pPDE->Tex(j);
 			if(pTex) nL = lstrlen(pTex->Name());
 			else nL = 0;
 
 			WriteFile(hFile, &nL, 4, &dwRWC, NULL);
-			if(nL > 0) WriteFile(hFile, pTex->Name(), nL, &dwRWC, NULL); // ÅØ½ºÃ³ ÆÄÀÏ ÀÌ¸§..
+			if(nL > 0) WriteFile(hFile, pTex->Name(), nL, &dwRWC, NULL); // ï¿½Ø½ï¿½Ã³ ï¿½ï¿½ï¿½ï¿½ ï¿½Ì¸ï¿½..
 		}
 	}
 */

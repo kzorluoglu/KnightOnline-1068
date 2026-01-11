@@ -36,7 +36,7 @@ void CN3Star::Release()
 
 void CN3Star::Tick()
 {
-	// º°ÀÌ Á¡Á¡ ´Ã¾î³ª°í ÁÙ¾îµå´Â°Í Á¶Á¤ÇÏ±â
+	// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ã¾î³ªï¿½ï¿½ ï¿½Ù¾ï¿½ï¿½Â°ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï±ï¿½
 	static float fSec = 0.0f;
 	if (0.0f == m_fAddTime) return;
 
@@ -78,7 +78,7 @@ void CN3Star::Render()
 	s_lpD3DDev->SetTextureStageState( 0, D3DTSS_COLOROP,   D3DTOP_SELECTARG1 );
 	s_lpD3DDev->SetTextureStageState( 0, D3DTSS_COLORARG1, D3DTA_DIFFUSE );
 
-	s_lpD3DDev->SetVertexShader(FVF_XYZCOLOR);
+	s_lpD3DDev->SetFVF(FVF_XYZCOLOR);
 	s_lpD3DDev->DrawPrimitiveUP(D3DPT_POINTLIST, m_iCurNumStar, m_Stars, sizeof(m_Stars[0]));
 }
 

@@ -48,7 +48,7 @@ BOOL CDlgFolderSelect::OnInitDialog()
 {
 	CDialog::OnInitDialog();
 	
-	// ÃÖ±Ù¿¡ ¾´ Æú´õ¸¦ °¡Á®¿Â´Ù...
+	// ï¿½Ö±Ù¿ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Â´ï¿½...
 	char szInitDir[256];
 	DWORD dwLength = 256;
 	memset(szInitDir, 0, 256);
@@ -86,7 +86,7 @@ void CDlgFolderSelect::OnSelchangedBrowseTree(NMHDR* pNMHDR, LRESULT* pResult)
 {
 	NM_TREEVIEW* pNMTreeView = (NM_TREEVIEW*)pNMHDR;
 
-	// ¼±ÅÃÀÌ ¹Ù²î¸é... ÆÄÀÏ ¸®½ºÆ®¸¦ ¹Ù²Ù¾îÁØ´Ù..
+	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ù²ï¿½ï¿½... ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½Ù²Ù¾ï¿½ï¿½Ø´ï¿½..
 	HTREEITEM hItem = m_DirTree.GetSelectedItem();
 	CString Path = m_DirTree.GetFullPath(hItem);
 
@@ -108,7 +108,7 @@ void CDlgFolderSelect::OnTunnelTree()
 void CDlgFolderSelect::OnOK() 
 {
 	// TODO: Add extra validation here
-	// ÃÖ±Ù¿¡ ¾´ Æú´õ¸¦ ÀúÀåÇØµÐ´Ù....
+	// ï¿½Ö±Ù¿ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ØµÐ´ï¿½....
 	char szInitDir[256] = "";
 	DWORD dwLength = 256;
 	CString szKey;

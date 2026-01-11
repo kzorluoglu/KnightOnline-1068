@@ -229,7 +229,7 @@ LRESULT CALLBACK WndProcMain(HWND hWnd, UINT message, WPARAM wParam, LPARAM lPar
 					if(false == CGameProcedure::s_bWindowed)
 					{
 						CLogWriter::Write("WA_INACTIVE.");
-						PostQuitMessage(0); // Ã¢¸ðµå ¾Æ´Ï¸é ÆÃ±ä´Ù??
+						PostQuitMessage(0); // Ã¢ï¿½ï¿½ï¿½ ï¿½Æ´Ï¸ï¿½ ï¿½Ã±ï¿½ï¿½??
 					}
 					break;
 				}
@@ -240,7 +240,7 @@ LRESULT CALLBACK WndProcMain(HWND hWnd, UINT message, WPARAM wParam, LPARAM lPar
 		case WM_DESTROY:
 		case WM_QUIT:
 			
-			// ¼ÒÄÏÀ» ÃÖ¿ì¼±ÀûÀ¸·Î ²÷´Â´Ù..
+			// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ö¿ì¼±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Â´ï¿½..
 			CGameProcedure::s_pSocket->Disconnect();
 			CGameProcedure::s_pSocketSub->Disconnect();
 
@@ -380,11 +380,11 @@ int APIENTRY WinMain(HINSTANCE hInstance,
 
 
 	//////////////////////////////
-	// ½ºÇÇµå ÇÙ Ã¼Å·¿ë...
+	// ï¿½ï¿½ï¿½Çµï¿½ ï¿½ï¿½ Ã¼Å·ï¿½ï¿½...
 //	DWORD dwCSHID;
 //	HANDLE hThreadCheckSpeedHack = ::CreateThread(NULL, 0, CheckSpeedHackProc, NULL, CREATE_SUSPENDED, &dwCSHID);
 //	::SetThreadPriority(hThreadCheckSpeedHack, THREAD_PRIORITY_NORMAL);
-	// ½ºÇÇµå ÇÙ Ã¼Å·¿ë...
+	// ï¿½ï¿½ï¿½Çµï¿½ ï¿½ï¿½ Ã¼Å·ï¿½ï¿½...
 	//////////////////////////////
 
 
@@ -394,7 +394,7 @@ int APIENTRY WinMain(HINSTANCE hInstance,
 	GetCurrentDirectory(_MAX_PATH, szPath);
 	CN3Base::PathSet(szPath);
 
-	// ¼¼ÆÃ ÀÐ±â..
+	// ï¿½ï¿½ï¿½ï¿½ ï¿½Ð±ï¿½..
 	char szIniPath[_MAX_PATH] = "";
 	lstrcpy(szIniPath, CN3Base::PathGet().c_str());
 	lstrcat(szIniPath, "Option.Ini");
@@ -431,69 +431,71 @@ int APIENTRY WinMain(HINSTANCE hInstance,
 	if(CN3Base::s_Options.iViewDist < 256) CN3Base::s_Options.iViewDist = 256;
 	if(CN3Base::s_Options.iViewDist > 512) CN3Base::s_Options.iViewDist = 512;
 
+	int iWindowed = GetPrivateProfileInt("ViewPort", "Windowed", 0, szIniPath);
+	CN3Base::s_Options.bWindowed = (iWindowed) ? true : false;
+
 	CN3Base::s_Options.iEffectSndDist = GetPrivateProfileInt("Sound", "Distance", 48, szIniPath);
 	if(CN3Base::s_Options.iEffectSndDist < 20) CN3Base::s_Options.iEffectSndDist = 20;
 	if(CN3Base::s_Options.iEffectSndDist > 48) CN3Base::s_Options.iEffectSndDist = 48;
 
 	int iSndEnable = GetPrivateProfileInt("Sound", "Enable", 1, szIniPath);
-	CN3Base::s_Options.bSndEnable = (iSndEnable) ? true : false; // »ç¿îµå...
+	CN3Base::s_Options.bSndEnable = (iSndEnable) ? true : false; // ï¿½ï¿½ï¿½ï¿½...
 
 	int iSndDuplicate = GetPrivateProfileInt("Sound", "Duplicate", 0, szIniPath);
-	CN3Base::s_Options.bSndDuplicated = (iSndDuplicate) ? true : false; // »ç¿îµå...
+	CN3Base::s_Options.bSndDuplicated = (iSndDuplicate) ? true : false; // ï¿½ï¿½ï¿½ï¿½...
 
 	int iWindowCursor = GetPrivateProfileInt("Cursor", "WindowCursor", 1, szIniPath);
 	CN3Base::s_Options.bWindowCursor = (iWindowCursor) ? true : false; // cursor...
 
-	// µÎ¹øÂ° ¼ÒÄÏÀ¸·Î ¾µ ¼­ºê À©µµ¿ì ¸¸µé±â..
+	// ï¿½Î¹ï¿½Â° ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½..
 	HWND hWndSub = CreateSubWindow(hInstance);
-	::ShowWindow(hWndSub, SW_HIDE); // °¨Ãß±â..
+	::ShowWindow(hWndSub, SW_HIDE); // ï¿½ï¿½ï¿½ß±ï¿½..
 	
-	// ¸ÞÀÎ À©µµ¿ì¸¦ ¸¸µé°í..
+	// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ì¸¦ ï¿½ï¿½ï¿½ï¿½ï¿½..
 	HWND hWndMain = CreateMainWindow(hInstance);
 	if(NULL == hWndMain || NULL == hWndSub)
 	{
 		CLogWriter::Write("Cannot create window.");
 		exit(-1);
 	}
-    ::ShowWindow(hWndMain, nCmdShow); // º¸¿©ÁØ´Ù..
+    ::ShowWindow(hWndMain, nCmdShow); // ï¿½ï¿½ï¿½ï¿½ï¿½Ø´ï¿½..
 	::SetActiveWindow(hWndMain);
 
-	// Launcher ¾÷±×·¹ÀÌµå..
-	FILE* pFile = fopen("Launcher2.exe", "r"); // ¾÷±×·¹ÀÌµå ÇÒ°Ô ÀÖÀ½ ÇØ ÁØ´Ù..
+	// Launcher ï¿½ï¿½ï¿½×·ï¿½ï¿½Ìµï¿½..
+	FILE* pFile = fopen("Launcher2.exe", "r"); // ï¿½ï¿½ï¿½×·ï¿½ï¿½Ìµï¿½ ï¿½Ò°ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½Ø´ï¿½..
 	if(pFile)
 	{
 		fclose(pFile);
-		if(::DeleteFile("Launcher.exe")) // ¿ø·¡ °É Áö¿ì°í..
+		if(::DeleteFile("Launcher.exe")) // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½..
 		{
-			::rename("Launcher2.exe", "Launcher.exe"); // ÀÌ¸§À» ¹Ù²Ù¾î ÁØ´Ù..
+			::rename("Launcher2.exe", "Launcher.exe"); // ï¿½Ì¸ï¿½ï¿½ï¿½ ï¿½Ù²Ù¾ï¿½ ï¿½Ø´ï¿½..
 		}
 	}
 
-	// ÇÁ·Î±×·¥ ÀÎ¼ö Ã³¸®..
-	if(lpCmdLine && lstrlen(lpCmdLine) > 0 && lstrlen(lpCmdLine) < 64) // ÀÎ¼ö·Î ¹º°¡ µé¾î¿À¸é..
+	// ï¿½ï¿½ï¿½Î±×·ï¿½ ï¿½Î¼ï¿½ Ã³ï¿½ï¿½..
+	if(lpCmdLine && lstrlen(lpCmdLine) > 0 && lstrlen(lpCmdLine) < 64) // ï¿½Î¼ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½..
 	{
 		char szService[64], szAccountTmp[64], szPWTmp[64];
 		sscanf(lpCmdLine, "%s %s %s", szService, szAccountTmp, szPWTmp);
 
-		if(0 == lstrcmpi(szService, "MGame")) // ¿¥°ÔÀÓ °èÁ¤ ·Î±×ÀÎ...
+		if(0 == lstrcmpi(szService, "MGame")) // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Î±ï¿½ï¿½ï¿½...
 			CGameProcedure::s_eLogInClassification = LIC_MGAME;
-		else if(0 == lstrcmpi(szService, "Daum")) // ´ÙÀ½ °èÁ¤ ·Î±×ÀÎ...
+		else if(0 == lstrcmpi(szService, "Daum")) // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Î±ï¿½ï¿½ï¿½...
 			CGameProcedure::s_eLogInClassification = LIC_DAUM;
 		else 
 			CGameProcedure::s_eLogInClassification = LIC_KNIGHTONLINE;
-		CGameProcedure::s_szAccount = szAccountTmp; // °èÁ¤
-		CGameProcedure::s_szPassWord = szPWTmp; // ºñ¹ø.
+		CGameProcedure::s_szAccount = szAccountTmp; // ï¿½ï¿½ï¿½ï¿½
+		CGameProcedure::s_szPassWord = szPWTmp; // ï¿½ï¿½ï¿½.
 
-		if(0 == lstrcmpi(szService, "$#$%&^@!#$%#@^%&#%$&^¿î¿µÆÀÀü¿ë°ÔÀÓ")) // ¿î¿µÆÀ Àü¿ë °ÔÀÓ...
-			CGameProcedure::s_bWindowed = true;
-		else
-			CGameProcedure::s_bWindowed = false;
+		CGameProcedure::s_bWindowed = CN3Base::s_Options.bWindowed;
 	}
 
+	CGameProcedure::s_bWindowed = CN3Base::s_Options.bWindowed;
+
 	//////////////////////////////////////////////////////////////////////////////////////////
-	// Static Member »ý¼º...
-	CGameProcedure::StaticMemberInit(hInstance, hWndMain, hWndSub);		// ÆÄ±«´Â WM_DESTROY ¿¡¼­ ÇÑ´Ù..
-	CGameProcedure::ProcActiveSet((CGameProcedure*)CGameProcedure::s_pProcLogIn);	// ·Î±×ÀÎ ÇÁ·Î½ÃÁ®ºÎÅÍ ½ÃÀÛ..
+	// Static Member ï¿½ï¿½ï¿½ï¿½...
+	CGameProcedure::StaticMemberInit(hInstance, hWndMain, hWndSub);		// ï¿½Ä±ï¿½ï¿½ï¿½ WM_DESTROY ï¿½ï¿½ï¿½ï¿½ ï¿½Ñ´ï¿½..
+	CGameProcedure::ProcActiveSet((CGameProcedure*)CGameProcedure::s_pProcLogIn);	// ï¿½Î±ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Î½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½..
 
 	// and its installation, called in InitInstance()
 /*	switch ( CGameProcedure::s_eVersion )
@@ -554,14 +556,14 @@ int APIENTRY WinMain(HINSTANCE hInstance,
 				{
 					fTimePrev = fTime;
 
-					sprintf(szDebugs[0], "ÁöÇü : º¸Åë(%d) Å¸ÀÏ(%d) || Object : °¹¼ö(%d) ºÎºÐ¼ö(%d) Æú¸®°ï(%d)",
+					sprintf(szDebugs[0], "ï¿½ï¿½ï¿½ï¿½ : ï¿½ï¿½ï¿½ï¿½(%d) Å¸ï¿½ï¿½(%d) || Object : ï¿½ï¿½ï¿½ï¿½(%d) ï¿½ÎºÐ¼ï¿½(%d) ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½(%d)",
 						CN3Base::s_RenderInfo.nTerrain_Polygon,
 						CN3Base::s_RenderInfo.nTerrain_Tile_Polygon,
 						CN3Base::s_RenderInfo.nShape,
 						CN3Base::s_RenderInfo.nShape_Part,
 						CN3Base::s_RenderInfo.nShape_Polygon);
 					
-					sprintf(szDebugs[1], "Ä³¸¯ÅÍ : °¹¼ö(%d), ÆÄÆ®¼ö(%d), Æú¸®°ï(%d), ¹«±â(%d), ¹«±âÆú¸®°ï(%d)", 
+					sprintf(szDebugs[1], "Ä³ï¿½ï¿½ï¿½ï¿½ : ï¿½ï¿½ï¿½ï¿½(%d), ï¿½ï¿½Æ®ï¿½ï¿½(%d), ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½(%d), ï¿½ï¿½ï¿½ï¿½(%d), ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½(%d)", 
 						CN3Base::s_RenderInfo.nChr,
 						CN3Base::s_RenderInfo.nChr_Part,
 						CN3Base::s_RenderInfo.nChr_Polygon,
@@ -577,14 +579,14 @@ int APIENTRY WinMain(HINSTANCE hInstance,
 					{
 						int iYear = 0, iMonth = 0, iDay = 0, iH = 0, iM = 0;
 						CGameBase::ACT_WORLD->GetSkyRef()->GetGameTime(&iYear, &iMonth, &iDay, &iH, &iM);
-						sprintf(szDebugs[3], "%.2f Frm/Sec, %d³â%d¿ù%dÀÏ %d½Ã%dºÐ", CN3Base::s_fFrmPerSec, iYear, iMonth, iDay, iH, iM);
+						sprintf(szDebugs[3], "%.2f Frm/Sec, %dï¿½ï¿½%dï¿½ï¿½%dï¿½ï¿½ %dï¿½ï¿½%dï¿½ï¿½", CN3Base::s_fFrmPerSec, iYear, iMonth, iDay, iH, iM);
 					}
 					else szDebugs[3][0] = NULL;
 				}
 
 				for(int i = 0; i < 4; i++)
 					if(szDebugs[i])
-						TextOut(hDC, 0, i*18, szDebugs[i], lstrlen(szDebugs[i])); // È­¸é¿¡ ·»´õ¸µ Á¤º¸ Ç¥½Ã..
+						TextOut(hDC, 0, i*18, szDebugs[i], lstrlen(szDebugs[i])); // È­ï¿½é¿¡ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ Ç¥ï¿½ï¿½..
 #endif // #if _DEBUG
 
 
@@ -598,7 +600,7 @@ int APIENTRY WinMain(HINSTANCE hInstance,
 //					sprintf(szDebug, "%f", CN3Base::s_fFrmPerSec);
 //					fTimePrev = fTime;
 //				}
-//				TextOut(hDC, 0, 0, szDebug, lstrlen(szDebug)); // È­¸é¿¡ ·»´õ¸µ Á¤º¸ Ç¥½Ã..
+//				TextOut(hDC, 0, 0, szDebug, lstrlen(szDebug)); // È­ï¿½é¿¡ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ Ç¥ï¿½ï¿½..
 //#endif
             }
 		}
@@ -612,17 +614,17 @@ int APIENTRY WinMain(HINSTANCE hInstance,
 
 
 	//////////////////////////////
-	// ½ºÇÇµå ÇÙ Ã¼Å·¿ë...
+	// ï¿½ï¿½ï¿½Çµï¿½ ï¿½ï¿½ Ã¼Å·ï¿½ï¿½...
 //	::TerminateThread(hThreadCheckSpeedHack, 0);
 //	hThreadCheckSpeedHack = 0;
 //	dwCSHID = 0;
-	// ½ºÇÇµå ÇÙ Ã¼Å·¿ë...
+	// ï¿½ï¿½ï¿½Çµï¿½ ï¿½ï¿½ Ã¼Å·ï¿½ï¿½...
 	//////////////////////////////
 
 
 
 
-	CGameProcedure::StaticMemberRelease(); // ¸ðµÎ ÇØÁ¦......
+	CGameProcedure::StaticMemberRelease(); // ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½......
 
 	return msg.wParam;
 }

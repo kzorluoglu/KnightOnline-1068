@@ -36,7 +36,7 @@ void CN3Skin::Release()
 bool CN3Skin::Load(HANDLE hFile)
 {
 	DWORD dwRWC = 0;
-	ReadFile(hFile, &m_nVertexCount, 4, &dwRWC, NULL); // Çì´õ ÀÐ°í..
+	ReadFile(hFile, &m_nVertexCount, 4, &dwRWC, NULL); // ï¿½ï¿½ï¿½ ï¿½Ð°ï¿½..
 	
 	this->Alloc(m_nVertexCount);
 
@@ -68,7 +68,7 @@ bool CN3Skin::Load(HANDLE hFile)
 bool CN3Skin::Save(HANDLE hFile)
 {
 	DWORD dwRWC = 0;
-	WriteFile(hFile, &m_nVertexCount, 4, &dwRWC, NULL); // Çì´õ ÀÐ°í..
+	WriteFile(hFile, &m_nVertexCount, 4, &dwRWC, NULL); // ï¿½ï¿½ï¿½ ï¿½Ð°ï¿½..
 	for(int i = 0; i < m_nVertexCount; i++)
 	{
 		WriteFile(hFile, &m_pVertices[i], sizeof(__VertexSkinned), &dwRWC, NULL);

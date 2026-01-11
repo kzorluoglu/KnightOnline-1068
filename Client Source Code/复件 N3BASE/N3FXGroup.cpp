@@ -75,7 +75,7 @@ bool CN3FXGroup::Save(HANDLE hFile)
 
 //
 //	decode script file..
-//	½ºÅ©¸³Æ® ÆÄÀÏ ÀÐ°í ÇØ¼®½ÃÅ´...
+//	ï¿½ï¿½Å©ï¿½ï¿½Æ® ï¿½ï¿½ï¿½ï¿½ ï¿½Ð°ï¿½ ï¿½Ø¼ï¿½ï¿½ï¿½Å´...
 //
 #ifdef _N3TOOL
 bool CN3FXGroup::DecodeScriptFile(const char* lpPathName)

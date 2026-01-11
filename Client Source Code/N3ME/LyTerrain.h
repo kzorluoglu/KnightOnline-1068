@@ -1,5 +1,5 @@
 // LyTerrain.h: interface for the CLyTerrain class.
-//	- 2001. 9.24.~ Map Editor¿ëÀ¸·Î º¯È¯...
+//	- 2001. 9.24.~ Map Editorï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È¯...
 //
 //////////////////////////////////////////////////////////////////////
 
@@ -25,9 +25,9 @@ class CDTexGroupMng;
 class CDlgSetLightMap;
 
 ////////////////////////////////////////////////
-//	multimap»ç¿ë	
-//savegamedataÇÒ¶§ ¾µ²¨¾ä..
-//colormap ÂïÀ»¶§µµ ½á..^^
+//	multimapï¿½ï¿½ï¿½	
+//savegamedataï¿½Ò¶ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½..
+//colormap ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½..^^
 //
 typedef std::multimap<short, short> MMap;
 typedef MMap::value_type MMValue;
@@ -48,20 +48,20 @@ protected:
 	CQTNode*					m_pRoot;
 	CQTNode*					m_pRefCurrNode;
 
-	//ÁöÇü edit°ü·Ã...
-	__VertexXyzColor			m_vBrushVertices[MAX_BRUSH_SIZE*MAX_BRUSH_SIZE*9];		// BrushÀÇ ¸ð¾çÀ» ³ªÅ¸³»´Â vertex buffer
-	WORD						m_wBrushIndices[MAX_BRUSH_SIZE*MAX_BRUSH_SIZE*6*4];		// BrushÀÇ ¸ð¾çÀ» ³ªÅ¸³»´Â index buffer
-	int							m_iBrushIndexCount;										// BrushÀÇ ¸ð¾çÀ» ³ªÅ¸³»´Â indexÀÇ ¼ýÀÚ
-	int							m_iEditMode;												// EditÀÇ ¸ðµåÀÎ°¡?
+	//ï¿½ï¿½ï¿½ï¿½ editï¿½ï¿½ï¿½ï¿½...
+	__VertexXyzColor			m_vBrushVertices[MAX_BRUSH_SIZE*MAX_BRUSH_SIZE*9];		// Brushï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Å¸ï¿½ï¿½ï¿½ï¿½ vertex buffer
+	WORD						m_wBrushIndices[MAX_BRUSH_SIZE*MAX_BRUSH_SIZE*6*4];		// Brushï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Å¸ï¿½ï¿½ï¿½ï¿½ index buffer
+	int							m_iBrushIndexCount;										// Brushï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Å¸ï¿½ï¿½ï¿½ï¿½ indexï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+	int							m_iEditMode;												// Editï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Î°ï¿½?
 
 	CDTexMng*					m_pDTexMng;
 
-	MMap						m_ColorMapTileTree;	//ÄÃ·¯¸Ê ¸¸µé±âÀü Å¸ÀÏµé °®°í ÀÖ´Â Æ®¸®..
+	MMap						m_ColorMapTileTree;	//ï¿½Ã·ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Å¸ï¿½Ïµï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ö´ï¿½ Æ®ï¿½ï¿½..
 
 	int							m_iDistanceTable[DISTANCE_TABLE_SIZE][DISTANCE_TABLE_SIZE];
 	
 public:
-	float						m_fBrushIntensityMap[MAX_BRUSH_SIZE][MAX_BRUSH_SIZE];	// BrushÀÇ º¯È­À²À» Ç¥½ÃÇÑ ¸Ê
+	float						m_fBrushIntensityMap[MAX_BRUSH_SIZE][MAX_BRUSH_SIZE];	// Brushï¿½ï¿½ ï¿½ï¿½È­ï¿½ï¿½ï¿½ï¿½ Ç¥ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½
 	float						m_fHeightScale;
 	float						m_fFlatHeight;
 	bool						m_bFlaten;
@@ -69,23 +69,23 @@ public:
 
 	int							m_iZoneID;
 
-	//LightMap°ü·Ã...
+	//LightMapï¿½ï¿½ï¿½ï¿½...
 	CDlgSetLightMap*			m_pDlgSetLightMap;
-	LPDIRECT3DVERTEXBUFFER8		m_LightMapVB;	
+	LPDIRECT3DVERTEXBUFFER9		m_LightMapVB;	
 	CN3Texture***				m_ppLightMapTexture;
 	bool**						m_ppIsLightMap;
 	int							m_iNumLightMap;
-	bool						m_bDrawLineLightMap;	//¶óÀÌÆ® ¸Ê ±×¸®´Â ¿É¼Ç¿¡¼­.. ¶óÀÎÇüÅÂ·Î ±×¸®´ÂÁö..
-	__VertexXyzColor			m_vLineLightMap[2];		//¶óÀÎÇüÅÂ·Î ±×¸°´Ù¸é ±× ¶óÀÎÀ» È­¸é¿¡ Ç¥½ÃÇØ¾ßµÇ°ÚÁö?..^^ ±×Á¡ÀÌ¾ß..
+	bool						m_bDrawLineLightMap;	//ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ï¿½ ï¿½×¸ï¿½ï¿½ï¿½ ï¿½É¼Ç¿ï¿½ï¿½ï¿½.. ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Â·ï¿½ ï¿½×¸ï¿½ï¿½ï¿½ï¿½ï¿½..
+	__VertexXyzColor			m_vLineLightMap[2];		//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Â·ï¿½ ï¿½×¸ï¿½ï¿½Ù¸ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ È­ï¿½é¿¡ Ç¥ï¿½ï¿½ï¿½Ø¾ßµÇ°ï¿½ï¿½ï¿½?..^^ ï¿½ï¿½ï¿½ï¿½ï¿½Ì¾ï¿½..
 
-	//LOD°ü·Ã..
+	//LODï¿½ï¿½ï¿½ï¿½..
 	int							m_iHeightLimit;
 	int							m_iDistLimit;
 
 	std::list<CQTNode*>			m_RenderNodes;
 
-	LPDIRECT3DVERTEXBUFFER8		m_ColorMapVB;	//	ÄÃ·¯¸Ê¾µ¶§..
-	LPDIRECT3DVERTEXBUFFER8		m_TileVB;	//	ÇÏ³ªÀÇ Å¸ÀÏ°ú ÇÏ³ªÀÇ ¶óÀÌÆ®¸Ê
+	LPDIRECT3DVERTEXBUFFER9		m_ColorMapVB;	//	ï¿½Ã·ï¿½ï¿½Ê¾ï¿½ï¿½ï¿½..
+	LPDIRECT3DVERTEXBUFFER9		m_TileVB;	//	ï¿½Ï³ï¿½ï¿½ï¿½ Å¸ï¿½Ï°ï¿½ ï¿½Ï³ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½
 	
 	//common..
 	MAPDATA**		m_ppMapData;
@@ -94,38 +94,38 @@ public:
 	//texture..	
 	CN3Texture**	m_pColorTexture;
 		
-	RECT			m_VisibleRect;	//Å¸ÀÏ´ÜÀ§ÀÇ °¡½Ã¿µ¿ª..
-	POINT			m_EyePos;		//Å¸ÀÏ´ÜÀ§..
+	RECT			m_VisibleRect;	//Å¸ï¿½Ï´ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ã¿ï¿½ï¿½ï¿½..
+	POINT			m_EyePos;		//Å¸ï¿½Ï´ï¿½ï¿½ï¿½..
 
-	int				m_iHeightMapSize; // Cell Count ¿Í ºñ½ÁÇÑ °³³ä -> 1 À» »©ÁÖ¾î¾ß Cell Count ÀÌ´Ù.
+	int				m_iHeightMapSize; // Cell Count ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ -> 1 ï¿½ï¿½ ï¿½ï¿½ï¿½Ö¾ï¿½ï¿½ Cell Count ï¿½Ì´ï¿½.
 	int				m_iMaxLevel;
 
-	int				m_iNumTileMap;	//ÇöÀç °¡Áö°í ÀÖ´Â Å¸ÀÏ¸ÊÀÇ ¼ö..
+	int				m_iNumTileMap;	//ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ö´ï¿½ Å¸ï¿½Ï¸ï¿½ï¿½ï¿½ ï¿½ï¿½..
 
 	int				m_iColorMapTexSize;
 	int				m_iColorMapPixelPerUnitDistance;
 	int				m_iNumColorMap;
 
-	//Å¸ÀÏÂï´Â °Å ¹æÇâ°ú °ü·Ã...
+	//Å¸ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½...
 	float			m_fTileDirU[8][4];
 	float			m_fTileDirV[8][4];
 	float			m_fTileDirUforColorMap[8][4];
 	float			m_fTileDirVforColorMap[8][4];
 
-	// DTex°ü·Ã...
-	LPDIRECT3DVERTEXBUFFER8		m_pDTexVB;
+	// DTexï¿½ï¿½ï¿½ï¿½...
+	LPDIRECT3DVERTEXBUFFER9		m_pDTexVB;
 	__VertexT1*					m_pDTexVertices;
 	int							m_DTexFaceCnt;
 	int							m_DTexBuff[5000];
 	int							m_DTexAttrTable[9][14];
 	int							m_DTexDirTable[9][14];
 
-	// ColorMap °ü·Ã...
-	LPDIRECT3DVERTEXBUFFER8		m_pColorMapTmpVB;
+	// ColorMap ï¿½ï¿½ï¿½ï¿½...
+	LPDIRECT3DVERTEXBUFFER9		m_pColorMapTmpVB;
 	__VertexTransformedT2*		m_pColorMapTmpVertices;
 
-	//Brush °ü·Ã..
-	BOOL						m_bBrushFlat;	//ÁöÇü ³ôÀÌ°í ³»¸®´Â ºê·¯½¬¸¦ ÆòÆòÇÏ°Ô ÇÒ²¨¾ß?
+	//Brush ï¿½ï¿½ï¿½ï¿½..
+	BOOL						m_bBrushFlat;	//ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ì°ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ê·¯ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï°ï¿½ ï¿½Ò²ï¿½ï¿½ï¿½?
 
 protected:
 	int DetectRealLightMap(int sx, int sz, int range);
@@ -133,35 +133,35 @@ protected:
 	void FillLightMap(int x, int z, int lcx, int lcz, DWORD Color, float alpha);
 	void SetLightMap(int x, int z, int lcx, int lcz);
 
-	void PutColorMapTile(int x, int z);		//ÄÃ·¯¸Ê ¸¸µé Å¸ÀÏ ³Ö±â...(¾ÆÁ÷ ¾È¸¸µé¾îÁø...±×·± Å¸ÀÏµé ´ë±â¿­¿¡ ³Ö´Â°Í..)
+	void PutColorMapTile(int x, int z);		//ï¿½Ã·ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ Å¸ï¿½ï¿½ ï¿½Ö±ï¿½...(ï¿½ï¿½ï¿½ï¿½ ï¿½È¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½...ï¿½×·ï¿½ Å¸ï¿½Ïµï¿½ ï¿½ï¿½â¿­ï¿½ï¿½ ï¿½Ö´Â°ï¿½..)
 	void VerifyTexInfo(LPDTEXINFO pTex);
 	void SetColorMap(int x, int y);
 	void SetPertinentTile(CDTexGroupMng* pDTexGroupMng, LPDTEXINFO pDest1, LPDTEXINFO pDest2); 
 
 	inline	int	Log2(int x);
 	inline	void ClearRenderInfo();
-	void	SetVisibleRect();	//Å¸ÀÏ´ÜÀ§..
+	void	SetVisibleRect();	//Å¸ï¿½Ï´ï¿½ï¿½ï¿½..
 
-	//map editor °ü·Ã..
+	//map editor ï¿½ï¿½ï¿½ï¿½..
 	//
-	void SetDTexManual(int x, int y);	//¼öµ¿Âï±â
-	void SetDTex(int x, int y);			//ÀÚµ¿Âï±â.
+	void SetDTexManual(int x, int y);	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	void SetDTex(int x, int y);			//ï¿½Úµï¿½ï¿½ï¿½ï¿½.
 	BOOL IntersectTriangle( const D3DXVECTOR3 orig, const D3DXVECTOR3 dir, 
 						D3DXVECTOR3& v0, D3DXVECTOR3& v1, D3DXVECTOR3& v2, float* t, float* u, float* v);
-	void Heighten(POINT ptCenter, float fHeight);	// ÁöÇüÀ» ³ô°ÔÇÏ°Å³ª ³·°Ô ÇÏ´Â ÇÔ¼ö
-	void Smooth(POINT ptCenter);		// ÁöÇüÀ» ÁÖº¯ ¸ÊÀÇ ³ôÀÌ°ª°ú ºñ±³ÇØ¼­ ºÎµå·´°Ô ÇÑ´Ù.
+	void Heighten(POINT ptCenter, float fHeight);	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï°Å³ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ï´ï¿½ ï¿½Ô¼ï¿½
+	void Smooth(POINT ptCenter);		// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Öºï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ì°ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ø¼ï¿½ ï¿½Îµå·´ï¿½ï¿½ ï¿½Ñ´ï¿½.
 	void Flaten(POINT ptCenter);
-	void SetApexHeight(int x, int z, float fHeight);		// ³ôÀÌ¸ÊÀÇ ³ôÀÌ°ª ÁöÁ¤
-	float GetApexHeight(int x, int z) const;				// ³ôÀÌ¸ÊÀÇ ³ôÀÌ°ª ¾ò±â
-	float GetFallOffValue(float fFallOff, float x);		// BrushIntensity °è»êÇÒ¶§ ¾²ÀÌ´Â ½Ä.
+	void SetApexHeight(int x, int z, float fHeight);		// ï¿½ï¿½ï¿½Ì¸ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ì°ï¿½ ï¿½ï¿½ï¿½ï¿½
+	float GetApexHeight(int x, int z) const;				// ï¿½ï¿½ï¿½Ì¸ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ì°ï¿½ ï¿½ï¿½ï¿½
+	float GetFallOffValue(float fFallOff, float x);		// BrushIntensity ï¿½ï¿½ï¿½ï¿½Ò¶ï¿½ ï¿½ï¿½ï¿½Ì´ï¿½ ï¿½ï¿½.
 
-	//°³¼±µÈ ¶óÀÌÆ®¸Ê°ü·Ã..(2002. 11. 13..)
+	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Æ®ï¿½Ê°ï¿½ï¿½ï¿½..(2002. 11. 13..)
 	void ConvertLightMapToolDataV2toV3();
 	//
 			
 public:
-	void UpdateBrushArea(POINT ptCenter);				// Brush ¿µ¿ª Ç¥½Ã vertex°»½Å
-	void RenderBrushArea();								// Brush ¿µ¿ª Ç¥½Ã ±×¸®±â
+	void UpdateBrushArea(POINT ptCenter);				// Brush ï¿½ï¿½ï¿½ï¿½ Ç¥ï¿½ï¿½ vertexï¿½ï¿½ï¿½ï¿½
+	void RenderBrushArea();								// Brush ï¿½ï¿½ï¿½ï¿½ Ç¥ï¿½ï¿½ ï¿½×¸ï¿½ï¿½ï¿½
 
 	void	ExportHeightBMP(const char* szPathName);
 	void	ImportHeightBMP(const char* szPathName);
@@ -178,7 +178,7 @@ public:
 	void	MakeGameLightMap(char* szFullPathName);
 	void	MakeGameColorMap(char* szFullPathName);
 	void	GeneraterColorMap(bool bIsAll = false);
-	void	TilingAll(); //ÁöÇü ÀüÃ¼¸¦ ¼±ÅÃµÈ Å¸ÀÏ·Î ±ò±â..
+	void	TilingAll(); //ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ã¼ï¿½ï¿½ ï¿½ï¿½ï¿½Ãµï¿½ Å¸ï¿½Ï·ï¿½ ï¿½ï¿½ï¿½..
 
 	void	UpDateDistLimit();
 
@@ -186,16 +186,16 @@ public:
 	void	SetFillMode(D3DFILLMODE fillmode);
 	float	GetHeight(float x, float z);
 
-	//map editor °ü·Ã..
+	//map editor ï¿½ï¿½ï¿½ï¿½..
 	//
 	SIZE GetPatchNum(float fSize);
-	BOOL MouseMsgFilter(LPMSG pMsg);	// ÁöÇü °íÄ¥¶§ ¸¶¿ì½º ¸Þ¼¼Áö Ã³¸®
+	BOOL MouseMsgFilter(LPMSG pMsg);	// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ä¥ï¿½ï¿½ ï¿½ï¿½ï¿½ì½º ï¿½Þ¼ï¿½ï¿½ï¿½ Ã³ï¿½ï¿½
 	bool Pick(int x, int y, __Vector3* vec, POINT* pHeightMapPos = NULL);
 	void Import(LPCTSTR pFileName, float fSize);
 	void ImportHeight(LPCTSTR pFileName);
 	void SaveServerData(HANDLE hFile);
-	void SetEditMode(int iEditMode);		// ÁöÇü Edit¸ðµå·Î º¯°æ
-	void UpdateBrushIntensityMap(int iShape, int iSize, float fFallOff);	// ºê·¯½¬ÀÇ ¸ð¾ç°ú »çÀÌÁî¿¡ µû¶ó¼­ IntensityMapÀ» ´Ù½Ã ±¸¼ºÇÑ´Ù.
+	void SetEditMode(int iEditMode);		// ï¿½ï¿½ï¿½ï¿½ Editï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+	void UpdateBrushIntensityMap(int iShape, int iSize, float fFallOff);	// ï¿½ê·¯ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½î¿¡ ï¿½ï¿½ï¿½ï¿½ IntensityMapï¿½ï¿½ ï¿½Ù½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ñ´ï¿½.
 	void SaveGameData(HANDLE hFile);
 	void ColorMapImport(LPCTSTR lpszPathName);
 	void ColorMapExport(LPCTSTR lpszPathName);

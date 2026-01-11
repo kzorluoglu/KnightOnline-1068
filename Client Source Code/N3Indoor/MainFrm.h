@@ -50,7 +50,7 @@ protected: // create from serialization only
 
 // States..
 public:
-	e_State						m_eState;								// »óÅÂ º¯¼öµé..
+	e_State						m_eState;								// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½..
 	e_SelectState			m_eSelectState;
 	DWORD					m_dwRenderingOption;
 	e_EditMode				m_eEditState;
@@ -70,20 +70,20 @@ public:
 	CN3EngTool				m_Eng;
 	CN3Camera				m_Camera;
 	CN3Light					m_Light;
-	CDlgBase*				m_pDlgBase;						// °´Ã¼ µî·ÏÁ¤º¸ ÆíÁý ´ëÈ­»óÀÚ..
+	CDlgBase*				m_pDlgBase;						// ï¿½ï¿½Ã¼ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È­ï¿½ï¿½ï¿½ï¿½..
 	CTotalToolSheet*	m_pTotalSheet;
-	CDlgShapeList*		m_pDlgSourceList;				// Object ¸ñ·ÏÀ» º¸¿©ÁÙ ´ÙÀÌ¾Ë·Î±×
-	CDlgShapeList*		m_pDlgOutputList;				 // ¸Ê¿¡ ¹èÄ¡ÇÑ Object¸¦ º¸¿©ÁÙ ´ÙÀÌ¾Ë·Î±×
-	CN3Scene*			m_pSceneSource;				   // source object ¸ñ·Ï¿¡ º¸¿©ÁÙ °ÍµéÀ» ´ãÀº Scene
-	SelectElement		m_LastSelectedElement;		 // °¡Àå ¸¶Áö¸·À¸·Î ¼±ÅÃµÈ °´Ã¼..	Æ÷Ä¿½º ¸ÂÃâ¶§ ¾´´Ù..
+	CDlgShapeList*		m_pDlgSourceList;				// Object ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ì¾Ë·Î±ï¿½
+	CDlgShapeList*		m_pDlgOutputList;				 // ï¿½Ê¿ï¿½ ï¿½ï¿½Ä¡ï¿½ï¿½ Objectï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ì¾Ë·Î±ï¿½
+	CN3Scene*			m_pSceneSource;				   // source object ï¿½ï¿½Ï¿ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Íµï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ Scene
+	SelectElement		m_LastSelectedElement;		 // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ãµï¿½ ï¿½ï¿½Ã¼..	ï¿½ï¿½Ä¿ï¿½ï¿½ ï¿½ï¿½ï¿½â¶§ ï¿½ï¿½ï¿½ï¿½..
 
 	//.................
 	CArray<CPortalVolume*, CPortalVolume*> m_SelVolArray;
 	std::list<FloorInfo>	m_FloorList;
-	CTransDummy*	   m_pDummy;						  // ¹°Ã¼¸¦ ÀÌµ¿ È¸Àü È®´ë/Ãà¼Ò ÇÏ´Â ±â´ÉÀ» ´ã´çÇÏ´Â Å¬·¡½º
-	CPosDummy			 m_PosDummy;						 // ÀÌµ¿
-	CRotDummy			  m_RotDummy;							// È¸Àü
-	CScaleDummy			m_ScaleDummy;					// È®´ë/Ãà¼Ò
+	CTransDummy*	   m_pDummy;						  // ï¿½ï¿½Ã¼ï¿½ï¿½ ï¿½Ìµï¿½ È¸ï¿½ï¿½ È®ï¿½ï¿½/ï¿½ï¿½ï¿½ ï¿½Ï´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ï´ï¿½ Å¬ï¿½ï¿½ï¿½ï¿½
+	CPosDummy			 m_PosDummy;						 // ï¿½Ìµï¿½
+	CRotDummy			  m_RotDummy;							// È¸ï¿½ï¿½
+	CScaleDummy			m_ScaleDummy;					// È®ï¿½ï¿½/ï¿½ï¿½ï¿½
 	CSwappedDummy	m_SwappedDummy;
 	//..................
 
@@ -99,17 +99,17 @@ public:
 // Implementation
 public:
 	void	FindMinMaxTotalShape(__Vector3 &vecMin, __Vector3 &vecMax);
-	void	OutputDlgRefresh();	// ¼Ò½º¸ñ·Ï¿¡¼­ ¼±ÅÃÇÑ Object¸¦ ³ÖÀ¸¸é OutputSceneÀ¸·Î º¹»çÇØ¼­ ³Ö¾îÁØ´Ù.
-	CN3Transform* AddChr(CN3Scene* pDestScene, const std::string& szFN, BOOL bGenerateChainNumber);		// Æ¯Á¤Scene¿¡ Ä³¸¯ÅÍ °´Ã¼¸¦ º¹»çÇØ Ãß°¡
-	CN3Transform* AddShape(CN3Scene* pDestScene, const std::string& szFN, BOOL bGenerateChainNumber);	// Æ¯Á¤Scene¿¡ Shape °´Ã¼¸¦ º¹»çÇØ Ãß°¡
+	void	OutputDlgRefresh();	// ï¿½Ò½ï¿½ï¿½ï¿½Ï¿ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Objectï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ OutputSceneï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ø¼ï¿½ ï¿½Ö¾ï¿½ï¿½Ø´ï¿½.
+	CN3Transform* AddChr(CN3Scene* pDestScene, const std::string& szFN, BOOL bGenerateChainNumber);		// Æ¯ï¿½ï¿½Sceneï¿½ï¿½ Ä³ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ã¼ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ß°ï¿½
+	CN3Transform* AddShape(CN3Scene* pDestScene, const std::string& szFN, BOOL bGenerateChainNumber);	// Æ¯ï¿½ï¿½Sceneï¿½ï¿½ Shape ï¿½ï¿½Ã¼ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ß°ï¿½
 
 	void	UpdateShapeInfoDisplay();
-	void	RenderObjectToWindow(CN3TransformCollision* pObj, HWND hWnd);	// Æ¯Á¤ À©µµ¿ì¿¡ Object¸¦ ±×·ÁÁØ´Ù.
+	void	RenderObjectToWindow(CN3TransformCollision* pObj, HWND hWnd);	// Æ¯ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ì¿¡ Objectï¿½ï¿½ ï¿½×·ï¿½ï¿½Ø´ï¿½.
 	ShapeInfo* GetShapeForDisplay();
 	void	TotalValidateCheckAfterDelete();
 
 	// Scene Source..
-	void	LoadSourceObjects();						// Folder ¿¡¼­ Source Object ¸¦ ÀÐ¾î¿Â´Ù.
+	void	LoadSourceObjects();						// Folder ï¿½ï¿½ï¿½ï¿½ Source Object ï¿½ï¿½ ï¿½Ð¾ï¿½Â´ï¿½.
 	void	RefreshSourceObjects();
 
 	void SetFPSString(LPCTSTR pStr);

@@ -26,11 +26,11 @@ protected:
 	__VertexXyzColor	m_BoardVB[4];
 
 public:
-	CMapMng*				m_pRefMapMng;				// ÁöÇü ÂüÁ¶ Æ÷ÀÎÅÍ..
-	std::list<CWall*>		m_pWalls;					// º®µé...
+	CMapMng*				m_pRefMapMng;				// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½..
+	std::list<CWall*>		m_pWalls;					// ï¿½ï¿½ï¿½ï¿½...
 	CDlgMakeWall*			m_pDlg;						// path make dialog..
-	bool					m_bActive;					// ÀÌ±â´ÉÀÌ È°¼ºÈ­ µÇ¾î ÀÖ´ÂÁö...1:È°¼ºÈ­, 0:ºñÈ°¼ºÈ­..
-	CWall*					m_pCurrWall;				// ÇöÀç ¸¸µé°í ÀÖ´Â º®..or ¸¸µé·Á°í ÁØºñÇÑ ¹öÆÛ..
+	bool					m_bActive;					// ï¿½Ì±ï¿½ï¿½ï¿½ï¿½ È°ï¿½ï¿½È­ ï¿½Ç¾ï¿½ ï¿½Ö´ï¿½ï¿½ï¿½...1:È°ï¿½ï¿½È­, 0:ï¿½ï¿½È°ï¿½ï¿½È­..
+	CWall*					m_pCurrWall;				// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ö´ï¿½ ï¿½ï¿½..or ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Øºï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½..
 
 protected:
 	void MakeLine(__Vector3 sv, __Vector3 ev, D3DCOLOR color);

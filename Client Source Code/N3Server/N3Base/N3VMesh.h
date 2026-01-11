@@ -14,14 +14,14 @@
 class CN3VMesh// : public CN3Base
 {
 protected:
-	__Vector3*	m_pVertices; // Á¡ ¹öÆÛ
-	int		m_nVC; // Á¡ °¹¼ö
+	__Vector3*	m_pVertices; // ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+	int		m_nVC; // ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 
 	WORD*	m_pwIndices; // Index...
 	int		m_nIC; // Index Count
 
-	__Vector3 m_vCenter; // Mesh Vertices ÀÇ Áß°£Á¡..
-	float m_fRadius; // ¹ÝÁö¸§
+	__Vector3 m_vCenter; // Mesh Vertices ï¿½ï¿½ ï¿½ß°ï¿½ï¿½ï¿½..
+	float m_fRadius; // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 
 	int		m_nRegionX;
 	int		m_nRegionZ;

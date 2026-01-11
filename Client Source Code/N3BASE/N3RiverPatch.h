@@ -13,10 +13,10 @@
 
 struct __VertexRiver : public __VertexXyzT2
 {
-	WORD			index;			// Á¡ÀÇ Index
+	WORD			index;			// ï¿½ï¿½ï¿½ï¿½ Index
 };
 
-struct __River		// °­ÀÇ Á¡Á¤º¸(Á¤·ÄÀ» À§ÇÑ..)
+struct __River		// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½(ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½..)
 {
 	short			iRiverID;
 	int				iVertexCount;
@@ -26,7 +26,7 @@ struct __River		// °­ÀÇ Á¡Á¤º¸(Á¤·ÄÀ» À§ÇÑ..)
 	~__River() {if (pVertices) {delete [] pVertices; pVertices = NULL;}}
 };
 
-struct __RiverEx	// °­ÀÇ Á¡Á¤º¸(vertex buffer¸¦ À§ÇÑ..)
+struct __RiverEx	// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½(vertex bufferï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½..)
 {
 	short			iRiverID;
 	int				iVertexCount;
@@ -40,7 +40,7 @@ struct __RiverEx	// °­ÀÇ Á¡Á¤º¸(vertex buffer¸¦ À§ÇÑ..)
 		if (pIndices) {delete [] pIndices; pIndices = NULL;}}
 };
 
-class CN3RiverPatch : public CN3Base  // °¢ patch¿¡ ¼ÓÇÑ °­µéÀÇ Á¤º¸.
+class CN3RiverPatch : public CN3Base  // ï¿½ï¿½ patchï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½.
 {
 public:
 	CN3RiverPatch();

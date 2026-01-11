@@ -25,11 +25,11 @@ bool CTableGenerator::OpenSource(const std::string &szEnumFileName, const std::s
 	HANDLE hFile = CreateFile(szEnumFileName.c_str(), GENERIC_READ, 0, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
 	if (INVALID_HANDLE_VALUE == hFile)
 	{
-		MessageBox(hWnd, szEnumFileName.c_str(), "ÆÄÀÏÀÌ ¾ø°Å³ª ÀÐÀ» ¼ö ¾ø½À´Ï´Ù.", MB_OK);
+		MessageBox(hWnd, szEnumFileName.c_str(), "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Å³ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½.", MB_OK);
 		return false;
 	}
 
-	// ÆÄÀÏ¿¡¼­ Á¤º¸ ÀÐ±â
+	// ï¿½ï¿½ï¿½Ï¿ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ð±ï¿½
 	m_Datas.clear();
 	int iDataCount = 0;
 	DWORD dwNum;
@@ -37,7 +37,7 @@ bool CTableGenerator::OpenSource(const std::string &szEnumFileName, const std::s
 	if(iDataCount <= 0)
 	{
 		CloseHandle(hFile);
-		MessageBox(hWnd, szEnumFileName.c_str(), "Data Type ÀÌ ¾ø½À´Ï´Ù.", MB_OK);
+		MessageBox(hWnd, szEnumFileName.c_str(), "Data Type ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½.", MB_OK);
 		return false;
 	}
 
@@ -51,11 +51,11 @@ bool CTableGenerator::OpenSource(const std::string &szEnumFileName, const std::s
 	FILE* pFile = fopen(szTxtFileName.c_str(), "r");
 	if (NULL == pFile)
 	{
-		MessageBox(hWnd, szTxtFileName.c_str(), "ÆÄÀÏÀÌ ¾ø°Å³ª ÀÐÀ» ¼ö ¾ø½À´Ï´Ù.", MB_OK);
+		MessageBox(hWnd, szTxtFileName.c_str(), "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Å³ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½.", MB_OK);
 		return false;
 	}
 
-	// ÆÄÀÏ ÀÌ¸§ ±â·Ï..
+	// ï¿½ï¿½ï¿½ï¿½ ï¿½Ì¸ï¿½ ï¿½ï¿½ï¿½..
 	m_szEnmBasic = szEnumFileName;
 	m_szTxtBasic = szTxtFileName;
 
@@ -77,24 +77,24 @@ bool CTableGenerator::OpenSource(const std::string &szEnumFileName, const std::s
 
 		for(int j = 0; j < iDataCount; j++)
 		{
-			int iSuccess = this->ParseLine(szLine, iOffset, iVal, dwVal, dfVal, szText);  // ¼º°øÇÏ¸é 0, Ãß°¡ÇØ¾ßÇÏ°í ³¡ÀÌ¸é -1 Ãß°¡ÇÒ ÇÊ¿ä ¾ø°í ³¡ÀÌ¸é.. -2 ¸®ÅÏ
+			int iSuccess = this->ParseLine(szLine, iOffset, iVal, dwVal, dfVal, szText);  // ï¿½ï¿½ï¿½ï¿½ï¿½Ï¸ï¿½ 0, ï¿½ß°ï¿½ï¿½Ø¾ï¿½ï¿½Ï°ï¿½ ï¿½ï¿½ï¿½Ì¸ï¿½ -1 ï¿½ß°ï¿½ï¿½ï¿½ ï¿½Ê¿ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ì¸ï¿½.. -2 ï¿½ï¿½ï¿½ï¿½
 
 			if(iSuccess > 0)
 			{
-				if(i == 0) // Ã¹ÁÙÀº ¼³¸íÀÌ´Ù..
+				if(i == 0) // Ã¹ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ì´ï¿½..
 				{
 					m_Datas[j].m_szTitle = szText;
 				}
 				else
 				{
-					if(0 == j) // Key Áßº¹ °Ë»ç..
+					if(0 == j) // Key ï¿½ßºï¿½ ï¿½Ë»ï¿½..
 					{
 						pair_Key pk = KeySet.insert(iVal);
 						if(false == pk.second)
 						{
 							char szErr[512];
-							sprintf(szErr, "Key Áßº¹ : Line %d, Key : %d, File : %s", i + 1, iVal, szTxtFileName.c_str());
-							MessageBox(hWnd, szErr, "Key Áßº¹ - Å×ÀÌºí¿¡ Ãß°¡ ½ÇÆÐ", MB_OK);
+							sprintf(szErr, "Key ï¿½ßºï¿½ : Line %d, Key : %d, File : %s", i + 1, iVal, szTxtFileName.c_str());
+							MessageBox(hWnd, szErr, "Key ï¿½ßºï¿½ - ï¿½ï¿½ï¿½Ìºï¿½ï¿½ï¿½ ï¿½ß°ï¿½ ï¿½ï¿½ï¿½ï¿½", MB_OK);
 							break;
 						}
 					}
@@ -107,7 +107,7 @@ bool CTableGenerator::OpenSource(const std::string &szEnumFileName, const std::s
 			}
 			else
 			{
-				MessageBox(hWnd, szTxtFileName.c_str(), "Data ÀÇ ¿­ °¹¼ö°¡ Àû°Å³ª ´Ù¸¨´Ï´Ù.", MB_OK);
+				MessageBox(hWnd, szTxtFileName.c_str(), "Data ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Å³ï¿½ ï¿½Ù¸ï¿½ï¿½Ï´ï¿½.", MB_OK);
 				fclose(pFile);
 				m_Datas.clear();
 				return false;
@@ -128,11 +128,11 @@ bool CTableGenerator::OpenReference_Enum(const std::string &szEnumFileName)
 	HANDLE hFile = CreateFile(szEnumFileName.c_str(), GENERIC_READ, 0, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
 	if (INVALID_HANDLE_VALUE == hFile)
 	{
-		MessageBox(hWnd, szEnumFileName.c_str(), "ÆÄÀÏÀÌ ¾ø°Å³ª ÀÐÀ» ¼ö ¾ø½À´Ï´Ù.", MB_OK);
+		MessageBox(hWnd, szEnumFileName.c_str(), "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Å³ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½.", MB_OK);
 		return false;
 	}
 
-	// ÆÄÀÏ¿¡¼­ Á¤º¸ ÀÐ±â
+	// ï¿½ï¿½ï¿½Ï¿ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ð±ï¿½
 	m_DataExts.clear();
 	
 	int iDataCount = 0;
@@ -141,7 +141,7 @@ bool CTableGenerator::OpenReference_Enum(const std::string &szEnumFileName)
 	if(iDataCount <= 0)
 	{
 		CloseHandle(hFile);
-		MessageBox(hWnd, szEnumFileName.c_str(), "Data Type ÀÌ ¾ø½À´Ï´Ù.", MB_OK);
+		MessageBox(hWnd, szEnumFileName.c_str(), "Data Type ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½.", MB_OK);
 		return false;
 	}
 
@@ -152,7 +152,7 @@ bool CTableGenerator::OpenReference_Enum(const std::string &szEnumFileName)
 	}
 	CloseHandle(hFile);
 
-	// ÆÄÀÏ ÀÌ¸§ ±â·Ï..
+	// ï¿½ï¿½ï¿½ï¿½ ï¿½Ì¸ï¿½ ï¿½ï¿½ï¿½..
 	m_szEnmExt = szEnumFileName;
 
 	return true;
@@ -169,7 +169,7 @@ bool CTableGenerator::OpenReference_Txt(int iIndex, const std::string &szTxtFile
 	FILE* pFile = fopen(szTxtFileName.c_str(), "r");
 	if (NULL == pFile)
 	{
-		MessageBox(hWnd, szTxtFileName.c_str(), "ÆÄÀÏÀÌ ¾ø°Å³ª ÀÐÀ» ¼ö ¾ø½À´Ï´Ù.", MB_OK);
+		MessageBox(hWnd, szTxtFileName.c_str(), "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Å³ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½.", MB_OK);
 		return false;
 	}
 
@@ -192,24 +192,24 @@ bool CTableGenerator::OpenReference_Txt(int iIndex, const std::string &szTxtFile
 		int iDataCount = m_DataExts.size();
 		for(int j = 0; j < iDataCount; j++)
 		{
-			int iSuccess = this->ParseLine(szLine, iOffset, iVal, dwVal, dfVal, szText);  // ¼º°øÇÏ¸é 0, Ãß°¡ÇØ¾ßÇÏ°í ³¡ÀÌ¸é -1 Ãß°¡ÇÒ ÇÊ¿ä ¾ø°í ³¡ÀÌ¸é.. -2 ¸®ÅÏ
+			int iSuccess = this->ParseLine(szLine, iOffset, iVal, dwVal, dfVal, szText);  // ï¿½ï¿½ï¿½ï¿½ï¿½Ï¸ï¿½ 0, ï¿½ß°ï¿½ï¿½Ø¾ï¿½ï¿½Ï°ï¿½ ï¿½ï¿½ï¿½Ì¸ï¿½ -1 ï¿½ß°ï¿½ï¿½ï¿½ ï¿½Ê¿ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ì¸ï¿½.. -2 ï¿½ï¿½ï¿½ï¿½
 
 			if(iSuccess > 0)
 			{
-				if(i == 0) // Ã¹ÁÙÀº ¼³¸íÀÌ´Ù..
+				if(i == 0) // Ã¹ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ì´ï¿½..
 				{
 					m_DataExts[j].m_szTitle = szText;
 				}
 				else
 				{
-					if(0 == j) // Key Áßº¹ °Ë»ç..
+					if(0 == j) // Key ï¿½ßºï¿½ ï¿½Ë»ï¿½..
 					{
 						pair_Key pk = KeySet.insert(iVal);
 						if(false == pk.second)
 						{
 							char szErr[512];
-							sprintf(szErr, "Key Áßº¹ : Line %d, Key : %d, File : %s", i + 1, iVal, szTxtFileName.c_str());
-							MessageBox(hWnd, szErr, "Key Áßº¹ - Å×ÀÌºí¿¡ Ãß°¡ ½ÇÆÐ", MB_OK);
+							sprintf(szErr, "Key ï¿½ßºï¿½ : Line %d, Key : %d, File : %s", i + 1, iVal, szTxtFileName.c_str());
+							MessageBox(hWnd, szErr, "Key ï¿½ßºï¿½ - ï¿½ï¿½ï¿½Ìºï¿½ï¿½ï¿½ ï¿½ß°ï¿½ ï¿½ï¿½ï¿½ï¿½", MB_OK);
 							break;
 						}
 					}
@@ -223,8 +223,8 @@ bool CTableGenerator::OpenReference_Txt(int iIndex, const std::string &szTxtFile
 			else
 			{
 				char szErr[512];
-				sprintf(szErr, "Field °¹¼ö°¡ ¸ÂÁö ¾Ê°Å³ª ¹®ÀÚ¿­ÀÌ ÀÌ»óÇÕ´Ï´Ù : Line %d, Field : %d", i + 1, j);
-				MessageBox(hWnd, szErr, "Å×ÀÌºí¿¡ Ãß°¡ ½ÇÆÐ", MB_OK);
+				sprintf(szErr, "Field ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ê°Å³ï¿½ ï¿½ï¿½ï¿½Ú¿ï¿½ï¿½ï¿½ ï¿½Ì»ï¿½ï¿½Õ´Ï´ï¿½ : Line %d, Field : %d", i + 1, j);
+				MessageBox(hWnd, szErr, "ï¿½ï¿½ï¿½Ìºï¿½ï¿½ï¿½ ï¿½ß°ï¿½ ï¿½ï¿½ï¿½ï¿½", MB_OK);
 				fclose(pFile);
 //				m_DataExts[iIndex].clear();
 				return false;
@@ -234,7 +234,7 @@ bool CTableGenerator::OpenReference_Txt(int iIndex, const std::string &szTxtFile
 
 	fclose(pFile);
 
-	// ÆÄÀÏ ÀÌ¸§ ±â·Ï..
+	// ï¿½ï¿½ï¿½ï¿½ ï¿½Ì¸ï¿½ ï¿½ï¿½ï¿½..
 	m_szTxtExts[iIndex] = szTxtFileName;
 
 	return true;
@@ -255,7 +255,7 @@ bool CTableGenerator::Generate(int iIndex, const std::string& szEnumFileName, co
 	HWND hWnd = ::GetActiveWindow();
 	if(m_Datas.empty() || m_Datas[0].m_iValues.empty() || m_DataExts.empty())
 	{
-		MessageBox(hWnd, "±âº» ¾ÆÀÌÅÛ Å×ÀÌºí°ú ÂüÁ¶ Å×ÀÌºíÀ» ÀÐ¾î¾ß ÇÕ´Ï´Ù.", "¾ÆÀÌÅÛ Å×ÀÌºí »ý¼º ½ÇÆÐ", MB_OK);
+		MessageBox(hWnd, "ï¿½âº» ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ìºï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ìºï¿½ï¿½ï¿½ ï¿½Ð¾ï¿½ï¿½ ï¿½Õ´Ï´ï¿½.", "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ìºï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½", MB_OK);
 		return false;
 	}
 
@@ -263,11 +263,11 @@ bool CTableGenerator::Generate(int iIndex, const std::string& szEnumFileName, co
 	HANDLE hFile = CreateFile(szTxtFileName.c_str(), GENERIC_WRITE, 0, NULL, CREATE_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
 	if (INVALID_HANDLE_VALUE == hFile)
 	{
-		MessageBox(hWnd, szTxtFileName.c_str(), "ÆÄÀÏÀÌ ¾ø°Å³ª ¾µ¼ö ¾ø½À´Ï´Ù.", MB_OK);
+		MessageBox(hWnd, szTxtFileName.c_str(), "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Å³ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½.", MB_OK);
 		return false;
 	}
 
-	std::vector<DATA_TYPE> DataTypesPrev; // Data Type ¹é¾÷À» ÇØ³õ´Â´Ù..
+	std::vector<DATA_TYPE> DataTypesPrev; // Data Type ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ø³ï¿½ï¿½Â´ï¿½..
 	DataTypesPrev = m_DataTypes;
 	m_DataTypes.clear();
 
@@ -276,7 +276,7 @@ bool CTableGenerator::Generate(int iIndex, const std::string& szEnumFileName, co
 	int iDTCount = iDTCountBasic + iDTCountRef;
 
 	/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	// Item Table Á¶ÇÕ....
+	// Item Table ï¿½ï¿½ï¿½ï¿½....
 	enum e_ItemGenerationIndex1 {	IG1_KEY = 0,			IG1_GEN_TYPE = 1,		IG1_NAME = 2,			IG1_REMARK = 3,			IG1_PIC = 4,
 									IG1_ICON = 5,			IG1_SOUND0 = 6,			IG1_SOUND1 = 7,			IG1_ROBE_TYPE = 9,		IG1_DAMAGE = 13,		
 									IG1_DELAY = 14, 		IG1_DURATION = 17,		IG1_BUY_PRICE = 18, 	IG1_AC = 20,			IG1_EFFECT1 = 22,
@@ -294,7 +294,7 @@ bool CTableGenerator::Generate(int iIndex, const std::string& szEnumFileName, co
 									IGT_EARRING = 5, IGT_AMULET = 6, IGT_RING = 7, IGT_BELT = 8,
 									IGT_UNKNONW = 0xffffffff };
 
-	std::string szGrade[10] = { "", "ºê·ÐÁî ", "½Ç¹ö ", "°ñµç ", "ÇÃ·¹Æ¼³Ñ ", "Å©¸²½¼ ", "·ç³ª ", "¼Ö¶ó ", "¿¡ÀÎ¼ÇÆ® ", "¹Ì½ºÆ½ " };
+	std::string szGrade[10] = { "", "ï¿½ï¿½ï¿½ï¿½ï¿½ ", "ï¿½Ç¹ï¿½ ", "ï¿½ï¿½ï¿½ ", "ï¿½Ã·ï¿½Æ¼ï¿½ï¿½ ", "Å©ï¿½ï¿½ï¿½ï¿½ ", "ï¿½ç³ª ", "ï¿½Ö¶ï¿½ ", "ï¿½ï¿½ï¿½Î¼ï¿½Æ® ", "ï¿½Ì½ï¿½Æ½ " };
 
 
 	char szBuff[1024];
@@ -303,34 +303,34 @@ bool CTableGenerator::Generate(int iIndex, const std::string& szEnumFileName, co
 	for(int i = iIndexS; i <= iIndexE; i++) iCountRef += m_DataExts[0].m_iValues[i].size();
 	int iCountWhole = iCountBasic * iCountRef;
 	
-	std::vector<std::string>*	pLineArrays = new std::vector<std::string>[iCountWhole+1]; // ¶óÀÎ ¹öÆÛ¿¡ ¾µ ¹®ÀÚ¿­ ¹è¿­ ÁØºñ.. +1À» ÇÏ´Â ÀÌÀ¯´Â Ã¹ÁÙ¿¡ ¼³¸í ³ÖÀ»·Á°í ÇÑ´Ù.
+	std::vector<std::string>*	pLineArrays = new std::vector<std::string>[iCountWhole+1]; // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Û¿ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½Ú¿ï¿½ ï¿½è¿­ ï¿½Øºï¿½.. +1ï¿½ï¿½ ï¿½Ï´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Ã¹ï¿½Ù¿ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ñ´ï¿½.
 
 	int iIndexCur1 = 0;
 	int iIndexCur2 = 0;
 	int iExt = iIndexS;
-	int iCountWhole2 = 0; // ½ÇÁ¦ Ã³¸®ÇÑ °¹¼ö..
+	int iCountWhole2 = 0; // ï¿½ï¿½ï¿½ï¿½ Ã³ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½..
 	int iAddTitle = -1;
 	for(i = 0; i < iCountWhole; i++)
 	{
-		int iType = m_Datas[IG1_GEN_TYPE].m_dwValues[iIndexCur1]; // ¾ÆÀÌÅÛ »ý¼ºÅ¸ÀÔ..
+		int iType = m_Datas[IG1_GEN_TYPE].m_dwValues[iIndexCur1]; // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Å¸ï¿½ï¿½..
 
-		// ¾ÆÀÌÅÛ »ý¼º Å¸ÀÔ°ú È®Àå Å×ÀÌºí¿¡ Àû¿ëÇÒ ¹øÈ£°¡ ¸Â´Â°æ¿ì¸¸ Ã³¸®.. 
+		// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ Å¸ï¿½Ô°ï¿½ È®ï¿½ï¿½ ï¿½ï¿½ï¿½Ìºï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È£ï¿½ï¿½ ï¿½Â´Â°ï¿½ì¸¸ Ã³ï¿½ï¿½.. 
 		if(iType == iExt) 
 		{
-			int iGrade = (m_DataExts[IG2_KEY].m_dwValues[iExt][iIndexCur2])%10; // ¹«±â µî±Þ
+			int iGrade = (m_DataExts[IG2_KEY].m_dwValues[iExt][iIndexCur2])%10; // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
 			e_ItemGenerationIndex2 eIG2 = IG2_UNKNOWN;
 
 			for(int j = 0; j < iDTCountBasic; j++)
 			{
 				DATA_TYPE dt = m_Datas[j].m_Type;
-				// ÇÏµå ÄÚµù...
+				// ï¿½Ïµï¿½ ï¿½Úµï¿½...
 				switch(j) 
 				{
-				case IG1_KEY: // ÀÏ·Ã¹øÈ£ »ý¼º..
+				case IG1_KEY: // ï¿½Ï·Ã¹ï¿½È£ ï¿½ï¿½ï¿½ï¿½..
 					if(DT_DWORD == dt)
 					{
-//						DWORD dwKey = ((m_Datas[j].m_dwValues[iIndexCur1] / 1000) * 1000) + m_DataExts[IG2_KEY].m_dwValues[iExt][iIndexCur2]; // µÚÀÇ°Å ¼¼ÀÚ¸®¸¦ ´ëÄ¡ÇÑ´Ù.
-						DWORD dwKey = m_Datas[j].m_dwValues[iIndexCur1] + m_DataExts[IG2_KEY].m_dwValues[iExt][iIndexCur2]; // ´õÇØÁØ´Ù.
+//						DWORD dwKey = ((m_Datas[j].m_dwValues[iIndexCur1] / 1000) * 1000) + m_DataExts[IG2_KEY].m_dwValues[iExt][iIndexCur2]; // ï¿½ï¿½ï¿½Ç°ï¿½ ï¿½ï¿½ï¿½Ú¸ï¿½ï¿½ï¿½ ï¿½ï¿½Ä¡ï¿½Ñ´ï¿½.
+						DWORD dwKey = m_Datas[j].m_dwValues[iIndexCur1] + m_DataExts[IG2_KEY].m_dwValues[iExt][iIndexCur2]; // ï¿½ï¿½ï¿½ï¿½ï¿½Ø´ï¿½.
 						sprintf(szBuff, "%d", dwKey);
 					}
 					else
@@ -343,7 +343,7 @@ bool CTableGenerator::Generate(int iIndex, const std::string& szEnumFileName, co
 					lstrcpy(szBuff, "");
 					break;
 
-				case IG1_NAME: // ¾ÆÀÌÅÛ ÀÌ¸§
+				case IG1_NAME: // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ì¸ï¿½
 					if(DT_STRING == dt)
 					{
 						sprintf(szBuff, "%s%s %s", szGrade[iGrade].c_str(), 
@@ -353,7 +353,7 @@ bool CTableGenerator::Generate(int iIndex, const std::string& szEnumFileName, co
 					else lstrcpy(szBuff, "Invalid Name");
 					break;
 
-				case IG1_REMARK: // ¾ÆÀÌÅÛ ¼³¸í.. µ¥ÀÌÅÍ·Î½á´Â ÇÊ¿ä¾ø´Ù.
+				case IG1_REMARK: // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½.. ï¿½ï¿½ï¿½ï¿½ï¿½Í·Î½ï¿½ï¿½ ï¿½Ê¿ï¿½ï¿½ï¿½ï¿½.
 				case IG1_PIC:
 				case IG1_ICON:
 				case IG1_SOUND0:
@@ -362,7 +362,7 @@ bool CTableGenerator::Generate(int iIndex, const std::string& szEnumFileName, co
 					lstrcpy(szBuff, "");
 					break;
 
-				case IG1_DAMAGE: // ´Ü¼ø ´õÇÏ±â.
+				case IG1_DAMAGE: // ï¿½Ü¼ï¿½ ï¿½ï¿½ï¿½Ï±ï¿½.
 				case IG1_AC:
 				case IG1_EFFECT1:
 				case IG1_EFFECT2:
@@ -376,7 +376,7 @@ bool CTableGenerator::Generate(int iIndex, const std::string& szEnumFileName, co
 				case IG1_REQ_INT:
 				case IG1_REQ_CHA:
 					{
-						bool bApplyAbility = false; // ¿ä±¸ ´É·ÂÄ¡°¡ 0 ÀÏ¶§ ¹«½ÃÇÏ°í... °è»êÇÑ °ªÀÌ 0 º¸´Ù ÀÛÀ»¶§ 0À¸·Î Ç¥½ÃÇÒ°Í..
+						bool bApplyAbility = false; // ï¿½ä±¸ ï¿½É·ï¿½Ä¡ï¿½ï¿½ 0 ï¿½Ï¶ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï°ï¿½... ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ 0 ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ 0ï¿½ï¿½ï¿½ï¿½ Ç¥ï¿½ï¿½ï¿½Ò°ï¿½..
 
 						if(IG1_DAMAGE == j)			eIG2 = IG2_DAMAGE;
 						else if(IG1_AC == j)		eIG2 = IG2_AC;
@@ -396,9 +396,9 @@ bool CTableGenerator::Generate(int iIndex, const std::string& szEnumFileName, co
 						if(DT_STRING != dt) 
 						{
 							int iValue = m_Datas[j].m_iValues[iIndexCur1] + m_DataExts[eIG2].m_iValues[iExt][iIndexCur2];
-							if(bApplyAbility) // ¿ä±¸ ´É·ÂÄ¡·Î °è»ê..
+							if(bApplyAbility) // ï¿½ä±¸ ï¿½É·ï¿½Ä¡ï¿½ï¿½ ï¿½ï¿½ï¿½..
 							{
-								if(0 == m_Datas[j].m_iValues[iIndexCur1]) iValue = 0; // ¿ä±¸ ´É·ÂÄ¡°¡ 0 ÀÌ¸é °è»êÇÏÁö ¾Ê´Â´Ù.
+								if(0 == m_Datas[j].m_iValues[iIndexCur1]) iValue = 0; // ï¿½ä±¸ ï¿½É·ï¿½Ä¡ï¿½ï¿½ 0 ï¿½Ì¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ê´Â´ï¿½.
 								if(iValue < 0) iValue = 0;
 							}
 							sprintf(szBuff, "%d", iValue);
@@ -410,7 +410,7 @@ bool CTableGenerator::Generate(int iIndex, const std::string& szEnumFileName, co
 					}
 					break;
 
-				case IG1_BUY_PRICE: // ¾ÆÀÌÅÛ °¡°Ý - °öÇÏ±â..
+				case IG1_BUY_PRICE: // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ - ï¿½ï¿½ï¿½Ï±ï¿½..
 					if(DT_STRING != dt) 
 					{
 						int iValue = m_Datas[j].m_iValues[iIndexCur1] * m_DataExts[IG2_BUY_PRICE].m_iValues[iExt][iIndexCur2];
@@ -421,7 +421,7 @@ bool CTableGenerator::Generate(int iIndex, const std::string& szEnumFileName, co
 						lstrcpy(szBuff, "Invalid BuyPrice");
 					}
 					break;
-				case IG1_DELAY:  // °ø°Ý ¼Óµµ Percentage °è»ê.
+				case IG1_DELAY:  // ï¿½ï¿½ï¿½ï¿½ ï¿½Óµï¿½ Percentage ï¿½ï¿½ï¿½.
 					eIG2 = IG2_DELAY_PERCENT;
 					if(DT_STRING != dt)
 					{
@@ -437,14 +437,14 @@ bool CTableGenerator::Generate(int iIndex, const std::string& szEnumFileName, co
 							sprintf(szBuff, "%d", iValue);
 
 							int iDamage = m_Datas[IG1_DAMAGE].m_iValues[iIndexCur1];
-							if(iDamage > 0) // ¹«±âÀÏ¶§ °ø°Ý ¼Óµµ¸¦ °Ë»çÇØ º»´Ù..
+							if(iDamage > 0) // ï¿½ï¿½ï¿½ï¿½ï¿½Ï¶ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Óµï¿½ï¿½ï¿½ ï¿½Ë»ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½..
 							{
 								if(iValue < 50)
 								{
 									char szErr[256];
-									sprintf("¹«±âÀÇ °ø°Ý¼Óµµ°¡ 50 ¹Ì¸¸ÀÔ´Ï´Ù.\n    ¾ÆÀÌÅÛ ÀÌ¸§ : %s\n    %d¹øÂ° È®ÀåÅ×ÀÌºí, %d¹øÂ°¿­\n    °ø°Ý¼Óµµ : %d", 
+									sprintf("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ý¼Óµï¿½ï¿½ï¿½ 50 ï¿½Ì¸ï¿½ï¿½Ô´Ï´ï¿½.\n    ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ì¸ï¿½ : %s\n    %dï¿½ï¿½Â° È®ï¿½ï¿½ï¿½ï¿½ï¿½Ìºï¿½, %dï¿½ï¿½Â°ï¿½ï¿½\n    ï¿½ï¿½ï¿½Ý¼Óµï¿½ : %d", 
 										m_Datas[IG1_NAME].m_Texts[iIndexCur1].c_str(), iExt, iIndexCur2, iValue);
-									MessageBox(::GetActiveWindow(), szErr, "Å×ÀÌºí »ý¼º °æ°í", MB_OK);
+									MessageBox(::GetActiveWindow(), szErr, "ï¿½ï¿½ï¿½Ìºï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½", MB_OK);
 								}
 							}
 						}
@@ -469,12 +469,12 @@ bool CTableGenerator::Generate(int iIndex, const std::string& szEnumFileName, co
 				
 				if(lstrlen(szBuff) > 0)
 				{
-					pLineArrays[i+1].push_back(szBuff); // ¹®ÀÚ¿­ÀÌ ÀÖ¾î¾ß ³Ö´Â´Ù.
+					pLineArrays[i+1].push_back(szBuff); // ï¿½ï¿½ï¿½Ú¿ï¿½ï¿½ï¿½ ï¿½Ö¾ï¿½ï¿½ ï¿½Ö´Â´ï¿½.
 					
 					if(iAddTitle < 0) iAddTitle = i;
 					if(i == iAddTitle)
 					{
-						pLineArrays[0].push_back(m_Datas[j].m_szTitle); // ¼³¸í ³Ö±â..
+						pLineArrays[0].push_back(m_Datas[j].m_szTitle); // ï¿½ï¿½ï¿½ï¿½ ï¿½Ö±ï¿½..
 						m_DataTypes.push_back(dt);
 					}
 				}
@@ -523,17 +523,17 @@ bool CTableGenerator::Generate(int iIndex, const std::string& szEnumFileName, co
 				{
 					if(i == iAddTitle)
 					{
-						pLineArrays[0].push_back(m_DataExts[j].m_szTitle); // ¼³¸í ³Ö±â..
-						m_DataTypes.push_back(dt); // µ¥ÀÌÅÍ Å¸ÀÔ ³Ö±â..
+						pLineArrays[0].push_back(m_DataExts[j].m_szTitle); // ï¿½ï¿½ï¿½ï¿½ ï¿½Ö±ï¿½..
+						m_DataTypes.push_back(dt); // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Å¸ï¿½ï¿½ ï¿½Ö±ï¿½..
 					}
-					pLineArrays[i+1].push_back(szBuff); // ¹®ÀÚ¿­ÀÌ ÀÖ¾î¾ß ³Ö´Â´Ù.
+					pLineArrays[i+1].push_back(szBuff); // ï¿½ï¿½ï¿½Ú¿ï¿½ï¿½ï¿½ ï¿½Ö¾ï¿½ï¿½ ï¿½Ö´Â´ï¿½.
 				}
 			}
 
-			iCountWhole2++; // ½ÇÁ¦ Ã³¸®ÇÑ °¹¼ö Áõ°¡..
-		} // end of if(iType == iExt) // ¹«±â Å¸ÀÔ°ú È®Àå Å×ÀÌºí¿¡ Àû¿ëÇÒ ¹øÈ£°¡ ¸Â´Â°æ¿ì¸¸ Ã³¸®..
+			iCountWhole2++; // ï¿½ï¿½ï¿½ï¿½ Ã³ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½..
+		} // end of if(iType == iExt) // ï¿½ï¿½ï¿½ï¿½ Å¸ï¿½Ô°ï¿½ È®ï¿½ï¿½ ï¿½ï¿½ï¿½Ìºï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È£ï¿½ï¿½ ï¿½Â´Â°ï¿½ì¸¸ Ã³ï¿½ï¿½..
 
-		// ÀÎµ¦½º °è»ê..
+		// ï¿½Îµï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½..
 		iIndexCur2++;
 		if(iIndexCur2 >= m_DataExts[0].m_iValues[iExt].size())
 		{
@@ -548,30 +548,30 @@ bool CTableGenerator::Generate(int iIndex, const std::string& szEnumFileName, co
 	} // end of for(i = 0; i < iCountWhole; i++)
 	
 	int iColCount = pLineArrays[0].size();
-	for(i = 0; i <= iCountWhole; i++) // ¼³¸í±îÁö ¾´´Ù.
+	for(i = 0; i <= iCountWhole; i++) // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½.
 	{
 		if(pLineArrays[i].empty()) continue;
 
 		for(int j = 0; j < iColCount; j++)
 		{
 			WriteFile(hFile, pLineArrays[i][j].c_str(), pLineArrays[i][j].size(), &dwRWC, NULL);
-			if(j < iColCount - 1) WriteFile(hFile, "\t", 1, &dwRWC, NULL); // ÅÇ ±¸ºÐ..
-			else WriteFile(hFile, "\r\n", 2, &dwRWC, NULL); // ÁÙ ³Ñ±â±â.
+			if(j < iColCount - 1) WriteFile(hFile, "\t", 1, &dwRWC, NULL); // ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½..
+			else WriteFile(hFile, "\r\n", 2, &dwRWC, NULL); // ï¿½ï¿½ ï¿½Ñ±ï¿½ï¿½.
 		}
 	}
-	// Item Table Á¶ÇÕ....
+	// Item Table ï¿½ï¿½ï¿½ï¿½....
 	/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 	delete [] pLineArrays; pLineArrays = NULL;
 	CloseHandle(hFile);
 
-	// Data Type ÀúÀå..
+	// Data Type ï¿½ï¿½ï¿½ï¿½..
 	this->DataTypeSave(szEnumFileName);
-	m_DataTypes = DataTypesPrev; // ¹é¾÷ ¹ÞÀº°É·Î µ¹·Á³õ´Â´Ù.
+	m_DataTypes = DataTypesPrev; // ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½É·ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Â´ï¿½.
 	return true;
 }
 
-int CTableGenerator::ParseLine(const char* szLine, int& iOffset, int& iVal, DWORD& dwVal, double& dfVal, std::string& szText) // ¼º°øÇÏ¸é 0, Ãß°¡ÇØ¾ßÇÏ°í ³¡ÀÌ¸é -1 Ãß°¡ÇÒ ÇÊ¿ä ¾ø°í ³¡ÀÌ¸é.. -2 ¸®ÅÏ
+int CTableGenerator::ParseLine(const char* szLine, int& iOffset, int& iVal, DWORD& dwVal, double& dfVal, std::string& szText) // ï¿½ï¿½ï¿½ï¿½ï¿½Ï¸ï¿½ 0, ï¿½ß°ï¿½ï¿½Ø¾ï¿½ï¿½Ï°ï¿½ ï¿½ï¿½ï¿½Ì¸ï¿½ -1 ï¿½ß°ï¿½ï¿½ï¿½ ï¿½Ê¿ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ì¸ï¿½.. -2 ï¿½ï¿½ï¿½ï¿½
 {
 	const char* szLine2 = szLine + iOffset;
 
@@ -596,7 +596,7 @@ int CTableGenerator::ParseLine(const char* szLine, int& iOffset, int& iVal, DWOR
 			iOffset++;
 			return 1;
 		}
-		else if('\r' == *szLine2 || '\n' == *(szLine2)) // ¶óÀÎÇÇµå + CR -> ¶óÀÎÀÇ ³¡ÀÌ´Ù..
+		else if('\r' == *szLine2 || '\n' == *(szLine2)) // ï¿½ï¿½ï¿½ï¿½ï¿½Çµï¿½ + CR -> ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ì´ï¿½..
 		{
 			iVal = atoi(szText.c_str());
 			dwVal = atol(szText.c_str());
@@ -624,7 +624,7 @@ bool CTableGenerator::DataTypeSave(const std::string &szFN)
 	HWND hWnd = ::GetActiveWindow();
 	if (INVALID_HANDLE_VALUE == hFile)
 	{
-		MessageBox(hWnd, "ÆÄÀÏÀ» ¸¸µé ¼ö ¾ø½À´Ï´Ù.", "µ¥ÀÌÅÍ Çü½Ä ÀúÀå", MB_OK);
+		MessageBox(hWnd, "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½.", "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½", MB_OK);
 		return false;
 	}
 
@@ -647,12 +647,12 @@ bool CTableGenerator::DataTypeLoad(const std::string &szFN)
 	HANDLE hFile = CreateFile(szFN.c_str(),GENERIC_READ, 0, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
 	if (INVALID_HANDLE_VALUE == hFile)
 	{
-		MessageBox(hWnd, "ÆÄÀÏÀÌ ¾ø°Å³ª ÀÐÀ» ¼ö ¾ø½À´Ï´Ù.", "µ¥ÀÌÅÍ Çü½Ä ºÎ¸£±â", MB_OK);
+		MessageBox(hWnd, "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Å³ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½.", "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Î¸ï¿½ï¿½ï¿½", MB_OK);
 		return false;
 	}
 	m_DataTypes.clear();
 
-	// ÆÄÀÏ¿¡¼­ Á¤º¸ ÀÐ±â
+	// ï¿½ï¿½ï¿½Ï¿ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ð±ï¿½
 	int iDataCount = 0;
 	DWORD dwNum;
 	ReadFile(hFile, &iDataCount, sizeof(iDataCount), &dwNum, NULL);
@@ -678,21 +678,21 @@ bool CTableGenerator::Convert2Bin(const std::string& szFN)
 	FILE* stream = fopen(szFN.c_str(), "r");
 	if (NULL == stream)
 	{
-		MessageBox(hWnd, "ÀÐÀ» ¼ö ¾ø´Â ÆÄÀÏÀÔ´Ï´Ù.", "Convert Error", MB_OK);
+		MessageBox(hWnd, "ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ô´Ï´ï¿½.", "Convert Error", MB_OK);
 		return false;
 	}
 	const int iMaxStrLen = 4096;
 	char line[iMaxStrLen+1];
 
-	// ¸Ç À­ÁÙÀº columnÀÇ ÀÌ¸§µéÀÌ ½áÀÖÀ½
+	// ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ columnï¿½ï¿½ ï¿½Ì¸ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	if (fgets(line, iMaxStrLen, stream) == NULL)
 	{
 		fclose(stream);
-		std::string szMsg = szFN + " - ÆÄÀÏ ³»¿ëÀ» ÀÐÀ» ¼ö ¾ø½À´Ï´Ù.";
+		std::string szMsg = szFN + " - ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½.";
 		MessageBox(hWnd, szMsg.c_str(), "Convert Error", MB_OK);
 		return false;
 	}
-	// columnÀÌ ¸î°³ÀÎ°¡ È®ÀÎÇØº¸±â
+	// columnï¿½ï¿½ ï¿½î°³ï¿½Î°ï¿½ È®ï¿½ï¿½ï¿½Øºï¿½ï¿½ï¿½
 	int iDataCount = m_DataTypes.size();
 	int iCount = 0;
 	char* token = MyToken(line);
@@ -704,32 +704,32 @@ bool CTableGenerator::Convert2Bin(const std::string& szFN)
 	if (iCount != iDataCount)
 	{
 		fclose(stream);
-		std::string szMsg = szFN + " - ÆÄÀÏ µ¥ÀÌÅÍ¿Í ¼³Á¤ÇÑ µ¥ÀÌÅÍ ¼ö°¡ ÀÏÄ¡ÇÏÁö ¾Ê½À´Ï´Ù.\n´Ù½Ã È®ÀÎÇØ ÁÖ¼¼¿ä!";
+		std::string szMsg = szFN + " - ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Í¿ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ä¡ï¿½ï¿½ï¿½ï¿½ ï¿½Ê½ï¿½ï¿½Ï´ï¿½.\nï¿½Ù½ï¿½ È®ï¿½ï¿½ï¿½ï¿½ ï¿½Ö¼ï¿½ï¿½ï¿½!";
 		MessageBox(hWnd, szMsg.c_str(), "Convert Error", MB_OK);
 		return false;
 	}
-	// row °¡ ¸î ÁÙÀÎÁö ¼¼¾îº¸±â
+	// row ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½îº¸ï¿½ï¿½
 	iCount = 0;
 	bool bQuotationActived = false;
 	while(fgets(line, iMaxStrLen, stream))
 	{
 		char* pcFind = line;
-		pcFind = strchr(pcFind, '\"');		// µû¿ÈÇ¥ ÃÄÁ®ÀÖ´ÂÁö °Ë»ç.
+		pcFind = strchr(pcFind, '\"');		// ï¿½ï¿½ï¿½ï¿½Ç¥ ï¿½ï¿½ï¿½ï¿½ï¿½Ö´ï¿½ï¿½ï¿½ ï¿½Ë»ï¿½.
 		while(pcFind)
 		{
 			if ( *(pcFind-1) != '\t' && *(pcFind+1) != '\t' && *(pcFind+1) != '\n')
 			{
-				MessageBox(hWnd, "¿¹»óÄ¡ ¾ÊÀº °÷¿¡ µû¿ÈÇ¥°¡ ÀÖ½À´Ï´Ù.", "Convert Error", MB_OK);
+				MessageBox(hWnd, "ï¿½ï¿½ï¿½ï¿½Ä¡ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ç¥ï¿½ï¿½ ï¿½Ö½ï¿½ï¿½Ï´ï¿½.", "Convert Error", MB_OK);
 				return false;
 			}
 			bQuotationActived = !bQuotationActived;
 			pcFind = strchr(pcFind+1, '\"');
 		}
 
-		if (!bQuotationActived) ++iCount;	// µû¿ÈÇ¥ ÃÄÁ®ÀÖ´Âµ¥ ÁÙ ¹Ù²î¸é Ä«¿îÆ®¸¦ ¼¼Áö ¾Ê´Â´Ù.
+		if (!bQuotationActived) ++iCount;	// ï¿½ï¿½ï¿½ï¿½Ç¥ ï¿½ï¿½ï¿½ï¿½ï¿½Ö´Âµï¿½ ï¿½ï¿½ ï¿½Ù²ï¿½ï¿½ Ä«ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ê´Â´ï¿½.
 	}
 
-	// binary file »ý¼ºÇÏ±â
+	// binary file ï¿½ï¿½ï¿½ï¿½ï¿½Ï±ï¿½
 	char szFName[_MAX_PATH], szDrv[_MAX_DRIVE], szPath[_MAX_PATH];
 	char szDestFN[_MAX_PATH];
 	_splitpath(szFN.c_str(), szDrv, szPath, szFName, NULL);
@@ -738,34 +738,34 @@ bool CTableGenerator::Convert2Bin(const std::string& szFN)
 	if (INVALID_HANDLE_VALUE == hFile)
 	{
 		fclose(stream);
-		std::string szMsg = szDestFN; szMsg += " - ÆÄÀÏÀ» »ý¼ºÇÒ ¼ö ¾ø½À´Ï´Ù.";
+		std::string szMsg = szDestFN; szMsg += " - ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½.";
 		MessageBox(hWnd, szMsg.c_str(), "Convert Error", MB_OK);
 		return false;
 	}
 
-	// data(column) ÀÇ ±¸Á¶°¡ ¾î¶»°Ô µÇ¾î ÀÖ´ÂÁö ÀúÀåÇÏ±â
+	// data(column) ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½î¶»ï¿½ï¿½ ï¿½Ç¾ï¿½ ï¿½Ö´ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï±ï¿½
 	DWORD dwNum;
-	WriteFile(hFile, &iDataCount, sizeof(iDataCount), &dwNum, NULL);			// (¿¢¼¿¿¡¼­ column ¼ö)
+	WriteFile(hFile, &iDataCount, sizeof(iDataCount), &dwNum, NULL);			// (ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ column ï¿½ï¿½)
 	for (int i=0; i<iDataCount; ++i)
 	{
 		DATA_TYPE datatype = m_DataTypes[i];
-		WriteFile(hFile, &datatype, sizeof(DATA_TYPE), &dwNum, NULL);	// °¢°¢ÀÇ column¿¡ ÇØ´çÇÏ´Â data type
+		WriteFile(hFile, &datatype, sizeof(DATA_TYPE), &dwNum, NULL);	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ columnï¿½ï¿½ ï¿½Ø´ï¿½ï¿½Ï´ï¿½ data type
 	}
-	// row °¡ ¸îÁÙÀÎÁö ÀúÀå
+	// row ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	WriteFile(hFile, &iCount, sizeof(iCount), &dwNum, NULL);
 
-	// txt ÆÄÀÏ¿¡¼­ table Á¤º¸ºÎÅÍ ´Ù½Ã ÀÐ±â
+	// txt ï¿½ï¿½ï¿½Ï¿ï¿½ï¿½ï¿½ table ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ù½ï¿½ ï¿½Ð±ï¿½
 	int iRet = fseek(stream, 0, SEEK_SET);	ASSERT(0 == iRet);
-	fgets(line, iMaxStrLen, stream); // Ã³À½ ÇÑÁÙÀº ±×³É ÀÐ±â (Áï, 2¹øÂ° ÁÙºÎÅÍ ´Ù½Ã ÀÐ±â)
+	fgets(line, iMaxStrLen, stream); // Ã³ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½×³ï¿½ ï¿½Ð±ï¿½ (ï¿½ï¿½, 2ï¿½ï¿½Â° ï¿½Ùºï¿½ï¿½ï¿½ ï¿½Ù½ï¿½ ï¿½Ð±ï¿½)
 
-	// Å° Áßº¹ °Ë»ç¿ë µ¥ÀÌÅÍ..
+	// Å° ï¿½ßºï¿½ ï¿½Ë»ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½..
 	std::set<int> KeySet;
 	typedef std::set<int>::iterator it_Key;
 	typedef std::pair<it_Key, bool> pair_Key;
 
 	BOOL bCheckEmptyValue = FALSE;
 	bQuotationActived = false;
-	std::string strValueBuffer;	// ¿©·¯ ÁÙ¿¡ °ÉÃÄÁø ½ºÆ®¸µÀ» ÀúÀåÇÒ ¹öÆÛ
+	std::string strValueBuffer;	// ï¿½ï¿½ï¿½ï¿½ ï¿½Ù¿ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Æ®ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	int iRowCount = 0;
 	int iColCount = 0;
 	while(iRowCount<iCount)
@@ -775,7 +775,7 @@ bool CTableGenerator::Convert2Bin(const std::string& szFN)
 		ASSERT(iStrLen>0);
 		if (line[iStrLen-1] == '\n')
 		{
-			line[iStrLen-1] = '\0';		// \n¹®ÀÚ ¾ø¾Ö±â
+			line[iStrLen-1] = '\0';		// \nï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ö±ï¿½
 		}
 
 		token = MyToken( line);
@@ -785,8 +785,8 @@ bool CTableGenerator::Convert2Bin(const std::string& szFN)
 		if(false == pk.second)
 		{
 			char szErr[512];
-			sprintf(szErr, "Key Áßº¹ : Line %d, Key : %d, File : %s", iRowCount + 1, iKey, szFN.c_str());
-			MessageBox(hWnd, szErr, "Key Áßº¹ - Å×ÀÌºí¿¡ Ãß°¡ ½ÇÆÐ", MB_OK);
+			sprintf(szErr, "Key ï¿½ßºï¿½ : Line %d, Key : %d, File : %s", iRowCount + 1, iKey, szFN.c_str());
+			MessageBox(hWnd, szErr, "Key ï¿½ßºï¿½ - ï¿½ï¿½ï¿½Ìºï¿½ï¿½ï¿½ ï¿½ß°ï¿½ ï¿½ï¿½ï¿½ï¿½", MB_OK);
 			CloseHandle(hFile);
 			fclose(stream);
 			ASSERT(0);
@@ -797,10 +797,10 @@ bool CTableGenerator::Convert2Bin(const std::string& szFN)
 		while(iColCount<iDataCount)
 		{
 			if (bQuotationActived)
-			{	// ¹®ÀÚ¿­ÀÌ¸é
+			{	// ï¿½ï¿½ï¿½Ú¿ï¿½ï¿½Ì¸ï¿½
 				if (NULL == token)
 				{
-					// ÁÙ¹Ù²Þ
+					// ï¿½Ù¹Ù²ï¿½
 					strValueBuffer += "\n";
 					break;
 				}
@@ -808,16 +808,16 @@ bool CTableGenerator::Convert2Bin(const std::string& szFN)
 				{
 					int iLast = lstrlen(token)-1;
 					if(iLast>=0 && '\"' == token[iLast])
-					{	// µû¿ÈÇ¥°¡ ÀÖÀ¸¸é ¹®ÀÚ¿­ ³¡ÀÌ´Ù.
+					{	// ï¿½ï¿½ï¿½ï¿½Ç¥ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ú¿ï¿½ ï¿½ï¿½ï¿½Ì´ï¿½.
 						bQuotationActived = false;
 						strValueBuffer += std::string(token).substr(0, iLast);
 
-						// ¹öÆÛ¿¡ ÀÖ´Â°Í ±â·Ï
+						// ï¿½ï¿½ï¿½Û¿ï¿½ ï¿½Ö´Â°ï¿½ ï¿½ï¿½ï¿½
 						if (FALSE == WriteData(hFile, m_DataTypes[iColCount], strValueBuffer.c_str()))
 						{
 							char szErr[512];
 							wsprintf(szErr, "File - %s, Line - %d, Field - %d", szFN.c_str(), iRowCount + 1, iColCount);
-							MessageBox(hWnd, szErr, "µ¥ÀÌÅ¸ ±â·ÏÀÌ ¹«½ÃµÇ´Â °ÍÀÌ ÀÖ½À´Ï´Ù. ÀÌ ÆÄÀÏÀº Á¦´ë·Î ÀÛµ¿ µÇÁö ¾ÊÀ» °ÍÀÔ´Ï´Ù.", MB_OK);
+							MessageBox(hWnd, szErr, "ï¿½ï¿½ï¿½ï¿½Å¸ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ÃµÇ´ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ö½ï¿½ï¿½Ï´ï¿½. ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ûµï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ô´Ï´ï¿½.", MB_OK);
 							CloseHandle(hFile);
 							fclose(stream);
 							ASSERT(0);
@@ -828,26 +828,26 @@ bool CTableGenerator::Convert2Bin(const std::string& szFN)
 						continue;
 					}
 					else
-					{	// µû¿ÈÇ¥°¡ ¾øÀ¸¸é ¹®ÀÚ¿­À» °è¼Ó ´õÇØ°£´Ù.
+					{	// ï¿½ï¿½ï¿½ï¿½Ç¥ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ú¿ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ø°ï¿½ï¿½ï¿½.
 						strValueBuffer += token;
 						token = MyToken(NULL);
 						continue;
 					}
 				}
 			}
-			else if(token && '\"' == token[0])	// bQuotationActived °¡ falseÀÌ°í '\"' == token[0] ÀÌ¸é
-			{	// ¹®ÀÚ¿­ÀÌ ½ÃÀÛµÇ¾ú´Ù.
+			else if(token && '\"' == token[0])	// bQuotationActived ï¿½ï¿½ falseï¿½Ì°ï¿½ '\"' == token[0] ï¿½Ì¸ï¿½
+			{	// ï¿½ï¿½ï¿½Ú¿ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ÛµÇ¾ï¿½ï¿½ï¿½.
 				int iLast = lstrlen(token)-1;
-				if(iLast>=1 && '\"' == token[iLast])	// iLast>=1 ÀÎ ÀÌÀ¯´Â ÅäÅ«¿¡ "°¡ 2°³ÀÓÀ» È®½ÇÈ÷ ÇÏ±â À§ÇØ¼­.
-				{	// °°Àº ÅäÅ«¿¡¼­ ¹®ÀÚ¿­ÀÌ ´ÝÇû´Ù.
+				if(iLast>=1 && '\"' == token[iLast])	// iLast>=1 ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Å«ï¿½ï¿½ "ï¿½ï¿½ 2ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ È®ï¿½ï¿½ï¿½ï¿½ ï¿½Ï±ï¿½ ï¿½ï¿½ï¿½Ø¼ï¿½.
+				{	// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Å«ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ú¿ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½.
 					strValueBuffer = std::string(token).substr(1, iLast-1);
 
-					// ¹öÆÛ¿¡ ÀÖ´Â°Í ±â·Ï
+					// ï¿½ï¿½ï¿½Û¿ï¿½ ï¿½Ö´Â°ï¿½ ï¿½ï¿½ï¿½
 					if (FALSE == WriteData(hFile, m_DataTypes[iColCount], strValueBuffer.c_str()))
 					{
 						char szErr[512];
 						wsprintf(szErr, "File - %s, Line - %d, Field - %d", szFN.c_str(), iRowCount + 1, iColCount);
-						MessageBox(hWnd, szErr, "µ¥ÀÌÅ¸ ±â·ÏÀÌ ¹«½ÃµÇ´Â °ÍÀÌ ÀÖ½À´Ï´Ù. ÀÌ ÆÄÀÏÀº Á¦´ë·Î ÀÛµ¿ µÇÁö ¾ÊÀ» °ÍÀÔ´Ï´Ù.", MB_OK);
+						MessageBox(hWnd, szErr, "ï¿½ï¿½ï¿½ï¿½Å¸ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ÃµÇ´ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ö½ï¿½ï¿½Ï´ï¿½. ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ûµï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ô´Ï´ï¿½.", MB_OK);
 						CloseHandle(hFile);
 						fclose(stream);
 						ASSERT(0);
@@ -858,23 +858,23 @@ bool CTableGenerator::Convert2Bin(const std::string& szFN)
 					continue;
 				}
 				else
-				{	// ÀÌ¹ø ÅäÅ«¿¡¼­ ¹®ÀÚ¿­ÀÌ ´ÝÈ÷Áö ¾Ê¾Ò´Ù.
+				{	// ï¿½Ì¹ï¿½ ï¿½ï¿½Å«ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ú¿ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ê¾Ò´ï¿½.
 					bQuotationActived = true;
-					strValueBuffer = (token+1);	// +1ÀÇ ÀÌÀ¯´Â µû¿ÈÇ¥´Â ÀúÀåÇÏÁö ¾Ê´Â´Ù.
+					strValueBuffer = (token+1);	// +1ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ç¥ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ê´Â´ï¿½.
 					token = MyToken(NULL);
 					continue;
 				}
 
 			}
 
-			ASSERT(token || (iColCount+1) == iDataCount);	// ¸Ç ¸¶Áö¸·¿¡ µ¥ÀÌÅÍ°¡ ¾øÀ¸¸é NULLÀÌ ¿Ã ¼ö ÀÖµû.
+			ASSERT(token || (iColCount+1) == iDataCount);	// ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Í°ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ NULLï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ ï¿½Öµï¿½.
 
 			if (FALSE == (token || (NULL == token && DT_STRING == m_DataTypes[iColCount])) && FALSE == bCheckEmptyValue)
 			{
-				int iSelect = MessageBox(hWnd, "Å×ÀÌºí¿¡ ¹®ÀÚ¿­ ¿Ü¿¡ ºó Ä­ÀÌ ÀÖ½À´Ï´Ù.\nYes : ¸ØÃã\nNo : ÀÌ¹ø¸¸ ¹«½ÃÇÏ°í °è¼Ó\n Cancel : ¸ðµÎ ¹«½ÃÇÏ°í °è¼Ó", "Convert Error", MB_YESNOCANCEL);
+				int iSelect = MessageBox(hWnd, "ï¿½ï¿½ï¿½Ìºï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ú¿ï¿½ ï¿½Ü¿ï¿½ ï¿½ï¿½ Ä­ï¿½ï¿½ ï¿½Ö½ï¿½ï¿½Ï´ï¿½.\nYes : ï¿½ï¿½ï¿½ï¿½\nNo : ï¿½Ì¹ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï°ï¿½ ï¿½ï¿½ï¿½\n Cancel : ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï°ï¿½ ï¿½ï¿½ï¿½", "Convert Error", MB_YESNOCANCEL);
 				if (IDYES == iSelect)
 				{
-					MessageBox(hWnd, "µ¥ÀÌÅ¸ ±â·ÏÀÌ Áß´ÜµÇ¾ú½À´Ï´Ù. ÀÌ ÆÄÀÏÀº Á¦´ë·Î ÀÛµ¿ µÇÁö ¾ÊÀ» °ÍÀÔ´Ï´Ù.", "Convert Error", MB_OK);
+					MessageBox(hWnd, "ï¿½ï¿½ï¿½ï¿½Å¸ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ß´ÜµÇ¾ï¿½ï¿½ï¿½ï¿½Ï´ï¿½. ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ûµï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ô´Ï´ï¿½.", "Convert Error", MB_OK);
 					CloseHandle(hFile);
 					fclose(stream);
 					ASSERT(0);
@@ -887,7 +887,7 @@ bool CTableGenerator::Convert2Bin(const std::string& szFN)
 			{
 				char szErr[512];
 				wsprintf(szErr, "File - %s, Line - %d, Field - %d", szFN.c_str(), iRowCount + 1, iColCount);
-				MessageBox(hWnd, szErr, "µ¥ÀÌÅ¸ ±â·ÏÀÌ ¹«½ÃµÇ´Â °ÍÀÌ ÀÖ½À´Ï´Ù. ÀÌ ÆÄÀÏÀº Á¦´ë·Î ÀÛµ¿ µÇÁö ¾ÊÀ» °ÍÀÔ´Ï´Ù.", MB_OK);
+				MessageBox(hWnd, szErr, "ï¿½ï¿½ï¿½ï¿½Å¸ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ÃµÇ´ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ö½ï¿½ï¿½Ï´ï¿½. ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ûµï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ô´Ï´ï¿½.", MB_OK);
 				CloseHandle(hFile);
 				fclose(stream);
 				ASSERT(0);
@@ -896,12 +896,12 @@ bool CTableGenerator::Convert2Bin(const std::string& szFN)
 			token = MyToken(NULL);
 			++iColCount;
 		}
-		if (bQuotationActived) continue;	// µû¿ÈÇ¥°¡ ¿­·Á ÀÖÀ¸¸é °è¼Ó ¹®ÀÚ¿­ÀÌ¹Ç·Î ´Ù½Ã À§·Î..
+		if (bQuotationActived) continue;	// ï¿½ï¿½ï¿½ï¿½Ç¥ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ú¿ï¿½ï¿½Ì¹Ç·ï¿½ ï¿½Ù½ï¿½ ï¿½ï¿½ï¿½ï¿½..
 		if (iDataCount != iColCount)
 		{
 			char szErr[512];
 			wsprintf(szErr, "File - %s, Line - %d, Field - %d", szFN.c_str(), iRowCount + 1, iColCount);
-			MessageBox(hWnd, szErr, "ÇöÀç ¼³Á¤µÈ µ¥ÀÌÅ¸ Ç×¸ñ°ú ±â·ÏµÇ´Â µ¥ÀÌÅ¸ Ç×¸ñÀÌ ÀÏÄ¡ÇÏÁö ¾Ê´Â Ç×¸ñÀÌ ÀÖ½À´Ï´Ù.", MB_OK);
+			MessageBox(hWnd, szErr, "ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Å¸ ï¿½×¸ï¿½ï¿½ ï¿½ï¿½ÏµÇ´ï¿½ ï¿½ï¿½ï¿½ï¿½Å¸ ï¿½×¸ï¿½ï¿½ï¿½ ï¿½ï¿½Ä¡ï¿½ï¿½ï¿½ï¿½ ï¿½Ê´ï¿½ ï¿½×¸ï¿½ï¿½ï¿½ ï¿½Ö½ï¿½ï¿½Ï´ï¿½.", MB_OK);
 			CloseHandle(hFile);
 			fclose(stream);
 			ASSERT(0);
@@ -928,33 +928,33 @@ bool CTableGenerator::Convert2Bin(const std::string& szFN)
 
 
 	////////////////////////////////////////////////////////////
-	// ¾ÏÈ£È­.. °ÔÀÓÀÇ Å°¿Í µ¿ÀÏÇÏ´Ù...
+	// ï¿½ï¿½È£È­.. ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Å°ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½...
 
 	hFile = ::CreateFile(szDestFN, GENERIC_READ, 0, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
 	if(INVALID_HANDLE_VALUE == hFile)
 	{
-		MessageBox(hWnd, szDestFN, "¾ÏÈ£È­ ÆÄÀÏ ¸¸µé±â¿¡ ½ÇÆÐ Çß½À´Ï´Ù.", MB_OK);
-		remove(szDestFN); // ÆÄÀÏ Áö¿ì°í..
+		MessageBox(hWnd, szDestFN, "ï¿½ï¿½È£È­ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½â¿¡ ï¿½ï¿½ï¿½ï¿½ ï¿½ß½ï¿½ï¿½Ï´ï¿½.", MB_OK);
+		remove(szDestFN); // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½..
 		return false;
 	}
 
-	// ÆÄÀÏ ¾ÏÈ£È­ ÇÏ±â.. .. ÆÄÀÏÀ» ÀÐÀº ´ÙÀ½..
+	// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È£È­ ï¿½Ï±ï¿½.. .. ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½..
 	DWORD dwSizeHigh = 0;
 	DWORD dwSizeLow = ::GetFileSize(hFile, &dwSizeHigh);
 	if(dwSizeLow <= 0)
 	{
 		CloseHandle(hFile);
-		::remove(szDestFN); // ÀÓ½Ã ÆÄÀÏ Áö¿ì±â..
+		::remove(szDestFN); // ï¿½Ó½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½..
 		return false;
 	}
 
-	// ¿ø·¡ ÆÄÀÏÀ» ÀÐ°í..
+	// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ð°ï¿½..
 	BYTE* pDatas = new BYTE[dwSizeLow];
 	DWORD dwRWC = 0;
-	::ReadFile(hFile, pDatas, dwSizeLow, &dwRWC, NULL); // ¾ÏÈ£È­µÈ µ¥ÀÌÅÍ ÀÐ°í..
-	CloseHandle(hFile); // ¿ø·¡ ÆÄÀÏ ´Ý°í
+	::ReadFile(hFile, pDatas, dwSizeLow, &dwRWC, NULL); // ï¿½ï¿½È£È­ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ð°ï¿½..
+	CloseHandle(hFile); // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ý°ï¿½
 
-	// Å×ÀÌºí ¸¸µå´Â Åø¿¡¼­ ¾²´Â Å°¿Í °°Àº Å°..
+	// ï¿½ï¿½ï¿½Ìºï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ Å°ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ Å°..
 	WORD key_r = 0x0816;
 	WORD key_c1 = 0x6081;
 	WORD key_c2 = 0x1608;
@@ -975,7 +975,7 @@ bool CTableGenerator::Convert2Bin(const std::string& szFN)
 //	return plain;
 //}
 	
-	// ¾ÏÈ£È­ ÀÎÄÚµù...
+	// ï¿½ï¿½È£È­ ï¿½ï¿½ï¿½Úµï¿½...
 	for(i = 0; i < dwSizeLow; i++)
 	{
 		BYTE byData = (pDatas[i] ^ (key_r>>8));
@@ -983,10 +983,10 @@ bool CTableGenerator::Convert2Bin(const std::string& szFN)
 		pDatas[i] = byData;
 	}
 
-	// ´Ù½Ã ÆÄÀÏÀ» ¿¬´Ù..
+	// ï¿½Ù½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½..
 	hFile = ::CreateFile(szDestFN, GENERIC_WRITE, 0, NULL, CREATE_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
-	::WriteFile(hFile, pDatas, dwSizeLow, &dwRWC, NULL); // ÆÄÀÏ¿¡ ¾ÏÈ£È­ ½ÃÅ² µ¥ÀÌÅÍ ¾²±â
-	CloseHandle(hFile); // ÆÄÀÏ ´Ý±â
+	::WriteFile(hFile, pDatas, dwSizeLow, &dwRWC, NULL); // ï¿½ï¿½ï¿½Ï¿ï¿½ ï¿½ï¿½È£È­ ï¿½ï¿½Å² ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+	CloseHandle(hFile); // ï¿½ï¿½ï¿½ï¿½ ï¿½Ý±ï¿½
 	delete [] pDatas; pDatas = NULL;
 
 
@@ -1008,23 +1008,23 @@ bool CTableGenerator::Convert2Bin(const std::string& szFN)
 	if (iCount == iRowCount)
 	{
 		char szErr[512];
-		wsprintf(szErr, "%d°³ÀÇ µ¥ÀÌÅ¸ ±â·ÏÀÌ ¿Ï·áµÇ¾ú½À´Ï´Ù.", iRowCount);
+		wsprintf(szErr, "%dï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Å¸ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ï·ï¿½Ç¾ï¿½ï¿½ï¿½ï¿½Ï´ï¿½.", iRowCount);
 		MessageBox(hWnd, szErr, "Convert Report", MB_OK);
 		return true;
 	}
 	else
 	{
 		char szErr[512];
-		wsprintf(szErr, "ÀüÃ¼ %d°³ÀÇ µ¥ÀÌÅ¸Áß %d°³ÀÇ µ¥ÀÌÅ¸¸¸ ±â·ÏÀÌ ¿Ï·áµÇ¾ú½À´Ï´Ù.\nÀÌ Å×ÀÌºíÀº Á¦´ë·Î ÀÛµ¿µÇÁö ¾ÊÀ»°ÍÀÔ´Ï´Ù.", iCount, iRowCount);
-		MessageBox(hWnd, szErr, "µ¥ÀÌÅ¸ °¹¼ö ¿¡·¯", MB_OK);
+		wsprintf(szErr, "ï¿½ï¿½Ã¼ %dï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Å¸ï¿½ï¿½ %dï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Å¸ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ï·ï¿½Ç¾ï¿½ï¿½ï¿½ï¿½Ï´ï¿½.\nï¿½ï¿½ ï¿½ï¿½ï¿½Ìºï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ûµï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ô´Ï´ï¿½.", iCount, iRowCount);
+		MessageBox(hWnd, szErr, "ï¿½ï¿½ï¿½ï¿½Å¸ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½", MB_OK);
 		return false;
 	}
 }
 
-// ÆÄÀÏ¿¡ µ¥ÀÌÅ¸ Å¸ÀÔº°·Î ¾²±â..
+// ï¿½ï¿½ï¿½Ï¿ï¿½ ï¿½ï¿½ï¿½ï¿½Å¸ Å¸ï¿½Ôºï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½..
 bool CTableGenerator::WriteData(HANDLE hFile, DATA_TYPE DataType, LPCTSTR lpszData)
 {
-	// ¸¸¾à lpszData == NULLÀÌ¸é datatypeÀº stringÀÏ °æ¿ì¿¡¸¸ µÈ´Ù.
+	// ï¿½ï¿½ï¿½ï¿½ lpszData == NULLï¿½Ì¸ï¿½ datatypeï¿½ï¿½ stringï¿½ï¿½ ï¿½ï¿½ì¿¡ï¿½ï¿½ ï¿½È´ï¿½.
 //	ASSERT(lpszData || (NULL == lpszData && DT_STRING == DataType));
 
 	DWORD dwNum;
@@ -1039,11 +1039,11 @@ bool CTableGenerator::WriteData(HANDLE hFile, DATA_TYPE DataType, LPCTSTR lpszDa
 				{
 					int iTemp = atoi(lpszData);
 					if (iTemp < -127 || iTemp > 128)
-						return false; // ¹üÀ§°¡ ¹þ¾î³µ¾î~
+						return false; // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½î³µï¿½ï¿½~
 					cWrite = (char)iTemp;
 				}
 				else
-					return false;		// ¹®ÀÚ´Â ¾ÈµÇ~!
+					return false;		// ï¿½ï¿½ï¿½Ú´ï¿½ ï¿½Èµï¿½~!
 			}
 
 			WriteFile(hFile, &cWrite, sizeof(cWrite), &dwNum, NULL);
@@ -1058,11 +1058,11 @@ bool CTableGenerator::WriteData(HANDLE hFile, DATA_TYPE DataType, LPCTSTR lpszDa
 				{
 					int iTemp = atoi(lpszData);
 					if (iTemp < 0 || iTemp > 255)
-						return false; // ¹üÀ§°¡ ¹þ¾î³µ¾î~
+						return false; // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½î³µï¿½ï¿½~
 					byteWrite = (BYTE)iTemp;
 				}
 				else
-					return false;		// ¹®ÀÚ´Â ¾ÈµÇ~!
+					return false;		// ï¿½ï¿½ï¿½Ú´ï¿½ ï¿½Èµï¿½~!
 			}
 
 			WriteFile(hFile, &byteWrite, sizeof(byteWrite), &dwNum, NULL);
@@ -1077,11 +1077,11 @@ bool CTableGenerator::WriteData(HANDLE hFile, DATA_TYPE DataType, LPCTSTR lpszDa
 				{
 					int iTemp = atoi(lpszData);
 					if (iTemp < -32767 || iTemp > 32768)
-						return false; // ¹üÀ§°¡ ¹þ¾î³µ¾î~
+						return false; // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½î³µï¿½ï¿½~
 					iWrite = (short)iTemp;
 				}
 				else 
-					return false;		// ¹®ÀÚ´Â ¾ÈµÇ~!
+					return false;		// ï¿½ï¿½ï¿½Ú´ï¿½ ï¿½Èµï¿½~!
 			}
 
 			WriteFile(hFile, &iWrite, sizeof(iWrite), &dwNum, NULL);
@@ -1096,11 +1096,11 @@ bool CTableGenerator::WriteData(HANDLE hFile, DATA_TYPE DataType, LPCTSTR lpszDa
 				{
 					int iTemp = atoi(lpszData);
 					if (iTemp < 0 || iTemp > 65535) 
-						return false; // ¹üÀ§°¡ ¹þ¾î³µ¾î~
+						return false; // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½î³µï¿½ï¿½~
 					iWrite = (short)iTemp;
 				}
 				else
-					return false;		// ¹®ÀÚ´Â ¾ÈµÇ~!
+					return false;		// ï¿½ï¿½ï¿½Ú´ï¿½ ï¿½Èµï¿½~!
 			}
 
 			WriteFile(hFile, &iWrite, sizeof(iWrite), &dwNum, NULL);
@@ -1114,7 +1114,7 @@ bool CTableGenerator::WriteData(HANDLE hFile, DATA_TYPE DataType, LPCTSTR lpszDa
 				if (isdigit(lpszData[0]) || '-' == lpszData[0] )
 					iWrite = atoi(lpszData);
 				else
-					return false;		// ¹®ÀÚ´Â ¾ÈµÇ~!
+					return false;		// ï¿½ï¿½ï¿½Ú´ï¿½ ï¿½Èµï¿½~!
 			}
 
 			WriteFile(hFile, &iWrite, sizeof(iWrite), &dwNum, NULL);
@@ -1128,7 +1128,7 @@ bool CTableGenerator::WriteData(HANDLE hFile, DATA_TYPE DataType, LPCTSTR lpszDa
 				if (isdigit(lpszData[0]) )
 					iWrite = strtoul(lpszData, NULL, 10);
 				else
-					return false;		// ¹®ÀÚ´Â ¾ÈµÇ~!
+					return false;		// ï¿½ï¿½ï¿½Ú´ï¿½ ï¿½Èµï¿½~!
 			}
 
 			WriteFile(hFile, &iWrite, sizeof(iWrite), &dwNum, NULL);
@@ -1153,7 +1153,7 @@ bool CTableGenerator::WriteData(HANDLE hFile, DATA_TYPE DataType, LPCTSTR lpszDa
 				if (isdigit(lpszData[0]) || '-' == lpszData[0] || '.' == lpszData[0] )
 					fWrite = (float)atof(lpszData);
 				else
-					return false;	// ¹®ÀÚ´Â ¾ÈµÇ~!
+					return false;	// ï¿½ï¿½ï¿½Ú´ï¿½ ï¿½Èµï¿½~!
 			}
 			WriteFile(hFile, &fWrite, sizeof(fWrite), &dwNum, NULL);
 		}
@@ -1179,13 +1179,13 @@ bool CTableGenerator::WriteData(HANDLE hFile, DATA_TYPE DataType, LPCTSTR lpszDa
 	return true;
 }
 
-// binary ÆÄÀÏ¿¡¼­ µ¥ÀÌÅ¸ Å¸ÀÔº°·Î ÀÐ±â
+// binary ï¿½ï¿½ï¿½Ï¿ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Å¸ Å¸ï¿½Ôºï¿½ï¿½ï¿½ ï¿½Ð±ï¿½
 bool CTableGenerator::ReadData(HANDLE hFile, DATA_TYPE DataType, LPTSTR lpszData)
 {
 	return true;
 }
 
-// ÅÇÀ¸·Î ±¸ºÐµÈ ¹®ÀÚ¿­À» Ã£´Â´Ù.
+// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ðµï¿½ ï¿½ï¿½ï¿½Ú¿ï¿½ï¿½ï¿½ Ã£ï¿½Â´ï¿½.
 char* CTableGenerator::MyToken(LPCTSTR lpszInput)
 {
 	static char szLine[4096] = "";

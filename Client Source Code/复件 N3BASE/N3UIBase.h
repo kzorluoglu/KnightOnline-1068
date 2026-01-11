@@ -43,9 +43,9 @@ class CN3UIBase : public CN3BaseFileAccess
 //friend class CN3IME;
 #ifdef _N3TOOL
 friend class CN3UIBase;
-friend class CHierarchyView;	// Åø¿¡¼­ child list¸¦ Á¢±ÙÇÏ±â À§ÇØ¼­.
-friend class CPropertyView;	// Åø¿¡¼­ °¢ º¯¼öµéÀ» Á¢±ÙÇÏ±â À§ÇØ¼­ 
-friend class CUIEView;	// Åø¿¡¼­ child list¸¦ Á¢±ÙÇÏ±â À§ÇØ¼­.
+friend class CHierarchyView;	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ child listï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï±ï¿½ ï¿½ï¿½ï¿½Ø¼ï¿½.
+friend class CPropertyView;	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï±ï¿½ ï¿½ï¿½ï¿½Ø¼ï¿½ 
+friend class CUIEView;	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ child listï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï±ï¿½ ï¿½ï¿½ï¿½Ø¼ï¿½.
 #endif
 
 public:
@@ -57,11 +57,11 @@ public:
 
 	static CN3UITooltip*	s_pTooltipCtrl;		// tool tip
 	
-	CN3UIBase*	m_pChildUI;		// UI ºÎ¼ÓÀÌ ¾Æ´Ï¶ó ´Ù¸¥ UI¸¦ ÀÚ½ÄÀ¸·Î °®´Â´Ù..
+	CN3UIBase*	m_pChildUI;		// UI ï¿½Î¼ï¿½ï¿½ï¿½ ï¿½Æ´Ï¶ï¿½ ï¿½Ù¸ï¿½ UIï¿½ï¿½ ï¿½Ú½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Â´ï¿½..
 	CN3UIBase*	m_pParentUI;
 
 protected:
-	static std::string	s_szStringTmp;		// ÀÓ½Ã ¹®ÀÚ¿­.. Æ÷ÀÎÅÍ¸¦ ³Ñ±â±â À§ÇØ¼­ÀÌ´Ù..
+	static std::string	s_szStringTmp;		// ï¿½Ó½ï¿½ ï¿½ï¿½ï¿½Ú¿ï¿½.. ï¿½ï¿½ï¿½ï¿½ï¿½Í¸ï¿½ ï¿½Ñ±ï¿½ï¿½ ï¿½ï¿½ï¿½Ø¼ï¿½ï¿½Ì´ï¿½..
 
 	int			m_iChildID;
 	CN3UIBase*	m_pParent;		// parent pointer
@@ -69,16 +69,16 @@ protected:
 	eUI_TYPE	m_eType;		// UI Type - button, image .....
 	eUI_STATE	m_eState;		// UI state
 	DWORD		m_dwStyle;		// style
-	DWORD		m_dwReserved;	// ±âÅ¸ ÀÓ½Ã·Î ³Ö°í ½ÍÀº Á¤º¸¸¦ ³ÖÀ¸¸é µÈ´Ù.
+	DWORD		m_dwReserved;	// ï¿½ï¿½Å¸ ï¿½Ó½Ã·ï¿½ ï¿½Ö°ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½È´ï¿½.
 
-	RECT		m_rcRegion;		// UI - screen coordinates (screen : main window client area) ÁßÀÇ : ºÎ¸ð¿¡ ´ëÇÑ »ó´ëÁÂÇ¥°¡ ¾Æ´Ï´Ù.
-	RECT		m_rcMovable;	// UI¸¦ µå·¡±× ÇÏ¿© ¿òÁ÷ÀÌ°Ô ÇÒ ¼ö ÀÖ´Â ¿µ¿ª - (screen : main window client area)           ~~~~~~~
+	RECT		m_rcRegion;		// UI - screen coordinates (screen : main window client area) ï¿½ï¿½ï¿½ï¿½ : ï¿½Î¸ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ç¥ï¿½ï¿½ ï¿½Æ´Ï´ï¿½.
+	RECT		m_rcMovable;	// UIï¿½ï¿½ ï¿½å·¡ï¿½ï¿½ ï¿½Ï¿ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ì°ï¿½ ï¿½ï¿½ ï¿½ï¿½ ï¿½Ö´ï¿½ ï¿½ï¿½ï¿½ï¿½ - (screen : main window client area)           ~~~~~~~
 
-	bool		m_bVisible;		// È­¸é¿¡ º¸ÀÌ´Â°¡ (ºÎ¸ð°¡ º¸ÀÌÁö ¾ÊÀ¸¸é ÀÚ½ÄµéÀº render ÇÏÁö ¾Ê´Â´Ù.)
-	CN3SndObj*	m_pSnd_OpenUI;	// UI°¡ È­¸é¿¡ º¸ÀÌ´Â ¼ø°£ ³»´Â ¼Ò¸®
-	CN3SndObj*	m_pSnd_CloseUI;	// UI°¡ È­¸é¿¡¼­ »ç¶óÁö´Â ¼ø°£ ³»´Â ¼Ò¸®
+	bool		m_bVisible;		// È­ï¿½é¿¡ ï¿½ï¿½ï¿½Ì´Â°ï¿½ (ï¿½Î¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ú½Äµï¿½ï¿½ï¿½ render ï¿½ï¿½ï¿½ï¿½ ï¿½Ê´Â´ï¿½.)
+	CN3SndObj*	m_pSnd_OpenUI;	// UIï¿½ï¿½ È­ï¿½é¿¡ ï¿½ï¿½ï¿½Ì´ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ò¸ï¿½
+	CN3SndObj*	m_pSnd_CloseUI;	// UIï¿½ï¿½ È­ï¿½é¿¡ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ò¸ï¿½
 
-	static CN3UIEdit*		s_pFocusedEdit;		// ÇöÀç Æ÷Ä¿½º¸¦ °¡Áö°í ÀÖ´Â Edit, NULLÀÌ¸é ¾Æ¹«µµ Æ÷Ä¿½º¸¦ °¡Áö°í ÀÖÁö ¾Ê´Ù.
+	static CN3UIEdit*		s_pFocusedEdit;		// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ä¿ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ö´ï¿½ Edit, NULLï¿½Ì¸ï¿½ ï¿½Æ¹ï¿½ï¿½ï¿½ ï¿½ï¿½Ä¿ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ê´ï¿½.
 	
 public:
 	CN3UIBase();
@@ -99,25 +99,25 @@ public:
 	static CN3UITooltip*	GetTooltipCtrl() {return s_pTooltipCtrl;}
 	DWORD			GetStyle()	{return m_dwStyle;}
 
-	void			SetUIType(eUI_TYPE eUIType) { m_eType = eUIType; }	// by ecli666 Åø¿¡ ±â´É ³Ö±â ±ÍÂú¾Æ¼­.. ^^
+	void			SetUIType(eUI_TYPE eUIType) { m_eType = eUIType; }	// by ecli666 ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½Ö±ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Æ¼ï¿½.. ^^
 // Operations
 public:	
 	bool			IsIn(int x, int y);
 	void			AddChild(CN3UIBase* pChild) { m_Children.push_front(pChild); }
-	void			RemoveChild(CN3UIBase* pChild); // ÀÚ½Ä ¸®½ºÆ®¿¡¼­ Æ÷ÀÎÅÍ¸¸ ¾ø¾îÁö°í ½ÇÁ¦·Î delete µÇÁö´Â ¾Ê´Â´Ù.
-	void			SetParent(CN3UIBase* pParent);	// ºÎ¸ð¸¦ ¹Ù²Û´Ù.
+	void			RemoveChild(CN3UIBase* pChild); // ï¿½Ú½ï¿½ ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Í¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ delete ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ê´Â´ï¿½.
+	void			SetParent(CN3UIBase* pParent);	// ï¿½Î¸ï¿½ ï¿½Ù²Û´ï¿½.
 	int				GetWidth() { return m_rcRegion.right - m_rcRegion.left; }
 	int				GetHeight() { return m_rcRegion.bottom - m_rcRegion.top; }
 	POINT			GetPos() const;
-	virtual void	SetPos(int x, int y);	// À§Ä¡ ÁöÁ¤(chilrenÀÇ À§Ä¡µµ °°ÀÌ ¹Ù²Ù¾îÁØ´Ù.) ³»ºÎÀûÀ¸·Î MoveOffsetÇÔ¼ö¸¦ ºÎ¸¥´Ù.
-	void			SetPosCenter();	// È­¸é Á¤°¡¿îµ¥·Î ¸ÂÃß¾îÁØ´Ù..(chilrenÀÇ À§Ä¡µµ °°ÀÌ ¹Ù²Ù¾îÁØ´Ù.) ³»ºÎÀûÀ¸·Î MoveOffsetÇÔ¼ö¸¦ ºÎ¸¥´Ù.
+	virtual void	SetPos(int x, int y);	// ï¿½ï¿½Ä¡ ï¿½ï¿½ï¿½ï¿½(chilrenï¿½ï¿½ ï¿½ï¿½Ä¡ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ù²Ù¾ï¿½ï¿½Ø´ï¿½.) ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ MoveOffsetï¿½Ô¼ï¿½ï¿½ï¿½ ï¿½Î¸ï¿½ï¿½ï¿½.
+	void			SetPosCenter();	// È­ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½îµ¥ï¿½ï¿½ ï¿½ï¿½ï¿½ß¾ï¿½ï¿½Ø´ï¿½..(chilrenï¿½ï¿½ ï¿½ï¿½Ä¡ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ù²Ù¾ï¿½ï¿½Ø´ï¿½.) ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ MoveOffsetï¿½Ô¼ï¿½ï¿½ï¿½ ï¿½Î¸ï¿½ï¿½ï¿½.
 	CN3UIBase*		GetChildByID(const std::string& szID);
 
-	virtual void	SetRegion(const RECT& pRect) { m_rcRegion = pRect; }	// ¿µ¿ª ÁöÁ¤
-	virtual BOOL	MoveOffset(int iOffsetX, int iOffsetY);	// offset¸¸Å­ ÀÌµ¿ÇØÁØ´Ù.(region, children, move rect ÀÌµ¿)
-	virtual void	SetSize(int iWidth, int iHeight);	// Å©±â ÁöÁ¤
+	virtual void	SetRegion(const RECT& pRect) { m_rcRegion = pRect; }	// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+	virtual BOOL	MoveOffset(int iOffsetX, int iOffsetY);	// offsetï¿½ï¿½Å­ ï¿½Ìµï¿½ï¿½ï¿½ï¿½Ø´ï¿½.(region, children, move rect ï¿½Ìµï¿½)
+	virtual void	SetSize(int iWidth, int iHeight);	// Å©ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	virtual void	SetState(eUI_STATE eState) { m_eState = eState; }
-	virtual void	SetStyle(DWORD dwStyle) {m_dwStyle = dwStyle;}	// styleÁöÁ¤
+	virtual void	SetStyle(DWORD dwStyle) {m_dwStyle = dwStyle;}	// styleï¿½ï¿½ï¿½ï¿½
 	virtual void	SetVisible(bool bVisible);
 
 	virtual void	SetVisibleWithNoSound(bool bVisible, bool bWork = false, bool bReFocus = false);
@@ -125,17 +125,17 @@ public:
 	virtual void	CallBackProc(int iID, DWORD dwFlag);
 	virtual void	ShowWindow(int iID = -1, CN3UIBase* pParent = NULL);
 	virtual bool	Load(HANDLE hFile);
-	virtual bool	ReceiveMessage(CN3UIBase* pSender, DWORD dwMsg); // ¸Þ½ÃÁö¸¦ ¹Þ´Â´Ù.. º¸³½³ð, msg
+	virtual bool	ReceiveMessage(CN3UIBase* pSender, DWORD dwMsg); // ï¿½Þ½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Þ´Â´ï¿½.. ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½, msg
 	virtual DWORD	MouseProc(DWORD dwFlags, const POINT& ptCur, const POINT& ptOld);
 	virtual void	Tick();
 	virtual void	Render();
-	virtual void	Release(); // ÀÚ½Ä Æ÷ÀÎÅÍ±îÁö delete ÇÑ´Ù..
+	virtual void	Release(); // ï¿½Ú½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Í±ï¿½ï¿½ï¿½ delete ï¿½Ñ´ï¿½..
 	virtual void	Init(CN3UIBase* pParent);
 	virtual bool	OnKeyPress(int iKey) { return false; }
 	virtual bool	OnKeyPressed(int iKey) { return false; }
 
-	static	bool	EnableTooltip(const std::string& szFN);	// tooltip UI¸¦ ÃÊ±âÈ­ ÇØÁØ´Ù.
-	static	void	DestroyTooltip();	// tooltip ui¿¡ °ü·ÃµÈ °ÍÀ» ÇØÁ¦ÇØÁØ´Ù.
+	static	bool	EnableTooltip(const std::string& szFN);	// tooltip UIï¿½ï¿½ ï¿½Ê±ï¿½È­ ï¿½ï¿½ï¿½Ø´ï¿½.
+	static	void	DestroyTooltip();	// tooltip uiï¿½ï¿½ ï¿½ï¿½ï¿½Ãµï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ø´ï¿½.
 
 	int				GetChildrenCount() { return m_Children.size(); }
 	CN3UIBase*		GetChildByIndex(int iIndex)

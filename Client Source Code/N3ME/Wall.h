@@ -22,8 +22,8 @@ public:
 	void	Load(HANDLE hFile);
 	void	Save(HANDLE hFile);
 	int		GetSize() { return m_Wall.size(); }
-	bool	GetVertex(int idx, __Vector3* pPos);	// idxÂ° Á¡ °¡Á®¿À±â..
-	void	AddVertex(__Vector3 Vertex);	//path´õÇÏ±â.
+	bool	GetVertex(int idx, __Vector3* pPos);	// idxÂ° ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½..
+	void	AddVertex(__Vector3 Vertex);	//pathï¿½ï¿½ï¿½Ï±ï¿½.
 	void	DelPrevVertex();
 
 	CWall();

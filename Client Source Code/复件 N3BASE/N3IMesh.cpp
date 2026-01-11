@@ -23,8 +23,8 @@ CN3IMesh::CN3IMesh()
 
 	m_nFC = 0;
 
-	m_pwVtxIndices = NULL; // Á¡ ÀÎµ¦½º ¸®½ºÆ®. 
-	m_pwUVsIndices = NULL; // ÅØ½ºÃ³ ÁÂÇ¥ ÀÎµ¦½º ¸®½ºÆ®.
+	m_pwVtxIndices = NULL; // ï¿½ï¿½ ï¿½Îµï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Æ®. 
+	m_pwUVsIndices = NULL; // ï¿½Ø½ï¿½Ã³ ï¿½ï¿½Ç¥ ï¿½Îµï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Æ®.
 
 	m_nVC = m_nUVC = 0;
 	m_pVertices = NULL;
@@ -45,8 +45,8 @@ void CN3IMesh::Release()
 	delete [] m_pVertices; m_pVertices = NULL;
 	delete [] m_pfUVs; m_pfUVs = NULL;
 
-	delete [] m_pwVtxIndices; m_pwVtxIndices = NULL; // Á¡ ÀÎµ¦½º ¸®½ºÆ®. 
-	delete [] m_pwUVsIndices; m_pwUVsIndices = NULL; // ÅØ½ºÃ³ ÁÂÇ¥ ÀÎµ¦½º ¸®½ºÆ®.
+	delete [] m_pwVtxIndices; m_pwVtxIndices = NULL; // ï¿½ï¿½ ï¿½Îµï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Æ®. 
+	delete [] m_pwUVsIndices; m_pwUVsIndices = NULL; // ï¿½Ø½ï¿½Ã³ ï¿½ï¿½Ç¥ ï¿½Îµï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Æ®.
 
 	m_vMin.Zero();
 	m_vMax.Zero();
@@ -64,7 +64,7 @@ void CN3IMesh::Create(int nFC, int nVC, int nUVC)
 	
 	if(nUVC > 0)
 	{
-		m_nUVC = nUVC; m_pfUVs = new float[nUVC*2]; memset(m_pfUVs, 0, 8 * nUVC); // »çÀÌÁî°¡ 8 ÀÎ ÀÌÀ¯´Â float 2°³¶ó ±×·¸´Ù..
+		m_nUVC = nUVC; m_pfUVs = new float[nUVC*2]; memset(m_pfUVs, 0, 8 * nUVC); // ï¿½ï¿½ï¿½ï¿½ï¿½î°¡ 8 ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ float 2ï¿½ï¿½ï¿½ï¿½ ï¿½×·ï¿½ï¿½ï¿½..
 		m_pwUVsIndices = new WORD[nFC*3]; memset(m_pwUVsIndices, 0, 2 * nFC * 3); // unsigned short
 	} 
 }
@@ -110,7 +110,7 @@ void CN3IMesh::Render()
 
 	this->BuildVertexList();
 	
-	s_lpD3DDev->SetVertexShader(FVF_VNT1);
+	s_lpD3DDev->SetFVF(FVF_VNT1);
 	s_lpD3DDev->DrawPrimitiveUP(D3DPT_TRIANGLELIST, m_nFC, s_Vertices, sizeof(__VertexT1));
 
 	CN3Base::s_RenderInfo.nPolygonCharacter += m_nFC;
@@ -143,7 +143,7 @@ bool CN3IMesh::Load(HANDLE hFile)
 		ReadFile(hFile, m_pwUVsIndices, 2 * nFC * 3, &dwRWC, NULL); // unsigned short
 	}
 
-	this->FindMinMax(); // ÃÖ¼Ò ÃÖ´ë°ªÀ» Ã£´Â´Ù..
+	this->FindMinMax(); // ï¿½Ö¼ï¿½ ï¿½Ö´ë°ªï¿½ï¿½ Ã£ï¿½Â´ï¿½..
 
 	return true;
 }
@@ -175,7 +175,7 @@ void CN3IMesh::FindMinMax()
 {
 	if(m_pVertices == NULL) return;
 
-	// ÃÖ¼Ò, ÃÖ´ë Á¡À» Ã£´Â´Ù.
+	// ï¿½Ö¼ï¿½, ï¿½Ö´ï¿½ ï¿½ï¿½ï¿½ï¿½ Ã£ï¿½Â´ï¿½.
 	if(m_nVC > 0)
 	{
 		m_vMin.Set(1000000.0f, 1000000.0f, 1000000.0f);

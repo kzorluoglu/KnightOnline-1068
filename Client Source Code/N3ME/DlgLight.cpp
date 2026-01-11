@@ -127,7 +127,7 @@ void CDlgLight::OnBtnUpload()
 
 	if(m_strLightObjName.IsEmpty())
 	{
-		MessageBox("Light Object°´Ã¼ÀÇ ÀÌ¸§ÀÌ ÁöÁ¤µÇ¾î ÀÖÁö ¾Ê½À´Ï´Ù.","-.-;");
+		MessageBox("Light Objectï¿½ï¿½Ã¼ï¿½ï¿½ ï¿½Ì¸ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ç¾ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ê½ï¿½ï¿½Ï´ï¿½.","-.-;");
 		return;
 	}
 

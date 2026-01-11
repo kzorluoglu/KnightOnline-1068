@@ -23,9 +23,9 @@ public:
 	{
 		friend CN3Shape;
 	public:
-		__Vector3	m_vPivot; // Local Ãà
-		__Matrix44	m_Matrix; // World Matrix.. Shape Loading ¶§ ¹Ì¸® °è»êÇØ¾ß ÁÁ´Ù..		
-		BOOL		m_bOutOfCameraRange; // Camera ¹üÀ§ ¹Ù±ù¿¡ ÀÖÀ½...
+		__Vector3	m_vPivot; // Local ï¿½ï¿½
+		__Matrix44	m_Matrix; // World Matrix.. Shape Loading ï¿½ï¿½ ï¿½Ì¸ï¿½ ï¿½ï¿½ï¿½ï¿½Ø¾ï¿½ ï¿½ï¿½ï¿½ï¿½..		
+		BOOL		m_bOutOfCameraRange; // Camera ï¿½ï¿½ï¿½ï¿½ ï¿½Ù±ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½...
 
 		__Material	m_Mtl; // Material
 		float		m_fTexFPS; // Texture Animation Interval;
@@ -35,11 +35,11 @@ public:
 		CN3Texture**		m_ppTexRefs; // Texture Reference Pointers
 		CN3PMeshInstance	m_PMInst; // Progressive Mesh Instance
 
-		int		m_nTexIndex; // Current Texture Index.. Animation ½ÃÅ³¶§ ÇÊ¿äÇÑ ÀÎµ¦½ºÀÌ´Ù..
-		DWORD	m_dwTickPrev; // ÀüÀÇ Tick Count...
+		int		m_nTexIndex; // Current Texture Index.. Animation ï¿½ï¿½Å³ï¿½ï¿½ ï¿½Ê¿ï¿½ï¿½ï¿½ ï¿½Îµï¿½ï¿½ï¿½ï¿½Ì´ï¿½..
+		DWORD	m_dwTickPrev; // ï¿½ï¿½ï¿½ï¿½ Tick Count...
 
-		__Vector3	m_vMin, m_vMax; // ÃÖ¼Ò ÃÖ´ëÁ¡.. ¹°·Ð Çà·ÄÀû¿ë ÀÌÀüÀÌ´Ù..
-		float		m_fRadius; // ¹Ý°æ..
+		__Vector3	m_vMin, m_vMax; // ï¿½Ö¼ï¿½ ï¿½Ö´ï¿½ï¿½ï¿½.. ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ì´ï¿½..
+		float		m_fRadius; // ï¿½Ý°ï¿½..
 
 	public:
 		bool	Save(HANDLE hFile);
@@ -56,7 +56,7 @@ public:
 
 		void RecalcMatrix(__Matrix44& mtxParent) { m_Matrix.Identity(); m_Matrix.PosSet(m_vPivot); m_Matrix *= mtxParent; }
 
-		void Tick(DWORD dwTime); // timeGetTime À¸·Î ¾òÀº °ªÀ» ³ÖÀ¸¸é Texture Animation À» ÄÁÆ®·Ñ ÇÑ´Ù..
+		void Tick(DWORD dwTime); // timeGetTime ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Texture Animation ï¿½ï¿½ ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½Ñ´ï¿½..
 		void Render();
 		void RenderSelected();
 		void RenderAxis();
@@ -71,15 +71,15 @@ public:
 		virtual ~CPart();
 	};
 public:
-	int		m_nBelong; // ¼Ò¼Ó - 0:¼Ò¼Ó ¾øÀ½ 1:¿¤¸ð¶óµå 2:Ä«·ç½º 3:?? ....
+	int		m_nBelong; // ï¿½Ò¼ï¿½ - 0:ï¿½Ò¼ï¿½ ï¿½ï¿½ï¿½ï¿½ 1:ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ 2:Ä«ï¿½ç½º 3:?? ....
 
 protected:
-	BOOL	m_bDontRender; // Ä«¸Þ¶ó °Å¸®¿¡ µû¶ó ÀÌÇÃ·¡±×°¡ ¼³Á¤µÇ¸é ·»´õ¸µÇÏÁö ¾Ê´Â´Ù..
+	BOOL	m_bDontRender; // Ä«ï¿½Þ¶ï¿½ ï¿½Å¸ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ã·ï¿½ï¿½×°ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ç¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ê´Â´ï¿½..
 
 	CN3LinkedList<CPart*>	m_Parts; // Part Data Pointer Linked List
 
 public:
-	bool CheckPreciseCollision(__Vector3& vPos, __Vector3& vDir);  // Á¤¹ÐÇÏ°Ô Æú¸®°ï ´ÜÀ§·Î Ã¼Å©
+	bool CheckPreciseCollision(__Vector3& vPos, __Vector3& vDir);  // ï¿½ï¿½ï¿½ï¿½ï¿½Ï°ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Ã¼Å©
 	void FindMinMax();
 	virtual void	ReCalcMatrix();
 	void			ReCalcPartMatrix();

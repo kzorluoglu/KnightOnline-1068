@@ -24,8 +24,8 @@ CN3Scene::CN3Scene()
 	m_nCameraActive = 0;
 
 	m_fFrmCur = 0.0f; // Animation Frame;
-	m_fFrmStart = 0.0f; // ÀüÃ¼ ÇÁ·¹ÀÓ.
-	m_fFrmEnd = 1000.0f; // ±âº»°ª ÇÁ·¹ÀÓ.
+	m_fFrmStart = 0.0f; // ï¿½ï¿½Ã¼ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½.
+	m_fFrmEnd = 1000.0f; // ï¿½âº»ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½.
 
 	m_nCameraCount = 0; 
 	m_nLightCount = 0;
@@ -50,8 +50,8 @@ void CN3Scene::Release()
 	m_nCameraActive = 0;
 
 	m_fFrmCur = 0.0f; // Animation Frame;
-	m_fFrmStart = 0.0f; // ÀüÃ¼ ÇÁ·¹ÀÓ.
-	m_fFrmEnd = 1000.0f; // ±âº»°ª ÇÁ·¹ÀÓ.
+	m_fFrmStart = 0.0f; // ï¿½ï¿½Ã¼ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½.
+	m_fFrmEnd = 1000.0f; // ï¿½âº»ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½.
 
 	int i = 0;
 	for(i = 0; i < MAX_SCENE_CAMERA; i++) { if(m_pCameras[i]) { delete m_pCameras[i]; m_pCameras[i] = NULL; } }
@@ -71,14 +71,14 @@ bool CN3Scene::Load(HANDLE hFile)
 	
 	ReadFile(hFile, &m_nCameraActive, 4, &dwRWC, NULL);
 	ReadFile(hFile, &m_fFrmCur, 4, &dwRWC, NULL); // Animation Frame;
-	ReadFile(hFile, &m_fFrmStart, 4, &dwRWC, NULL); // ÀüÃ¼ ÇÁ·¹ÀÓ.
-	ReadFile(hFile, &m_fFrmEnd, 4, &dwRWC, NULL); // ÀüÃ¼ ÇÁ·¹ÀÓ.
+	ReadFile(hFile, &m_fFrmStart, 4, &dwRWC, NULL); // ï¿½ï¿½Ã¼ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½.
+	ReadFile(hFile, &m_fFrmEnd, 4, &dwRWC, NULL); // ï¿½ï¿½Ã¼ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½.
 
 	int i = 0, nL = 0;
 	char szName[512] = "";
 
 	int nCC = 0;
-	ReadFile(hFile, &nCC, 4, &dwRWC, NULL); // Ä«¸Þ¶ó..
+	ReadFile(hFile, &nCC, 4, &dwRWC, NULL); // Ä«ï¿½Þ¶ï¿½..
 	for(i = 0; i < nCC; i++)
 	{
 		ReadFile(hFile, &nL, 4, &dwRWC, NULL);
@@ -98,7 +98,7 @@ bool CN3Scene::Load(HANDLE hFile)
 	}
 
 	int nLC = 0;
-	ReadFile(hFile, &nLC, 4, &dwRWC, NULL); // Ä«¸Þ¶ó..
+	ReadFile(hFile, &nLC, 4, &dwRWC, NULL); // Ä«ï¿½Þ¶ï¿½..
 	for(i = 0; i < nLC; i++) 
 	{
 		ReadFile(hFile, &nL, 4, &dwRWC, NULL);
@@ -138,7 +138,7 @@ bool CN3Scene::Load(HANDLE hFile)
 	}
 
 	int nChrC = 0;
-	ReadFile(hFile, &nChrC, 4, &dwRWC, NULL); // Ä³¸¯ÅÍ
+	ReadFile(hFile, &nChrC, 4, &dwRWC, NULL); // Ä³ï¿½ï¿½ï¿½ï¿½
 	for(i = 0; i < nChrC; i++)
 	{
 		ReadFile(hFile, &nL, 4, &dwRWC, NULL);
@@ -174,12 +174,12 @@ bool CN3Scene::Save(HANDLE hFile)
 	
 	WriteFile(hFile, &m_nCameraActive, 4, &dwRWC, NULL);
 	WriteFile(hFile, &m_fFrmCur, 4, &dwRWC, NULL); // Animation Frame;
-	WriteFile(hFile, &m_fFrmStart, 4, &dwRWC, NULL); // ÀüÃ¼ ÇÁ·¹ÀÓ.
-	WriteFile(hFile, &m_fFrmEnd, 4, &dwRWC, NULL); // ÀüÃ¼ ÇÁ·¹ÀÓ.
+	WriteFile(hFile, &m_fFrmStart, 4, &dwRWC, NULL); // ï¿½ï¿½Ã¼ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½.
+	WriteFile(hFile, &m_fFrmEnd, 4, &dwRWC, NULL); // ï¿½ï¿½Ã¼ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½.
 
 	int i = 0, nL = 0;
 	
-	WriteFile(hFile, &m_nCameraCount, 4, &dwRWC, NULL); // Ä«¸Þ¶ó..
+	WriteFile(hFile, &m_nCameraCount, 4, &dwRWC, NULL); // Ä«ï¿½Þ¶ï¿½..
 	for(i = 0; i < m_nCameraCount; i++)
 	{
 		nL = m_pCameras[i]->FileName().size();
@@ -188,7 +188,7 @@ bool CN3Scene::Save(HANDLE hFile)
 		m_pCameras[i]->SaveToFile();
 	}
 
-	WriteFile(hFile, &m_nLightCount, 4, &dwRWC, NULL); // Ä«¸Þ¶ó..
+	WriteFile(hFile, &m_nLightCount, 4, &dwRWC, NULL); // Ä«ï¿½Þ¶ï¿½..
 	for(i = 0; i < m_nLightCount; i++) 
 	{
 		nL = m_pLights[i]->FileName().size();
@@ -210,7 +210,7 @@ bool CN3Scene::Save(HANDLE hFile)
 	}
 
 	int iCC = m_Chrs.size();
-	WriteFile(hFile, &iCC, 4, &dwRWC, NULL); // Ä³¸¯ÅÍ
+	WriteFile(hFile, &iCC, 4, &dwRWC, NULL); // Ä³ï¿½ï¿½ï¿½ï¿½
 	for(i = 0; i < iCC; i++)
 	{
 		nL = m_Chrs[i]->FileName().size();
@@ -221,7 +221,7 @@ bool CN3Scene::Save(HANDLE hFile)
 		m_Chrs[i]->SaveToFile();
 	}
 
-	CN3Base::SaveResrc(); // Resource ¸¦ ÆÄÀÏ·Î ÀúÀåÇÑ´Ù..
+	CN3Base::SaveResrc(); // Resource ï¿½ï¿½ ï¿½ï¿½ï¿½Ï·ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ñ´ï¿½..
 
 	return true;
 }
@@ -259,7 +259,7 @@ void CN3Scene::Tick(float fFrm)
 {
 	if(FRAME_SELFPLAY == fFrm || fFrm <  m_fFrmStart || fFrm > m_fFrmEnd)
 	{
-		m_fFrmCur += 30.0f / CN3Base::s_fFrmPerSec; // ÀÏÁ¤ÇÏ°Ô ¿òÁ÷ÀÌµµ·Ï ½Ã°£¿¡ µû¶ó ¿òÁ÷ÀÌ´Â ¾çÀ» Á¶Àý..
+		m_fFrmCur += 30.0f / CN3Base::s_fFrmPerSec; // ï¿½ï¿½ï¿½ï¿½ï¿½Ï°ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ìµï¿½ï¿½ï¿½ ï¿½Ã°ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ì´ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½..
 		if(m_fFrmCur > m_fFrmEnd) m_fFrmCur = m_fFrmStart;
 	}
 	else
@@ -278,21 +278,21 @@ void CN3Scene::TickCameras(float fFrm)
 	for(int i = 0; i < m_nCameraCount; i++)
 	{
 		m_pCameras[i]->Tick(m_fFrmCur);
-		if(m_nCameraActive == i) m_pCameras[i]->Apply(); // Ä«¸Þ¶ó µ¥ÀÌÅÍ °ªÀ» Àû¿ëÇÑ´Ù..
+		if(m_nCameraActive == i) m_pCameras[i]->Apply(); // Ä«ï¿½Þ¶ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ñ´ï¿½..
 	}
 }
 
 void CN3Scene::TickLights(float fFrm)
 {
-	for(int i = 0; i < 8; i++) s_lpD3DDev->LightEnable(i, FALSE); // ÀÏ´Ü ¶óÀÌÆ® ´Ù ²ô°í..
+	for(int i = 0; i < 8; i++) s_lpD3DDev->LightEnable(i, FALSE); // ï¿½Ï´ï¿½ ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½..
 	
 	for(i = 0; i < m_nLightCount; i++)
 	{
 		m_pLights[i]->Tick(m_fFrmCur);
-		m_pLights[i]->Apply(); // ¶óÀÌÆ® Àû¿ë
+		m_pLights[i]->Apply(); // ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ï¿½ï¿½ï¿½
 	}
 
-	// ¶óÀÌÆ®°¡ Ç×»ó Ä«¸Þ¶ó¸¦ µû¶ó¿À°Ô ¸¸µç´Ù..
+	// ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½×»ï¿½ Ä«ï¿½Þ¶ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½..
 	if(false == m_bDisableDefaultLight)
 	{
 		__Vector3 vDir = s_CameraData.vAt - s_CameraData.vEye;
@@ -306,7 +306,7 @@ void CN3Scene::TickLights(float fFrm)
 		s_lpD3DDev->SetLight(7, &lgt);
 	}
 
-	// Ambient Light ¹Ù²Ù±â..
+	// Ambient Light ï¿½Ù²Ù±ï¿½..
 //	DWORD dwAmbient =	0xff000000 | 
 //						(((DWORD)(m_pLights[i]->m_Data.Diffuse.r * 255 * 0.5f)) << 16) | 
 //						(((DWORD)(m_pLights[i]->m_Data.Diffuse.g * 255 * 0.5f)) << 8) | 
@@ -499,7 +499,7 @@ void CN3Scene::ChrRelease()
 /*
 bool CN3Scene::CheckOverlappedShapesAndReport()
 {
-	// ÀÌ¸§ Áßº¹ °Ë»ç..
+	// ï¿½Ì¸ï¿½ ï¿½ßºï¿½ ï¿½Ë»ï¿½..
 	CN3Transform* pShapes[8192];
 	memset(pShapes, 0, 8192*4);
 
@@ -523,14 +523,14 @@ bool CN3Scene::CheckOverlappedShapesAndReport()
 		{
 			vPos2 = pShapes[j]->Pos();
 			if(	vPos1 == vPos2 ||
-				pShapes[i]->FileName() == pShapes[j]->FileName() ) // À§Ä¡³ª ÀÌ¸§ÀÌ °°Àº ¿ÀºêÁ§Æ®°¡ ÀÖ´ÂÁö Ã£¾Æº»´Ù.
+				pShapes[i]->FileName() == pShapes[j]->FileName() ) // ï¿½ï¿½Ä¡ï¿½ï¿½ ï¿½Ì¸ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½Ö´ï¿½ï¿½ï¿½ Ã£ï¿½Æºï¿½ï¿½ï¿½.
 			{
 				char szErr[512];
 				__Vector3 vPos = pShapes[j]->Pos();
-				sprintf(szErr, "ÆÄÀÏ ÀÌ¸§ÀÌ °°°Å³ª À§Ä¡°¡ °°Àº ¿ÀºêÁ§Æ®°¡ ÀÖ½À´Ï´Ù\nÃ¹¹øÂ° ¿ÀºêÁ§Æ® : \"%s\" - À§Ä¡(%f, %f, %f)\nµÎ¹øÂ° ¿ÀºêÁ§Æ® : \"%s\" - À§Ä¡(%f, %f, %f)",
+				sprintf(szErr, "ï¿½ï¿½ï¿½ï¿½ ï¿½Ì¸ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Å³ï¿½ ï¿½ï¿½Ä¡ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½Ö½ï¿½ï¿½Ï´ï¿½\nÃ¹ï¿½ï¿½Â° ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ® : \"%s\" - ï¿½ï¿½Ä¡(%f, %f, %f)\nï¿½Î¹ï¿½Â° ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ® : \"%s\" - ï¿½ï¿½Ä¡(%f, %f, %f)",
 					pShapes[i]->FileName().c_str(), vPos1.x, vPos1.y, vPos1.z,
 					pShapes[j]->FileName().c_str(), vPos2.x, vPos2.y, vPos2.z);
-				MessageBox(::GetActiveWindow(), szErr, "Scene ¿ÀºêÁ§Æ® Áßº¹ Á¡°Ë", MB_OK);
+				MessageBox(::GetActiveWindow(), szErr, "Scene ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ßºï¿½ ï¿½ï¿½ï¿½ï¿½", MB_OK);
 				bOverlapped = true;
 			}
 		}
@@ -541,7 +541,7 @@ bool CN3Scene::CheckOverlappedShapesAndReport()
 
 void CN3Scene::DeleteOverlappedShapes()
 {
-	// ÀÌ¸§ Áßº¹ °Ë»ç..
+	// ï¿½Ì¸ï¿½ ï¿½ßºï¿½ ï¿½Ë»ï¿½..
 	BOOL bNeedDeletes[8192];
 	it_Shape itShapes[8192];
 	CN3Shape* pShapes[8192];
@@ -569,7 +569,7 @@ void CN3Scene::DeleteOverlappedShapes()
 		{
 			vPos2 = pShapes[j]->Pos();
 			if(	vPos1 == vPos2 ||
-				pShapes[i]->FileName() == pShapes[j]->FileName() ) // À§Ä¡³ª ÀÌ¸§ÀÌ °°Àº ¿ÀºêÁ§Æ®°¡ ÀÖ´ÂÁö Ã£¾Æº»´Ù.
+				pShapes[i]->FileName() == pShapes[j]->FileName() ) // ï¿½ï¿½Ä¡ï¿½ï¿½ ï¿½Ì¸ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½Ö´ï¿½ï¿½ï¿½ Ã£ï¿½Æºï¿½ï¿½ï¿½.
 			{
 				bNeedDeletes[j] = true;
 			}
@@ -621,7 +621,7 @@ void CN3Scene::DefaultCameraAdd()
 }
 void CN3Scene::DefaultLightAdd()
 {
-	// Light ÃÊ±âÈ­..
+	// Light ï¿½Ê±ï¿½È­..
 	CN3Light* pLight = new CN3Light();
 	pLight->m_szName = "DefaultLight";
 	pLight->FileNameSet("Data\\DefaultLight.N3Light");

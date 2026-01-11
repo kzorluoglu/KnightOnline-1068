@@ -35,7 +35,7 @@ CN3SndEng::~CN3SndEng()
 
 //
 //	Init
-//	¿£Áø ÃÊ±âÈ­...
+//	ï¿½ï¿½ï¿½ï¿½ ï¿½Ê±ï¿½È­...
 //
 bool CN3SndEng::Init( HWND  hWnd, DWORD dwCoopLevel, DWORD dwPrimaryChannels, DWORD dwPrimaryFreq, DWORD dwPrimaryBitRate )
 {
@@ -159,7 +159,7 @@ bool CN3SndEng::LoadSource(LPSOUNDSOURCE pSrc)
 	dsbd.lpwfxFormat     = WaveFile.m_pwfx;
 	dsbd.dwFlags		 = DSBCAPS_CTRLVOLUME | DSBCAPS_STATIC;
 
-	if(pSrc->Type==SNDTYPE_3D)	//3D À½¿ø..
+	if(pSrc->Type==SNDTYPE_3D)	//3D ï¿½ï¿½ï¿½ï¿½..
 	{
 		dsbd.dwFlags         = DSBCAPS_CTRL3D | DSBCAPS_MUTE3DATMAXDISTANCE | DSBCAPS_STATIC;
 		dsbd.guid3DAlgorithm = DS3DALG_HRTF_FULL;

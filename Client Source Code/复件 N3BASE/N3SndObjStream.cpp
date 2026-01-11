@@ -1,10 +1,10 @@
 //////////////////////////////////////////////////
 //	Commented By : Lynus
-//	Commented On 2001-04-12 ¿ÀÈÄ 8:42:02
+//	Commented On 2001-04-12 ï¿½ï¿½ï¿½ï¿½ 8:42:02
 //
 //	CN3SndObjStream class (N3SndObjStream.h)
 //
-//	End Of Comment (By Lynus On 2001-04-12 ¿ÀÈÄ 8:42:02 )
+//	End Of Comment (By Lynus On 2001-04-12 ï¿½ï¿½ï¿½ï¿½ 8:42:02 )
 //////////////////////////////////////////////////
 #include "StdAfxBase.h"
 #include "N3SndObjStream.h"
@@ -190,14 +190,14 @@ void CN3SndObjStream::RealPlay()
 			{
 				if(m_bIsLoop==false)
 				{
-					//tick¿¡ ¾îÄÉ Àû¿ëÇÒ °ÍÀÎ°¡..
+					//tickï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Î°ï¿½..
 					m_PastTime = m_PlayTime;
 					Stop();
 					return;
 				}
 				else if(m_bIsLoop==true)
 				{
-					//tick¿¡ ¾îÄÉ Àû¿ëÇÒ °ÍÀÎ°¡..
+					//tickï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Î°ï¿½..
 					//Stop();
 					//m_lpDSBuff->Stop();
 					Play();
@@ -242,7 +242,7 @@ void CN3SndObjStream::Release()
 
 
 //
-//	À½¾ÇÀÌ ÇÃ·¹ÀÌµÇ°í ÀÖÀ»¶§ streamming½ÃÅ°±â..
+//	ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ã·ï¿½ï¿½ÌµÇ°ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ streammingï¿½ï¿½Å°ï¿½ï¿½..
 //
 void CN3SndObjStream::Tick()
 {
@@ -291,7 +291,7 @@ void CN3SndObjStream::Tick()
 		}
 		else
 		{
-			//º¼·ý Á¡Á¡ ÀÛ°Ô....
+			//ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Û°ï¿½....
 			int vol = 0;
 			if(m_fFadeOutTime>0.0f)  vol = (((m_fFadeOutTime - m_fTmpSecPerFrm)/m_fFadeOutTime)*(float)m_iMaxVolume);
 			SetVolume(vol);
@@ -302,7 +302,7 @@ void CN3SndObjStream::Tick()
 
 /*
 //
-// ¶È°°´Ù.
+// ï¿½È°ï¿½ï¿½ï¿½.
 //
 void CN3SndObjStream::Play(float delay, float fFadeInTime)
 {
@@ -315,7 +315,7 @@ void CN3SndObjStream::Play(float delay, float fFadeInTime)
 
 
 //
-// ¶È°°´Ù.
+// ï¿½È°ï¿½ï¿½ï¿½.
 //
 void CN3SndObjStream::Stop(float fFadeOutTime)
 {

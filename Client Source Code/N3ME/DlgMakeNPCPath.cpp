@@ -134,7 +134,7 @@ BOOL CDlgMakeNPCPath::OnInitDialog()
 	char szLine[512] = "", szID[80] = "", szBuff[4][80] = {"", "", "", ""};
 	char szName[512] = "";
 	
-	//NPCÁ¾·ù¿¡ °üÇÑ Á¤ÀÇ...
+	//NPCï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½...
 	char szNpcFileName[MAX_PATH];
 	wsprintf(szNpcFileName, "npclist\\npclist.txt");
 	FILE* stream = fopen(szNpcFileName, "r");
@@ -167,7 +167,7 @@ BOOL CDlgMakeNPCPath::OnInitDialog()
 		fclose(stream);
 	}
 
-	//NPC¿òÁ÷ÀÓ¿¡ °üÇÑ Á¤ÀÇ..
+	//NPCï¿½ï¿½ï¿½ï¿½ï¿½Ó¿ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½..
 	wsprintf(szNpcFileName, "npclist\\npcacttypelist.txt");
 	stream = fopen(szNpcFileName, "r");
 	if(stream)
@@ -201,8 +201,8 @@ BOOL CDlgMakeNPCPath::OnInitDialog()
 	m_NPCList.GetLBText(0, m_strSelNPCName);
 	m_iSelNPCID = (int)m_NPCList.GetItemData(0);
 
-	//m_ActTypeList.AddString("¿òÁ÷ÀÌ´Â");
-	//m_ActTypeList.AddString("¾È¿òÁ÷ÀÌ´Â");
+	//m_ActTypeList.AddString("ï¿½ï¿½ï¿½ï¿½ï¿½Ì´ï¿½");
+	//m_ActTypeList.AddString("ï¿½È¿ï¿½ï¿½ï¿½ï¿½Ì´ï¿½");
 	m_ActTypeList.SetCurSel(0);
 	m_iSelActType = (int)m_ActTypeList.GetItemData(0);
 
@@ -323,7 +323,7 @@ void CDlgMakeNPCPath::OnBtnSavePathset()
 
 void CDlgMakeNPCPath::OnBtnSaveServerPathset() 
 {
-	CFileDialog dlg(FALSE, "snr", "Noname", OFN_EXPLORER | OFN_LONGNAMES | OFN_OVERWRITEPROMPT, "¼­¹ö NPC RouteÆÄÀÏ(*.snr)|*.snr||");
+	CFileDialog dlg(FALSE, "snr", "Noname", OFN_EXPLORER | OFN_LONGNAMES | OFN_OVERWRITEPROMPT, "ï¿½ï¿½ï¿½ï¿½ NPC Routeï¿½ï¿½ï¿½ï¿½(*.snr)|*.snr||");
 
 	if(dlg.DoModal()==IDOK)
 	{

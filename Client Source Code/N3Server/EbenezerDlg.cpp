@@ -137,13 +137,13 @@ BOOL CEbenezerDlg::OnInitDialog()
 	szFullPath.Format(".\\MAP\\%s", "test.smd");
 	if (!file.Open(szFullPath, CFile::modeRead))
 	{
-		errormsg.Format( "ÆÄÀÏ Open ½ÇÆÐ - %s\n", szFullPath );
+		errormsg.Format( "ï¿½ï¿½ï¿½ï¿½ Open ï¿½ï¿½ï¿½ï¿½ - %s\n", szFullPath );
 		AfxMessageBox(errormsg);
 		return FALSE;
 	}
 
 	if( m_Map.LoadMap( (HANDLE)file.m_hFile ) == FALSE ) {
-		errormsg.Format( "Map Load ½ÇÆÐ - %s\n", szFullPath );
+		errormsg.Format( "Map Load ï¿½ï¿½ï¿½ï¿½ - %s\n", szFullPath );
 		AfxMessageBox(errormsg);
 		return FALSE;
 	}

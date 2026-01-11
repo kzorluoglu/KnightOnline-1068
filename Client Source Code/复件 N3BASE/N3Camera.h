@@ -33,15 +33,15 @@ public:
 
 	__Vector3 EyePos() { return m_vPos; }
 	__Vector3 AtPos() { return m_vAt; }
-	__Vector3 UpVector() { return m_vScale; } // Rotation Àº LookAt Position Ã³·³, Scale Àº UpVector Ã³·³ ¾´´Ù..
-	__Vector3 Dir() {__Vector3 vDir = m_vAt - m_vPos; vDir.Normalize(); return vDir;} // ¹æÇâÀ» µÇµ¹¸°´Ù.
+	__Vector3 UpVector() { return m_vScale; } // Rotation ï¿½ï¿½ LookAt Position Ã³ï¿½ï¿½, Scale ï¿½ï¿½ UpVector Ã³ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½..
+	__Vector3 Dir() {__Vector3 vDir = m_vAt - m_vPos; vDir.Normalize(); return vDir;} // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Çµï¿½ï¿½ï¿½ï¿½ï¿½.
 
 	void EyePosSet(__Vector3& v) { m_vPos = v; }
 	void EyePosSet(float x, float y, float z) { m_vPos.Set(x, y, z); }
 	void AtPosSet(__Vector3& v) { m_vAt = v; } 
 	void AtPosSet(float x, float y, float z) { m_vAt.Set(x, y, z); }
-	void UpVectorSet(__Vector3& v) { m_vScale = v; } // Scale Àº UpVector Ã³·³ ¾´´Ù..
-	void UpVectorSet(float x, float y, float z) { m_vScale.Set(x, y, z); } // Scale Àº UpVector Ã³·³ ¾´´Ù..
+	void UpVectorSet(__Vector3& v) { m_vScale = v; } // Scale ï¿½ï¿½ UpVector Ã³ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½..
+	void UpVectorSet(float x, float y, float z) { m_vScale.Set(x, y, z); } // Scale ï¿½ï¿½ UpVector Ã³ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½..
 
 	bool Load(HANDLE hFile);
 	bool Save(HANDLE hFile);

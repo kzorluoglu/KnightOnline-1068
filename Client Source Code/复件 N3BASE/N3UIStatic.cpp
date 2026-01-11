@@ -65,7 +65,7 @@ bool CN3UIStatic::Load(HANDLE hFile)
 {
 	if (false == CN3UIBase::Load(hFile)) return false;
 
-	// m_pImageBkGnd,  m_pBuffOutRef ¼³Á¤ÇÏ±â
+	// m_pImageBkGnd,  m_pBuffOutRef ï¿½ï¿½ï¿½ï¿½ï¿½Ï±ï¿½
 	for(UIListItor itor = m_Children.begin(); m_Children.end() != itor; ++itor)
 	{
 		CN3UIBase* pChild = (*itor);
@@ -79,10 +79,10 @@ bool CN3UIStatic::Load(HANDLE hFile)
 		}
 	}
 	
-	// ÀÌÀü uifÆÄÀÏÀ» ÄÁ¹öÆÃ ÇÏ·Á¸é »ç¿îµå ·Îµå ÇÏ´Â ºÎºÐ ¸·±â
+	// ï¿½ï¿½ï¿½ï¿½ uifï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ï·ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Îµï¿½ ï¿½Ï´ï¿½ ï¿½Îºï¿½ ï¿½ï¿½ï¿½ï¿½
 	int iSndFNLen = 0;
 	DWORD dwNum;
-	ReadFile(hFile, &iSndFNLen, sizeof(iSndFNLen), &dwNum, NULL);		//	»ç¿îµå ÆÄÀÏ ¹®ÀÚ¿­ ±æÀÌ
+	ReadFile(hFile, &iSndFNLen, sizeof(iSndFNLen), &dwNum, NULL);		//	ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ú¿ï¿½ ï¿½ï¿½ï¿½ï¿½
 	if (iSndFNLen>0)
 	{
 		std::vector<char> buffer(iSndFNLen+1, NULL);
@@ -112,11 +112,11 @@ DWORD CN3UIStatic::MouseProc(DWORD dwFlags, const POINT& ptCur, const POINT& ptO
 	DWORD dwRet = UI_MOUSEPROC_NONE;
 	if (!m_bVisible) return dwRet;
 
-	if((dwFlags & UI_MOUSE_LBCLICK) && IsIn(ptCur.x, ptCur.y))  // ¿ÞÂÊ¹öÆ° ´­¸£´Â ¼ø°£ ¿µ¿ª ¾ÈÀÌ¸é
+	if((dwFlags & UI_MOUSE_LBCLICK) && IsIn(ptCur.x, ptCur.y))  // ï¿½ï¿½ï¿½Ê¹ï¿½Æ° ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ì¸ï¿½
 	{
-		if (m_pSnd_Click) m_pSnd_Click->Play();	// »ç¿îµå°¡ ÀÖÀ¸¸é playÇÏ±â
+		if (m_pSnd_Click) m_pSnd_Click->Play();	// ï¿½ï¿½ï¿½å°¡ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ playï¿½Ï±ï¿½
 
-		if(m_pParent) m_pParent->ReceiveMessage(this, UIMSG_BUTTON_CLICK); // ºÎ¸ð¿¡°Ô ¹öÆ° Å¬¸¯ ÅëÁö..
+		if(m_pParent) m_pParent->ReceiveMessage(this, UIMSG_BUTTON_CLICK); // ï¿½Î¸ð¿¡°ï¿½ ï¿½ï¿½Æ° Å¬ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½..
 		dwRet |= (UI_MOUSEPROC_DONESOMETHING|UI_MOUSEPROC_INREGION);
 		return dwRet;
 	}
@@ -132,7 +132,7 @@ void CN3UIStatic::operator = (const CN3UIStatic& other)
 
 	SetSndClick(other.GetSndFName_Click());
 
-	// m_pImageBkGnd,  m_pBuffOutRef ¼³Á¤ÇÏ±â
+	// m_pImageBkGnd,  m_pBuffOutRef ï¿½ï¿½ï¿½ï¿½ï¿½Ï±ï¿½
 	for(UIListItor itor = m_Children.begin(); m_Children.end() != itor; ++itor)
 	{
 		CN3UIBase* pChild = (*itor);
@@ -154,7 +154,7 @@ bool CN3UIStatic::Save(HANDLE hFile)
 	DWORD dwNum;
 	int iSndFNLen = 0;
 	if (m_pSnd_Click) iSndFNLen = m_pSnd_Click->m_szFileName.size();
-	WriteFile(hFile, &iSndFNLen, sizeof(iSndFNLen), &dwNum, NULL);		//	»ç¿îµå ÆÄÀÏ ¹®ÀÚ¿­ ±æÀÌ
+	WriteFile(hFile, &iSndFNLen, sizeof(iSndFNLen), &dwNum, NULL);		//	ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ú¿ï¿½ ï¿½ï¿½ï¿½ï¿½
 	if (iSndFNLen>0) WriteFile(hFile, m_pSnd_Click->m_szFileName.c_str(), iSndFNLen, &dwNum, NULL);
 	return true;
 }
@@ -165,8 +165,8 @@ void CN3UIStatic::CreateImageAndString()
 	m_pImageBkGnd->Init(this);
 	m_pImageBkGnd->SetRegion(m_rcRegion);
 
-	m_pBuffOutRef = new CN3UIString();		// È­¸é¿¡ Ç¥½ÃÇÒ ui string »ý¼ºÇÏ°í 
-	m_pBuffOutRef->Init(this);				// ÃÊ±âÈ­(ÀÚµ¿À¸·Î children list µé¾î°£´Ù.)
+	m_pBuffOutRef = new CN3UIString();		// È­ï¿½é¿¡ Ç¥ï¿½ï¿½ï¿½ï¿½ ui string ï¿½ï¿½ï¿½ï¿½ï¿½Ï°ï¿½ 
+	m_pBuffOutRef->Init(this);				// ï¿½Ê±ï¿½È­(ï¿½Úµï¿½ï¿½ï¿½ï¿½ï¿½ children list ï¿½ï¿½î°£ï¿½ï¿½.)
 	m_pImageBkGnd->SetRegion(m_rcRegion);
 }
 
@@ -181,7 +181,7 @@ void CN3UIStatic::SetSndClick(const std::string& strFileName)
 	if (0 == strFileName.size()) return;
 
 	CN3BaseFileAccess tmpBase;
-	tmpBase.FileNameSet(strFileName);	// Base°æ·Î¿¡ ´ëÇØ¼­ »ó´ëÀû °æ·Î¸¦ ³Ñ°ÜÁØ´Ù.
+	tmpBase.FileNameSet(strFileName);	// Baseï¿½ï¿½Î¿ï¿½ ï¿½ï¿½ï¿½Ø¼ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Î¸ï¿½ ï¿½Ñ°ï¿½ï¿½Ø´ï¿½.
 
 	SetCurrentDirectory(tmpBase.PathGet().c_str());
 	m_pSnd_Click = s_SndMgr.CreateObj(tmpBase.FileName(), SNDTYPE_2D);

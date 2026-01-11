@@ -18,13 +18,13 @@ class CDlgSceneGraph : public CDialog
 {
 public:
 	CN3Scene* m_pSceneRef;
-	BOOL	m_IsSourceObj;		// Display¿ëÀÌ³Ä? (Åø¿¡¼­ ¿ÀºêÁ§Æ® ¸ñ·Ï)
+	BOOL	m_IsSourceObj;		// Displayï¿½ï¿½ï¿½Ì³ï¿½? (ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ï¿½ï¿½)
 	CMapMng* m_pMapMng;
 
 	CImageList m_ImgList;
 protected:
 	void UpdateTreeItem(HTREEITEM hParent, CN3Base* pBase);
-	DWORD	m_dwFlag;	// ¸ñ·Ï¿¡ Ç¥½ÃÇÒ °ÍµéÀ» ³ªÅ¸³½ ÇÃ·¡±×
+	DWORD	m_dwFlag;	// ï¿½ï¿½Ï¿ï¿½ Ç¥ï¿½ï¿½ï¿½ï¿½ ï¿½Íµï¿½ï¿½ï¿½ ï¿½ï¿½Å¸ï¿½ï¿½ ï¿½Ã·ï¿½ï¿½ï¿½
 
 public:
 	void SelectObject(HTREEITEM hItem, void* pItemData);

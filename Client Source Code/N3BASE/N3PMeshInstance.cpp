@@ -136,7 +136,7 @@ bool CN3PMeshInstance::Create(CN3PMesh* pN3PMesh)
 
 bool CN3PMeshInstance::Create(const std::string& szFN)
 {
-	if (m_pPMesh && m_pPMesh->FileName() == szFN) return true;	// ÆÄÀÏ ÀÌ¸§ÀÌ °°À¸¸é »õ·Î ¸¸µéÁö ¾Ê°í ¸®ÅÏÇÏÀÚ
+	if (m_pPMesh && m_pPMesh->FileName() == szFN) return true;	// ï¿½ï¿½ï¿½ï¿½ ï¿½Ì¸ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ê°ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	this->Release();
 
 	CN3PMesh* pN3PMesh = s_MngPMesh.Get(szFN);
@@ -157,7 +157,7 @@ void CN3PMeshInstance::SetLODByNumVertices(int iNumVertices)
 	{
 		while(iNumVertices > m_iNumVertices)
 		{
-			if (m_pCollapseUpTo->NumVerticesToLose + m_iNumVertices > iNumVertices) break;		// ±ô¹ÚÀÓ ¹æÁö ÄÚµå..
+			if (m_pCollapseUpTo->NumVerticesToLose + m_iNumVertices > iNumVertices) break;		// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Úµï¿½..
 			if (SplitOne() == false) break;
 		}
 	}
@@ -180,11 +180,11 @@ void CN3PMeshInstance::SetLOD(float value)
 {
 #define _USE_LODCONTROL_VALUE
 #ifdef _USE_LODCONTROL_VALUE
-	// value´Â distance * FOVÀÌ´Ù.
+	// valueï¿½ï¿½ distance * FOVï¿½Ì´ï¿½.
 	if (m_pPMesh == NULL ) return;
 
 	if (m_pPMesh->m_iLODCtrlValueCount == 0)
-	{	// LODCtrlValue°¡ ¾øÀ¸¸é ¸ðµÎ ±×¸°´Ù.
+	{	// LODCtrlValueï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½×¸ï¿½ï¿½ï¿½.
 		SetLODByNumVertices(0x7fffffff);
 		return;
 	}
@@ -194,15 +194,15 @@ void CN3PMeshInstance::SetLOD(float value)
 	CN3PMesh::__LODCtrlValue* pTmpLODCV = m_pPMesh->m_pLODCtrlValues + m_pPMesh->m_iLODCtrlValueCount-1;
 
 	if (value < m_pPMesh->m_pLODCtrlValues[0].fDist)
-	{		// ÃÖ¼Ò ±âÁØÄ¡º¸´Ù °¡±î¿ì¹Ç·Î °¡Àå ¸¹Àº ¸éÀ¸·Î ±×¸°´Ù.
+	{		// ï¿½Ö¼ï¿½ ï¿½ï¿½ï¿½ï¿½Ä¡ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ç·ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½×¸ï¿½ï¿½ï¿½.
 		SetLODByNumVertices(m_pPMesh->m_pLODCtrlValues[0].iNumVertices);
 	}
 	else if ( pTmpLODCV->fDist < value)
-	{		// ÃÖ´ë ±âÁØÄ¡º¸´Ù ¸Ö¸® ÀÖÀ¸¹Ç·Î °¡Àå ÀûÀº ¸éÀ¸·Î ±×¸°´Ù.
+	{		// ï¿½Ö´ï¿½ ï¿½ï¿½ï¿½ï¿½Ä¡ï¿½ï¿½ï¿½ï¿½ ï¿½Ö¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ç·ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½×¸ï¿½ï¿½ï¿½.
 		SetLODByNumVertices(pTmpLODCV->iNumVertices);
 	}
 	else
-	{		// Áß°£ °ª¿¡ ¸Â°Ô Á¶Á¤µÈ ¸é ¼ö·Î ±×¸°´Ù.
+	{		// ï¿½ß°ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Â°ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½×¸ï¿½ï¿½ï¿½.
 		for (int i=1; i< m_pPMesh->m_iLODCtrlValueCount; ++i)
 		{
 			if (value < m_pPMesh->m_pLODCtrlValues[i].fDist)
@@ -217,7 +217,7 @@ void CN3PMeshInstance::SetLOD(float value)
 		}
 	}
 #else
-	// value´Â distance * FOVÀÌ´Ù.
+	// valueï¿½ï¿½ distance * FOVï¿½Ì´ï¿½.
 	if (m_pCollapseUpTo == NULL || m_pPMesh == NULL) return;
 
 	const int iLODCtrlValueCount = 5;
@@ -276,10 +276,10 @@ bool CN3PMeshInstance::CollapseOne()
 
 bool CN3PMeshInstance::SplitOne()
 {
-	if (m_pCollapseUpTo >= m_pPMesh->m_pCollapses + m_pPMesh->m_iNumCollapses) return false; // ÀÌ·¸°Ô ÇÏ¸é Æ÷ÀÎÅÍ ÇÏ³ª°¡ »ßÁ® ³ª¿À°Ô µÈ´Ù..
-	// ÇÏÁö¸¸ ÀÌ·¸°Ô ´Ù½Ã ÇÏ´Â ÀÌÀ¯´Â ¾Æ·¡ ÄÚµå·Î ÇÏ¸é ¸¶Áö¸· Æú¸®°ïÀÌ Àý´ë ±×·ÁÁöÁö ¾Ê´Â´Ù.
-	// ÀÌ·¸°Ô ÇØµµ ±¦ÂúÀ» ¼ö ÀÖµµ·Ï ¹æ¾îÄÚµå¸¦ ³Ö¾ú´Ù. m_pPMesh->m_pCollapses ¸¦ ÇÒ´çÇÒ¶§ 1°³ ´õ ÇÒ´çÇÏ°í ¸¶Áö¸· µ¥ÀÌÅÍ¸¦ ÃÊ±â°ªÀ¸·Î ³Ö¾ú´Ù.
-//	if (m_pCollapseUpTo >= m_pPMesh->m_pCollapses + m_pPMesh->m_iNumCollapses - 1) return false; // ÀÌ°Ô Á¤»óÀÌ´Ù..
+	if (m_pCollapseUpTo >= m_pPMesh->m_pCollapses + m_pPMesh->m_iNumCollapses) return false; // ï¿½Ì·ï¿½ï¿½ï¿½ ï¿½Ï¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ï³ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½È´ï¿½..
+	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ì·ï¿½ï¿½ï¿½ ï¿½Ù½ï¿½ ï¿½Ï´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Æ·ï¿½ ï¿½Úµï¿½ï¿½ ï¿½Ï¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½×·ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ê´Â´ï¿½.
+	// ï¿½Ì·ï¿½ï¿½ï¿½ ï¿½Øµï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½Öµï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Úµå¸¦ ï¿½Ö¾ï¿½ï¿½ï¿½. m_pPMesh->m_pCollapses ï¿½ï¿½ ï¿½Ò´ï¿½ï¿½Ò¶ï¿½ 1ï¿½ï¿½ ï¿½ï¿½ ï¿½Ò´ï¿½ï¿½Ï°ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Í¸ï¿½ ï¿½Ê±â°ªï¿½ï¿½ï¿½ï¿½ ï¿½Ö¾ï¿½ï¿½ï¿½.
+//	if (m_pCollapseUpTo >= m_pPMesh->m_pCollapses + m_pPMesh->m_iNumCollapses - 1) return false; // ï¿½Ì°ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ì´ï¿½..
 
 	m_iNumIndices  += m_pCollapseUpTo->NumIndicesToLose;
 	m_iNumVertices += m_pCollapseUpTo->NumVerticesToLose;
@@ -317,13 +317,13 @@ bool CN3PMeshInstance::SplitOne()
 void CN3PMeshInstance::Render()
 {
 	if (m_pPMesh == NULL) return;
-	s_lpD3DDev->SetVertexShader(FVF_VNT1);
+	s_lpD3DDev->SetFVF(FVF_VNT1);
 
 	const int iPCToRender = 1000;	// primitive count to render
 #ifdef _USE_VERTEXBUFFER
 	__ASSERT(m_pPMesh->m_pVB && m_pIB, "Progressive mesh's vertex buffer or index buffer is NULL!");
-	s_lpD3DDev->SetStreamSource(0, m_pPMesh->m_pVB, sizeof(__VertexT1));
-	s_lpD3DDev->SetIndices(m_pIB, 0);
+	s_lpD3DDev->SetStreamSource(0, m_pPMesh->m_pVB, 0, sizeof(__VertexT1));
+	s_lpD3DDev->SetIndices(m_pIB);
 
 	if(m_iNumIndices > 3)
 	{
@@ -333,11 +333,11 @@ void CN3PMeshInstance::Render()
 		int i;
 		for (i=0; i<iLC; ++i)
 		{
-			s_lpD3DDev->DrawIndexedPrimitive(D3DPT_TRIANGLELIST, 0, m_iNumVertices, i*iPCToRender*3, iPCToRender);
+			s_lpD3DDev->DrawIndexedPrimitive(D3DPT_TRIANGLELIST, 0, 0, m_iNumVertices, i*iPCToRender*3, iPCToRender);
 		}
 
 		int iRPC = iPC%iPCToRender;
-		if(iRPC > 0) s_lpD3DDev->DrawIndexedPrimitive(D3DPT_TRIANGLELIST, 0, m_iNumVertices, i*iPCToRender*3, iRPC);
+		if(iRPC > 0) s_lpD3DDev->DrawIndexedPrimitive(D3DPT_TRIANGLELIST, 0, 0, m_iNumVertices, i*iPCToRender*3, iRPC);
 	}
 #else
 	if(m_iNumIndices > 3)
@@ -362,17 +362,17 @@ void CN3PMeshInstance::RenderTwoUV()
 	if(NULL == m_pPMesh) return;
 	if(NULL == m_pPMesh->GetVertices2())
 	{
-		m_pPMesh->GenerateSecondUV(); // µÎ¹øÂ° UV °¡ ¾øÀ½ »õ·Î ¸¸µç´Ù..
+		m_pPMesh->GenerateSecondUV(); // ï¿½Î¹ï¿½Â° UV ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½..
 	}
 	if(NULL == m_pPMesh->GetVertices2()) return;
 	
-	s_lpD3DDev->SetVertexShader(FVF_VNT2);
+	s_lpD3DDev->SetFVF(FVF_VNT2);
 
 	const int iPCToRender = 1000;	// primitive count to render
 #ifdef _USE_VERTEXBUFFER
 	__ASSERT(m_pPMesh->m_pVB && m_pIB, "Progressive mesh's vertex buffer or index buffer is NULL!");
-	s_lpD3DDev->SetStreamSource(0, m_pPMesh->m_pVB, sizeof(__VertexT2));
-	s_lpD3DDev->SetIndices(m_pIB, 0);
+	s_lpD3DDev->SetStreamSource(0, m_pPMesh->m_pVB, 0, sizeof(__VertexT2));
+	s_lpD3DDev->SetIndices(m_pIB);
 
 	if(m_iNumIndices > 3)
 	{
@@ -382,11 +382,11 @@ void CN3PMeshInstance::RenderTwoUV()
 		int i;
 		for (i=0; i<iLC; ++i)
 		{
-			s_lpD3DDev->DrawIndexedPrimitive(D3DPT_TRIANGLELIST, 0, m_iNumVertices, i*iPCToRender*3, iPCToRender);
+			s_lpD3DDev->DrawIndexedPrimitive(D3DPT_TRIANGLELIST, 0, 0, m_iNumVertices, i*iPCToRender*3, iPCToRender);
 		}
 
 		int iRPC = iPC%iPCToRender;
-		if(iRPC > 0) s_lpD3DDev->DrawIndexedPrimitive(D3DPT_TRIANGLELIST, 0, m_iNumVertices, i*iPCToRender*3, iRPC);
+		if(iRPC > 0) s_lpD3DDev->DrawIndexedPrimitive(D3DPT_TRIANGLELIST, 0, 0, m_iNumVertices, i*iPCToRender*3, iRPC);
 	}
 #else
 	if(m_iNumIndices > 3)
@@ -407,7 +407,7 @@ void CN3PMeshInstance::RenderTwoUV()
 }
 
 #ifdef _USE_VERTEXBUFFER
-LPDIRECT3DVERTEXBUFFER8	CN3PMeshInstance::GetVertexBuffer() const
+LPDIRECT3DVERTEXBUFFER9	CN3PMeshInstance::GetVertexBuffer() const
 {
 	if (m_pPMesh == NULL) return NULL;
 	return m_pPMesh->GetVertexBuffer();
@@ -421,18 +421,18 @@ __VertexT1*	CN3PMeshInstance::GetVertices() const
 }
 #endif
 
-//	By : Ecli666 ( On 2002-08-06 ¿ÀÈÄ 4:33:04 )
+//	By : Ecli666 ( On 2002-08-06 ï¿½ï¿½ï¿½ï¿½ 4:33:04 )
 //
 #ifdef _USE_VERTEXBUFFER
-void CN3PMeshInstance::PartialRender(int iCount, LPDIRECT3DINDEXBUFFER8 pIB)
+void CN3PMeshInstance::PartialRender(int iCount, LPDIRECT3DINDEXBUFFER9 pIB)
 {
 	if (m_pPMesh == NULL) return;
-	s_lpD3DDev->SetVertexShader(FVF_VNT1);
+	s_lpD3DDev->SetFVF(FVF_VNT1);
 	const int iPCToRender = 1000;	// primitive count to render
 
 	__ASSERT(m_pPMesh->m_pVB && pIB, "Progressive mesh's vertex buffer or index buffer is NULL!");
-	s_lpD3DDev->SetStreamSource(0, m_pPMesh->m_pVB, sizeof(__VertexT1));
-	s_lpD3DDev->SetIndices(pIB, 0);
+	s_lpD3DDev->SetStreamSource(0, m_pPMesh->m_pVB, 0, sizeof(__VertexT1));
+	s_lpD3DDev->SetIndices(pIB);
 
 	if(iCount > 3)
 	{
@@ -441,17 +441,18 @@ void CN3PMeshInstance::PartialRender(int iCount, LPDIRECT3DINDEXBUFFER8 pIB)
 		int i;
 		for (i=0; i<iLC; ++i)
 		{
-			s_lpD3DDev->DrawIndexedPrimitive(D3DPT_TRIANGLELIST, 0, m_iNumVertices, i*iPCToRender*3, iPCToRender);
+			s_lpD3DDev->DrawIndexedPrimitive(D3DPT_TRIANGLELIST, 0, 0, m_iNumVertices, i*iPCToRender*3, iPCToRender);
 		}
 
 		int iRPC = iPC%iPCToRender;
-		if(iRPC > 0) s_lpD3DDev->DrawIndexedPrimitive(D3DPT_TRIANGLELIST, 0, m_iNumVertices, i*iPCToRender*3, iRPC);
+		if(iRPC > 0) s_lpD3DDev->DrawIndexedPrimitive(D3DPT_TRIANGLELIST, 0, 0, m_iNumVertices, i*iPCToRender*3, iRPC);
+	}
 }
 #else
 void CN3PMeshInstance::PartialRender(int iCount, WORD* pIndices)
 {
 	if (m_pPMesh == NULL) return;
-	s_lpD3DDev->SetVertexShader(FVF_VNT1);
+	s_lpD3DDev->SetFVF(FVF_VNT1);
 	const int iPCToRender = 1000;	// primitive count to render
 
 /*	if(m_iNumIndices > 3)
@@ -513,7 +514,7 @@ __Vector3 CN3PMeshInstance::GetVertexByIndex(int iIndex)
 #ifdef _USE_VERTEXBUFFER
 	HRESULT hr;
 	__VertexT1* pVB;
-	hr = GetMesh()->m_pVB->Lock(0, 0, (BYTE**)&pVB, 0);
+	hr = GetMesh()->m_pVB->Lock(0, 0, (void**)&pVB, 0);
 	if (FAILED(hr)) 
 		return vec;
 	vec = (__Vector3)pVB[iIndex];
@@ -524,5 +525,5 @@ __Vector3 CN3PMeshInstance::GetVertexByIndex(int iIndex)
 #endif
 }
 
-//	~(By Ecli666 On 2002-08-06 ¿ÀÈÄ 4:33:04 )
+//	~(By Ecli666 On 2002-08-06 ï¿½ï¿½ï¿½ï¿½ 4:33:04 )
 

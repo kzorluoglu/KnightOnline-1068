@@ -10,8 +10,8 @@
 class CN3FXPartBillBoard : public CN3FXPartBase  
 {
 public:
-	int					m_iNum;				//	º¸µåÀÇ °¹¼ö.
-	float				m_fSizeX;			//	º¸µåÀÇ Å©±â
+	int					m_iNum;				//	ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½.
+	float				m_fSizeX;			//	ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Å©ï¿½ï¿½
 	float				m_fSizeY;
 	bool				m_bTexLoop;
 	
@@ -32,7 +32,7 @@ public:
 	float				m_fCurrScaleVelX;
 	float				m_fCurrScaleVelY;
 
-	float				m_fCurrSizeX;			//	º¸µåÀÇ Å©±â
+	float				m_fCurrSizeX;			//	ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Å©ï¿½ï¿½
 	float				m_fCurrSizeY;
 
 	__Matrix44			m_mtxRot;
@@ -50,13 +50,13 @@ protected:
 	float	CameraDist();
 
 public:
-	void	Init();				//	°¢Á¾ º¯¼öµéÀ» Ã³À½ ·ÎµùÇÑ »óÅÂ·Î ÃÊ±âÈ­...
-	void	Start();			//	ÆÄÆ® ±¸µ¿ ½ÃÀÛ.
-	void	Stop();				//	ÆÄÆ® ±¸µ¿ ¸ØÃã..
+	void	Init();				//	ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Ã³ï¿½ï¿½ ï¿½Îµï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Â·ï¿½ ï¿½Ê±ï¿½È­...
+	void	Start();			//	ï¿½ï¿½Æ® ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½.
+	void	Stop();				//	ï¿½ï¿½Æ® ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½..
 	bool	Tick();				//	ticktick...
-	void	Render();			//	È­¸é¿¡ »Ñ¸®±â..
-	bool	Load(HANDLE hFile);	//	°ÔÀÓÆÄÀÏ ºÒ·¯¿À±â.
-	bool	Save(HANDLE hFile);	//	°ÔÀÓÆÄÀÏ ÀúÀå¿À±â.
+	void	Render();			//	È­ï¿½é¿¡ ï¿½Ñ¸ï¿½ï¿½ï¿½..
+	bool	Load(HANDLE hFile);	//	ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ò·ï¿½ï¿½ï¿½ï¿½ï¿½.
+	bool	Save(HANDLE hFile);	//	ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½.
 	void	Duplicate(CN3FXPartBillBoard* pSrc);
 
 	void	SetScale(float size) { m_fSizeX = m_fCurrSizeX = size; m_fSizeY = m_fCurrSizeY = size; }

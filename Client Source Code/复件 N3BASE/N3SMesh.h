@@ -11,7 +11,7 @@
 
 #include "N3Base.h"
 
-// Stream Mesh Èå¸£´Â °­¹°µîÀ» ³ªÅ¸³½´Ù.
+// Stream Mesh ï¿½å¸£ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Å¸ï¿½ï¿½ï¿½ï¿½.
 
 class CN3SMesh : public CN3Base  
 {
@@ -22,8 +22,8 @@ public:
 // Attributes
 public:
 protected:
-	LPDIRECT3DVERTEXBUFFER8	m_pVB;
-	LPDIRECT3DINDEXBUFFER8	m_pIB;
+	LPDIRECT3DVERTEXBUFFER9	m_pVB;
+	LPDIRECT3DINDEXBUFFER9	m_pIB;
 
 // Operations
 public:

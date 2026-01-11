@@ -27,8 +27,8 @@ CN3Mesh::CN3Mesh()
 	m_nVC = 0;
 	m_nIC = 0;
 
-	m_pVertices = NULL; // Á¡ ¹öÆÛ
-	m_psnIndices = NULL; // ÀÎµ¦½º ¹öÆÛ
+	m_pVertices = NULL; // ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+	m_psnIndices = NULL; // ï¿½Îµï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 }
 
 CN3Mesh::~CN3Mesh()
@@ -67,18 +67,18 @@ bool CN3Mesh::Load(HANDLE hFile)
 
 	DWORD dwRWC = 0;
 
-	ReadFile(hFile, &m_nVC, 4, &dwRWC, NULL); // Á¡°¹¼ö ÀÐ±â..
+	ReadFile(hFile, &m_nVC, 4, &dwRWC, NULL); // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ð±ï¿½..
 	if(m_nVC > 0)
 	{
-		this->Create(m_nVC, 0); // Vertex Buffer »ý¼º ¹× µ¥ÀÌÅÍ Ã¤¿ì±â
+		this->Create(m_nVC, 0); // Vertex Buffer ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Ã¤ï¿½ï¿½ï¿½
 		ReadFile(hFile, m_pVertices, m_nVC * sizeof(__VertexT1), &dwRWC, NULL);
-		this->FindMinMax(); // ÃÖ´ë, ÃÖ¼Ò°ªÀ» Ã£´Â´Ù.
+		this->FindMinMax(); // ï¿½Ö´ï¿½, ï¿½Ö¼Ò°ï¿½ï¿½ï¿½ Ã£ï¿½Â´ï¿½.
 	}
 	
-	ReadFile(hFile, &m_nIC, 4, &dwRWC, NULL); // ÀÎµ¦½º °¹¼ö ÀÐ±â..
+	ReadFile(hFile, &m_nIC, 4, &dwRWC, NULL); // ï¿½Îµï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ð±ï¿½..
 	if(m_nIC > 0)
 	{
-		this->Create(0, m_nIC); // ÀÎµ¦½º ¹öÆÛ »ý¼º ¹× µ¥ÀÌÅÍ Ã¤¿ì±â
+		this->Create(0, m_nIC); // ï¿½Îµï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Ã¤ï¿½ï¿½ï¿½
 		ReadFile(hFile, m_psnIndices, m_nIC * 2, &dwRWC, NULL);
 	}
 
@@ -90,13 +90,13 @@ bool CN3Mesh::Save(HANDLE hFile)
 {
 	DWORD dwRWC = 0;
 
-	WriteFile(hFile, &m_nVC, 4, &dwRWC, NULL); // Á¡°¹¼ö ÀÐ±â..
+	WriteFile(hFile, &m_nVC, 4, &dwRWC, NULL); // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ð±ï¿½..
 	if(m_nVC > 0) 
 	{
 		WriteFile(hFile, m_pVertices, m_nVC * sizeof(__VertexT1), &dwRWC, NULL);
 	}
 	
-	WriteFile(hFile, &m_nIC, 4, &dwRWC, NULL); // ÀÎµ¦½º °¹¼ö ÀÐ±â..
+	WriteFile(hFile, &m_nIC, 4, &dwRWC, NULL); // ï¿½Îµï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ð±ï¿½..
 	if(m_nIC > 0)
 	{
 		WriteFile(hFile, m_psnIndices, m_nIC * 2, &dwRWC, NULL);
@@ -157,25 +157,25 @@ void CN3Mesh::MakeIndexed()
 
 void CN3Mesh::Create(int nVC, int nIC)
 {
-	if(nVC > 0) // Á¡ÀÌ ÀÖÀ¸¸é...
+	if(nVC > 0) // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½...
 	{
 #ifdef _N3GAME
 		if(nVC > 32768)
 			CLogWriter::Write("CN3IMesh::Create - Too many vertices. (more than 32768) (%s)", m_szFileName.c_str());
 #endif
 		if(m_pVertices) this->ReleaseVertices();
-		m_pVertices = new __VertexT1[nVC]; memset(m_pVertices, 0, nVC * sizeof(__VertexT1)); // Vertex Buffer »ý¼º
+		m_pVertices = new __VertexT1[nVC]; memset(m_pVertices, 0, nVC * sizeof(__VertexT1)); // Vertex Buffer ï¿½ï¿½ï¿½ï¿½
 		m_nVC = nVC;
 	}
 
-	if(nIC > 0) // Mesh ·Îµù¿¡ ¼º°øÇÏ°í, ÀÎµ¦½º°¡ ÀÖÀ¸¸é..
+	if(nIC > 0) // Mesh ï¿½Îµï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï°ï¿½, ï¿½Îµï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½..
 	{
 #ifdef _N3GAME
 		if(nIC > 32768)
 			CLogWriter::Write("CN3IMesh::Create - Too many indices. (more than 32768) (%s)", m_szFileName.c_str());
 #endif
 		if(m_psnIndices) this->ReleaseIndices();
-		m_psnIndices = new WORD[nIC]; memset(m_psnIndices, 0, nIC * 2); // Index Buffer »ý¼º
+		m_psnIndices = new WORD[nIC]; memset(m_psnIndices, 0, nIC * 2); // Index Buffer ï¿½ï¿½ï¿½ï¿½
 		m_nIC = nIC;
 	}
 }
@@ -187,7 +187,7 @@ void CN3Mesh::FindMinMax()
 
 	if(m_nVC <= 0) return;
 
-	// ÃÖ¼Ò, ÃÖ´ë Á¡À» Ã£´Â´Ù.
+	// ï¿½Ö¼ï¿½, ï¿½Ö´ï¿½ ï¿½ï¿½ï¿½ï¿½ Ã£ï¿½Â´ï¿½.
 	m_vMin.Set(FLT_MAX, FLT_MAX, FLT_MAX);
 	m_vMax.Set(-FLT_MAX, -FLT_MAX, -FLT_MAX);
 	
@@ -213,37 +213,37 @@ void CN3Mesh::Create_Cube(__Vector3 &vMin, __Vector3 &vMax)
 
 	int i = 0;
 
-	// z Ãà À½ÀÇ ¸é
+	// z ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½
 	vN.Set(0,0,-1);
 	vPs[0].Set(vMin.x, vMax.y, vMin.z); vPs[1].Set(vMax.x, vMax.y, vMin.z); vPs[2].Set(vMax.x, vMin.y, vMin.z);
 	vPs[3] = vPs[0]; vPs[4] = vPs[2]; vPs[5].Set(vMin.x, vMin.y, vMin.z);
 	for(i = 0; i < 6; i++) m_pVertices[0+i].Set(vPs[i], vN, fTUVs[i][0], fTUVs[i][1]);
 
-	// x Ãà ¾çÀÇ ¸é
+	// x ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½
 	vN.Set(1, 0, 0);
 	vPs[0].Set(vMax.x, vMax.y, vMin.z); vPs[1].Set(vMax.x, vMax.y, vMax.z); vPs[2].Set(vMax.x, vMin.y, vMax.z);
 	vPs[3] = vPs[0]; vPs[4] = vPs[2]; vPs[5].Set(vMax.x, vMin.y, vMin.z);
 	for(i = 0; i < 6; i++) m_pVertices[6+i].Set(vPs[i], vN, fTUVs[i][0], fTUVs[i][1]);
 
-	// z Ãà ¾çÀÇ ¸é
+	// z ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½
 	vN.Set(0, 0, 1);
 	vPs[0].Set(vMax.x, vMax.y, vMax.z); vPs[1].Set(vMin.x, vMax.y, vMax.z); vPs[2].Set(vMin.x, vMin.y, vMax.z);
 	vPs[3] = vPs[0]; vPs[4] = vPs[2]; vPs[5].Set(vMax.x, vMin.y, vMax.z);
 	for(i = 0; i < 6; i++) m_pVertices[12+i].Set(vPs[i], vN, fTUVs[i][0], fTUVs[i][1]);
 
-	// x Ãà À½ÀÇ ¸é
+	// x ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½
 	vN.Set(-1, 0, 0);
 	vPs[0].Set(vMin.x, vMax.y, vMax.z); vPs[1].Set(vMin.x, vMax.y, vMin.z); vPs[2].Set(vMin.x, vMin.y, vMin.z);
 	vPs[3] = vPs[0]; vPs[4] = vPs[2]; vPs[5].Set(vMin.x, vMin.y, vMax.z);
 	for(i = 0; i < 6; i++) m_pVertices[18+i].Set(vPs[i], vN, fTUVs[i][0], fTUVs[i][1]);
 
-	// y Ãà ¾çÀÇ ¸é
+	// y ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½
 	vN.Set(0, 1, 0);
 	vPs[0].Set(vMin.x, vMax.y, vMax.z); vPs[1].Set(vMax.x, vMax.y, vMax.z); vPs[2].Set(vMax.x, vMax.y, vMin.z);
 	vPs[3] = vPs[0]; vPs[4] = vPs[2]; vPs[5].Set(vMin.x, vMax.y, vMin.z);
 	for(i = 0; i < 6; i++) m_pVertices[24+i].Set(vPs[i], vN, fTUVs[i][0], fTUVs[i][1]);
 
-	// y Ãà À½ÀÇ ¸é
+	// y ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½
 	vN.Set(0, -1, 0);
 	vPs[0].Set(vMin.x, vMin.y, vMin.z); vPs[1].Set(vMax.x, vMin.y, vMin.z); vPs[2].Set(vMax.x, vMin.y, vMax.z);
 	vPs[3] = vPs[0]; vPs[4] = vPs[2]; vPs[5].Set(vMin.x, vMin.y, vMax.z);
@@ -259,7 +259,7 @@ void CN3Mesh::Create_Axis(float fLength)
 
 	this->FindMinMax();
 
-	// x Ãà
+	// x ï¿½ï¿½
 //	m_pVertices[0].Set(-fLength/2.0f, 0, 0, 0, 1, 0, 0, 0);
 //	m_pVertices[1].Set( fLength/2.0f, 0, 0, 0, 1, 0, 0, 0);
 //	m_pVertices[2] = m_pVertices[1];
@@ -276,14 +276,14 @@ void CN3Mesh::Create_Axis(float fLength)
 
 	__Matrix44 mtx;
 	
-	// y Ãà
+	// y ï¿½ï¿½
 	mtx.RotationZ(D3DX_PI / -2.0f);
 	for(int i = 0; i < 4; i++) 
 	{
 		m_pVertices[4+i].Set(m_pVertices[i] * mtx, m_pVertices[i].n * mtx, 0, 0);
 	}
 
-	// z Ãà
+	// z ï¿½ï¿½
 	mtx.RotationY(D3DX_PI / -2.0f);
 	for(i = 0; i < 4; i++) 
 	{
@@ -297,23 +297,23 @@ bool CN3Mesh::Import(CN3PMesh* pPMesh)
 	if(NULL == pPMesh) return false;
 	int iNumIndices = pPMesh->GetMaxNumIndices();
 	if (0 >= iNumIndices) return false;
-	Release();	// ÃÊ±âÈ­
+	Release();	// ï¿½Ê±ï¿½È­
 
-	// pmesh instance¸¦ ¸¸µé°í lod¸¦ ÃÖ°í »óÅÂ·Î Á¶Á¤
+	// pmesh instanceï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ lodï¿½ï¿½ ï¿½Ö°ï¿½ ï¿½ï¿½ï¿½Â·ï¿½ ï¿½ï¿½ï¿½ï¿½
 	CN3PMeshInstance PMeshInstance;
 	PMeshInstance.Create(pPMesh);
 	PMeshInstance.SetLODByNumVertices(pPMesh->GetMaxNumVertices());
 
-	// vertex, index buffer ¸¸µé±â
+	// vertex, index buffer ï¿½ï¿½ï¿½ï¿½ï¿½
 	Create(PMeshInstance.GetNumVertices(), PMeshInstance.GetNumIndices());
 
-	// vertex index buffer º¹»ç
+	// vertex index buffer ï¿½ï¿½ï¿½ï¿½
 	__VertexT1* pVertices = PMeshInstance.GetVertices();
 	WORD* pIndices = PMeshInstance.GetIndices();
 	memcpy(m_pVertices, pVertices, sizeof(__VertexT1)*m_nVC);
 	memcpy(m_psnIndices, pIndices, sizeof(WORD)*m_nIC);
 
-	m_szName = pPMesh->m_szName; // ÀÌ¸§..
+	m_szName = pPMesh->m_szName; // ï¿½Ì¸ï¿½..
 	return true;
 }
 
@@ -331,13 +331,13 @@ bool CN3Mesh::Import(CN3IMesh *pIMesh)
 	memcpy(m_pVertices, pvSrc, sizeof(__VertexT1) * nFC * 3);
 
 	__Vector3 v0, v1, v2, vN(0,0,0);
-	for(int i = 0; i < nFC; i++) // Normal °ª ´Ù½Ã ¼¼ÆÃ..
+	for(int i = 0; i < nFC; i++) // Normal ï¿½ï¿½ ï¿½Ù½ï¿½ ï¿½ï¿½ï¿½ï¿½..
 	{
 		v0 = m_pVertices[i*3+0];
 		v1 = m_pVertices[i*3+1];
 		v2 = m_pVertices[i*3+2];
 
-		vN.Cross(v1 - v0, v2 - v1); // Normal °ªÀ» °è»êÇÏ°í...
+		vN.Cross(v1 - v0, v2 - v1); // Normal ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ï°ï¿½...
 		vN.Normalize();
 
 		m_pVertices[i*3+0].n = vN;
@@ -345,7 +345,7 @@ bool CN3Mesh::Import(CN3IMesh *pIMesh)
 		m_pVertices[i*3+2].n = vN;
 	}
 
-	m_szName = pIMesh->m_szName; // ÀÌ¸§..
+	m_szName = pIMesh->m_szName; // ï¿½Ì¸ï¿½..
 	return true;
 }
 
@@ -384,7 +384,7 @@ void CN3Mesh::ReGenerateSmoothNormal()
 				m_pVertices[i] == v1 ||
 				m_pVertices[i] == v2 )
 			{
-				vN.Cross(v1 - v0, v2 - v1); // Normal °ªÀ» °è»êÇÏ°í...
+				vN.Cross(v1 - v0, v2 - v1); // Normal ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ï°ï¿½...
 				vN.Normalize();
 
 				pnNs[i]++;

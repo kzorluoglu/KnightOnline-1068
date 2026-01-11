@@ -23,7 +23,7 @@ static char THIS_FILE[]=__FILE__;
 
 CRegenUser::CRegenUser()
 {
-	m_pRefMapMng = NULL;				// ÁöÇü ÂüÁ¶ Æ÷ÀÎÅÍ..
+	m_pRefMapMng = NULL;				// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½..
 	m_bActive = false;
 
 	m_vrListRegion.clear();
@@ -59,7 +59,7 @@ void CRegenUser::Render()
 
 	D3DXMATRIX mtx;
 	D3DXMatrixIdentity(&mtx);
-	hr = s_lpD3DDev->SetTransform(D3DTS_WORLD, &mtx); // ¿ùµå Çà·Ä Àû¿ë..
+	hr = s_lpD3DDev->SetTransform(D3DTS_WORLD, &mtx); // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½..
 	
 	// set texture
 	hr = s_lpD3DDev->SetTexture(0, NULL);
@@ -75,11 +75,11 @@ void CRegenUser::Render()
 	hr = s_lpD3DDev->SetRenderState(D3DRS_ZENABLE, D3DZB_FALSE);
 	hr = s_lpD3DDev->SetRenderState(D3DRS_LIGHTING, FALSE);
 
-	hr = s_lpD3DDev->SetVertexShader(FVF_XYZCOLOR);
+	hr = s_lpD3DDev->SetFVF(FVF_XYZCOLOR);
 
 	__VertexXyzColor v[4];
 
-	//ÀÌ¹Ì ¸¸µé¾îÁø ¿µ¿ª..
+	//ï¿½Ì¹ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½..
 	std::list<VERTEXRECT*>::iterator it, ite;
 	ite = m_vrListRegion.end();
 	for(it=m_vrListRegion.begin(); it!=ite; it++)
@@ -97,7 +97,7 @@ void CRegenUser::Render()
 		hr = s_lpD3DDev->DrawPrimitiveUP(D3DPT_TRIANGLEFAN, 2, v, sizeof(__VertexXyzColor));
 	}
 
-	//Áö±Ý ¸¸µé°í ÀÖ´Â ¿µ¿ª..
+	//ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ö´ï¿½ ï¿½ï¿½ï¿½ï¿½..
 	v[0] = m_vrCurrRegion.m_vLB;
 	v[0].color = 0xffff0000;
 	v[1] = m_vrCurrRegion.m_vLT;

@@ -67,7 +67,7 @@ bool CN3FXPartBottomBoard::ParseScript(char* szCommand, char* szBuff0, char* szB
 {
 	if(CN3FXPartBase::ParseScript(szCommand, szBuff0, szBuff1, szBuff2, szBuff3)) return true;
 
-	//	º¸µå Å©±â.
+	//	ï¿½ï¿½ï¿½ï¿½ Å©ï¿½ï¿½.
 	if(lstrcmpi(szCommand, "<ground_size>")==0)
 	{
 		m_fCurrSizeX = m_fSizeX = atof(szBuff0);
@@ -279,16 +279,16 @@ bool CN3FXPartBottomBoard::Tick()
 		}
 	}
 
-	//À§Ä¡ÀÌµ¿..
+	//ï¿½ï¿½Ä¡ï¿½Ìµï¿½..
 	m_vCurrVelocity += m_vAcceleration*CN3Base::s_fSecPerFrm;
 	m_vCurrPos += m_vCurrVelocity*CN3Base::s_fSecPerFrm;
 
-	//È¸Àü...
+	//È¸ï¿½ï¿½...
 	__Matrix44 mtxRot;
 	mtxRot.Identity();
 	mtxRot.RotationY(m_fCurrLife*m_vRotVelocity.y);
 
-	//½ºÄÉÀÏº¯È¯..
+	//ï¿½ï¿½ï¿½ï¿½ï¿½Ïºï¿½È¯..
 	m_fCurrScaleVelX += m_fScaleAccelX*CN3Base::s_fSecPerFrm;
 	m_fCurrScaleVelZ += m_fScaleAccelZ*CN3Base::s_fSecPerFrm;
 	m_fCurrSizeX += m_fCurrScaleVelX*CN3Base::s_fSecPerFrm;
@@ -349,14 +349,14 @@ bool CN3FXPartBottomBoard::IsDead()
 
 //
 //	render...
-//	ÀÏ´ÜÀº ÆÄÆ¼Å¬ ÇÏ³ª¾¿ ±×¸®°í....
-//	³ªÁß¿¡´Â °°Àº ÅØ½ºÃÄ ¾²´Â °Íµé³¢¸® ¹­¾î¼­ ±×¸®ÀÚ...
+//	ï¿½Ï´ï¿½ï¿½ï¿½ ï¿½ï¿½Æ¼Å¬ ï¿½Ï³ï¿½ï¿½ï¿½ ï¿½×¸ï¿½ï¿½ï¿½....
+//	ï¿½ï¿½ï¿½ß¿ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ø½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Íµé³¢ï¿½ï¿½ ï¿½ï¿½ï¿½î¼­ ï¿½×¸ï¿½ï¿½ï¿½...
 //
 void CN3FXPartBottomBoard::Render()
 {
 	if(m_iTexIdx >= m_iNumTex) return;
 
-	if(m_bAlpha) // Alpha »ç¿ë
+	if(m_bAlpha) // Alpha ï¿½ï¿½ï¿½
 	{
 		__AlphaPrimitive* pAP = s_AlphaMgr.Add();
 		if(pAP)
@@ -382,11 +382,11 @@ void CN3FXPartBottomBoard::Render()
 			pAP->pwIndices			= NULL;
 		}
 
-		return; // ·»´õ¸µ ¾ÈÇÏÁö·Õ.
+		return; // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½.
 	}
 	else 
 	{
-		CN3Base::s_lpD3DDev->SetVertexShader(FVF_XYZCOLORT1);
+		CN3Base::s_lpD3DDev->SetFVF(FVF_XYZCOLORT1);
 
 		if(m_ppRefTex[m_iTexIdx]) 
 			CN3Base::s_lpD3DDev->SetTexture(0, m_ppRefTex[m_iTexIdx]->Get());

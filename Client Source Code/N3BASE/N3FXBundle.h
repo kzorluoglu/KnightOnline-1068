@@ -12,47 +12,47 @@
 class CN3FXBundle : public CN3BaseFileAccess  
 {
 public:
-	// ±âº» Á¤º¸µé...
+	// ï¿½âº» ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½...
 	
-	int					m_iVersion;		//¹øµé¹öÀü
-	std::string			m_strName;		//¹øµéÀÌ¸§
-	int					m_iMoveType;	//¿òÁ÷ÀÌ´Â ÇüÅÂ..
+	int					m_iVersion;		//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	std::string			m_strName;		//ï¿½ï¿½ï¿½ï¿½ï¿½Ì¸ï¿½
+	int					m_iMoveType;	//ï¿½ï¿½ï¿½ï¿½ï¿½Ì´ï¿½ ï¿½ï¿½ï¿½ï¿½..
 	float				m_fVelocity;
-	bool				m_bStatic;		//À§Ä¡¸¦ °íÁ¤½ÃÅ³°ÍÀÎ°¡....
+	bool				m_bStatic;		//ï¿½ï¿½Ä¡ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Å³ï¿½ï¿½ï¿½Î°ï¿½....
 
-	float				m_fLife0;		//¹øµéÀÇ ¼ö¸í..
+	float				m_fLife0;		//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½..
 
 	FXPARTWITHSTARTTIME*	m_pPart[MAX_FX_PART];
 	
-	// º¯ÇÏ´Â Á¤º¸µé...
-	float				m_fLife;		//ÇöÀç ³ªÀÌ..
-	DWORD				m_dwState;		//ÇöÀç ¹øµéÀÇ »óÅÂ
+	// ï¿½ï¿½ï¿½Ï´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½...
+	float				m_fLife;		//ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½..
+	DWORD				m_dwState;		//ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 
-	__Vector3			m_vPos;			//ÇöÀç ¹øµéÀÇ À§Ä¡.
-	__Vector3			m_vPrePos;		//·Îµù ¶Ç´Â Duplicate ÇÏ±âÀü¿¡ ÀÓ½Ã·Î À§Ä¡ ÁöÁ¤
-	__Vector3			m_vDestPos;		//ÇöÀç ¹øµéÀÇ ¸ñÇ¥À§Ä¡. 
-	__Vector3			m_vDir;			//ÇöÀç ¹øµéÀÇ ¹æÇâ.
+	__Vector3			m_vPos;			//ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ä¡.
+	__Vector3			m_vPrePos;		//ï¿½Îµï¿½ ï¿½Ç´ï¿½ Duplicate ï¿½Ï±ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ó½Ã·ï¿½ ï¿½ï¿½Ä¡ ï¿½ï¿½ï¿½ï¿½
+	__Vector3			m_vDestPos;		//ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ç¥ï¿½ï¿½Ä¡. 
+	__Vector3			m_vDir;			//ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½.
 	
-	int					m_iSourceID;	//ÀÌ È¿°ú¸¦ ¾²´Â ÁÖÃ¼ÀÇ ¾ÆÀÌµð..(°ÔÀÓ¿¡¼­..)
-	int					m_iTargetID;	//ÀÌ È¿°ú¸¦ ¹Þ´Â ´ë»óÀÇ ¾ÆÀÌµð..(°ÔÀÓ¿¡¼­..)
-	int					m_iTargetJoint;	//ÀÌ È¿°ú¸¦ ¹Þ´Â ´ë»óÀÇ ºÎÀ§..(°ÔÀÓ¿¡¼­..)
+	int					m_iSourceID;	//ï¿½ï¿½ È¿ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ã¼ï¿½ï¿½ ï¿½ï¿½ï¿½Ìµï¿½..(ï¿½ï¿½ï¿½Ó¿ï¿½ï¿½ï¿½..)
+	int					m_iTargetID;	//ï¿½ï¿½ È¿ï¿½ï¿½ï¿½ï¿½ ï¿½Þ´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ìµï¿½..(ï¿½ï¿½ï¿½Ó¿ï¿½ï¿½ï¿½..)
+	int					m_iTargetJoint;	//ï¿½ï¿½ È¿ï¿½ï¿½ï¿½ï¿½ ï¿½Þ´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½..(ï¿½ï¿½ï¿½Ó¿ï¿½ï¿½ï¿½..)
 	int					m_iSourceJoint;
 
 	bool				m_bDependScale;
 	//__Vector3			m_vTargetScale;
 	float				m_fTargetScale;
 
-//	int					m_iNumStep;		//¸î´Ü°è³ª Á¸ÀçÇÏ´ÂÁö...^^
-//	int					m_iCurrStep;	//ÇöÀç ÁøÇàÁßÀÎ ½ÃÄö½º
+//	int					m_iNumStep;		//ï¿½ï¿½Ü°è³ª ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½ï¿½ï¿½...^^
+//	int					m_iCurrStep;	//ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	static float		m_fEffectSndDist;
 
 	class CN3SndObj*	m_pSndObj;
 
 protected:
-	bool	CheckAllPartsDead();		//¸ðµç ÆÄÆ®µéÀÌ Á×¾ú´ÂÁö °Ë»ç..
+	bool	CheckAllPartsDead();		//ï¿½ï¿½ï¿½ ï¿½ï¿½Æ®ï¿½ï¿½ï¿½ï¿½ ï¿½×¾ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ë»ï¿½..
 
 public:
-//±âº»ÀûÀ¸·Î ÇÊ¿äÇÑ ÇÔ¼öµé...
+//ï¿½âº»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ê¿ï¿½ï¿½ï¿½ ï¿½Ô¼ï¿½ï¿½ï¿½...
 	virtual void	Trigger(int iSourceID=0, int iTargetID = 0, int iTargetJoint = 0, int iSndID = -1);
 	virtual bool	Tick();
 	virtual void	Duplicate(CN3FXBundle* pDestBundle);
@@ -63,8 +63,8 @@ public:
 	void	Render();
 	DWORD	GetState() { return m_dwState; }
 
-	virtual bool	Load(HANDLE hFile); // ÇÚµé¿¡¼­ ÀÐ¾î¿À±â..
-	bool	Save(HANDLE hFile);	// ÀúÀåÇÏ±â..
+	virtual bool	Load(HANDLE hFile); // ï¿½Úµé¿¡ï¿½ï¿½ ï¿½Ð¾ï¿½ï¿½ï¿½ï¿½..
+	bool	Save(HANDLE hFile);	// ï¿½ï¿½ï¿½ï¿½ï¿½Ï±ï¿½..
 
 //	int				GetPartCount() { return m_pPartList.size(); }
 	CN3FXPartBase*	GetPart(int i);
@@ -73,11 +73,11 @@ public:
 	static void		SetEffectSndDistance(float fDist) { m_fEffectSndDist = fDist; }
 	static float	GetEffectSndDistance() { return m_fEffectSndDist; }
 
-//»ý¼ºÀÚ ¼Ò¸êÀÚ..
+//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ò¸ï¿½ï¿½ï¿½..
 	CN3FXBundle();	
 	virtual ~CN3FXBundle();
 
-#ifdef _N3TOOL	//Åø¿¡¼­¸¸ ¾²´Â ÇÔ¼öµé...
+#ifdef _N3TOOL	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ô¼ï¿½ï¿½ï¿½...
 public:
 	CN3FXPartBase*	SetPart(const char* pFileName);
 	bool	DecodeScriptFile(const char* lpPathName);

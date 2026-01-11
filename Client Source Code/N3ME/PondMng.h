@@ -57,23 +57,23 @@ public:
 	int GetPCursorMode() const {return m_PCursorMode;}
 protected:
 	std::list<CPondMesh*>			m_PondMeshes;				// Pond Mesh list
-	std::list<CPondMesh*>			m_pSelPonds;				// ¼±ÅÃµÈ PondMesh
-	CTypedPtrArray<CPtrArray, __VertexXyzT2*>	m_SelVtxArray;	// ¼±ÅÃµÈ Á¡µé
+	std::list<CPondMesh*>			m_pSelPonds;				// ï¿½ï¿½ï¿½Ãµï¿½ PondMesh
+	CTypedPtrArray<CPtrArray, __VertexXyzT2*>	m_SelVtxArray;	// ï¿½ï¿½ï¿½Ãµï¿½ ï¿½ï¿½ï¿½ï¿½
 	std::list<__Vector3*>			m_SelVtxBakArray;
-	CVtxPosDummy					m_VtxPosDummy;				// Á¡À» ¿òÁ÷ÀÏ¼ö ÀÖ´Â dummy object
-	BOOL							m_bEditMode;				// ¿¬¸ø¹° ÆíÁý¸ðµåÀÎ°¡?
-	BOOL							m_bChooseGroup;				// ¿¬¸ø¹° ±×·ìÀ¸·Î ÆíÁýÇÏ´Â°¡
-	BOOL							m_bChooseEditPond;			// ÇöÀç ¾²´Â ¿¬¸ø³»¿¡¼­¸¸ ÆíÁýÇÒ°ÍÀÎ°¡
-	BOOL							m_bMovePond;				// ¼±ÅÃÇÑ ¿¬¸øÀ» ÅëÂ°·Î ¿òÁ÷ÀÏ °ÍÀÎ°¡
-	int								m_PCursorMode;				// ¿¬¸øÀ» Ãß°¡?ÇÏ´Â °ÍÀÎ°¡ Á¡À» ¼±ÅÃÇÏ´Â °ÍÀÎ°¡?
+	CVtxPosDummy					m_VtxPosDummy;				// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï¼ï¿½ ï¿½Ö´ï¿½ dummy object
+	BOOL							m_bEditMode;				// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Î°ï¿½?
+	BOOL							m_bChooseGroup;				// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½×·ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´Â°ï¿½
+	BOOL							m_bChooseEditPond;			// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ò°ï¿½ï¿½Î°ï¿½
+	BOOL							m_bMovePond;				// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Â°ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Î°ï¿½
+	int								m_PCursorMode;				// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ß°ï¿½?ï¿½Ï´ï¿½ ï¿½ï¿½ï¿½Î°ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½ ï¿½ï¿½ï¿½Î°ï¿½?
 
 	CMainFrame*						m_pMainFrm;					// mainframe pointer
 	CDlgPondProperty*				m_pDlgProperty;				// property dialog
 
-	RECT							m_rcSelDrag;				// µå·¡±× ¿µ¿ª
-	__VertexXyzColor				m_CreateLine[5];			// ¿¬¸ø Ã³À½ »ý¼ºÇÒ¶§ º¸ÀÌ´Â ¼±
+	RECT							m_rcSelDrag;				// ï¿½å·¡ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+	__VertexXyzColor				m_CreateLine[5];			// ï¿½ï¿½ï¿½ï¿½ Ã³ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ò¶ï¿½ ï¿½ï¿½ï¿½Ì´ï¿½ ï¿½ï¿½
 
-	__Vector3						m_vPondsCenter;				//	¿¬¸ø(µé)ÀÇ Áß°£Á¡
+	__Vector3						m_vPondsCenter;				//	ï¿½ï¿½ï¿½ï¿½(ï¿½ï¿½)ï¿½ï¿½ ï¿½ß°ï¿½ï¿½ï¿½
 
 	BOOL							m_bShift;
 
@@ -85,35 +85,35 @@ public:
 	virtual bool	Load(HANDLE hFile);
 	virtual bool	Save(HANDLE hFile);
 
-	BOOL			MouseMsgFilter(LPMSG pMsg);								// Mouse ¸Þ¼¼Áö Ã³¸®
-	void			MakeGameFiles(HANDLE hFile, float fSize);				// Game file·Î ÀúÀå
+	BOOL			MouseMsgFilter(LPMSG pMsg);								// Mouse ï¿½Þ¼ï¿½ï¿½ï¿½ Ã³ï¿½ï¿½
+	void			MakeGameFiles(HANDLE hFile, float fSize);				// Game fileï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 
-	CPondMesh*		CreateNewPondMesh();									// ½ÃÀÛÁ¡°ú ³¡³­Á¡(»ç°¢Çü)À¸·Î »õ·Î¿î ¿¬¸øÀ» Ãß°¡ÇÑ´Ù.
+	CPondMesh*		CreateNewPondMesh();									// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½(ï¿½ç°¢ï¿½ï¿½)ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Î¿ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ß°ï¿½ï¿½Ñ´ï¿½.
 	
-	BOOL			SetPondID(CPondMesh* pPondMesh, int iPondID);			// ¿¬¸øÀÇ ID¸¦ ¼³Á¤
-	void			SetEditMode(BOOL bEditMode);							// ¿¬¸ø EditMode¼³Á¤
-	CPondMesh*		GetPondMesh(int iPondID);								// PondMesh ¾ò±â
+	BOOL			SetPondID(CPondMesh* pPondMesh, int iPondID);			// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ IDï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+	void			SetEditMode(BOOL bEditMode);							// ï¿½ï¿½ï¿½ï¿½ EditModeï¿½ï¿½ï¿½ï¿½
+	CPondMesh*		GetPondMesh(int iPondID);								// PondMesh ï¿½ï¿½ï¿½
 
-	void			MainInvalidate();	// È­¸é °­Àç·Î ´Ù½Ã Âï±â
+	void			MainInvalidate();	// È­ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ù½ï¿½ ï¿½ï¿½ï¿½
 
-	//	CDlgPondProperty¿¡¼­ ¾²ÀÎ ÇÔ¼öµé
-	void			RemovePondMesh(int iPondID);							// ¼±ÅÃµÈ ¿¬¸øÀ» »èÁ¦ÇÑ´Ù.
-	void			GoPond(int iPondID);									// ¼±ÅÃµÈ ¿¬¸øÀ¸·Î °©´Ï´Ù.
-	void			StationPond();											// ¼±ÅÃµÈ ¿¬¸øÀÇ Á¡µéÀ» ´Ù½Ã ¹èÄ¡
-	void			MovePond();												// ¼±ÅÃµÈ ¿¬¸øÀ» ÅëÂ° ¿Å±â·Á ÇÑ´Ù
+	//	CDlgPondPropertyï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ô¼ï¿½ï¿½ï¿½
+	void			RemovePondMesh(int iPondID);							// ï¿½ï¿½ï¿½Ãµï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ñ´ï¿½.
+	void			GoPond(int iPondID);									// ï¿½ï¿½ï¿½Ãµï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ï´ï¿½.
+	void			StationPond();											// ï¿½ï¿½ï¿½Ãµï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ù½ï¿½ ï¿½ï¿½Ä¡
+	void			MovePond();												// ï¿½ï¿½ï¿½Ãµï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Â° ï¿½Å±ï¿½ï¿½ ï¿½Ñ´ï¿½
 
 	BOOL			GetChooseGroup() {return m_bChooseGroup;}
 	BOOL			GetChooseEditPond() {return m_bChooseEditPond;}
 	void			ChooseGroupPond() {m_bChooseGroup^=1;}
 	void			ChooseEditPond() {m_bChooseEditPond^=1;}
 
-	//	³ªÁß¿¡ Áö¿ïÁöµµ
-	void			ReCalcSelectedVertex();									// ÁöÁ¤µÈ ½ºÄÉÀÏ¿¡ µû¶ó ´Ù½Ã Á¤·Ä
-	void			ReCalcUV();												// ¼±ÅÃµÈ ¿¬¸øÀÇ UVÁÂÇ¥ ´Ù½Ã °è»ê.
+	//	ï¿½ï¿½ï¿½ß¿ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	void			ReCalcSelectedVertex();									// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï¿ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ù½ï¿½ ï¿½ï¿½ï¿½ï¿½
+	void			ReCalcUV();												// ï¿½ï¿½ï¿½Ãµï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ UVï¿½ï¿½Ç¥ ï¿½Ù½ï¿½ ï¿½ï¿½ï¿½.
 protected:
-	void			SetSelPond(CPondMesh* pPondMesh,BOOL bChooseGroup = FALSE);					// PondMesh ¼±ÅÃÇÏ±â
+	void			SetSelPond(CPondMesh* pPondMesh,BOOL bChooseGroup = FALSE);					// PondMesh ï¿½ï¿½ï¿½ï¿½ï¿½Ï±ï¿½
 	BOOL			SelectVtxByDragRect(RECT* pRect, BOOL bAdd,BOOL bSelectPond=FALSE);
-	void			ClearSelectRcAllPond();	// ¸ðµç ¿¬¸øÀÇ ¼±ÅÃÇÑ Á¡µéÀÇ ÀÓ½Ã¿µ¿ª ÃÊ±âÈ­ ÇÏ±â
+	void			ClearSelectRcAllPond();	// ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ó½Ã¿ï¿½ï¿½ï¿½ ï¿½Ê±ï¿½È­ ï¿½Ï±ï¿½
 
 	void			SelPondRelease();
 	void			SelPondDelete(CPondMesh* pPondMesh);
@@ -126,8 +126,8 @@ protected:
 	void			SetVtxBackup();
 	void			ReSetVtxBackup();
 
-	void			ReSetDrawRect(__Vector3 vStrPos,__Vector3 vEndPos);	//	¿¬¸øÀ» ±×¸®±âÀ§ÇÑ ¿µ¿ª ÀçÁ¤¸®
-	void			InputDummyMovePos(__Vector3 vMovePos);	//	´õ¹Ì°¡ ¿òÁ÷ÀÎ ¸¸Å­ ¼±ÅÃÇÑ ¿¬¸ø¿¡ ÀÔ·Â
+	void			ReSetDrawRect(__Vector3 vStrPos,__Vector3 vEndPos);	//	ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½×¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	void			InputDummyMovePos(__Vector3 vMovePos);	//	ï¿½ï¿½ï¿½Ì°ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Å­ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ô·ï¿½
 };
 
 #endif // !defined(AFX_PONDMNG_H__B71BF3BD_5F4F_4E5B_9F9F_B8BD45E2685B__INCLUDED_)

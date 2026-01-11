@@ -150,7 +150,7 @@ void COrganizeView::OnButtonFileName()
 	// TODO: Add your control notification handler code here
 	CMainFrame* pFrm =  (CMainFrame* )AfxGetMainWnd();
 	if (pFrm->m_strResourcePath.empty())
-		AfxMessageBox("¸ÕÀú ¸®¼Ò½º °æ·Î¸¦ ¼³Á¤ÇÏ¼¼¿©..");
+		AfxMessageBox("ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ò½ï¿½ ï¿½ï¿½Î¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï¼ï¿½ï¿½ï¿½..");
 
 	if (pFrm->m_pSceneSource)
 	{
@@ -196,7 +196,7 @@ void COrganizeView::OnButtonResourcePath()
 	CMainFrame* pFrm =  (CMainFrame* )AfxGetMainWnd();
 	pFrm->m_strResourcePath = szPath+"\\N3Indoor";
 
-	// °æ·Î ¼³Á¤..
+	// ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½..
 	CN3Base::PathSet(szPath+"\\N3Indoor");
 }
 
@@ -649,7 +649,7 @@ void COrganizeView::OnItemchangingListSelect(NMHDR* pNMHDR, LRESULT* pResult)
 		pVol = m_PVSMgr.GetPortalVolByiOrder(m_SelectedListCtrl.GetHotItem());
 		if (!pVol)	return;
 
-		// Compile Mode¸é..
+		// Compile Modeï¿½ï¿½..
 		if (pFrm->m_eState == STATE_COMPILE)
 			pFrm->GetOrganizeView()->m_PVSMgr.CheckcompileMode(pVol);
 
@@ -703,7 +703,7 @@ void COrganizeView::SelectVolumeByPick(CPortalVolume* pVol, bool bOne)
 		__ASSERT(pFrm->m_pDummy, "Oops!! -.-;");
 		pFrm->m_pDummy->SetSelObj(se, bOne);
 
-		//  ¸¸¾à Dummy Size°¡ 0º¸´Ù Å©°í.. pVolÀÌ ¾øÀ¸¸é..
+		//  ï¿½ï¿½ï¿½ï¿½ Dummy Sizeï¿½ï¿½ 0ï¿½ï¿½ï¿½ï¿½ Å©ï¿½ï¿½.. pVolï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½..
 		if ( (pFrm->m_pDummy->m_SelObjArray.GetSize() > 0) && !pFrm->m_pDummy->IsExistTotalVolByPointer(pVol) )
 		{
 			pVol2 = pFrm->m_pDummy->GetFirstElementTotalVol();
@@ -717,7 +717,7 @@ void COrganizeView::SelectVolumeByPick(CPortalVolume* pVol, bool bOne)
 		m_SelectedListCtrl.SetHotItem(m_iSelectionIndex);
 		RefreshLinkedList();
 
-		// Compile Mode¸é..
+		// Compile Modeï¿½ï¿½..
 		if (pFrm->m_eState == STATE_COMPILE)
 			pFrm->GetOrganizeView()->m_PVSMgr.CheckcompileMode(pVol);
 
@@ -733,7 +733,7 @@ void COrganizeView::SelectVolumeByPick(CPortalVolume* pVol, bool bOne)
 	}
 	else
 	{
-		// Compile Mode¸é..
+		// Compile Modeï¿½ï¿½..
 		if (pFrm->m_eState == STATE_COMPILE)
 			pFrm->GetOrganizeView()->m_PVSMgr.CheckcompileMode(pVol);
 
@@ -743,14 +743,14 @@ void COrganizeView::SelectVolumeByPick(CPortalVolume* pVol, bool bOne)
 			pFrm->m_SelVolArray.RemoveAll();
 		else
 		{
-			// ÀÌ¹Ì ÀÖÀ¸¸é Ãß°¡ÇÏÁö ¾Ê´Â´Ù..
+			// ï¿½Ì¹ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ß°ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ê´Â´ï¿½..
 LOOP_1:
 			int iSize = pFrm->m_SelVolArray.GetSize();
 			for ( int i = 0; i < iSize; i++ )
 			{
 				if (pFrm->m_SelVolArray[i] == pVol)
 				{
-					// ÀÌ¹Ì ÀÖÀ¸¹Ç·Î ¼±ÅÃ¸ñ·Ï¿¡¼­ Á¦°Å
+					// ï¿½Ì¹ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ç·ï¿½ ï¿½ï¿½ï¿½Ã¸ï¿½Ï¿ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 					pFrm->m_SelVolArray.RemoveAt(i);
 					bFound = true;
 					goto LOOP_1;
@@ -803,7 +803,7 @@ LOOP_1:
 	}
 }
 
-void COrganizeView::SelectObjectByDragRect(RECT* pRect, BOOL bAdd)	// µå·¡±× ÇØ¼­ °´Ã¼ ¼±ÅÃÇÏ±â
+void COrganizeView::SelectObjectByDragRect(RECT* pRect, BOOL bAdd)	// ï¿½å·¡ï¿½ï¿½ ï¿½Ø¼ï¿½ ï¿½ï¿½Ã¼ ï¿½ï¿½ï¿½ï¿½ï¿½Ï±ï¿½
 {
 	CMainFrame* pFrm = NULL;
 	pFrm = (CMainFrame*)AfxGetMainWnd();
@@ -816,7 +816,7 @@ void COrganizeView::SelectObjectByDragRect(RECT* pRect, BOOL bAdd)	// µå·¡±× ÇØ¼
 	pD3DDev->GetTransform(D3DTS_PROJECTION, &matProj);
 	D3DXMatrixMultiply(&matVP, &matView, &matProj);
 
-	// ³ªÁß¿¡ ^^..
+	// ï¿½ï¿½ï¿½ß¿ï¿½ ^^..
 
 
 
@@ -1204,14 +1204,14 @@ bool COrganizeView::OnFileNew()
 	CMainFrame* pFrm = (CMainFrame*)AfxGetMainWnd();
 	if (!pFrm) return false;
 
-	// ±âÁ¸ ÀÛ¾÷µ¥ÀÌÅÍ°¡ ÀÖ´ÂÀÚ »ìÆìº»´Ù..
+	// ï¿½ï¿½ï¿½ï¿½ ï¿½Û¾ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Í°ï¿½ ï¿½Ö´ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ìº»ï¿½ï¿½..
 	if ((m_PVSMgr.m_iTotalCount != 0) || (m_PVSMgr.m_plShapeInfoList.size() > 0))
 	{
-		// Áö¿ï°ÍÀÎÁö ¹°¾îº»´Ù..
-		if (AfxMessageBox("ÀÛ¾÷ÁßÀÎ µ¥ÀÌÅÍ°¡ »èÁ¦µË´Ï´Ù. °è¼ÓÇÏ½Ã°Ú½À´Ï±î?", MB_OKCANCEL|MB_APPLMODAL) == IDCANCEL)
+		// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½îº»ï¿½ï¿½..
+		if (AfxMessageBox("ï¿½Û¾ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Í°ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ë´Ï´ï¿½. ï¿½ï¿½ï¿½ï¿½Ï½Ã°Ú½ï¿½ï¿½Ï±ï¿½?", MB_OKCANCEL|MB_APPLMODAL) == IDCANCEL)
 			return false;
 
-		// Áö¿î´Ù -.-;
+		// ï¿½ï¿½ï¿½ï¿½ï¿½ -.-;
 		m_PVSMgr.DeleteAllPvsObj();
 		RefreshSelectedList();
 		RefreshLinkToList();
@@ -1234,7 +1234,7 @@ bool COrganizeView::OnFileNew()
 		m_ComboFloor.ResetContent();
 	}
 
-	// Ä«¸Þ¶óµîµî ÃÊ±âÈ­..	
+	// Ä«ï¿½Þ¶ï¿½ï¿½ï¿½ ï¿½Ê±ï¿½È­..	
 	if(pFrm->m_pDummy)
 		pFrm->m_pDummy->ClearObjs();
 	pFrm->m_SelVolArray.RemoveAll();
@@ -1405,13 +1405,13 @@ void COrganizeView::OnFileSaveWorkshop()
 	CMainFrame* pFrm = (CMainFrame* )AfxGetMainWnd();
 	if (pFrm->m_strFileName.size() <= 0)
 	{
-		AfxMessageBox("SourceList°¡  ¾ø½À´Ï´Ù..Data´Â ÀúÀåµÇÁö ¾ÊÀ»°Í ÀÔ´Ï´Ù..");
+		AfxMessageBox("SourceListï¿½ï¿½  ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½..Dataï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ô´Ï´ï¿½..");
 		return;
 	}
 
 	if (!GetDlgItemInt(IDC_TOTAL_MOVE_X) || !GetDlgItemInt(IDC_TOTAL_MOVE_X) || !GetDlgItemInt(IDC_TOTAL_MOVE_Z))
 	{
-		AfxMessageBox("Map OffsetÀÌ 0 ÀÔ´Ï´Ù.Data´Â ÀúÀåµÇÁö ¾ÊÀ»°Í ÀÔ´Ï´Ù..");
+		AfxMessageBox("Map Offsetï¿½ï¿½ 0 ï¿½Ô´Ï´ï¿½.Dataï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ô´Ï´ï¿½..");
 		return;
 	}
 
@@ -1431,13 +1431,13 @@ void COrganizeView::OnFileSaveGamedata()
 	CMainFrame* pFrm = (CMainFrame* )AfxGetMainWnd();
 	if (pFrm->m_strFileName.size() <= 0)
 	{
-		AfxMessageBox("SourceList°¡  ¾ø½À´Ï´Ù..Data´Â ÀúÀåµÇÁö ¾ÊÀ»°Í ÀÔ´Ï´Ù..");
+		AfxMessageBox("SourceListï¿½ï¿½  ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½..Dataï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ô´Ï´ï¿½..");
 		return;
 	}
 
 	if (!GetDlgItemInt(IDC_TOTAL_MOVE_X) || !GetDlgItemInt(IDC_TOTAL_MOVE_X) || !GetDlgItemInt(IDC_TOTAL_MOVE_Z))
 	{
-		AfxMessageBox("Map OffsetÀÌ 0 ÀÔ´Ï´Ù.Data´Â ÀúÀåµÇÁö ¾ÊÀ»°Í ÀÔ´Ï´Ù..");
+		AfxMessageBox("Map Offsetï¿½ï¿½ 0 ï¿½Ô´Ï´ï¿½.Dataï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ô´Ï´ï¿½..");
 		return;
 	}
 
@@ -1459,10 +1459,10 @@ void COrganizeView::OnFileSaveGamedata()
 ////////////////////////////////////////////////////////////////////////
 void COrganizeView::OnFileServerData()
 {
-	// ±âÁ¸ ÀÛ¾÷µ¥ÀÌÅÍ°¡ ÀÖ´ÂÀÚ »ìÆìº»´Ù..
+	// ï¿½ï¿½ï¿½ï¿½ ï¿½Û¾ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Í°ï¿½ ï¿½Ö´ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ìº»ï¿½ï¿½..
 	if (!(m_PVSMgr.m_iTotalCount && m_PVSMgr.m_plShapeInfoList.size()))
 	{
-		AfxMessageBox("Data°¡  ¾ø½À´Ï´Ù..Data´Â ÀúÀåµÇÁö ¾ÊÀ»°Í ÀÔ´Ï´Ù..");
+		AfxMessageBox("Dataï¿½ï¿½  ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½..Dataï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ô´Ï´ï¿½..");
 		return;
 	}
 
@@ -1520,18 +1520,18 @@ void COrganizeView::WriteCollisionData(HANDLE hFile, int iMax)
 	const int TERRAIN_CELL_SIZE = 4;
 	float fSize = (iMax-1) * TERRAIN_CELL_SIZE;
 
-	WriteFile(hFile, &fSize, 4, &dwNum, NULL); // ¸Ê ½ÇÁ¦ ¹ÌÅÍ ´ÜÀ§ ³Êºñ
-	WriteFile(hFile, &fSize, 4, &dwNum, NULL); // ¸Ê ½ÇÁ¦ ¹ÌÅÍ ´ÜÀ§ ±æÀÌ
+	WriteFile(hFile, &fSize, 4, &dwNum, NULL); // ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Êºï¿½
+	WriteFile(hFile, &fSize, 4, &dwNum, NULL); // ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 
-	// Ãæµ¹ Ã¼Å© Æú¸®°ï µ¥ÀÌÅÍ ¾²±â..
+	// ï¿½æµ¹ Ã¼Å© ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½..
 	int iColCount = 0;
 	WriteFile(hFile, &iColCount, 4, &dwNum, NULL);
 
-	const int CELL_MAIN_DEVIDE = 4; // ¸ÞÀÎ¼¿Àº 4 X 4 ÀÇ ¼­ºê¼¿·Î ³ª´¶´Ù..
-	const int CELL_SUB_SIZE = 4; // 4 Meter °¡ ¼­ºê¼¿ÀÇ »çÀÌÁîÀÌ´Ù..
-	const int CELL_MAIN_SIZE = CELL_MAIN_DEVIDE * CELL_SUB_SIZE; // ¸ÞÀÎ¼¿ Å©±â´Â ¼­ºê¼¿°¹¼ö X ¼­ºê¼¿ Å©±âÀÌ´Ù.
+	const int CELL_MAIN_DEVIDE = 4; // ï¿½ï¿½ï¿½Î¼ï¿½ï¿½ï¿½ 4 X 4 ï¿½ï¿½ ï¿½ï¿½ï¿½ê¼¿ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½..
+	const int CELL_SUB_SIZE = 4; // 4 Meter ï¿½ï¿½ ï¿½ï¿½ï¿½ê¼¿ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ì´ï¿½..
+	const int CELL_MAIN_SIZE = CELL_MAIN_DEVIDE * CELL_SUB_SIZE; // ï¿½ï¿½ï¿½Î¼ï¿½ Å©ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ê¼¿ï¿½ï¿½ï¿½ï¿½ X ï¿½ï¿½ï¿½ê¼¿ Å©ï¿½ï¿½ï¿½Ì´ï¿½.
 
-	// Cell Data ¾²±â.
+	// Cell Data ï¿½ï¿½ï¿½ï¿½.
 	int z = 0;
 	for(float fZ = 0.0f; fZ < fSize; fZ += CELL_MAIN_SIZE, z++)
 	{
@@ -1539,7 +1539,7 @@ void COrganizeView::WriteCollisionData(HANDLE hFile, int iMax)
 		for(float fX = 0.0f; fX < fSize; fX += CELL_MAIN_SIZE, x++)
 		{
 			BOOL bExist = FALSE;
-			WriteFile(hFile, &bExist, 4, &dwNum, NULL); // µ¥ÀÌÅÍ°¡ ÀÖ´Â ¼¿ÀÎÁö ¾²°í..
+			WriteFile(hFile, &bExist, 4, &dwNum, NULL); // ï¿½ï¿½ï¿½ï¿½ï¿½Í°ï¿½ ï¿½Ö´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½..
 		}
 	}
 }
@@ -1579,7 +1579,7 @@ void COrganizeView::WriteObjectEventData(HANDLE hFile, int iFloor)
 			while(siit != pVol->m_plShapeInfoList.end())
 			{
 				pSI = *siit++;
-				if (pSI->m_iEventID || pSI->m_iEventType || pSI->m_iNPC_ID || pSI->m_iNPC_Status ) // ÀÌº¥Æ®°¡ ÀÖÀ¸¸é
+				if (pSI->m_iEventID || pSI->m_iEventType || pSI->m_iNPC_ID || pSI->m_iNPC_Status ) // ï¿½Ìºï¿½Æ®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 					iCount++;
 			}
 		}
@@ -1598,7 +1598,7 @@ void COrganizeView::WriteObjectEventData(HANDLE hFile, int iFloor)
 		while(siit != pVol->m_plShapeInfoList.end())
 		{
 			pSI = *siit++;
-			if (pSI->m_iEventID || pSI->m_iEventType || pSI->m_iNPC_ID || pSI->m_iNPC_Status ) // ÀÌº¥Æ®°¡ ÀÖÀ¸¸é
+			if (pSI->m_iEventID || pSI->m_iEventType || pSI->m_iNPC_ID || pSI->m_iNPC_Status ) // ï¿½Ìºï¿½Æ®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 			{
 				WriteFile(hFile, &(pSI->m_iBelong), 4, &dwNum, NULL);
 				sEvent = (short)(pSI->m_iEventID); WriteFile(hFile, &sEvent, 2, &dwNum, NULL);
@@ -1649,7 +1649,7 @@ void COrganizeView::WriteTerrainData(HANDLE hFile, int iMax, int iFloor)
 	iTempOffs += 4;
 	TRACE1("File Offset %d\n", iTempOffs);
 
-	//  ±×³É ÇÏ³ª¾¿ ÀúÀåÇØµµ Â÷ÀÌ ¾øÁö¸¸ ³×Æ®¿öÅ©·Î ÀúÀåÇÒ¶§´Â ÆÄÀÏ ¿¢¼¼½º ¼ýÀÚ¸¦ ÁÙÀÌ°í ÇÑ²¨¹ø¿¡ ÀúÀåÇØ¾ß  ºü¸£´Ù.. ...
+	//  ï¿½×³ï¿½ ï¿½Ï³ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Øµï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Æ®ï¿½ï¿½Å©ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ò¶ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ú¸ï¿½ ï¿½ï¿½ï¿½Ì°ï¿½ ï¿½Ñ²ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ø¾ï¿½  ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½.. ...
 	DWORD dwAlloc = iMax * iMax * sizeof(float);
 	HGLOBAL hAlloc = ::GlobalAlloc(GMEM_FIXED, dwAlloc);
 	__ASSERT(hAlloc, "Global allocation failed.");
@@ -1659,7 +1659,7 @@ void COrganizeView::WriteTerrainData(HANDLE hFile, int iMax, int iFloor)
 		for(z=0;z<iMax;z++)
 			pfHeights[x*iMax+z] = GetFloorHeight(iFloor, x*TERRAIN_CELL_SIZE, z*TERRAIN_CELL_SIZE);
 
-	WriteFile(hFile, pfHeights, dwAlloc, &dwNum, NULL); // ÆÄÀÏ¿¡ ¾´´Ù..
+	WriteFile(hFile, pfHeights, dwAlloc, &dwNum, NULL); // ï¿½ï¿½ï¿½Ï¿ï¿½ ï¿½ï¿½ï¿½ï¿½..
 	iTempOffs += dwAlloc;
 	TRACE1("File Offset %d\n", iTempOffs);
 	pfHeights = NULL;
@@ -1880,7 +1880,7 @@ void COrganizeView::OnSetFloor()
 
 	if (iSize < 1)
 	{
-		AfxMessageBox("¼±ÅÃµÇ¾îÀÖ´Â VolumeÀÌ ¾ø½À´Ï´Ù....");
+		AfxMessageBox("ï¿½ï¿½ï¿½ÃµÇ¾ï¿½ï¿½Ö´ï¿½ Volumeï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½....");
 		return;
 	}
 
@@ -1891,7 +1891,7 @@ void COrganizeView::OnSetFloor()
 
 	int iCur = FDlg.GetFloor();
 
-	// µ¥ÀÌÅÍ Ãß°¡..
+	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ß°ï¿½..
 	FloorInfo FInfo;
 	FInfo.m_iFloor = iCur;
 	for (int i = 0; i < iSize; i++)
@@ -1899,8 +1899,8 @@ void COrganizeView::OnSetFloor()
 
 	pFrm->m_FloorList.push_back(FInfo);
 
-	// ComboBox Ãß°¡..
-	CString str; str.Format("%d Ãþ", iCur);
+	// ComboBox ï¿½ß°ï¿½..
+	CString str; str.Format("%d ï¿½ï¿½", iCur);
 	m_ComboFloor.AddString(str);
 	iSize = m_ComboFloor.GetCount();
 	m_ComboFloor.SetCurSel(iSize-1);
@@ -1960,7 +1960,7 @@ void COrganizeView::RefreshFloorCombo()
 	{
 		FInfo = *vfit++;
 
-		CString str; str.Format("%d Ãþ", FInfo.m_iFloor);
+		CString str; str.Format("%d ï¿½ï¿½", FInfo.m_iFloor);
 		m_ComboFloor.AddString(str);
 		iSize = m_ComboFloor.GetCount();
 		m_ComboFloor.SetCurSel(iSize-1);
@@ -1999,9 +1999,9 @@ void COrganizeView::RefreshFloorInfoAll(int iID)
 		for (i = 0; i < iCount; i++)
 			FInfo.m_vVolume.push_back(vecVol[i]);
 
-		if (iCount != 0)	// ÇÑ°³¶óµµ ³²¾ÆÀÖÀ¸¸é.. 
+		if (iCount != 0)	// ï¿½Ñ°ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½.. 
 		{
-			CString str; str.Format("%d Ãþ", FInfo.m_iFloor);
+			CString str; str.Format("%d ï¿½ï¿½", FInfo.m_iFloor);
 			m_ComboFloor.AddString(str);
 			int iSize = m_ComboFloor.GetCount();
 			m_ComboFloor.SetCurSel(iSize-1);
@@ -2011,7 +2011,7 @@ void COrganizeView::RefreshFloorInfoAll(int iID)
 		m_FloorVector.push_back(FInfo);
 	}
 
-	// ÀüºÎ Áö¿î´Ù..
+	// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½..
 	vfit = pFrm->m_FloorList.begin();
 	while (vfit != pFrm->m_FloorList.end())
 	{

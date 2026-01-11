@@ -13,10 +13,10 @@
 
 struct __VertexSkinned
 {
-	__Vector3	vOrigin; // ¿ø·¡ Á¡ À§Ä¡..
-	int			nAffect; // °üÀý ¸î°³°¡ ¿µÇâÀ» ÁÖ´ÂÁö..
-	int*		pnJoints; // °üÀý ÀÎµ¦½º
-	float*		pfWeights; // °¡ÁßÄ¡
+	__Vector3	vOrigin; // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½Ä¡..
+	int			nAffect; // ï¿½ï¿½ï¿½ï¿½ ï¿½î°³ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ö´ï¿½ï¿½ï¿½..
+	int*		pnJoints; // ï¿½ï¿½ï¿½ï¿½ ï¿½Îµï¿½ï¿½ï¿½
+	float*		pfWeights; // ï¿½ï¿½ï¿½ï¿½Ä¡
 
 	__VertexSkinned() { memset(this, 0, sizeof(__VertexSkinned)); }
 	~__VertexSkinned() { delete [] pnJoints; delete [] pfWeights; }
@@ -33,7 +33,7 @@ protected:
 
 	static int SortWeightsProc(const void* pArg1, const void* pArg2);
 	
-	int		m_nVertexCount; // Á¡ °¹¼ö
+	int		m_nVertexCount; // ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	__VertexSkinned* m_pVertices;
 
 

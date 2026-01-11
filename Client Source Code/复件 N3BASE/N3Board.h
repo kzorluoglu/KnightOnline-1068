@@ -24,7 +24,7 @@ protected:
 
 	int				m_nTexIndex;
 	int				m_nTexCount;
-	CN3Texture**	m_ppTexs; // ÅØ½ºÃ³ Æ÷ÀÎÅÍ ¸®½ºÆ®..
+	CN3Texture**	m_ppTexs; // ï¿½Ø½ï¿½Ã³ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Æ®..
 
 public:
 	DWORD m_dwBoardType; // Board Type
@@ -32,7 +32,7 @@ public:
 	float	m_fFPS; // Frame Per Second
 	DWORD	m_dwTickPrev;
 
-	__Material m_Mtl; // ÀçÁú..
+	__Material m_Mtl; // ï¿½ï¿½ï¿½ï¿½..
 
 public:
 	void TexSet(int index, const char* szFN);

@@ -17,11 +17,11 @@ class CN3PMesh;
 class CN3Mesh : public CN3BaseFileAccess
 {
 protected:
-	__VertexT1*	m_pVertices; // Á¡ ¹öÆÛ
-	WORD*		m_psnIndices; // ÀÎµ¦½º ¹öÆÛ
+	__VertexT1*	m_pVertices; // ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+	WORD*		m_psnIndices; // ï¿½Îµï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 
-	int		m_nVC; // Á¡ °¹¼ö
-	int		m_nIC; // Á¡ °¹¼ö
+	int		m_nVC; // ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+	int		m_nIC; // ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	__Vector3 m_vMin, m_vMax;
 
 public:
@@ -32,7 +32,7 @@ public:
 	int			VertexCount() { return m_nVC; }
 	__VertexT1*	Vertices() { return m_pVertices; }
 	int			IndexCount() { return m_nIC; }
-	WORD*		Indices() { return m_psnIndices; } // ÀÎµ¦½º ¹öÆÛ
+	WORD*		Indices() { return m_psnIndices; } // ï¿½Îµï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 
 	bool	Load(HANDLE hFile);
 

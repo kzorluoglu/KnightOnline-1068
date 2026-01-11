@@ -26,7 +26,7 @@ public:
 	{
 		if(pData == NULL) return -1;
 #ifdef _DEBUG
-		if(lstrlen(pData->FileName()) <= 0)MessageBox(GetActiveWindow(), "ObjectÀÇ File ÀÌ¸§ÀÌ NULL ÀÔ´Ï´Ù.", "Resource manager warning", MB_OK);
+		if(lstrlen(pData->FileName()) <= 0)MessageBox(GetActiveWindow(), "Objectï¿½ï¿½ File ï¿½Ì¸ï¿½ï¿½ï¿½ NULL ï¿½Ô´Ï´ï¿½.", "Resource manager warning", MB_OK);
 #endif
 
 		BOOL bDuplicated = FALSE;
@@ -44,7 +44,7 @@ public:
 		if(FALSE == bDuplicated)
 		{
 #ifdef _DEBUG
-			// Æ÷ÀÎÅÍ°¡ ´Ù¸¥µ¥ ÆÄÀÏ ÀÌ¸§ÀÌ °°ÀºÁö È®ÀÎ..
+			// ï¿½ï¿½ï¿½ï¿½ï¿½Í°ï¿½ ï¿½Ù¸ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ì¸ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ È®ï¿½ï¿½..
 			for(i = 0; i < m_nCount; i++)
 				if(pData != m_pDatas[i] && lstrcmpi(pData->FileName(), m_pDatas[i]->FileName()) == 0)
 					MessageBox(GetActiveWindow(), pData->FileName(), "Object file name was duplicated. Must different from each other", MB_OK);
@@ -88,7 +88,7 @@ public:
 		return m_pDatas[m_nCount-1];
 	}
 
-	bool IsExist(const char* szFN) // ÀÖ³ª ¾ø³ª~
+	bool IsExist(const char* szFN) // ï¿½Ö³ï¿½ ï¿½ï¿½ï¿½ï¿½~
 	{
 		if(NULL == szFN || lstrlen(szFN) <= 0) return NULL;
 		for(int i = 0; i < m_nCount; i++)

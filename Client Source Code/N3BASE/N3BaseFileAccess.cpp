@@ -50,6 +50,36 @@ bool CN3BaseFileAccess::Load(HANDLE hFile)
 	DWORD dwRWC = 0;
 	int nL = 0;
 	ReadFile(hFile, &nL, 4, &dwRWC, NULL);
+#ifdef _N3GAME
+    if (nL > 1000) CLogWriter::Write("CN3BaseFileAccess::Load - WARNING: massive string length %d", nL);
+#endif
+
+    // Sanity check string length against file size to avoid overruns from corrupt/misaligned data.
+    DWORD dwFileSize = GetFileSize(hFile, NULL);
+    DWORD dwPosAfterLen = SetFilePointer(hFile, 0, NULL, FILE_CURRENT);
+    if (dwFileSize != INVALID_FILE_SIZE && dwPosAfterLen != INVALID_SET_FILE_POINTER && nL > 0)
+    {
+        DWORD dwRemaining = (dwPosAfterLen < dwFileSize) ? (dwFileSize - dwPosAfterLen) : 0;
+        if ((DWORD)nL > dwRemaining)
+        {
+            int nLSwapped = (nL >> 16); // handle values like 0x000F0000
+            if (nLSwapped > 0 && (DWORD)nLSwapped <= dwRemaining)
+            {
+#ifdef _N3GAME
+                CLogWriter::Write("CN3BaseFileAccess::Load - clamping swapped string length %d -> %d (remaining %u)", nL, nLSwapped, dwRemaining);
+#endif
+                nL = nLSwapped;
+            }
+            else
+            {
+#ifdef _N3GAME
+                CLogWriter::Write("CN3BaseFileAccess::Load - clamping string length %d to remaining %u", nL, dwRemaining);
+#endif
+                nL = (int)dwRemaining;
+            }
+        }
+    }
+
 	if(nL > 0) 
 	{
 		std::vector<char> buffer(nL + 1, 0);

@@ -82,13 +82,13 @@ static UINT indicators[] =
 CMainFrame::CMainFrame()
 {
 	// TODO: add member initialization code here
-	m_eState = STATE_EDIT;										// »óÅÂ º¯¼öµé..
+	m_eState = STATE_EDIT;										// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½..
 	m_eSelectState = SELECT_STATE_PVOLUMN;
 	m_dwRenderingOption = dw_Render_None;	
 
-	m_pDlgSourceList = NULL;							// Object ¸ñ·ÏÀ» º¸¿©ÁÙ ´ÙÀÌ¾Ë·Î±×
-	m_pDlgOutputList = NULL;							// ¸Ê¿¡ ¹èÄ¡ÇÑ Object¸¦ º¸¿©ÁÙ ´ÙÀÌ¾Ë·Î±×
-	m_pSceneSource = NULL;					// source object ¸ñ·Ï¿¡ º¸¿©ÁÙ °ÍµéÀ» ´ãÀº Scene
+	m_pDlgSourceList = NULL;							// Object ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ì¾Ë·Î±ï¿½
+	m_pDlgOutputList = NULL;							// ï¿½Ê¿ï¿½ ï¿½ï¿½Ä¡ï¿½ï¿½ Objectï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ì¾Ë·Î±ï¿½
+	m_pSceneSource = NULL;					// source object ï¿½ï¿½Ï¿ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Íµï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ Scene
 
 	m_pDummy = NULL;
 
@@ -115,7 +115,7 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 	}
 
 	if(m_Eng.Init(TRUE, m_hWnd, 64, 64, 0, TRUE) == false) return 0;
-	m_Eng.GridCreate(300, 300); // ±×¸®µå ¸¸µé±â..
+	m_Eng.GridCreate(300, 300); // ï¿½×¸ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½..
 
 	m_Camera.EyePosSet(cvInitEyeOffset);
 
@@ -163,7 +163,7 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 	m_dwRenderingOption = dw_Render_None;
 	m_eEditState = EDIT_SELECT;
 
-	// °æ·Î ¼³Á¤..
+	// ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½..
 	std::string str;
 	char szPathCur[256] = "";
 	GetCurrentDirectory(256, szPathCur);
@@ -353,7 +353,7 @@ void CMainFrame::OnUpdateViewOutputobject(CCmdUI* pCmdUI)
 CN3Transform* CMainFrame::AddChr(CN3Scene* pDestScene, const std::string& szFN, BOOL bGenerateChainNumber)
 {
 	CN3Chr* pChr = new CN3Chr;
-	if(false == pChr->LoadFromFile(szFN)) // ºÎ¸£±â°¡ ½ÇÆÐÇÏ¸é..
+	if(false == pChr->LoadFromFile(szFN)) // ï¿½Î¸ï¿½ï¿½â°¡ ï¿½ï¿½ï¿½ï¿½ï¿½Ï¸ï¿½..
 	{
 		delete pChr;
 		return NULL;
@@ -370,8 +370,8 @@ CN3Transform* CMainFrame::AddChr(CN3Scene* pDestScene, const std::string& szFN, 
 			int nL = lstrlen(szCompare);
 			if(nL < 5) continue;
 
-			szCompare[nL-5] = NULL; // µÚ¿¡ ºÙ´Â ¾ð´õ¹Ù¿Í ³×ÀÚ¸® ¹øÈ£´Â »«´Ù..
-			if(pChr->m_szName == szCompare) // ÀÌ¸§ÀÌ °°À¸¸é..
+			szCompare[nL-5] = NULL; // ï¿½Ú¿ï¿½ ï¿½Ù´ï¿½ ï¿½ï¿½ï¿½ï¿½Ù¿ï¿½ ï¿½ï¿½ï¿½Ú¸ï¿½ ï¿½ï¿½È£ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½..
+			if(pChr->m_szName == szCompare) // ï¿½Ì¸ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½..
 			{
 				nChainNumber = atoi(&(szCompare[nL-4])) + 1;
 			}
@@ -379,7 +379,7 @@ CN3Transform* CMainFrame::AddChr(CN3Scene* pDestScene, const std::string& szFN, 
 
 		char szName[_MAX_PATH];
 		wsprintf(szName, "%s_%.4d", pChr->m_szName.c_str(), nChainNumber);
-		pChr->m_szName = szName; // .. ÀÌ¸§À» Áþ´Â´Ù..
+		pChr->m_szName = szName; // .. ï¿½Ì¸ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Â´ï¿½..
 	}
 
 	pDestScene->ChrAdd(pChr);
@@ -389,13 +389,13 @@ CN3Transform* CMainFrame::AddChr(CN3Scene* pDestScene, const std::string& szFN, 
 CN3Transform* CMainFrame::AddShape(CN3Scene* pDestScene, const std::string& szFN, BOOL bGenerateChainNumber)	
 {
 	CN3Shape* pShape = new CN3Shape;
-	if(false == pShape->LoadFromFile(szFN)) // ºÎ¸£±â°¡ ½ÇÆÐÇÏ¸é..
+	if(false == pShape->LoadFromFile(szFN)) // ï¿½Î¸ï¿½ï¿½â°¡ ï¿½ï¿½ï¿½ï¿½ï¿½Ï¸ï¿½..
 	{
 		delete pShape;
 		return NULL;
 	}
 
-	pDestScene->ShapeAdd(pShape); // Ãß°¡ ÇÏ°í
+	pDestScene->ShapeAdd(pShape); // ï¿½ß°ï¿½ ï¿½Ï°ï¿½
 	return pShape;
 }
 
@@ -407,10 +407,10 @@ void CMainFrame::LoadSourceObjects()
 
 	WIN32_FIND_DATA FindFileData;
 
-	// source\Chr Æú´õÀÇ ¸ðµç Ä³¸¯ÅÍ Ãß°¡
+	// source\Chr ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ Ä³ï¿½ï¿½ï¿½ï¿½ ï¿½ß°ï¿½
 	CString szChrPath;
 	szChrPath.Format("%sChr\\", CN3Base::s_szPath.c_str());
-	SetCurrentDirectory(szChrPath); // szFolder\Chr Æú´õ·Î °æ·Î¸¦ ¹Ù²Ù°í..
+	SetCurrentDirectory(szChrPath); // szFolder\Chr ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Î¸ï¿½ ï¿½Ù²Ù°ï¿½..
 	HANDLE hFind = FindFirstFile("*.N3Chr", &FindFileData);
 
 	if (hFind != INVALID_HANDLE_VALUE)
@@ -423,11 +423,11 @@ void CMainFrame::LoadSourceObjects()
 		FindClose(hFind);
 	}
 
-	// source\Data Æú´õÀÇ ¸ðµç shape Ãß°¡
+	// source\Data ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ shape ï¿½ß°ï¿½
 	CString szShapePath;
 	szShapePath.Format("%sObject\\", CN3Base::s_szPath.c_str());
-	SetCurrentDirectory(szShapePath); // szFolder\Mesh Æú´õ·Î °æ·Î¸¦ ¹Ù²Ù°í..
-	hFind = FindFirstFile("*.N3Shape", &FindFileData); // ÆÄÀÏ Ã£±â.
+	SetCurrentDirectory(szShapePath); // szFolder\Mesh ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Î¸ï¿½ ï¿½Ù²Ù°ï¿½..
+	hFind = FindFirstFile("*.N3Shape", &FindFileData); // ï¿½ï¿½ï¿½ï¿½ Ã£ï¿½ï¿½.
 
 	if (hFind != INVALID_HANDLE_VALUE)
 	{
@@ -439,8 +439,8 @@ void CMainFrame::LoadSourceObjects()
 		FindClose(hFind);
 	}	
 
-	m_pSceneSource->Tick();	// Object ÃÊ±âÈ­
-	m_pDlgSourceList->UpdateTree(m_pSceneSource);	// ¸ñ·Ï °»½Å
+	m_pSceneSource->Tick();	// Object ï¿½Ê±ï¿½È­
+	m_pDlgSourceList->UpdateTree(m_pSceneSource);	// ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 }
 
 void CMainFrame::RefreshSourceObjects()
@@ -471,12 +471,12 @@ void CMainFrame::RefreshSourceObjects()
 	}
 }
 
-void CMainFrame::OutputDlgRefresh()	// ¼Ò½º¸ñ·Ï¿¡¼­ ¼±ÅÃÇÑ Object¸¦ ³ÖÀ¸¸é OutputSceneÀ¸·Î º¹»çÇØ¼­ ³Ö¾îÁØ´Ù.
+void CMainFrame::OutputDlgRefresh()	// ï¿½Ò½ï¿½ï¿½ï¿½Ï¿ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Objectï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ OutputSceneï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ø¼ï¿½ ï¿½Ö¾ï¿½ï¿½Ø´ï¿½.
 {
 	m_pDlgOutputList->UpdateTree();
 }
 
-void CMainFrame::RenderObjectToWindow(CN3TransformCollision* pObj, HWND hWnd)	// Æ¯Á¤ À©µµ¿ì¿¡ Object¸¦ ±×·ÁÁØ´Ù.
+void CMainFrame::RenderObjectToWindow(CN3TransformCollision* pObj, HWND hWnd)	// Æ¯ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ì¿¡ Objectï¿½ï¿½ ï¿½×·ï¿½ï¿½Ø´ï¿½.
 {
 	if (pObj == NULL || hWnd == NULL) return;
 	DWORD dwType = pObj->Type();
@@ -497,7 +497,7 @@ void CMainFrame::RenderObjectToWindow(CN3TransformCollision* pObj, HWND hWnd)	//
 	// begin
 	pD3DDev->BeginScene();
 
-	// ObjectÀÇ À§Ä¡ ¹× Å©±â ÆÄ¾Ç
+	// Objectï¿½ï¿½ ï¿½ï¿½Ä¡ ï¿½ï¿½ Å©ï¿½ï¿½ ï¿½Ä¾ï¿½
 	__Vector3 vDir(-1,-1,3);	vDir.Normalize();
 	__Vector3 vMin = pObj->Min();
 	__Vector3 vMax = pObj->Max();
@@ -514,18 +514,18 @@ void CMainFrame::RenderObjectToWindow(CN3TransformCollision* pObj, HWND hWnd)	//
 	DWORD dwLighting;
 	pD3DDev->GetRenderState(D3DRS_LIGHTING, &dwLighting);
 
-	// camera frustum ¼¼ÆÃ..(ApplyÇÔ¼ö ³»ºÎ¿¡¼­ transformÀ» ¹Ù²Ù±â¶§¹®¿¡ ÀÌ À§Ä¡¿¡ ³Ö¾î¾ß ÇÑ´Ù.)
+	// camera frustum ï¿½ï¿½ï¿½ï¿½..(Applyï¿½Ô¼ï¿½ ï¿½ï¿½ï¿½Î¿ï¿½ï¿½ï¿½ transformï¿½ï¿½ ï¿½Ù²Ù±â¶§ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½Ä¡ï¿½ï¿½ ï¿½Ö¾ï¿½ï¿½ ï¿½Ñ´ï¿½.)
 	CN3Camera TempCamera;
 	TempCamera.EyePosSet(vEye);
 	TempCamera.AtPosSet(vAt);
 	TempCamera.UpVectorSet(vUp);
 	TempCamera.Tick();
-	TempCamera.Apply();	// ÀÓ½ÃÄ«¸Þ¶ó¿¡ µ¥ÀÌÅÍ¸¦ ³Ö°í frustum Á¤º¸¸¦ °è»ê..
+	TempCamera.Apply();	// ï¿½Ó½ï¿½Ä«ï¿½Þ¶ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Í¸ï¿½ ï¿½Ö°ï¿½ frustum ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½..
 
 	// Set Render State
 	pD3DDev->SetRenderState(D3DRS_LIGHTING, FALSE);
 
-	// ±×¸®±â
+	// ï¿½×¸ï¿½ï¿½ï¿½
 	if (dwType & OBJ_CHARACTER)
 	{
 		CN3Chr* pChr = (CN3Chr*)pObj;
@@ -542,7 +542,7 @@ void CMainFrame::RenderObjectToWindow(CN3TransformCollision* pObj, HWND hWnd)	//
 	pD3DDev->EndScene(); // end
 	m_Eng.Present(hWnd); // present
 
-	// restore (ÀÌÀü »óÅÂ·Î µÇµ¹·ÁÁÖÁö ¾ÊÀ¸¸é ÁöÇü¿¡¼­ pickingÀÌ Á¦´ë·Î µÇÁö ¾Ê´Â´Ù)
+	// restore (ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Â·ï¿½ ï¿½Çµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ pickingï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ê´Â´ï¿½)
 	pD3DDev->SetTransform(D3DTS_VIEW, &mtxOldView);
 	pD3DDev->SetTransform(D3DTS_PROJECTION, &mtxOldProj);
 	CopyMemory(&CN3Base::s_CameraData, &CameraDataBackUp, sizeof(CameraDataBackUp));
@@ -643,7 +643,7 @@ ShapeInfo* CMainFrame::GetShapeForDisplay()
 void CMainFrame::OnTipFocusSelobj() 
 {
 	// TODO: Add your command handler code here
-	// focus¸¦ °¡Áú Object  ¸¦ Ã£´Â´Ù..
+	// focusï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ Object  ï¿½ï¿½ Ã£ï¿½Â´ï¿½..
 	bool bFound = false;
 	CPortalVolume* pVol = NULL;
 	COrganizeView* pView = GetOrganizeView();
@@ -688,7 +688,7 @@ void CMainFrame::OnTipFocusSelobj()
 			}
 		
 			if (vMin.x != FLT_MAX && vMax.x != -FLT_MAX)
-			{	// ¹°Ã¼ Å©±â¿¡ ¸ÂÃç Ä«¸Þ¶ó °Å¸® Á¶Àý
+			{	// ï¿½ï¿½Ã¼ Å©ï¿½â¿¡ ï¿½ï¿½ï¿½ï¿½ Ä«ï¿½Þ¶ï¿½ ï¿½Å¸ï¿½ ï¿½ï¿½ï¿½ï¿½
 				__Vector3 vDir = m_Camera.Dir();
 				__Vector3 vAt = vMin + ((vMax-vMin)/2);
 				m_Camera.AtPosSet(vAt);
@@ -717,7 +717,7 @@ void CMainFrame::OnTipFocusSelobj()
 			}
 		
 			if (vMin.x != FLT_MAX && vMax.x != -FLT_MAX)
-			{	// ¹°Ã¼ Å©±â¿¡ ¸ÂÃç Ä«¸Þ¶ó °Å¸® Á¶Àý
+			{	// ï¿½ï¿½Ã¼ Å©ï¿½â¿¡ ï¿½ï¿½ï¿½ï¿½ Ä«ï¿½Þ¶ï¿½ ï¿½Å¸ï¿½ ï¿½ï¿½ï¿½ï¿½
 				__Vector3 vDir = m_Camera.Dir();
 				__Vector3 vAt = vMin + ((vMax-vMin)/2);
 				m_Camera.AtPosSet(vAt);
@@ -757,7 +757,7 @@ void CMainFrame::OnTipFocusSelobj()
 		}
 
 		if (vMin.x != FLT_MAX && vMax.x != -FLT_MAX)
-		{	// ¹°Ã¼ Å©±â¿¡ ¸ÂÃç Ä«¸Þ¶ó °Å¸® Á¶Àý
+		{	// ï¿½ï¿½Ã¼ Å©ï¿½â¿¡ ï¿½ï¿½ï¿½ï¿½ Ä«ï¿½Þ¶ï¿½ ï¿½Å¸ï¿½ ï¿½ï¿½ï¿½ï¿½
 			__Vector3 vDir = m_Camera.Dir();
 			__Vector3 vAt = vMin + ((vMax-vMin)/2);
 			m_Camera.AtPosSet(vAt);
@@ -773,7 +773,7 @@ void CMainFrame::OnTipFocusAll()
 	FindMinMaxTotalShape(vMin, vMax);
 
 	if (vMin.x != FLT_MAX && vMax.x != -FLT_MAX)
-	{	// ¹°Ã¼ Å©±â¿¡ ¸ÂÃç Ä«¸Þ¶ó °Å¸® Á¶Àý
+	{	// ï¿½ï¿½Ã¼ Å©ï¿½â¿¡ ï¿½ï¿½ï¿½ï¿½ Ä«ï¿½Þ¶ï¿½ ï¿½Å¸ï¿½ ï¿½ï¿½ï¿½ï¿½
 		__Vector3 vDir = m_Camera.Dir();
 		__Vector3 vAt = vMin + ((vMax-vMin)/2);
 		m_Camera.AtPosSet(vAt);
@@ -880,15 +880,15 @@ LOOP1:
 			bFound = false;
 
 			SelectElement se = m_pDummy->m_SelObjArray.GetAt(i);					
-			if (se.eST != TYPE_SHAPE_ONLY)	// VolumeÀÌ´Ù..
+			if (se.eST != TYPE_SHAPE_ONLY)	// Volumeï¿½Ì´ï¿½..
 			{
-				// Ã£´Â´Ù..
+				// Ã£ï¿½Â´ï¿½..
 				if (pView->m_PVSMgr.IsExistPortalVolumeByPointer((CPortalVolume *)se.pSelectPointer))
 					bFound = true;
 			}
-			else												// Shape´Ù..
+			else												// Shapeï¿½ï¿½..
 			{
-				// Ã£´Â´Ù..
+				// Ã£ï¿½Â´ï¿½..
 				if (pView->m_PVSMgr.IsExistTotalShapeByPointer((ShapeInfo *)se.pSelectPointer))
 					bFound = true;
 				
@@ -896,7 +896,7 @@ LOOP1:
 					bFound = true;
 			}
 
-			// ¸øÃ£¾ÒÀ¸¸é..
+			// ï¿½ï¿½Ã£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½..
 			if (!bFound)
 			{
 				m_pDummy->m_SelObjArray.RemoveAt(i);
@@ -914,12 +914,12 @@ LOOP2:
 		{
 			bFound = false;
 
-			// Ã£´Â´Ù..
+			// Ã£ï¿½Â´ï¿½..
 			pVol = m_SelVolArray.GetAt(i);
 			if (pView->m_PVSMgr.IsExistPortalVolumeByPointer((CPortalVolume *)pVol))
 				bFound = true;
 
-			// ¸øÃ£¾ÒÀ¸¸é..
+			// ï¿½ï¿½Ã£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½..
 			if (!bFound)
 			{
 				m_SelVolArray.RemoveAt(i);
@@ -929,30 +929,30 @@ LOOP2:
 	}
 
 	// 3. m_LastSelectedElement Check..
-	if (m_LastSelectedElement.eST != TYPE_SHAPE_ONLY)	// VolumeÀÌ´Ù..
+	if (m_LastSelectedElement.eST != TYPE_SHAPE_ONLY)	// Volumeï¿½Ì´ï¿½..
 	{
 		bFound = false;
 
-		// Ã£´Â´Ù..
+		// Ã£ï¿½Â´ï¿½..
 		if (pView->m_PVSMgr.IsExistPortalVolumeByPointer((CPortalVolume *)m_LastSelectedElement.pSelectPointer))
 			bFound = true;
 
-		// ¸øÃ£¾ÒÀ¸¸é..
+		// ï¿½ï¿½Ã£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½..
 		if (!bFound)
 			m_LastSelectedElement.pSelectPointer = NULL;
 	}
-	else												// Shape´Ù..
+	else												// Shapeï¿½ï¿½..
 	{
 		bFound = false;
 
-		// Ã£´Â´Ù..
+		// Ã£ï¿½Â´ï¿½..
 		if (pView->m_PVSMgr.IsExistTotalShapeByPointer((ShapeInfo *)m_LastSelectedElement.pSelectPointer))
 			bFound = true;
 		
 		if (pView->m_PVSMgr.IsExistLinkedShapeByPointer((ShapeInfo *)m_LastSelectedElement.pSelectPointer))
 			bFound = true;
 
-		// ¸øÃ£¾ÒÀ¸¸é..
+		// ï¿½ï¿½Ã£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½..
 		if (!bFound)
 			m_LastSelectedElement.pSelectPointer = NULL;
 	}
@@ -1061,7 +1061,7 @@ void CMainFrame::OnTipDeleteUnusedFiles()
 	std::vector<std::string> unusedFNs;
 	std::string szFN;
 	
-	//  ÀÏ´Ü ¸ù¶¥ ´Ù ¸Ê¿¡ ³Ö´Â´Ù..
+	//  ï¿½Ï´ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½Ê¿ï¿½ ï¿½Ö´Â´ï¿½..
 	mapBase mBases;
 	int iSC = m_pDlgOutputList->GetTotalShapeInfoCount();
 	
@@ -1098,7 +1098,7 @@ void CMainFrame::OnTipDeleteUnusedFiles()
 			if(NULL == pPart)
 			{
 				CString szErr;
-				szErr.Format("NULL Part : %s - %d¹øÂ° Part", pShape->FileName().c_str(), j);
+				szErr.Format("NULL Part : %s - %dï¿½ï¿½Â° Part", pShape->FileName().c_str(), j);
 				invalidFNs.push_back(szErr.operator LPCTSTR());
 				continue;
 			}
@@ -1113,7 +1113,7 @@ void CMainFrame::OnTipDeleteUnusedFiles()
 			else
 			{
 				CString szErr;
-				szErr.Format("NULL PMesh : %s - %d¹øÂ° Part", pShape->FileName().c_str(), j);
+				szErr.Format("NULL PMesh : %s - %dï¿½ï¿½Â° Part", pShape->FileName().c_str(), j);
 				invalidFNs.push_back(szErr.operator LPCTSTR());
 			}
 
@@ -1130,7 +1130,7 @@ void CMainFrame::OnTipDeleteUnusedFiles()
 				else
 				{
 					CString szErr;
-					szErr.Format("NULL Texture : %s - %d¹øÂ° Part, %d¹øÂ° Texture", pShape->FileName().c_str(), j, k);
+					szErr.Format("NULL Texture : %s - %dï¿½ï¿½Â° Part, %dï¿½ï¿½Â° Texture", pShape->FileName().c_str(), j, k);
 					invalidFNs.push_back(szErr.operator LPCTSTR());
 					continue;
 				}
@@ -1138,7 +1138,7 @@ void CMainFrame::OnTipDeleteUnusedFiles()
 		}
 	}
 
-	// ÆÄÀÏÀ» Ã£°í..
+	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Ã£ï¿½ï¿½..
 	std::string szPath = CN3Base::PathGet() + "object\\";
 	::SetCurrentDirectory(szPath.c_str());
 	CFileFind ff;
@@ -1158,7 +1158,7 @@ void CMainFrame::OnTipDeleteUnusedFiles()
 		
 		szFN = szFNTmp;
 		it_Base it = mBases.find(szFN);
-		if(it != mBases.end()) continue; // Ã£¾ÒÀ¸¸é ¾´°Å´Ù..
+		if(it != mBases.end()) continue; // Ã£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Å´ï¿½..
 
 		unusedFNs.push_back(szFN);
 	}
@@ -1176,7 +1176,7 @@ void CMainFrame::OnTipDeleteUnusedFiles()
 			unusedFNs.push_back(szFN);
 	}
 	
-	// ÆÄÀÏ Áö¿ì±â ´ëÈ­»óÀÚ ¶ç¿ì±â..
+	// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È­ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½..
 	CDlgUnusedFiles dlg;
 	int iUFC = unusedFNs.size();
 	for(i = 0; i < iUFC; i++)
@@ -1192,13 +1192,13 @@ void CMainFrame::OnTipDeleteUnusedFiles()
 
 	dlg.DoModal();
 	
-	// ¸ðµÎ ¾÷µ¥ÀÌÆ®..
+	// ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®..
 	if(m_pDummy)
 		m_pDummy->ClearObjs();
 	m_SelVolArray.RemoveAll();
 	m_LastSelectedElement.pSelectPointer = NULL;
 
-	this->RefreshSourceObjects(); // Source Object ¸¦ °»½®ÇÏ°í..
+	this->RefreshSourceObjects(); // Source Object ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï°ï¿½..
 	if (m_pDlgSourceList) m_pDlgSourceList->UpdateTree(m_pSceneSource);
 	OutputDlgRefresh();
 }

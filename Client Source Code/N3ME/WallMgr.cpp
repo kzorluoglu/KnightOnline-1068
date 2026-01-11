@@ -24,24 +24,24 @@ static char THIS_FILE[]=__FILE__;
 
 CWallMgr::CWallMgr()
 {
-	m_BaseCube[0].Set(0, 1, 0);	// ¾ÕÂÊ LT
-	m_BaseCube[1].Set(1, 1, 0);	// ¾ÕÂÊ RT
-	m_BaseCube[2].Set(0, 0, 0); // ¾ÕÂÊ LB
-	m_BaseCube[3].Set(1, 0, 0); // ¾ÕÂÊ RB
-	m_BaseCube[4].Set(0, 1, 1); // µÚÂÊ LT
-	m_BaseCube[5].Set(1, 1, 1); // µÚÂÊ RT
-	m_BaseCube[6].Set(0, 0, 1); // µÚÂÊ LB
-	m_BaseCube[7].Set(1, 0, 1);	// µÚÂÊ RB
+	m_BaseCube[0].Set(0, 1, 0);	// ï¿½ï¿½ï¿½ï¿½ LT
+	m_BaseCube[1].Set(1, 1, 0);	// ï¿½ï¿½ï¿½ï¿½ RT
+	m_BaseCube[2].Set(0, 0, 0); // ï¿½ï¿½ï¿½ï¿½ LB
+	m_BaseCube[3].Set(1, 0, 0); // ï¿½ï¿½ï¿½ï¿½ RB
+	m_BaseCube[4].Set(0, 1, 1); // ï¿½ï¿½ï¿½ï¿½ LT
+	m_BaseCube[5].Set(1, 1, 1); // ï¿½ï¿½ï¿½ï¿½ RT
+	m_BaseCube[6].Set(0, 0, 1); // ï¿½ï¿½ï¿½ï¿½ LB
+	m_BaseCube[7].Set(1, 0, 1);	// ï¿½ï¿½ï¿½ï¿½ RB
 	
-	m_pRefMapMng = NULL;	// ÁöÇü ÂüÁ¶ Æ÷ÀÎÅÍ..
-	m_pWalls.clear();		// º®µé...
+	m_pRefMapMng = NULL;	// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½..
+	m_pWalls.clear();		// ï¿½ï¿½ï¿½ï¿½...
 
 	m_pDlg = new CDlgMakeWall;
 	m_pDlg->Create(IDD_MAKE_WALL);
 	m_pDlg->ShowWindow(FALSE);
 	m_pDlg->m_pRefWallMgr = this;
 
-	m_bActive = false; // ÀÌ±â´ÉÀÌ È°¼ºÈ­ µÇ¾î ÀÖ´ÂÁö...1:È°¼ºÈ­, 0:ºñÈ°¼ºÈ­..
+	m_bActive = false; // ï¿½Ì±ï¿½ï¿½ï¿½ï¿½ È°ï¿½ï¿½È­ ï¿½Ç¾ï¿½ ï¿½Ö´ï¿½ï¿½ï¿½...1:È°ï¿½ï¿½È­, 0:ï¿½ï¿½È°ï¿½ï¿½È­..
 	m_pCurrWall = NULL;
 }
 
@@ -228,7 +228,7 @@ void CWallMgr::Render()
 	D3DXMATRIX mtx;
 	D3DXMatrixIdentity(&mtx);
 		
-	hr = s_lpD3DDev->SetTransform(D3DTS_WORLD, &mtx); // ¿ùµå Çà·Ä Àû¿ë..
+	hr = s_lpD3DDev->SetTransform(D3DTS_WORLD, &mtx); // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½..
 	
 	// set texture
 	hr = s_lpD3DDev->SetTexture(0, NULL);
@@ -247,9 +247,9 @@ void CWallMgr::Render()
 	hr = s_lpD3DDev->SetRenderState(D3DRS_CULLMODE, D3DCULL_NONE);
 
 
-	hr = s_lpD3DDev->SetVertexShader(FVF_XYZCOLOR);
+	hr = s_lpD3DDev->SetFVF(FVF_XYZCOLOR);
 
-	//ÀÌ¹Ì ¸¸µé¾îÁø ±æ ±×¸®±â...
+	//ï¿½Ì¹ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½×¸ï¿½ï¿½ï¿½...
 	std::list<CWall*>::iterator itWall;
 	std::list<__Vector3>::iterator itVertex;
 
@@ -280,7 +280,7 @@ void CWallMgr::Render()
 		}
 	}
 
-	//´ÙÀÌ¾ó·Î±× Ã¢¿¡¼­ ¼±ÅÃµÈ ±æ ±×¸®±â..
+	//ï¿½ï¿½ï¿½Ì¾ï¿½Î±ï¿½ Ã¢ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ãµï¿½ ï¿½ï¿½ ï¿½×¸ï¿½ï¿½ï¿½..
 	CWall* pSelWall = m_pDlg->m_pSelWall;
 	if(pSelWall)
 	{
@@ -303,7 +303,7 @@ void CWallMgr::Render()
 		}
 	}
 
-	//¸¸µé°í ÀÖ´Â ±æ & ¿µ¿ª ±×¸®±â..
+	//ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ö´ï¿½ ï¿½ï¿½ & ï¿½ï¿½ï¿½ï¿½ ï¿½×¸ï¿½ï¿½ï¿½..
 	if(m_pCurrWall)
 	{
 		for(itVertex = m_pCurrWall->m_Wall.begin(); itVertex != m_pCurrWall->m_Wall.end(); itVertex++)
@@ -461,7 +461,7 @@ void CWallMgr::AddWall2Coll(CN3ShapeMgr* pShapeMgr)
 	__Vector3 PrevVertex(0,0,0), Vertex(0,0,0);
 	__Vector3 v1, v2, v3;
 
-	// ÅØ½ºÆ®ÆÄÀÏ·Î ÇÔ »Ì¾Æº¸ÀÚ..
+	// ï¿½Ø½ï¿½Æ®ï¿½ï¿½ï¿½Ï·ï¿½ ï¿½ï¿½ ï¿½Ì¾Æºï¿½ï¿½ï¿½..
 	FILE* stream = fopen("c:\\Wall_info.txt", "w");
 
 	fprintf(stream, "Walls = %d\n", m_pWalls.size());
@@ -470,7 +470,7 @@ void CWallMgr::AddWall2Coll(CN3ShapeMgr* pShapeMgr)
 		pWall = (*itWall);
 		if(!pWall)
 		{
-			fprintf(stream, "¾Æ½Î..º®µµ ¾ø´Âµ¥ ½ÃµµÇÏ³×...¤Ñ.¤Ñ\n");
+			fprintf(stream, "ï¿½Æ½ï¿½..ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Âµï¿½ ï¿½Ãµï¿½ï¿½Ï³ï¿½...ï¿½ï¿½.ï¿½ï¿½\n");
 			continue;
 		}
 
@@ -493,15 +493,15 @@ void CWallMgr::AddWall2Coll(CN3ShapeMgr* pShapeMgr)
 			v2.Set( Vertex.x, 5000.0f, Vertex.z);
 			v3.Set( Vertex.x, -5000.0f, Vertex.z);
 
-			if(!pShapeMgr->AddCollisionTriangle(v1, v2, v3)) fprintf(stream, "º® ¸ø ³Ö¾ú¾î..¤Ñ.¤Ñ\n");
-			if(!pShapeMgr->AddCollisionTriangle(v1, v3, v2)) fprintf(stream, "º® ¸ø ³Ö¾ú¾î..¤Ñ.¤Ñ\n");
+			if(!pShapeMgr->AddCollisionTriangle(v1, v2, v3)) fprintf(stream, "ï¿½ï¿½ ï¿½ï¿½ ï¿½Ö¾ï¿½ï¿½ï¿½..ï¿½ï¿½.ï¿½ï¿½\n");
+			if(!pShapeMgr->AddCollisionTriangle(v1, v3, v2)) fprintf(stream, "ï¿½ï¿½ ï¿½ï¿½ ï¿½Ö¾ï¿½ï¿½ï¿½..ï¿½ï¿½.ï¿½ï¿½\n");
 			
 			v1.Set( PrevVertex.x, 5000.0f, PrevVertex.z);
 			v2.Set( Vertex.x, -5000.0f, Vertex.z);
 			v3.Set( PrevVertex.x, -5000.0f, PrevVertex.z);
 
-			if(!pShapeMgr->AddCollisionTriangle(v1, v2, v3)) fprintf(stream, "º® ¸ø ³Ö¾ú¾î..¤Ñ.¤Ñ\n");
-			if(!pShapeMgr->AddCollisionTriangle(v1, v3, v2)) fprintf(stream, "º® ¸ø ³Ö¾ú¾î..¤Ñ.¤Ñ\n");
+			if(!pShapeMgr->AddCollisionTriangle(v1, v2, v3)) fprintf(stream, "ï¿½ï¿½ ï¿½ï¿½ ï¿½Ö¾ï¿½ï¿½ï¿½..ï¿½ï¿½.ï¿½ï¿½\n");
+			if(!pShapeMgr->AddCollisionTriangle(v1, v3, v2)) fprintf(stream, "ï¿½ï¿½ ï¿½ï¿½ ï¿½Ö¾ï¿½ï¿½ï¿½..ï¿½ï¿½.ï¿½ï¿½\n");
 						
 			PrevVertex = Vertex;
 		}

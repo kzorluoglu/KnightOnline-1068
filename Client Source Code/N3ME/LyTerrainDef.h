@@ -1,8 +1,8 @@
 ////////////////////////////////////////////////////////////////////////////////////////
 //
 //	LyTerrainDef.h
-//	- ÀÌ°ÍÀú°Í Terrain¿¡ °ü·ÃµÈ ÀÚ·áÇüÁ¤ÀÇ, »ó¼öÁ¤ÀÇ...
-//	- ÄõµåÆ®¸® ÀÌ¿ëÇÑ ÁöÇü...^^
+//	- ï¿½Ì°ï¿½ï¿½ï¿½ï¿½ï¿½ Terrainï¿½ï¿½ ï¿½ï¿½ï¿½Ãµï¿½ ï¿½Ú·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½, ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½...
+//	- ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½Ì¿ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½...^^
 //
 //	By Donghoon..
 //
@@ -19,34 +19,34 @@
 // Constant Definitions..
 const int N3ME_DATA_VERSION = 3;
 //version info...
-//ÀÌÀü µ¥ÀÌÅÍµéÀº ¹öÀü Á¤º¸¸¦ °®°í ÀÖÁö ¾Ê´Ù.
-//1 : ÃÊ±â µ¥ÀÌÅÍ¿¡ lightmapÁ¤º¸¸¦ ´õÇÑ °Í..
-//2 : version 1¿¡ Ç® Á¤º¸(Ç®°ú DTexÀÇ ±×·ì°úÀÇ °ü°è¿¡ °üÇÑ Á¤º¸)¸¦ ´õÇÑ °Í.
-//3 : °³¼±µÈ lightmap..^^
+//ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Íµï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ê´ï¿½.
+//1 : ï¿½Ê±ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Í¿ï¿½ lightmapï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½..
+//2 : version 1ï¿½ï¿½ Ç® ï¿½ï¿½ï¿½ï¿½(Ç®ï¿½ï¿½ DTexï¿½ï¿½ ï¿½×·ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½è¿¡ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½)ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½.
+//3 : ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ lightmap..^^
 
 const int N3ME_DTEX_DATA_VERSION = 2;
 //
-//1 : dTex¸¦ ÀÐÀ»¶§ °¢ ÅØ½ºÃÄÀÇ ±×·ì Á¤º¸¸¦ °¢ÅØ½ºÃÄÀÌ¸§.difÆÄÀÏ·Î ºÎÅÍ ÀÐ´Â´Ù..
-//2 : °¢ÅØ½ºÃÄÀÇ ±×·ìÁ¤º¸¸¦ dtexinfo.dtxÆÄÀÏ·ÎºÎÅÍ ÀÐ´Â´Ù.. 
+//1 : dTexï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½Ø½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½×·ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ø½ï¿½ï¿½ï¿½ï¿½Ì¸ï¿½.difï¿½ï¿½ï¿½Ï·ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ð´Â´ï¿½..
+//2 : ï¿½ï¿½ï¿½Ø½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½×·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ dtexinfo.dtxï¿½ï¿½ï¿½Ï·Îºï¿½ï¿½ï¿½ ï¿½Ð´Â´ï¿½.. 
 
 const int TERRAIN_CELL_SIZE = 4;
-//const int MAX_COLORMAPTEXTURE = 32;		//	ÃÖ´ë #colormaptexture at one side = 4096/128..
-//ÇöÀç m_iNumColorMapÀ¸·Î ´ëÃ¼ÇØ¼­ ¾²°í ÀÖ´ç...
-const int PATCH_TILE_SIZE = 8;		//	ÆÐÄ¡ ÇÏ³ª¿¡ Å¸ÀÏÀÌ 8x8°³ µé¾î°£´Ù.
+//const int MAX_COLORMAPTEXTURE = 32;		//	ï¿½Ö´ï¿½ #colormaptexture at one side = 4096/128..
+//ï¿½ï¿½ï¿½ï¿½ m_iNumColorMapï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ã¼ï¿½Ø¼ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ö´ï¿½...
+const int PATCH_TILE_SIZE = 8;		//	ï¿½ï¿½Ä¡ ï¿½Ï³ï¿½ï¿½ï¿½ Å¸ï¿½ï¿½ï¿½ï¿½ 8x8ï¿½ï¿½ ï¿½ï¿½î°£ï¿½ï¿½.
 
-const int MAX_COLORMAPVB_SIZE = 1026;	//ÄÃ·¯¸ÊÀ¸·Î Âï´Â VBÀÇ ÃÖ´ë »çÀÌÁî.
-const int MAX_TILEVB_SIZE = 16;	//Å¸ÀÏÂï´Â VBÀÇ ÃÖ´ë »çÀÌÁî.
-const int MAX_LIGHTMAPVB_SIZE = 16;		//¶óÀÌÆ®¸Ê ¾²´Â VBÀÇ ÃÖ´ë »çÀÌÁî.
+const int MAX_COLORMAPVB_SIZE = 1026;	//ï¿½Ã·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ VBï¿½ï¿½ ï¿½Ö´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½.
+const int MAX_TILEVB_SIZE = 16;	//Å¸ï¿½ï¿½ï¿½ï¿½ï¿½ VBï¿½ï¿½ ï¿½Ö´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½.
+const int MAX_LIGHTMAPVB_SIZE = 16;		//ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ VBï¿½ï¿½ ï¿½Ö´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½.
 
 const int DTEX_SIZE = 1024; // Detail Texture Size
-const int NUM_DTEXTILE = 8; // Detail Texture ºÐÇÒ ¼ö..
+const int NUM_DTEXTILE = 8; // Detail Texture ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½..
 
 const int LIGHTMAP_TEX_SIZE = 8;//32;
 
 const int DISTANCE_TABLE_SIZE = 64;
 
-const int NOTMOVE_HEIGHT = 10;	// ³ôÀÌÂ÷°¡ Ä¿¼­ °¥ ¼ö ¾ø´Â Å¸ÀÏÀÇ ÃÖ¼Ò°ª..
-								// 10ÀÌÇÏ¸é ¿òÁ÷ÀÏ ¼ö ÀÖ°í, ÀÌ»óÀÌ¸é °¥ ¼ö ¾ø´Ù.
+const int NOTMOVE_HEIGHT = 10;	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Ä¿ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ Å¸ï¿½ï¿½ï¿½ï¿½ ï¿½Ö¼Ò°ï¿½..
+								// 10ï¿½ï¿½ï¿½Ï¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½Ö°ï¿½, ï¿½Ì»ï¿½ï¿½Ì¸ï¿½ ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½.
  
 
 const int MAX_BRUSH_SIZE	= 21;
@@ -64,7 +64,7 @@ enum {DTEX_FULL=0, DTEX_1PER2, DTEX_1PER4, DTEX_3PER4, DTEX_1PER8, DTEX_7PER8, D
 
 // Structure Definitions..
 
-//¸Ê¿¡µðÅÍ..
+//ï¿½Ê¿ï¿½ï¿½ï¿½ï¿½ï¿½..
 typedef struct __DTexAttr
 {
 	int Group;
@@ -105,7 +105,7 @@ typedef struct __DTexInfo
 
 typedef struct __MapData
 {
-	float	fHeight;	//ÁöÇüÀÇ ³ôÀÌ°ª..
+	float	fHeight;	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ì°ï¿½..
 	//float	u1,v1;
 	//__Vector3 Normal;
 	DTEXINFO DTexInfo1;
@@ -119,11 +119,11 @@ typedef struct __MapData
 
 typedef struct __GameMapData
 {
-	float	fHeight;		//ÁöÇüÀÇ ³ôÀÌ°ª..
-	DWORD	bIsTileFull		:1;	//Å¸ÀÏÀÌ Full ÀÌ¸é true ¾Æ´Ï¸é false..
-	DWORD	Tex1Dir			:5;		//Åø¿¡¼­ »ç¿ëÇÏ´Â ÀÎµ¦½º°¡ ¾Æ´Ô..
+	float	fHeight;		//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ì°ï¿½..
+	DWORD	bIsTileFull		:1;	//Å¸ï¿½ï¿½ï¿½ï¿½ Full ï¿½Ì¸ï¿½ true ï¿½Æ´Ï¸ï¿½ false..
+	DWORD	Tex1Dir			:5;		//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ï´ï¿½ ï¿½Îµï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Æ´ï¿½..
 	DWORD	Tex2Dir			:5;	
-	DWORD	Tex1Idx			:10;		//Åø¿¡¼­ »ç¿ëÇÏ´Â ÀÎµ¦½º°¡ ¾Æ´Ô..
+	DWORD	Tex1Idx			:10;		//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ï´ï¿½ ï¿½Îµï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Æ´ï¿½..
 	DWORD	Tex2Idx			:10;
 	
 	__GameMapData()

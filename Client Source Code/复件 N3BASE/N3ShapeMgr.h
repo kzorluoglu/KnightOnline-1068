@@ -11,10 +11,10 @@
 
 #include "N3Shape.h"
 
-const int CELL_MAIN_DEVIDE = 4; // ±âº» ¼¿¿¡ ´ëÇØ¼­ 4 X 4 ·Î ³ª´«´Ù..
-const int CELL_SUB_SIZE = 8; // 8 Meter °¡ ·¹º§1 ¼¿ÀÇ »çÀÌÁîÀÌ´Ù..
-const int CELL_MAIN_SIZE = CELL_MAIN_DEVIDE * CELL_SUB_SIZE; // 8 Meter °¡ ·¹º§1 ¼¿ÀÇ »çÀÌÁîÀÌ´Ù..
-const int MAX_CELL_MAIN = 4096 / (CELL_MAIN_DEVIDE * CELL_SUB_SIZE); // ÃÖ´ë ³Êºñ, ±æÀÌ...
+const int CELL_MAIN_DEVIDE = 4; // ï¿½âº» ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ø¼ï¿½ 4 X 4 ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½..
+const int CELL_SUB_SIZE = 8; // 8 Meter ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½1 ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ì´ï¿½..
+const int CELL_MAIN_SIZE = CELL_MAIN_DEVIDE * CELL_SUB_SIZE; // 8 Meter ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½1 ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ì´ï¿½..
+const int MAX_CELL_MAIN = 4096 / (CELL_MAIN_DEVIDE * CELL_SUB_SIZE); // ï¿½Ö´ï¿½ ï¿½Êºï¿½, ï¿½ï¿½ï¿½ï¿½...
 const int MAX_MGR_SHAPE = 4096;
 
 class CN3Camera;
@@ -22,10 +22,10 @@ class CN3Camera;
 class CN3ShapeMgr : public CN3Base  
 {
 public:
-	struct __CellSub // ÇÏÀ§ ¼¿ µ¥ÀÌÅÍ
+	struct __CellSub // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	{
 		int 	nCCPolyCount; // Collision Check Polygon Count
-		WORD*	pwCCVertIndices; // Collision Check Polygon Vertex Indices - wCCPolyCount * 3 ¸¸Å­ »ý¼ºµÈ´Ù.
+		WORD*	pwCCVertIndices; // Collision Check Polygon Vertex Indices - wCCPolyCount * 3 ï¿½ï¿½Å­ ï¿½ï¿½ï¿½ï¿½ï¿½È´ï¿½.
 
 		void Load(HANDLE hFile)
 		{
@@ -55,7 +55,7 @@ public:
 		~__CellSub() { delete [] pwCCVertIndices; }
 	};
 
-	struct __CellMain // ±âº» ¼¿ µ¥ÀÌÅÍ
+	struct __CellMain // ï¿½âº» ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	{
 		int		nShapeCount; // Shape Count;
 		WORD*	pwShapeIndices; // Shape Indices
@@ -107,10 +107,10 @@ protected:
 
 	__CellMain* m_pCells[MAX_CELL_MAIN][MAX_CELL_MAIN];
 
-	CN3LinkedList<CN3Shape*> m_ShapesToRender; // Tick À» È£ÃâÇÏ¸é ·»´õ¸µÇÒ °Í¸¸ Ãß¸°´Ù..
+	CN3LinkedList<CN3Shape*> m_ShapesToRender; // Tick ï¿½ï¿½ È£ï¿½ï¿½ï¿½Ï¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Í¸ï¿½ ï¿½ß¸ï¿½ï¿½ï¿½..
 
 public:
-	__CellSub* SubCell(__Vector3& vPos) // ÇØ´ç À§Ä¡ÀÇ ¼¿ Æ÷ÀÎÅÍ¸¦ µ¹·ÁÁØ´Ù.
+	__CellSub* SubCell(__Vector3& vPos) // ï¿½Ø´ï¿½ ï¿½ï¿½Ä¡ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Í¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ø´ï¿½.
 	{
 		int x = (int)(vPos.x / CELL_MAIN_SIZE);
 		int z = (int)(vPos.z / CELL_MAIN_SIZE);
@@ -133,7 +133,7 @@ public:
 	void ReleaseShapes();
 	int Add(CN3Shape* pShape);
 	void GenerateCollisionData();
-	void Create(int nCellWidthCount, int nCellLengthCount); // Cell °¹¼ö¸¦ ³Ö´Â´Ù. 
+	void Create(int nCellWidthCount, int nCellLengthCount); // Cell ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ö´Â´ï¿½. 
 	bool Load(HANDLE hFile);
 	bool Save(HANDLE hFile);
 	

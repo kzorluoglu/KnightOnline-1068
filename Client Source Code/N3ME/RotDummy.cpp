@@ -100,6 +100,6 @@ void CRotDummy::SetSelObj(CN3Transform *pObj)
 		m_vPos = pObj->Pos();
 		
 //		m_qRot = pObj->Rot();
-		m_qRot.Identity(); // Quaternion ╚╕└№└╠▒т ╢л╜├... ├╩▒т╚н╕ж ╟╪┴╪┤┘..
+		m_qRot.Identity(); // Quaternion ╚╕я┐╜я┐╜я┐╜╠▒я┐╜ я┐╜я┐╜я┐╜я┐╜... я┐╜╩▒я┐╜╚ня┐╜я┐╜ я┐╜я┐╜я┐╜╪┤я┐╜..
 	}
 }

@@ -19,7 +19,7 @@
 #include "N3AnimControl.h"
 
 const int MAX_CHR_JOINT = 256;
-const int MAX_CHR_LOD = 4; // 4 ´Ü°è Level Of Detail
+const int MAX_CHR_LOD = 4; // 4 ï¿½Ü°ï¿½ Level Of Detail
 
 enum e_PartType	{ PART_HAIR = 0, PART_FACE, PART_UPPER, PART_LOWER, PART_HAND, PART_FOOT, PART_UNKNOWN = 0xffffffff };
 enum e_PlugType { PLUG_RIGHTHAND = 0, PLUG_LEFTHAND, PLUG_TWOHAND, PLUG_QUIVER, PLUG_UNKNOWN = 0xffffffff };
@@ -28,7 +28,7 @@ class CN3CPart : public CN3Base
 {
 	friend class CN3Chr;
 public:
-	char		m_szID[64]; // ÆÄÀÏ ÀÌ¸§ÀÌ ¾Æ´Ñ °íÀ¯ÇÑ Part ÀÌ¸§..
+	char		m_szID[64]; // ï¿½ï¿½ï¿½ï¿½ ï¿½Ì¸ï¿½ï¿½ï¿½ ï¿½Æ´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Part ï¿½Ì¸ï¿½..
 	__Material	m_Mtl;
 	e_PartType	m_Type;
 protected:
@@ -56,22 +56,22 @@ class CN3CPlug : public CN3Base
 	friend class CN3Chr;
 public:
 	e_PlugType	m_Type;
-	int m_nJointIndex; // ºÙ´Â Mesh ÀÇ Joint Index.. ¾î´À Á¶ÀÎÆ®¿¡ ºÙ´À³Ä.. ±×°ÍÀÌ ¹®Á¦·Î´Ù...
+	int m_nJointIndex; // ï¿½Ù´ï¿½ Mesh ï¿½ï¿½ Joint Index.. ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½Ù´ï¿½ï¿½ï¿½.. ï¿½×°ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Î´ï¿½...
 	__Material m_Mtl;
 	__Matrix44 m_Matrix;
 
-	int 		m_nTraceStep; // ±ËÀûÀÇ ±æÀÌ..
-	D3DCOLOR	m_crTrace; // ±ËÀû »ö±ò.. °ËÀº»öÀÌ¸é ¾ø´Ù..
-	float		m_fTrace0; // ±ËÀû À§Ä¡..
-	float		m_fTrace1; // ±ËÀû À§Ä¡..
+	int 		m_nTraceStep; // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½..
+	D3DCOLOR	m_crTrace; // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½.. ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ì¸ï¿½ ï¿½ï¿½ï¿½ï¿½..
+	float		m_fTrace0; // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ä¡..
+	float		m_fTrace1; // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ä¡..
 
 protected:
 	CN3PMeshInstance	m_PMeshInst; // Progressive Mesh Instance
 	CN3Texture*			m_pTexRef; // Texture Reference Pointer
-	__Vector3	m_vPosition; // ºÙ´Â Mesh ÀÇ Offset Vector.
-//		__Vector3 m_vRotation; // ºÙ´Â Mesh ÀÇ RotationÀÏ.
+	__Vector3	m_vPosition; // ï¿½Ù´ï¿½ Mesh ï¿½ï¿½ Offset Vector.
+//		__Vector3 m_vRotation; // ï¿½Ù´ï¿½ Mesh ï¿½ï¿½ Rotationï¿½ï¿½.
 	__Matrix44	m_MtxRot; // Rotation Matrix;
-	__Vector3	m_vScale; // ºÙ´Â Mesh ÀÇ ½ºÄÉÀÏ.
+	__Vector3	m_vScale; // ï¿½Ù´ï¿½ Mesh ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½.
 
 public:
 	bool Load(HANDLE hFile);
@@ -101,8 +101,8 @@ public:
 	virtual ~CN3CPlug();
 };
 
-const int MAX_PLUG_TRACE = 2; // ÃÖ´ë µÎ°³ÀÇ ¹«±â ±ËÀûÀ» ³²±ä´Ù..
-const int MAX_PLUG_TRACE_VERTEX = 24; // ¹«±â ±ËÀû Á¡ÀÇ ¼ö.. Á¡ 8 °³·Î´Â ÀÜ»óÀÌ 3´Ü°è·Î ³²´Â´Ù..
+const int MAX_PLUG_TRACE = 2; // ï¿½Ö´ï¿½ ï¿½Î°ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½..
+const int MAX_PLUG_TRACE_VERTEX = 24; // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½.. ï¿½ï¿½ 8 ï¿½ï¿½ï¿½Î´ï¿½ ï¿½Ü»ï¿½ï¿½ï¿½ 3ï¿½Ü°ï¿½ï¿½ ï¿½ï¿½ï¿½Â´ï¿½..
 
 class CN3Chr : public CN3TransformCollision
 {
@@ -111,40 +111,40 @@ public:
 	static CN3Mesh* s_pBoxMesh;
 
 public:
-	int		m_nLOD; // Level Of Detail - °­Á¦·Î ¼¼ÆÃÇÒ¼ö ÀÖµµ·Ï ÇÑ´Ù..
-	float	m_fFrmPrev; // Á÷ÀüÀÇ Frame
+	int		m_nLOD; // Level Of Detail - ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ò¼ï¿½ ï¿½Öµï¿½ï¿½ï¿½ ï¿½Ñ´ï¿½..
+	float	m_fFrmPrev; // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Frame
 
 protected:
-	CN3LinkedList<CN3CPart*>	m_Parts; // °¢ Ä³¸¯ÅÍÀÇ ºÎºÐº° Data Pointer List
-	CN3LinkedList<CN3CPlug*>	m_Plugs; // ÀÌ Ä³¸¯ÅÍ¿¡ ºÙÀÌ´Â ¹«±âµîÀÇ Data Pointer List
-	CN3Joint*	m_pJointRef; // ÇÑ°³ÀÇ »À´ë¸¸À» ¾´´Ù..
-	CN3Joint*	m_pJointBlend; // ÇÑ°³ÀÇ »À´ë¸¸À» ¾´´Ù..
-	__Matrix44*	m_pMtxs; // Á¶ÀÎÆ®¿¡ ´ëÇÑ Çà·Ä
-	__Matrix44*	m_pMtxInverses; // Á¶ÀÎÆ®¿¡ ´ëÇÑ ¿ªÇà·Ä
+	CN3LinkedList<CN3CPart*>	m_Parts; // ï¿½ï¿½ Ä³ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ÎºÐºï¿½ Data Pointer List
+	CN3LinkedList<CN3CPlug*>	m_Plugs; // ï¿½ï¿½ Ä³ï¿½ï¿½ï¿½Í¿ï¿½ ï¿½ï¿½ï¿½Ì´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Data Pointer List
+	CN3Joint*	m_pJointRef; // ï¿½Ñ°ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ë¸¸ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½..
+	CN3Joint*	m_pJointBlend; // ï¿½Ñ°ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ë¸¸ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½..
+	__Matrix44*	m_pMtxs; // ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
+	__Matrix44*	m_pMtxInverses; // ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½
 	
 //	CN3Skin*	m_pSkinCollision;
 	
-	__VertexColor	m_vPlugTraces[MAX_PLUG_TRACE][MAX_PLUG_TRACE_VERTEX]; // ¹«±â ±ËÀû
+	__VertexColor	m_vPlugTraces[MAX_PLUG_TRACE][MAX_PLUG_TRACE_VERTEX]; // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	bool			m_bRenderPlugTraces[MAX_PLUG_TRACE];
 	DWORD			m_dwTickPlugPrevs[MAX_PLUG_TRACE];
 	
 	CN3AnimControl* m_pAniCtrlRef; // Animation Control Reference Pointer
 	CN3AnimControl::__AnimData* m_pAniCur;
 
-	int		m_nAniCur; // ÇöÀç ¿¡´Ï¸ÞÀÌ¼Ç
-	int		m_nAniPrev; // ÀüÀÇ ¿¡´Ï¸ÞÀÌ¼Ç..
-	int		m_nAniLoopCountCur; // ¿¡´Ï¸ÞÀÌ¼Ç ·çÇÎ Ä«¿îÆ®..
+	int		m_nAniCur; // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ï¸ï¿½ï¿½Ì¼ï¿½
+	int		m_nAniPrev; // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ï¸ï¿½ï¿½Ì¼ï¿½..
+	int		m_nAniLoopCountCur; // ï¿½ï¿½ï¿½Ï¸ï¿½ï¿½Ì¼ï¿½ ï¿½ï¿½ï¿½ï¿½ Ä«ï¿½ï¿½Æ®..
 
-	float	m_fFrmCurUpper; // ÇöÀç ÇÁ·¹ÀÓ 0 - »óÃ¼
-	float	m_fFrmCurLower; // ÇöÀç ÇÁ·¹ÀÓ 1 - »óÃ¼
+	float	m_fFrmCurUpper; // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ 0 - ï¿½ï¿½Ã¼
+	float	m_fFrmCurLower; // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ 1 - ï¿½ï¿½Ã¼
 
 	float m_fFrmBlendUpper;
 	float m_fFrmBlendLower;
-	float m_fBlendTimeCur; // ÇöÀç ºí·»µù ½Ã°£..
-	float m_fBlendTime; // ºí·»µùÇÒ ½Ã°£. (ÃÊ´ÜÀ§)
+	float m_fBlendTimeCur; // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ã°ï¿½..
+	float m_fBlendTime; // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ã°ï¿½. (ï¿½Ê´ï¿½ï¿½ï¿½)
 
-	__Vector3	m_vCollisionBoxes[8]; // Ãæµ¹ Ã¼Å©¸¦ À§ÇÑ Æú¸®°ï
-	WORD		m_wCollisionIndices[36]; // Ãæµ¹ Ã¼Å©¸¦ À§ÇÑ Æú¸®°ï ÀÎµ¦½º
+	__Vector3	m_vCollisionBoxes[8]; // ï¿½æµ¹ Ã¼Å©ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	WORD		m_wCollisionIndices[36]; // ï¿½æµ¹ Ã¼Å©ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Îµï¿½ï¿½ï¿½
 
 public:
 	bool		CheckCollisionByBox(int xScreen, int yScreen);
@@ -174,12 +174,12 @@ public:
 	CN3Joint*	Joint() { return m_pJointRef; }
 	void		JointSet(const char* szFN);
 
-	// Animation °ü·Ã ÇÔ¼ö
+	// Animation ï¿½ï¿½ï¿½ï¿½ ï¿½Ô¼ï¿½
 	void	AniDefaultSet();
 	CN3AnimControl* AniCtrl() { return m_pAniCtrlRef; }
 	void	AniCtrlSet(const char* szFN);
 	int		AniCurGet() { return m_nAniCur; }
-	int		AniCurSet(int nAni, int nLoopCount = 0, float fBlendTime = 0.5f); // Animation ¹øÈ£, ·çÇÁ Ä«¿îÆ®(0ÀÌ¸é ¹«ÇÑ·çÇÁ, 1ÀÌ»óÀÌ¸é Ä«¿îÆ® ¸¸Å­ ½ÇÇàÇÏ°í ÀüÀÇ °É·Î µ¹¾Æ°£´Ù.), ºí·»µùÇÏ´Â ½Ã°£(ÃÊ´ÜÀ§)
+	int		AniCurSet(int nAni, int nLoopCount = 0, float fBlendTime = 0.5f); // Animation ï¿½ï¿½È£, ï¿½ï¿½ï¿½ï¿½ Ä«ï¿½ï¿½Æ®(0ï¿½Ì¸ï¿½ ï¿½ï¿½ï¿½Ñ·ï¿½ï¿½ï¿½, 1ï¿½Ì»ï¿½ï¿½Ì¸ï¿½ Ä«ï¿½ï¿½Æ® ï¿½ï¿½Å­ ï¿½ï¿½ï¿½ï¿½ï¿½Ï°ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½É·ï¿½ ï¿½ï¿½ï¿½Æ°ï¿½ï¿½ï¿½.), ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½ ï¿½Ã°ï¿½(ï¿½Ê´ï¿½ï¿½ï¿½)
 //	int		AniCurSet(const char* szName, int nLoopCount);
 	bool	IsLooping() { if(m_nAniLoopCountCur == 0) return true; else return false; }
 	float	FrmCurUpper() { return m_fFrmCurUpper; }

@@ -38,22 +38,22 @@ BOOL CProgressBar::Create(LPCTSTR strMessage, int nSize, int MaxValue)
 {
 	if(NULL == m_hWnd)
 	{
-		// »óÅÂ¹Ù¸¦ ¾òÀ½
+		// ï¿½ï¿½ï¿½Â¹Ù¸ï¿½ ï¿½ï¿½ï¿½ï¿½
 		CStatusBar * pStatusBar = GetStatusBar();
 		if (pStatusBar == NULL) return FALSE;
 
-		// »óÅÂ¹Ù À§¿¡ ÇÁ·Î±×·¹½º ÄÁÆ®·Ñ»ý¼º
+		// ï¿½ï¿½ï¿½Â¹ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Î±×·ï¿½ï¿½ï¿½ ï¿½ï¿½Æ®ï¿½Ñ»ï¿½ï¿½ï¿½
 		if(!CProgressCtrl::Create(WS_CHILD|WS_VISIBLE, CRect(0,0,0,0), pStatusBar, 1)) return FALSE;
 	}
 
-	// ÇÁ·Î±×·¹½º ÄÁÆ®·ÑÀÇ ¹üÀ§¿Í ½ºÅÜ ¼³Á¤
+	// ï¿½ï¿½ï¿½Î±×·ï¿½ï¿½ï¿½ ï¿½ï¿½Æ®ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	SetRange(0, MaxValue);
 	SetStep(1);
 
 	m_strMessage = strMessage;
 	m_nSize = nSize;
 
-	// À§Ä¡¿Í Å©±â Á¶Á¤
+	// ï¿½ï¿½Ä¡ï¿½ï¿½ Å©ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	Resize();
 	return TRUE;
 }
@@ -74,33 +74,33 @@ void CProgressBar::Resize()
 	CStatusBar* pStatusBar = GetStatusBar();
 	if (pStatusBar == NULL) return;
 
-	// ÅØ½ºÆ® Ãâ·Â
+	// ï¿½Ø½ï¿½Æ® ï¿½ï¿½ï¿½
 	if (::IsWindow(m_hWnd) && IsWindowVisible())
 	{
 		pStatusBar->SetWindowText(m_strMessage);
 		pStatusBar->UpdateWindow();
 	}
 
-	// ÅØ½ºÆ®°¡ Â÷ÁöÇÏ´Â ¿µ¿ª °è»ê
+	// ï¿½Ø½ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
 	CClientDC dc(pStatusBar);
 	CFont* pOldFont = dc.SelectObject(pStatusBar->GetFont());
 	CSize size = dc.GetTextExtent(m_strMessage);
 	int margin = dc.GetTextExtent(_T(" ")).cx*2;
 	dc.SelectObject(pOldFont);
 
-	// ÇÁ·Î±×·¹½º ÄÁÆ®·ÑÀÌ ±×·ÁÁú ¿µ¿ª °è»ê
+	// ï¿½ï¿½ï¿½Î±×·ï¿½ï¿½ï¿½ ï¿½ï¿½Æ®ï¿½ï¿½ï¿½ï¿½ ï¿½×·ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
 	CRect rc;
 	pStatusBar->GetItemRect(0, rc);
 	rc.left = size.cx + 2*margin;
 	rc.right = rc.left + (rc.right-rc.left)*m_nSize/100;
 	if (rc.right < rc.left) rc.right = rc.left;
 
-	// »óÅÂ¹Ù »óÇÏ·Î 10%ÀÇ ¿©¹éÀ» µÒ
+	// ï¿½ï¿½ï¿½Â¹ï¿½ ï¿½ï¿½ï¿½Ï·ï¿½ 10%ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½
 	int Height = rc.bottom - rc.top;
 	rc.bottom -= Height/10;
 	rc.top += Height/10;
 
-	// ÇÁ·Î±×·¹½º ÄÁÆ®·ÑÀÇ À§Ä¡¿Í Å©±â¸¦ ÀçÁ¶Á¤
+	// ï¿½ï¿½ï¿½Î±×·ï¿½ï¿½ï¿½ ï¿½ï¿½Æ®ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ä¡ï¿½ï¿½ Å©ï¿½â¸¦ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	if (::IsWindow(m_hWnd) && (rc != m_Rect)) MoveWindow(&rc);
 	m_Rect = rc;
 }

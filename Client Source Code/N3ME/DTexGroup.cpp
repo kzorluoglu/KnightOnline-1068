@@ -111,14 +111,14 @@ void CDTexGroup::DelAttrByDTexID(int DTexID)
 	it_DTexTileAttr it; 
 	for(int i=DTEX_FULL; i<DTEX_MAX; i++)
 	{
-		//¸®½ºÆ® µ¹¸é¼­ DTexIndx¿Í °°Àº°Å ³ª¿À¸é ´Ù ¾ø¾Ö¹ö·Á...
+		//ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ï¿½ï¿½é¼­ DTexIndxï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½Ö¹ï¿½ï¿½ï¿½...
 		it = m_Attributes[i].begin();
 		while(it!=m_Attributes[i].end())
 		{
 			DTEXTILEATTR* pTile = *it;
 			if(pTile->TexID == DTexID)
 			{
-				//Áö¿ìÀÚ...
+				//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½...
 				delete (*it);
 				it = m_Attributes[i].erase(it);
 			}
@@ -129,8 +129,8 @@ void CDTexGroup::DelAttrByDTexID(int DTexID)
 
 
 //
-//	DTexMng¿¡ ÀÖ´Â Á¤º¸µé Ã»¼Ò...
-//	DTex¿¡ ÀúÀåµÇ¾î ÀÖ´Â ÇöÀç ±×·ì Á¤º¸¸¦ NONEÀ¸·Î ¼ÂÆÃ..
+//	DTexMngï¿½ï¿½ ï¿½Ö´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Ã»ï¿½ï¿½...
+//	DTexï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ç¾ï¿½ ï¿½Ö´ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½×·ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ NONEï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½..
 //
 void CDTexGroup::ClearDTex()
 {

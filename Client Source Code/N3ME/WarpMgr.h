@@ -43,7 +43,7 @@ class CWarpMgr : public CN3BaseFileAccess
 public:
 	CDlgEditWarp*			m_pDlg;
 
-	CMapMng*				m_pRefMapMng;		// ÁöÇü ÂüÁ¶ Æ÷ÀÎÅÍ..
+	CMapMng*				m_pRefMapMng;		// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½..
 	bool					m_bActive;
 
 	std::list<WARPINFO*>	m_ListWarpInfo;

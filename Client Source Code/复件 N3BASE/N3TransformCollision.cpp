@@ -59,14 +59,14 @@ bool CN3TransformCollision::Load(HANDLE hFile)
 	ReadFile(hFile, &nL, 4, &dwRWC, NULL); // Mesh FileName
 	if(nL > 0)
 	{
-		ReadFile(hFile, szFN, nL, &dwRWC, NULL); szFN[nL] = NULL; // ¸Þ½Ã ÆÄÀÏ ÀÌ¸§..
+		ReadFile(hFile, szFN, nL, &dwRWC, NULL); szFN[nL] = NULL; // ï¿½Þ½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ì¸ï¿½..
 		m_pMeshCollision = s_MngVMesh.Get(szFN);
 	}
 
 	ReadFile(hFile, &nL, 4, &dwRWC, NULL); // Mesh FileName
 	if(nL > 0)
 	{
-		ReadFile(hFile, szFN, nL, &dwRWC, NULL); szFN[nL] = NULL; // ¸Þ½Ã ÆÄÀÏ ÀÌ¸§..
+		ReadFile(hFile, szFN, nL, &dwRWC, NULL); szFN[nL] = NULL; // ï¿½Þ½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ì¸ï¿½..
 		m_pMeshClimb = s_MngVMesh.Get(szFN);
 	}
 	return true;
@@ -334,11 +334,11 @@ void CN3TransformCollision::FindMinMax()
 		if(pVs[i].z > vMax.z) vMax.z = pVs[i].z;
 	}
 
-	// ÃÖ´ë ÃÖ¼Ò°ªÀ» ÀúÀå
+	// ï¿½Ö´ï¿½ ï¿½Ö¼Ò°ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	m_vMin = vMin;
 	m_vMax = vMax;
 
-	// ÃÖ´ë ÃÖ¼Ò°ªÀ» °®°í ¹ÝÁö¸§ °è»êÇÑ´Ù..
+	// ï¿½Ö´ï¿½ ï¿½Ö¼Ò°ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ñ´ï¿½..
 	__Vector3 vRad;
 	vMin.Absolute();
 	vMax.Absolute();

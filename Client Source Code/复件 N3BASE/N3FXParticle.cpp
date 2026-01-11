@@ -63,7 +63,7 @@ bool CN3FXParticle::Tick()
 	if(!m_pRefParent->m_bChangeColor && m_fCurrLife >= (m_pRefParent->m_fFadeIn + m_fLife + m_pRefParent->m_fFadeOut)) return false;
 
 	///////////////////////////////////////////////
-	//ÇöÀçÃ³¸®..
+	//ï¿½ï¿½ï¿½ï¿½Ã³ï¿½ï¿½..
 	__Quaternion qt;
 	qt.RotationAxis(m_vAxis, m_fRot);
 
@@ -96,7 +96,7 @@ bool CN3FXParticle::Tick()
 	}
 	
 	///////////////////////////////////////////////
-	//´ÙÀ½ÁØºñ..
+	//ï¿½ï¿½ï¿½ï¿½ï¿½Øºï¿½..
 	m_vLcPos += m_vVelocity * CN3Base::s_fSecPerFrm;
 
 	if(m_pRefParent->m_bChangeColor)

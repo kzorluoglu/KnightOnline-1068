@@ -26,18 +26,18 @@ public:
 
 protected:
 #ifdef _USE_VERTEXBUFFER
-	LPDIRECT3DINDEXBUFFER8	m_pIB;
+	LPDIRECT3DINDEXBUFFER9	m_pIB;
 #else
 	WORD* m_pIndices;
 #endif
 
 	int m_iNumIndices, m_iNumVertices; // number of triangles/vertices to use at this moment.
 
-	CN3PMesh::__EdgeCollapse*	m_pCollapseUpTo;	// ÂüÁ¶ Æ÷ÀÎÅÍ
+	CN3PMesh::__EdgeCollapse*	m_pCollapseUpTo;	// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 
 	// A pointer to the original mesh. This is where you'll find the vertex data (which
 	// is invariant between PMRInstance's)
-	CN3PMesh *m_pPMesh;	// ÂüÁ¶ Æ÷ÀÎÅÍ
+	CN3PMesh *m_pPMesh;	// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 
 public:
 	BOOL IsLOD() { if(NULL == m_pCollapseUpTo) return FALSE; return TRUE; }
@@ -58,8 +58,8 @@ public:
 	CN3PMesh* GetMesh() {return m_pPMesh;};
 
 #ifdef _USE_VERTEXBUFFER
-	LPDIRECT3DVERTEXBUFFER8	GetVertexBuffer() const;
-	LPDIRECT3DINDEXBUFFER8 GetIndexBuffer() const {return m_pIB;}
+	LPDIRECT3DVERTEXBUFFER9	GetVertexBuffer() const;
+	LPDIRECT3DINDEXBUFFER9 GetIndexBuffer() const {return m_pIB;}
 #else
 	__VertexT1*		GetVertices() const;
 	WORD*			GetIndices() const { return m_pIndices;};

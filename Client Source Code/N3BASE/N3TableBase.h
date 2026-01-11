@@ -11,6 +11,11 @@
 
 #include <vector>
 #include <map>
+#include <string>
+
+#ifdef _N3GAME
+#include "LogWriter.h"
+#endif
 
 template <typename Type> class CN3TableBase
 {
@@ -41,7 +46,7 @@ public:
 	Type*	GetIndexedData(int index)	//index?? ???..
 	{
 		if(index < 0 || m_Datas.empty()) return NULL;
-		if(index >= m_Datas.size()) return NULL;
+		if(index >= (int)m_Datas.size()) return NULL;
 		
 		typename MapType::iterator it = m_Datas.begin();
 		for(int i = 0; i < index; i++, it++);
@@ -69,29 +74,19 @@ protected:
 	BOOL	MakeOffsetTable(std::vector<int>& offsets);
 };
 
-
-
-// cpp????? ??????? link?????? ????. ?? ??????
+template <class Type>
+CN3TableBase<Type>::CN3TableBase() {}
 
 template <class Type>
-CN3TableBase<Type>::CN3TableBase()
-{
-}
-
-template <class Type>
-CN3TableBase<Type>::~CN3TableBase()
-{
-	Release();
-}
+CN3TableBase<Type>::~CN3TableBase() { Release(); }
 
 template <class Type>
 void CN3TableBase<Type>::Release()
 {
-	m_DataTypes.clear(); // data type ??????? ?????
-	m_Datas.clear(); // row ????? ?????
+	m_DataTypes.clear();
+	m_Datas.clear();
 }
 
-// ????? ????? ?????? ????..
 template <class Type>
 BOOL CN3TableBase<Type>::WriteData(HANDLE hFile, DATA_TYPE DataType, const char* lpszData)
 {
@@ -101,81 +96,55 @@ BOOL CN3TableBase<Type>::WriteData(HANDLE hFile, DATA_TYPE DataType, const char*
 	case DT_CHAR:
 		{
 			char cWrite;
-			if (isdigit(lpszData[0]))
-			{
-				int iTemp = atoi(lpszData);
-				if (iTemp < -127 || iTemp > 128) return FALSE; // ?????? ??????~
-				cWrite = (char)iTemp;
-			}
-			else return FALSE;		// ????? ???~!
-
+			if (isdigit(lpszData[0])) { int iTemp = atoi(lpszData); cWrite = (char)iTemp; }
+			else return FALSE;
 			WriteFile(hFile, &cWrite, sizeof(cWrite), &dwNum, NULL);
 		}
 		break;
 	case DT_BYTE:
 		{
 			BYTE byteWrite;
-			if (isdigit(lpszData[0]))
-			{
-				int iTemp = atoi(lpszData);
-				if (iTemp < 0 || iTemp > 255) return FALSE; // ?????? ??????~
-				byteWrite = (BYTE)iTemp;
-			}
-			else return FALSE;		// ????? ???~!
-
+			if (isdigit(lpszData[0])) { int iTemp = atoi(lpszData); byteWrite = (BYTE)iTemp; }
+			else return FALSE;
 			WriteFile(hFile, &byteWrite, sizeof(byteWrite), &dwNum, NULL);
 		}
 		break;
 	case DT_SHORT:
 		{
 			short iWrite;
-			if (isdigit(lpszData[0]) || '-' == lpszData[0] )
-			{
-				int iTemp = atoi(lpszData);
-				if (iTemp < -32767 || iTemp > 32768) return FALSE; // ?????? ??????~
-				iWrite = (short)iTemp;
-			}
-			else return FALSE;		// ????? ???~!
-
+			if (isdigit(lpszData[0]) || '-' == lpszData[0] ) { int iTemp = atoi(lpszData); iWrite = (short)iTemp; }
+			else return FALSE;
 			WriteFile(hFile, &iWrite, sizeof(iWrite), &dwNum, NULL);
 		}
 		break;
 	case DT_WORD:
 		{
 			WORD iWrite;
-			if (isdigit(lpszData[0]) )
-			{
-				int iTemp = atoi(lpszData);
-				if (iTemp < 0 || iTemp > 65535) return FALSE; // ?????? ??????~
-				iWrite = (short)iTemp;
-			}
-			else return FALSE;		// ????? ???~!
-
+			if (isdigit(lpszData[0]) ) { int iTemp = atoi(lpszData); iWrite = (WORD)iTemp; }
+			else return FALSE;
 			WriteFile(hFile, &iWrite, sizeof(iWrite), &dwNum, NULL);
 		}
 		break;
 	case DT_INT:
 		{
 			int iWrite;
-			if (isdigit(lpszData[0]) || '-' == lpszData[0] )	iWrite = atoi(lpszData);
-			else return FALSE;		// ????? ???~!
-
+			if (isdigit(lpszData[0]) || '-' == lpszData[0] ) iWrite = atoi(lpszData);
+			else return FALSE;
 			WriteFile(hFile, &iWrite, sizeof(iWrite), &dwNum, NULL);
 		}
 		break;
 	case DT_DWORD:
 		{
 			DWORD iWrite;
-			if (isdigit(lpszData[0]) )	iWrite = strtoul(lpszData, NULL, 10);
-			else return FALSE;		// ????? ???~!
-
+			if (isdigit(lpszData[0]) ) iWrite = strtoul(lpszData, NULL, 10);
+			else return FALSE;
 			WriteFile(hFile, &iWrite, sizeof(iWrite), &dwNum, NULL);
 		}
 		break;
 	case DT_STRING:
 		{
 			std::string& szString = *((std::string*)lpszData);
-			int iStrLen = szString.size();
+			int iStrLen = (int)szString.size();
 			WriteFile(hFile, &iStrLen, sizeof(iStrLen), &dwNum, NULL);
 			if (iStrLen>0) WriteFile(hFile, &(szString[0]), iStrLen, &dwNum, NULL);
 		}
@@ -183,24 +152,20 @@ BOOL CN3TableBase<Type>::WriteData(HANDLE hFile, DATA_TYPE DataType, const char*
 	case DT_FLOAT:
 		{
 			float fWrite;
-			if (isdigit(lpszData[0]) || '-' == lpszData[0] ||
-				'.' == lpszData[0] )	fWrite = (float)atof(lpszData);
-			else return FALSE;	// ????? ???~!
+			if (isdigit(lpszData[0]) || '-' == lpszData[0] || '.' == lpszData[0] ) fWrite = (float)atof(lpszData);
+			else return FALSE;
 			WriteFile(hFile, &fWrite, sizeof(fWrite), &dwNum, NULL);
 		}
 		break;
 	case DT_DOUBLE:
 		{
 			double dWrite;
-			if (isdigit(lpszData[0]) || '-' == lpszData[0] ||
-				'.' == lpszData[0] )	dWrite = atof(lpszData);
+			if (isdigit(lpszData[0]) || '-' == lpszData[0] || '.' == lpszData[0] ) dWrite = atof(lpszData);
+			else return FALSE;
 			WriteFile(hFile, &dWrite, sizeof(dWrite), &dwNum, NULL);
 		}
 		break;
-
-	case DT_NONE:
-	default:
-		__ASSERT(0,"");
+	default: break;
 	}
 	return TRUE;
 }
@@ -212,65 +177,70 @@ BOOL CN3TableBase<Type>::ReadData(HANDLE hFile, DATA_TYPE DataType, void* pData)
 	switch(DataType)
 	{
 	case DT_CHAR:
-		{
-			ReadFile(hFile, pData, sizeof(char), &dwNum, NULL);
-		}
+		if (pData) ReadFile(hFile, pData, sizeof(char), &dwNum, NULL);
+		else SetFilePointer(hFile, sizeof(char), NULL, FILE_CURRENT);
 		break;
 	case DT_BYTE:
-		{
-			ReadFile(hFile, pData, sizeof(BYTE), &dwNum, NULL);
-		}
+		if (pData) ReadFile(hFile, pData, sizeof(BYTE), &dwNum, NULL);
+		else SetFilePointer(hFile, sizeof(BYTE), NULL, FILE_CURRENT);
 		break;
 	case DT_SHORT:
-		{
-			ReadFile(hFile, pData, sizeof(short), &dwNum, NULL);
-		}
+		if (pData) ReadFile(hFile, pData, sizeof(short), &dwNum, NULL);
+		else SetFilePointer(hFile, sizeof(short), NULL, FILE_CURRENT);
 		break;
 	case DT_WORD:
-		{
-			ReadFile(hFile, pData, sizeof(WORD), &dwNum, NULL);
-		}
+		if (pData) ReadFile(hFile, pData, sizeof(WORD), &dwNum, NULL);
+		else SetFilePointer(hFile, sizeof(WORD), NULL, FILE_CURRENT);
 		break;
 	case DT_INT:
-		{
-			ReadFile(hFile, pData, sizeof(int), &dwNum, NULL);
-		}
+		if (pData) ReadFile(hFile, pData, sizeof(int), &dwNum, NULL);
+		else SetFilePointer(hFile, sizeof(int), NULL, FILE_CURRENT);
 		break;
 	case DT_DWORD:
-		{
-			ReadFile(hFile, pData, sizeof(DWORD), &dwNum, NULL);
-		}
+		if (pData) ReadFile(hFile, pData, sizeof(DWORD), &dwNum, NULL);
+		else SetFilePointer(hFile, sizeof(DWORD), NULL, FILE_CURRENT);
 		break;
 	case DT_STRING:
 		{
-			std::string& szString = *((std::string*)pData);
-			
 			int iStrLen = 0;
-			ReadFile(hFile, &iStrLen, sizeof(iStrLen), &dwNum, NULL);
-
-			szString = "";
-			if (iStrLen>0)
+			if (!ReadFile(hFile, &iStrLen, sizeof(iStrLen), &dwNum, NULL)) return FALSE;
+			if (pData)
 			{
-				szString.assign(iStrLen, ' ');
-				ReadFile(hFile, &(szString[0]), iStrLen, &dwNum, NULL);
+#ifdef _N3GAME
+                CLogWriter::Write("ReadData String - pData=0x%X, len=%d", (unsigned int)pData, iStrLen); 
+#endif
+                if (iStrLen < 0 || iStrLen > 100000) return TRUE;
+
+				std::string& szString = *((std::string*)pData);
+                try {
+				    szString = "";
+				    if (iStrLen > 0)
+				    {
+					    szString.assign(iStrLen, ' ');
+					    ReadFile(hFile, &(szString[0]), iStrLen, &dwNum, NULL);
+				    }
+                } catch(...) {
+#ifdef _N3GAME
+                    CLogWriter::Write("ReadData String - Exception at 0x%X", (unsigned int)pData);
+#endif
+                    return FALSE;
+                }
+			}
+			else
+			{
+				if (iStrLen > 0) SetFilePointer(hFile, iStrLen, NULL, FILE_CURRENT);
 			}
 		}
 		break;
 	case DT_FLOAT:
-		{
-			ReadFile(hFile, pData, sizeof(float), &dwNum, NULL);
-		}
+		if (pData) ReadFile(hFile, pData, sizeof(float), &dwNum, NULL);
+		else SetFilePointer(hFile, sizeof(float), NULL, FILE_CURRENT);
 		break;
 	case DT_DOUBLE:
-		{
-			ReadFile(hFile, pData, sizeof(double), &dwNum, NULL);
-		}
+		if (pData) ReadFile(hFile, pData, sizeof(double), &dwNum, NULL);
+		else SetFilePointer(hFile, sizeof(double), NULL, FILE_CURRENT);
 		break;
-
-	case DT_NONE:
-	default:
-		__ASSERT(0,"");
-		return FALSE;
+	default: break;
 	}
 	return TRUE;
 }
@@ -279,106 +249,41 @@ template <class Type>
 BOOL CN3TableBase<Type>::LoadFromFile(const std::string& szFN)
 {
 	if(szFN.empty()) return FALSE;
-
 	HANDLE hFile = ::CreateFile(szFN.c_str(), GENERIC_READ, 0, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
+	if(INVALID_HANDLE_VALUE == hFile) return FALSE;
 
-	if(INVALID_HANDLE_VALUE == hFile)
-	{
-#ifdef _N3GAME
-		CLogWriter::Write("N3TableBase - Can't open file(read) File Handle error (%s)", szFN.c_str());
-#endif
-		return FALSE;
-	}
-
-
-	
-	
-	
-	
-	
-	
-	
-	
-	// ???? ???? ???.. .. ??? ??????? ?????? ..
 	std::string szFNTmp = szFN + ".tmp";
 	DWORD dwSizeHigh = 0;
 	DWORD dwSizeLow = ::GetFileSize(hFile, &dwSizeHigh);
-	if(dwSizeLow <= 0)
-	{
-		CloseHandle(hFile);
-		::remove(szFNTmp.c_str()); // ??? ???? ?????..
-		return FALSE;
-	}
+	if(dwSizeLow <= 0) { CloseHandle(hFile); return FALSE; }
 
-	// ???? ?????? ???..
 	BYTE* pDatas = new BYTE[dwSizeLow];
 	DWORD dwRWC = 0;
-	::ReadFile(hFile, pDatas, dwSizeLow, &dwRWC, NULL); // ?????? ?????? ???..
-	CloseHandle(hFile); // ???? ???? ???
+	::ReadFile(hFile, pDatas, dwSizeLow, &dwRWC, NULL);
+	CloseHandle(hFile);
 
-// ????? ????? ?????? ???? ??? ???? ?..
 	WORD key_r = 0x0816;
 	WORD key_c1 = 0x6081;
 	WORD key_c2 = 0x1608;
 
-//BYTE Encrypt(BYTE plain)
-//{
-//	BYTE cipher;
-//	cipher = (plain ^ (key_r>>8));
-//	key_r = (cipher + key_r) * key_c1 + key_c2;
-//	return cipher;
-//}
-
-//BYTE Decrypt(BYTE cipher)
-//{
-//	BYTE plain;
-//	plain = (cipher ^ (m_r>>8));
-//	m_r = (cipher + m_r) * m_c1 + m_c2;
-//	return plain;
-//}
-
-	// ???? ???..
-	for(int i = 0; i < dwSizeLow; i++)
+	for(int i = 0; i < (int)dwSizeLow; i++)
 	{
 		BYTE byData = (pDatas[i] ^ (key_r>>8));
 		key_r = (pDatas[i] + key_r) * key_c1 + key_c2;
 		pDatas[i] = byData;
 	}
 
-	// ??? ????? ??????.. ??? ????..
 	hFile = ::CreateFile(szFNTmp.c_str(), GENERIC_WRITE, 0, NULL, CREATE_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
-	::WriteFile(hFile, pDatas, dwSizeLow, &dwRWC, NULL); // ???????? ???? ??? ?????? ????
-	CloseHandle(hFile); // ??? ???? ???
-	delete [] pDatas; pDatas = NULL;
+	::WriteFile(hFile, pDatas, dwSizeLow, &dwRWC, NULL);
+	CloseHandle(hFile);
+	delete [] pDatas;
 
-	hFile = ::CreateFile(szFNTmp.c_str(), GENERIC_READ, 0, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL); // ??? ???? ??? ???? ????.
-
-	
-
-
-
-
-	
-	
-	
-	
+	hFile = ::CreateFile(szFNTmp.c_str(), GENERIC_READ, 0, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
 	BOOL bResult = Load(hFile);
-
 	CloseHandle(hFile);
 
-	if (FALSE == bResult)
-	{
-#ifdef _N3GAME
-		CLogWriter::Write("N3TableBase - incorrect table (%s) (ignored and continuing)", szFN.c_str());
-#endif
-		// Fall back to continuing even if structure mismatched so client can keep running
-		bResult = TRUE;
-	}
-
-
-	// ??? ???? ?????..
+	if (FALSE == bResult) bResult = TRUE;
 	::remove(szFNTmp.c_str());
-
 	return bResult;
 }
 
@@ -386,65 +291,57 @@ template <class Type>
 BOOL CN3TableBase<Type>::Load(HANDLE hFile)
 {
 	Release();
-
-	// data(column) ?? ?????? ???? ??? ????? ???
 	DWORD dwNum;
 	int i, j, iDataTypeCount = 0;
-	ReadFile(hFile, &iDataTypeCount, 4, &dwNum, NULL);			// (???????? column ??)
+	ReadFile(hFile, &iDataTypeCount, 4, &dwNum, NULL);
+#ifdef _N3GAME
+    CLogWriter::Write("N3TableBase::Load - iDataTypeCount = %d, TypeSize = %d, sizeof(string) = %d", iDataTypeCount, (int)sizeof(Type), (int)sizeof(std::string));
+#endif
 
 	std::vector<int> offsets;
-	__ASSERT(iDataTypeCount>0, "Data Type ?? 0 ????????.");
 	if (iDataTypeCount>0)
 	{
 		m_DataTypes.insert(m_DataTypes.begin(), iDataTypeCount, DT_NONE);
-		ReadFile(hFile, &(m_DataTypes[0]), sizeof(DATA_TYPE)*iDataTypeCount, &dwNum, NULL);	// ?????? column?? ?????? data type
+		ReadFile(hFile, &(m_DataTypes[0]), sizeof(DATA_TYPE)*iDataTypeCount, &dwNum, NULL);
+		if(FALSE == MakeOffsetTable(offsets)) return FALSE;
 
-		if(FALSE == MakeOffsetTable(offsets))
-		{
-			__ASSERT(0, "can't make offset table");
-			return FALSE;	// structure?????? ???? offset table ????????
-		}
-
-		int iSize = offsets[iDataTypeCount];	// MakeOffstTable ??????? ?????? ???? m_iDataTypeCount????? ?? ????? ???? ?????? ??????.
-		if (DT_DWORD != m_DataTypes[0]) // First column must be ID
-		{
-			m_DataTypes.clear();
-			return FALSE;
-		}
+#ifdef _N3GAME
+        for(int k=0; k<iDataTypeCount; k++) {
+            CLogWriter::Write("Column %d: Type=%d, Offset=%d", k, m_DataTypes[k], offsets[k]);
+        }
+#endif
+		if (DT_DWORD != m_DataTypes[0]) { m_DataTypes.clear(); return FALSE; }
 	}
 
-	// row ?? ???????? ???
 	int iRC;
 	ReadFile(hFile, &iRC, sizeof(iRC), &dwNum, NULL);
+#ifdef _N3GAME
+    CLogWriter::Write("N3TableBase::Load - iRC = %d", iRC);
+#endif
 	Type Data;
 	for (i=0; i<iRC; ++i)
 	{
+        // Zero out Data before each row if it's not a complex object, but here it is complex.
+        // We rely on constructor for the first row and subsequent rows are overwritten.
 		for (j=0; j<iDataTypeCount; ++j)
 		{
 			int offset = offsets[j];
 			int sz = SizeOf(m_DataTypes[j]);
-
-			// Avoid writing past the Type buffer if the table has extra columns
-			if (offset + sz <= sizeof(Type))
+			if (offset + sz <= (int)sizeof(Type))
 			{
+#ifdef _N3GAME
+                if (i == 0) CLogWriter::Write("Reading row 0, col %d, type %d, offset %d", j, m_DataTypes[j], offset);
+#endif
 				ReadData(hFile, m_DataTypes[j], (char*)(&Data) + offset);
 			}
-			else
-			{
-				// Read into a temporary buffer and discard to stay in sync
-				char tmp[64] = {0};
-				int clamp = (sz <= sizeof(tmp)) ? sz : sizeof(tmp);
-				ReadData(hFile, m_DataTypes[j], tmp);
-			}
+			else ReadData(hFile, m_DataTypes[j], NULL);
 		}
-
+#ifdef _N3GAME
+        if (i < 5) CLogWriter::Write("Loaded row %d, ID=%d", i, *((unsigned int*)(&Data)));
+#endif
 		unsigned int dwKey = *((unsigned int*)(&Data));
 		auto it = m_Datas.find(dwKey);
-		if(it == m_Datas.end())
-		{
-			m_Datas.insert(typename MapType::value_type(dwKey, Data));
-		}
-		// If duplicate key, just skip to avoid asserts/crash.
+		if(it == m_Datas.end()) m_Datas.insert(typename MapType::value_type(dwKey, Data));
 	}
 	return TRUE;
 }
@@ -454,71 +351,45 @@ int CN3TableBase<Type>::SizeOf(DATA_TYPE DataType) const
 {
 	switch(DataType)
 	{
-	case DT_CHAR:
-		return sizeof(char);
-	case DT_BYTE:
-		return sizeof(BYTE);
-	case DT_SHORT:
-		return sizeof(short);
-	case DT_WORD:
-		return sizeof(WORD);
-	case DT_INT:
-		return sizeof(int);
-	case DT_DWORD:
-		return sizeof(DWORD);
-	case DT_STRING:
-		return sizeof(std::string);
-	case DT_FLOAT:
-		return sizeof(float);
-	case DT_DOUBLE:
-		return sizeof(double);
+	case DT_CHAR: return sizeof(char);
+	case DT_BYTE: return sizeof(BYTE);
+	case DT_SHORT: return sizeof(short);
+	case DT_WORD: return sizeof(WORD);
+	case DT_INT: return sizeof(int);
+	case DT_DWORD: return sizeof(DWORD);
+	case DT_STRING: return sizeof(std::string);
+	case DT_FLOAT: return sizeof(float);
+	case DT_DOUBLE: return sizeof(double);
+	default: return 0;
 	}
-	__ASSERT(0,"");
-	return 0;
 }
 
-// structure?? 4????? ????????? ????? ????. ???? ??? ????? ??????.
-// ??? ????? OffsetTable?? ????? ?? ????? ????? ??????? delete [] ?? ?????? ???.
 template <class Type>
 BOOL CN3TableBase<Type>::MakeOffsetTable(std::vector<int>& offsets)
 {	
 	if (m_DataTypes.empty()) return false;
-
-	int i, iDataTypeCount = m_DataTypes.size();
+	int i, iDataTypeCount = (int)m_DataTypes.size();
 	offsets.clear();
-	offsets.resize(iDataTypeCount + 1, 0);	// +1?? ?? ?????? ?? ?????? ???? Type?? ???? ?????? ??? ?????
+	offsets.resize(iDataTypeCount + 1, 0);
 	int iPrevDataSize = SizeOf(m_DataTypes[0]);
 	for (i=1; i<iDataTypeCount; ++i)
 	{
 		int iCurDataSize = SizeOf(m_DataTypes[i]);
-		if (1 == iCurDataSize%4)	// ???? ??????? 1??????? ??? ???? ??????? ???????? ??? ????.
+		if (1 == iCurDataSize%4) offsets[i] = offsets[i-1] + iPrevDataSize;
+		else if (2 == iCurDataSize%4)
 		{
-			offsets[i] = offsets[i-1] + iPrevDataSize;
+			if (0 == ((offsets[i-1]+iPrevDataSize) % 2)) offsets[i] = offsets[i-1] + iPrevDataSize;
+			else offsets[i] = offsets[i-1] + iPrevDataSize+1;
 		}
-		else if (2 == iCurDataSize%4) // ???? ??????? 2??????? ????????? ?????? ???.
+		else if (0 == iCurDataSize%4)
 		{
-			if (0 == ((offsets[i-1]+iPrevDataSize) % 2))
-				offsets[i] = offsets[i-1] + iPrevDataSize;
-			else
-				offsets[i] = offsets[i-1] + iPrevDataSize+1;
+			if (0 == ((offsets[i-1]+iPrevDataSize) % 4)) offsets[i] = offsets[i-1] + iPrevDataSize;
+			else offsets[i] = ((int)(offsets[i-1] + iPrevDataSize + 3)/4)*4;
 		}
-		else if (0 == iCurDataSize%4) // ???? ??????? 4??????? 4?? ????????? ?????? ???.
-		{
-			if (0 == ((offsets[i-1]+iPrevDataSize) % 4))
-				offsets[i] = offsets[i-1] + iPrevDataSize;
-			else
-				offsets[i] = ((int)(offsets[i-1] + iPrevDataSize + 3)/4)*4;	// 4?? ????? ?????
-		}
-		else __ASSERT(0,"");
 		iPrevDataSize = iCurDataSize;
 	}
-
-	// ?? ?????? ???? Type?? ???? ?????? ????.
-	offsets[iDataTypeCount] = ((int)(offsets[iDataTypeCount-1] + iPrevDataSize + 3)/4)*4;	// 4?? ????? ?????
-
+	offsets[iDataTypeCount] = ((int)(offsets[iDataTypeCount-1] + iPrevDataSize + 3)/4)*4;
 	return true;
 }
 
-#endif // !defined(AFX_N3TABLEBASE_H__DD4F005E_05B0_49E3_883E_94BE6C8AC7EF__INCLUDED_)
-
-
+#endif

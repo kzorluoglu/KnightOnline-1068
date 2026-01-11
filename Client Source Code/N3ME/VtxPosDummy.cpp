@@ -35,7 +35,7 @@ void CVtxPosDummy::Tick()
 {
 	if (m_SelVtxArray.GetSize()==0) return;
 
-	// Scale Á¶Á¤
+	// Scale ï¿½ï¿½ï¿½ï¿½
 	__Vector3 vL = s_CameraData.vEye - m_vPos;
 	float fL = vL.Magnitude()*0.01f;
 	m_vScale.Set(fL, fL, fL);
@@ -43,7 +43,7 @@ void CVtxPosDummy::Tick()
 	CN3Transform::Tick(-1000.0f);
 	ReCalcMatrix();
 
-	// °Å¸®¿¡ µû¶ó Á¤·Ä
+	// ï¿½Å¸ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	int i;
 	for (i=0; i<NUM_DUMMY; ++i)
 	{
@@ -61,7 +61,7 @@ void CVtxPosDummy::Render()
 	HRESULT hr;
 
 	// set transform
-	hr = s_lpD3DDev->SetTransform(D3DTS_WORLD, &m_Matrix); // ¿ùµå Çà·Ä Àû¿ë..
+	hr = s_lpD3DDev->SetTransform(D3DTS_WORLD, &m_Matrix); // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½..
 
 	// set texture
 	hr = s_lpD3DDev->SetTexture(0, NULL);
@@ -77,17 +77,17 @@ void CVtxPosDummy::Render()
 	hr = s_lpD3DDev->SetRenderState(D3DRS_ZENABLE, D3DZB_FALSE);
 	hr = s_lpD3DDev->SetRenderState(D3DRS_LIGHTING, FALSE);
 
-	// ÀÌ¾îÁö ¼± ±×¸®±â
-	hr = s_lpD3DDev->SetVertexShader(FVF_XYZCOLOR);
+	// ï¿½Ì¾ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½×¸ï¿½ï¿½ï¿½
+	hr = s_lpD3DDev->SetFVF(FVF_XYZCOLOR);
 	hr = s_lpD3DDev->DrawPrimitiveUP(D3DPT_LINELIST, 3, m_LineVertices, sizeof(__VertexXyzColor));
 
-	// Cube ±×¸®±â
-	hr = s_lpD3DDev->SetVertexShader(FVF_XYZNORMALCOLOR);
+	// Cube ï¿½×¸ï¿½ï¿½ï¿½
+	hr = s_lpD3DDev->SetFVF(FVF_XYZNORMALCOLOR);
 	int i;
 	for (i=0; i<NUM_DUMMY; ++i)
 	{
 		ASSERT(m_pSortedCubes[i]);
-		if (m_pSortedCubes[i]->iType == DUMMY_CENTER) continue;	// °¡¿îµ¥ Å¥ºê´Â ±×¸®Áö ¾Ê´Â´Ù.
+		if (m_pSortedCubes[i]->iType == DUMMY_CENTER) continue;	// ï¿½ï¿½ï¿½îµ¥ Å¥ï¿½ï¿½ï¿½ ï¿½×¸ï¿½ï¿½ï¿½ ï¿½Ê´Â´ï¿½.
 		hr = s_lpD3DDev->DrawPrimitiveUP(D3DPT_TRIANGLELIST, 12, m_pSortedCubes[i]->Vertices, sizeof(__VertexXyzNormalColor));
 	}
 
@@ -106,7 +106,7 @@ void CVtxPosDummy::AddSelObj(CN3Transform* pObj)
 	ASSERT(0);
 }
 
-void CVtxPosDummy::SetSelVtx(__VertexXyzT1* pVtx)			// ¼±ÅÃµÈ Á¡ ¹Ù²Ù±â
+void CVtxPosDummy::SetSelVtx(__VertexXyzT1* pVtx)			// ï¿½ï¿½ï¿½Ãµï¿½ ï¿½ï¿½ ï¿½Ù²Ù±ï¿½
 {
 	m_SelVtxArray.RemoveAll();
 	if (pVtx)
@@ -117,13 +117,13 @@ void CVtxPosDummy::SetSelVtx(__VertexXyzT1* pVtx)			// ¼±ÅÃµÈ Á¡ ¹Ù²Ù±â
 	}
 }
 
-void CVtxPosDummy::AddSelVtx(__VertexXyzT1* pVtx)			// ¼±ÅÃµÈ Á¡ Ãß°¡
+void CVtxPosDummy::AddSelVtx(__VertexXyzT1* pVtx)			// ï¿½ï¿½ï¿½Ãµï¿½ ï¿½ï¿½ ï¿½ß°ï¿½
 {
 	_ASSERT(pVtx);
 	m_SelVtxArray.Add(pVtx);
 }
 
-BOOL CVtxPosDummy::MouseMsgFilter(LPMSG pMsg)				// ¸¶¿ì½º ¸Þ¼¼Áö Ã³¸®
+BOOL CVtxPosDummy::MouseMsgFilter(LPMSG pMsg)				// ï¿½ï¿½ï¿½ì½º ï¿½Þ¼ï¿½ï¿½ï¿½ Ã³ï¿½ï¿½
 {
 	int iSize = m_SelVtxArray.GetSize();
 	if (iSize == 0) return FALSE;
@@ -136,9 +136,9 @@ BOOL CVtxPosDummy::MouseMsgFilter(LPMSG pMsg)				// ¸¶¿ì½º ¸Þ¼¼Áö Ã³¸®
 			DWORD nFlags = pMsg->wParam;
 			if (m_pSelectedCube && (nFlags & MK_LBUTTON))
 			{
-				__Vector3 vRayDir, vRayOrig;	// È­¸é Áß¾Ó(½ÃÁ¡)°ú ¸¶¿ì½º Æ÷ÀÎÅÍ¸¦ ÀÌÀº Á÷¼±ÀÇ ¹æÇâ°ú ¿øÁ¡
-				__Vector3 vPN, vPV;	// Æò¸éÀÇ ¹ý¼±°ú Æ÷ÇÔµÈ Á¡
-				__Vector3 vPos;	// À§ÀÇ Æò¸é°ú Á÷¼±ÀÇ ¸¸³ª´Â Á¡(±¸ÇÒ Á¡)
+				__Vector3 vRayDir, vRayOrig;	// È­ï¿½ï¿½ ï¿½ß¾ï¿½(ï¿½ï¿½ï¿½ï¿½)ï¿½ï¿½ ï¿½ï¿½ï¿½ì½º ï¿½ï¿½ï¿½ï¿½ï¿½Í¸ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+				__Vector3 vPN, vPV;	// ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ôµï¿½ ï¿½ï¿½
+				__Vector3 vPos;	// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½(ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½)
 				__Vector3 vCameraDir = s_CameraData.vAt - s_CameraData.vEye;	vCameraDir.Normalize();
 				GetPickRay(point, vRayDir, vRayOrig);
 				vPV = m_vPrevPos;
@@ -148,7 +148,7 @@ BOOL CVtxPosDummy::MouseMsgFilter(LPMSG pMsg)				// ¸¶¿ì½º ¸Þ¼¼Áö Ã³¸®
 				{
 				case DUMMY_CENTER:
 					{
-						// XZÆò¸é À§·Î ¿òÁ÷ÀÌ°Ô..
+						// XZï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ì°ï¿½..
 						vPN.Set(0,1,0);
 						float fT = D3DXVec3Dot(&vPN,&(vPV-vRayOrig)) / D3DXVec3Dot(&vPN, &vRayDir);
 						vPos = vRayOrig + vRayDir*fT;
@@ -225,7 +225,7 @@ BOOL CVtxPosDummy::MouseMsgFilter(LPMSG pMsg)				// ¸¶¿ì½º ¸Þ¼¼Áö Ã³¸®
 			}
 		}
 		break;
-	case WM_RBUTTONDOWN:	// Å¥ºê ¼±ÅÃ Ãë¼Ò ¹× ÀÌ¹ø µå·¡±×·Î ¿òÁ÷ÀÎ°Í µÇµ¹·Á ³õ±â
+	case WM_RBUTTONDOWN:	// Å¥ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½Ì¹ï¿½ ï¿½å·¡ï¿½×·ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Î°ï¿½ ï¿½Çµï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 		{
 			if (m_pSelectedCube)
 			{
@@ -244,7 +244,7 @@ BOOL CVtxPosDummy::MouseMsgFilter(LPMSG pMsg)				// ¸¶¿ì½º ¸Þ¼¼Áö Ã³¸®
 	return FALSE;
 }
 
-void CVtxPosDummy::TransDiff(__Vector3* pvDiffPos, __Quaternion* pqDiffRot, __Vector3* pvDiffScale)		// Â÷ÀÌ¸¸Å­ ¼±ÅÃµÈ ¿ÀºêÁ§Æ®µéÀ» º¯Çü½ÃÅ²´Ù.
+void CVtxPosDummy::TransDiff(__Vector3* pvDiffPos, __Quaternion* pqDiffRot, __Vector3* pvDiffScale)		// ï¿½ï¿½ï¿½Ì¸ï¿½Å­ ï¿½ï¿½ï¿½Ãµï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Å²ï¿½ï¿½.
 {
 	int i, iSize = m_SelVtxArray.GetSize();
 	if (iSize<=0) return;

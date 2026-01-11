@@ -20,9 +20,9 @@ friend class CN3FXShape;
 
 public:
 	__Material	m_Mtl;					// Material
-	__Vector3	m_vPivot;				// Local Ãà
-	__Matrix44	m_WorldMtx;				// World Matrix.. Shape Loading ¶§ ¹Ì¸® °è»êÇØ¾ß ÁÁ´Ù..		
-	BOOL		m_bOutOfCameraRange;	// Camera ¹üÀ§ ¹Ù±ù¿¡ ÀÖÀ½...
+	__Vector3	m_vPivot;				// Local ï¿½ï¿½
+	__Matrix44	m_WorldMtx;				// World Matrix.. Shape Loading ï¿½ï¿½ ï¿½Ì¸ï¿½ ï¿½ï¿½ï¿½ï¿½Ø¾ï¿½ ï¿½ï¿½ï¿½ï¿½..		
+	BOOL		m_bOutOfCameraRange;	// Camera ï¿½ï¿½ï¿½ï¿½ ï¿½Ù±ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½...
 
 	float		m_fTexFPS;				// Texture Animation Interval;
 	bool		m_bTexLoop;
@@ -33,7 +33,7 @@ protected:
 	std::vector<CN3Texture*>	m_TexRefs;		// Texture Reference Pointers
 	CN3FXPMeshInstance			m_FXPMInst;		// Progressive Mesh Instance
 
-	float						m_fTexIndex;	// Current Texture Index.. Animation ½ÃÅ³¶§ ÇÊ¿äÇÑ ÀÎµ¦½ºÀÌ´Ù.. float ·Î ÇØ¼­ ÅØ½ºÃ³ ¿¡´Ï¸ÞÀÌ¼Ç Á¦¾îÇÑ´Ù.
+	float						m_fTexIndex;	// Current Texture Index.. Animation ï¿½ï¿½Å³ï¿½ï¿½ ï¿½Ê¿ï¿½ï¿½ï¿½ ï¿½Îµï¿½ï¿½ï¿½ï¿½Ì´ï¿½.. float ï¿½ï¿½ ï¿½Ø¼ï¿½ ï¿½Ø½ï¿½Ã³ ï¿½ï¿½ï¿½Ï¸ï¿½ï¿½Ì¼ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ñ´ï¿½.
 
 public:
 	bool Load(HANDLE hFile);
@@ -46,8 +46,8 @@ public:
 	CN3Texture*	TexSet(int iIndex, const std::string& szFN);
 	void		TexSet(int iIndex, CN3Texture* pTex);
 
-	__Vector3 Min() { if(m_FXPMInst.GetMesh()) return m_FXPMInst.GetMesh()->Min() * m_WorldMtx; else return __Vector3(0,0,0); } // ¿ùµå »óÀÇ ÃÖ¼Ò°ª
-	__Vector3 Max() { if(m_FXPMInst.GetMesh()) return m_FXPMInst.GetMesh()->Max() * m_WorldMtx; else return __Vector3(0,0,0); } // ¿ùµå »óÀÇ ÃÖ´ë°ª
+	__Vector3 Min() { if(m_FXPMInst.GetMesh()) return m_FXPMInst.GetMesh()->Min() * m_WorldMtx; else return __Vector3(0,0,0); } // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ö¼Ò°ï¿½
+	__Vector3 Max() { if(m_FXPMInst.GetMesh()) return m_FXPMInst.GetMesh()->Max() * m_WorldMtx; else return __Vector3(0,0,0); } // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ö´ë°ª
 	float	Radius() { if(m_FXPMInst.GetMesh()) return m_FXPMInst.GetMesh()->Radius(); else return 0.0f; }
 
 

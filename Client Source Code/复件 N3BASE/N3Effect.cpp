@@ -16,7 +16,7 @@ static char THIS_FILE[]=__FILE__;
 CN3EffectPart::CN3EffectPart()
 {
 	m_nTexCount = 0; // Texture Count
-	m_ppTexs = NULL; // Textures - Manager ¿¡¼­ ÂüÁ¶¸¦ °¡Á®¿Í¼­ ¾´´Ù..
+	m_ppTexs = NULL; // Textures - Manager ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Í¼ï¿½ ï¿½ï¿½ï¿½ï¿½..
 
 	this->Release();
 }
@@ -41,20 +41,20 @@ void CN3EffectPart::Release()
 	m_fFPS = 30.0f; // Frame Per Second
 	m_fBoardSize = 1.0f; // Board Size
 	m_vOffset.Zero(); // Offset Position
-	m_vRandomMin.Zero(); // offset position À» ±âÁØÀ¸·Î ÇÑ Random Factor
-	m_vRandomMax.Zero(); // offset position À» ±âÁØÀ¸·Î ÇÑ Random Factor
+	m_vRandomMin.Zero(); // offset position ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ Random Factor
+	m_vRandomMax.Zero(); // offset position ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ Random Factor
 	m_BoardColor = 0; // Board Color
-	m_fSpeedZ = 0; // Z Ãà ¹æÇâ Move Speed
-	m_fSpeedY = 0; // Y Ãà ¹æÇâ Move Speed
-	m_fGravity = 0; // Áß·Â°¡¼Óµµ°ª
-	m_bNeedCollisionCheck = FALSE; // Ãæµ¹ Ã¼Å©°¡ ÇÊ¿äÇÑ°¡??
+	m_fSpeedZ = 0; // Z ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ Move Speed
+	m_fSpeedY = 0; // Y ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ Move Speed
+	m_fGravity = 0; // ï¿½ß·Â°ï¿½ï¿½Óµï¿½ï¿½ï¿½
+	m_bNeedCollisionCheck = FALSE; // ï¿½æµ¹ Ã¼Å©ï¿½ï¿½ ï¿½Ê¿ï¿½ï¿½Ñ°ï¿½??
 	memset(m_VPlanes, 0, 6 * sizeof(__VertexXyzColorT1)); // Vertex Buffer
 
 	// Particle
 	m_eParticleType = PARTICLE_NOTHING;
-	m_nTexCycle = 0; // ÆÄÆ¼Å¬ ÅØ½ºÃ³ »çÀÌÅ¬ Ä«¿îÆ®.. ¼ö¸í Ã³·³ ¾´´Ù..
-	m_fParticleDelta = 0; // ÃÊ±â ¼Óµµ...
-	m_fParticleAccel = 0; // °¡¼Óµµ...
+	m_nTexCycle = 0; // ï¿½ï¿½Æ¼Å¬ ï¿½Ø½ï¿½Ã³ ï¿½ï¿½ï¿½ï¿½Å¬ Ä«ï¿½ï¿½Æ®.. ï¿½ï¿½ï¿½ï¿½ Ã³ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½..
+	m_fParticleDelta = 0; // ï¿½Ê±ï¿½ ï¿½Óµï¿½...
+	m_fParticleAccel = 0; // ï¿½ï¿½ï¿½Óµï¿½...
 
 	// Alpha Blending Factor
 	m_dwSrcBlend = D3DBLEND_ONE;
@@ -90,7 +90,7 @@ void CN3EffectPart::TexAlloc(int nCount)
 	memset(m_ppTexs, 0, 4 * nCount);
 }
 
-void CN3EffectPart::TexSet(const char* szFN) // ÀÌ¸§À» ³Ö¾îÁÖ¸é ÇÒ´çµÈ ÅØ½ºÃ³ ¼ö ¸¸Å­ ¼¼ÀÚ¸® ¼ýÀÚ¸¦ ºÙ¿©¼­ ºÎ¸¥´Ù. ´Ü ÇÒ´çµÈ ÅØ½ºÃ³°¡ ÇÏ³ª¸é ±×ÀÌ¸§ ±×´ë·Î ºÎ¸¥´Ù..
+void CN3EffectPart::TexSet(const char* szFN) // ï¿½Ì¸ï¿½ï¿½ï¿½ ï¿½Ö¾ï¿½ï¿½Ö¸ï¿½ ï¿½Ò´ï¿½ï¿½ ï¿½Ø½ï¿½Ã³ ï¿½ï¿½ ï¿½ï¿½Å­ ï¿½ï¿½ï¿½Ú¸ï¿½ ï¿½ï¿½ï¿½Ú¸ï¿½ ï¿½Ù¿ï¿½ï¿½ï¿½ ï¿½Î¸ï¿½ï¿½ï¿½. ï¿½ï¿½ ï¿½Ò´ï¿½ï¿½ ï¿½Ø½ï¿½Ã³ï¿½ï¿½ ï¿½Ï³ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ì¸ï¿½ ï¿½×´ï¿½ï¿½ ï¿½Î¸ï¿½ï¿½ï¿½..
 {
 	if(m_nTexCount == 1)
 	{
@@ -187,12 +187,12 @@ void CN3Effect::TickStepAlloc(int nCount)
 bool CN3Effect::Parsing(const char* szFN)
 {
 	FILE* fp = NULL;
-	fp = fopen(szFN, "rt"); // ÆÄÀÏ ¿­±â..
+	fp = fopen(szFN, "rt"); // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½..
 	if(NULL == fp)
 	{
 		char szErr[512];
 		wsprintf(szErr, "%s - Can't open effect script file (read)", szFN);
-		MessageBox(s_hWndBase, szErr, "File Handle ¿À·ù", MB_OK);
+		MessageBox(s_hWndBase, szErr, "File Handle ï¿½ï¿½ï¿½ï¿½", MB_OK);
 		return false;
 	}
 
@@ -235,11 +235,11 @@ void CN3Effect::Parsing(FILE* fp)
 		lstrcpy(m_pTicks[i].szSoundFN, szBuf[4]);
 	}
 
-	fgets(szLine, 256, fp); sscanf(szLine, "%s %s", szTitle, szBuf[0]); // ÇÑÁÙ °Ç³Ê±â..
+	fgets(szLine, 256, fp); sscanf(szLine, "%s %s", szTitle, szBuf[0]); // ï¿½ï¿½ï¿½ï¿½ ï¿½Ç³Ê±ï¿½..
 	for(i = 0; i < nPartCount; i++)
 	{
 		this->ParsingPart(fp, &(m_pParts[i])); // Part Parsing
-		fgets(szLine, 256, fp); sscanf(szLine, "%s %s", szTitle, szBuf[0]); // ÇÑÁÙ °Ç³Ê±â..
+		fgets(szLine, 256, fp); sscanf(szLine, "%s %s", szTitle, szBuf[0]); // ï¿½ï¿½ï¿½ï¿½ ï¿½Ç³Ê±ï¿½..
 	}
 
 	///////////////////////////////////////
@@ -300,13 +300,13 @@ void CN3Effect::ParsingPart(FILE* fp, CN3EffectPart* pPart)
 03:BoardRandomFactorMax 0.2 0.2 0
 04:BoardSize 0.05
 05:BoardColor 255 255 255 255
-06:MoveSpeed 0 0 // Z,YÃà..
-07:NeedCheckCollision 0 // 1-ÁöÇü°ú Ãæµ¹Ã¼Å© ÇÊ¿ä 2-°Ç¹°°ú Ãæµ¹ Ã¼Å© ÇÊ¿ä -> Flag ¸¦ or ¿¬»êÇØ¼­ ¾´´Ù.
+06:MoveSpeed 0 0 // Z,Yï¿½ï¿½..
+07:NeedCheckCollision 0 // 1-ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½æµ¹Ã¼Å© ï¿½Ê¿ï¿½ 2-ï¿½Ç¹ï¿½ï¿½ï¿½ ï¿½æµ¹ Ã¼Å© ï¿½Ê¿ï¿½ -> Flag ï¿½ï¿½ or ï¿½ï¿½ï¿½ï¿½ï¿½Ø¼ï¿½ ï¿½ï¿½ï¿½ï¿½.
 08:Gravity 0.05
-09:TextureFade // Texture Fade In / Out ´ÜÀ§´Â milisecond, ¾çÀÌ¸é »ç¶óÁö°í, À½ÀÌ¸é ³ªÅ¸³­´Ù.
+09:TextureFade // Texture Fade In / Out ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ milisecond, ï¿½ï¿½ï¿½Ì¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½, ï¿½ï¿½ï¿½Ì¸ï¿½ ï¿½ï¿½Å¸ï¿½ï¿½ï¿½ï¿½.
 10:TextureCount 4
-11:TextureAnimationSpeed 4 // Texture Animation ¼Óµµ(Frame per second) È¤Àº Åõ¸íÇØÁö´Â ¼Óµµ(milisecondÃÊ)
-12:TextureName FX\Blood.DXT // È®ÀåÀÚ ¾Õ¿¡ ¼ø¼­°¡ µÎÀÚ¸®·Î µé¾î°£´Ù. ¾øÀ¸¸é ¼ø¼­ µÎÀÚ¸®´Â ¹«½Ã
+11:TextureAnimationSpeed 4 // Texture Animation ï¿½Óµï¿½(Frame per second) È¤ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Óµï¿½(milisecondï¿½ï¿½)
+12:TextureName FX\Blood.DXT // È®ï¿½ï¿½ï¿½ï¿½ ï¿½Õ¿ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ú¸ï¿½ï¿½ï¿½ ï¿½ï¿½î°£ï¿½ï¿½. ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ú¸ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 13:ParticleType EXPLODE // NOTHING NORMAL EXPLODE DROP GATHER
 14:ParticleCycle 1
 15:ParticleDelta 1
@@ -342,14 +342,14 @@ void CN3Effect::ParsingPart(FILE* fp, CN3EffectPart* pPart)
 	fgets(szLine, 256, fp); sscanf(szLine, "%s %s %s %s %s", szTitle, szBuf[0], szBuf[1], szBuf[2], szBuf[3]);
 	pPart->m_BoardColor = ((atoi(szBuf[0])) << 24) | ((atoi(szBuf[1])) << 16) | ((atoi(szBuf[2])) << 8) | (atoi(szBuf[3]));
 
-	// Áß¿ä..
-	pPart->BoardBuild(); // Á¤ÇØÁø Å©±â¿Í »ö ´ë·Î Board ¸¸µé±â..
+	// ï¿½ß¿ï¿½..
+	pPart->BoardBuild(); // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Å©ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ Board ï¿½ï¿½ï¿½ï¿½ï¿½..
 
 	// 6 : Move Speed
 	fgets(szLine, 256, fp); sscanf(szLine, "%s", szTitle); sscanf(szLine, "%s %s %s", szTitle, szBuf[0], szBuf[1]);
 	pPart->m_fSpeedZ = (float)atof(szBuf[0]); pPart->m_fSpeedY = (float)atof(szBuf[1]);
 
-	// 7 : Ãæµ¹ Ã¼Å©°¡ ÇÊ¿äÇÑ°¡??
+	// 7 : ï¿½æµ¹ Ã¼Å©ï¿½ï¿½ ï¿½Ê¿ï¿½ï¿½Ñ°ï¿½??
 	fgets(szLine, 256, fp); sscanf(szLine, "%s %s", szTitle, szBuf[0]);
 	pPart->m_bNeedCollisionCheck = atoi(szBuf[0]);
 
@@ -404,7 +404,7 @@ void CN3Effect::ParsingPart(FILE* fp, CN3EffectPart* pPart)
 	fgets(szLine, 256, fp); sscanf(szLine, "%s %s", szTitle, szBuf[0]);
 	pPart->m_fParticleDelta = (float)atof(szBuf[0]);
 
-	// 15 Particle °¡¼Óµµ
+	// 15 Particle ï¿½ï¿½ï¿½Óµï¿½
 	fgets(szLine, 256, fp); sscanf(szLine, "%s %s", szTitle, szBuf[0]);
 	pPart->m_fParticleAccel = (float)atof(szBuf[0]);
 

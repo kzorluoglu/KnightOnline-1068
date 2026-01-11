@@ -23,19 +23,19 @@ protected:
 
 
 public:
-	__Matrix44	m_Matrix; // º¯È¯ Çà·Ä
+	__Matrix44	m_Matrix; // ï¿½ï¿½È¯ ï¿½ï¿½ï¿½
 
-	CN3AnimKey m_KeyPos; // ¿¡´Ï¸ÞÀÌ¼Ç Å°
+	CN3AnimKey m_KeyPos; // ï¿½ï¿½ï¿½Ï¸ï¿½ï¿½Ì¼ï¿½ Å°
 	CN3AnimKey m_KeyRot;
 	CN3AnimKey m_KeyScale;
 
-	float m_fFrmWhole; // ÀüÃ¼ ÇÁ·¹ÀÓ¼ö
-	float m_fFrmCur; // ÇöÀç ÇÁ·¹ÀÓ
+	float m_fFrmWhole; // ï¿½ï¿½Ã¼ ï¿½ï¿½ï¿½ï¿½ï¿½Ó¼ï¿½
+	float m_fFrmCur; // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 
 public:
 	virtual void Render(const __Matrix44* pMtxParent = NULL, float fUnitSize = 1.0f);
 	virtual void Tick(float fFrm = FRAME_SELFPLAY);
-	bool TickAnimationKey(float fFrm); // Animation Key Tick... Animation Key °¡ ÀÖ¾î ¿òÁ÷ÀÌ¸é true, ¾Æ´Ï¸é false ¸¦ return;
+	bool TickAnimationKey(float fFrm); // Animation Key Tick... Animation Key ï¿½ï¿½ ï¿½Ö¾ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ì¸ï¿½ true, ï¿½Æ´Ï¸ï¿½ false ï¿½ï¿½ return;
 	bool Save(HANDLE hFile);
 	bool Load(HANDLE hFile);
 	void Release();

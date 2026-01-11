@@ -178,13 +178,13 @@ void CUIEDoc::SetSelectedUI(CN3UIBase* pUI)
 		{
 			if(pUI == *it)
 			{
-				it = m_SelectedUIs.erase(it); // °°Àº °Å¸é ¼±ÅÃ¿¡¼­ Á¦¿Ü.
+				it = m_SelectedUIs.erase(it); // ï¿½ï¿½ï¿½ï¿½ ï¿½Å¸ï¿½ ï¿½ï¿½ï¿½Ã¿ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½.
 				bOverLapped = true;
 			}
 			else it++;
 		}
 
-		if(false == bOverLapped) m_SelectedUIs.push_front(pUI); // °ãÄ¡Áö ¾ÊÀ¸¸é.. Ãß°¡..
+		if(false == bOverLapped) m_SelectedUIs.push_front(pUI); // ï¿½ï¿½Ä¡ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½.. ï¿½ß°ï¿½..
 	}
 
 	CMainFrame* pFrm = (CMainFrame*)AfxGetMainWnd();
@@ -203,16 +203,16 @@ void CUIEDoc::OnInsertImage()
 	SetSelectedUI(NULL);
 	SetSelectedUI(pUI);
 
-	// ¾Æ·¡·Î ±âº»ÀûÀ¸·Î ÇØÁÖ¸é ÁÁÀº °ÍµéÀ» ½á³õ¾ÒÀ½.
+	// ï¿½Æ·ï¿½ï¿½ï¿½ ï¿½âº»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ö¸ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Íµï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½.
 	CMainFrame* pFrm = (CMainFrame*)AfxGetMainWnd();
 	if (FALSE == SetImageInfos(pUI))
 	{
-		if (IDYES == pFrm->MessageBox("Image Á¤º¸ ÁöÁ¤ÀÌ Ãë¼ÒµÇ¾ú½À´Ï´Ù.\n»ý¼ºµÈ ÀÌ¹ÌÁö¸¦ »èÁ¦ÇÏ½Ã°Ú½À´Ï±î?", NULL, MB_YESNO)) OnEditDelete();
-		else pFrm->MessageBox("ÅØ½ºÃÄÁöÁ¤ ¹× ±âÅ¸ ¼³Á¤À» ÇØ¾ß ÀÌ¹ÌÁö°¡ º¸ÀÏ °ÍÀÔ´Ï´Ù.");
+		if (IDYES == pFrm->MessageBox("Image ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ÒµÇ¾ï¿½ï¿½ï¿½ï¿½Ï´ï¿½.\nï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ì¹ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï½Ã°Ú½ï¿½ï¿½Ï±ï¿½?", NULL, MB_YESNO)) OnEditDelete();
+		else pFrm->MessageBox("ï¿½Ø½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½Å¸ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ø¾ï¿½ ï¿½Ì¹ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ô´Ï´ï¿½.");
 		return;
 	}
 
-	pFrm->MessageBox("À§Ä¡¿Í Å©±â¸¦ Á¤ÇØÁÖ¼¼¿ä");
+	pFrm->MessageBox("ï¿½ï¿½Ä¡ï¿½ï¿½ Å©ï¿½â¸¦ ï¿½ï¿½ï¿½ï¿½ï¿½Ö¼ï¿½ï¿½ï¿½");
 	pFrm->GetRightPane()->SetMode(CUIEView::UIEMODE_EDIT);
 	pFrm->GetRightPane()->SelectRectType(CUIEView::RT_REGION);
 	UpdateAllViews(NULL);
@@ -228,18 +228,18 @@ void CUIEDoc::OnInsertString()
 	SetSelectedUI(NULL);
 	SetSelectedUI(pUI);
 
-	// ¾Æ·¡·Î ±âº»ÀûÀ¸·Î ÇØÁÖ¸é ÁÁÀº °ÍµéÀ» ½á³õ¾ÒÀ½.
+	// ï¿½Æ·ï¿½ï¿½ï¿½ ï¿½âº»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ö¸ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Íµï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½.
 	CMainFrame* pFrm = (CMainFrame*)AfxGetMainWnd();
 	if(FALSE == SetStringInfos(pUI))
 	{
-		if (IDYES == pFrm->MessageBox("Font ÁöÁ¤ÀÌ Ãë¼ÒµÇ¾ú½À´Ï´Ù.\n»ý¼ºµÈ UIStringÀ» »èÁ¦ÇÏ½Ã°Ú½À´Ï±î?", NULL, MB_YESNO)) OnEditDelete();
-		else pFrm->MessageBox("Font ÁöÁ¤ ¹× ±âÅ¸ ¼³Á¤À» ÇØ¾ß UIStringÀÌ º¸ÀÏ °ÍÀÔ´Ï´Ù.");
+		if (IDYES == pFrm->MessageBox("Font ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ÒµÇ¾ï¿½ï¿½ï¿½ï¿½Ï´ï¿½.\nï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ UIStringï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï½Ã°Ú½ï¿½ï¿½Ï±ï¿½?", NULL, MB_YESNO)) OnEditDelete();
+		else pFrm->MessageBox("Font ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½Å¸ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ø¾ï¿½ UIStringï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ô´Ï´ï¿½.");
 		return;
 	}
-	// ¿µ¿ª ÁöÁ¤
+	// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	SIZE size;
 	CRect rcRegion(0,0,20,30);
-	if (pUI->GetTextExtent("Áø", lstrlen("Áø"), &size)) rcRegion.SetRect(0,0,size.cx, size.cy);
+	if (pUI->GetTextExtent("ï¿½ï¿½", lstrlen("ï¿½ï¿½"), &size)) rcRegion.SetRect(0,0,size.cx, size.cy);
 
 	pUI->SetRegion(rcRegion);
 	pFrm->GetRightPane()->SetMode(CUIEView::UIEMODE_EDIT);
@@ -258,25 +258,25 @@ void CUIEDoc::OnInsertButton()
 	SetSelectedUI(NULL);
 	SetSelectedUI(pUI);
 
-	// ¾Æ·¡·Î ±âº»ÀûÀ¸·Î ÇØÁÖ¸é ÁÁÀº °ÍµéÀ» ½á³õ¾ÒÀ½.
+	// ï¿½Æ·ï¿½ï¿½ï¿½ ï¿½âº»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ö¸ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Íµï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½.
 	CMainFrame* pFrm = (CMainFrame*)AfxGetMainWnd();
 	if (FALSE == SetButtonInfos(pUI))
 	{
-		if (IDYES == pFrm->MessageBox("ÅØ½ºÃÄ ÁöÁ¤ÀÌ Ãë¼ÒµÇ¾ú½À´Ï´Ù.\n»ý¼ºµÈ ¹öÆ°À» »èÁ¦ÇÏ½Ã°Ú½À´Ï±î?", NULL, MB_YESNO)) OnEditDelete();
-		else pFrm->MessageBox("ÅØ½ºÃÄÁöÁ¤ ¹× ±âÅ¸ ¼³Á¤À» ÇØ¾ß ¹öÆ°ÀÌ º¸ÀÏ °ÍÀÔ´Ï´Ù.");
+		if (IDYES == pFrm->MessageBox("ï¿½Ø½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ÒµÇ¾ï¿½ï¿½ï¿½ï¿½Ï´ï¿½.\nï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Æ°ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï½Ã°Ú½ï¿½ï¿½Ï±ï¿½?", NULL, MB_YESNO)) OnEditDelete();
+		else pFrm->MessageBox("ï¿½Ø½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½Å¸ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ø¾ï¿½ ï¿½ï¿½Æ°ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ô´Ï´ï¿½.");
 		return;
 	}
-	// ¹öÆ° À§Ä¡ ¼³Á¤, size(width,height)´Â image¿µ¿ª ¼³Á¤¿¡ µû¸¥´Ù.
+	// ï¿½ï¿½Æ° ï¿½ï¿½Ä¡ ï¿½ï¿½ï¿½ï¿½, size(width,height)ï¿½ï¿½ imageï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½.
 	CRect rcRegion = pUI->GetRegion();
-	rcRegion.OffsetRect(-rcRegion.TopLeft());	// 0,0ÀÎÁ¡À¸·Î ¸¶Ãß±â
+	rcRegion.OffsetRect(-rcRegion.TopLeft());	// 0,0ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ß±ï¿½
 	pUI->SetRegion(rcRegion);
 
-	pFrm->MessageBox("1. ¹öÆ°ÀÇ À§Ä¡¿Í ¿µ¿ªÀ» ÁöÁ¤ÇØÁÖ¼¼¿ä.\n2. ³×¸ð ¹öÆ°ÀÌ ¾Æ´Ò°æ¿ì clickµÇ´Â ¿µ¿ªÀ» ÁöÁ¤ÇØÁÖ¼¼¿ä.\n3. Ã¼Å©¹öÆ°À¸·Î ¸¸µé°í ½ÍÀ¸¸é styleÀ» ÁöÁ¤ÇØÁÖ¼¼¿ä.");
+	pFrm->MessageBox("1. ï¿½ï¿½Æ°ï¿½ï¿½ ï¿½ï¿½Ä¡ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö¼ï¿½ï¿½ï¿½.\n2. ï¿½×¸ï¿½ ï¿½ï¿½Æ°ï¿½ï¿½ ï¿½Æ´Ò°ï¿½ï¿½ clickï¿½Ç´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö¼ï¿½ï¿½ï¿½.\n3. Ã¼Å©ï¿½ï¿½Æ°ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ styleï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö¼ï¿½ï¿½ï¿½.");
 	pFrm->GetRightPane()->SetMode(CUIEView::UIEMODE_EDIT);
 	pFrm->GetRightPane()->SelectRectType(CUIEView::RT_REGION);
 	UpdateAllViews(NULL);
-	// click ¿µ¿ªÀ» µû·Î ÁöÁ¤ÇÒ ÇÊ¿ä°¡ ÀÖÀ¸¸é ÁöÁ¤ÇÑ´Ù.
-	// style ÁöÁ¤
+	// click ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ê¿ä°¡ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ñ´ï¿½.
+	// style ï¿½ï¿½ï¿½ï¿½
 }
 
 void CUIEDoc::OnInsertStatic() 
@@ -290,17 +290,17 @@ void CUIEDoc::OnInsertStatic()
 	SetSelectedUI(NULL);
 	SetSelectedUI(pUI);	
 
-	// ¾Æ·¡·Î ±âº»ÀûÀ¸·Î ÇØÁÖ¸é ÁÁÀº °ÍµéÀ» ½á³õ¾ÒÀ½.
+	// ï¿½Æ·ï¿½ï¿½ï¿½ ï¿½âº»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ö¸ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Íµï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½.
 	CMainFrame* pFrm = (CMainFrame*)AfxGetMainWnd();
-	// image¿¡ °ü·ÃµÈ ¼¼ÆÃÀ» ÇØÁÖ°í image¿µ¿ªÀ» °¡Á®¿Í staticÀÇ ¿µ¿ªÀ» ¼¼ÆÃÈÄ
+	// imageï¿½ï¿½ ï¿½ï¿½ï¿½Ãµï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ö°ï¿½ imageï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ staticï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	CN3UIImage* pBkImage = pUI->GetImageBkGnd();
 	SetImageInfos(pBkImage);
 	RECT rcRegion = pBkImage->GetRegion();
 	pUI->SetRegion(rcRegion);
 
-	// string °ü·Ã ¼¼ÆÃ, µé¾î°¥ text¸¦ ÁöÁ¤ÇØÁØ´Ù.
+	// string ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½, ï¿½ï¿½î°¥ textï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ø´ï¿½.
 	CN3UIString* pUIString = pUI->GetUIString();
-	if (FALSE == SetStringInfos(pUIString))	pFrm->MessageBox("textÀÇ Á¤º¸¸¦ ³Ö¾î¾ß ±Û¾¾°¡ Á¦´ë·Î º¸ÀÏ °ÍÀÔ´Ï´Ù.");
+	if (FALSE == SetStringInfos(pUIString))	pFrm->MessageBox("textï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ö¾ï¿½ï¿½ ï¿½Û¾ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ô´Ï´ï¿½.");
 
 	pFrm->GetRightPane()->SetMode(CUIEView::UIEMODE_EDIT);
 	pFrm->GetRightPane()->SelectRectType(CUIEView::RT_REGION);
@@ -318,16 +318,16 @@ void CUIEDoc::OnInsertEdit()
 	SetSelectedUI(NULL);
 	SetSelectedUI(pUI);		
 
-	// ¾Æ·¡·Î ±âº»ÀûÀ¸·Î ÇØÁÖ¸é ÁÁÀº °ÍµéÀ» ½á³õ¾ÒÀ½.
+	// ï¿½Æ·ï¿½ï¿½ï¿½ ï¿½âº»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ö¸ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Íµï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½.
 	CMainFrame* pFrm = (CMainFrame*)AfxGetMainWnd();
-	// image¿¡ °ü·ÃµÈ ¼¼ÆÃÀ» ÇØÁÖ°í image¿µ¿ªÀ» °¡Á®¿Í editÀÇ ¿µ¿ªÀ» ¼¼ÆÃÈÄ
+	// imageï¿½ï¿½ ï¿½ï¿½ï¿½Ãµï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ö°ï¿½ imageï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ editï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	CN3UIImage* pBkImage = pUI->GetImageBkGnd();
 	SetImageInfos(pBkImage);
 	RECT rcRegion = pBkImage->GetRegion();
 	pUI->SetRegion(rcRegion);
-	// string °ü·Ã ¼¼ÆÃ
+	// string ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	CN3UIString* pUIString = pUI->GetUIString();
-	if (FALSE == SetStringInfos(pUIString))	pFrm->MessageBox("textÀÇ Á¤º¸¸¦ ³Ö¾î¾ß ±Û¾¾°¡ Á¦´ë·Î º¸ÀÏ °ÍÀÔ´Ï´Ù.");
+	if (FALSE == SetStringInfos(pUIString))	pFrm->MessageBox("textï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ö¾ï¿½ï¿½ ï¿½Û¾ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ô´Ï´ï¿½.");
 
 	pFrm->GetRightPane()->SetMode(CUIEView::UIEMODE_EDIT);
 	pFrm->GetRightPane()->SelectRectType(CUIEView::RT_REGION);
@@ -345,31 +345,31 @@ void CUIEDoc::OnInsertProgress()
 	SetSelectedUI(NULL);
 	SetSelectedUI(pUI);
 
-	// ¾Æ·¡·Î ±âº»ÀûÀ¸·Î ÇØÁÖ¸é ÁÁÀº °ÍµéÀ» ½á³õ¾ÒÀ½.
+	// ï¿½Æ·ï¿½ï¿½ï¿½ ï¿½âº»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ö¸ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Íµï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½.
 	CMainFrame* pFrm = (CMainFrame*)AfxGetMainWnd();
-	// backgroundÀÌ¹ÌÁö¿Í foregroundÀÌ¹ÌÁö¸¦ ¼³Á¤ÇÏ°í
+	// backgroundï¿½Ì¹ï¿½ï¿½ï¿½ï¿½ï¿½ foregroundï¿½Ì¹ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï°ï¿½
 	CN3UIImage* pUIImage = pUI->GetBkGndImgRef();
 	ASSERT(pUIImage);
-	// texture ¼³Á¤
+	// texture ï¿½ï¿½ï¿½ï¿½
 	char szTexture[_MAX_PATH];
 	while(1)
 	{
 		if (FALSE == SelectTexture(szTexture))
 		{
-			if (IDYES == pFrm->MessageBox("ÅØ½ºÃÄ ÁöÁ¤ÀÌ Ãë¼ÒµÇ¾ú½À´Ï´Ù.\nProgress¸¦ »èÁ¦ÇÏ½Ã°Ú½À´Ï±î?", NULL, MB_YESNO)) OnEditDelete();
-			else pFrm->MessageBox("ÅØ½ºÃÄÁöÁ¤ ¹× ±âÅ¸ ¼³Á¤À» ÇØ¾ß progress°¡ º¸ÀÏ °ÍÀÔ´Ï´Ù.");
+			if (IDYES == pFrm->MessageBox("ï¿½Ø½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ÒµÇ¾ï¿½ï¿½ï¿½ï¿½Ï´ï¿½.\nProgressï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï½Ã°Ú½ï¿½ï¿½Ï±ï¿½?", NULL, MB_YESNO)) OnEditDelete();
+			else pFrm->MessageBox("ï¿½Ø½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½Å¸ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ø¾ï¿½ progressï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ô´Ï´ï¿½.");
 			return;
 		}
 		pUIImage->SetTex(szTexture);
 		if (NULL == pUIImage->GetTex())
 		{
-			if (IDYES == pFrm->MessageBox("ÅØ½ºÃÄ¸¦ LoadÇÒ ¼ö ¾ø½À´Ï´Ù.\n´Ù½Ã ÁöÁ¤ÇÏ½Ã°Ú½À´Ï±î?", NULL, MB_YESNO)) continue;
-			else pFrm->MessageBox("ÅØ½ºÃÄÁöÁ¤ ¹× ±âÅ¸ ¼³Á¤À» ÇØ¾ß progress°¡ º¸ÀÏ °ÍÀÔ´Ï´Ù.");
+			if (IDYES == pFrm->MessageBox("ï¿½Ø½ï¿½ï¿½Ä¸ï¿½ Loadï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½.\nï¿½Ù½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï½Ã°Ú½ï¿½ï¿½Ï±ï¿½?", NULL, MB_YESNO)) continue;
+			else pFrm->MessageBox("ï¿½Ø½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½Å¸ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ø¾ï¿½ progressï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ô´Ï´ï¿½.");
 			return;
 		}
 		else break;
 	}
-	// imageÀÇ normal on down disable±×¸² ¿µ¿ª ¼³Á¤
+	// imageï¿½ï¿½ normal on down disableï¿½×¸ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	CDlgTexture dlg;
 	dlg.SetTexture(szTexture);
 	char szNames[2][20] = {"Back", "Fore"};
@@ -377,8 +377,8 @@ void CUIEDoc::OnInsertProgress()
 	dlg.SetImageTypes(2, szImageTypeNames);
 	if (IDCANCEL == dlg.DoModal())
 	{	
-		if (IDYES == pFrm->MessageBox("ÅØ½ºÃÄ UVÁÂÇ¥ ÁöÁ¤ÀÌ Ãë¼ÒµÇ¾ú½À´Ï´Ù.\n»ý¼ºµÈ Progress¸¦ »èÁ¦ÇÏ½Ã°Ú½À´Ï±î?", NULL, MB_YESNO)) OnEditDelete();
-		else pFrm->MessageBox("UVÁÂÇ¥ ¼³Á¤ ¹× ±âÅ¸ ¼³Á¤À» ÇØ¾ß Progress°¡ º¸ÀÏ °ÍÀÔ´Ï´Ù.");
+		if (IDYES == pFrm->MessageBox("ï¿½Ø½ï¿½ï¿½ï¿½ UVï¿½ï¿½Ç¥ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ÒµÇ¾ï¿½ï¿½ï¿½ï¿½Ï´ï¿½.\nï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Progressï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï½Ã°Ú½ï¿½ï¿½Ï±ï¿½?", NULL, MB_YESNO)) OnEditDelete();
+		else pFrm->MessageBox("UVï¿½ï¿½Ç¥ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½Å¸ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ø¾ï¿½ Progressï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ô´Ï´ï¿½.");
 		return;
 	}
 	int i;
@@ -395,12 +395,12 @@ void CUIEDoc::OnInsertProgress()
 		pUIImage->SetUVRect(frcUV.left, frcUV.top, frcUV.right, frcUV.bottom);
 	}
 
-	// image¿µ¿ªÀ» °¡Á®¿Í progress ¿µ¿ªÀ» ¼³Á¤
+	// imageï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ progress ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	rcRegion = dlg.GetImageRect(0);
 	pUI->SetFrGndUVFromFrGndImage();
 	pUI->SetRegion(rcRegion);
-	// style ÁöÁ¤
-	pFrm->MessageBox("¿ÞÂÊÃ¢¿¡¼­ ½ºÅ¸ÀÏ(°¡·Î/¼¼·Î)À» ÁöÁ¤ÇØÁÖ¼¼¿ä.");
+	// style ï¿½ï¿½ï¿½ï¿½
+	pFrm->MessageBox("ï¿½ï¿½ï¿½ï¿½Ã¢ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Å¸ï¿½ï¿½(ï¿½ï¿½ï¿½ï¿½/ï¿½ï¿½ï¿½ï¿½)ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö¼ï¿½ï¿½ï¿½.");
 
 	pFrm->GetRightPane()->SetMode(CUIEView::UIEMODE_EDIT);
 	pFrm->GetRightPane()->SelectRectType(CUIEView::RT_REGION);
@@ -418,16 +418,16 @@ void CUIEDoc::OnInsertTrackbar()
 	SetSelectedUI(NULL);
 	SetSelectedUI(pUI);
 
-	// ¾Æ·¡·Î ±âº»ÀûÀ¸·Î ÇØÁÖ¸é ÁÁÀº °ÍµéÀ» ½á³õ¾ÒÀ½.
+	// ï¿½Æ·ï¿½ï¿½ï¿½ ï¿½âº»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ö¸ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Íµï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½.
 	CMainFrame* pFrm = (CMainFrame*)AfxGetMainWnd();
 	if (FALSE == SetTrackBarInfos(pUI))
 	{
-		if (IDYES == pFrm->MessageBox("Trackbar Á¤º¸ ÁöÁ¤ÀÌ Ãë¼ÒµÇ¾ú½À´Ï´Ù.\n»ý¼ºµÈ Trackbar¸¦ »èÁ¦ÇÏ½Ã°Ú½À´Ï±î?", NULL, MB_YESNO)) OnEditDelete();
-		else pFrm->MessageBox("ÅØ½ºÃÄÁöÁ¤ ¹× ±âÅ¸ ¼³Á¤À» ÇØ¾ß Trackbar°¡ º¸ÀÏ °ÍÀÔ´Ï´Ù.");
+		if (IDYES == pFrm->MessageBox("Trackbar ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ÒµÇ¾ï¿½ï¿½ï¿½ï¿½Ï´ï¿½.\nï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Trackbarï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï½Ã°Ú½ï¿½ï¿½Ï±ï¿½?", NULL, MB_YESNO)) OnEditDelete();
+		else pFrm->MessageBox("ï¿½Ø½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½Å¸ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ø¾ï¿½ Trackbarï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ô´Ï´ï¿½.");
 		return;
 	}
-	// style ÁöÁ¤
-	pFrm->MessageBox("¿ÞÂÊÃ¢¿¡¼­ ½ºÅ¸ÀÏ(°¡·Î/¼¼·Î)À» ÁöÁ¤ÇØÁÖ¼¼¿ä.");
+	// style ï¿½ï¿½ï¿½ï¿½
+	pFrm->MessageBox("ï¿½ï¿½ï¿½ï¿½Ã¢ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Å¸ï¿½ï¿½(ï¿½ï¿½ï¿½ï¿½/ï¿½ï¿½ï¿½ï¿½)ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö¼ï¿½ï¿½ï¿½.");
 
 	pFrm->GetRightPane()->SetMode(CUIEView::UIEMODE_EDIT);
 	pFrm->GetRightPane()->SelectRectType(CUIEView::RT_REGION);
@@ -444,54 +444,54 @@ void CUIEDoc::OnInsertScrollbar()
 	pUI->CreateTrackBarAndBtns();
 	SetSelectedUI(NULL);
 	SetSelectedUI(pUI);	
-	// ¾Æ·¡·Î ±âº»ÀûÀ¸·Î ÇØÁÖ¸é ÁÁÀº °ÍµéÀ» ½á³õ¾ÒÀ½.
+	// ï¿½Æ·ï¿½ï¿½ï¿½ ï¿½âº»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ö¸ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Íµï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½.
 	CMainFrame* pFrm = (CMainFrame*)AfxGetMainWnd();
-	pFrm->MessageBox("(½ºÅ©·Ñ¹Ù ¸¸µé±â)À§/¿ÞÂÊ ¹öÆ° ÁöÁ¤ÀÔ´Ï´Ù.");
-	// 2°³ÀÇ buttonÀ» ¼³Á¤ÇÏ°í
+	pFrm->MessageBox("(ï¿½ï¿½Å©ï¿½Ñ¹ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½)ï¿½ï¿½/ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Æ° ï¿½ï¿½ï¿½ï¿½ï¿½Ô´Ï´ï¿½.");
+	// 2ï¿½ï¿½ï¿½ï¿½ buttonï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï°ï¿½
 	CN3UIButton* pUIBtn = pUI->GetBtnRef(CN3UIScrollBar::BTN_LEFTUP);
 	ASSERT(pUIBtn);
 	if (FALSE == SetButtonInfos(pUIBtn))
 	{
-		if (IDYES == pFrm->MessageBox("ÅØ½ºÃÄ ÁöÁ¤ÀÌ Ãë¼ÒµÇ¾ú½À´Ï´Ù.\n»ý¼ºµÈ ½ºÅ©·ÑÀ» »èÁ¦ÇÏ½Ã°Ú½À´Ï±î?", NULL, MB_YESNO)) OnEditDelete();
-		else pFrm->MessageBox("ÅØ½ºÃÄÁöÁ¤ ¹× ±âÅ¸ ¼³Á¤À» ÇØ¾ß ½ºÅ©·ÑÀÌ º¸ÀÏ °ÍÀÔ´Ï´Ù.");
+		if (IDYES == pFrm->MessageBox("ï¿½Ø½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ÒµÇ¾ï¿½ï¿½ï¿½ï¿½Ï´ï¿½.\nï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Å©ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï½Ã°Ú½ï¿½ï¿½Ï±ï¿½?", NULL, MB_YESNO)) OnEditDelete();
+		else pFrm->MessageBox("ï¿½Ø½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½Å¸ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ø¾ï¿½ ï¿½ï¿½Å©ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ô´Ï´ï¿½.");
 		return;
 	}
-	// ¹öÆ° À§Ä¡ ¼³Á¤, size(width,height)´Â image¿µ¿ª ¼³Á¤¿¡ µû¸¥´Ù.
+	// ï¿½ï¿½Æ° ï¿½ï¿½Ä¡ ï¿½ï¿½ï¿½ï¿½, size(width,height)ï¿½ï¿½ imageï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½.
 	CRect rcRegion = pUIBtn->GetRegion();
-	rcRegion.OffsetRect(-rcRegion.TopLeft());	// 0,0ÀÎÁ¡À¸·Î ¸¶Ãß±â
+	rcRegion.OffsetRect(-rcRegion.TopLeft());	// 0,0ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ß±ï¿½
 	pUIBtn->SetRegion(rcRegion);
-	// 2¹øÂ° ¹öÆ° 
-	pFrm->MessageBox("(½ºÅ©·Ñ¹Ù ¸¸µé±â)¾Æ·¡/¿À¸¥ÂÊ ¹öÆ° ÁöÁ¤ÀÔ´Ï´Ù.");
+	// 2ï¿½ï¿½Â° ï¿½ï¿½Æ° 
+	pFrm->MessageBox("(ï¿½ï¿½Å©ï¿½Ñ¹ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½)ï¿½Æ·ï¿½/ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Æ° ï¿½ï¿½ï¿½ï¿½ï¿½Ô´Ï´ï¿½.");
 	pUIBtn = pUI->GetBtnRef(CN3UIScrollBar::BTN_RIGHTDOWN);
 	ASSERT(pUIBtn);
 	if (FALSE == SetButtonInfos(pUIBtn))
 	{
-		if (IDYES == pFrm->MessageBox("ÅØ½ºÃÄ ÁöÁ¤ÀÌ Ãë¼ÒµÇ¾ú½À´Ï´Ù.\n»ý¼ºµÈ ½ºÅ©·ÑÀ» »èÁ¦ÇÏ½Ã°Ú½À´Ï±î?", NULL, MB_YESNO)) OnEditDelete();
-		else pFrm->MessageBox("ÅØ½ºÃÄÁöÁ¤ ¹× ±âÅ¸ ¼³Á¤À» ÇØ¾ß ½ºÅ©·ÑÀÌ º¸ÀÏ °ÍÀÔ´Ï´Ù.");
+		if (IDYES == pFrm->MessageBox("ï¿½Ø½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ÒµÇ¾ï¿½ï¿½ï¿½ï¿½Ï´ï¿½.\nï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Å©ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï½Ã°Ú½ï¿½ï¿½Ï±ï¿½?", NULL, MB_YESNO)) OnEditDelete();
+		else pFrm->MessageBox("ï¿½Ø½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½Å¸ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ø¾ï¿½ ï¿½ï¿½Å©ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ô´Ï´ï¿½.");
 		return;
 	}
-	// ¹öÆ° À§Ä¡ ¼³Á¤, size(width,height)´Â image¿µ¿ª ¼³Á¤¿¡ µû¸¥´Ù.
+	// ï¿½ï¿½Æ° ï¿½ï¿½Ä¡ ï¿½ï¿½ï¿½ï¿½, size(width,height)ï¿½ï¿½ imageï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½.
 	rcRegion = pUIBtn->GetRegion();
-	rcRegion.OffsetRect(CPoint(20,20)-rcRegion.TopLeft());	// 20,20ÀÎÁ¡À¸·Î ¸ÂÃß±â
+	rcRegion.OffsetRect(CPoint(20,20)-rcRegion.TopLeft());	// 20,20ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ß±ï¿½
 	pUIBtn->SetRegion(rcRegion);
-	pFrm->MessageBox("(½ºÅ©·Ñ¹Ù ¸¸µé±â)°¡¿îµ¥ Track barÁöÁ¤ÀÔ´Ï´Ù.");
-	// trackbar¸¦ ¼³Á¤ÇÏ°í
+	pFrm->MessageBox("(ï¿½ï¿½Å©ï¿½Ñ¹ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½)ï¿½ï¿½ï¿½îµ¥ Track barï¿½ï¿½ï¿½ï¿½ï¿½Ô´Ï´ï¿½.");
+	// trackbarï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï°ï¿½
 
 	CN3UITrackBar* pUITrackBar = pUI->GetTrackBarRef();
 	if (FALSE == SetTrackBarInfos(pUITrackBar))
 	{
-		if (IDYES == pFrm->MessageBox("Trackbar Á¤º¸ ÁöÁ¤ÀÌ Ãë¼ÒµÇ¾ú½À´Ï´Ù.\n»ý¼ºµÈ ScrollBar »èÁ¦ÇÏ½Ã°Ú½À´Ï±î?", NULL, MB_YESNO)) OnEditDelete();
-		else pFrm->MessageBox("ÅØ½ºÃÄÁöÁ¤ ¹× ±âÅ¸ ¼³Á¤À» ÇØ¾ß ScrollBar°¡ º¸ÀÏ °ÍÀÔ´Ï´Ù.");
+		if (IDYES == pFrm->MessageBox("Trackbar ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ÒµÇ¾ï¿½ï¿½ï¿½ï¿½Ï´ï¿½.\nï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ScrollBar ï¿½ï¿½ï¿½ï¿½ï¿½Ï½Ã°Ú½ï¿½ï¿½Ï±ï¿½?", NULL, MB_YESNO)) OnEditDelete();
+		else pFrm->MessageBox("ï¿½Ø½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½Å¸ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ø¾ï¿½ ScrollBarï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ô´Ï´ï¿½.");
 		return;
 	}
 	rcRegion = pUITrackBar->GetRegion();
-	rcRegion.OffsetRect(CPoint(40,40)-rcRegion.TopLeft());	// 40,40ÀÎÁ¡À¸·Î ¸ÂÃß±â
+	rcRegion.OffsetRect(CPoint(40,40)-rcRegion.TopLeft());	// 40,40ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ß±ï¿½
 	pUITrackBar->SetRegion(rcRegion);
 	pUI->SetRegion(rcRegion);
 
-	// ¹öÆ°°ú trackbar¿µ¿ªÀ» ´õÇØ¼­ scrollbar¿µ¿ªÀ» ¼³Á¤
-	// styleÀ» Á¤ÇÏ°í
-	pFrm->MessageBox("1. ¿ÞÂÊÃ¢¿¡¼­ ½ºÅ¸ÀÏ(°¡·Î/¼¼·Î)À» ÁöÁ¤ÇØÁÖ¼¼¿ä.\n½ºÅ©·ÑÀÇ ¿µ¿ªÀ» ¹Ýµå½Ã ¾ç ¹öÆ°°ú °¡¿îµ¥ Æ®·¢¹Ù°¡ µé¾î°¡°Ô Á¤ÇØÁÖ¼¼¿ä");
+	// ï¿½ï¿½Æ°ï¿½ï¿½ trackbarï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ø¼ï¿½ scrollbarï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+	// styleï¿½ï¿½ ï¿½ï¿½ï¿½Ï°ï¿½
+	pFrm->MessageBox("1. ï¿½ï¿½ï¿½ï¿½Ã¢ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Å¸ï¿½ï¿½(ï¿½ï¿½ï¿½ï¿½/ï¿½ï¿½ï¿½ï¿½)ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö¼ï¿½ï¿½ï¿½.\nï¿½ï¿½Å©ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ýµï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½Æ°ï¿½ï¿½ ï¿½ï¿½ï¿½îµ¥ Æ®ï¿½ï¿½ï¿½Ù°ï¿½ ï¿½ï¿½î°¡ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ö¼ï¿½ï¿½ï¿½");
 
 	pFrm->GetRightPane()->SetMode(CUIEView::UIEMODE_EDIT);
 	pFrm->GetRightPane()->SelectRectType(CUIEView::RT_REGION);
@@ -509,7 +509,7 @@ void CUIEDoc::OnInsertArea()
 
 	SetSelectedUI(NULL);
 	SetSelectedUI(pUI);
-	// ¾Æ·¡·Î ±âº»ÀûÀ¸·Î ÇØÁÖ¸é ÁÁÀº °ÍµéÀ» ½á³õ¾ÒÀ½.
+	// ï¿½Æ·ï¿½ï¿½ï¿½ ï¿½âº»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ö¸ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Íµï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½.
 	CMainFrame* pFrm = (CMainFrame*)AfxGetMainWnd();
 	pFrm->GetRightPane()->SetMode(CUIEView::UIEMODE_EDIT);
 	pFrm->GetRightPane()->SelectRectType(CUIEView::RT_REGION);
@@ -525,14 +525,14 @@ void CUIEDoc::OnInsertIconslot()
 	if(this->GetSelectedUI()) pUI->Init(this->GetSelectedUI());
 	else pUI->Init(&m_RootUI);
 	SetSelectedUI(pUI);
-	// ¾Æ·¡·Î ±âº»ÀûÀ¸·Î ÇØÁÖ¸é ÁÁÀº °ÍµéÀ» ½á³õ¾ÒÀ½.
+	// ï¿½Æ·ï¿½ï¿½ï¿½ ï¿½âº»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ö¸ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Íµï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½.
 	CMainFrame* pFrm = (CMainFrame*)AfxGetMainWnd();
-	pFrm->MessageBox("¿µ¿ªÀ» ÁöÁ¤ÇØ ÁÖ¼¼¿ä.");
+	pFrm->MessageBox("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ö¼ï¿½ï¿½ï¿½.");
 	pFrm->GetRightPane()->SetMode(CUIEView::UIEMODE_EDIT);
 	pFrm->GetRightPane()->SelectRectType(CUIEView::RT_REGION);
 	UpdateAllViews(NULL);
 #else
-	AfxGetMainWnd()->MessageBox("Repent¸¸ Áö¿øµÇ´Â Çü½ÄÀÔ´Ï´Ù.");
+	AfxGetMainWnd()->MessageBox("Repentï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ç´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ô´Ï´ï¿½.");
 #endif
 }
 
@@ -547,7 +547,7 @@ void CUIEDoc::OnInsertList()
 
 	SetSelectedUI(NULL);
 	SetSelectedUI(pUI);
-	// ¾Æ·¡·Î ±âº»ÀûÀ¸·Î ÇØÁÖ¸é ÁÁÀº °ÍµéÀ» ½á³õ¾ÒÀ½.
+	// ï¿½Æ·ï¿½ï¿½ï¿½ ï¿½âº»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ö¸ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Íµï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½.
 	CMainFrame* pFrm = (CMainFrame*)AfxGetMainWnd();
 	pFrm->GetRightPane()->SetMode(CUIEView::UIEMODE_EDIT);
 	pFrm->GetRightPane()->SelectRectType(CUIEView::RT_REGION);
@@ -555,7 +555,7 @@ void CUIEDoc::OnInsertList()
 //	this->OnInsertScrollbar();
 }
 
-void CUIEDoc::OnEditDelete()	// ¼±ÅÃµÈ ui Áö¿ì±â
+void CUIEDoc::OnEditDelete()	// ï¿½ï¿½ï¿½Ãµï¿½ ui ï¿½ï¿½ï¿½ï¿½ï¿½
 {
 	CN3UIBase* pUI = NULL;
 	it_UI it = m_SelectedUIs.begin(), itEnd = m_SelectedUIs.end();
@@ -563,8 +563,8 @@ void CUIEDoc::OnEditDelete()	// ¼±ÅÃµÈ ui Áö¿ì±â
 	{
 		pUI = *it;
 //		if (pUI && (&m_RootUI) == pUI->GetParent())
-//		{	// ¼±ÅÃµÈ ui°¡ m_RootUIÀÇ childÀÌ¸é Áö¿î´Ù.
-		if (pUI && (&m_RootUI) != pUI) // Root UI °¡ ¾Æ´Ï¸é Áö¿î´Ù..
+//		{	// ï¿½ï¿½ï¿½Ãµï¿½ uiï¿½ï¿½ m_RootUIï¿½ï¿½ childï¿½Ì¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½.
+		if (pUI && (&m_RootUI) != pUI) // Root UI ï¿½ï¿½ ï¿½Æ´Ï¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½..
 		{
 			delete pUI;
 			it = m_SelectedUIs.erase(it);
@@ -598,7 +598,7 @@ BOOL CUIEDoc::SetImageInfos(CN3UIImage* pUI)
 {
 	if (NULL == pUI) return FALSE;
 	CMainFrame* pFrm = (CMainFrame*)AfxGetMainWnd();
-	// texture ÁöÁ¤
+	// texture ï¿½ï¿½ï¿½ï¿½
 	char szTexture[_MAX_PATH];
 	while(1)
 	{
@@ -606,12 +606,12 @@ BOOL CUIEDoc::SetImageInfos(CN3UIImage* pUI)
 		pUI->SetTex(szTexture);
 		if (NULL == pUI->GetTex())
 		{
-			if (IDYES == pFrm->MessageBox("ÅØ½ºÃÄ¸¦ LoadÇÒ ¼ö ¾ø½À´Ï´Ù.\n´Ù½Ã ÁöÁ¤ÇÏ½Ã°Ú½À´Ï±î?", NULL, MB_YESNO)) continue;
+			if (IDYES == pFrm->MessageBox("ï¿½Ø½ï¿½ï¿½Ä¸ï¿½ Loadï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½.\nï¿½Ù½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï½Ã°Ú½ï¿½ï¿½Ï±ï¿½?", NULL, MB_YESNO)) continue;
 			return FALSE;
 		}
 		else break;
 	}
-	// texture À§ÀÇ ¾²ÀÌ´Â ºÎºÐ ÁöÁ¤ (¿µ¿ª°ú UVÁöÁ¤À» ÇÏ±â À§ÇØ)
+	// texture ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ì´ï¿½ ï¿½Îºï¿½ ï¿½ï¿½ï¿½ï¿½ (ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ UVï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ï±ï¿½ ï¿½ï¿½ï¿½ï¿½)
 	CDlgTexture dlg;
 	dlg.SetTexture(szTexture);
 	if (IDCANCEL == dlg.DoModal()) return FALSE;
@@ -619,10 +619,10 @@ BOOL CUIEDoc::SetImageInfos(CN3UIImage* pUI)
 	CRect rcRegion;
 	if (FALSE == dlg.GetSelectedUVRect(&frcUV)) return FALSE;
 	rcRegion = dlg.GetSelectedRect();
-	// UVÁÂÇ¥ ÁöÁ¤
+	// UVï¿½ï¿½Ç¥ ï¿½ï¿½ï¿½ï¿½
 	pUI->SetUVRect(frcUV.left, frcUV.top, frcUV.right, frcUV.bottom);
-	// ¿µ¿ª ÁöÁ¤(textureÀÇ Å©±â¿¡ µû¶ó width¿Í height´Â ÀÚµ¿À¸·Î ÁöÁ¤ÇÏ°í À§Ä¡´Â ¹°¾îº¸ÀÚ)
-	rcRegion.OffsetRect(-rcRegion.TopLeft());	// 0,0ÀÎÁ¡À¸·Î ¸¶Ãß±â
+	// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½(textureï¿½ï¿½ Å©ï¿½â¿¡ ï¿½ï¿½ï¿½ï¿½ widthï¿½ï¿½ heightï¿½ï¿½ ï¿½Úµï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï°ï¿½ ï¿½ï¿½Ä¡ï¿½ï¿½ ï¿½ï¿½ï¿½îº¸ï¿½ï¿½)
+	rcRegion.OffsetRect(-rcRegion.TopLeft());	// 0,0ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ß±ï¿½
 	pUI->SetRegion(rcRegion);
 	return TRUE;
 }
@@ -630,31 +630,31 @@ BOOL CUIEDoc::SetImageInfos(CN3UIImage* pUI)
 BOOL CUIEDoc::SetStringInfos(CN3UIString* pUI)
 {
 	CMainFrame* pFrm = (CMainFrame*)AfxGetMainWnd();
-	// font ÁöÁ¤, ±ÛÀÚ »ö ÁöÁ¤
+	// font ï¿½ï¿½ï¿½ï¿½, ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	CFontDialog dlg;
 	if (IDCANCEL == dlg.DoModal())		return FALSE;
-	__ASSERT(dlg.GetSize()>0, "font height°¡ 0º¸´Ù ÀÛ½À´Ï´Ù.");
+	__ASSERT(dlg.GetSize()>0, "font heightï¿½ï¿½ 0ï¿½ï¿½ï¿½ï¿½ ï¿½Û½ï¿½ï¿½Ï´ï¿½.");
 	CString strTmp = dlg.GetFaceName();
 
-	std::string strFontName = "±¼¸²Ã¼";
+	std::string strFontName = "ï¿½ï¿½ï¿½ï¿½Ã¼";
 	if(strTmp.GetLength() > 0) strFontName = strTmp;
 
 	pUI->SetFont( strFontName, dlg.GetSize()/10, dlg.IsBold(), dlg.IsItalic());
 	COLORREF color = dlg.GetColor();
 	D3DCOLOR d3dColor = 0xff000000| ((color&0x00ff0000)>>16) | (color&0x0000ff00) | ((color&0x000000ff)<<16);
 	pUI->SetColor(d3dColor);
-	// style ÁöÁ¤
-	pFrm->MessageBox("1. ¿ÞÂÊ Ã¢¿¡¼­ ¡Ù¡Ú¡Ù¡Ú[[[Style]]]¡Ù¡Ú¡Ù¡ÚÀ» ÁöÁ¤ÇØÁÖ½Ã°í(Áß¿ä),\n2. À§Ä¡¿Í Å©±â¸¦ Á¤ÇØÁÖ¼¼¿ä.\n3. Ç¥½ÃµÉ ±ÛÀÚ°¡ ÀÖÀ¸¸é ¿ÞÂÊ ¾Æ·¡Ã¢¿¡ ½áÁÖ¼¼¿ä.");
+	// style ï¿½ï¿½ï¿½ï¿½
+	pFrm->MessageBox("1. ï¿½ï¿½ï¿½ï¿½ Ã¢ï¿½ï¿½ï¿½ï¿½ ï¿½Ù¡Ú¡Ù¡ï¿½[[[Style]]]ï¿½Ù¡Ú¡Ù¡ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö½Ã°ï¿½(ï¿½ß¿ï¿½),\n2. ï¿½ï¿½Ä¡ï¿½ï¿½ Å©ï¿½â¸¦ ï¿½ï¿½ï¿½ï¿½ï¿½Ö¼ï¿½ï¿½ï¿½.\n3. Ç¥ï¿½Ãµï¿½ ï¿½ï¿½ï¿½Ú°ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Æ·ï¿½Ã¢ï¿½ï¿½ ï¿½ï¿½ï¿½Ö¼ï¿½ï¿½ï¿½.");
 	return TRUE;
 }
 
 BOOL CUIEDoc::SetTrackBarInfos(CN3UITrackBar* pUI)
 {
 	CMainFrame* pFrm = (CMainFrame*)AfxGetMainWnd();
-	// backgroundÀÌ¹ÌÁö¿Í thumbÀÌ¹ÌÁö¸¦ ¼³Á¤ÇÏ°í
+	// backgroundï¿½Ì¹ï¿½ï¿½ï¿½ï¿½ï¿½ thumbï¿½Ì¹ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï°ï¿½
 	CN3UIImage* pUIImage = pUI->GetBkGndImgRef();
 	ASSERT(pUIImage);
-	// texture ¼³Á¤
+	// texture ï¿½ï¿½ï¿½ï¿½
 	char szTexture[_MAX_PATH];
 	while(1)
 	{
@@ -663,7 +663,7 @@ BOOL CUIEDoc::SetTrackBarInfos(CN3UITrackBar* pUI)
 		if (NULL == pUIImage->GetTex())	return FALSE;
 		else break;
 	}
-	// imageÀÇ normal on down disable±×¸² ¿µ¿ª ¼³Á¤
+	// imageï¿½ï¿½ normal on down disableï¿½×¸ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	CDlgTexture dlg;
 	dlg.SetTexture(szTexture);
 	char szNames[2][20] = {"Back", "Thumb"};
@@ -685,7 +685,7 @@ BOOL CUIEDoc::SetTrackBarInfos(CN3UITrackBar* pUI)
 		rcRegion.OffsetRect(-rcRegion.TopLeft());
 		pUIImage->SetRegion(rcRegion);
 	}
-	// background image¿µ¿ªÀ» °¡Á®¿Í trackbar ¿µ¿ªÀ» ¼³Á¤
+	// background imageï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ trackbar ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	rcRegion = dlg.GetImageRect(0);
 	rcRegion.OffsetRect(-rcRegion.TopLeft());
 	pUI->SetRegion(rcRegion);
@@ -697,7 +697,7 @@ BOOL CUIEDoc::SetButtonInfos(CN3UIButton* pUI)
 	CMainFrame* pFrm = (CMainFrame*)AfxGetMainWnd();
 	CN3UIImage* pUIImage = pUI->GetImageRef(CN3UIButton::BS_NORMAL);
 	ASSERT(pUIImage);
-	// texture ¼³Á¤
+	// texture ï¿½ï¿½ï¿½ï¿½
 	char szTexture[_MAX_PATH];
 	while(1)
 	{
@@ -706,7 +706,7 @@ BOOL CUIEDoc::SetButtonInfos(CN3UIButton* pUI)
 		if (NULL == pUIImage->GetTex()) return FALSE;
 		else break;
 	}
-	// imageÀÇ normal on down disable±×¸² ¿µ¿ª ¼³Á¤
+	// imageï¿½ï¿½ normal on down disableï¿½×¸ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	CDlgTexture dlg;
 	dlg.SetTexture(szTexture);
 	char szNames[4][_MAX_PATH] = {"Normal", "Down", "On", "Disable"};
@@ -736,7 +736,7 @@ void CUIEDoc::OnFileExportTooltip()
 {
 	CN3UIBase* pUI = this->GetSelectedUI();
 	if (NULL == pUI) return;
-	ASSERT(UI_TYPE_STATIC == pUI->UIType());	// tooltipÀº static¿¡¼­ »ó¼Ó¹Þ°í µû·Î ÀúÀåÇÏ´Â Á¤º¸°¡ ¾ø´Ù.
+	ASSERT(UI_TYPE_STATIC == pUI->UIType());	// tooltipï¿½ï¿½ staticï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ó¹Þ°ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½.
 
 	DWORD dwFlags = OFN_HIDEREADONLY | OFN_OVERWRITEPROMPT;
 	CFileDialog dlg(FALSE, "uif", NULL, dwFlags, "UI Files(*.uif)|*.uif;||", NULL);
@@ -799,7 +799,7 @@ void CUIEDoc::OnEditDuplicate()
 				*pUINew = *((CN3UIStatic*)pUISrc); 
 				pUIDest = pUINew;
 			} 
-			break;	// static (¹è°æ±×¸²°ú ±ÛÀÚ°¡ ³ª¿À´Â Å¬·¡½º)
+			break;	// static (ï¿½ï¿½ï¿½×¸ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ú°ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Å¬ï¿½ï¿½ï¿½ï¿½)
 		case UI_TYPE_PROGRESS:	
 			{ 
 				CN3UIProgress* pUINew = new CN3UIProgress();	
@@ -884,7 +884,7 @@ void CUIEDoc::OnEditDuplicate()
 		pUIDest->MoveOffset(10, 10);
 	}
 
-	// region °»½ÅÇÏ´Â ÇÔ¼ö ¸¸µé¾î¼­ Ã³¸®ÇÏ±â
+	// region ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½ ï¿½Ô¼ï¿½ ï¿½ï¿½ï¿½ï¿½î¼­ Ã³ï¿½ï¿½ï¿½Ï±ï¿½
 	CMainFrame* pFrm = (CMainFrame*)AfxGetMainWnd();
 	pFrm->GetRightPane()->SelectRectType(CUIEView::RT_REGION);
 
@@ -902,11 +902,11 @@ void CUIEDoc::OnEditMakeGroup()
 	{
 		pUI = *it;
 		if(iUIC == iUIC) pUIFirst = pUI;
-		else // ¸ðµÎ °°Àº ÆÐ¾î·±Æ®ÀÎÁö È®ÀÎ..
+		else // ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ð¾î·±Æ®ï¿½ï¿½ï¿½ï¿½ È®ï¿½ï¿½..
 		{
 			if(pUIFirst->GetParent() != pUI->GetParent())
 			{
-				MessageBox(AfxGetMainWnd()->m_hWnd, "±×·ì½ÃÅ³ UI ´Â ¸ðµÎ °°Àº ÆÐ¾î·±Æ®¿¡ ÀÖ¾î¾ß ÇÕ´Ï´Ù.", "±×·ìÁöÁ¤ ½ÇÆÐ", MB_OK);
+				MessageBox(AfxGetMainWnd()->m_hWnd, "ï¿½×·ï¿½ï¿½Å³ UI ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ð¾î·±Æ®ï¿½ï¿½ ï¿½Ö¾ï¿½ï¿½ ï¿½Õ´Ï´ï¿½.", "ï¿½×·ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½", MB_OK);
 				return;
 			}
 		}
@@ -914,13 +914,13 @@ void CUIEDoc::OnEditMakeGroup()
 	
 	if(iUIC <= 1)
 	{
-		MessageBox(AfxGetMainWnd()->m_hWnd, "µÎ°³ÀÌ»óÀÇ UI ¸¦ ¼±ÅÃÇØ¾ß ±×·ìÀ» ¸¸µé¼ö ÀÖ½À´Ï´Ù.", "±×·ìÁöÁ¤ ½ÇÆÐ", MB_OK);
+		MessageBox(AfxGetMainWnd()->m_hWnd, "ï¿½Î°ï¿½ï¿½Ì»ï¿½ï¿½ï¿½ UI ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ø¾ï¿½ ï¿½×·ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ö½ï¿½ï¿½Ï´ï¿½.", "ï¿½×·ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½", MB_OK);
 		return;
 	}
 
 	CN3UIBase* pUIParentOld = pUIFirst->GetParent();
 	CN3UIBase* pUIParentNew = new CN3UIBase();
-	pUIParentNew->Init(pUIParentOld); // ±×·ìÀ» ¿¹Àü ÆÐ¾î·±Æ® ¹Ø¿¡ ³Ö°í..
+	pUIParentNew->Init(pUIParentOld); // ï¿½×·ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ð¾î·±Æ® ï¿½Ø¿ï¿½ ï¿½Ö°ï¿½..
 	
 	it = m_SelectedUIs.begin();
 	itEnd = m_SelectedUIs.end();
@@ -1048,13 +1048,13 @@ void CUIEDoc::OnEditReplaceTex()
 	if (m_RootUI.ReplaceAllTextures(LPCTSTR(dlg.m_strFind), LPCTSTR(dlg.m_strReplace)))
 	{
 		CString strMsg;
-		strMsg.Format("%s ÅØ½ºÃÄ¸¦ %s ÅØ½ºÃÄ·Î ¸ðµÎ ¹Ù²Ù¾ú½À´Ï´Ù.", dlg.m_strFind, dlg.m_strReplace);
+		strMsg.Format("%s ï¿½Ø½ï¿½ï¿½Ä¸ï¿½ %s ï¿½Ø½ï¿½ï¿½Ä·ï¿½ ï¿½ï¿½ï¿½ ï¿½Ù²Ù¾ï¿½ï¿½ï¿½ï¿½Ï´ï¿½.", dlg.m_strFind, dlg.m_strReplace);
 		AfxGetMainWnd()->MessageBox(strMsg);
 	}
 	else
 	{
 		CString strMsg;
-		strMsg.Format("%s ÅØ½ºÃÄ¸¦ %s ÅØ½ºÃÄ ¹Ù²Ù±â ½ÇÆÐ ÇÏ¿´½À´Ï´Ù.", dlg.m_strFind, dlg.m_strReplace);
+		strMsg.Format("%s ï¿½Ø½ï¿½ï¿½Ä¸ï¿½ %s ï¿½Ø½ï¿½ï¿½ï¿½ ï¿½Ù²Ù±ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ï¿ï¿½ï¿½ï¿½ï¿½Ï´ï¿½.", dlg.m_strFind, dlg.m_strReplace);
 		AfxGetMainWnd()->MessageBox(strMsg);
 	}
 }
@@ -1084,7 +1084,7 @@ void CUIEDoc::OnBatchToolChangeImagePath()
 	if(dlg.DoModal() == IDCANCEL) return;
 
 
-	CDlgChangeImage dlg2; // ÀÌ¹ÌÁö ÆÄÀÏ ÀÌ¸§ °¡Á®¿À±â..
+	CDlgChangeImage dlg2; // ï¿½Ì¹ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ì¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½..
 	if(dlg2.DoModal() == IDCANCEL) return;
 
 	CN3Texture Tex;
@@ -1116,7 +1116,7 @@ void CUIEDoc::OnBatchToolChangeFont()
 
 	if(dlg.DoModal() == IDCANCEL) return;
 
-	CFontDialog dlg2; // ÀÌ¹ÌÁö ÆÄÀÏ ÀÌ¸§ °¡Á®¿À±â..
+	CFontDialog dlg2; // ï¿½Ì¹ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ì¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½..
 	if(dlg2.DoModal() == IDCANCEL) return;
 
 	CN3Texture Tex;
@@ -1156,14 +1156,14 @@ void CUIEDoc::OnBatchToolGatherImageFileName()
 		base.GatherImageFileName(setImgFNs);
 	}
  
-	// Æú´õ ¼±ÅÃÇÏ±â..
+	// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï±ï¿½..
 	char szFolder[_MAX_PATH] = "";
 	BROWSEINFO bi;
 	LPCITEMIDLIST lpidl;
     bi.hwndOwner = AfxGetMainWnd()->m_hWnd;
     bi.pidlRoot=NULL;
     bi.pszDisplayName = szFolder;
-    bi.lpszTitle="ÆÄÀÏÀÌ¸§À» ºñ±³ÇÒ Æú´õ¸¦ ¼±ÅÃÇØÁÖ¼¼¿ä";
+    bi.lpszTitle="ï¿½ï¿½ï¿½ï¿½ï¿½Ì¸ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö¼ï¿½ï¿½ï¿½";
     bi.ulFlags=BIF_RETURNONLYFSDIRS;
     bi.lpfn=NULL;
     bi.lParam=0;

@@ -453,7 +453,7 @@ void CPlayerBase::RenderShadow()
 	mtx._42 = 0.05f;
 	mtx._43 -= 0.1f;
 	s_lpD3DDev->SetTransform(D3DTS_WORLD, &mtx);
-	s_lpD3DDev->SetVertexShader(FVF_XYZT1);
+	s_lpD3DDev->SetFVF(FVF_XYZT1);
 
 	for(int i = 0; i < 4; i++)
 		m_vShadows[i].y = s_pTerrain->GetHeight(mtx._41 + m_vShadows[i].x, mtx._43 + m_vShadows[i].z);
@@ -483,7 +483,7 @@ void CPlayerBase::RenderChrInRect(CN3Chr* pChr, const RECT& Rect)
 	else rcViewport.bottom = Rect.bottom;
 
 	// set viewport
-	D3DVIEWPORT8 vp;
+	D3DVIEWPORT9 vp;
 	vp.X = rcViewport.left;
 	vp.Y = rcViewport.top;
 	vp.Width = rcViewport.right - rcViewport.left;
@@ -2288,7 +2288,7 @@ void CPlayerBase::RenderShadow(float fAngle)
 	static DWORD dwAlpha, dwFog, dwCull, dwColorVertex, dwMaterial, dwZWrite, 
 		dwColorOp0, dwColorArg01, dwColorArg02, dwColorOp1, dwColorArg11, dwColorArg12, 
 		dwAlphaOp0, dwAlphaArg01, dwAlphaArg02, dwAlphaOp1, dwAlphaArg11, dwAlphaArg12, dwSrcBlend, dwDestBlend, dwBlendOp,
-		dwMagFilter0, dwMinFilter0, dwMagFilter1, dwMinFilter1;
+		dwMagFilter1, dwMinFilter1, dwMipFilter1, dwMagFilter2, dwMinFilter2, dwMipFilter2;
 
 	CN3Base::s_lpD3DDev->GetRenderState(D3DRS_ALPHABLENDENABLE, &dwAlpha);
 	CN3Base::s_lpD3DDev->GetRenderState(D3DRS_FOGENABLE, &dwFog);
@@ -2300,18 +2300,18 @@ void CPlayerBase::RenderShadow(float fAngle)
 	CN3Base::s_lpD3DDev->GetTextureStageState(0, D3DTSS_COLORARG1, &dwColorArg01);
 	CN3Base::s_lpD3DDev->GetTextureStageState(0, D3DTSS_COLORARG2, &dwColorArg02);
 	CN3Base::s_lpD3DDev->GetTextureStageState(1, D3DTSS_COLOROP, &dwColorOp1);
-	CN3Base::s_lpD3DDev->GetTextureStageState(1, D3DTSS_COLORARG1, &dwColorArg11);
-	CN3Base::s_lpD3DDev->GetTextureStageState(1, D3DTSS_COLORARG2, &dwColorArg12);
+	CN3Base::s_lpD3DDev->GetSamplerState(0, D3DSAMP_MAGFILTER, &dwMagFilter1);
+	CN3Base::s_lpD3DDev->GetSamplerState(0, D3DSAMP_MINFILTER, &dwMinFilter1);
+	CN3Base::s_lpD3DDev->GetSamplerState(0, D3DSAMP_MIPFILTER, &dwMipFilter1);
+	CN3Base::s_lpD3DDev->GetSamplerState(1, D3DSAMP_MAGFILTER, &dwMagFilter2);
+	CN3Base::s_lpD3DDev->GetSamplerState(1, D3DSAMP_MINFILTER, &dwMinFilter2);
+	CN3Base::s_lpD3DDev->GetSamplerState(1, D3DSAMP_MIPFILTER, &dwMipFilter2);
 	CN3Base::s_lpD3DDev->GetTextureStageState(0, D3DTSS_ALPHAOP, &dwAlphaOp0);
 	CN3Base::s_lpD3DDev->GetTextureStageState(0, D3DTSS_ALPHAARG1, &dwAlphaArg01);
 	CN3Base::s_lpD3DDev->GetTextureStageState(0, D3DTSS_ALPHAARG2, &dwAlphaArg02);
 	CN3Base::s_lpD3DDev->GetTextureStageState(1, D3DTSS_ALPHAOP, &dwAlphaOp1);
 	CN3Base::s_lpD3DDev->GetTextureStageState(1, D3DTSS_ALPHAARG1, &dwAlphaArg11);
 	CN3Base::s_lpD3DDev->GetTextureStageState(1, D3DTSS_ALPHAARG2, &dwAlphaArg12);
-	CN3Base::s_lpD3DDev->GetTextureStageState(0, D3DTSS_MAGFILTER, &dwMagFilter0);
-	CN3Base::s_lpD3DDev->GetTextureStageState(0, D3DTSS_MINFILTER, &dwMinFilter0);
-	CN3Base::s_lpD3DDev->GetTextureStageState(1, D3DTSS_MAGFILTER, &dwMagFilter1);
-	CN3Base::s_lpD3DDev->GetTextureStageState(1, D3DTSS_MINFILTER, &dwMinFilter1);
 	CN3Base::s_lpD3DDev->GetRenderState(D3DRS_SRCBLEND, &dwSrcBlend);
 	CN3Base::s_lpD3DDev->GetRenderState(D3DRS_DESTBLEND, &dwDestBlend);
 	CN3Base::s_lpD3DDev->GetRenderState(D3DRS_BLENDOP, &dwBlendOp);
@@ -2328,18 +2328,22 @@ void CPlayerBase::RenderShadow(float fAngle)
 	CN3Base::s_lpD3DDev->SetTextureStageState(0, D3DTSS_ALPHAOP,  D3DTOP_MODULATE);
 	CN3Base::s_lpD3DDev->SetTextureStageState(0, D3DTSS_ALPHAARG1, D3DTA_TEXTURE);
 	CN3Base::s_lpD3DDev->SetTextureStageState(0, D3DTSS_ALPHAARG2, D3DTA_CURRENT);
+	D3DVIEWPORT9 vp;
+	CN3Base::s_lpD3DDev->GetViewport(&vp);
 	CN3Base::s_lpD3DDev->SetTexture(0, m_N3Tex.Get());
 
 	CN3Base::s_lpD3DDev->SetRenderState(D3DRS_BLENDOP, D3DBLENDOP_ADD);
 	CN3Base::s_lpD3DDev->SetRenderState(D3DRS_SRCBLEND, D3DBLEND_SRCALPHA);
 	CN3Base::s_lpD3DDev->SetRenderState(D3DRS_DESTBLEND, D3DBLEND_INVSRCALPHA);
 
-	CN3Base::s_lpD3DDev->SetTextureStageState(0, D3DTSS_MAGFILTER, D3DTEXF_LINEAR);
-	CN3Base::s_lpD3DDev->SetTextureStageState(0, D3DTSS_MINFILTER, D3DTEXF_LINEAR);
-	CN3Base::s_lpD3DDev->SetTextureStageState(1, D3DTSS_MAGFILTER, D3DTEXF_LINEAR);
-	CN3Base::s_lpD3DDev->SetTextureStageState(1, D3DTSS_MINFILTER, D3DTEXF_LINEAR);
+	CN3Base::s_lpD3DDev->SetSamplerState(0, D3DSAMP_MAGFILTER, D3DTEXF_LINEAR);
+	CN3Base::s_lpD3DDev->SetSamplerState(0, D3DSAMP_MINFILTER, D3DTEXF_LINEAR);
+	CN3Base::s_lpD3DDev->SetSamplerState(0, D3DSAMP_MIPFILTER, D3DTEXF_LINEAR);
+	CN3Base::s_lpD3DDev->SetSamplerState(1, D3DSAMP_MAGFILTER, D3DTEXF_LINEAR);
+	CN3Base::s_lpD3DDev->SetSamplerState(1, D3DSAMP_MINFILTER, D3DTEXF_LINEAR);
+	CN3Base::s_lpD3DDev->SetSamplerState(1, D3DSAMP_MIPFILTER, D3DTEXF_LINEAR);
 
-	CN3Base::s_lpD3DDev->SetVertexShader(FVF_VNT1);	
+	CN3Base::s_lpD3DDev->SetFVF(FVF_VNT1);	
 	CN3Base::s_lpD3DDev->DrawIndexedPrimitiveUP(D3DPT_TRIANGLELIST, 0, 4, 2, m_pIndex, D3DFMT_INDEX16, m_vTVertex, sizeof(__VertexT1) );
 
 	//..
@@ -2353,13 +2357,12 @@ void CPlayerBase::RenderShadow(float fAngle)
 	CN3Base::s_lpD3DDev->SetTextureStageState(0, D3DTSS_ALPHAARG1, dwAlphaArg01);
 	CN3Base::s_lpD3DDev->SetTextureStageState(0, D3DTSS_ALPHAARG2, dwAlphaArg02);
 	CN3Base::s_lpD3DDev->SetTextureStageState(1, D3DTSS_ALPHAOP, dwAlphaOp1);
-	CN3Base::s_lpD3DDev->SetTextureStageState(1, D3DTSS_ALPHAARG1, dwAlphaArg11);
-	CN3Base::s_lpD3DDev->SetTextureStageState(1, D3DTSS_ALPHAARG2, dwAlphaArg12);
-
-	CN3Base::s_lpD3DDev->SetTextureStageState(0, D3DTSS_MAGFILTER, dwMagFilter0);
-	CN3Base::s_lpD3DDev->SetTextureStageState(0, D3DTSS_MINFILTER, dwMinFilter0);
-	CN3Base::s_lpD3DDev->SetTextureStageState(1, D3DTSS_MAGFILTER, dwMagFilter1);
-	CN3Base::s_lpD3DDev->SetTextureStageState(1, D3DTSS_MINFILTER, dwMinFilter1);
+	CN3Base::s_lpD3DDev->SetSamplerState(0, D3DSAMP_MAGFILTER, dwMagFilter1);
+	CN3Base::s_lpD3DDev->SetSamplerState(0, D3DSAMP_MINFILTER, dwMinFilter1);
+	CN3Base::s_lpD3DDev->SetSamplerState(0, D3DSAMP_MIPFILTER, dwMipFilter1);
+	CN3Base::s_lpD3DDev->SetSamplerState(1, D3DSAMP_MAGFILTER, dwMagFilter2);
+	CN3Base::s_lpD3DDev->SetSamplerState(1, D3DSAMP_MINFILTER, dwMinFilter2);
+	CN3Base::s_lpD3DDev->SetSamplerState(1, D3DSAMP_MIPFILTER, dwMipFilter2);
 
 	CN3Base::s_lpD3DDev->SetRenderState(D3DRS_COLORVERTEX, dwColorVertex);
 	CN3Base::s_lpD3DDev->SetRenderState(D3DRS_DIFFUSEMATERIALSOURCE, dwMaterial);
@@ -2451,11 +2454,11 @@ void CPlayerBase::CalcPlug(CN3CPlugBase* pPlug, const __Matrix44* pmtxJoint, __M
 	float t, u, v, fx, fz;
 
 #ifdef _USE_VERTEXBUFFER
-	LPDIRECT3DVERTEXBUFFER8	pBuf = NULL;
+	LPDIRECT3DVERTEXBUFFER9	pBuf = NULL;
 	__VertexT1*	pVerT1 = NULL;
 	pBuf = pPlug->PMeshInst()->GetVertexBuffer();
 	if (pBuf)
-		pBuf->Lock(0, 0, (BYTE**)(&pVerT1), 0);
+		pBuf->Lock(0, 0, (void**)(&pVerT1), 0);
 #else 
 	__VertexT1*	pVerT1 = NULL;
 	pVerT1 = pPlug->PMeshInst()->GetVertices();

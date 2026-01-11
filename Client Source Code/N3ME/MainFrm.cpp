@@ -210,12 +210,12 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 	m_wndToolBar.SetBarStyle(m_wndToolBar.GetBarStyle() |
 		CBRS_TOOLTIPS | CBRS_FLYBY);
 
-	// °æ·Î ¼³Á¤..
+	// ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½..
 	char szPathCur[256] = "";
 	GetCurrentDirectory(256, szPathCur);
 	CN3Base::PathSet(szPathCur);
 	
-	// ¿£Áø ÃÊ±âÈ­
+	// ï¿½ï¿½ï¿½ï¿½ ï¿½Ê±ï¿½È­
 	m_pEng = new CN3EngTool();
 	//m_pEng->InitEnv();
 	m_pEng->Init(TRUE, m_hWnd, 32, 32, 0, TRUE);
@@ -231,17 +231,17 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 	m_pDTexMng = new CDTexMng;
 	m_pDTexMng->Init(this);
 
-	// ±âº» ¸®¼Ò½º ÀÐ±â..
+	// ï¿½âº» ï¿½ï¿½ï¿½Ò½ï¿½ ï¿½Ð±ï¿½..
 	m_pMapMng->LoadSourceObjects();
 	m_pDTexGroupMng->Init(this);
 	//m_pDTexGroupMng->LoadFromFile();
 	m_pDTexMng->Init(this);
 	//m_pDTexMng->LoadFromFile();
 
-	// Åø¹Ù ´ÙÀÌ¾ó·Î±× Á¤º¸..
+	// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ì¾ï¿½Î±ï¿½ ï¿½ï¿½ï¿½ï¿½..
 	m_wndDlgBar.SetDlgItemText(IDC_E_PATH, m_pEng->PathGet().c_str());
 
-	//¾¾¾Ñ »Ñ¸®±â °ü·Ã Å¬·¡½º ÃÊ±âÈ­..
+	//ï¿½ï¿½ï¿½ï¿½ ï¿½Ñ¸ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ Å¬ï¿½ï¿½ï¿½ï¿½ ï¿½Ê±ï¿½È­..
 	m_pDlgSowSeed = new CDlgSowSeed;
 	m_pDlgSowSeed->Create(IDD_SOW_SEED,this);
 	m_pDlgSowSeed->ShowWindow(FALSE);
@@ -338,18 +338,18 @@ void CMainFrame::OnCursorDtex()
 {
 	ASSERT(m_pMapMng);
 /*
-	LPDIRECT3DSURFACE8 pBackBuff;
+	LPDIRECT3DSURFACE9 pBackBuff;
 	HRESULT hr;
 	hr = m_pEng->s_lpD3DDev->GetBackBuffer(0, D3DBACKBUFFER_TYPE_MONO, &pBackBuff);
 	D3DSURFACE_DESC desc;
 	hr = pBackBuff->GetDesc(&desc);
 	if(desc.Format!=D3DFMT_X8R8G8B8)
 	{
-		MessageBox("È­¸é»ö»ó ¸ðµå°¡ 32bit¸ðµåÀÌ¾î¾ß ÇÕ´Ï´Ù..","°æ°í!!");
+		MessageBox("È­ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½å°¡ 32bitï¿½ï¿½ï¿½ï¿½Ì¾ï¿½ï¿½ ï¿½Õ´Ï´ï¿½..","ï¿½ï¿½ï¿½!!");
 	}
 */	
 	m_pMapMng->SetCursorMode(CM_SET_DTEX);
-//	this->OnViewDtex(); // È­¸é¿¡ Å¸ÀÏ ÅØ½ºÃ³ ±×·ì ´ÙÀÌ¾ó·Î±×¸¦ ¿­¾îÁØ´Ù..
+//	this->OnViewDtex(); // È­ï¿½é¿¡ Å¸ï¿½ï¿½ ï¿½Ø½ï¿½Ã³ ï¿½×·ï¿½ ï¿½ï¿½ï¿½Ì¾ï¿½Î±×¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ø´ï¿½..
 }
 void CMainFrame::OnCursorEditRiver() 
 {	ASSERT(m_pMapMng);	m_pMapMng->SetCursorMode(CM_EDIT_RIVER);}
@@ -474,8 +474,8 @@ void CMainFrame::OnUpdateViewHideObj(CCmdUI* pCmdUI)
 {
 	ASSERT(m_pMapMng);
 
-	if(m_pMapMng->m_bHideObj) pCmdUI->SetText("¿ÀºêÁ§Æ® º¸ÀÌ±â\tH");
-	if(!m_pMapMng->m_bHideObj) pCmdUI->SetText("¿ÀºêÁ§Æ® °¨Ãß±â\tH");	
+	if(m_pMapMng->m_bHideObj) pCmdUI->SetText("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ï¿½ï¿½Ì±ï¿½\tH");
+	if(!m_pMapMng->m_bHideObj) pCmdUI->SetText("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ï¿½ï¿½ß±ï¿½\tH");	
 }
 
 void CMainFrame::OnTipFocusSelobj() 
@@ -579,10 +579,10 @@ void CMainFrame::OnResourcePathSet()
 	if(IDCANCEL == dlg.DoModal()) return;
 	
 	std::string szPath = dlg.GetPath();
-	CN3Base::PathSet(szPath); // °æ·Î ¼³Á¤..
+	CN3Base::PathSet(szPath); // ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½..
 	m_wndDlgBar.SetDlgItemText(IDC_E_PATH, szPath.c_str());
 	
-	// ±âº» ¸®¼Ò½º ÀÐ±â..
+	// ï¿½âº» ï¿½ï¿½ï¿½Ò½ï¿½ ï¿½Ð±ï¿½..
 	m_pMapMng->LoadSourceObjects();
 	
 }
@@ -622,7 +622,7 @@ void CMainFrame::UpdateTransformInfo()
 	m_wndDlgBar.UpdateInfo();
 }
 
-void CMainFrame::OnTipDefaultMaterial() // ±âº»ÀçÁú·Î ¸¸µé±â.
+void CMainFrame::OnTipDefaultMaterial() // ï¿½âº»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½.
 {
 	ASSERT(m_pMapMng);
 
@@ -633,12 +633,12 @@ void CMainFrame::OnTipDefaultMaterial() // ±âº»ÀçÁú·Î ¸¸µé±â.
 		if(pObj->Type() & OBJ_SHAPE)
 		{
 			CN3Shape* pShape = (CN3Shape*)pObj;
-			pShape->MakeDefaultMaterial(); // ±âº»ÀçÁú·Î ¸¸µé±â.
+			pShape->MakeDefaultMaterial(); // ï¿½âº»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½.
 		}
 	}
 }
 
-void CMainFrame::OnTipRemoveAlphaflag() // ¾ËÆÄ ºí·»µù ÇÃ·¡±× Á¦°Å..
+void CMainFrame::OnTipRemoveAlphaflag() // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ã·ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½..
 {
 	ASSERT(m_pMapMng);
 
@@ -649,7 +649,7 @@ void CMainFrame::OnTipRemoveAlphaflag() // ¾ËÆÄ ºí·»µù ÇÃ·¡±× Á¦°Å..
 		if(pObj->Type() & OBJ_SHAPE)
 		{
 			CN3Shape* pShape = (CN3Shape*)pObj;
-			pShape->RemoveRenderFlags(RF_ALPHABLENDING); // ¾ËÆÄ ºí·»µù ÇÃ·¡±× Á¦°Å..
+			pShape->RemoveRenderFlags(RF_ALPHABLENDING); // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ã·ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½..
 		}
 	}
 }
@@ -694,7 +694,7 @@ void CMainFrame::OnTipSowSeed()
 	if(!m_pDlgSowSeed->m_hWnd) m_pDlgSowSeed->Create(IDD_SOW_SEED);
 	m_pDlgSowSeed->ShowWindow(TRUE);
 
-	// Ç®½É±â 
+	// Ç®ï¿½É±ï¿½ 
 	if( m_pMapMng)
 	{
 		m_pMapMng->SetCursorMode(CM_EDIT_SEED);

@@ -37,14 +37,14 @@ CNPCPathMgr::CNPCPathMgr()
 	m_pppRefEvent = NULL;
 	m_bRenderMovableRegion = false;
 
-	m_BaseCube[0].Set(0, 1, 0);	// ¾ÕÂÊ LT
-	m_BaseCube[1].Set(1, 1, 0);	// ¾ÕÂÊ RT
-	m_BaseCube[2].Set(0, 0, 0); // ¾ÕÂÊ LB
-	m_BaseCube[3].Set(1, 0, 0); // ¾ÕÂÊ RB
-	m_BaseCube[4].Set(0, 1, 1); // µÚÂÊ LT
-	m_BaseCube[5].Set(1, 1, 1); // µÚÂÊ RT
-	m_BaseCube[6].Set(0, 0, 1); // µÚÂÊ LB
-	m_BaseCube[7].Set(1, 0, 1);	// µÚÂÊ RB 
+	m_BaseCube[0].Set(0, 1, 0);	// ï¿½ï¿½ï¿½ï¿½ LT
+	m_BaseCube[1].Set(1, 1, 0);	// ï¿½ï¿½ï¿½ï¿½ RT
+	m_BaseCube[2].Set(0, 0, 0); // ï¿½ï¿½ï¿½ï¿½ LB
+	m_BaseCube[3].Set(1, 0, 0); // ï¿½ï¿½ï¿½ï¿½ RB
+	m_BaseCube[4].Set(0, 1, 1); // ï¿½ï¿½ï¿½ï¿½ LT
+	m_BaseCube[5].Set(1, 1, 1); // ï¿½ï¿½ï¿½ï¿½ RT
+	m_BaseCube[6].Set(0, 0, 1); // ï¿½ï¿½ï¿½ï¿½ LB
+	m_BaseCube[7].Set(1, 0, 1);	// ï¿½ï¿½ï¿½ï¿½ RB 
 
 	m_LTStartVertex.Set(0,0,0);
 	m_RBStartVertex.Set(0,0,0);
@@ -69,14 +69,14 @@ CNPCPathMgr::CNPCPathMgr(CMapMng* pMapMng)
 	m_pppRefEvent = NULL;
 	m_bRenderMovableRegion = false;
 
-	m_BaseCube[0].Set(0, 1, 0);	// ¾ÕÂÊ LT
-	m_BaseCube[1].Set(1, 1, 0);	// ¾ÕÂÊ RT
-	m_BaseCube[2].Set(0, 0, 0); // ¾ÕÂÊ LB
-	m_BaseCube[3].Set(1, 0, 0); // ¾ÕÂÊ RB
-	m_BaseCube[4].Set(0, 1, 1); // µÚÂÊ LT
-	m_BaseCube[5].Set(1, 1, 1); // µÚÂÊ RT
-	m_BaseCube[6].Set(0, 0, 1); // µÚÂÊ LB
-	m_BaseCube[7].Set(1, 0, 1);	// µÚÂÊ RB 
+	m_BaseCube[0].Set(0, 1, 0);	// ï¿½ï¿½ï¿½ï¿½ LT
+	m_BaseCube[1].Set(1, 1, 0);	// ï¿½ï¿½ï¿½ï¿½ RT
+	m_BaseCube[2].Set(0, 0, 0); // ï¿½ï¿½ï¿½ï¿½ LB
+	m_BaseCube[3].Set(1, 0, 0); // ï¿½ï¿½ï¿½ï¿½ RB
+	m_BaseCube[4].Set(0, 1, 1); // ï¿½ï¿½ï¿½ï¿½ LT
+	m_BaseCube[5].Set(1, 1, 1); // ï¿½ï¿½ï¿½ï¿½ RT
+	m_BaseCube[6].Set(0, 0, 1); // ï¿½ï¿½ï¿½ï¿½ LB
+	m_BaseCube[7].Set(1, 0, 1);	// ï¿½ï¿½ï¿½ï¿½ RB 
 
 	m_LTStartVertex.Set(0,0,0);
 	m_RBStartVertex.Set(0,0,0);
@@ -115,7 +115,7 @@ CNPCPathMgr::~CNPCPathMgr()
 
 
 //
-//	FileNameÀº °æ·Î¸í ÇÏ³ªµµ ¾Èµé¾î°£ ¼ø¼öÇÑ ÆÄÀÏÀÌ¸§°ú È®ÀåÀÚ..
+//	FileNameï¿½ï¿½ ï¿½ï¿½Î¸ï¿½ ï¿½Ï³ï¿½ï¿½ï¿½ ï¿½Èµï¿½î°£ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ì¸ï¿½ï¿½ï¿½ È®ï¿½ï¿½ï¿½ï¿½..
 //
 void CNPCPathMgr::LoadFromFile(const char* FileName)
 {
@@ -158,7 +158,7 @@ void CNPCPathMgr::SaveToFile(const char* FileName)
 	GetCurrentDirectory(_MAX_PATH, szOldPath);	
 	SetCurrentDirectory(s_szPath.c_str());
 
-	CreateDirectory("npcpath", NULL); // °æ·Î ¸¸µé°í..
+	CreateDirectory("npcpath", NULL); // ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½..
 	char szNPCPathFileName[_MAX_PATH];
 	wsprintf(szNPCPathFileName, "%snpcpath\\%s.npi", s_szPath.c_str(), FileName);
 
@@ -182,7 +182,7 @@ void CNPCPathMgr::SaveToFile(const char* FileName)
 
 void CNPCPathMgr::MakeServerDataFile(const char* FullFileName)
 {
-	// text ÆÄÀÏ ¹öÀü...
+	// text ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½...
 	FILE* stream = fopen(FullFileName, "w");
 	if(!stream)	return;
 
@@ -306,7 +306,7 @@ BOOL CNPCPathMgr::MouseMsgFilter(LPMSG pMsg)
 			__Vector3 vec;
 			if(!pRefTerrain->Pick(point.x, point.y, &vec, NULL)) break;
 
-			if(m_pDlgMakePath->m_State==0)	// ½ÃÀÛ RECT ±×¸².
+			if(m_pDlgMakePath->m_State==0)	// ï¿½ï¿½ï¿½ï¿½ RECT ï¿½×¸ï¿½.
 			{
 				m_pCurrPath->m_LTStartVertex = m_LTStartVertex;
 				m_pCurrPath->m_RBStartVertex = m_RBStartVertex;
@@ -314,7 +314,7 @@ BOOL CNPCPathMgr::MouseMsgFilter(LPMSG pMsg)
 				//MakeStartRectVB(m_LTStartVertex, m_RBStartVertex, 0xff00ffff);
 			}
 
-			if(m_pDlgMakePath->m_State==1)	// ±æ ¸¸µê
+			if(m_pDlgMakePath->m_State==1)	// ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 			{
 				__Vector3 PrevPos;
 				if(false==m_pCurrPath->GetPath(m_pCurrPath->GetSize()-1, &PrevPos))	// 
@@ -343,7 +343,7 @@ BOOL CNPCPathMgr::MouseMsgFilter(LPMSG pMsg)
 				
 			}
 
-			if(m_pDlgMakePath->m_State==2)	// ½ÃÀÛ RECT ±×¸².
+			if(m_pDlgMakePath->m_State==2)	// ï¿½ï¿½ï¿½ï¿½ RECT ï¿½×¸ï¿½.
 			{
 				m_pCurrPath->m_LTActVertex = m_LTActVertex;
 				m_pCurrPath->m_RBActVertex = m_RBActVertex;
@@ -477,7 +477,7 @@ void CNPCPathMgr::Render()
 	D3DXMATRIX mtx;
 	D3DXMatrixIdentity(&mtx);
 		
-	hr = s_lpD3DDev->SetTransform(D3DTS_WORLD, &mtx); // ¿ùµå Çà·Ä Àû¿ë..
+	hr = s_lpD3DDev->SetTransform(D3DTS_WORLD, &mtx); // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½..
 	
 	// set texture
 	hr = s_lpD3DDev->SetTexture(0, NULL);
@@ -493,14 +493,14 @@ void CNPCPathMgr::Render()
 	hr = s_lpD3DDev->SetRenderState(D3DRS_ZENABLE, D3DZB_FALSE);
 	hr = s_lpD3DDev->SetRenderState(D3DRS_LIGHTING, FALSE);
 
-	hr = s_lpD3DDev->SetVertexShader(FVF_XYZCOLOR);
+	hr = s_lpD3DDev->SetFVF(FVF_XYZCOLOR);
 
-	//°¥ ¼ö ¾ø´Â °÷ »¡°£»öÀ¸·Î Ä¥ÇÏ±â..
+	//ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Ä¥ï¿½Ï±ï¿½..
 	hr = s_lpD3DDev->SetRenderState(D3DRS_ZENABLE, D3DZB_TRUE);
 	if(m_bRenderMovableRegion)RenderMovableRegion();
 	hr = s_lpD3DDev->SetRenderState(D3DRS_ZENABLE, D3DZB_FALSE);
 
-	//ÀÌ¹Ì ¸¸µé¾îÁø ±æ ±×¸®±â...
+	//ï¿½Ì¹ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½×¸ï¿½ï¿½ï¿½...
 	std::list<CNPCPath*>::iterator itPath;
 	std::list<__Vector3>::iterator itVertex;
 	CNPCPath* pPath;
@@ -539,7 +539,7 @@ void CNPCPathMgr::Render()
 		}
 	}
 
-	//´ÙÀÌ¾ó·Î±× Ã¢¿¡¼­ ¼±ÅÃµÈ ±æ ±×¸®±â..
+	//ï¿½ï¿½ï¿½Ì¾ï¿½Î±ï¿½ Ã¢ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ãµï¿½ ï¿½ï¿½ ï¿½×¸ï¿½ï¿½ï¿½..
 	CNPCPath* pSelPath = m_pDlgMakePath->m_pSelPath;
 	if(pSelPath)
 	{
@@ -566,7 +566,7 @@ void CNPCPathMgr::Render()
 		}
 	}
 
-	//¸¸µé°í ÀÖ´Â ±æ & ¿µ¿ª ±×¸®±â..
+	//ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ö´ï¿½ ï¿½ï¿½ & ï¿½ï¿½ï¿½ï¿½ ï¿½×¸ï¿½ï¿½ï¿½..
 	MakeRectVB(m_StartRectVB, m_pCurrPath->m_LTStartVertex, m_pCurrPath->m_RBStartVertex, 0xffff0000);
 	hr = s_lpD3DDev->DrawPrimitiveUP(D3DPT_LINELIST, 12, m_StartRectVB, sizeof(__VertexXyzColor));
 
@@ -704,7 +704,7 @@ void CNPCPathMgr::SetLTRB(__Vector3* pLT, __Vector3* pRB)
 
 void CNPCPathMgr::MakeRectVB(__VertexXyzColor* pVB, __Vector3 lt, __Vector3 rb, DWORD color)
 {
-	// »óÆÇ...
+	// ï¿½ï¿½ï¿½ï¿½...
 	pVB[0].Set(lt.x, lt.y, lt.z, color);
 	pVB[1].Set(lt.x, lt.y, rb.z, color);
 
@@ -717,7 +717,7 @@ void CNPCPathMgr::MakeRectVB(__VertexXyzColor* pVB, __Vector3 lt, __Vector3 rb, 
 	pVB[6] = pVB[5];
 	pVB[7] = pVB[0];
 
-	// ´Ù¸®..
+	// ï¿½Ù¸ï¿½..
 	pVB[8] = pVB[0];
 	pVB[9].Set(lt.x, rb.y, lt.z, color);
 
@@ -730,7 +730,7 @@ void CNPCPathMgr::MakeRectVB(__VertexXyzColor* pVB, __Vector3 lt, __Vector3 rb, 
 	pVB[14] = pVB[5];
 	pVB[15].Set(rb.x, rb.y, lt.z, color);
 
-	// ¹Ù´Ú...
+	// ï¿½Ù´ï¿½...
 	pVB[16] = pVB[9];
 	pVB[17] = pVB[11];
 
@@ -815,7 +815,7 @@ void CNPCPathMgr::RenderMovableRegion()
 		{
 			if(m_pppRefEvent[x][z]!=0) continue;
 
-			if((x+z)%2==0)	// ½½·¡½¬ ¸ð¾çÀÇ Å¸ÀÏ..
+			if((x+z)%2==0)	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ Å¸ï¿½ï¿½..
 			{
 				__Vector3 v;
 				v.x = x*TERRAIN_CELL_SIZE;
@@ -835,7 +835,7 @@ void CNPCPathMgr::RenderMovableRegion()
 				v.y = pRefTerrain->GetHeight(v.x, v.z) + 0.3f;
 				TileVB[3].Set(v.x, v.y, v.z, color);				
 			}
-			if((x+z)%2==1)	//¹é½½·¹½¬ ¸ð¾çÀÇ Å¸ÀÏ..
+			if((x+z)%2==1)	//ï¿½é½½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ Å¸ï¿½ï¿½..
 			{
 				__Vector3 v;
 				v.x = x*TERRAIN_CELL_SIZE;

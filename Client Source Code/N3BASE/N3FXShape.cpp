@@ -45,12 +45,12 @@ CN3FXSPart::~CN3FXSPart()
 
 void CN3FXSPart::Release()
 {
-	m_vPivot.Set(0,0,0); // Local Ãà
-	m_WorldMtx.Identity(); // World Matrix.. Shape Loading ¶§ ¹Ì¸® °è»êÇØ¾ß ÁÁ´Ù..		
-	m_bOutOfCameraRange = TRUE; // Camera ¹üÀ§ ¹Ù±ù¿¡ ÀÖÀ½...
+	m_vPivot.Set(0,0,0); // Local ï¿½ï¿½
+	m_WorldMtx.Identity(); // World Matrix.. Shape Loading ï¿½ï¿½ ï¿½Ì¸ï¿½ ï¿½ï¿½ï¿½ï¿½Ø¾ï¿½ ï¿½ï¿½ï¿½ï¿½..		
+	m_bOutOfCameraRange = TRUE; // Camera ï¿½ï¿½ï¿½ï¿½ ï¿½Ù±ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½...
 
 	m_fTexFPS = 10.0f; // Texture Animation Interval;
-	m_fTexIndex = 0; // Current Texture Index.. Animation ½ÃÅ³¶§ ÇÊ¿äÇÑ ÀÎµ¦½ºÀÌ´Ù..
+	m_fTexIndex = 0; // Current Texture Index.. Animation ï¿½ï¿½Å³ï¿½ï¿½ ï¿½Ê¿ï¿½ï¿½ï¿½ ï¿½Îµï¿½ï¿½ï¿½ï¿½Ì´ï¿½..
 
 	int iTC = m_TexRefs.size();
 	for(int i = 0; i < iTC; i++) s_MngTex.Delete(&m_TexRefs[i]);
@@ -94,7 +94,7 @@ void CN3FXSPart::TexSet(int iIndex, CN3Texture* pTex)
 	s_MngTex.Delete(&m_TexRefs[iIndex]);
 }
 
-// timeGetTime À¸·Î ¾òÀº °ªÀ» ³ÖÀ¸¸é Texture Animation À» ÄÁÆ®·Ñ ÇÑ´Ù..
+// timeGetTime ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Texture Animation ï¿½ï¿½ ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½Ñ´ï¿½..
 void CN3FXSPart::Tick(const __Matrix44& mtxParent) 
 {
 	CN3FXPMesh* pFXPMesh = m_FXPMInst.GetMesh();
@@ -107,10 +107,10 @@ void CN3FXSPart::Tick(const __Matrix44& mtxParent)
 	m_WorldMtx *= mtxParent;
 
 	////////////////////////////////////////////////////////////////////////////
-	// Ä«¸Þ¶ó¿Í ¸Ö¸® ¶³¾îÁö¸é Áö³ª°£´Ù..
+	// Ä«ï¿½Þ¶ï¿½ï¿½ ï¿½Ö¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½..
 	float fDist = (m_WorldMtx.Pos() - s_CameraData.vEye).Magnitude();
 	float fRadius = Radius();
-	if(s_CameraData.IsOutOfFrustum(this->m_WorldMtx.Pos(), fRadius * 3.0f)) // Ä«¸Þ¶ó »ç¸éÃ¼ ¹Ù±ùÀÌ¸é Áö³ª°£´Ù..
+	if(s_CameraData.IsOutOfFrustum(this->m_WorldMtx.Pos(), fRadius * 3.0f)) // Ä«ï¿½Þ¶ï¿½ ï¿½ï¿½ï¿½Ã¼ ï¿½Ù±ï¿½ï¿½Ì¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½..
 	{
 		m_bOutOfCameraRange = TRUE;
 		return;
@@ -118,7 +118,7 @@ void CN3FXSPart::Tick(const __Matrix44& mtxParent)
 	//
 	//////////////////////////////////////////////////////////////////////////////////
 
-	// Ä«¸Þ¶ó °Å¸®¿¡ µû¶ó LOD ¼öÁØÀ» Á¶ÀýÇÑ´Ù.
+	// Ä«ï¿½Þ¶ï¿½ ï¿½Å¸ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ LOD ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ñ´ï¿½.
 	float fLOD = fDist * s_CameraData.fFOV;
 	m_FXPMInst.SetLOD(fLOD);
 
@@ -136,7 +136,7 @@ void CN3FXSPart::Render()
 	CN3Base::s_RenderInfo.nShape_Part++; // Rendering Information Update...
 #endif
 	
-	LPDIRECT3DTEXTURE8 lpTex = NULL;
+	LPDIRECT3DTEXTURE9 lpTex = NULL;
 	int iTC = m_TexRefs.size();
 	if(iTC > 0)
 	{
@@ -146,7 +146,7 @@ void CN3FXSPart::Render()
 		else return;
 	}
 
-	if(m_Mtl.nRenderFlags & RF_ALPHABLENDING) // Alpha »ç¿ë
+	if(m_Mtl.nRenderFlags & RF_ALPHABLENDING) // Alpha ï¿½ï¿½ï¿½
 	{
 		__AlphaPrimitive* pAP = s_AlphaMgr.Add();
 		if(pAP)
@@ -167,10 +167,10 @@ void CN3FXSPart::Render()
 			pAP->pVertices			= m_FXPMInst.GetVertices();
 			pAP->pwIndices			= m_FXPMInst.GetIndices();
 		}
-		return; // ·»´õ¸µ ¾ÈÇÏÁö·Õ.
+		return; // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½.
 	}
 
-	s_lpD3DDev->SetMaterial(&m_Mtl); // ÀçÁú ¼³Á¤..
+	s_lpD3DDev->SetMaterial(&m_Mtl); // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½..
 	s_lpD3DDev->SetTexture(0, lpTex);
 	if(NULL != lpTex)
 	{
@@ -222,9 +222,9 @@ bool CN3FXSPart::Load(HANDLE hFile)
 	ReadFile(hFile, &m_vPivot, sizeof(__Vector3), &dwRWC, NULL);
 
 	ReadFile(hFile, &nL, 4, &dwRWC, NULL); // Mesh FileName
-	ReadFile(hFile, szFN, nL, &dwRWC, NULL); szFN[nL] = NULL; // ¸Þ½Ã ÆÄÀÏ ÀÌ¸§..
+	ReadFile(hFile, szFN, nL, &dwRWC, NULL); szFN[nL] = NULL; // ï¿½Þ½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ì¸ï¿½..
 
-	//m_pRefShapeÀÇ °æ·Î¿Í ÀÐ¾îµéÀÎ ÆÄÀÏ¸íÀ» ÇÕÃÄ¶ó...
+	//m_pRefShapeï¿½ï¿½ ï¿½ï¿½Î¿ï¿½ ï¿½Ð¾ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ï¸ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ä¶ï¿½...
 	char szPath[_MAX_PATH];
 	char szFName[_MAX_FNAME], szExt[_MAX_EXT];
 	char szDir[_MAX_DIR];
@@ -234,19 +234,19 @@ bool CN3FXSPart::Load(HANDLE hFile)
 
 	if(!this->MeshSet(szPath)) return false;
 
-	ReadFile(hFile, &m_Mtl, sizeof(__Material), &dwRWC, NULL); // ÀçÁú
+	ReadFile(hFile, &m_Mtl, sizeof(__Material), &dwRWC, NULL); // ï¿½ï¿½ï¿½ï¿½
 
 	int iTC = 0;
 	ReadFile(hFile, &iTC, 4, &dwRWC, NULL);
 	ReadFile(hFile, &m_fTexFPS, 4, &dwRWC, NULL);
 	m_TexRefs.clear();
-	this->TexAlloc(iTC); // Texture Pointer Pointer ÇÒ´ç..
-	for(int j = 0; j < iTC; j++) // Texture Count ¸¸Å­ ÆÄÀÏ ÀÌ¸§ ÀÐ¾î¼­ ÅØ½ºÃ³ ºÎ¸£±â..
+	this->TexAlloc(iTC); // Texture Pointer Pointer ï¿½Ò´ï¿½..
+	for(int j = 0; j < iTC; j++) // Texture Count ï¿½ï¿½Å­ ï¿½ï¿½ï¿½ï¿½ ï¿½Ì¸ï¿½ ï¿½Ð¾î¼­ ï¿½Ø½ï¿½Ã³ ï¿½Î¸ï¿½ï¿½ï¿½..
 	{
 		ReadFile(hFile, &nL, 4, &dwRWC, NULL);
 		if(nL > 0)
 		{
-			ReadFile(hFile, szFN, nL, &dwRWC, NULL); szFN[nL] = NULL; // ÅØ½ºÃ³ ÆÄÀÏ ÀÌ¸§..
+			ReadFile(hFile, szFN, nL, &dwRWC, NULL); szFN[nL] = NULL; // ï¿½Ø½ï¿½Ã³ ï¿½ï¿½ï¿½ï¿½ ï¿½Ì¸ï¿½..
 			
 			_splitpath(szFN, NULL, NULL, szFName, szExt);
 			_makepath(szPath, NULL, szDir, szFName, szExt);
@@ -269,8 +269,8 @@ void CN3FXSPart::Duplicate(CN3FXSPart* pSrc)
 	m_fTexFPS = m_fTexFPS;
 
 	m_TexRefs.clear();	
-	this->TexAlloc(iTC); // Texture Pointer Pointer ÇÒ´ç..
-	for(int j = 0; j < iTC; j++) // Texture Count ¸¸Å­ ÆÄÀÏ ÀÌ¸§ ÀÐ¾î¼­ ÅØ½ºÃ³ ºÎ¸£±â..
+	this->TexAlloc(iTC); // Texture Pointer Pointer ï¿½Ò´ï¿½..
+	for(int j = 0; j < iTC; j++) // Texture Count ï¿½ï¿½Å­ ï¿½ï¿½ï¿½ï¿½ ï¿½Ì¸ï¿½ ï¿½Ð¾î¼­ ï¿½Ø½ï¿½Ã³ ï¿½Î¸ï¿½ï¿½ï¿½..
 	{
 		if(pSrc->Tex(j))
 			m_TexRefs[j] = s_MngTex.Get(pSrc->Tex(j)->FileName());
@@ -348,8 +348,8 @@ void CN3FXShape::Tick(float fFrm)
 	}
 }
 
-// Ä«¸Þ¶ó À§Ä¡, Ä«¸Þ¶ó Æò¸é(°üÂû ÀýµÎÃ¼ Æò¸é) -> 12°³ÀÇ º¤ÅÍ ¹è¿­·Î µÇ¾î ÀÖ´Ù.
-// [0][1]:Ä«¸Þ¶ó À§Ä¡¿Í º¤ÅÍ, [2][3]:Ä«¸Þ¶ó ¹üÀ§ À§Ä¡¿Í ¹æÇâ º¤ÅÍ, [4][5] ~ [10][11]:»óÇÏÁÂ¿ìÆò¸éº¤ÅÍ
+// Ä«ï¿½Þ¶ï¿½ ï¿½ï¿½Ä¡, Ä«ï¿½Þ¶ï¿½ ï¿½ï¿½ï¿½(ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ã¼ ï¿½ï¿½ï¿½) -> 12ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½è¿­ï¿½ï¿½ ï¿½Ç¾ï¿½ ï¿½Ö´ï¿½.
+// [0][1]:Ä«ï¿½Þ¶ï¿½ ï¿½ï¿½Ä¡ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½, [2][3]:Ä«ï¿½Þ¶ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ä¡ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½, [4][5] ~ [10][11]:ï¿½ï¿½ï¿½ï¿½ï¿½Â¿ï¿½ï¿½ï¿½éº¤ï¿½ï¿½
 void CN3FXShape::Render()
 {
 	int iPC = m_Parts.size();
@@ -361,7 +361,7 @@ void CN3FXShape::Render()
 
 bool CN3FXShape::Load(HANDLE hFile)
 {
-	CN3TransformCollision::Load(hFile); // ±âº»Á¤º¸ ÀÐ±â...
+	CN3TransformCollision::Load(hFile); // ï¿½âº»ï¿½ï¿½ï¿½ï¿½ ï¿½Ð±ï¿½...
 
 	DWORD dwRWC = 0;
 	
@@ -378,16 +378,16 @@ bool CN3FXShape::Load(HANDLE hFile)
 			m_Parts[i] = new CN3FXSPart();
 			m_Parts[i]->m_pRefShape = this;
 			if(!m_Parts[i]->Load(hFile)) return false;
-			//m_Parts[i]->ReCalcMatrix(m_Matrix); // Part Matrix °è»ê
+			//m_Parts[i]->ReCalcMatrix(m_Matrix); // Part Matrix ï¿½ï¿½ï¿½
 		}
 	}
 
 	DWORD dwTmp;		
-	ReadFile(hFile, &dwTmp, 4, &dwRWC, NULL); // ¼Ò¼Ó
-	ReadFile(hFile, &dwTmp, 4, &dwRWC, NULL); // ¼Ó¼º 0
-	ReadFile(hFile, &dwTmp, 4, &dwRWC, NULL); // ¼Ó¼º 1
-	ReadFile(hFile, &dwTmp, 4, &dwRWC, NULL); // ¼Ó¼º 2
-	ReadFile(hFile, &dwTmp, 4, &dwRWC, NULL); // ¼Ó¼º 3
+	ReadFile(hFile, &dwTmp, 4, &dwRWC, NULL); // ï¿½Ò¼ï¿½
+	ReadFile(hFile, &dwTmp, 4, &dwRWC, NULL); // ï¿½Ó¼ï¿½ 0
+	ReadFile(hFile, &dwTmp, 4, &dwRWC, NULL); // ï¿½Ó¼ï¿½ 1
+	ReadFile(hFile, &dwTmp, 4, &dwRWC, NULL); // ï¿½Ó¼ï¿½ 2
+	ReadFile(hFile, &dwTmp, 4, &dwRWC, NULL); // ï¿½Ó¼ï¿½ 3
 
 	this->FindMinMax();
 
@@ -397,7 +397,7 @@ bool CN3FXShape::Load(HANDLE hFile)
 bool CN3FXShape::Save(HANDLE hFile)
 {
 	/*
-	CN3TransformCollision::Save(hFile); // ±âº»Á¤º¸ ÀÐ±â...
+	CN3TransformCollision::Save(hFile); // ï¿½âº»ï¿½ï¿½ï¿½ï¿½ ï¿½Ð±ï¿½...
 	
 	DWORD dwRWC = 0;
 	
@@ -411,11 +411,11 @@ bool CN3FXShape::Save(HANDLE hFile)
 		m_Parts[i]->Save(hFile);
 	}
 
-	WriteFile(hFile, &m_iBelong, 4, &dwRWC, NULL); // ¼Ò¼Ó
-	WriteFile(hFile, &m_iAttr0, 4, &dwRWC, NULL); // ¼Ó¼º 0
-	WriteFile(hFile, &m_iAttr1, 4, &dwRWC, NULL); // ¼Ó¼º 1
-	WriteFile(hFile, &m_iAttr2, 4, &dwRWC, NULL); // ¼Ó¼º 2
-	WriteFile(hFile, &m_iAttr3, 4, &dwRWC, NULL); // ¼Ó¼º 3
+	WriteFile(hFile, &m_iBelong, 4, &dwRWC, NULL); // ï¿½Ò¼ï¿½
+	WriteFile(hFile, &m_iAttr0, 4, &dwRWC, NULL); // ï¿½Ó¼ï¿½ 0
+	WriteFile(hFile, &m_iAttr1, 4, &dwRWC, NULL); // ï¿½Ó¼ï¿½ 1
+	WriteFile(hFile, &m_iAttr2, 4, &dwRWC, NULL); // ï¿½Ó¼ï¿½ 2
+	WriteFile(hFile, &m_iAttr3, 4, &dwRWC, NULL); // ï¿½Ó¼ï¿½ 3
 	*/
 	return true;
 }
@@ -443,15 +443,15 @@ void CN3FXShape::FindMinMax()
 	__Vector3 vMinTmp(0,0,0);
 	__Vector3 vMaxTmp(0,0,0);
 
-	// °¡Àå Å« ÁöÁ¡Ã£±â..
+	// ï¿½ï¿½ï¿½ï¿½ Å« ï¿½ï¿½ï¿½ï¿½Ã£ï¿½ï¿½..
 	static __Matrix44 mtxWI;
 	D3DXMatrixInverse(&mtxWI, NULL, &m_mtxFinalTransform); // World Matrix Inverse
 	int iPC = m_Parts.size();
 	for(int i = 0; i < iPC; i++)
 	{
 		//m_Parts[i]->ReCalcMatrix(m_mtxFinalTransform);
-		vMinTmp = m_Parts[i]->Min() * mtxWI; // ¿ùµå »óÀÇ ÃÖ¼Ò°ªÀ» ·ÎÄÃ ÁÂÇ¥·Î ¹Ù²Ù¾îÁØ´Ù..
-		vMaxTmp = m_Parts[i]->Max() * mtxWI; // ¿ùµå »óÀÇ ÃÖ´ë°ªÀ» ·ÎÄÃ ÁÂÇ¥·Î ¹Ù²Ù¾îÁØ´Ù..
+		vMinTmp = m_Parts[i]->Min() * mtxWI; // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ö¼Ò°ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ç¥ï¿½ï¿½ ï¿½Ù²Ù¾ï¿½ï¿½Ø´ï¿½..
+		vMaxTmp = m_Parts[i]->Max() * mtxWI; // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ö´ë°ªï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ç¥ï¿½ï¿½ ï¿½Ù²Ù¾ï¿½ï¿½Ø´ï¿½..
 
 		if(vMinTmp.x < vMin.x) vMin.x = vMinTmp.x;
 		if(vMinTmp.y < vMin.y) vMin.y = vMinTmp.y;
@@ -461,11 +461,11 @@ void CN3FXShape::FindMinMax()
 		if(vMaxTmp.z > vMax.z) vMax.z = vMaxTmp.z;
 	}
 
-	// ÃÖ´ë ÃÖ¼Ò°ªÀ» ÀúÀå
+	// ï¿½Ö´ï¿½ ï¿½Ö¼Ò°ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	m_vMin = vMin * m_mtxFinalTransform;
 	m_vMax = vMax * m_mtxFinalTransform;
 
-	// ÃÖ´ë ÃÖ¼Ò°ªÀ» °®°í ¹ÝÁö¸§ °è»êÇÑ´Ù..
+	// ï¿½Ö´ï¿½ ï¿½Ö¼Ò°ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ñ´ï¿½..
 	m_fRadius  = (m_vMax - m_vMin).Magnitude() * 0.5f;
 }
 
@@ -482,7 +482,7 @@ void CN3FXShape::Duplicate(CN3FXShape* pSrc)
 	m_dwLight = pSrc->m_dwLight;
 	m_dwDoubleSide = pSrc->m_dwDoubleSide;
 		
-	//CN3TransformCollision::Load(hFile); // ±âº»Á¤º¸ ÀÐ±â...
+	//CN3TransformCollision::Load(hFile); // ï¿½âº»ï¿½ï¿½ï¿½ï¿½ ï¿½Ð±ï¿½...
 	//transform collision...
 	SetRadius(pSrc->Radius());
 	SetMin(pSrc->Min());
@@ -522,7 +522,7 @@ void CN3FXShape::Duplicate(CN3FXShape* pSrc)
 			m_Parts[i] = new CN3FXSPart();
 			m_Parts[i]->m_pRefShape = this;
 			m_Parts[i]->Duplicate(pSrc->m_Parts[i]);
-			//m_Parts[i]->ReCalcMatrix(m_Matrix); // Part Matrix °è»ê
+			//m_Parts[i]->ReCalcMatrix(m_Matrix); // Part Matrix ï¿½ï¿½ï¿½
 		}
 	}
 

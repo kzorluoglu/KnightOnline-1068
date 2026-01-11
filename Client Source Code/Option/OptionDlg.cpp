@@ -66,7 +66,7 @@ COptionDlg::COptionDlg(CWnd* pParent /*=NULL*/)
 	// Note that LoadIcon does not require a subsequent DestroyIcon in Win32
 	m_hIcon = AfxGetApp()->LoadIcon(IDR_MAINFRAME);
 
-	m_Option.InitDefault(); // ¿É¼Ç ÃÊ±âÈ­
+	m_Option.InitDefault(); // ï¿½É¼ï¿½ ï¿½Ê±ï¿½È­
 }
 
 void COptionDlg::DoDataExchange(CDataExchange* pDX)
@@ -121,7 +121,7 @@ BOOL COptionDlg::OnInitDialog()
 	SetIcon(m_hIcon, TRUE);			// Set big icon
 	SetIcon(m_hIcon, FALSE);		// Set small icon
 	
-	// °¢Á¾ ÄÁÆ®·Ñ ÃÊ±âÈ­..
+	// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½Ê±ï¿½È­..
 	m_SldViewDist.SetRange(256, 512);
 	m_SldEffectSoundDist.SetRange(20, 48);
 
@@ -134,7 +134,7 @@ BOOL COptionDlg::OnInitDialog()
 	iAdd = m_CB_ColorDepth.AddString("32 Bit");		m_CB_ColorDepth.SetItemData(iAdd, 32);
 
 
-	// ·¹Áö½ºÆ®¸®¿¡¼­ ¼³Ä¡µÈ Æú´õ¸¦ ÀÐ¾î¿Â´Ù..
+	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ä¡ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ð¾ï¿½Â´ï¿½..
 	CString szProduct, szKey = "SOFTWARE\\";
 	szProduct.LoadString(IDS_PRODUCT);
 	szKey += szProduct;
@@ -146,30 +146,30 @@ BOOL COptionDlg::OnInitDialog()
 	DWORD dwType = REG_SZ; DWORD dwBytes = 0;
 	char szBuff[256] = "";
 
-	// ½ÇÇà ÆÄÀÏ °æ·Î
+	// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
 	dwType = REG_SZ; dwBytes = 256;
-	lStatus = RegQueryValueEx(hRegKey, "PATH", NULL, &dwType, (BYTE*)szBuff, &dwBytes); // ÀÎ½ºÅç °æ·Î
+	lStatus = RegQueryValueEx(hRegKey, "PATH", NULL, &dwType, (BYTE*)szBuff, &dwBytes); // ï¿½Î½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
 	if(ERROR_SUCCESS != lStatus) { CString szErr; szErr.LoadString(IDS_ERR_REGISTRY_READ_PATH); MessageBox(szErr); exit(-1); }
 	m_szInstalledPath = szBuff;
 
-	// ½ÇÇà ÆÄÀÏ ÀÌ¸§
+	// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ì¸ï¿½
 //	dwType = REG_SZ; dwBytes = 256;
-//	lStatus = RegQueryValueEx(hRegKey, "EXE", NULL, &dwType, (BYTE*)szBuff, &dwBytes); // ½ÇÇàÆÄÀÏ ÀÌ¸§
+//	lStatus = RegQueryValueEx(hRegKey, "EXE", NULL, &dwType, (BYTE*)szBuff, &dwBytes); // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ì¸ï¿½
 //	if(ERROR_SUCCESS != lStatus) { CString szErr; szErr.LoadString(IDS_ERR_REGISTRY_READ_EXE); MessageBox(szErr); exit(-1); }
 //	m_szExeName = szBuff;
 	m_szExeName = "Launcher.exe";
 
-	// Version Ç¥½Ã
+	// Version Ç¥ï¿½ï¿½
 	DWORD dwVersion = 0;
 	dwType = REG_DWORD; dwBytes = 4;
-	lStatus = RegQueryValueEx(hRegKey, "VERSION", NULL, &dwType, (BYTE*)(&dwVersion), &dwBytes); // ¹öÀü
+	lStatus = RegQueryValueEx(hRegKey, "VERSION", NULL, &dwType, (BYTE*)(&dwVersion), &dwBytes); // ï¿½ï¿½ï¿½ï¿½
 	if(ERROR_SUCCESS != lStatus) { CString szErr; szErr.LoadString(IDS_ERR_REGISTRY_READ_VERSION); MessageBox(szErr); exit(-1); }
 	SetDlgItemInt(IDC_E_VERSION, dwVersion);
 
 	RegCloseKey(hRegKey);
 	hRegKey = NULL;
 
-	// ¼¼ÆÃÀ» ÀÐ¾î¿Â´Ù..
+	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ð¾ï¿½Â´ï¿½..
 	this->SettingLoad(m_szInstalledPath + "\\Option.ini");
 	this->SettingUpdate();
 
@@ -234,8 +234,8 @@ void COptionDlg::OnOK()
 
 void COptionDlg::OnBApplyAndExecute() 
 {
-	CString szExeFN = m_szInstalledPath + "\\" + m_szExeName; // ½ÇÇà ÆÄÀÏ ÀÌ¸§ ¸¸µé°í..
-	ShellExecute(NULL, "open", szExeFN, "", m_szInstalledPath, SW_SHOWNORMAL); // °ÔÀÓ ½ÇÇà..
+	CString szExeFN = m_szInstalledPath + "\\" + m_szExeName; // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ì¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½..
+	ShellExecute(NULL, "open", szExeFN, "", m_szInstalledPath, SW_SHOWNORMAL); // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½..
 
 	this->OnOK();
 }
@@ -303,6 +303,7 @@ void COptionDlg::SettingSave(CString szIniFile)
 	szBuff.Format("%d", m_Option.iViewHeight);		WritePrivateProfileString("ViewPort", "Height", szBuff, szIniPath);
 	szBuff.Format("%d", m_Option.iViewColorDepth);  WritePrivateProfileString("ViewPort", "ColorDepth", szBuff, szIniPath);
 	szBuff.Format("%d", m_Option.iViewDist);		WritePrivateProfileString("ViewPort", "Distance", szBuff, szIniPath);
+	szBuff.Format("%d", m_Option.bWindowed ? 1 : 0);	WritePrivateProfileString("ViewPort", "Windowed", szBuff, szIniPath);
 	szBuff.Format("%d", m_Option.iEffectSndDist);	WritePrivateProfileString("Sound", "Distance", szBuff, szIniPath);
 
 	m_Option.bSoundEnable = (IsDlgButtonChecked(IDC_C_SOUND_ENABLE)) ? true : false;
@@ -347,8 +348,8 @@ void COptionDlg::SettingLoad(CString szIniFile)
 	m_Option.bSoundEnable = (iSndEnable) ? true : false;
 	int iSndDuplicate = GetPrivateProfileInt("Sound", "Duplicate", 0, szIniPath);
 	m_Option.bSndDuplicated = (iSndDuplicate) ? true : false;
-	int iWindowCursor = GetPrivateProfileInt("Cursor", "WindowCursor", 1, szIniPath);
-	m_Option.bWindowCursor = (iWindowCursor) ? true : false;
+	int iWindowed = GetPrivateProfileInt("ViewPort", "Windowed", 0, szIniPath);
+	m_Option.bWindowed = (iWindowed) ? true : false;
 }
 
 void COptionDlg::SettingUpdate()
@@ -399,9 +400,9 @@ void COptionDlg::OnHScroll(UINT nSBCode, UINT nPos, CScrollBar* pScrollBar)
 void COptionDlg::OnBVersion() 
 {
 	CString szMsg; szMsg.LoadString(IDS_CONFIRM_WRITE_REGISRY);
-	if(IDNO == MessageBox(szMsg, "", MB_YESNO)) return; // ÇÑ¹ø ¹°¾îº»´Ù..
+	if(IDNO == MessageBox(szMsg, "", MB_YESNO)) return; // ï¿½Ñ¹ï¿½ ï¿½ï¿½ï¿½îº»ï¿½ï¿½..
 
-	// ·¹Áö½ºÆ®¸®¿¡¼­ ¼³Ä¡µÈ Æú´õ¸¦ ÀÐ¾î¿Â´Ù..
+	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ä¡ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ð¾ï¿½Â´ï¿½..
 	CString szProduct, szKey = "SOFTWARE\\";
 	szProduct.LoadString(IDS_PRODUCT);
 	szKey += szProduct;
@@ -413,7 +414,7 @@ void COptionDlg::OnBVersion()
 	{
 		DWORD dwVersion = GetDlgItemInt(IDC_E_VERSION);
 		DWORD dwType = REG_DWORD, dwBytes = 4;
-		lStatus = RegSetValueEx(hRegKey, "VERSION", NULL, dwType, (BYTE*)(&dwVersion), 4); // ¹öÀü
+		lStatus = RegSetValueEx(hRegKey, "VERSION", NULL, dwType, (BYTE*)(&dwVersion), 4); // ï¿½ï¿½ï¿½ï¿½
 		if(ERROR_SUCCESS != lStatus) { CString szErr; szErr.LoadString(IDS_ERR_REGISTRY_WRITE_VERSION); MessageBox(szErr); }
 
 		RegCloseKey(hRegKey);

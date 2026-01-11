@@ -167,18 +167,18 @@ void CDlgEditPartBillBoard::OnPartBoardBtnLoadTex()
 			_makepath(szPath, szDrive, szDir, (LPCTSTR)strFName, szExt);
 			m_strTexName = szPath;
 
-			//ÆÄÀÏ °¹¼ö ¼¼´Â ±â´É ³ÖÀ»±î ¸»±î..
+			//ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½..
 		}
 		else
 		{
 			m_strTexName = _T("");
-			MessageBox("ÆÄÀÏ ÀÌ¸§³¡ÀÌ 0000ÀÌ ¾Æ´Ï´øµ¥¿ä..-.-;;","ERR05",MB_OK);
+			MessageBox("ï¿½ï¿½ï¿½ï¿½ ï¿½Ì¸ï¿½ï¿½ï¿½ï¿½ï¿½ 0000ï¿½ï¿½ ï¿½Æ´Ï´ï¿½ï¿½ï¿½ï¿½ï¿½..-.-;;","ERR05",MB_OK);
 		}
 		
 		UpdateData(FALSE);
 	}
 	else
-		MessageBox("TextureÆÄÀÏÀº fxÆú´õ ¾Æ·¡, È¤Àº fxÆú´õ ¾Æ·¡¿¡ ÀÖ´Â Æú´õ¿¡ À§Ä¡ÇØ¾ß ÇÕ´Ï´Ù..-.-;;","ERR04",MB_OK);
+		MessageBox("Textureï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ fxï¿½ï¿½ï¿½ï¿½ ï¿½Æ·ï¿½, È¤ï¿½ï¿½ fxï¿½ï¿½ï¿½ï¿½ ï¿½Æ·ï¿½ï¿½ï¿½ ï¿½Ö´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ä¡ï¿½Ø¾ï¿½ ï¿½Õ´Ï´ï¿½..-.-;;","ERR04",MB_OK);
 
 	delete pBaseFileAccess;		
 }
@@ -196,7 +196,7 @@ void CDlgEditPartBillBoard::OnPartBoardBtnSave()
 	FILE* file = fopen((LPCTSTR)m_strPathName, "w");
 	if(!file)
 	{
-		MessageBox("n3fxpartÆÄÀÏ »ý¼º ½ÇÆÐ..-.-;;","ERR02",MB_OK);
+		MessageBox("n3fxpartï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½..-.-;;","ERR02",MB_OK);
 		return;
 	}
 
@@ -344,7 +344,7 @@ bool CDlgEditPartBillBoard::LoadPartScript(const char* szPath)
 	}
 
 	//////////////////////////////////////////////////
-	//°¢ ÄÁÆ®·Ñ ¼ÂÆÃ...
+	//ï¿½ï¿½ ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½...
 	m_bOnGround = pPart->m_bOnGround;
 	m_bAlphaBlend = pPart->m_bAlpha;
 	m_bTexLoop = pPart->m_bTexLoop;

@@ -2,10 +2,10 @@
 //
 // Jpeg.h: interface for the CJpeg class.
 //
-// ÁÖ¿äµ¿ÀÛ : JPEG ÆÄÀÏÀ» µðÄÚµåÇÏ¿© ÀÐ¾îµéÀÌ°Å³ª µð½ºÅ©¿¡ ¾´´Ù.
+// ï¿½Ö¿äµ¿ï¿½ï¿½ : JPEG ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Úµï¿½ï¿½Ï¿ï¿½ ï¿½Ð¾ï¿½ï¿½ï¿½Ì°Å³ï¿½ ï¿½ï¿½Å©ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½.
 //
-// ¿øÀúÀÚ : ¸ð¸§
-// º¯°æÀÚ : ÀÌÇö¼®
+// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ : ï¿½ï¿½
+// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ : ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 // E-Mail : evaasuka1004@hotmail.com
 //////////////////////////////////////////////////////////////////////
 
@@ -14,44 +14,44 @@
 
 struct SET
 {
-	BYTE C[3]; // Y, Cb, Cr ¼ººÐ
+	BYTE C[3]; // Y, Cb, Cr ï¿½ï¿½ï¿½ï¿½
 };
 
 struct DQT
 {
-	BYTE Q[64]; // Qantization Table °ª
+	BYTE Q[64]; // Qantization Table ï¿½ï¿½
 };
 
 struct DHT
 {
-	BOOL Flag; // »ç¿ëµÇ¾ú´ÂÁö ¿©ºÎ¸¦ ³ªÅ¸³»´Â ÇÃ·¡±×
-	int Num; // ÇãÇÁ¸¸ ÄÚµåÀÇ ¼ö
-	WORD *HUFFCODE; // ÇãÇÁ¸¸ ÄÚµå
-	BYTE *HUFFSIZE; // ÇãÇÁ¸¸ ÄÚµåÀÇ ±æÀÌ
-	BYTE *HUFFVAL;  // ÇãÇÁ¸¸ ÄÚµå°¡ ³ªÅ¸³»´Â °ª
-	WORD MAXCODE[17]; // ÇØ´ç ±æÀÌ¿¡¼­ °¡Àå Å« ÄÚµå
-	WORD MINCODE[17]; // ÇØ´ç ±æÀÌ¿¡¼­ °¡Àå ÀÛÀº ÄÚµå
-	int VALPTR[17]; // ÇØ´ç ±æÀÌÀÇ ÄÚµå°¡ ½ÃÀÛµÇ´Â ÀÎµ¦½º
-	int *PT; // VALUE·Î INDEX¸¦ ºü¸£°Ô Ã£±â À§ÇÑ Æ÷ÀÎÅÍ
+	BOOL Flag; // ï¿½ï¿½ï¿½Ç¾ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Î¸ï¿½ ï¿½ï¿½Å¸ï¿½ï¿½ï¿½ï¿½ ï¿½Ã·ï¿½ï¿½ï¿½
+	int Num; // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Úµï¿½ï¿½ï¿½ ï¿½ï¿½
+	WORD *HUFFCODE; // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Úµï¿½
+	BYTE *HUFFSIZE; // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Úµï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+	BYTE *HUFFVAL;  // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Úµå°¡ ï¿½ï¿½Å¸ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½
+	WORD MAXCODE[17]; // ï¿½Ø´ï¿½ ï¿½ï¿½ï¿½Ì¿ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ Å« ï¿½Úµï¿½
+	WORD MINCODE[17]; // ï¿½Ø´ï¿½ ï¿½ï¿½ï¿½Ì¿ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Úµï¿½
+	int VALPTR[17]; // ï¿½Ø´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Úµå°¡ ï¿½ï¿½ï¿½ÛµÇ´ï¿½ ï¿½Îµï¿½ï¿½ï¿½
+	int *PT; // VALUEï¿½ï¿½ INDEXï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Ã£ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 };
 
 struct FRAMEHEADER
 {
-	WORD Y; // ÀÌ¹ÌÁöÀÇ ³ôÀÌ
-	WORD X; // ÀÌ¹ÌÁöÀÇ ³ÐÀÌ
-	BYTE Nf; // ÄÄÆ÷³ÍÆ® ¼ö
-	BYTE C[3]; // ÄÄÆ÷³ÍÆ® ¾ÆÀÌµð
-	BYTE H[3]; // ÄÄÆ÷³ÍÆ®ÀÇ Horizontal Sampling Factor
-	BYTE V[3]; // ÄÄÆ÷³ÍÆ®ÀÇ Vertical Sampling Factor
-	BYTE Tq[3]; // ÇØ´ç ÄÄÆ÷³ÍÆ®¿¡ »ç¿ëµÇ´Â ¾çÀÚÈ­Å×ÀÌºí ¹øÈ£
+	WORD Y; // ï¿½Ì¹ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+	WORD X; // ï¿½Ì¹ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+	BYTE Nf; // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ï¿½
+	BYTE C[3]; // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ï¿½ï¿½Ìµï¿½
+	BYTE H[3]; // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ Horizontal Sampling Factor
+	BYTE V[3]; // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ Vertical Sampling Factor
+	BYTE Tq[3]; // ï¿½Ø´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½ï¿½Ç´ï¿½ ï¿½ï¿½ï¿½ï¿½È­ï¿½ï¿½ï¿½Ìºï¿½ ï¿½ï¿½È£
 };
 
 struct SCANHEADER
 {
-	BYTE Ns; // ÄÄÆ÷³ÍÆ® ¼ö
-	BYTE Cs[3]; // ÄÄÆ÷³ÍÆ® ¾ÆÀÌµð
-	BYTE Td[3]; // ÄÄÆ÷³ÍÆ®ÀÇ DC Huffman Table ¹øÈ£
-	BYTE Ta[3]; // ÄÄÆ÷³ÍÆ®ÀÇ AC Huffman Table ¹øÈ£
+	BYTE Ns; // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ï¿½
+	BYTE Cs[3]; // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ï¿½ï¿½Ìµï¿½
+	BYTE Td[3]; // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ DC Huffman Table ï¿½ï¿½È£
+	BYTE Ta[3]; // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ AC Huffman Table ï¿½ï¿½È£
 	BYTE Ss;
 	BYTE Se;
 	BYTE Ah;
@@ -63,76 +63,76 @@ class CJpeg
 {
 public:
 
-	// JPEG FileÀ» LoadÇÏ±â À§ÇÑ ÇÔ¼öµé //
-	void LoadJPG(LPCSTR FileName); // JPEG FileÀ» LoadÇÏ´Â ÇÔ¼ö	
-	void FindSOI(); // Start of Image ¸¶Ä¿¸¦ Ã£´Â ÇÔ¼ö
-	void FindDQT(); // Quantization TableÀ» Ã£¾Æ ±¸Á¶Ã¼¿¡ ¼³Á¤ÇÏ´Â ÇÔ¼ö
-	void FindDHT();	// Huffman TableÀ» Ã£¾Æ ±¸Á¶Ã¼¿¡ ¼³Á¤ÇÏ´Â ÇÔ¼ö
-	void FindSOF(); // Frame Header¸¦ Ã£¾Æ ±¸Á¶Ã¼¿¡ ¼³Á¤ÇÏ´Â ÇÔ¼ö
-	void FindSOS(); // Scan Header¸¦ Ã£¾Æ ±¸Á¶Ã¼¿¡ ¼³Á¤ÇÏ´Â ÇÔ¼ö
-	void FindETC(); // DRI(Define Restart Interval) ·Îµå 
-	void Decode();  // µðÄÚµå¸¦ À§ÇÑ Á¤º¸¸¦ ¼³Á¤ÇÏ°í µðÄÚµå¸¦ ½ÃÀÛ
-	void DecodeMCU(int mx, int my); // MCUºí·°À» µðÄÚµåÇÏ´Â ÇÔ¼ö
-	void DecodeDU(int N); // 8x8 Data Unit¸¦ µðÄÚµåÇÏ´Â ÇÔ¼ö
-	void IDCT(); // Inverse DCT¸¦ ÇÏ´Â ÇÔ¼ö
-	void Zigzag(); // Zigzag¼øÀ¸·Î µÇ¾îÀÖ´Â DU¸¦ ¿ø»óº¹±Í½ÃÅ°´Â ÇÔ¼ö
-	void DecodeAC(int Th); // DUÁß, AC¼ººÐÀ» µðÄÚµåÇÏ´Â ÇÔ¼ö
-	void DecodeDC(int Th); // DUÁß, DC¼ººÐÀ» µðÄÚµåÇÏ´Â ÇÔ¼ö
-	short Extend(WORD V, BYTE T); // V¸¦ Ä«Å×°í¸® T¿¡ ¸Âµµ·Ï È®Àå
-	WORD Receive(BYTE SSSS); // ¹öÆÛ¿¡¼­ SSSSºñÆ®¸¸Å­ ÀÐ¾î¿À´Â ÇÔ¼ö
-	BYTE hDecode(int Th); // ÇãÇÁ¸¸ ºÎÈ£¸¦ µðÄÚµåÇÏ´Â ºÎºÐ
-	BYTE NextByte(); // ¹öÆÛ¿¡¼­ ´ÙÀ½ 1 ¹ÙÀÌÆ®¸¦ ÀÐ¾î¿À´Â ÇÔ¼ö
-	WORD NextBit(); // ¹öÆÛ¿¡¼­ ´ÙÀ½ 1 ºñÆ®¸¦ ÀÐ¾î¿À´Â ÇÔ¼ö
-	void ConvertYUV2RGB(); // µðÄÚµåµÈ µ¥ÀÌÅÍ¸¦ ÄÃ·¯¸ðµ¨À» ¹Ù²Þ°ú µ¿½Ã¿¡
-						   // ºñÆ®¸Ê¿¡ È£È¯µÇµµ·Ï º¯È¯ÇÏ´Â ÇÔ¼ö
+	// JPEG Fileï¿½ï¿½ Loadï¿½Ï±ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ô¼ï¿½ï¿½ï¿½ //
+	void LoadJPG(LPCSTR FileName); // JPEG Fileï¿½ï¿½ Loadï¿½Ï´ï¿½ ï¿½Ô¼ï¿½	
+	void FindSOI(); // Start of Image ï¿½ï¿½Ä¿ï¿½ï¿½ Ã£ï¿½ï¿½ ï¿½Ô¼ï¿½
+	void FindDQT(); // Quantization Tableï¿½ï¿½ Ã£ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ã¼ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½ ï¿½Ô¼ï¿½
+	void FindDHT();	// Huffman Tableï¿½ï¿½ Ã£ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ã¼ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½ ï¿½Ô¼ï¿½
+	void FindSOF(); // Frame Headerï¿½ï¿½ Ã£ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ã¼ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½ ï¿½Ô¼ï¿½
+	void FindSOS(); // Scan Headerï¿½ï¿½ Ã£ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ã¼ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½ ï¿½Ô¼ï¿½
+	void FindETC(); // DRI(Define Restart Interval) ï¿½Îµï¿½ 
+	void Decode();  // ï¿½ï¿½ï¿½Úµå¸¦ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï°ï¿½ ï¿½ï¿½ï¿½Úµå¸¦ ï¿½ï¿½ï¿½ï¿½
+	void DecodeMCU(int mx, int my); // MCUï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Úµï¿½ï¿½Ï´ï¿½ ï¿½Ô¼ï¿½
+	void DecodeDU(int N); // 8x8 Data Unitï¿½ï¿½ ï¿½ï¿½ï¿½Úµï¿½ï¿½Ï´ï¿½ ï¿½Ô¼ï¿½
+	void IDCT(); // Inverse DCTï¿½ï¿½ ï¿½Ï´ï¿½ ï¿½Ô¼ï¿½
+	void Zigzag(); // Zigzagï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ç¾ï¿½ï¿½Ö´ï¿½ DUï¿½ï¿½ ï¿½ï¿½ï¿½óº¹±Í½ï¿½Å°ï¿½ï¿½ ï¿½Ô¼ï¿½
+	void DecodeAC(int Th); // DUï¿½ï¿½, ACï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Úµï¿½ï¿½Ï´ï¿½ ï¿½Ô¼ï¿½
+	void DecodeDC(int Th); // DUï¿½ï¿½, DCï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Úµï¿½ï¿½Ï´ï¿½ ï¿½Ô¼ï¿½
+	short Extend(WORD V, BYTE T); // Vï¿½ï¿½ Ä«ï¿½×°ï¿½ï¿½ï¿½ Tï¿½ï¿½ ï¿½Âµï¿½ï¿½ï¿½ È®ï¿½ï¿½
+	WORD Receive(BYTE SSSS); // ï¿½ï¿½ï¿½Û¿ï¿½ï¿½ï¿½ SSSSï¿½ï¿½Æ®ï¿½ï¿½Å­ ï¿½Ð¾ï¿½ï¿½ï¿½ï¿½ ï¿½Ô¼ï¿½
+	BYTE hDecode(int Th); // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È£ï¿½ï¿½ ï¿½ï¿½ï¿½Úµï¿½ï¿½Ï´ï¿½ ï¿½Îºï¿½
+	BYTE NextByte(); // ï¿½ï¿½ï¿½Û¿ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ 1 ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½Ð¾ï¿½ï¿½ï¿½ï¿½ ï¿½Ô¼ï¿½
+	WORD NextBit(); // ï¿½ï¿½ï¿½Û¿ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ 1 ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½Ð¾ï¿½ï¿½ï¿½ï¿½ ï¿½Ô¼ï¿½
+	void ConvertYUV2RGB(); // ï¿½ï¿½ï¿½Úµï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Í¸ï¿½ ï¿½Ã·ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ù²Þ°ï¿½ ï¿½ï¿½ï¿½Ã¿ï¿½
+						   // ï¿½ï¿½Æ®ï¿½Ê¿ï¿½ È£È¯ï¿½Çµï¿½ï¿½ï¿½ ï¿½ï¿½È¯ï¿½Ï´ï¿½ ï¿½Ô¼ï¿½
 	
 	
-	// JPEG FileÀ» SaveÇÏ±â À§ÇÑ ÇÔ¼öµé //	
-	void SaveJPG(LPCSTR FileName, int Width, int Height, BYTE *pp); // JPEG ÆÄÀÏÀ» ÀúÀåÇÏ´Â ÇÔ¼ö
+	// JPEG Fileï¿½ï¿½ Saveï¿½Ï±ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ô¼ï¿½ï¿½ï¿½ //	
+	void SaveJPG(LPCSTR FileName, int Width, int Height, BYTE *pp); // JPEG ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½ ï¿½Ô¼ï¿½
 
-	void PutSOI(HANDLE hFile); // Start of Image ¸¶Ä¿¸¦ »ðÀÔ
-	void PutDQT(HANDLE hFile); // Quantizatino TableÀ» »ðÀÔ
-	void PutDHT(HANDLE hFile); // Huffmann TableÀ» »ðÀÔ
-	void PutSOF(HANDLE hFile, int Width, int Height); // FrameHeader¸¦ »ðÀÔ
-	void PutSOS(HANDLE hFile); // ScanHeader¸¦ »ðÀÔ
-	void PutEOI(HANDLE hFile); // End of Image ¸¶Ä¿¸¦ »ðÀÔ
+	void PutSOI(HANDLE hFile); // Start of Image ï¿½ï¿½Ä¿ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+	void PutDQT(HANDLE hFile); // Quantizatino Tableï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+	void PutDHT(HANDLE hFile); // Huffmann Tableï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+	void PutSOF(HANDLE hFile, int Width, int Height); // FrameHeaderï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+	void PutSOS(HANDLE hFile); // ScanHeaderï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+	void PutEOI(HANDLE hFile); // End of Image ï¿½ï¿½Ä¿ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 
-	void ShotBit(BYTE Bit); // 1ºñÆ®¸¦ ¹öÆÛ¿¡ ÀúÀåÇÏ´Â ÇÔ¼ö
-	void ChargeCode(WORD Code, int Size ); // Size¸¸Å­ÀÇ ±æÀÌ(¾Æ·§ÀÚ¸®·ÎºÎÅÍ)·Î Code¸¦ ¹öÆÛ¿¡ ÀúÀåÇÏ´Â ÇÔ¼ö
-	void EncodeDU(short *pos, BOOL Flag, int bWidth); // 8x8 BlockÀ» ÀÎÄÚµåÇÏ´Â ÇÔ¼ö
-	void hEncode(int bWidth, int bHeight); // ÇãÇÁ¸¸ ÀÎÄÚµù ÇÏ´Â ºÎºÐ
-	BYTE GetCategory(short V); // ÁÖ¾îÁø °ªÀÇ Ä«Å×°í¸®¸¦ ±¸ÇÏ´Â ÇÔ¼ö	
-	void Zigzag2(); // Zigzag¼ø¼­·Î ¸¸µå´Â ÇÔ¼ö
-	void DCT(short *pos, int bWidth, BOOL Flag); // DCT¸¦ ÇÑ ÈÄ Zigzag ¹× Quantization ÇÏ´Â ÇÔ¼ö
+	void ShotBit(BYTE Bit); // 1ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½ï¿½Û¿ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½ ï¿½Ô¼ï¿½
+	void ChargeCode(WORD Code, int Size ); // Sizeï¿½ï¿½Å­ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½(ï¿½Æ·ï¿½ï¿½Ú¸ï¿½ï¿½Îºï¿½ï¿½ï¿½)ï¿½ï¿½ Codeï¿½ï¿½ ï¿½ï¿½ï¿½Û¿ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½ ï¿½Ô¼ï¿½
+	void EncodeDU(short *pos, BOOL Flag, int bWidth); // 8x8 Blockï¿½ï¿½ ï¿½ï¿½ï¿½Úµï¿½ï¿½Ï´ï¿½ ï¿½Ô¼ï¿½
+	void hEncode(int bWidth, int bHeight); // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Úµï¿½ ï¿½Ï´ï¿½ ï¿½Îºï¿½
+	BYTE GetCategory(short V); // ï¿½Ö¾ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ Ä«ï¿½×°ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ï´ï¿½ ï¿½Ô¼ï¿½	
+	void Zigzag2(); // Zigzagï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ô¼ï¿½
+	void DCT(short *pos, int bWidth, BOOL Flag); // DCTï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ Zigzag ï¿½ï¿½ Quantization ï¿½Ï´ï¿½ ï¿½Ô¼ï¿½
 
-	int GetHeight(); // ÀÌ¹ÌÁöÀÇ ³ôÀÌ¸¦ ¹ÝÈ¯ÇÏ´Â ÇÔ¼ö
-	int GetWidth();	// ÀÌ¹ÌÁöÀÇ ³ÐÀÌ¸¦ ¹ÝÈ¯ÇÏ´Â ÇÔ¼ö
+	int GetHeight(); // ï¿½Ì¹ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ì¸ï¿½ ï¿½ï¿½È¯ï¿½Ï´ï¿½ ï¿½Ô¼ï¿½
+	int GetWidth();	// ï¿½Ì¹ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ì¸ï¿½ ï¿½ï¿½È¯ï¿½Ï´ï¿½ ï¿½Ô¼ï¿½
 	
 	WORD Ri; // Restart Interval
-	int m_rWidth; // ÀÌ¹ÌÁöÀÇ ½ÇÁ¦ÀûÀÎ ³ÐÀÌ
-	int m_rHeight; // ÀÌ¹ÌÁöÀÇ ½ÇÁ¦ÀûÀÎ ³ôÀÌ
-	BYTE * pByte; // NextByte()ÇÔ¼ö¿¡¼­ ¾²ÀÓ
+	int m_rWidth; // ï¿½Ì¹ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+	int m_rHeight; // ï¿½Ì¹ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+	BYTE * pByte; // NextByte()ï¿½Ô¼ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	
-	int cnt; // ºñÆ®´ÜÀ§·Î ¿¬»êÇÒ ¶§ ¾²ÀÌ´Â Ä«¿îÅÍ
+	int cnt; // ï¿½ï¿½Æ®ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½Ì´ï¿½ Ä«ï¿½ï¿½ï¿½ï¿½
 	
-	short *Y;  // SaveÇÒ ¶§ ¾²ÀÌ´Â Y Buffer
-	short *Cb; // SaveÇÒ ¶§ ¾²ÀÌ´Â Cb Buffer
-	short *Cr; // SaveÇÒ ¶§ ¾²ÀÌ´Â Cr Buffer
+	short *Y;  // Saveï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½Ì´ï¿½ Y Buffer
+	short *Cb; // Saveï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½Ì´ï¿½ Cb Buffer
+	short *Cr; // Saveï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½Ì´ï¿½ Cr Buffer
 
-	SET *MCU; // MCU ´ÜÀ§ÀÇ ºí·°
+	SET *MCU; // MCU ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	
 	BYTE Hmax; // Maximum Horizontal Sampling Factor
 	BYTE Vmax; // Maximum Vertical Sampling Factor
 	
-	BYTE * m_pData;	// ÀÌ¹ÌÁö ¹öÆÛ
-	BYTE * m_pBuf; // ¹öÆÛ
-	int m_Index; // ¹öÆÛÀÇ À§Ä¡¸¦ ³ªÅ¸³»´Â ÀÎµ¦½º
+	BYTE * m_pData;	// ï¿½Ì¹ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+	BYTE * m_pBuf; // ï¿½ï¿½ï¿½ï¿½
+	int m_Index; // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ä¡ï¿½ï¿½ ï¿½ï¿½Å¸ï¿½ï¿½ï¿½ï¿½ ï¿½Îµï¿½ï¿½ï¿½
 	DQT TbQ[20]; // Quantization Table
 	DHT TbH[20]; // Huffman Table
-	short ZZ[64]; // 8x8 Block Á¤º¸¸¦ ´ã´Â ¹è¿­
-	FRAMEHEADER FrameHeader; // FrameHeader ±¸Á¶Ã¤
-	SCANHEADER ScanHeader; // ScanHeader ±¸Á¶Ã¼
-	short PrevDC[3]; // DC ¼ººÐÀÇ Predictor
+	short ZZ[64]; // 8x8 Block ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½è¿­
+	FRAMEHEADER FrameHeader; // FrameHeader ï¿½ï¿½ï¿½ï¿½Ã¤
+	SCANHEADER ScanHeader; // ScanHeader ï¿½ï¿½ï¿½ï¿½Ã¼
+	short PrevDC[3]; // DC ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Predictor
 
 	
 	CJpeg();

@@ -31,20 +31,20 @@ public:
 	virtual ~CN3Cloud();
 
 protected:
-	__VertexXyzColorT2	m_pVertices[NUM_CLOUD_VERTEX]; // ±¸¸§ÃþÀÇ ¹öÅØ½º
-	CN3Texture*		m_pTextures[NUM_CLOUD];				// ÅØ½ºÃÄµé..
-	std::string		m_szTextures[NUM_CLOUD];			// ÅØ½ºÃ³ ÆÄÀÏ ÀÌ¸§µé...
+	__VertexXyzColorT2	m_pVertices[NUM_CLOUD_VERTEX]; // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ø½ï¿½
+	CN3Texture*		m_pTextures[NUM_CLOUD];				// ï¿½Ø½ï¿½ï¿½Äµï¿½..
+	std::string		m_szTextures[NUM_CLOUD];			// ï¿½Ø½ï¿½Ã³ ï¿½ï¿½ï¿½ï¿½ ï¿½Ì¸ï¿½ï¿½ï¿½...
 
-	CN3ColorChange	m_Color1;							// ±¸¸§ »ö1
-	CN3ColorChange	m_Color2;							// ±¸¸§ »ö2
-	CN3ColorChange	m_Alpha;							// ±¸¸§ ¹Ù²ð¶§ alpha°ª
-	e_CLOUDTEX		m_eCloud1;							// ±¸¸§ ÅØ½ºÃÄ1
-	e_CLOUDTEX		m_eCloud2;							// ±¸¸§ ÅØ½ºÃÄ2
-	e_CLOUDTEX		m_eCloud3;							// ±¸¸§ ÅØ½ºÃÄ3
+	CN3ColorChange	m_Color1;							// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½1
+	CN3ColorChange	m_Color2;							// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½2
+	CN3ColorChange	m_Alpha;							// ï¿½ï¿½ï¿½ï¿½ ï¿½Ù²ï¿½ alphaï¿½ï¿½
+	e_CLOUDTEX		m_eCloud1;							// ï¿½ï¿½ï¿½ï¿½ ï¿½Ø½ï¿½ï¿½ï¿½1
+	e_CLOUDTEX		m_eCloud2;							// ï¿½ï¿½ï¿½ï¿½ ï¿½Ø½ï¿½ï¿½ï¿½2
+	e_CLOUDTEX		m_eCloud3;							// ï¿½ï¿½ï¿½ï¿½ ï¿½Ø½ï¿½ï¿½ï¿½3
 
-	float			m_fCloudTexTime;					// ±¸¸§ º¯°æ ³²Àº ½Ã°£
-	e_CLOUDTEX		m_eBackupCloud;						// 2¹øÂ° ±¸¸§ º¯°æÇØ¾ß ÇÒ textureÁ¾·ù ÀúÀå
-	float			m_fBackupTime;						// 2¹øÂ° ±¸¸§ º¯°æÇØ¾ß ÇÒ ½Ã°£ ÀúÀå
+	float			m_fCloudTexTime;					// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ã°ï¿½
+	e_CLOUDTEX		m_eBackupCloud;						// 2ï¿½ï¿½Â° ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ø¾ï¿½ ï¿½ï¿½ textureï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+	float			m_fBackupTime;						// 2ï¿½ï¿½Â° ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ø¾ï¿½ ï¿½ï¿½ ï¿½Ã°ï¿½ ï¿½ï¿½ï¿½ï¿½
 
 // Operations
 public:

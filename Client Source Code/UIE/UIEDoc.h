@@ -21,7 +21,7 @@ protected: // create from serialization only
 	DECLARE_DYNCREATE(CUIEDoc)
 
 protected:
-	CN3UIBase	m_RootUI;		// ÀÌ °Í¿¡ child(tool¿¡¼­ ¸¸µå´Â ¸ðµç control)µéÀ» ºÙÀÌ¸é µÈ´Ù.
+	CN3UIBase	m_RootUI;		// ï¿½ï¿½ ï¿½Í¿ï¿½ child(toolï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ control)ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ì¸ï¿½ ï¿½È´ï¿½.
 	std::list<CN3UIBase*>	m_SelectedUIs;
 
 public:
@@ -37,8 +37,8 @@ public:
 	void		SetSelectedUI(CN3UIBase* pUI);
 
 protected:
-	void		Release();		// Document º¯¼ö ÃÊ±âÈ­
-	BOOL		SetImageInfos(CN3UIImage* pUI);	// imageÁ¤º¸ ³Ö´Â ·çÆ¾
+	void		Release();		// Document ï¿½ï¿½ï¿½ï¿½ ï¿½Ê±ï¿½È­
+	BOOL		SetImageInfos(CN3UIImage* pUI);	// imageï¿½ï¿½ï¿½ï¿½ ï¿½Ö´ï¿½ ï¿½ï¿½Æ¾
 	BOOL		SetStringInfos(CN3UIString* pUI);	// string
 	BOOL		SetTrackBarInfos(CN3UITrackBar* pUI);	// track bar
 	BOOL		SetButtonInfos(CN3UIButton* pUI);		// button

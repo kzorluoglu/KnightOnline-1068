@@ -15,15 +15,16 @@ struct __GameOption
 	int		iTexLOD_Chr;		// Texture LOD
 	int		iTexLOD_Shape;		// Texture LOD
 	int		iTexLOD_Terrain;	// Texture LOD
-	int		iUseShadow;			// ±×¸²ÀÚ »ç¿ë 0 »ç¿ë¾ÈÇÔ 1 »ç¿ë
-	int		iViewDist;			// °¡½Ã°Å¸®..
-	int		iViewWidth;			// È­¸é ±æÀÌ
-	int		iViewHeight;		// È­¸é ³Êºñ
-	int		iViewColorDepth;	// »ö»ó¼ö..
-	int		iEffectSndDist;		// ÀÌÆåÆ® »ç¿îµå °Å¸®
-	bool	bSndDuplicated;		// Áßº¹µÈ À½¿ø »ç¿ë
-	bool	bSoundEnable;		// »ç¿îµå »ç¿ë
-	bool	bWindowCursor;		// À©µµ¿ì Ä¿¼­ »ç¿ë
+	int		iUseShadow;			// ï¿½×¸ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ 0 ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ 1 ï¿½ï¿½ï¿½
+	int		iViewDist;			// ï¿½ï¿½ï¿½Ã°Å¸ï¿½..
+	int		iViewWidth;			// È­ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+	int		iViewHeight;		// È­ï¿½ï¿½ ï¿½Êºï¿½
+	int		iViewColorDepth;	// ï¿½ï¿½ï¿½ï¿½ï¿½..
+	int		iEffectSndDist;		// ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ï¿½ï¿½ï¿½ ï¿½Å¸ï¿½
+	bool	bSndDuplicated;		// ï¿½ßºï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
+	bool	bSoundEnable;		// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
+	bool	bWindowCursor;		// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Ä¿ï¿½ï¿½ ï¿½ï¿½ï¿½
+	bool	bWindowed;			// 0 - Fullscreen, 1 - Windowed
 
 	void InitDefault()
 	{
@@ -39,6 +40,7 @@ struct __GameOption
 		bSndDuplicated = false;
 		bSoundEnable = true;
 		bWindowCursor = true;
+		bWindowed = false;
 	}
 
 	__GameOption() { InitDefault(); }

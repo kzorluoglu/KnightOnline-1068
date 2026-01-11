@@ -14,49 +14,49 @@
 struct __EXPORT_OPTION
 {
 	char szID[8];		// ID "N3Scene1"
-	char szRemark[64];	// ¼³¸í..
+	char szRemark[64];	// ï¿½ï¿½ï¿½ï¿½..
 	
-	int nNodeCount; // ÀüÃ¼ ³ëµå Ä«¿îÆ®
+	int nNodeCount; // ï¿½ï¿½Ã¼ ï¿½ï¿½ï¿½ Ä«ï¿½ï¿½Æ®
 	
 	BOOL	bAnimationKey; 
-	int		nFrmStart;	// ¿¡´Ï¸ÞÀÌ¼Ç ½ÃÀÛ ÇÁ·¹ÀÓ 
-	int		nFrmEnd;	// ¿¡´Ï¸ÞÀÌ¼Ç ³¡ ÇÁ·¹ÀÓ
-	float	fSamplingRate; // Key Sampling - 30.0f °¡ Ç¥ÁØ..
+	int		nFrmStart;	// ï¿½ï¿½ï¿½Ï¸ï¿½ï¿½Ì¼ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ 
+	int		nFrmEnd;	// ï¿½ï¿½ï¿½Ï¸ï¿½ï¿½Ì¼ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	float	fSamplingRate; // Key Sampling - 30.0f ï¿½ï¿½ Ç¥ï¿½ï¿½..
 
-	D3DCOLORVALUE dcvBackground;	// ¹è°æ »ö
-	D3DCOLORVALUE dcvAmbientLight;	// ±âº» Á¶¸í »ö
+	D3DCOLORVALUE dcvBackground;	// ï¿½ï¿½ï¿½ ï¿½ï¿½
+	D3DCOLORVALUE dcvAmbientLight;	// ï¿½âº» ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½
 
-//	int nCameraCount;	// scene ³»ÀÇ Ä«¸Þ¶ó °¹¼ö
-//	int nMaterialCount;	// scene ³»ÀÇ ÀçÁú °¹¼ö
-//	int nTextureCount;	// scene ³»ÀÇ ÅØ½ºÃ³ °¹¼ö
-//	int nLightCount;	// scene ³»ÀÇ Á¶¸í °¹¼ö
+//	int nCameraCount;	// scene ï¿½ï¿½ï¿½ï¿½ Ä«ï¿½Þ¶ï¿½ ï¿½ï¿½ï¿½ï¿½
+//	int nMaterialCount;	// scene ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+//	int nTextureCount;	// scene ï¿½ï¿½ï¿½ï¿½ ï¿½Ø½ï¿½Ã³ ï¿½ï¿½ï¿½ï¿½
+//	int nLightCount;	// scene ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 
-	BOOL bExportCamera;	// Ä«¸Þ¶ó µ¥ÀÌÅÍ¸¦ °®°í ÀÖ´Ù.
-	BOOL bExportLight;		// ¶óÀÌÆ® µ¥ÀÌÅÍ¸¦ °®°í ÀÖ´Ù.
-	BOOL bExportGeometry;	// Áö¿À¸ÞÆ®¸® µ¥ÀÌÅÍ¸¦ °®°í ÀÖ´Ù.
-	BOOL bExportDummy;	// µµ¿ì¹Ì ¿ÀºêÁ§Æ®(??? - ½ÇÁ¦ °×¿¡¼­´Â ÇÊ¿ä¾ø°í °³¹ß½Ã¿¡¸¸ ÇÊ¿äÇÑ ¿ÀºêÁ§Æ®¸¦ ¸»ÇÑ´Ù)µ¥ÀÌÅÍ¸¦ °®°í ÀÖ´Ù. 
-	BOOL bExportCharacter;	// µµ¿ì¹Ì ¿ÀºêÁ§Æ®(??? - ½ÇÁ¦ °×¿¡¼­´Â ÇÊ¿ä¾ø°í °³¹ß½Ã¿¡¸¸ ÇÊ¿äÇÑ ¿ÀºêÁ§Æ®¸¦ ¸»ÇÑ´Ù)µ¥ÀÌÅÍ¸¦ °®°í ÀÖ´Ù. 
+	BOOL bExportCamera;	// Ä«ï¿½Þ¶ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Í¸ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ö´ï¿½.
+	BOOL bExportLight;		// ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ï¿½ï¿½ï¿½ï¿½Í¸ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ö´ï¿½.
+	BOOL bExportGeometry;	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Í¸ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ö´ï¿½.
+	BOOL bExportDummy;	// ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®(??? - ï¿½ï¿½ï¿½ï¿½ ï¿½×¿ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ê¿ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ß½Ã¿ï¿½ï¿½ï¿½ ï¿½Ê¿ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½ï¿½Ñ´ï¿½)ï¿½ï¿½ï¿½ï¿½ï¿½Í¸ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ö´ï¿½. 
+	BOOL bExportCharacter;	// ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®(??? - ï¿½ï¿½ï¿½ï¿½ ï¿½×¿ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ê¿ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ß½Ã¿ï¿½ï¿½ï¿½ ï¿½Ê¿ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½ï¿½Ñ´ï¿½)ï¿½ï¿½ï¿½ï¿½ï¿½Í¸ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ö´ï¿½. 
 	
-	BOOL bExportSelectedOnly; // ¼±ÅÃµÈ °Í¸¸ ???
+	BOOL bExportSelectedOnly; // ï¿½ï¿½ï¿½Ãµï¿½ ï¿½Í¸ï¿½ ???
 
-	BOOL bGenerateFileName; // ÆÄÀÏ ÀÌ¸§À» 0_0000_00_0 Æ÷¸ËÀ¸·Î ¹Ù²Û´Ù..??
-	BOOL bGenerateSmoothNormal; // ºÎµå·´°Ô º¸ÀÌµµ·Ï ¹ý¼± º¤ÅÍµéÀ» Àç °è»êÇÑ´Ù.
-//	BOOL bGenerateProgressiveMesh; // Progressive Mesh »ý¼º
-	BOOL bGenerateHalfSizeTexture; // ÅØ½ºÃ³ ÆÄÀÏÀ» ÀÚµ¿À¸·Î ÃÖÀûÈ­ ½ÃÄÑ¼­ »ý¼º Direct3D ÀÇ Æ÷¸Ë¿¡ ¸Â°Ô 2ÀÇ Á¦°ö¼ö ´ÜÀ§·Î ¸ÂÃß¾î¼­ "OBM" ºñÆ®¸Ê ÆÄÀÏ·Î ÀúÀå.
-	BOOL bGenerateCompressedTexture; // Texture ¾ÐÃà »ç¿ë
+	BOOL bGenerateFileName; // ï¿½ï¿½ï¿½ï¿½ ï¿½Ì¸ï¿½ï¿½ï¿½ 0_0000_00_0 ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ù²Û´ï¿½..??
+	BOOL bGenerateSmoothNormal; // ï¿½Îµå·´ï¿½ï¿½ ï¿½ï¿½ï¿½Ìµï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Íµï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ñ´ï¿½.
+//	BOOL bGenerateProgressiveMesh; // Progressive Mesh ï¿½ï¿½ï¿½ï¿½
+	BOOL bGenerateHalfSizeTexture; // ï¿½Ø½ï¿½Ã³ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Úµï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½È­ ï¿½ï¿½ï¿½Ñ¼ï¿½ ï¿½ï¿½ï¿½ï¿½ Direct3D ï¿½ï¿½ ï¿½ï¿½ï¿½Ë¿ï¿½ ï¿½Â°ï¿½ 2ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ß¾î¼­ "OBM" ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½ï¿½Ï·ï¿½ ï¿½ï¿½ï¿½ï¿½.
+	BOOL bGenerateCompressedTexture; // Texture ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
 
-	char szSubDir[_MAX_DIR];		// export ÇÒ¶§ ÀúÀåÇÏ´Â subÆú´õ¸¦ ÁöÁ¤ÇØÁØ´Ù.
+	char szSubDir[_MAX_DIR];		// export ï¿½Ò¶ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½ subï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ø´ï¿½.
 };
 
 class CN3EngTool : public CN3Eng  
 {
 public:
-	int					m_nGridLineCount; // ±×¸®µå ¶óÀÎ Ä«¿îÆ®..
-	__VertexColor*		m_pVGrids; // ±×¸®µå ·»´õ¸µ ¿ë
+	int					m_nGridLineCount; // ï¿½×¸ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ Ä«ï¿½ï¿½Æ®..
+	__VertexColor*		m_pVGrids; // ï¿½×¸ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½
 
-	__VertexColor		m_VAxis[60]; // Ãà ·»´õ¸µ ¿ë
-	__VertexColor		m_VDir[6]; // ¹æÇâ Ç¥½Ã ¿ë
-	__VertexTransformed m_VPreview[6];	// ÅØ½ºÃ³ ÇÁ¸®ºä ¿ë
+	__VertexColor		m_VAxis[60]; // ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½
+	__VertexColor		m_VDir[6]; // ï¿½ï¿½ï¿½ï¿½ Ç¥ï¿½ï¿½ ï¿½ï¿½
+	__VertexTransformed m_VPreview[6];	// ï¿½Ø½ï¿½Ã³ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½
 
 
 

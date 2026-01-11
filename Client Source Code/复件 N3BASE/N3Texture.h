@@ -19,7 +19,7 @@ public:
 		char szID[4]; // "NTF2" - Noah Texture File Ver. 2.0
 		int nWidth;
 		int nHeight;
-		D3DFORMAT Format; // 0 - ¾ÐÃà ¾ÈÇÔ 1 ~ 5 : D3DFMT_DXT1 ~ D3DFMT_DXT5
+		D3DFORMAT Format; // 0 - ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ 1 ~ 5 : D3DFMT_DXT1 ~ D3DFMT_DXT5
 		BOOL bMipMap; // Mip Map ??
 	} __DxtHeader;
 
@@ -28,7 +28,7 @@ protected:
 	LPDIRECT3DTEXTURE8 m_lpTexture;
 
 public:
-	bool GenerateMipMap(LPDIRECT3DSURFACE8 lpSurf = NULL); // NULL ÀÌ¸é 0 ·¹º§ÀÇ ¼­ÇÇ½º·ÎºÎÅÍ »ý¼º..
+	bool GenerateMipMap(LPDIRECT3DSURFACE9 lpSurf = NULL); // NULL ï¿½Ì¸ï¿½ 0 ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ç½ï¿½ï¿½Îºï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½..
 	void UpdateRenderInfo();
 	bool LoadFromFile(const char* szFileName);
 	bool Load(HANDLE hFile);
@@ -43,8 +43,8 @@ public:
 
 	bool Convert(D3DFORMAT Format, int nWidth = 0, int nHeight = 0);
 
-	bool CreateFromSurface(LPDIRECT3DSURFACE8 lpSurf, D3DFORMAT Format, BOOL bGenerateMipMap);
-	bool Create(int nWidth, int nHeight, D3DFORMAT Format, BOOL bGenerateMipMap); // ÀåÄ¡¿¡ ¸Â°Ô »ý¼º
+	bool CreateFromSurface(LPDIRECT3DSURFACE9 lpSurf, D3DFORMAT Format, BOOL bGenerateMipMap);
+	bool Create(int nWidth, int nHeight, D3DFORMAT Format, BOOL bGenerateMipMap); // ï¿½ï¿½Ä¡ï¿½ï¿½ ï¿½Â°ï¿½ ï¿½ï¿½ï¿½ï¿½
 	
 	void Release();
 

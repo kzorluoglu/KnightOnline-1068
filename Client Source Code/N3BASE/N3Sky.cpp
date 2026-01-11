@@ -21,8 +21,8 @@ static char THIS_FILE[]=__FILE__;
 CN3Sky::CN3Sky()
 {
 //	m_pTex = NULL;
-	m_SkyColor.ChangeColor(0xff081021);	//¹ã
-	m_FogColor.ChangeColor(0xff102942);	//¹ã
+	m_SkyColor.ChangeColor(0xff081021);	//ï¿½ï¿½
+	m_FogColor.ChangeColor(0xff102942);	//ï¿½ï¿½
 }
 
 CN3Sky::~CN3Sky()
@@ -33,10 +33,10 @@ CN3Sky::~CN3Sky()
 void CN3Sky::Release()
 {
 	CN3Base::Release();
-//	m_SkyColor.ChangeColor(0xFF5284DE);	//³·
-//	m_FogColor.ChangeColor(0xFFB5C6DE);	//³·
-	m_SkyColor.ChangeColor(0xff081021);	//¹ã
-	m_FogColor.ChangeColor(0xff102942);	//¹ã
+//	m_SkyColor.ChangeColor(0xFF5284DE);	//ï¿½ï¿½
+//	m_FogColor.ChangeColor(0xFFB5C6DE);	//ï¿½ï¿½
+	m_SkyColor.ChangeColor(0xff081021);	//ï¿½ï¿½
+	m_FogColor.ChangeColor(0xff102942);	//ï¿½ï¿½
 //	if (m_pTex) {s_MngTex.Delete(m_pTex);	m_pTex = NULL;}
 }
 
@@ -57,7 +57,7 @@ void CN3Sky::Render()
 {
     // Set up a rotation matrix to orient the billboard towards the camera.
 	__Matrix44 matWorld;
-	__Vector3 vDir = s_CameraData.vEye - s_CameraData.vAt;	// Ä«¸Þ¶óÀÇ ¹æÇâ
+	__Vector3 vDir = s_CameraData.vEye - s_CameraData.vAt;	// Ä«ï¿½Þ¶ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	if (0.0f == vDir.x) matWorld.Identity();
 	else if( vDir.x > 0.0f ) matWorld.RotationY(-atanf(vDir.z/vDir.x) - (D3DX_PI * 0.5f));
 	else  matWorld.RotationY(-atanf(vDir.z/vDir.x) + (D3DX_PI * 0.5f));
@@ -69,10 +69,10 @@ void CN3Sky::Render()
 	s_lpD3DDev->SetTextureStageState( 0, D3DTSS_COLORARG1, D3DTA_DIFFUSE );
 
 	// Render the skybox
-	s_lpD3DDev->SetVertexShader(FVF_XYZCOLOR);
-	// ¹ØÆÇ ±×¸®±â
+	s_lpD3DDev->SetFVF(FVF_XYZCOLOR);
+	// ï¿½ï¿½ï¿½ï¿½ ï¿½×¸ï¿½ï¿½ï¿½
 	s_lpD3DDev->DrawPrimitiveUP(D3DPT_TRIANGLEFAN, 2, m_Bottom, sizeof(m_Bottom[0]));
-	// ¿·ÆÇ ±×¸®±â
+	// ï¿½ï¿½ï¿½ï¿½ ï¿½×¸ï¿½ï¿½ï¿½
 	s_lpD3DDev->DrawPrimitiveUP(D3DPT_TRIANGLEFAN, 2, m_vFronts, sizeof(m_vFronts[0]));
 }
 
@@ -80,18 +80,18 @@ void CN3Sky::Init()
 {
 	Release();
 	
-	// ³ëÀ» Áø °æ¿ì¸¦ ¿¹·Î µç´Ù....
-	const float fWidth		= 3.5f; // Àü¸é ÆÇÀÇ Æø
-	const float fTopY		= 0.5f; // Àü¸é ÆÇÀÇ ³ôÀÌ..  ³ëÀ»Á®¼­ ºÓÀ¸½º¸§ÇÏ°Ô µÈ ºÎºÐÀÇ À§ ³ôÀÌ - ÀÌ À§ºÎÅÍ´Â ÇÏ´ÃÀÌ´Ù..
-	const float fBottomY	= 0.1f; // Àü¸é ÆÇÀÇ ¹Ù´Ú ³ôÀÌ..  ³ëÀ»Á®¼­ ºÓÀ¸½º¸§ÇÏ°Ô µÈ ºÎºÐÀÇ ¾Æ·¡ - ÀÌ ¾Æ·¡´Â ¼ø¼öÇÑ ¾È°³»öÀÌ´Ù..
-	const float fDistance	= 1.5f; // Àü¸é ÆÇÀÇ ¹Ù´Ú ±æÀÌ..
+	// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ì¸¦ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½....
+	const float fWidth		= 3.5f; // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½
+	const float fTopY		= 0.5f; // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½..  ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï°ï¿½ ï¿½ï¿½ ï¿½Îºï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ - ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Í´ï¿½ ï¿½Ï´ï¿½ï¿½Ì´ï¿½..
+	const float fBottomY	= 0.1f; // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ù´ï¿½ ï¿½ï¿½ï¿½ï¿½..  ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï°ï¿½ ï¿½ï¿½ ï¿½Îºï¿½ï¿½ï¿½ ï¿½Æ·ï¿½ - ï¿½ï¿½ ï¿½Æ·ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½È°ï¿½ï¿½ï¿½ï¿½Ì´ï¿½..
+	const float fDistance	= 1.5f; // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ù´ï¿½ ï¿½ï¿½ï¿½ï¿½..
 	const D3DCOLOR color = m_FogColor.GetCurColor();
 	m_vFronts[0].Set( fWidth,	fTopY,		fDistance,		0x00ffffff&color);
 	m_vFronts[1].Set( fWidth,	fBottomY,	fDistance,		color);
 	m_vFronts[2].Set(-fWidth,	fBottomY,	fDistance,		color);
 	m_vFronts[3].Set(-fWidth,	fTopY,		fDistance,		0x00ffffff&color);
 
-	const float fBottomOffset = -5.0f;	// ¹Ø¸é ÆÇÀÇ ¹Ù´Ú ³ôÀÌ
+	const float fBottomOffset = -5.0f;	// ï¿½Ø¸ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ù´ï¿½ ï¿½ï¿½ï¿½ï¿½
 	m_Bottom[0].Set( fWidth,	fBottomY,	fDistance,		color);
 	m_Bottom[1].Set( fWidth,	fBottomOffset,	fDistance,	color);
 	m_Bottom[2].Set(-fWidth,	fBottomOffset,	fDistance,	color);

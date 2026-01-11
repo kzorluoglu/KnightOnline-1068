@@ -18,13 +18,13 @@ static char THIS_FILE[]=__FILE__;
 //////////////////////////////////////////////////////////////////////
 
 
-enum {	GEW_CLEAR=0,			// ¸¼À½
-		GEW_DRIZZLE_RAIN=1,		// °¡¶ûºñ
-		GEW_RAINY=2,			// Àû´ç·®ÀÇ ºñ
-		GEW_HEAVY_RAIN=3,		// Æø¿ì
-		GEW_SNOW1=11,			// Æ÷±ÙÇÑ ´«
-		GEW_SNOW2=12,			// Àû´çÇÑ ´«
-		GEW_HEAVY_SNOW=13		// Æø¼³
+enum {	GEW_CLEAR=0,			// ï¿½ï¿½ï¿½ï¿½
+		GEW_DRIZZLE_RAIN=1,		// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+		GEW_RAINY=2,			// ï¿½ï¿½ï¿½ç·®ï¿½ï¿½ ï¿½ï¿½
+		GEW_HEAVY_RAIN=3,		// ï¿½ï¿½ï¿½ï¿½
+		GEW_SNOW1=11,			// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½
+		GEW_SNOW2=12,			// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½
+		GEW_HEAVY_SNOW=13		// ï¿½ï¿½ï¿½ï¿½
 };
 
 
@@ -151,7 +151,7 @@ void CN3GlobalEffectMng::SetWeather(int iWeather)
 		if (m_pGERain == NULL) m_pGERain = new CN3GERain;
 
 		m_fCellSize = 20.0f;
-		m_pGERain->Create(fDensity, m_fCellSize, fHeight, fRainLength, vVelocity);	// ºñ
+		m_pGERain->Create(fDensity, m_fCellSize, fHeight, fRainLength, vVelocity);	// ï¿½ï¿½
 		m_pGERain->SetActive(TRUE);
 		if (m_pGESnow) {delete m_pGESnow; m_pGESnow = NULL;}
 	}
@@ -160,7 +160,7 @@ void CN3GlobalEffectMng::SetWeather(int iWeather)
 		if (m_pGESnow == NULL) m_pGESnow = new CN3GESnow;
 
 		m_fCellSize = 10.0f;
-		m_pGESnow->Create(fDensity, m_fCellSize, fHeight, fSnowSize, vVelocity);	// ´«
+		m_pGESnow->Create(fDensity, m_fCellSize, fHeight, fSnowSize, vVelocity);	// ï¿½ï¿½
 		m_pGESnow->SetActive(TRUE);
 		if (m_pGERain) {delete m_pGERain; m_pGERain = NULL;}
 	}

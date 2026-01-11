@@ -31,7 +31,7 @@ protected:
 	int					m_iNumIndices;
 	int					m_iNumVertices; 
 
-	CN3PMesh::__EdgeCollapse*	m_pCollapseUpTo;	// ÂüÁ¶ Æ÷ÀÎÅÍ
+	CN3PMesh::__EdgeCollapse*	m_pCollapseUpTo;	// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 
 	// A pointer to the original mesh. This is where you'll find the vertex data (which
 	// is invariant between PMRInstance's)

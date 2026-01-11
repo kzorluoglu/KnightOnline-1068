@@ -27,10 +27,10 @@ const int MAX_SCENE_CHARACTER = 4096;
 class CN3Scene : public CN3Base
 {
 public:
-	float		m_fFrmCur, m_fFrmStart, m_fFrmEnd; // ÇöÀç, ½ÃÀÛ, ³¡ ÇÁ·¹ÀÓ..
+	float		m_fFrmCur, m_fFrmStart, m_fFrmEnd; // ï¿½ï¿½ï¿½ï¿½, ï¿½ï¿½ï¿½ï¿½, ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½..
 
 protected:
-	int	m_nCameraActive; // ÇöÀç ¼±ÅÃµÈ Ä«¸Þ¶ó..
+	int	m_nCameraActive; // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ãµï¿½ Ä«ï¿½Þ¶ï¿½..
 	int m_nCameraCount;
 	int m_nLightCount;
 	int m_nShapeCount;

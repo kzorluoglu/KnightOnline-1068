@@ -49,7 +49,7 @@ public:
 #endif
 
 #ifdef _N3TOOL
-// Åø¿¡¼­ »ç¿ëÇÏ±â À§ÇÑ ÇÔ¼ö
+// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ï±ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ô¼ï¿½
 	virtual void	operator = (const CN3UIArea& other);
 	virtual bool	Save(HANDLE hFile);
 #endif

@@ -95,7 +95,7 @@ void CTransDummy::Tick()
 {
 	if (m_ceDType != DUMMY_SWAP && m_SelObjArray.GetSize()==0)
 		return;
-	// Scale Á¶Á¤
+	// Scale ï¿½ï¿½ï¿½ï¿½
 	__Vector3 vL = s_CameraData.vEye - m_vPos;
 	float fL = vL.Magnitude()*0.01f;
 	m_vScale.Set(fL, fL, fL);
@@ -103,7 +103,7 @@ void CTransDummy::Tick()
 	CN3Transform::Tick(-1000.0f);
 	ReCalcMatrix();
 
-	// °Å¸®¿¡ µû¶ó Á¤·Ä
+	// ï¿½Å¸ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	int i;
 	for (i=0; i<NUM_DUMMY; ++i)
 	{
@@ -132,7 +132,7 @@ void CTransDummy::Render()
 	HRESULT hr;
 
 	// set transform
-	hr = s_lpD3DDev->SetTransform(D3DTS_WORLD, &m_Matrix); // ¿ùµå Çà·Ä Àû¿ë..
+	hr = s_lpD3DDev->SetTransform(D3DTS_WORLD, &m_Matrix); // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½..
 
 	// set texture
 	hr = s_lpD3DDev->SetTexture(0, NULL);
@@ -148,12 +148,12 @@ void CTransDummy::Render()
 	hr = s_lpD3DDev->SetRenderState(D3DRS_ZENABLE, D3DZB_FALSE);
 	hr = s_lpD3DDev->SetRenderState(D3DRS_LIGHTING, FALSE);
 
-	// ÀÌ¾îÁö ¼± ±×¸®±â
-	hr = s_lpD3DDev->SetVertexShader(FVF_XYZCOLOR);
+	// ï¿½Ì¾ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½×¸ï¿½ï¿½ï¿½
+	hr = s_lpD3DDev->SetFVF(FVF_XYZCOLOR);
 	hr = s_lpD3DDev->DrawPrimitiveUP(D3DPT_LINELIST, 3, m_LineVertices, sizeof(__VertexXyzColor));
 
-	// Cube ±×¸®±â
-	hr = s_lpD3DDev->SetVertexShader(FVF_XYZNORMALCOLOR);
+	// Cube ï¿½×¸ï¿½ï¿½ï¿½
+	hr = s_lpD3DDev->SetFVF(FVF_XYZNORMALCOLOR);
 	int i;
 	for (i=0; i<NUM_DUMMY; ++i)
 	{
@@ -172,13 +172,13 @@ void CTransDummy::SetSelObj(SelectElement Obj, bool bOne)
 		m_SelObjArray.RemoveAll();
 	else
 	{
-		// ÀÌ¹Ì ÀÖÀ¸¸é Ãß°¡ÇÏÁö ¾Ê´Â´Ù..
+		// ï¿½Ì¹ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ß°ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ê´Â´ï¿½..
 		int iSize = m_SelObjArray.GetSize();
 		for ( int i = 0; i < iSize; i++ )
 		{
 			if (m_SelObjArray[i].pSelectPointer == Obj.pSelectPointer)
 			{
-				// ÀÌ¹Ì ÀÖÀ¸¹Ç·Î ¼±ÅÃ¸ñ·Ï¿¡¼­ Á¦°Å
+				// ï¿½Ì¹ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ç·ï¿½ ï¿½ï¿½ï¿½Ã¸ï¿½Ï¿ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 				m_SelObjArray.RemoveAt(i);
 				return;
 			}
@@ -244,7 +244,7 @@ BOOL CTransDummy::MouseMsgFilter(LPMSG pMsg)
 				m_vPrevPos = m_vPos;
 				m_qPrevRot = m_qRot;
 
-				for (int i=0; i<iSize; ++i)	// ¸ðµç ¼±ÅÃµÈ °´Ã¼ÀÇ ½ºÄÉÀÏ ÀúÀå
+				for (int i=0; i<iSize; ++i)	// ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ãµï¿½ ï¿½ï¿½Ã¼ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 				{
 					Tv tv;
 					se = m_SelObjArray.GetAt(i);
@@ -300,7 +300,7 @@ BOOL CTransDummy::MouseMsgFilter(LPMSG pMsg)
 			}
 		}
 		break;
-	case WM_RBUTTONUP:	// Å¥ºê ¼±ÅÃ Ãë¼Ò
+	case WM_RBUTTONUP:	// Å¥ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
 		{
 			if (m_pSelectedCube)
 			{
@@ -392,7 +392,7 @@ void CTransDummy::TransDiff(__Vector3* pvDiffPos, __Quaternion* pqDiffRot, __Vec
 					{
 						CPortalVolume* pVol = (CPortalVolume* )se.pSelectPointer;
 
-						// Volume°ú ±×·µ¿¡ LinkµÈ Shapeµé..
+						// Volumeï¿½ï¿½ ï¿½×·ï¿½ï¿½ï¿½ Linkï¿½ï¿½ Shapeï¿½ï¿½..
 						pVol->PosSet( pVol->Pos() + (*pvDiffPos) );
 
 						ShapeInfo*	pSI = NULL;
@@ -419,7 +419,7 @@ void CTransDummy::TransDiff(__Vector3* pvDiffPos, __Quaternion* pqDiffRot, __Vec
 			se = m_SelObjArray.GetAt(i);
 			switch (se.eST)
 			{
-				case TYPE_VOLUME_TOTAL:						// Volume°ú ±×·µ¿¡ LinkµÈ ShapeµéÀº È¸ÀüÀÌ ¾ÈµÈ´Ù..
+				case TYPE_VOLUME_TOTAL:						// Volumeï¿½ï¿½ ï¿½×·ï¿½ï¿½ï¿½ Linkï¿½ï¿½ Shapeï¿½ï¿½ï¿½ï¿½ È¸ï¿½ï¿½ï¿½ï¿½ ï¿½ÈµÈ´ï¿½..
 					break;
 		
 					case TYPE_VOLUME_ONLY:

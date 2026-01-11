@@ -16,9 +16,9 @@ static char THIS_FILE[]=__FILE__;
 
 CN3EffectPartInstance::CN3EffectPartInstance()
 {
-	m_pVDeltas = NULL; // Instance ¸¶´Ù ÀÖ´Â ÇöÀç Move Vector
-	m_pVPosCurs = NULL; // Instance ¸¶´Ù ÀÖ´Â Random
-	m_pfGravityCurs = NULL; // ÆÄÆ¼Å¬ÀÏ¶§ ÇöÀç Áß·Â¼Óµµ...
+	m_pVDeltas = NULL; // Instance ï¿½ï¿½ï¿½ï¿½ ï¿½Ö´ï¿½ ï¿½ï¿½ï¿½ï¿½ Move Vector
+	m_pVPosCurs = NULL; // Instance ï¿½ï¿½ï¿½ï¿½ ï¿½Ö´ï¿½ Random
+	m_pfGravityCurs = NULL; // ï¿½ï¿½Æ¼Å¬ï¿½Ï¶ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ß·Â¼Óµï¿½...
 	m_pnTexIndices = NULL;
 	m_pnTexCycles = NULL;
 	m_pdwTexAlphaFactors = NULL;
@@ -48,11 +48,11 @@ void CN3EffectPartInstance::Release()
 
 	m_pEffectPartRef = NULL; // Effect Part Class Reference Pointer
 
-	m_nTexCycleCount = 0; // Texture Animation ÀÌ µ¹¾Æ°£ È½¼ö.
-	m_nTexIndexCur = 0; // ÇöÀç Texture Index;
-	m_dwTickPrev = timeGetTime(); // Texture Frame Á¦¾î¿ë
+	m_nTexCycleCount = 0; // Texture Animation ï¿½ï¿½ ï¿½ï¿½ï¿½Æ°ï¿½ È½ï¿½ï¿½.
+	m_nTexIndexCur = 0; // ï¿½ï¿½ï¿½ï¿½ Texture Index;
+	m_dwTickPrev = timeGetTime(); // Texture Frame ï¿½ï¿½ï¿½ï¿½ï¿½
 
-	m_fGravityCur = 0; // ÇöÀç Áß·Â¼Óµµ...
+	m_fGravityCur = 0; // ï¿½ï¿½ï¿½ï¿½ ï¿½ß·Â¼Óµï¿½...
 
 	m_pShapeRef = NULL;
 }
@@ -81,7 +81,7 @@ void CN3EffectPartInstance::GenerateRandomPositions()
 	m_pfGravityCurs = new float[m_pEffectPartRef->m_nBoardCount];
 	memset(m_pfGravityCurs, 0, 4 * m_pEffectPartRef->m_nBoardCount);
 
-//	if(m_pEffectPartRef->m_eParticleType != PARTICLE_NOTHING) // ÆÄÆ¼Å¬ ÀÏ°æ¿ì¿¡´Â
+//	if(m_pEffectPartRef->m_eParticleType != PARTICLE_NOTHING) // ï¿½ï¿½Æ¼Å¬ ï¿½Ï°ï¿½ì¿¡ï¿½ï¿½
 //	{
 		int nBC = m_pEffectPartRef->m_nBoardCount;
 		int nTC = m_pEffectPartRef->TexCount();
@@ -93,11 +93,11 @@ void CN3EffectPartInstance::GenerateRandomPositions()
 
 		DWORD dwTick = timeGetTime();
 
-		for(int i = 0; i < nBC; i++) // ¼ö¸í¿ï ºÒ±ÔÄ¢ÇÏ°Ô Á¤ÇØÁØ´Ù..
+		for(int i = 0; i < nBC; i++) // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ò±ï¿½Ä¢ï¿½Ï°ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ø´ï¿½..
 		{
 			m_pdwTickPrevs[i] = dwTick;
 			m_pnTexCycles[i] = 0;
-			if(nTC == 1) m_pnTexIndices[i] = rand()%256; // Texture °¡ ÇÏ³ª¸é.. Åõ¸íµµ¸¦ ·£´ýÇÏ°Ô..
+			if(nTC == 1) m_pnTexIndices[i] = rand()%256; // Texture ï¿½ï¿½ ï¿½Ï³ï¿½ï¿½ï¿½.. ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï°ï¿½..
 			else m_pnTexIndices[i] = rand()%nTC;
 			m_bDeads[i] = false;
 		}
@@ -126,7 +126,7 @@ void CN3EffectPartInstance::GenerateRandomPositions()
 		{
 			m_pVDeltas[i] = m_pVPosCurs[i];
 			m_pVDeltas[i].Normalize();
-			if(PARTICLE_GATHER == ePType) m_pVDeltas[i] *= -1.0f; // ¾ÈÀ¸·Î ÇâÇÏ°Ô ÇÑ´Ù..
+			if(PARTICLE_GATHER == ePType) m_pVDeltas[i] *= -1.0f; // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ï°ï¿½ ï¿½Ñ´ï¿½..
 		}
 	}
 }
@@ -135,7 +135,7 @@ void CN3EffectPartInstance::Tick(DWORD dwTick, __Vector3& vDir)
 {
 	if(NULL == m_pEffectPartRef || m_pEffectPartRef->m_nBoardCount <= 0) return;
 
-	// Texture Index Ã³¸®
+	// Texture Index Ã³ï¿½ï¿½
 	if(dwTick >= m_dwTickPrev + (1000.0f / m_pEffectPartRef->m_fFPS))
 	{
 		m_nTexIndexCur++;
@@ -148,22 +148,22 @@ void CN3EffectPartInstance::Tick(DWORD dwTick, __Vector3& vDir)
 	}
 
 	PARTICLE_TYPE eType = m_pEffectPartRef->m_eParticleType;
-	if(PARTICLE_NOTHING != eType) // ÆÄÆ¼Å¬ ÀÏ °æ¿ì..
+	if(PARTICLE_NOTHING != eType) // ï¿½ï¿½Æ¼Å¬ ï¿½ï¿½ ï¿½ï¿½ï¿½..
 	{
 		static __Vector3 vDrop;
 		float fDelta = m_pEffectPartRef->m_fParticleDelta;
-		if(eType == PARTICLE_DROP) // Drop ÆÄÆ¼Å¬ ÀÏ °æ¿ì..
+		if(eType == PARTICLE_DROP) // Drop ï¿½ï¿½Æ¼Å¬ ï¿½ï¿½ ï¿½ï¿½ï¿½..
 		{
 			vDrop = vDir * (fDelta/CN3Base::s_fFrmPerSec);
 		}
 
 		bool bNeedReset = false;
-		float fAccel = m_pEffectPartRef->m_fParticleAccel / CN3Base::s_fFrmPerSec; // °¡¼Óµµ..
+		float fAccel = m_pEffectPartRef->m_fParticleAccel / CN3Base::s_fFrmPerSec; // ï¿½ï¿½ï¿½Óµï¿½..
 		__Vector3 vDTmp;
 		for(int i = 0; i < m_pEffectPartRef->m_nBoardCount; i++)
 		{
-			if(m_bDeads[i]) continue; // Á×Àº ÆÄÆ¼Å¬ÀÌ¸é Áö³ª°£´Ù..
-			bNeedReset = false; // ¸®¼ÂÇØ¾ß ÇÏ´ÂÁö ÇÃ·¡±×..
+			if(m_bDeads[i]) continue; // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Æ¼Å¬ï¿½Ì¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½..
+			bNeedReset = false; // ï¿½ï¿½ï¿½ï¿½ï¿½Ø¾ï¿½ ï¿½Ï´ï¿½ï¿½ï¿½ ï¿½Ã·ï¿½ï¿½ï¿½..
 
 			if(fAccel != 0.0f)
 			{
@@ -172,31 +172,31 @@ void CN3EffectPartInstance::Tick(DWORD dwTick, __Vector3& vDir)
 				m_pVDeltas[i] += vDTmp * fAccel;
 			}
 
-			m_pVPosCurs[i].y -= m_pfGravityCurs[i]; // Áß·Â°ª Àû¿ë
-			m_pfGravityCurs[i] += m_pEffectPartRef->m_fGravity / CN3Base::s_fFrmPerSec; // ÇöÀç Áß·Â°ª °è»ê..
+			m_pVPosCurs[i].y -= m_pfGravityCurs[i]; // ï¿½ß·Â°ï¿½ ï¿½ï¿½ï¿½ï¿½
+			m_pfGravityCurs[i] += m_pEffectPartRef->m_fGravity / CN3Base::s_fFrmPerSec; // ï¿½ï¿½ï¿½ï¿½ ï¿½ß·Â°ï¿½ ï¿½ï¿½ï¿½..
 
-			if(eType == PARTICLE_DROP) // Drop ÆÄÆ¼Å¬ ÀÏ °æ¿ì..
+			if(eType == PARTICLE_DROP) // Drop ï¿½ï¿½Æ¼Å¬ ï¿½ï¿½ ï¿½ï¿½ï¿½..
 			{
-				m_pVPosCurs[i] += vDrop; // µÚ·Î Ã³Áö´Â ¼Óµµ Á¶Á¤..
+				m_pVPosCurs[i] += vDrop; // ï¿½Ú·ï¿½ Ã³ï¿½ï¿½ï¿½ï¿½ ï¿½Óµï¿½ ï¿½ï¿½ï¿½ï¿½..
 			}
 			else if(eType != PARTICLE_NOTHING)
-//					eType == PARTICLE_GATHER) // Explode ÆÄÆ¼Å¬ ÀÏ °æ¿ì..
+//					eType == PARTICLE_GATHER) // Explode ï¿½ï¿½Æ¼Å¬ ï¿½ï¿½ ï¿½ï¿½ï¿½..
 			{
 				m_pVPosCurs[i] += m_pVDeltas[i] * (fDelta / CN3Base::s_fFrmPerSec);
 			}
 
-			if(eType == PARTICLE_GATHER && m_pVPosCurs[i].Magnitude() < 0.1f) bNeedReset = true; // Gather ÆÄÆ¼Å¬ ÀÏ °æ¿ì..
+			if(eType == PARTICLE_GATHER && m_pVPosCurs[i].Magnitude() < 0.1f) bNeedReset = true; // Gather ï¿½ï¿½Æ¼Å¬ ï¿½ï¿½ ï¿½ï¿½ï¿½..
 
 			int nTC = m_pEffectPartRef->TexCount();
-			if(nTC == 1) // Texture °¡ ÇÑÀåÀÌ¸é Á¡Â÷ Åõ¸íÇÏ°Ô ¸¸µç´Ù...
+			if(nTC == 1) // Texture ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ì¸ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï°ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½...
 			{
 				m_pnTexIndices[i] -= (int)(10.0f * m_pEffectPartRef->m_fFPS / s_fFrmPerSec);
 				if(m_pnTexIndices[i] <= 0) bNeedReset = true;
 			}
 			else if(nTC > 1)
 			{
-				// ÆÄÆ¼Å¬ ÅØ½ºÃ³ ÀÎµ¦½º °è»ê..
-				// Texture Index Ã³¸®
+				// ï¿½ï¿½Æ¼Å¬ ï¿½Ø½ï¿½Ã³ ï¿½Îµï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½..
+				// Texture Index Ã³ï¿½ï¿½
 				if(dwTick >= m_pdwTickPrevs[i] + (1000.0f / m_pEffectPartRef->m_fFPS))
 				{
 					m_pnTexIndices[i]++;
@@ -207,16 +207,16 @@ void CN3EffectPartInstance::Tick(DWORD dwTick, __Vector3& vDir)
 					m_pnTexIndices[i] = 0;
 					m_pnTexCycles[i]++;
 				}
-				if(m_pnTexCycles[i] >= m_pEffectPartRef->m_nTexCycle) bNeedReset = true; // ÅØ½ºÃ³°¡ ÇÑ»çÀÌÅ¬ÀÌ ´Ù µ¹¸é.. -> ¿ø·¡ ÀÌ°É·Î ´ëÄ¡ÇØ¾ß ÇÑ´Ù..
+				if(m_pnTexCycles[i] >= m_pEffectPartRef->m_nTexCycle) bNeedReset = true; // ï¿½Ø½ï¿½Ã³ï¿½ï¿½ ï¿½Ñ»ï¿½ï¿½ï¿½Å¬ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½.. -> ï¿½ï¿½ï¿½ï¿½ ï¿½Ì°É·ï¿½ ï¿½ï¿½Ä¡ï¿½Ø¾ï¿½ ï¿½Ñ´ï¿½..
 			}
 			
 			if(bNeedReset && PARTICLE_EXPLODE == eType)
 			{
-				m_bDeads[i] = true; // ÆÄÆ¼Å¬ Á×ÀÎ´Ù..
+				m_bDeads[i] = true; // ï¿½ï¿½Æ¼Å¬ ï¿½ï¿½ï¿½Î´ï¿½..
 			}
 			else if(bNeedReset)
 			{
-				m_pVPosCurs[i].Set(0,0,0); // »õ·Î À§Ä¡¸¦ Àâ°í..
+				m_pVPosCurs[i].Set(0,0,0); // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ä¡ï¿½ï¿½ ï¿½ï¿½ï¿½..
 				__Vector3 vRMin = m_pEffectPartRef->m_vRandomMin;
 				__Vector3 vRMax = m_pEffectPartRef->m_vRandomMax;
 				__Vector3 vRDelta = vRMax - vRMin;
@@ -227,15 +227,15 @@ void CN3EffectPartInstance::Tick(DWORD dwTick, __Vector3& vDir)
 				m_pVDeltas[i] = m_pVPosCurs[i];
 				m_pVDeltas[i].Normalize();
 				
-				if(PARTICLE_GATHER == m_pEffectPartRef->m_eParticleType) // Æø¹ß ÆÄÆ¼Å¬ÀÌ¸é...
+				if(PARTICLE_GATHER == m_pEffectPartRef->m_eParticleType) // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Æ¼Å¬ï¿½Ì¸ï¿½...
 				{
 					m_pVDeltas[i] *= -1.0f;
 				}
 				
-				if(nTC == 1) m_pnTexIndices[i] = 255; // Texture °¡ ÇÏ³ª¸é.. ¾ËÆÄ°ªÀ» 255 ·Î..
-				else m_pnTexCycles[i] = 0; // ÅØ½ºÃ³°¡ ¿©·¯°³¸é ÅØ½ºÃ³ »çÀÌÅ¬ ÃÊ±âÈ­..
+				if(nTC == 1) m_pnTexIndices[i] = 255; // Texture ï¿½ï¿½ ï¿½Ï³ï¿½ï¿½ï¿½.. ï¿½ï¿½ï¿½Ä°ï¿½ï¿½ï¿½ 255 ï¿½ï¿½..
+				else m_pnTexCycles[i] = 0; // ï¿½Ø½ï¿½Ã³ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ø½ï¿½Ã³ ï¿½ï¿½ï¿½ï¿½Å¬ ï¿½Ê±ï¿½È­..
 
-				m_pfGravityCurs[i] = 0; // Áß·Â°ª ÃÊ±âÈ­.. 
+				m_pfGravityCurs[i] = 0; // ï¿½ß·Â°ï¿½ ï¿½Ê±ï¿½È­.. 
 			}
 		}
 	}
@@ -291,11 +291,11 @@ void CN3EffectPartInstance::Render(__Vector3& vPos)
 	DWORD dwAlpha;
 	for(int i = 0; i < m_pEffectPartRef->m_nBoardCount; i++)
 	{
-		if(m_bDeads[i]) continue; // Á×Àº ÆÄÆ¼Å¬Àº ´õ ÇÏÁö ¾Ê´Â´Ù..
+		if(m_bDeads[i]) continue; // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Æ¼Å¬ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ê´Â´ï¿½..
 
-		if(nTC == 1) // ÅØ½ºÃ³°¡ ÇÏ³ªÀÌ¸é..
+		if(nTC == 1) // ï¿½Ø½ï¿½Ã³ï¿½ï¿½ ï¿½Ï³ï¿½ï¿½Ì¸ï¿½..
 		{
-			dwAlpha = (m_pnTexIndices[i] << 24) | (m_pnTexIndices[i] << 16) | (m_pnTexIndices[i] << 8); // Åõ¸íµµ¸¦ °è»ê..
+			dwAlpha = (m_pnTexIndices[i] << 24) | (m_pnTexIndices[i] << 16) | (m_pnTexIndices[i] << 8); // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½..
 //			dwAlpha = 0x10000000;
 //			s_lpD3DDev->SetRenderState(D3DRS_TEXTUREFACTOR, dwAlpha);	// alpha factor
 			m_pEffectPartRef->m_VPlanes[0].color = dwAlpha;
@@ -317,7 +317,7 @@ void CN3EffectPartInstance::Render(__Vector3& vPos)
 
 		s_lpD3DDev->SetTransform(D3DTS_WORLD, &mtx);
 		// Render the vertex buffer contents
-		s_lpD3DDev->SetVertexShader( FVF_XYZCOLORT1 );
+		s_lpD3DDev->SetFVF( FVF_XYZCOLORT1 );
 		s_lpD3DDev->DrawPrimitiveUP( D3DPT_TRIANGLELIST, 2, m_pEffectPartRef->m_VPlanes, sizeof(__VertexXyzColorT1));
 	}
 }
@@ -355,7 +355,7 @@ void CN3EffectInstance::Tick(DWORD dwTick)
 {
 	if(NULL == m_pEffectRef || m_nTickStep >= m_pEffectRef->TickStepCount()) return;
 	
-	// Ã³¸® ´Ü°è¸¦ Àû¿ëÇÑ´Ù..
+	// Ã³ï¿½ï¿½ ï¿½Ü°è¸¦ ï¿½ï¿½ï¿½ï¿½ï¿½Ñ´ï¿½..
 	CN3Effect::__EFFECT_TICK* pEC = m_pEffectRef->TickStepStruct(m_nTickStep);
 
 	CN3EffectPart* pEP0 = m_pEffectRef->Part(pEC->nPart0);
@@ -363,8 +363,8 @@ void CN3EffectInstance::Tick(DWORD dwTick)
 
 	if(NULL == pEP0 && NULL == pEP1)
 	{
-		m_nTickStep++; // ´ÙÀ½ ´Ü°è·Î ³Ñ¾î°£´Ù.
-		m_dwTickPrev0 = dwTick; // ÃÖ±Ù ½Ã°£À» ±â·ÏÇØ ³õ´Â´Ù..
+		m_nTickStep++; // ï¿½ï¿½ï¿½ï¿½ ï¿½Ü°ï¿½ï¿½ ï¿½Ñ¾î°£ï¿½ï¿½.
+		m_dwTickPrev0 = dwTick; // ï¿½Ö±ï¿½ ï¿½Ã°ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Â´ï¿½..
 
 		return;
 	}
@@ -378,53 +378,53 @@ void CN3EffectInstance::Tick(DWORD dwTick)
 	if(pEP0)
 	{
 		int nTC = pEP0->TexCount();
-		if(nTC > 1) // Texture °¡ ¿©·¯ÀåÀÌ¸é ´ÙÀ½ ´Ü°è·Î ³Ñ¾î°¡´Â Á¶°ÇÀº TexCycleCount ÀÌ´Ù..
+		if(nTC > 1) // Texture ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ì¸ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ü°ï¿½ï¿½ ï¿½Ñ¾î°¡ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ TexCycleCount ï¿½Ì´ï¿½..
 		{
 			if(m_PartInst0.TexCycleCount() >= pEC->nCondition)
 			{
-				m_nTickStep++; // ´ÙÀ½ ´Ü°è·Î ³Ñ¾î°£´Ù.
-				m_dwTickPrev0 = dwTick; // ÃÖ±Ù ½Ã°£À» ±â·ÏÇØ ³õ´Â´Ù..
+				m_nTickStep++; // ï¿½ï¿½ï¿½ï¿½ ï¿½Ü°ï¿½ï¿½ ï¿½Ñ¾î°£ï¿½ï¿½.
+				m_dwTickPrev0 = dwTick; // ï¿½Ö±ï¿½ ï¿½Ã°ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Â´ï¿½..
 			}
 		}
 		else
 		{
 			if(dwTick > m_dwTickPrev0 + pEC->nCondition)
 			{
-				m_nTickStep++; // ´ÙÀ½ ´Ü°è·Î ³Ñ¾î°£´Ù.
-				m_dwTickPrev0 = dwTick; // ÃÖ±Ù ½Ã°£À» ±â·ÏÇØ ³õ´Â´Ù..
+				m_nTickStep++; // ï¿½ï¿½ï¿½ï¿½ ï¿½Ü°ï¿½ï¿½ ï¿½Ñ¾î°£ï¿½ï¿½.
+				m_dwTickPrev0 = dwTick; // ï¿½Ö±ï¿½ ï¿½Ã°ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Â´ï¿½..
 			}
 		}
 
-		// ³¯¾Æ°¡±â.. À§Ä¡¸¦ °è»êÇÑ´Ù..
+		// ï¿½ï¿½ï¿½Æ°ï¿½ï¿½ï¿½.. ï¿½ï¿½Ä¡ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ñ´ï¿½..
 		if(0.0f != pEP0->m_fSpeedY || 0.0f != pEP0->m_fSpeedZ)
 		{
 			float fSpeed = (pEP0->m_fSpeedZ / CN3Base::s_fFrmPerSec);
-			m_vPosCur	+= m_vDir * fSpeed; // ´ÙÀ½ À§Ä¡ °è»ê..
+			m_vPosCur	+= m_vDir * fSpeed; // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ä¡ ï¿½ï¿½ï¿½..
 			m_vPosCur.y += pEP0->m_fSpeedY / CN3Base::s_fFrmPerSec;
 			m_vPosCur.y -= m_PartInst0.m_fGravityCur;
-			m_PartInst0.m_fGravityCur += pEP0->m_fGravity / CN3Base::s_fFrmPerSec; // Áß·Â Àû¿ë
+			m_PartInst0.m_fGravityCur += pEP0->m_fGravity / CN3Base::s_fFrmPerSec; // ï¿½ß·ï¿½ ï¿½ï¿½ï¿½ï¿½
 		}
 
-		// ¸¸¾à Ãæµ¹ Ã¼Å©°¡ ÇÊ¿äÇÑ °Å¶ó¸é..
+		// ï¿½ï¿½ï¿½ï¿½ ï¿½æµ¹ Ã¼Å©ï¿½ï¿½ ï¿½Ê¿ï¿½ï¿½ï¿½ ï¿½Å¶ï¿½ï¿½..
 		if(pEP0->m_bNeedCollisionCheck)
 		{
-			// Áö¸é°ú Ãæµ¹ °Ë»ç..
+			// ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½æµ¹ ï¿½Ë»ï¿½..
 			float fHeight = 0;
-			float fUnitSize = pEP0->m_fBoardSize / 4.0f; // Board »çÀÌÁî º¸´Ù ÀÛ°Ô Ã¼Å©ÇÑ´Ù.
+			float fUnitSize = pEP0->m_fBoardSize / 4.0f; // Board ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Û°ï¿½ Ã¼Å©ï¿½Ñ´ï¿½.
 		}
 	}
 
 	if(NULL != pEP0 && true == bCollision)
 	{
-		m_vPosCur = vPosCollision; // Ãæµ¹ À§Ä¡·Î À§Ä¡ º¯°æ...
-//		m_vPosCur.y += pEP0->m_fBoardSize / 2.0f; // º¸µå Å©±âÀÇ ¹Ý¸¸Å­ ³ô¿©ÁØ´Ù..
+		m_vPosCur = vPosCollision; // ï¿½æµ¹ ï¿½ï¿½Ä¡ï¿½ï¿½ ï¿½ï¿½Ä¡ ï¿½ï¿½ï¿½ï¿½...
+//		m_vPosCur.y += pEP0->m_fBoardSize / 2.0f; // ï¿½ï¿½ï¿½ï¿½ Å©ï¿½ï¿½ï¿½ï¿½ ï¿½Ý¸ï¿½Å­ ï¿½ï¿½ï¿½ï¿½ï¿½Ø´ï¿½..
 	}
 
-	// ¸¸¾à Shape Pointer °¡ ÀÖ´Ù¸é..
+	// ï¿½ï¿½ï¿½ï¿½ Shape Pointer ï¿½ï¿½ ï¿½Ö´Ù¸ï¿½..
 	if(m_PartInst0.m_pShapeRef) m_PartInst0.m_pShapeRef->PosSet(m_vPosCur);
 	if(m_PartInst1.m_pShapeRef) m_PartInst1.m_pShapeRef->PosSet(m_vPosCur);
 
-	// Ä«¸Þ¶ó ½Ã¾ß Á¡°Ë..
+	// Ä«ï¿½Þ¶ï¿½ ï¿½Ã¾ï¿½ ï¿½ï¿½ï¿½ï¿½..
 	m_bDontRender = s_CameraData.IsOutOfFrustum(m_vPosCur, 20.0f);
 	if(FALSE == m_bDontRender)
 	{
@@ -435,7 +435,7 @@ void CN3EffectInstance::Tick(DWORD dwTick)
 		m_PartInst1.Tick(dwTick, vDir);
 	}
 
-	m_vPosPrev = m_vPosCur; // ÇöÀçÀ§Ä¡¸¦ ±â¾ïÇØµÐ´Ù..
+	m_vPosPrev = m_vPosCur; // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä¡ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ØµÐ´ï¿½..
 }
 
 void CN3EffectInstance::Render()

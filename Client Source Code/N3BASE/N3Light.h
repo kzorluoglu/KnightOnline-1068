@@ -14,17 +14,17 @@
 class CN3Light : public CN3Transform
 {
 public:
-	typedef struct __Light : public _D3DLIGHT8
+	typedef struct __Light : public D3DLIGHT9
 	{
 	public:
-		BOOL		bOn; // ¶óÀÌÆ®°¡ ÄÑÁ® ÀÖ´ÂÁö..
+		BOOL		bOn; // ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ö´ï¿½ï¿½ï¿½..
 		int			nNumber; // 0 ~ 8
 		
 		void		Zero() { memset(this, 0, sizeof(__Light)); }
-		void		InitPoint(int nLgtNumber, D3DXVECTOR3& dvPos, _D3DCOLORVALUE& ltColor, float fRange = 10000.0f, float fAttenuation = 0.5f)
+		void		InitPoint(int nLgtNumber, D3DXVECTOR3& dvPos, D3DCOLORVALUE& ltColor, float fRange = 10000.0f, float fAttenuation = 0.5f)
 		{
 			this->Zero();
-			nNumber = nLgtNumber; // ¶óÀÌÆ® ¹øÈ£..
+			nNumber = nLgtNumber; // ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ï¿½È£..
 			Type = D3DLIGHT_POINT;
 			Position = dvPos;
 			//Specular = 
@@ -33,10 +33,10 @@ public:
 			Ambient.g = ltColor.g * 0.7f;
 			Ambient.b = ltColor.b * 0.7f;
 
-			Falloff = 1.0f;		// È¿°ú°¡ ¹Ì¹ÌÇÏ°í ºÎÇÏ±â °É¸®±â ¶§¹®¿¡ º¸Åë 1.0À¸·Î ¾´´Ù.
+			Falloff = 1.0f;		// È¿ï¿½ï¿½ï¿½ï¿½ ï¿½Ì¹ï¿½ï¿½Ï°ï¿½ ï¿½ï¿½ï¿½Ï±ï¿½ ï¿½É¸ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ 1.0ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½.
 			if(fRange < 0.0001f) fRange = 0.0001f;
 			Attenuation0 = 1.0f - fAttenuation;
-			Attenuation1 = fAttenuation/fRange; // °¨¼è ¹üÀ§°è»ê. ¹üÀ§ÀÇ Àý¹ÝÀÌ Á¤È®ÇÏ°Ô Àý¹ÝÀÇ °¨¼è°¡ µÇµµ·Ï ÇÑ´Ù..
+			Attenuation1 = fAttenuation/fRange; // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½. ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È®ï¿½Ï°ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½è°¡ ï¿½Çµï¿½ï¿½ï¿½ ï¿½Ñ´ï¿½..
 			Attenuation2 = fAttenuation/(fRange*fRange);
 			Range = fRange * 4.0f;
 			bOn = TRUE;
@@ -45,7 +45,7 @@ public:
 		{
 			this->Zero();
 			
-			nNumber = nLgtNumber; // ¶óÀÌÆ® ¹øÈ£..
+			nNumber = nLgtNumber; // ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ï¿½È£..
 			bOn = TRUE;
 
 			Type = D3DLIGHT_DIRECTIONAL;
@@ -60,7 +60,7 @@ public:
 		void		InitSpot(int nLgtNumber, D3DXVECTOR3& dvPos, D3DXVECTOR3& dvDir, _D3DCOLORVALUE& ltColor, float fTheta, float fPhi, float fRange = 10000.0f)
 		{
 			this->Zero();
-			nNumber = nLgtNumber; // ¶óÀÌÆ® ¹øÈ£..
+			nNumber = nLgtNumber; // ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ï¿½È£..
 			Type = D3DLIGHT_SPOT;
 			Position = dvPos;
 			Direction = dvDir;
@@ -72,10 +72,10 @@ public:
 
 			if(fRange < 0.0001f) fRange = 0.0001f;
 			Attenuation0 = 1.0f;
-			Attenuation1 = 1.0f/(fRange/2.0f); // °¨¼è ¹üÀ§°è»ê. ¹üÀ§ÀÇ Àý¹ÝÀÌ Á¤È®ÇÏ°Ô Àý¹ÝÀÇ °¨¼è°¡ µÇµµ·Ï ÇÑ´Ù..
+			Attenuation1 = 1.0f/(fRange/2.0f); // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½. ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È®ï¿½Ï°ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½è°¡ ï¿½Çµï¿½ï¿½ï¿½ ï¿½Ñ´ï¿½..
 			Range = fRange;
 
-			Falloff = 1.0f;		// È¿°ú°¡ ¹Ì¹ÌÇÏ°í ºÎÇÏ±â °É¸®±â ¶§¹®¿¡ º¸Åë 1.0À¸·Î ¾´´Ù.
+			Falloff = 1.0f;		// È¿ï¿½ï¿½ï¿½ï¿½ ï¿½Ì¹ï¿½ï¿½Ï°ï¿½ ï¿½ï¿½ï¿½Ï±ï¿½ ï¿½É¸ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ 1.0ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½.
 			Theta = fTheta;
 			Phi = fPhi;
 			bOn = TRUE;
@@ -91,8 +91,8 @@ public:
 	void		PosSet(const __Vector3& vPos) { m_vPos = m_Data.Position = vPos; }
 	void		PosSet(float fx, float fy, float fz) { m_Data.Position.x = fx; m_Data.Position.y = fy; m_Data.Position.z = fz; m_vPos = m_Data.Position; }
 
-	void		Apply(); // ¼¼ÆÃµÈ ¶óÀÌÆ®°ªÀ» ½ÇÁ¦ D3DDevice ¿¡ Àû¿ë
-	void		Tick(float fFrm = FRAME_SELFPLAY); // ¶óÀÌÆ®°ª¸¸ ¼¼ÆÃÇÑ´Ù..
+	void		Apply(); // ï¿½ï¿½ï¿½Ãµï¿½ ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ D3DDevice ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+	void		Tick(float fFrm = FRAME_SELFPLAY); // ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ñ´ï¿½..
 	
 	bool		Load(HANDLE hFile);
 #ifdef _N3TOOL

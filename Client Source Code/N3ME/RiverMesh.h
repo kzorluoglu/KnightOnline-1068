@@ -55,16 +55,16 @@ protected:
 	int				m_iIC;					// Index Buffer Count.
 	int				m_iVC;					// Vertex Count.
 	CN3Texture*		m_pTexture;
-	int				m_iAnimTextureCount;	// AnimationµÇ´Â ÅØ½ºÃÄ °¹¼ö
-	CN3Texture**	m_pAnimTextures;		// AnimationµÇ´Â ÅØ½ºÃÄ Æ÷ÀÎÅÍµé..
-	float			m_fSpeed1;			// À¯¼Ó : ÃÊ´ç vÁÂÇ¥ÀÇ º¯È­·®
-	float			m_fSpeed2;			// À¯¼Ó : ÃÊ´ç v2ÁÂÇ¥ÀÇ º¯È­·®
-	float			m_fMeterPerU;		// UÁÂÇ¥ 1.0¿¡ ÇØ´çÇÏ´Â °­ÀÇ ±æÀÌ
-	float			m_fMeterPerV;		// VÁÂÇ¥ 1.0¿¡ ÇØ´çÇÏ´Â °­ÀÇ ±æÀÌ
-	float			m_fMeterPerU2;		// U2ÁÂÇ¥ 1.0¿¡ ÇØ´çÇÏ´Â °­ÀÇ ±æÀÌ
-	float			m_fMeterPerV2;		// V2ÁÂÇ¥ 1.0¿¡ ÇØ´çÇÏ´Â °­ÀÇ ±æÀÌ
-	float			m_fAnimTexFPS;		// AnimTextureÀÇ ÃÊ´ç frame ¼ö;
-	DWORD			m_dwAlphaFactor;	// °­À» Åõ¸íÇÏ°Ô ÇÏ±â À§ÇÑ ¾ËÆÄ°ª
+	int				m_iAnimTextureCount;	// Animationï¿½Ç´ï¿½ ï¿½Ø½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+	CN3Texture**	m_pAnimTextures;		// Animationï¿½Ç´ï¿½ ï¿½Ø½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Íµï¿½..
+	float			m_fSpeed1;			// ï¿½ï¿½ï¿½ï¿½ : ï¿½Ê´ï¿½ vï¿½ï¿½Ç¥ï¿½ï¿½ ï¿½ï¿½È­ï¿½ï¿½
+	float			m_fSpeed2;			// ï¿½ï¿½ï¿½ï¿½ : ï¿½Ê´ï¿½ v2ï¿½ï¿½Ç¥ï¿½ï¿½ ï¿½ï¿½È­ï¿½ï¿½
+	float			m_fMeterPerU;		// Uï¿½ï¿½Ç¥ 1.0ï¿½ï¿½ ï¿½Ø´ï¿½ï¿½Ï´ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+	float			m_fMeterPerV;		// Vï¿½ï¿½Ç¥ 1.0ï¿½ï¿½ ï¿½Ø´ï¿½ï¿½Ï´ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+	float			m_fMeterPerU2;		// U2ï¿½ï¿½Ç¥ 1.0ï¿½ï¿½ ï¿½Ø´ï¿½ï¿½Ï´ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+	float			m_fMeterPerV2;		// V2ï¿½ï¿½Ç¥ 1.0ï¿½ï¿½ ï¿½Ø´ï¿½ï¿½Ï´ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+	float			m_fAnimTexFPS;		// AnimTextureï¿½ï¿½ ï¿½Ê´ï¿½ frame ï¿½ï¿½;
+	DWORD			m_dwAlphaFactor;	// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï°ï¿½ ï¿½Ï±ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ä°ï¿½
 
 // Operations
 public:
@@ -72,11 +72,11 @@ public:
 	virtual bool	Load(HANDLE hFile);
 	virtual bool	Save(HANDLE hFile);
 	void			Render();
-	void			RenderVertexPoint();	// Àßº¸ÀÌ°Ô Á¡¸¸ ´Ù½Ã ±×¸®±â
+	void			RenderVertexPoint();	// ï¿½ßºï¿½ï¿½Ì°ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ù½ï¿½ ï¿½×¸ï¿½ï¿½ï¿½
 
 	int				AddVertex(__Vector3& vPos1, __Vector3& vPos2, __Vector3& vPos3, __Vector3& vPos4);
 	int				AddVertex();
-	int				DeleteVertex(int iIndex);	// ½ÖÀ¸·Î Áö¿ì°í µÚ¿¡ ÀÖ´Â °ÍµéÀ» ¾ÕÀ¸·Î µÎ°³¾¿ ÀÌµ¿
+	int				DeleteVertex(int iIndex);	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ú¿ï¿½ ï¿½Ö´ï¿½ ï¿½Íµï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Î°ï¿½ï¿½ï¿½ ï¿½Ìµï¿½
 	__VertexXyzT2*	GetVertex(int iIndex) {if (iIndex<0 || iIndex>=m_iVC) return NULL; return m_pVertices+iIndex;}
 	__Vector3		GetCenter();
 

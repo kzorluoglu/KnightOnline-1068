@@ -1,0 +1,15 @@
+C:\Users\kzorluoglu\CLionProjects\KnightOnline-1068\CheckUiMissing\bin\Debug\net8.0\CheckUiMissing.exe
+C:\Users\kzorluoglu\CLionProjects\KnightOnline-1068\CheckUiMissing\bin\Debug\net8.0\CheckUiMissing.deps.json
+C:\Users\kzorluoglu\CLionProjects\KnightOnline-1068\CheckUiMissing\bin\Debug\net8.0\CheckUiMissing.runtimeconfig.json
+C:\Users\kzorluoglu\CLionProjects\KnightOnline-1068\CheckUiMissing\bin\Debug\net8.0\CheckUiMissing.dll
+C:\Users\kzorluoglu\CLionProjects\KnightOnline-1068\CheckUiMissing\bin\Debug\net8.0\CheckUiMissing.pdb
+C:\Users\kzorluoglu\CLionProjects\KnightOnline-1068\CheckUiMissing\obj\Debug\net8.0\CheckUiMissing.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\kzorluoglu\CLionProjects\KnightOnline-1068\CheckUiMissing\obj\Debug\net8.0\CheckUiMissing.AssemblyInfoInputs.cache
+C:\Users\kzorluoglu\CLionProjects\KnightOnline-1068\CheckUiMissing\obj\Debug\net8.0\CheckUiMissing.AssemblyInfo.cs
+C:\Users\kzorluoglu\CLionProjects\KnightOnline-1068\CheckUiMissing\obj\Debug\net8.0\CheckUiMissing.csproj.CoreCompileInputs.cache
+C:\Users\kzorluoglu\CLionProjects\KnightOnline-1068\CheckUiMissing\obj\Debug\net8.0\CheckUiMissing.sourcelink.json
+C:\Users\kzorluoglu\CLionProjects\KnightOnline-1068\CheckUiMissing\obj\Debug\net8.0\CheckUiMissing.dll
+C:\Users\kzorluoglu\CLionProjects\KnightOnline-1068\CheckUiMissing\obj\Debug\net8.0\refint\CheckUiMissing.dll
+C:\Users\kzorluoglu\CLionProjects\KnightOnline-1068\CheckUiMissing\obj\Debug\net8.0\CheckUiMissing.pdb
+C:\Users\kzorluoglu\CLionProjects\KnightOnline-1068\CheckUiMissing\obj\Debug\net8.0\CheckUiMissing.genruntimeconfig.cache
+C:\Users\kzorluoglu\CLionProjects\KnightOnline-1068\CheckUiMissing\obj\Debug\net8.0\ref\CheckUiMissing.dll

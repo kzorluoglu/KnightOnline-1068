@@ -20,15 +20,15 @@ protected:
 	CN3EffectPart* m_pEffectPartRef; // Effect Part Class Reference Pointer
 
 public:
-	BOOL	m_nTexCycleCount; // Texture Animation ÀÌ µ¹¾Æ°£ È½¼ö.
-	int		m_nTexIndexCur; // ÇöÀç Texture Index;
-	DWORD	m_dwTickPrev; // Texture Frame Á¦¾î¿ë
+	BOOL	m_nTexCycleCount; // Texture Animation ï¿½ï¿½ ï¿½ï¿½ï¿½Æ°ï¿½ È½ï¿½ï¿½.
+	int		m_nTexIndexCur; // ï¿½ï¿½ï¿½ï¿½ Texture Index;
+	DWORD	m_dwTickPrev; // Texture Frame ï¿½ï¿½ï¿½ï¿½ï¿½
 
-	float		m_fGravityCur; // ÇöÀç Áß·Â¼Óµµ...
-	__Vector3*	m_pVDeltas; // Instance ¸¶´Ù ÀÖ´Â ÇöÀç Move Vector
-	__Vector3*	m_pVPosCurs; // Instance ¸¶´Ù ÀÖ´Â Random
+	float		m_fGravityCur; // ï¿½ï¿½ï¿½ï¿½ ï¿½ß·Â¼Óµï¿½...
+	__Vector3*	m_pVDeltas; // Instance ï¿½ï¿½ï¿½ï¿½ ï¿½Ö´ï¿½ ï¿½ï¿½ï¿½ï¿½ Move Vector
+	__Vector3*	m_pVPosCurs; // Instance ï¿½ï¿½ï¿½ï¿½ ï¿½Ö´ï¿½ Random
 
-	float*		m_pfGravityCurs; // ÆÄÆ¼Å¬ÀÏ¶§ ÇöÀç Áß·Â¼Óµµ...
+	float*		m_pfGravityCurs; // ï¿½ï¿½Æ¼Å¬ï¿½Ï¶ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ß·Â¼Óµï¿½...
 
 	int*		m_pnTexIndices;
 	int*		m_pnTexCycles;
@@ -70,7 +70,7 @@ public:
 
 protected:
 	CN3EffectPartInstance	m_PartInst0, m_PartInst1;
-	int				m_nTickStep; // ÁøÇà ´Ü°è
+	int				m_nTickStep; // ï¿½ï¿½ï¿½ï¿½ ï¿½Ü°ï¿½
 
 public:
 	void Create(CN3Effect* pEffect);

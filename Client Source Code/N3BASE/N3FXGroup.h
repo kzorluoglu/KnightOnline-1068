@@ -20,13 +20,13 @@ public:
 	int	GetCount() { return FXBList.size(); }
 	__FXBInfo* GetFXBInfo(int idx);
 
-	virtual bool	Load(HANDLE hFile); // ÇÚµé¿¡¼­ ÀÐ¾î¿À±â..
-	bool	Save(HANDLE hFile);	// ÀúÀåÇÏ±â..
+	virtual bool	Load(HANDLE hFile); // ï¿½Úµé¿¡ï¿½ï¿½ ï¿½Ð¾ï¿½ï¿½ï¿½ï¿½..
+	bool	Save(HANDLE hFile);	// ï¿½ï¿½ï¿½ï¿½ï¿½Ï±ï¿½..
 	
 	CN3FXGroup();	
 	virtual ~CN3FXGroup();
 
-#ifdef _N3TOOL	//Åø¿¡¼­¸¸ ¾²´Â ÇÔ¼öµé...
+#ifdef _N3TOOL	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ô¼ï¿½ï¿½ï¿½...
 public:
 	bool	DecodeScriptFile(const char* lpPathName);
 #endif // end of _N3TOOL

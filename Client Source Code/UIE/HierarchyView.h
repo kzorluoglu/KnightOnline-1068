@@ -24,9 +24,9 @@ public:
 // Operations
 public:
 protected:
-	void UpdateAllInfo();										// ¸ðµç tree item Á¤º¸ °»½ÅÇÏ±â
-	void UpdateTreeItem(HTREEITEM hParent, CN3UIBase *pUIBase);	// tree item Á¤º¸ °»½ÅÇÏ±â
-	void SelectObject(HTREEITEM hItem,  CN3UIBase* pUIBase);	// UPBase Æ÷ÀÎÅÍ·Î tree item ¼±ÅÃÇÏ±â
+	void UpdateAllInfo();										// ï¿½ï¿½ï¿½ tree item ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï±ï¿½
+	void UpdateTreeItem(HTREEITEM hParent, CN3UIBase *pUIBase);	// tree item ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï±ï¿½
+	void SelectObject(HTREEITEM hItem,  CN3UIBase* pUIBase);	// UPBase ï¿½ï¿½ï¿½ï¿½ï¿½Í·ï¿½ tree item ï¿½ï¿½ï¿½ï¿½ï¿½Ï±ï¿½
 
 public:
 // Overrides

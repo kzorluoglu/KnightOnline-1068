@@ -28,10 +28,10 @@ public:
 public:
 protected:
 	class CN3FXBundle*	m_pFXB;
-	int					m_nRefIndex;	// referance index (Ä³¸¯ÅÍ : joint index)
+	int					m_nRefIndex;	// referance index (Ä³ï¿½ï¿½ï¿½ï¿½ : joint index)
 
-	__Vector3			m_vOffsetPos;	// Joint¿Í ¶³¾îÁø Á¤µµ
-	__Vector3			m_vOffsetDir;	// Joint¿Í ¶³¾îÁø ¹æÇâ
+	__Vector3			m_vOffsetPos;	// Jointï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+	__Vector3			m_vOffsetDir;	// Jointï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 
 // Operations
 public:
@@ -78,11 +78,11 @@ public:
 	virtual bool	Load(HANDLE hFile);
 
 	void			StopAll(bool bImmediately = false);	// FX Stop
-	void			TriggerAll();						// FX ½ÃÀÛ
+	void			TriggerAll();						// FX ï¿½ï¿½ï¿½ï¿½
 
 #ifdef _N3TOOL
 	virtual bool	Save(HANDLE hFile);
-	void			RemoveFXPParts_HaveNoBundle();		// ¹øµé ¾ø´Â Partµé Á¦°ÅÇÏ±â
+	void			RemoveFXPParts_HaveNoBundle();		// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ Partï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï±ï¿½
 
 	CN3FXPlugPart*	FXPPartAdd();
 	void			FXPPartDelete(int nIndex);

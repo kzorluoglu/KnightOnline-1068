@@ -96,7 +96,7 @@ BOOL CDlgSowSeed::OnInitDialog()
 			Sow_Array[i][j] = rand() % 3;
 		}
 	}
-	// Seed List ÀÐ¾î ¿À±â..
+	// Seed List ï¿½Ð¾ï¿½ ï¿½ï¿½ï¿½ï¿½..
 	//SetDlgItemText(IDC_STATIC_GRASSINFO, m_FileName);
 
 	
@@ -213,7 +213,7 @@ void CDlgSowSeed::RePaint()
 		char Name[60];
 		pFrame->GetMapMng()->m_pDlgSourceList->m_ListShape.GetText(group_list->Obj_ID,Name);
 		group_list->Group_id = groupCount;
-		sprintf(text,"Ç® ID: %d , ÆÄÀÏ¸í:%s", group_list->Group_id,Name);
+		sprintf(text,"Ç® ID: %d , ï¿½ï¿½ï¿½Ï¸ï¿½:%s", group_list->Group_id,Name);
 		int CurPos = m_CB_TileGroup.GetCount();
 		m_CB_TileGroup.AddString(text);
 		m_CB_TileGroup.SetCurSel(CurPos);
@@ -267,12 +267,12 @@ void CDlgSowSeed::OnBtnGrassRead()
 	int count = m_CB_Seed.GetCount();
 	if(count >= 8) 
 	{
-		MessageBox("´õÀÌ»ó ÅØ½ºÃÄ¸¦ ³ÖÀ» ¼ö°¡ ¾ø¾î¿ä.","ºü¶¼·ç");
+		MessageBox("ï¿½ï¿½ï¿½Ì»ï¿½ ï¿½Ø½ï¿½ï¿½Ä¸ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½.","ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
 		return;
 	}
 
 	DWORD dwFlags = OFN_EXPLORER | OFN_FILEMUSTEXIST | OFN_LONGNAMES | OFN_HIDEREADONLY;
-	CFileDialog dlg(TRUE, "dxt", NULL, dwFlags, "Ç® ÅØ½ºÃÄ(*.dxt)|*.dxt||", NULL);
+	CFileDialog dlg(TRUE, "dxt", NULL, dwFlags, "Ç® ï¿½Ø½ï¿½ï¿½ï¿½(*.dxt)|*.dxt||", NULL);
 
 	if(dlg.DoModal() == IDCANCEL) return;
 

@@ -1,7 +1,7 @@
 // DFont.cpp: implementation of the CDFont class.
 //
 //////////////////////////////////////////////////////////////////////
-#include <D3DX8.h>
+#include <d3dx9.h>
 #include "DFont.h"
 
 const int MAX_NUM_VERTICES = 50*6;
@@ -19,11 +19,11 @@ CDFont::CDFont(const std::string& szFontName, DWORD dwHeight, DWORD dwFlags)
 	if(0 == s_iInstanceCount)
 	{
 		s_hDC = CreateCompatibleDC(NULL);
-		// ÀÓ½Ã ÆùÆ®¸¦ ¸¸µé°í s_hFontOld¸¦ ¾ò´Â´Ù.
+		// ï¿½Ó½ï¿½ ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ s_hFontOldï¿½ï¿½ ï¿½ï¿½Â´ï¿½.
 		HFONT hFont			= CreateFont( 0, 0, 0, 0, 0, FALSE,
 							  FALSE, FALSE, DEFAULT_CHARSET, OUT_DEFAULT_PRECIS,
 							  CLIP_DEFAULT_PRECIS, ANTIALIASED_QUALITY,
-							  VARIABLE_PITCH, "±¼¸²");
+							  VARIABLE_PITCH, "ï¿½ï¿½ï¿½ï¿½");
 		if(hFont)
 		{
 			s_hFontOld = (HFONT)(SelectObject( s_hDC, hFont ));
@@ -103,7 +103,7 @@ HRESULT CDFont::SetFont(const std::string& szFontName, DWORD dwHeight, DWORD dwF
 	return S_OK;
 }
 
-HRESULT CDFont::InitDeviceObjects( LPDIRECT3DDEVICE8 pd3dDevice )
+HRESULT CDFont::InitDeviceObjects( LPDIRECT3DDEVICE9 pd3dDevice )
 {
 	// Keep a local copy of the device
 	m_pd3dDevice = pd3dDevice;
@@ -159,7 +159,7 @@ HRESULT CDFont::RestoreDeviceObjects()
 //    if( FAILED( hr = m_pd3dDevice->CreateVertexBuffer( iVBSize,
 //                                                     D3DUSAGE_WRITEONLY, 0,
 //                                                      D3DPOOL_MANAGED, &m_pVB ) ) )
-    if( FAILED( hr = m_pd3dDevice->CreateVertexBuffer( iVBSize, 0, dwFVF, D3DPOOL_MANAGED, &m_pVB ) ) )
+    if( FAILED( hr = m_pd3dDevice->CreateVertexBuffer( iVBSize, 0, FVF_TRANSFORMED, D3DPOOL_MANAGED, &m_pVB, NULL ) ) )
     {
         return hr;
     }
@@ -202,7 +202,7 @@ HRESULT CDFont::SetText(const std::string& szText, DWORD dwFlags)
 	int iStrLen = szText.size();
 
 	HRESULT hr;
-	// \nÀ» »©°í ÇÑÁÙ·Î ¸¸µé¾î¼­ ±ÛÀÚ ±æÀÌ °è»êÇÏ±â
+	// \nï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ù·ï¿½ ï¿½ï¿½ï¿½ï¿½î¼­ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ï±ï¿½
 	int iCount=0;
 	int iTempCount = 0;
 	SIZE size;
@@ -214,11 +214,11 @@ HRESULT CDFont::SetText(const std::string& szText, DWORD dwFlags)
 		{
 			++iCount;
 		}
-		else if (0x80 & szText[iCount])	// 2BYTE ¹®ÀÚ
+		else if (0x80 & szText[iCount])	// 2BYTE ï¿½ï¿½ï¿½ï¿½
 		{
-			if((iCount + 2) > iStrLen) // ÀÌ»óÇÑ ¹®ÀÚ¿­ÀÌ´Ù..
+			if((iCount + 2) > iStrLen) // ï¿½Ì»ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ú¿ï¿½ï¿½Ì´ï¿½..
 			{
-//				__ASSERT(0, "ÀÌ»óÇÑ ¹®ÀÚ¿­ÀÌ´Ù.!!!");
+//				__ASSERT(0, "ï¿½Ì»ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ú¿ï¿½ï¿½Ì´ï¿½.!!!");
 				break;
 			}
 			else
@@ -227,17 +227,17 @@ HRESULT CDFont::SetText(const std::string& szText, DWORD dwFlags)
 				iTempCount += 2; iCount += 2;
 			}
 		}
-		else								// 1BYTE ¹®ÀÚ
+		else								// 1BYTE ï¿½ï¿½ï¿½ï¿½
 		{
 			memcpy(&(szTemp[iTempCount]), &(szText[iCount]), 1);
 			++iTempCount; ++iCount;
 		}
-		__ASSERT(iCount<=iStrLen, "??");	// ÀÌ»óÇÑ ¹®ÀÚ°¡ µé¾î¿ÔÀ» °æ¿ì
+		__ASSERT(iCount<=iStrLen, "??");	// ï¿½Ì»ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ú°ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
 	}
 
 //	szTemp[iTempCount] = 0x00;
 
-	// ÅØ½ºÃÄ »çÀÌÁî °áÁ¤ÇÏ±â
+	// ï¿½Ø½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï±ï¿½
 	SelectObject(s_hDC, m_hFont);
 	GetTextExtentPoint32( s_hDC, szTemp.c_str(), szTemp.size(), &size );
 	szTemp = "";
@@ -249,8 +249,8 @@ HRESULT CDFont::SetText(const std::string& szText, DWORD dwFlags)
 	}
 	int	iExtent = size.cx*size.cy;
 
-	SIZE size2;	// ÇÑ±Û ¹Ý±ÛÀÚÀÇ Å©±â..
-	GetTextExtentPoint32( s_hDC, "Áø", lstrlen("Áø"), &size2 );
+	SIZE size2;	// ï¿½Ñ±ï¿½ ï¿½Ý±ï¿½ï¿½ï¿½ï¿½ï¿½ Å©ï¿½ï¿½..
+	GetTextExtentPoint32( s_hDC, "ï¿½ï¿½", lstrlen("ï¿½ï¿½"), &size2 );
 	size2.cx = ((size2.cx/2) + (size2.cx%2));
 
 	int iTexSizes[7] = {32, 64, 128, 256, 512, 1024, 2048};
@@ -268,7 +268,7 @@ HRESULT CDFont::SetText(const std::string& szText, DWORD dwFlags)
 
     // If requested texture is too big, use a smaller texture and smaller font,
     // and scale up when rendering.
-    D3DCAPS8 d3dCaps;
+    D3DCAPS9 d3dCaps;
     m_pd3dDevice->GetDeviceCaps( &d3dCaps );
 
     if( m_dwTexWidth > d3dCaps.MaxTextureWidth )
@@ -277,7 +277,7 @@ HRESULT CDFont::SetText(const std::string& szText, DWORD dwFlags)
         m_dwTexWidth = m_dwTexHeight = d3dCaps.MaxTextureWidth;
     }
 
-	// ±âÁ¸ ÅØ½ºÃÄ Å©±â°¡ »õ·Î ¸¸µé ÅØ½ºÃÄ Å©±â¿Í ´Ù¸¦ °æ¿ì ´Ù½Ã ¸¸µç´Ù.
+	// ï¿½ï¿½ï¿½ï¿½ ï¿½Ø½ï¿½ï¿½ï¿½ Å©ï¿½â°¡ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ø½ï¿½ï¿½ï¿½ Å©ï¿½ï¿½ï¿½ ï¿½Ù¸ï¿½ ï¿½ï¿½ï¿½ ï¿½Ù½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½.
 	if (m_pTexture)
 	{
 		D3DSURFACE_DESC sd;
@@ -294,11 +294,11 @@ HRESULT CDFont::SetText(const std::string& szText, DWORD dwFlags)
 	if (NULL == m_pTexture)
 	{
 		int iMipMapCount = 1;
-		if( dwFlags & D3DFONT_FILTERED ) iMipMapCount = 0; // ÇÊÅÍ¸µ ÅØ½ºÆ®´Â ¹Ó¸ÊÀ» ¸¸µç´Ù..
+		if( dwFlags & D3DFONT_FILTERED ) iMipMapCount = 0; // ï¿½ï¿½ï¿½Í¸ï¿½ ï¿½Ø½ï¿½Æ®ï¿½ï¿½ ï¿½Ó¸ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½..
 
 		hr = m_pd3dDevice->CreateTexture( m_dwTexWidth, m_dwTexHeight, iMipMapCount,
 										0, D3DFMT_A4R4G4B4,
-										D3DPOOL_MANAGED, &m_pTexture );
+										D3DPOOL_MANAGED, &m_pTexture, NULL );
 		if( FAILED(hr) )
 			return hr;
 	}
@@ -319,7 +319,7 @@ HRESULT CDFont::SetText(const std::string& szText, DWORD dwFlags)
 
 	if (NULL == hbmBitmap)
 	{
-		__ASSERT(0, "CreateDIBSection ½ÇÆÐ");
+		__ASSERT(0, "CreateDIBSection ï¿½ï¿½ï¿½ï¿½");
 		if (m_pTexture) {m_pTexture->Release(); m_pTexture = NULL;}
 		return E_FAIL;
 	}
@@ -334,7 +334,7 @@ HRESULT CDFont::SetText(const std::string& szText, DWORD dwFlags)
     // Loop through all printable character and output them to the bitmap..
     // Meanwhile, keep track of the corresponding tex coords for each character.
 
-// ±Û¾¾ Âï±â ¹× ±Û¾¾ ÂïÀ» ÆÇ¶¼±â ¸¸µé±â
+// ï¿½Û¾ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½Û¾ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ç¶ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½
 	if (m_Is2D)
 	{
 		Make2DVertex(size.cy, szText);
@@ -370,31 +370,31 @@ HRESULT CDFont::SetText(const std::string& szText, DWORD dwFlags)
     // Done updating texture, so clean up used objects
     m_pTexture->UnlockRect(0);
 	
-	::SelectObject(s_hDC, hObjPrev); // ¹Ýµå½Ã ÀüÀÇ°É ¼±ÅÃÇØ¾ß..
-	DeleteObject( hbmBitmap ); // Á¦´ë·Î Áö¿öÁø´Ù..
+	::SelectObject(s_hDC, hObjPrev); // ï¿½Ýµï¿½ï¿½ ï¿½ï¿½ï¿½Ç°ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ø¾ï¿½..
+	DeleteObject( hbmBitmap ); // ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½..
 
 	////////////////////////////////////////////////////////////
-	// ÇÊÅÍ¸µ ÅØ½ºÃ³´Â... MipMap ¸¸µç´Ù..
+	// ï¿½ï¿½ï¿½Í¸ï¿½ ï¿½Ø½ï¿½Ã³ï¿½ï¿½... MipMap ï¿½ï¿½ï¿½ï¿½ï¿½..
 	if( dwFlags & D3DFONT_FILTERED ) 
 	{
 		int iMMC = m_pTexture->GetLevelCount();
 		for(int i = 1; i < iMMC; i++)
 		{
-			LPDIRECT3DSURFACE8 lpSurfSrc = NULL;
-			LPDIRECT3DSURFACE8 lpSurfDest = NULL;
+			LPDIRECT3DSURFACE9 lpSurfSrc = NULL;
+			LPDIRECT3DSURFACE9 lpSurfDest = NULL;
 			m_pTexture->GetSurfaceLevel(i-1, &lpSurfSrc);
 			m_pTexture->GetSurfaceLevel(i, &lpSurfDest);
 
 			if(lpSurfSrc && lpSurfDest)
 			{
-				::D3DXLoadSurfaceFromSurface(lpSurfDest, NULL, NULL, lpSurfSrc, NULL, NULL, D3DX_FILTER_TRIANGLE, 0); // ¼­ÇÇ½º º¹»ç
+				::D3DXLoadSurfaceFromSurface(lpSurfDest, NULL, NULL, lpSurfSrc, NULL, NULL, D3DX_FILTER_TRIANGLE, 0); // ï¿½ï¿½ï¿½Ç½ï¿½ ï¿½ï¿½ï¿½ï¿½
 			}
 
 			if(lpSurfSrc) lpSurfSrc->Release();
 			if(lpSurfDest) lpSurfDest->Release();
 		}
 	}
-	// ÇÊÅÍ¸µ ÅØ½ºÃ³´Â... MipMap ¸¸µç´Ù..
+	// ï¿½ï¿½ï¿½Í¸ï¿½ ï¿½Ø½ï¿½Ã³ï¿½ï¿½... MipMap ï¿½ï¿½ï¿½ï¿½ï¿½..
 	////////////////////////////////////////////////////////////
 
 	return S_OK;
@@ -414,7 +414,7 @@ void CDFont::Make2DVertex(const int iFontHeight, const std::string& szText)
 	// lock vertex buffer
 	__VertexTransformed* pVertices = NULL;
 	DWORD         dwNumTriangles = 0;
-	m_pVB->Lock( 0, 0, (BYTE**)&pVertices, 0 );
+	m_pVB->Lock( 0, 0, (void**)&pVertices, 0 );
 
 	DWORD sx = 0;    // start x y
 	DWORD x = 0;    DWORD y = 0;
@@ -422,11 +422,11 @@ void CDFont::Make2DVertex(const int iFontHeight, const std::string& szText)
 	int iCount = 0; int iTempCount = 0;
 
 	char	szTempChar[3] = "";
-	DWORD dwColor = 0xffffffff;			// ÆùÆ®ÀÇ »ö
+	DWORD dwColor = 0xffffffff;			// ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½
 	m_dwFontColor = 0xffffffff;
 	SIZE size;
 
-	float fMaxX = 0.0f, fMaxY = 0.0f;	// ±Û¾¾°¡ ÂïÈ÷´Â ¹üÀ§ÀÇ ÃÖ´ë ÃÖ¼Ò°ªÀ» Á¶»çÇÏ±â À§ÇØ¼­.
+	float fMaxX = 0.0f, fMaxY = 0.0f;	// ï¿½Û¾ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ö´ï¿½ ï¿½Ö¼Ò°ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï±ï¿½ ï¿½ï¿½ï¿½Ø¼ï¿½.
 
 	while(iCount<iStrLen)
 	{
@@ -434,7 +434,7 @@ void CDFont::Make2DVertex(const int iFontHeight, const std::string& szText)
 		{
 			++iCount;
 
-			// vertex ¸¸µé±â
+			// vertex ï¿½ï¿½ï¿½ï¿½ï¿½
 			if (sx != x)
 			{
 				FLOAT tx1 = ((FLOAT)(sx))/m_dwTexWidth;
@@ -445,7 +445,7 @@ void CDFont::Make2DVertex(const int iFontHeight, const std::string& szText)
 				FLOAT w = (tx2-tx1) *  m_dwTexWidth / m_fTextScale;
 				FLOAT h = (ty2-ty1) * m_dwTexHeight / m_fTextScale;
 
-				__ASSERT(dwNumTriangles+2 < MAX_NUM_VERTICES, "??");		// Vertex buffer°¡ ¸ðÀÚ¶õ´Ù.
+				__ASSERT(dwNumTriangles+2 < MAX_NUM_VERTICES, "??");		// Vertex bufferï¿½ï¿½ ï¿½ï¿½ï¿½Ú¶ï¿½ï¿½ï¿½.
 				if (dwNumTriangles+2 >= MAX_NUM_VERTICES) break;
 
 				FLOAT fLeft = vtx_sx+0-0.5f;	FLOAT fRight  = vtx_sx+w-0.5f;
@@ -463,18 +463,18 @@ void CDFont::Make2DVertex(const int iFontHeight, const std::string& szText)
 				if (fMaxY < fBottom) fMaxY = fBottom;
 
 			}
-			// È­¸éÀÇ ´ÙÀ½ ÁÙ·Î ³Ñ±â±â
+			// È­ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ù·ï¿½ ï¿½Ñ±ï¿½ï¿½
 			sx = x;
 			vtx_sx = 0;	vtx_sy = vtx_sy + ((float)(iFontHeight)) / m_fTextScale;
 			continue;
 		}
-		else if (0x80 & szText[iCount])	// 2BYTE ¹®ÀÚ
+		else if (0x80 & szText[iCount])	// 2BYTE ï¿½ï¿½ï¿½ï¿½
 		{
 			memcpy(szTempChar, &(szText[iCount]), 2);
 			iCount += 2;
 			szTempChar[2] = 0x00;
 		}
-		else								// 1BYTE ¹®ÀÚ
+		else								// 1BYTE ï¿½ï¿½ï¿½ï¿½
 		{
 			memcpy(szTempChar, &(szText[iCount]), 1);
 			iCount += 1;
@@ -484,8 +484,8 @@ void CDFont::Make2DVertex(const int iFontHeight, const std::string& szText)
 		SelectObject(s_hDC, m_hFont);
 		GetTextExtentPoint32( s_hDC, szTempChar, lstrlen(szTempChar), &size );
 		if ( (x + size.cx) > m_dwTexWidth)	
-		{	// vertex ¸¸µé°í ´ÙÀ½ ÁÙ·Î ³Ñ±â±â..
-			// vertex ¸¸µé±â
+		{	// vertex ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ù·ï¿½ ï¿½Ñ±ï¿½ï¿½..
+			// vertex ï¿½ï¿½ï¿½ï¿½ï¿½
 			if (sx != x)
 			{
 				FLOAT tx1 = ((FLOAT)(sx))/m_dwTexWidth;
@@ -496,7 +496,7 @@ void CDFont::Make2DVertex(const int iFontHeight, const std::string& szText)
 				FLOAT w = (tx2-tx1) *  m_dwTexWidth / m_fTextScale;
 				FLOAT h = (ty2-ty1) * m_dwTexHeight / m_fTextScale;
 
-				__ASSERT(dwNumTriangles+2 < MAX_NUM_VERTICES, "??");		// Vertex buffer°¡ ¸ðÀÚ¶õ´Ù.
+				__ASSERT(dwNumTriangles+2 < MAX_NUM_VERTICES, "??");		// Vertex bufferï¿½ï¿½ ï¿½ï¿½ï¿½Ú¶ï¿½ï¿½ï¿½.
 				if (dwNumTriangles+2 >= MAX_NUM_VERTICES) break;
 
 				FLOAT fLeft = vtx_sx+0-0.5f;	FLOAT fRight  = vtx_sx+w-0.5f;
@@ -512,7 +512,7 @@ void CDFont::Make2DVertex(const int iFontHeight, const std::string& szText)
 				if (fMaxX < fRight ) fMaxX = fRight;
 				if (fMaxY < fBottom) fMaxY = fBottom;
 
-				// ÅØ½ºÃÄÀÇ ´ÙÀ½ ÁÙ·Î ³Ñ±â±â
+				// ï¿½Ø½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ù·ï¿½ ï¿½Ñ±ï¿½ï¿½
 				x = sx = 0;	y += iFontHeight;
 				vtx_sx = vtx_sx+w;
 			}
@@ -522,13 +522,13 @@ void CDFont::Make2DVertex(const int iFontHeight, const std::string& szText)
 			}
 		}
 		
-		// dc¿¡ Âï±â
+		// dcï¿½ï¿½ ï¿½ï¿½ï¿½
 		SelectObject(s_hDC, m_hFont);
 		ExtTextOut( s_hDC, x, y, ETO_OPAQUE, NULL, szTempChar, lstrlen(szTempChar), NULL );		
 		x += size.cx;
 	}
 
-	// ¸¶Áö¸· ³²Àº vertex ¸¸µé±â
+	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ vertex ï¿½ï¿½ï¿½ï¿½ï¿½
 	if (sx != x)
 	{
 		FLOAT tx1 = ((FLOAT)(sx))/m_dwTexWidth;
@@ -539,7 +539,7 @@ void CDFont::Make2DVertex(const int iFontHeight, const std::string& szText)
 		FLOAT w = (tx2-tx1) *  m_dwTexWidth / m_fTextScale;
 		FLOAT h = (ty2-ty1) * m_dwTexHeight / m_fTextScale;
 
-		__ASSERT(dwNumTriangles+2 < MAX_NUM_VERTICES, "??");		// Vertex buffer°¡ ¸ðÀÚ¶õ´Ù.
+		__ASSERT(dwNumTriangles+2 < MAX_NUM_VERTICES, "??");		// Vertex bufferï¿½ï¿½ ï¿½ï¿½ï¿½Ú¶ï¿½ï¿½ï¿½.
 
 		FLOAT fLeft = vtx_sx+0-0.5f;	FLOAT fRight  = vtx_sx+w-0.5f;
 		FLOAT fTop  = vtx_sy+0-0.5f;	FLOAT fBottom = vtx_sy+h-0.5f;
@@ -572,7 +572,7 @@ void CDFont::Make3DVertex(const int iFontHeight, const std::string& szText, DWOR
 
 	int iStrLen = szText.size();
 
-	// ÀÓ½Ã vertex buffer¿¡ ³Ö±â
+	// ï¿½Ó½ï¿½ vertex bufferï¿½ï¿½ ï¿½Ö±ï¿½
 	__VertexXyzColorT1	TempVertices[MAX_NUM_VERTICES];
 	__VertexXyzColorT1* pVertices = TempVertices;
 	DWORD         dwNumTriangles = 0;
@@ -585,7 +585,7 @@ void CDFont::Make3DVertex(const int iFontHeight, const std::string& szText, DWOR
 	char	szTempChar[3] = "";
 	SIZE size;
 
-	float fMaxX = 0.0f, fMaxY = 0.0f;	// ±Û¾¾°¡ ÂïÈ÷´Â ¹üÀ§ÀÇ ÃÖ´ë ÃÖ¼Ò°ªÀ» Á¶»çÇÏ±â À§ÇØ¼­.
+	float fMaxX = 0.0f, fMaxY = 0.0f;	// ï¿½Û¾ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ö´ï¿½ ï¿½Ö¼Ò°ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï±ï¿½ ï¿½ï¿½ï¿½Ø¼ï¿½.
 
 	while(iCount<iStrLen)
 	{
@@ -593,7 +593,7 @@ void CDFont::Make3DVertex(const int iFontHeight, const std::string& szText, DWOR
 		{
 			++iCount;
 
-			// vertex ¸¸µé±â
+			// vertex ï¿½ï¿½ï¿½ï¿½ï¿½
 			if (sx != x)
 			{
 				FLOAT tx1 = ((FLOAT)(sx))/m_dwTexWidth;
@@ -604,7 +604,7 @@ void CDFont::Make3DVertex(const int iFontHeight, const std::string& szText, DWOR
 				FLOAT w = (tx2-tx1) *  m_dwTexWidth / m_fTextScale;
 				FLOAT h = (ty2-ty1) * m_dwTexHeight / m_fTextScale;
 
-				__ASSERT(dwNumTriangles+2 < MAX_NUM_VERTICES, "??");		// Vertex buffer°¡ ¸ðÀÚ¶õ´Ù.
+				__ASSERT(dwNumTriangles+2 < MAX_NUM_VERTICES, "??");		// Vertex bufferï¿½ï¿½ ï¿½ï¿½ï¿½Ú¶ï¿½ï¿½ï¿½.
 				if (dwNumTriangles+2 >= MAX_NUM_VERTICES) break;
 
 				FLOAT fLeft = vtx_sx+0;	FLOAT fRight  = vtx_sx+w;
@@ -620,18 +620,18 @@ void CDFont::Make3DVertex(const int iFontHeight, const std::string& szText, DWOR
 				if (fMaxX < fRight ) fMaxX = fRight;
 				if (fMaxY < (-fBottom)) fMaxY = (-fBottom);
 			}
-			// È­¸éÀÇ ´ÙÀ½ ÁÙ·Î ³Ñ±â±â
+			// È­ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ù·ï¿½ ï¿½Ñ±ï¿½ï¿½
 			sx = x;
 			vtx_sx = 0;	vtx_sy = vtx_sy - ((float)(iFontHeight)) / m_fTextScale;
 			continue;
 		}
-		else if (0x80 & szText[iCount])	// 2BYTE ¹®ÀÚ
+		else if (0x80 & szText[iCount])	// 2BYTE ï¿½ï¿½ï¿½ï¿½
 		{
 			memcpy(szTempChar, &(szText[iCount]), 2);
 			iCount += 2;
 			szTempChar[2] = 0x00;
 		}
-		else								// 1BYTE ¹®ÀÚ
+		else								// 1BYTE ï¿½ï¿½ï¿½ï¿½
 		{
 			memcpy(szTempChar, &(szText[iCount]), 1);
 			iCount += 1;
@@ -641,8 +641,8 @@ void CDFont::Make3DVertex(const int iFontHeight, const std::string& szText, DWOR
 		SelectObject(s_hDC, m_hFont);
 		GetTextExtentPoint32( s_hDC, szTempChar, lstrlen(szTempChar), &size );
 		if ( (x + size.cx) > m_dwTexWidth)	
-		{	// vertex ¸¸µé°í ´ÙÀ½ ÁÙ·Î ³Ñ±â±â..
-			// vertex ¸¸µé±â
+		{	// vertex ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ù·ï¿½ ï¿½Ñ±ï¿½ï¿½..
+			// vertex ï¿½ï¿½ï¿½ï¿½ï¿½
 			if (sx != x)
 			{
 				FLOAT tx1 = ((FLOAT)(sx))/m_dwTexWidth;
@@ -653,7 +653,7 @@ void CDFont::Make3DVertex(const int iFontHeight, const std::string& szText, DWOR
 				FLOAT w = (tx2-tx1) *  m_dwTexWidth / m_fTextScale;
 				FLOAT h = (ty2-ty1) * m_dwTexHeight / m_fTextScale;
 
-				__ASSERT(dwNumTriangles+2 < MAX_NUM_VERTICES, "??");		// Vertex buffer°¡ ¸ðÀÚ¶õ´Ù.
+				__ASSERT(dwNumTriangles+2 < MAX_NUM_VERTICES, "??");		// Vertex bufferï¿½ï¿½ ï¿½ï¿½ï¿½Ú¶ï¿½ï¿½ï¿½.
 				if (dwNumTriangles+2 >= MAX_NUM_VERTICES) break;
 
 				FLOAT fLeft = vtx_sx+0;	FLOAT fRight  = vtx_sx+w;
@@ -668,7 +668,7 @@ void CDFont::Make3DVertex(const int iFontHeight, const std::string& szText, DWOR
 				if (fMaxX < fRight ) fMaxX = fRight;
 				if (fMaxY < (-fBottom)) fMaxY = (-fBottom);
 
-				// ÅØ½ºÃÄÀÇ ´ÙÀ½ ÁÙ·Î ³Ñ±â±â
+				// ï¿½Ø½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ù·ï¿½ ï¿½Ñ±ï¿½ï¿½
 				x = sx = 0;	y += iFontHeight;
 				vtx_sx = vtx_sx+w;
 			}
@@ -678,13 +678,13 @@ void CDFont::Make3DVertex(const int iFontHeight, const std::string& szText, DWOR
 			}
 		}
 		
-		// dc¿¡ Âï±â
+		// dcï¿½ï¿½ ï¿½ï¿½ï¿½
 		SelectObject(s_hDC, m_hFont);
 		ExtTextOut( s_hDC, x, y, ETO_OPAQUE, NULL, szTempChar, lstrlen(szTempChar), NULL );		
 		x += size.cx;
 	}
 
-	// ¸¶Áö¸· ³²Àº vertex ¸¸µé±â
+	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ vertex ï¿½ï¿½ï¿½ï¿½ï¿½
 	if (sx != x)
 	{
 		FLOAT tx1 = ((FLOAT)(sx))/m_dwTexWidth;
@@ -695,7 +695,7 @@ void CDFont::Make3DVertex(const int iFontHeight, const std::string& szText, DWOR
 		FLOAT w = (tx2-tx1) *  m_dwTexWidth / m_fTextScale;
 		FLOAT h = (ty2-ty1) * m_dwTexHeight / m_fTextScale;
 
-		__ASSERT(dwNumTriangles+2 < MAX_NUM_VERTICES, "??");		// Vertex buffer°¡ ¸ðÀÚ¶õ´Ù.
+		__ASSERT(dwNumTriangles+2 < MAX_NUM_VERTICES, "??");		// Vertex bufferï¿½ï¿½ ï¿½ï¿½ï¿½Ú¶ï¿½ï¿½ï¿½.
 
 		FLOAT fLeft = vtx_sx+0;	FLOAT fRight  = vtx_sx+w;
 		FLOAT fTop  = vtx_sy+0;	FLOAT fBottom = vtx_sy-h;
@@ -711,9 +711,9 @@ void CDFont::Make3DVertex(const int iFontHeight, const std::string& szText, DWOR
 	}
 
 	int i;
-	if (dwFlags & D3DFONT_CENTERED)	// °¡¿îµ¥ Á¤·ÄÀÌ¸é vertexÁÂÇ¥¸¦ °¡¿îµ¥·Î °è»êÇØ¼­ °íÃÄ³Ö±â
+	if (dwFlags & D3DFONT_CENTERED)	// ï¿½ï¿½ï¿½îµ¥ ï¿½ï¿½ï¿½ï¿½ï¿½Ì¸ï¿½ vertexï¿½ï¿½Ç¥ï¿½ï¿½ ï¿½ï¿½ï¿½îµ¥ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ø¼ï¿½ ï¿½ï¿½ï¿½Ä³Ö±ï¿½
 	{
-		// Á¦ÀÏ ±ä ÁÙ Ã£±â..
+		// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ Ã£ï¿½ï¿½..
 		int iRectangleCount = dwNumTriangles/2;
 
 		int iContinueCount = 1;
@@ -730,12 +730,12 @@ void CDFont::Make3DVertex(const int iFontHeight, const std::string& szText, DWOR
 			while( iCount + iContinueCount < iRectangleCount)
 			{
 				if (TempVertices[(iCount + iContinueCount)*6].y == fCY)
-				{	// ´ÙÀ½ »ç°¢Çü°ú °°Àº ÁÙÀÌ´Ù.
+				{	// ï¿½ï¿½ï¿½ï¿½ ï¿½ç°¢ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ì´ï¿½.
 					fCX = TempVertices[(iCount + iContinueCount)*6 + 3].x;
 					++iContinueCount;
 				}
 				else
-				{	// ´ÙÀ½ »ç°¢Çü°ú ´Ù¸¥ ÁÙÀÌ´Ù.
+				{	// ï¿½ï¿½ï¿½ï¿½ ï¿½ç°¢ï¿½ï¿½ï¿½ï¿½ ï¿½Ù¸ï¿½ ï¿½ï¿½ï¿½Ì´ï¿½.
 					break;
 				}
 			}
@@ -750,15 +750,15 @@ void CDFont::Make3DVertex(const int iFontHeight, const std::string& szText, DWOR
 		}
 	}
 
-	// Vertex buffer·Î ¿Å±â±â.
+	// Vertex bufferï¿½ï¿½ ï¿½Å±ï¿½ï¿½.
 	// lock vertex buffer
-	m_pVB->Lock( 0, 0, (BYTE**)&pVertices, 0 );
+	m_pVB->Lock( 0, 0, (void**)&pVertices, 0 );
 
 	iCount = dwNumTriangles*3;
 	for (i=0; i<iCount; ++i)
 	{
-		TempVertices[i].x /= ((float)m_dwFontHeight);			// ÀÏÁ¤ Å©±â·Î ÁÙÀÌ±â
-		TempVertices[i].y /= ((float)m_dwFontHeight);			// ÀÏÁ¤ Å©±â·Î ÁÙÀÌ±â
+		TempVertices[i].x /= ((float)m_dwFontHeight);			// ï¿½ï¿½ï¿½ï¿½ Å©ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ì±ï¿½
+		TempVertices[i].y /= ((float)m_dwFontHeight);			// ï¿½ï¿½ï¿½ï¿½ Å©ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ì±ï¿½
 
 		*pVertices++ = TempVertices[i];
 	}
@@ -783,14 +783,14 @@ HRESULT CDFont::DrawText( FLOAT sx, FLOAT sy, DWORD dwColor, DWORD dwFlags, FLOA
     if( m_pd3dDevice == NULL || !m_Is2D)
         return E_FAIL;
 
-	// À§Ä¡ »ö Á¶Á¤
+	// ï¿½ï¿½Ä¡ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	D3DXVECTOR2 vDiff = D3DXVECTOR2(sx, sy) - m_PrevLeftTop;
 	if ( fabs(vDiff.x)>0.5f || fabs(vDiff.y)>0.5f || dwColor != m_dwFontColor)
 	{
 		// lock vertex buffer
 		__VertexTransformed* pVertices;
-//		m_pVB->Lock( 0, 0, (BYTE**)&pVertices, D3DLOCK_NOSYSLOCK );
-		m_pVB->Lock( 0, 0, (BYTE**)&pVertices, 0);
+//		m_pVB->Lock( 0, 0, (void**)&pVertices, D3DLOCK_NOSYSLOCK );
+		m_pVB->Lock( 0, 0, (void**)&pVertices, 0);
 
 		int i, iVC = m_iPrimitiveCount*3;
 		if (fabs(vDiff.x)>0.5f)
@@ -821,7 +821,7 @@ HRESULT CDFont::DrawText( FLOAT sx, FLOAT sy, DWORD dwColor, DWORD dwFlags, FLOA
 			}
 		}
 
-//		if (fZ != 1.0f) // Z°ªÀÌ 1.0f °¡ µé¾î¿ÀÁö ¾ÊÀ¸¸é ¹Ù²Ù¾îÁØ´Ù.
+//		if (fZ != 1.0f) // Zï¿½ï¿½ï¿½ï¿½ 1.0f ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ù²Ù¾ï¿½ï¿½Ø´ï¿½.
 //		{
 //			for (i=0; i<iVC; ++i)
 //			{
@@ -847,8 +847,8 @@ HRESULT CDFont::DrawText( FLOAT sx, FLOAT sy, DWORD dwColor, DWORD dwFlags, FLOA
 	m_pd3dDevice->GetTextureStageState( 0, D3DTSS_ALPHAOP,   &dwAlphaOp );
 	m_pd3dDevice->GetTextureStageState( 0, D3DTSS_ALPHAARG1, &dwAlphaArg1 );
 	m_pd3dDevice->GetTextureStageState( 0, D3DTSS_ALPHAARG2, &dwAlphaArg2 );
-	m_pd3dDevice->GetTextureStageState( 0, D3DTSS_MINFILTER, &dwMinFilter );
-	m_pd3dDevice->GetTextureStageState( 0, D3DTSS_MAGFILTER, &dwMagFilter );
+	m_pd3dDevice->GetSamplerState( 0, D3DSAMP_MINFILTER, &dwMinFilter );
+	m_pd3dDevice->GetSamplerState( 0, D3DSAMP_MAGFILTER, &dwMagFilter );
 
     // Set up renderstate
 	if (TRUE != dwAlphaBlend) m_pd3dDevice->SetRenderState( D3DRS_ALPHABLENDENABLE, TRUE );
@@ -858,7 +858,7 @@ HRESULT CDFont::DrawText( FLOAT sx, FLOAT sy, DWORD dwColor, DWORD dwFlags, FLOA
 //	{
 		if ( D3DZB_FALSE != dwZEnable) m_pd3dDevice->SetRenderState( D3DRS_ZENABLE, D3DZB_FALSE );
 //	}
-//	else if ( D3DZB_TRUE != dwZEnable) m_pd3dDevice->SetRenderState( D3DRS_ZENABLE, D3DZB_TRUE );	// fZ°¡ 1.0ÀÌ ¾Æ´Ï¸é z ¹öÆÛ ÄÑ°í ±×¸°´Ù.
+//	else if ( D3DZB_TRUE != dwZEnable) m_pd3dDevice->SetRenderState( D3DRS_ZENABLE, D3DZB_TRUE );	// fZï¿½ï¿½ 1.0ï¿½ï¿½ ï¿½Æ´Ï¸ï¿½ z ï¿½ï¿½ï¿½ï¿½ ï¿½Ñ°ï¿½ ï¿½×¸ï¿½ï¿½ï¿½.
 	if ( FALSE != dwFog) m_pd3dDevice->SetRenderState( D3DRS_FOGENABLE, FALSE );
 	if (D3DTOP_MODULATE != dwColorOp) m_pd3dDevice->SetTextureStageState( 0, D3DTSS_COLOROP,   D3DTOP_MODULATE );
 	if (D3DTA_TEXTURE != dwColorArg1) m_pd3dDevice->SetTextureStageState( 0, D3DTSS_COLORARG1, D3DTA_TEXTURE );
@@ -869,18 +869,18 @@ HRESULT CDFont::DrawText( FLOAT sx, FLOAT sy, DWORD dwColor, DWORD dwFlags, FLOA
 	if( dwFlags & D3DFONT_FILTERED )
 	{
 	    // Set filter states
-		if (D3DTEXF_LINEAR != dwMinFilter) m_pd3dDevice->SetTextureStageState( 0, D3DTSS_MINFILTER, D3DTEXF_LINEAR );
-		if (D3DTEXF_LINEAR != dwMagFilter) m_pd3dDevice->SetTextureStageState( 0, D3DTSS_MAGFILTER, D3DTEXF_LINEAR );
+		if (D3DTEXF_LINEAR != dwMinFilter) m_pd3dDevice->SetSamplerState( 0, D3DSAMP_MINFILTER, D3DTEXF_LINEAR );
+		if (D3DTEXF_LINEAR != dwMagFilter) m_pd3dDevice->SetSamplerState( 0, D3DSAMP_MAGFILTER, D3DTEXF_LINEAR );
 	}
 	else
 	{
-		if (D3DTEXF_POINT != dwMinFilter) m_pd3dDevice->SetTextureStageState( 0, D3DTSS_MINFILTER, D3DTEXF_POINT );
-		if (D3DTEXF_POINT != dwMagFilter) m_pd3dDevice->SetTextureStageState( 0, D3DTSS_MAGFILTER, D3DTEXF_POINT );
+		if (D3DTEXF_POINT != dwMinFilter) m_pd3dDevice->SetSamplerState( 0, D3DSAMP_MINFILTER, D3DTEXF_POINT );
+		if (D3DTEXF_POINT != dwMagFilter) m_pd3dDevice->SetSamplerState( 0, D3DSAMP_MAGFILTER, D3DTEXF_POINT );
 	}
 
 	// render
-    m_pd3dDevice->SetVertexShader( FVF_TRANSFORMED );
-    m_pd3dDevice->SetStreamSource( 0, m_pVB, sizeof(__VertexTransformed) );
+    m_pd3dDevice->SetFVF( FVF_TRANSFORMED );
+    m_pd3dDevice->SetStreamSource( 0, m_pVB, 0, sizeof(__VertexTransformed) );
 	m_pd3dDevice->SetTexture( 0, m_pTexture );
     m_pd3dDevice->DrawPrimitive( D3DPT_TRIANGLELIST, 0, m_iPrimitiveCount );
 
@@ -902,13 +902,13 @@ HRESULT CDFont::DrawText( FLOAT sx, FLOAT sy, DWORD dwColor, DWORD dwFlags, FLOA
 	if (D3DTA_DIFFUSE != dwAlphaArg2) m_pd3dDevice->SetTextureStageState( 0, D3DTSS_ALPHAARG2, dwAlphaArg2 );
 	if( dwFlags & D3DFONT_FILTERED )
 	{
-		if (D3DTEXF_LINEAR != dwMinFilter) m_pd3dDevice->SetTextureStageState( 0, D3DTSS_MINFILTER, dwMinFilter );
-		if (D3DTEXF_LINEAR != dwMagFilter) m_pd3dDevice->SetTextureStageState( 0, D3DTSS_MAGFILTER, dwMagFilter );
+		if (D3DTEXF_LINEAR != dwMinFilter) m_pd3dDevice->SetSamplerState( 0, D3DSAMP_MINFILTER, dwMinFilter );
+		if (D3DTEXF_LINEAR != dwMagFilter) m_pd3dDevice->SetSamplerState( 0, D3DSAMP_MAGFILTER, dwMagFilter );
 	}
 	else
 	{
-		if (D3DTSS_MINFILTER != dwMinFilter) m_pd3dDevice->SetTextureStageState( 0, D3DTSS_MINFILTER, dwMinFilter );
-		if (D3DTSS_MAGFILTER != dwMagFilter) m_pd3dDevice->SetTextureStageState( 0, D3DTSS_MAGFILTER, dwMagFilter );
+		if (D3DTEXF_POINT != dwMinFilter) m_pd3dDevice->SetSamplerState( 0, D3DSAMP_MINFILTER, dwMinFilter );
+		if (D3DTEXF_POINT != dwMagFilter) m_pd3dDevice->SetSamplerState( 0, D3DSAMP_MAGFILTER, dwMagFilter );
 	}
 
     return S_OK;
@@ -931,8 +931,8 @@ HRESULT CDFont::DrawText3D(DWORD dwColor, DWORD dwFlags )
 	{
 		// lock vertex buffer
 		__VertexXyzColorT1* pVertices;
-//		m_pVB->Lock( 0, 0, (BYTE**)&pVertices, D3DLOCK_NOSYSLOCK );
-		m_pVB->Lock( 0, 0, (BYTE**)&pVertices, 0 );
+//		m_pVB->Lock( 0, 0, (void**)&pVertices, D3DLOCK_NOSYSLOCK );
+		m_pVB->Lock( 0, 0, (void**)&pVertices, 0 );
 
 		m_dwFontColor = dwColor;
 		int i, iVC = m_iPrimitiveCount*3;
@@ -960,8 +960,8 @@ HRESULT CDFont::DrawText3D(DWORD dwColor, DWORD dwFlags )
 	m_pd3dDevice->GetTextureStageState( 0, D3DTSS_ALPHAOP,   &dwAlphaOp );
 	m_pd3dDevice->GetTextureStageState( 0, D3DTSS_ALPHAARG1, &dwAlphaArg1 );
 	m_pd3dDevice->GetTextureStageState( 0, D3DTSS_ALPHAARG2, &dwAlphaArg2 );
-	m_pd3dDevice->GetTextureStageState( 0, D3DTSS_MINFILTER, &dwMinFilter );
-	m_pd3dDevice->GetTextureStageState( 0, D3DTSS_MAGFILTER, &dwMagFilter );
+	m_pd3dDevice->GetSamplerState( 0, D3DSAMP_MINFILTER, &dwMinFilter );
+	m_pd3dDevice->GetSamplerState( 0, D3DSAMP_MAGFILTER, &dwMagFilter );
     if( dwFlags & D3DFONT_TWOSIDED )
 	{
 	    // Turn off culling for two-sided text
@@ -986,19 +986,19 @@ HRESULT CDFont::DrawText3D(DWORD dwColor, DWORD dwFlags )
 	if( dwFlags & D3DFONT_FILTERED )
 	{
 	    // Set filter states
-		if (D3DTEXF_LINEAR != dwMinFilter) m_pd3dDevice->SetTextureStageState( 0, D3DTSS_MINFILTER, D3DTEXF_LINEAR );
-		if (D3DTEXF_LINEAR != dwMagFilter) m_pd3dDevice->SetTextureStageState( 0, D3DTSS_MAGFILTER, D3DTEXF_LINEAR );
+		if (D3DTEXF_LINEAR != dwMinFilter) m_pd3dDevice->SetSamplerState( 0, D3DSAMP_MINFILTER, D3DTEXF_LINEAR );
+		if (D3DTEXF_LINEAR != dwMagFilter) m_pd3dDevice->SetSamplerState( 0, D3DSAMP_MAGFILTER, D3DTEXF_LINEAR );
 	}
 	else
 	{
-		if (D3DTEXF_POINT != dwMinFilter) m_pd3dDevice->SetTextureStageState( 0, D3DTSS_MINFILTER, D3DTEXF_POINT );
-		if (D3DTEXF_POINT != dwMagFilter) m_pd3dDevice->SetTextureStageState( 0, D3DTSS_MAGFILTER, D3DTEXF_POINT );
+		if (D3DTEXF_POINT != dwMinFilter) m_pd3dDevice->SetSamplerState( 0, D3DSAMP_MINFILTER, D3DTEXF_POINT );
+		if (D3DTEXF_POINT != dwMagFilter) m_pd3dDevice->SetSamplerState( 0, D3DSAMP_MAGFILTER, D3DTEXF_POINT );
 	}
 
 
 	// render
-    m_pd3dDevice->SetVertexShader( FVF_XYZCOLORT1 );
-    m_pd3dDevice->SetStreamSource( 0, m_pVB, sizeof(__VertexXyzColorT1) );
+    m_pd3dDevice->SetFVF( FVF_XYZCOLORT1 );
+    m_pd3dDevice->SetStreamSource( 0, m_pVB, 0, sizeof(__VertexXyzColorT1) );
 	m_pd3dDevice->SetTexture( 0, m_pTexture );
     m_pd3dDevice->DrawPrimitive( D3DPT_TRIANGLELIST, 0, m_iPrimitiveCount );
 
@@ -1018,13 +1018,13 @@ HRESULT CDFont::DrawText3D(DWORD dwColor, DWORD dwFlags )
 	if (D3DTA_DIFFUSE != dwAlphaArg2) m_pd3dDevice->SetTextureStageState( 0, D3DTSS_ALPHAARG2, dwAlphaArg2 );
 	if( dwFlags & D3DFONT_FILTERED )
 	{
-		if (D3DTEXF_LINEAR != dwMinFilter) m_pd3dDevice->SetTextureStageState( 0, D3DTSS_MINFILTER, dwMinFilter );
-		if (D3DTEXF_LINEAR != dwMagFilter) m_pd3dDevice->SetTextureStageState( 0, D3DTSS_MAGFILTER, dwMagFilter );
+		if (D3DTEXF_LINEAR != dwMinFilter) m_pd3dDevice->SetSamplerState( 0, D3DSAMP_MINFILTER, dwMinFilter );
+		if (D3DTEXF_LINEAR != dwMagFilter) m_pd3dDevice->SetSamplerState( 0, D3DSAMP_MAGFILTER, dwMagFilter );
 	}
 	else
 	{
-		if (D3DTSS_MINFILTER != dwMinFilter) m_pd3dDevice->SetTextureStageState( 0, D3DTSS_MINFILTER, dwMinFilter );
-		if (D3DTSS_MAGFILTER != dwMagFilter) m_pd3dDevice->SetTextureStageState( 0, D3DTSS_MAGFILTER, dwMagFilter );
+		if (D3DTEXF_POINT != dwMinFilter) m_pd3dDevice->SetSamplerState( 0, D3DSAMP_MINFILTER, dwMinFilter );
+		if (D3DTEXF_POINT != dwMagFilter) m_pd3dDevice->SetSamplerState( 0, D3DSAMP_MAGFILTER, dwMagFilter );
 	}
     if( (dwFlags & D3DFONT_TWOSIDED) && D3DCULL_NONE != dwCullMode) m_pd3dDevice->SetRenderState( D3DRS_CULLMODE,  dwCullMode);
 
@@ -1050,7 +1050,7 @@ HRESULT	CDFont::SetFontColor(DWORD dwColor)
 		if(m_Is2D)
 		{
 			__VertexTransformed* pVertices;
-			if (FAILED(hr = m_pVB->Lock( 0, 0, (BYTE**)&pVertices, 0 ))) return hr;
+			if (FAILED(hr = m_pVB->Lock( 0, 0, (void**)&pVertices, 0 ))) return hr;
 			m_dwFontColor = dwColor;
 			int i, iVC = m_iPrimitiveCount*3;
 			for (i=0; i<iVC; ++i)
@@ -1062,7 +1062,7 @@ HRESULT	CDFont::SetFontColor(DWORD dwColor)
 		else
 		{
 			__VertexXyzColorT1* pVertices;
-			if (FAILED(hr = m_pVB->Lock( 0, 0, (BYTE**)&pVertices, 0 ))) return hr;
+			if (FAILED(hr = m_pVB->Lock( 0, 0, (void**)&pVertices, 0 ))) return hr;
 			m_dwFontColor = dwColor;
 			int i, iVC = m_iPrimitiveCount*3;
 			for (i=0; i<iVC; ++i)
@@ -1091,14 +1091,14 @@ void CDFont::AddToAlphaManager(DWORD dwColor, float fDist, __Matrix44& mtxWorld,
 		dwFVF = FVF_TRANSFORMED;
 		dwFVFSize = sizeof(__VertexTransformed);
 
-		// À§Ä¡ »ö Á¶Á¤
+		// ï¿½ï¿½Ä¡ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 		D3DXVECTOR2 vDiff = D3DXVECTOR2(mtxWorld._41, mtxWorld._42) - m_PrevLeftTop;
 		if ( fabs(vDiff.x)>0.5f || fabs(vDiff.y)>0.5f || dwColor != m_dwFontColor)
 		{
 			// lock vertex buffer
 			__VertexTransformed* pVertices;
-	//		m_pVB->Lock( 0, 0, (BYTE**)&pVertices, D3DLOCK_NOSYSLOCK );
-			m_pVB->Lock( 0, 0, (BYTE**)&pVertices, 0);
+	//		m_pVB->Lock( 0, 0, (void**)&pVertices, D3DLOCK_NOSYSLOCK );
+			m_pVB->Lock( 0, 0, (void**)&pVertices, 0);
 
 			int i, iVC = m_iPrimitiveCount*3;
 			if (fabs(vDiff.x)>0.5f)
@@ -1129,7 +1129,7 @@ void CDFont::AddToAlphaManager(DWORD dwColor, float fDist, __Matrix44& mtxWorld,
 				}
 			}
 
-//			if (fZ != 1.0f) // Z°ªÀÌ 1.0f °¡ µé¾î¿ÀÁö ¾ÊÀ¸¸é ¹Ù²Ù¾îÁØ´Ù.
+//			if (fZ != 1.0f) // Zï¿½ï¿½ï¿½ï¿½ 1.0f ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ù²Ù¾ï¿½ï¿½Ø´ï¿½.
 //			{
 //				for (i=0; i<iVC; ++i)
 //				{
@@ -1157,5 +1157,5 @@ void CDFont::AddToAlphaManager(DWORD dwColor, float fDist, __Matrix44& mtxWorld,
 	pAP->pwIndices			= NULL;
 	pAP->MtxWorld			= mtxWorld;
 
-	if(!(dwFlags & D3DFONT_FILTERED)) pAP->nRenderFlags |= RF_POINTSAMPLING; // ÇÊÅÍ¸µ ÅØ½ºÆ®¸¦ ¾²Áö ¾Ê´Â´Ù.
+	if(!(dwFlags & D3DFONT_FILTERED)) pAP->nRenderFlags |= RF_POINTSAMPLING; // ï¿½ï¿½ï¿½Í¸ï¿½ ï¿½Ø½ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ê´Â´ï¿½.
 }

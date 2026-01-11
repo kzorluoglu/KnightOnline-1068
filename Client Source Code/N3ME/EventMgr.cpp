@@ -140,7 +140,7 @@ void CEventMgr::Render()
 	D3DXMATRIX mtx;
 	D3DXMatrixIdentity(&mtx);
 		
-	hr = s_lpD3DDev->SetTransform(D3DTS_WORLD, &mtx); // ¿ùµå Çà·Ä Àû¿ë..
+	hr = s_lpD3DDev->SetTransform(D3DTS_WORLD, &mtx); // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½..
 	
 	// set texture
 	hr = s_lpD3DDev->SetTexture(0, NULL);
@@ -159,9 +159,9 @@ void CEventMgr::Render()
 	hr = s_lpD3DDev->SetRenderState(D3DRS_CULLMODE, D3DCULL_NONE);
 
 
-	hr = s_lpD3DDev->SetVertexShader(FVF_XYZCOLOR);
+	hr = s_lpD3DDev->SetFVF(FVF_XYZCOLOR);
 
-	//ÀÌ¹Ì ¸¸µé¾îÁø ±æ ±×¸®±â...
+	//ï¿½Ì¹ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½×¸ï¿½ï¿½ï¿½...
 	std::list<CEventCell*>::iterator itEvent;
 
 	CEventCell* pEvent;
@@ -173,10 +173,10 @@ void CEventMgr::Render()
 		pEvent->Render(0xff0000ff);
 	}
 
-	//´ëÈ­»óÀÚ¿¡¼­ ¼±ÅÃµÈ ±æ ±×¸®±â.
+	//ï¿½ï¿½È­ï¿½ï¿½ï¿½Ú¿ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ãµï¿½ ï¿½ï¿½ ï¿½×¸ï¿½ï¿½ï¿½.
 	if(m_pDlgEventList->m_pSelEvent) m_pDlgEventList->m_pSelEvent->Render(0xff00ff00);
 
-	//¸¸µé°í ÀÖ´Â ±æ & ¿µ¿ª ±×¸®±â..
+	//ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ö´ï¿½ ï¿½ï¿½ & ï¿½ï¿½ï¿½ï¿½ ï¿½×¸ï¿½ï¿½ï¿½..
 	m_pCurrEvent->Render(0xffff0000);
 
 	// restore
@@ -303,7 +303,7 @@ void CEventMgr::SaveToFile(const char* RealFileName)
 	GetCurrentDirectory(_MAX_PATH, szOldPath);	
 	SetCurrentDirectory(s_szPath.c_str());
 
-	CreateDirectory("event", NULL); // °æ·Î ¸¸µé°í..
+	CreateDirectory("event", NULL); // ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½..
 	char szNPCPathFileName[_MAX_PATH];
 	wsprintf(szNPCPathFileName, "%sevent\\%s.evt", s_szPath.c_str(), (LPCTSTR)RealFileName);
 
@@ -390,7 +390,7 @@ void CEventMgr::MakeEventArray()
 
 void CEventMgr::SaveInfoTextFile(char* szEvent)
 {
-	// text ÆÄÀÏ ¹öÀü...
+	// text ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½...
 	FILE* stream = fopen(szEvent, "r");
 	//if(!stream)	return;
 
@@ -474,7 +474,7 @@ void CEventMgr::SaveInfoTextFile(char* szEvent)
 /*
 void CEventMgr::SaveInfoTextFile(char* szEvent)
 {
-	// text ÆÄÀÏ ¹öÀü...
+	// text ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½...
 	FILE* stream = fopen(szEvent, "w");
 	if(!stream)	return;
 

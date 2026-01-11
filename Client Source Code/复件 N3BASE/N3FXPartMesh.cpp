@@ -389,13 +389,13 @@ bool CN3FXPartMesh::Tick()
 	return true;
 
 /*	
-	//È¸Àü°ú ÀÌµ¿..
+	//È¸ï¿½ï¿½ï¿½ï¿½ ï¿½Ìµï¿½..
 	__Matrix44 mtx;
 	mtx.Identity();]
 	mtx.Rotation(m_fCurrLife*m_vRotVelocity);
 	__Quaternion qtLocalRot(mtx);
 	
-	//mesh¹æÇâ°ú bundle¹æÇâÀ» ¸ÂÃç¶ó...
+	//meshï¿½ï¿½ï¿½ï¿½ï¿½ bundleï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½...
 	__Quaternion qtBundle;
 	__Vector3 vDirAxis;
 	float fDirAng;
@@ -440,7 +440,7 @@ bool CN3FXPartMesh::Tick()
 	//m_pShape->ScaleSet(m_vUnitScale.x+vScale.x, m_vUnitScale.y+vScale.y, m_vUnitScale.z+vScale.z);
 	m_pShape->ScaleSet(vScale.x, vScale.y, vScale.z);
 
-	//ÅØ½ºÃÄ ÀÌµ¿..
+	//ï¿½Ø½ï¿½ï¿½ï¿½ ï¿½Ìµï¿½..
 	if(m_cTextureMoveDir>0)
 	{
 		int cnt = m_pShape->PartCount();
@@ -448,10 +448,10 @@ bool CN3FXPartMesh::Tick()
 		{
 			int VertexCount = m_pShape->Part(i)->Mesh()->GetNumVertices();
 
-			LPDIRECT3DVERTEXBUFFER8 pVB = m_pShape->Part(i)->Mesh()->GetVertexBuffer();
+			LPDIRECT3DVERTEXBUFFER9 pVB = m_pShape->Part(i)->Mesh()->GetVertexBuffer();
 			
 			__VertexXyzColorT1* pVertex;
-			HRESULT hr = pVB->Lock(0, 0, (BYTE**)&pVertex, 0);
+			HRESULT hr = pVB->Lock(0, 0, (void**)&pVertex, 0);
 			if (FAILED(hr)) continue;
 
 			for(int j=0;j<VertexCount;j++)
@@ -480,7 +480,7 @@ void CN3FXPartMesh::Rotate()
 
 	m_pShape->m_mtxParent.Rotation(m_fCurrLife*m_vRotVelocity);
 		
-	//mesh¹æÇâ°ú bundle¹æÇâÀ» ¸ÂÃç¶ó...
+	//meshï¿½ï¿½ï¿½ï¿½ï¿½ bundleï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½...
 	__Quaternion qtBundle;
 	__Vector3 vDirAxis;
 	float fDirAng;
@@ -612,7 +612,7 @@ int CN3FXPartMesh::NumVertices(int Part)
 //
 //
 //
-LPDIRECT3DVERTEXBUFFER8 CN3FXPartMesh::GetVB(int Part)
+LPDIRECT3DVERTEXBUFFER9 CN3FXPartMesh::GetVB(int Part)
 {
 	if(!m_pShape) return NULL;
 	return NULL;
@@ -633,12 +633,12 @@ bool CN3FXPartMesh::IsDead()
 
 //
 //	render...
-//	ÀÏ´ÜÀº ÆÄÆ¼Å¬ ÇÏ³ª¾¿ ±×¸®°í....
-//	³ªÁß¿¡´Â °°Àº ÅØ½ºÃÄ ¾²´Â °Íµé³¢¸® ¹­¾î¼­ ±×¸®ÀÚ...
+//	ï¿½Ï´ï¿½ï¿½ï¿½ ï¿½ï¿½Æ¼Å¬ ï¿½Ï³ï¿½ï¿½ï¿½ ï¿½×¸ï¿½ï¿½ï¿½....
+//	ï¿½ï¿½ï¿½ß¿ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ø½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Íµé³¢ï¿½ï¿½ ï¿½ï¿½ï¿½î¼­ ï¿½×¸ï¿½ï¿½ï¿½...
 //
 void CN3FXPartMesh::Render()
 {
-	// render state ¼¼ÆÃ
+	// render state ï¿½ï¿½ï¿½ï¿½
 	if(!m_pShape) return;
 
 	DWORD dwAlpha;

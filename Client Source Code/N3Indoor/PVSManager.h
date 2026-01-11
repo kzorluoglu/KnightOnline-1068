@@ -23,7 +23,7 @@
 
 class COrganizeView;
 
-// ¿ì¼±¼øÀ§´ë·Î Á¤·Ä..
+// ï¿½ì¼±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½..
 template<class T> struct Myless : public std::less<T> {
 bool operator()(const T& x, const T& y) const
 {
@@ -86,15 +86,15 @@ private:
 	bool	Save(HANDLE hFile);
 	void	SetMaxShapeIndex();
 
-	// Edit ¸ðµå..
+	// Edit ï¿½ï¿½ï¿½..
 	void	TickEdit();
 	void	RenderEdit();
 
-	// Compile ¸ðµå..
+	// Compile ï¿½ï¿½ï¿½..
 	void	TickCompile();
 	void	RenderCompile();
 
-	// Execute ¸ðµå..
+	// Execute ï¿½ï¿½ï¿½..
 	void	TickExecute();
 	void	RenderExecute();
 
@@ -117,7 +117,7 @@ private:
 	// Utility.. 
 	e_PvsWallType GetReverseWallType(e_PvsWallType ePWT);
 
-	// Visibility¸¦ °áÁ¤ÇÑ´Ù..
+	// Visibilityï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ñ´ï¿½..
 	void	ComputeVisibilty(CPortalVolume * const pVol);
 	void	SetPriority(CPortalVolume * const pVol);
 	void	SetPriorityEx(CPortalVolume * const pVol, e_PvsWallType ePWT, int iRecursive);
@@ -127,10 +127,10 @@ private:
 	void	SetPriorityNoneRecursiveEx(CPortalVolume * const pVol, int iRecursive);
 	void	DebugFunc();
 
-	// Shape¸¦ °ø°£¿¡ ¸Â°Ô ÂÉ°µ´Ù..
+	// Shapeï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Â°ï¿½ ï¿½É°ï¿½ï¿½ï¿½..
 	void	SplitShapeToVolumn(CDialog* pDlg);
 
-	// Shape¸¦ ¸®½ºÆ®¿¡ µî·ÏÇÑ´Ù..
+	// Shapeï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ñ´ï¿½..
 	void	RegisterShape(std::string szStr, CN3Shape* pShape);
 	bool	IsValidPortalVolume(CPortalVolume* pVol);
 

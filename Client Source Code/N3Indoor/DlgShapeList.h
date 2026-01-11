@@ -22,7 +22,7 @@ public:
 	CDlgShapeList(CWnd* pParent = NULL);   // standard constructor
 
 	CN3Scene* m_pSceneRef;
-	BOOL	m_IsSourceObj;		// Display¿ëÀÌ³Ä? (Åø¿¡¼­ ¿ÀºêÁ§Æ® ¸ñ·Ï)
+	BOOL	m_IsSourceObj;		// Displayï¿½ï¿½ï¿½Ì³ï¿½? (ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ï¿½ï¿½)
 //	CMapMng* m_pMapMng;
 
 // Dialog Data
@@ -31,10 +31,10 @@ public:
 	CListBox	m_ListShape;
 	//}}AFX_DATA
 
-	void UpdateTree(CN3Scene* pScene = NULL);		 // Source¿Í.. Output °ø¿ë..
-	void SelectObject(void* pItemData);							 // Output¿ë..
-	int	GetTotalShapeInfoCount();									// Output¿ë..
-	CN3Shape* GetShapeByiOrder(int iOrder);				// Output¿ë..
+	void UpdateTree(CN3Scene* pScene = NULL);		 // Sourceï¿½ï¿½.. Output ï¿½ï¿½ï¿½ï¿½..
+	void SelectObject(void* pItemData);							 // Outputï¿½ï¿½..
+	int	GetTotalShapeInfoCount();									// Outputï¿½ï¿½..
+	CN3Shape* GetShapeByiOrder(int iOrder);				// Outputï¿½ï¿½..
 
 // Overrides
 	// ClassWizard generated virtual function overrides

@@ -44,7 +44,7 @@ void CN3UITooltip::Render()
 {
 	if(!m_bVisible || !m_bSetText) return;
 	if (NULL == m_pImageBkGnd)
-	{	// ÀÌ¹ÌÁö°¡ ¾øÀ¸¸é µðÆúÆ®·Î ±×·ÁÁÖÀÚ
+	{	// ï¿½Ì¹ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½×·ï¿½ï¿½ï¿½ï¿½ï¿½
 		static __VertexTransformedColor	pVB[8];
 		static const WORD	pIB[16]= {0,1,1,2,2,3,3,0,4,5,5,6,6,7,7,4};
 		static const D3DCOLOR BkColor= 0x80000000;
@@ -65,16 +65,16 @@ void CN3UITooltip::Render()
 		s_lpD3DDev->SetTextureStageState( 0, D3DTSS_COLORARG1,  D3DTA_DIFFUSE );
 
 		// draw
-		s_lpD3DDev->SetVertexShader(FVF_TRANSFORMEDCOLOR);
-		HRESULT hr = s_lpD3DDev->DrawPrimitiveUP(D3DPT_TRIANGLEFAN, 2, pVB, sizeof(__VertexTransformedColor));	// ¹è°æ»ö Ä¥ÇÏ±â
+		s_lpD3DDev->SetFVF(FVF_TRANSFORMEDCOLOR);
+		HRESULT hr = s_lpD3DDev->DrawPrimitiveUP(D3DPT_TRIANGLEFAN, 2, pVB, sizeof(__VertexTransformedColor));	// ï¿½ï¿½ï¿½ï¿½ Ä¥ï¿½Ï±ï¿½
 
 		__VertexTransformedColor* pTemp = pVB;
 		int i;
-		for (i=0; i<4; ++i) pTemp++->color = BorderColorOut;	// ¹Ù±ù Å×µÎ¸® »öÀ» ¹Ù²Û´Ù.
+		for (i=0; i<4; ++i) pTemp++->color = BorderColorOut;	// ï¿½Ù±ï¿½ ï¿½×µÎ¸ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ù²Û´ï¿½.
 		s_lpD3DDev->DrawIndexedPrimitiveUP(D3DPT_LINELIST, 0, 8, 8, 
-			pIB, D3DFMT_INDEX16, pVB, sizeof(__VertexTransformedColor));	// Å×µÎ¸® Ä¥ÇÏ±â
+			pIB, D3DFMT_INDEX16, pVB, sizeof(__VertexTransformedColor));	// ï¿½×µÎ¸ï¿½ Ä¥ï¿½Ï±ï¿½
 
-		// ±Û¾¾ ±×¸®±â
+		// ï¿½Û¾ï¿½ ï¿½×¸ï¿½ï¿½ï¿½
 		m_pBuffOutRef->Render();
 	}
 	else CN3UIStatic::Render();
@@ -84,26 +84,26 @@ void CN3UITooltip::SetText(const std::string& szText)
 {
 	if(!m_bVisible || m_bSetText) return;
 
-	// ÅøÆÁ»óÀÚ Å©±â¸¦ Á¶Á¤ÇÑ´Ù.
+	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Å©ï¿½â¸¦ ï¿½ï¿½ï¿½ï¿½ï¿½Ñ´ï¿½.
 	int iStrLen = szText.size();
 	if (0 == iStrLen || NULL == m_pBuffOutRef) return;
 
-	m_pBuffOutRef->ClearOnlyStringBuffer();	//¿ì¼± ±âÁ¸¿¡ ÀÖ´ø ±Û¾¾¸¦ Áö¿î´Ù.(Á¤·ÄÇÏÁö ¾Ê°í)
+	m_pBuffOutRef->ClearOnlyStringBuffer();	//ï¿½ì¼± ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ö´ï¿½ ï¿½Û¾ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½.(ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ê°ï¿½)
 	SIZE size;
 	if (m_pBuffOutRef->GetTextExtent(szText, iStrLen, &size))
 	{
 		if (std::string::npos != szText.find('\n'))
-		{	// '\n'¹®ÀÚ¿­Áß¿¡ \nÀÌ µé¾î°¡ ÀÖÀ¸¹Ç·Î multi lineÀ¸·Î °£ÁÖ
+		{	// '\n'ï¿½ï¿½ï¿½Ú¿ï¿½ï¿½ß¿ï¿½ \nï¿½ï¿½ ï¿½ï¿½î°¡ ï¿½ï¿½ï¿½ï¿½ï¿½Ç·ï¿½ multi lineï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 			m_pBuffOutRef->SetStyle(UISTYLE_STRING_ALIGNLEFT|UISTYLE_STRING_ALIGNTOP);
 		}
 		else if (iStrLen<25)
-		{	// 25byte ¹Ì¸¸ÀÌ¸é ±×³É ÇÑÁÙ·Î.
+		{	// 25byte ï¿½Ì¸ï¿½ï¿½Ì¸ï¿½ ï¿½×³ï¿½ ï¿½ï¿½ï¿½Ù·ï¿½.
 			m_pBuffOutRef->SetStyle(UISTYLE_STRING_SINGLELINE|UISTYLE_STRING_ALIGNCENTER|UISTYLE_STRING_ALIGNVCENTER);
 		}
 		else
-		{	// single lineÀÌ¹Ç·Î Àû´çÇÑ Å©±â¸¦ °è»êÇÑ´Ù.
+		{	// single lineï¿½Ì¹Ç·ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Å©ï¿½â¸¦ ï¿½ï¿½ï¿½ï¿½Ñ´ï¿½.
 			SIZE CharSize = {0,0};
-			if (FALSE == m_pBuffOutRef->GetTextExtent("°¡", 2, &CharSize)) return;
+			if (FALSE == m_pBuffOutRef->GetTextExtent("ï¿½ï¿½", 2, &CharSize)) return;
 
 			int iDiv = 25;
 			int iLineCount = (iStrLen + iDiv-1)/iDiv;
@@ -122,22 +122,22 @@ void CN3UITooltip::SetText(const std::string& szText)
 	}
 	m_pBuffOutRef->SetString(szText);
 
-	// À§Ä¡ Á¶Á¤
+	// ï¿½ï¿½Ä¡ ï¿½ï¿½ï¿½ï¿½
 	POINT	ptNew = m_ptCursor;
 	ptNew.x -= (m_rcRegion.right - m_rcRegion.left) / 2;
 	ptNew.y -= (m_rcRegion.bottom - m_rcRegion.top) + 10;
 
-	D3DVIEWPORT8 &vp = s_CameraData.vp;
+	D3DVIEWPORT9 &vp = s_CameraData.vp;
 	int iRegionWidth = m_rcRegion.right - m_rcRegion.left;
 	int iRegionHeight = m_rcRegion.bottom - m_rcRegion.top;
 
-	if (ptNew.x + iRegionWidth > vp.X+vp.Width)	// È­¸é ¿À¸¥¦UÀ¸·Î ¹þ¾î³­ °æ¿ì
+	if (ptNew.x + iRegionWidth > vp.X+vp.Width)	// È­ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Uï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½î³­ ï¿½ï¿½ï¿½
 		ptNew.x = vp.X+vp.Width - iRegionWidth;
-	if (ptNew.x < vp.X)	ptNew.x = vp.X;	// È­¸é ¿ÞÂÊÀ¸·Î ¹þ¾î³­ °æ¿ì
+	if (ptNew.x < vp.X)	ptNew.x = vp.X;	// È­ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½î³­ ï¿½ï¿½ï¿½
 
-	if (ptNew.y + iRegionHeight > vp.Y+vp.Height)	// È­¸é ÇÏ´ÜÀ¸·Î ¹þ¾î³­ °æ¿ì
+	if (ptNew.y + iRegionHeight > vp.Y+vp.Height)	// È­ï¿½ï¿½ ï¿½Ï´ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½î³­ ï¿½ï¿½ï¿½
 		ptNew.y = vp.Y+vp.Height - iRegionHeight;
-	if (ptNew.y < vp.Y) ptNew.y = vp.Y;	// È­¸é »ó´ÜÀ¸·Î ¹þ¾î³­ °æ¿ì	
+	if (ptNew.y < vp.Y) ptNew.y = vp.Y;	// È­ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½î³­ ï¿½ï¿½ï¿½	
 
 	SetPos(ptNew.x, ptNew.y);
 
@@ -151,7 +151,7 @@ void CN3UITooltip::Tick()
 	static const float fDisplayTime = 0.3f;
 	if (fOldTime < fDisplayTime && m_fHoverTime >= fDisplayTime)
 	{
-		SetVisible(true);	// tool tip Ç¥½Ã
+		SetVisible(true);	// tool tip Ç¥ï¿½ï¿½
 	}
 }
 
@@ -160,15 +160,15 @@ DWORD CN3UITooltip::MouseProc(DWORD dwFlags, const POINT& ptCur, const POINT& pt
 	DWORD dwRet = UI_MOUSEPROC_NONE;
 	if (!m_bVisible) return dwRet;
 
-	// ¸¶¿ì½º¸¦ ¿òÁ÷ÀÌ¸é m_fHoverTime¸¦ 0À¸·Î ¸¸µé±â
+	// ï¿½ï¿½ï¿½ì½ºï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ì¸ï¿½ m_fHoverTimeï¿½ï¿½ 0ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½
 	if (ptCur.x != ptOld.x || ptCur.y != ptOld.y)
 	{
 		m_fHoverTime = 0.0f;
 		m_bSetText = false;
-		SetVisible(false);// tool tipÀ» ¾ø¾Ø´Ù.
+		SetVisible(false);// tool tipï¿½ï¿½ ï¿½ï¿½ï¿½Ø´ï¿½.
 	}
 	else
-	{	// ¾È¿òÁ÷ÀÌ¸é Ä¿¼­ À§Ä¡ ÀúÀå
+	{	// ï¿½È¿ï¿½ï¿½ï¿½ï¿½Ì¸ï¿½ Ä¿ï¿½ï¿½ ï¿½ï¿½Ä¡ ï¿½ï¿½ï¿½ï¿½
 		m_ptCursor = ptCur;
 	}
 

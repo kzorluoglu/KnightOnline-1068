@@ -25,8 +25,8 @@ public:
 protected:
 	int							m_iVC;
 	int							m_iIC;
-	LPDIRECT3DVERTEXBUFFER8		m_pVB;
-	LPDIRECT3DINDEXBUFFER8		m_pIB;
+	LPDIRECT3DVERTEXBUFFER9		m_pVB;
+	LPDIRECT3DINDEXBUFFER9		m_pIB;
 	DWORD						m_dwEffectType;
 	BOOL						m_bActive;
 

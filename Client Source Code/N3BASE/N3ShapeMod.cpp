@@ -59,24 +59,24 @@ bool CN3ShapeMod::Load(HANDLE hFile)
 	return ret;
 }
 
-BOOL CN3ShapeMod::LoadStateInfo(FILE* stream)	// »óÅÂ Á¤º¸¸¦ ÀÐ¾î¿Â´Ù.(text·ÎºÎÅÍ)
+BOOL CN3ShapeMod::LoadStateInfo(FILE* stream)	// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ð¾ï¿½Â´ï¿½.(textï¿½Îºï¿½ï¿½ï¿½)
 {
-	__ASSERT(m_Parts.size() > 0, "¸ÕÀú shape¸¦ loadÇØ¾ß ÇÑ´Ù.");
+	__ASSERT(m_Parts.size() > 0, "ï¿½ï¿½ï¿½ï¿½ shapeï¿½ï¿½ loadï¿½Ø¾ï¿½ ï¿½Ñ´ï¿½.");
 	if (NULL == stream) return FALSE;
 //	Release();
 
 	int result;
-//	char szSrcName[_MAX_PATH];	// shape sourceÆÄÀÏ ÀÌ¸§
-//	result = fscanf(stream, "Shape_FName=%s\n", szSrcName);	__ASSERT(result != EOF, "Àß¸øµÈ N3ShapeMod ¼¼ÆÃ ÆÄÀÏ");
+//	char szSrcName[_MAX_PATH];	// shape sourceï¿½ï¿½ï¿½ï¿½ ï¿½Ì¸ï¿½
+//	result = fscanf(stream, "Shape_FName=%s\n", szSrcName);	__ASSERT(result != EOF, "ï¿½ß¸ï¿½ï¿½ï¿½ N3ShapeMod ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½");
 
-	// shape loadÇÏ±â
+	// shape loadï¿½Ï±ï¿½
 //	if (!this->Load(szSrcName)) return FALSE;
 
-	// º¯È­ÇÏ´Â PMeshÀÇ °¹¼ö ¹× StateÀÇ ¼ö
-	result = fscanf(stream, "PMesh_Count=%d\n", &m_iModPartCount);	__ASSERT(result != EOF, "Àß¸øµÈ N3ShapeMod ¼¼ÆÃ ÆÄÀÏ");
-	result = fscanf(stream, "State_Count=%d\n", &m_iStateCount);		__ASSERT(result != EOF, "Àß¸øµÈ N3ShapeMod ¼¼ÆÃ ÆÄÀÏ");
+	// ï¿½ï¿½È­ï¿½Ï´ï¿½ PMeshï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ Stateï¿½ï¿½ ï¿½ï¿½
+	result = fscanf(stream, "PMesh_Count=%d\n", &m_iModPartCount);	__ASSERT(result != EOF, "ï¿½ß¸ï¿½ï¿½ï¿½ N3ShapeMod ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½");
+	result = fscanf(stream, "State_Count=%d\n", &m_iStateCount);		__ASSERT(result != EOF, "ï¿½ß¸ï¿½ï¿½ï¿½ N3ShapeMod ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½");
 
-	// Shape »óÅÂ Á¤º¸ ÀÐ¾î¿À±â
+	// Shape ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ð¾ï¿½ï¿½ï¿½ï¿½
 	int i, j;
 	__Vector3 vPos, vScale;
 	__Vector3 vAxis;	float fDegree;
@@ -84,32 +84,32 @@ BOOL CN3ShapeMod::LoadStateInfo(FILE* stream)	// »óÅÂ Á¤º¸¸¦ ÀÐ¾î¿Â´Ù.(text·ÎºÎÅ
 //	m_ModShape.pShapeStateInfos = new __ModPosRotScale[m_iStateCount];
 //	for (i=0; i<m_iStateCount; ++i)
 //	{
-//		result = fscanf(stream, "S_Pos(%f, %f, %f)\n", &vPos.x, &vPos.y, &vPos.z);		__ASSERT(result != EOF, "Àß¸øµÈ N3ShapeMod ¼¼ÆÃ ÆÄÀÏ");
-//		result = fscanf(stream, "S_Rot(%f, %f, %f)\n", &vRot.x, &vRot.y, &vRot.z);		__ASSERT(result != EOF, "Àß¸øµÈ N3ShapeMod ¼¼ÆÃ ÆÄÀÏ");
-//		result = fscanf(stream, "S_Scale(%f, %f, %f)\n", &vScale.x, &vScale.y, &vScale.z);		__ASSERT(result != EOF, "Àß¸øµÈ N3ShapeMod ¼¼ÆÃ ÆÄÀÏ");
+//		result = fscanf(stream, "S_Pos(%f, %f, %f)\n", &vPos.x, &vPos.y, &vPos.z);		__ASSERT(result != EOF, "ï¿½ß¸ï¿½ï¿½ï¿½ N3ShapeMod ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½");
+//		result = fscanf(stream, "S_Rot(%f, %f, %f)\n", &vRot.x, &vRot.y, &vRot.z);		__ASSERT(result != EOF, "ï¿½ß¸ï¿½ï¿½ï¿½ N3ShapeMod ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½");
+//		result = fscanf(stream, "S_Scale(%f, %f, %f)\n", &vScale.x, &vScale.y, &vScale.z);		__ASSERT(result != EOF, "ï¿½ß¸ï¿½ï¿½ï¿½ N3ShapeMod ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½");
 //		m_ModShape.pShapeStateInfos[i].vPos = vPos;
 //		m_ModShape.pShapeStateInfos[i].vRot = vRot;
 //		m_ModShape.pShapeStateInfos[i].vScale = vScale;
 //	}
 
-	// Part »óÅÂ Á¤º¸ ÀÐ¾î¿À±â
-	__ASSERT(m_iModPartCount > 0, "m_iModPartCount°¡ 1ÀÌ»óÀÌ¾î¾ß ÇÕ´Ï´Ù.");
-	__ASSERT(m_iStateCount > 0, "m_iStateCount 1ÀÌ»óÀÌ¾î¾ß ÇÕ´Ï´Ù.");
+	// Part ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ð¾ï¿½ï¿½ï¿½ï¿½
+	__ASSERT(m_iModPartCount > 0, "m_iModPartCountï¿½ï¿½ 1ï¿½Ì»ï¿½ï¿½Ì¾ï¿½ï¿½ ï¿½Õ´Ï´ï¿½.");
+	__ASSERT(m_iStateCount > 0, "m_iStateCount 1ï¿½Ì»ï¿½ï¿½Ì¾ï¿½ï¿½ ï¿½Õ´Ï´ï¿½.");
 	m_pModParts = new __ModPart[m_iModPartCount];
 
 	char szPMeshName[_MAX_PATH] = "";
 	for (i=0; i<m_iModPartCount; ++i)
 	{
-		result = fscanf(stream, "PMesh_FName=%s\n", szPMeshName);		__ASSERT(result != EOF, "Àß¸øµÈ N3ShapeMod ¼¼ÆÃ ÆÄÀÏ");
+		result = fscanf(stream, "PMesh_FName=%s\n", szPMeshName);		__ASSERT(result != EOF, "ï¿½ß¸ï¿½ï¿½ï¿½ N3ShapeMod ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½");
 		m_pModParts[i].pPart = GetPartByPMeshFileName(szPMeshName);
 		m_pModParts[i].pStateInfos = new __ModPosRotScale[m_iStateCount];
 		for (j=0; j<m_iStateCount; ++j)
 		{
-			result = fscanf(stream, "Pos(%f, %f, %f)\n", &vPos.x, &vPos.y, &vPos.z);		__ASSERT(result != EOF, "Àß¸øµÈ N3ShapeMod ¼¼ÆÃ ÆÄÀÏ");
-			result = fscanf(stream, "Rot(%f, %f, %f, %f)\n", &vAxis.x, &vAxis.y, &vAxis.z, &fDegree);		__ASSERT(result != EOF, "Àß¸øµÈ N3ShapeMod ¼¼ÆÃ ÆÄÀÏ");
+			result = fscanf(stream, "Pos(%f, %f, %f)\n", &vPos.x, &vPos.y, &vPos.z);		__ASSERT(result != EOF, "ï¿½ß¸ï¿½ï¿½ï¿½ N3ShapeMod ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½");
+			result = fscanf(stream, "Rot(%f, %f, %f, %f)\n", &vAxis.x, &vAxis.y, &vAxis.z, &fDegree);		__ASSERT(result != EOF, "ï¿½ß¸ï¿½ï¿½ï¿½ N3ShapeMod ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½");
 			if(vAxis.x ==0.0f && vAxis.y == 0.0f && vAxis.z == 0.0f) qRot.Identity();
 			else qRot.RotationAxis(vAxis, D3DXToRadian(fDegree));
-			result = fscanf(stream, "Scale(%f, %f, %f)\n", &vScale.x, &vScale.y, &vScale.z);		__ASSERT(result != EOF, "Àß¸øµÈ N3ShapeMod ¼¼ÆÃ ÆÄÀÏ");
+			result = fscanf(stream, "Scale(%f, %f, %f)\n", &vScale.x, &vScale.y, &vScale.z);		__ASSERT(result != EOF, "ï¿½ß¸ï¿½ï¿½ï¿½ N3ShapeMod ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½");
 			m_pModParts[i].pStateInfos[j].vPos = vPos;
 			m_pModParts[i].pStateInfos[j].qRot = qRot;
 			m_pModParts[i].pStateInfos[j].vScale = vScale;
@@ -125,12 +125,12 @@ BOOL CN3ShapeMod::LoadStateInfo(FILE* stream)	// »óÅÂ Á¤º¸¸¦ ÀÐ¾î¿Â´Ù.(text·ÎºÎÅ
 		}
 	}
 
-	// m_pMatchPart2ModPart CN3SPart°¹¼ö¸¸Å­ »ý¼º ¹× ÃÊ±âÈ­(¸ÅÄª½ÃÅ°±â)
-	__ASSERT(m_pMatchPart2ModPart == NULL, "Machine¿¡¼­ ¸Þ¸ð¸® ¸¯ °¡´É¼º");
+	// m_pMatchPart2ModPart CN3SPartï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Å­ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½Ê±ï¿½È­(ï¿½ï¿½Äªï¿½ï¿½Å°ï¿½ï¿½)
+	__ASSERT(m_pMatchPart2ModPart == NULL, "Machineï¿½ï¿½ï¿½ï¿½ ï¿½Þ¸ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½É¼ï¿½");
 	int iPartCount = PartCount();
 	if (iPartCount>0) m_pMatchPart2ModPart = new __ModPart*[iPartCount];
 	ZeroMemory(m_pMatchPart2ModPart, sizeof(m_pMatchPart2ModPart[0])*iPartCount);
-	// (¸ÅÄª½ÃÅ°±â)
+	// (ï¿½ï¿½Äªï¿½ï¿½Å°ï¿½ï¿½)
 	for(i=0; i<m_iModPartCount; ++i)
 	{
 		it_SPart it = m_Parts.begin();
@@ -150,10 +150,10 @@ BOOL CN3ShapeMod::LoadStateInfo(FILE* stream)	// »óÅÂ Á¤º¸¸¦ ÀÐ¾î¿Â´Ù.(text·ÎºÎÅ
 
 void CN3ShapeMod::ReCalcMatrix()
 {
-	// m_Matrix ´Ù½Ã °è»ê..
-	CN3Transform::ReCalcMatrix(); // Transfomr Matrix ¸¦ °è»ê ÇØÁÖ°í..
+	// m_Matrix ï¿½Ù½ï¿½ ï¿½ï¿½ï¿½..
+	CN3Transform::ReCalcMatrix(); // Transfomr Matrix ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ö°ï¿½..
 
-	// °¢ ÆÄÆ®ÀÇ ¸ÅÆ®¸¯½º¸¦ ´Ù½Ã °è»ê.
+	// ï¿½ï¿½ ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½Æ®ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ù½ï¿½ ï¿½ï¿½ï¿½.
 	int iPC = m_Parts.size();
 	for(int i = 0; i < iPC; i++)
 	{
@@ -162,12 +162,12 @@ void CN3ShapeMod::ReCalcMatrix()
 			__ModPart* pModPart = m_pMatchPart2ModPart[i];
 			// Scale
 			m_Parts[i]->m_Matrix.Scale(pModPart->CurStateInfo.vScale);
-			// È¸Àü
+			// È¸ï¿½ï¿½
 			static __Matrix44 mtxRot;
 			D3DXMatrixRotationQuaternion(&mtxRot, &(pModPart->CurStateInfo.qRot));
 			m_Parts[i]->m_Matrix *= mtxRot;
 
-			// À§Ä¡
+			// ï¿½ï¿½Ä¡
 			m_Parts[i]->m_Matrix.PosSet(m_Parts[i]->m_vPivot + pModPart->CurStateInfo.vPos);
 			m_Parts[i]->m_Matrix *= m_Matrix;
 		}

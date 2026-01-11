@@ -15,7 +15,7 @@ const float UI_DEFAULT_RHW = 1.0f;
 // type
 enum eUI_TYPE	{	UI_TYPE_BASE = 0,		// none
 					UI_TYPE_BUTTON,			// button
-					UI_TYPE_STATIC,			// static (¹è°æ±×¸²°ú ±ÛÀÚ°¡ ³ª¿À´Â Å¬·¡½º)
+					UI_TYPE_STATIC,			// static (ï¿½ï¿½ï¿½×¸ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ú°ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Å¬ï¿½ï¿½ï¿½ï¿½)
 					UI_TYPE_PROGRESS,		// progress
 					UI_TYPE_IMAGE,			// image
 					UI_TYPE_SCROLLBAR,		// scroll bar
@@ -31,68 +31,68 @@ enum eUI_TYPE	{	UI_TYPE_BASE = 0,		// none
 					UI_TYPE_ICON,			// icon
 					UI_TYPE_ICON_MANAGER,	// icon manager.. 
 
-					// repent Àü¿ë
+					// repent ï¿½ï¿½ï¿½ï¿½
 					UI_TYPE_ICONSLOT,		// icon slot
 					UI_TYPE_LIST,			// Text List...
 				};
 
 // State
-enum eUI_STATE	{	UI_STATE_COMMON_NONE = 0,				// ¾Æ¹«·¸Áöµµ ¾ÊÀº ±×³É Æò¹üÇÑ »óÅÂ È¤Àº ¾ÆÀÌÄÜÀ» °¡Áø À©µµ¿ì°¡ ¾ÆÀÌÄÜÀ» ¼±ÅÃÇÏÁö ¾ÊÀº »óÅÂ
-					UI_STATE_COMMON_MOVE,					// ¿òÁ÷¿©¾ß ÇÏ´Â 
-					UI_STATE_BUTTON_NORMAL,					// ¾Æ¹«·¸Áöµµ ¾ÊÀº ±×³É Æò¹üÇÑ »óÅÂ..
-					UI_STATE_BUTTON_DOWN,					// ¹öÆ°ÀÌ ´­¸°»óÅÂ
-					UI_STATE_BUTTON_DOWN_2CHECKDOWN,		// ¹öÆ°ÀÌ ÀÓ½ÃÀûÀ¸·Î ´­¸° »óÅÂ(Ã¼Å© ¹öÆ°½Ã »ç¿ë, ÁøÂ¥·Î ´­¸° »óÅÂ°¡ ¾Æ´Ï´Ù) ´ÙÀ½¿¡ down»óÅÂ·Î
-					UI_STATE_BUTTON_DOWN_2CHECKUP,			// ¹öÆ°ÀÌ ÀÓ½ÃÀûÀ¸·Î ´­¸° »óÅÂ(Ã¼Å© ¹öÆ°½Ã »ç¿ë, ÁøÂ¥·Î ´­¸° »óÅÂ°¡ ¾Æ´Ï´Ù) ´ÙÀ½¿¡ normal»óÅÂ·Î
-					UI_STATE_BUTTON_ON,						// ¹öÆ°ÀÌ ÄÑÁø »óÅÂ.. 
-					UI_STATE_BUTTON_DISABLE,				// ¹öÆ°ÀÌ ºñÈ°¼ºÈ­µÈ »óÅÂ
-					UI_STATE_BUTTON_CLICK,					// ¹öÆ°ÀÌ ´­·È´Ù ¶³¾îÁø »óÅÂ - Click.
-					UI_STATE_SCROLLBAR_NULL,				// ¾Æ¹«»óÅÂµµ ¾Æ´Ô..
-					UI_STATE_SCROLLBAR_TOPBUTTON_DOWN,		// À§·Î ¿Ã¸®´Â ¹öÆ°ÀÌ ´­¸° »óÅÂ.
-					UI_STATE_SCROLLBAR_BOTTOMBUTTON_DOWN,	// ¾Æ·¡·Î ³»¸®´Â ¹öÆ°ÀÌ ´­¸°»óÅÂ.
+enum eUI_STATE	{	UI_STATE_COMMON_NONE = 0,				// ï¿½Æ¹ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½×³ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ È¤ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ì°¡ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+					UI_STATE_COMMON_MOVE,					// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ï´ï¿½ 
+					UI_STATE_BUTTON_NORMAL,					// ï¿½Æ¹ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½×³ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½..
+					UI_STATE_BUTTON_DOWN,					// ï¿½ï¿½Æ°ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+					UI_STATE_BUTTON_DOWN_2CHECKDOWN,		// ï¿½ï¿½Æ°ï¿½ï¿½ ï¿½Ó½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½(Ã¼Å© ï¿½ï¿½Æ°ï¿½ï¿½ ï¿½ï¿½ï¿½, ï¿½ï¿½Â¥ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Â°ï¿½ ï¿½Æ´Ï´ï¿½) ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ downï¿½ï¿½ï¿½Â·ï¿½
+					UI_STATE_BUTTON_DOWN_2CHECKUP,			// ï¿½ï¿½Æ°ï¿½ï¿½ ï¿½Ó½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½(Ã¼Å© ï¿½ï¿½Æ°ï¿½ï¿½ ï¿½ï¿½ï¿½, ï¿½ï¿½Â¥ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Â°ï¿½ ï¿½Æ´Ï´ï¿½) ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ normalï¿½ï¿½ï¿½Â·ï¿½
+					UI_STATE_BUTTON_ON,						// ï¿½ï¿½Æ°ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½.. 
+					UI_STATE_BUTTON_DISABLE,				// ï¿½ï¿½Æ°ï¿½ï¿½ ï¿½ï¿½È°ï¿½ï¿½È­ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+					UI_STATE_BUTTON_CLICK,					// ï¿½ï¿½Æ°ï¿½ï¿½ ï¿½ï¿½ï¿½È´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ - Click.
+					UI_STATE_SCROLLBAR_NULL,				// ï¿½Æ¹ï¿½ï¿½ï¿½ï¿½Âµï¿½ ï¿½Æ´ï¿½..
+					UI_STATE_SCROLLBAR_TOPBUTTON_DOWN,		// ï¿½ï¿½ï¿½ï¿½ ï¿½Ã¸ï¿½ï¿½ï¿½ ï¿½ï¿½Æ°ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½.
+					UI_STATE_SCROLLBAR_BOTTOMBUTTON_DOWN,	// ï¿½Æ·ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Æ°ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½.
 					UI_STATE_EDTCTRL_ACTIVE,
 					UI_STATE_EDTCTRL_UNACTIVE,
-					UI_STATE_TRACKBAR_THUMBDRAG,			// Thumb¸¦ µå·¡±× ÇÏ´Â ÁßÀÌ´Ù.
-					UI_STATE_LIST_ENABLE,					// List ¿¡¼­ ¼±ÅÃ °¡´É
-					UI_STATE_LIST_DISABLE,					// List ¿¡¼­ ¼±ÅÃ ºÒ°¡´É
+					UI_STATE_TRACKBAR_THUMBDRAG,			// Thumbï¿½ï¿½ ï¿½å·¡ï¿½ï¿½ ï¿½Ï´ï¿½ ï¿½ï¿½ï¿½Ì´ï¿½.
+					UI_STATE_LIST_ENABLE,					// List ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+					UI_STATE_LIST_DISABLE,					// List ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ò°ï¿½ï¿½ï¿½
 
-					// ecli666 (¾ÆÀÌÄÜÀ» °¡Áø À©µµ¿ì.. ¾ÆÀÌÄÜ ÀÚÃ¼´Â ¾Æ´Ï´Ù..)
-//					UI_STATE_ICON_NONE,						// ¾ÆÀÌÄÜÀ» °¡Áø À©µµ¿ì°¡ ¾ÆÀÌÄÜÀ» ¼±ÅÃÇÏÁö ¾ÊÀº »óÅÂ..
-					UI_STATE_ICON_MOVING,					// ¾ÆÀÌÄÜÀ» °¡Áø À©µµ¿ì°¡ ¾ÆÀÌÄÜÀ» ¿òÁ÷ÀÌ°í ÀÖ´Â »óÅÂ..
-//					UI_STATE_ICON_SELECTED,					// ¾ÆÀÌÄÜÀ» °¡Áø À©µµ¿ì°¡ ¾ÆÀÌÄÜÀ» ¼±ÅÃÇÑ »óÅÂ..
-					UI_STATE_ICON_WAIT_FROM_SERVER,			// ¾ÆÀÌÄÜÀ» °¡Áø À©µµ¿ì°¡ ¾ÆÀÌÄÜÀ» ¿Å±â°í ¼­¹ö·Î ºÎÅÍ ÀÀ´äÀ» ±â´Ù¸®´Â »óÅÂ..
-					UI_STATE_ICON_DO_SUCCESS,				// ¾ÆÀÌÄÜÀ» °¡Áø À©µµ¿ì°¡ ¼­¹ö·Î ºÎÅÍ ¼º°øÀ» ¹ÞÀº »óÅÂ..
-					UI_STATE_ICON_DO_FAIL,					// ¾ÆÀÌÄÜÀ» °¡Áø À©µµ¿ì°¡ ¼­¹ö·Î ºÎÅÍ ½ÇÆÐ¸¦ ¹ÞÀº »óÅÂ..
-					UI_STATE_ICON_DO_RECOVERY,				// ¾ÆÀÌÄÜÀ» °¡Áø À©µµ¿ì°¡ ¼­¹ö·Î ºÎÅÍ ½ÇÆÐ¸¦ ¹Þ¾Æ º¹±¸ÇØ¾ß ÇÏ´Â »óÅÂ..
+					// ecli666 (ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½.. ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ã¼ï¿½ï¿½ ï¿½Æ´Ï´ï¿½..)
+//					UI_STATE_ICON_NONE,						// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ì°¡ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½..
+					UI_STATE_ICON_MOVING,					// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ì°¡ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ì°ï¿½ ï¿½Ö´ï¿½ ï¿½ï¿½ï¿½ï¿½..
+//					UI_STATE_ICON_SELECTED,					// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ì°¡ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½..
+					UI_STATE_ICON_WAIT_FROM_SERVER,			// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ì°¡ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Å±ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ù¸ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½..
+					UI_STATE_ICON_DO_SUCCESS,				// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ì°¡ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½..
+					UI_STATE_ICON_DO_FAIL,					// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ì°¡ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ð¸ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½..
+					UI_STATE_ICON_DO_RECOVERY,				// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ì°¡ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ð¸ï¿½ ï¿½Þ¾ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ø¾ï¿½ ï¿½Ï´ï¿½ ï¿½ï¿½ï¿½ï¿½..
 				};
 
 // message
-const DWORD UIMSG_BUTTON_CLICK		= 0x00000001;		// normal ¹öÆ° Å¬¸¯
-const DWORD UIMSG_TRACKBAR_POS		= 0x00000010;		// trackbarÀÇ pos°¡ º¯°æµÊ
-const DWORD UIMSG_SCROLLBAR_POS		= 0x00000100;		// scrollbarÀÇ pos°¡ º¯°æµÊ.
-const DWORD UIMSG_EDIT_RETURN		= 0x00001000;		// Edit¿¡¼­ enter°¡ µé¾î¿È
-const DWORD UIMSG_EDIT_TAB			= 0x00002000;		// Edit¿¡¼­ TabÀÌ µé¾î¿È
-const DWORD UIMSG_EDIT_ESCAPE		= 0x00004000;		// Edit¿¡¼­ escÀÌ µé¾î¿È
-const DWORD UIMSG_ICON_DOWN_FIRST	= 0x00010000;		// Icon¿¡ ¿ÞÂÊ ¸¶¿ì½º ¹öÆ° Ã³À½À¸·Î ´Ù¿î..
-const DWORD UIMSG_ICON_DOWN			= 0x00020000;		// Icon¿¡ ¿ÞÂÊ ¸¶¿ì½º ¹öÆ° ´Ù¿î..
-const DWORD UIMSG_ICON_UP			= 0x00040000;		// Icon¿¡ ¿ÞÂÊ ¸¶¿ì½º ¹öÆ° ¾÷..
-const DWORD UIMSG_ICON_DBLCLK		= 0x00080000;		// Icon¿¡ ¹öÆ° ´õºí Å¬¸¯
-const DWORD UIMSG_AREA_DOWN_FIRST	= 0x00100000;		// Area¿¡ ¿ÞÂÊ ¸¶¿ì½º ¹öÆ° Ã³À½À¸·Î ´Ù¿î..
+const DWORD UIMSG_BUTTON_CLICK		= 0x00000001;		// normal ï¿½ï¿½Æ° Å¬ï¿½ï¿½
+const DWORD UIMSG_TRACKBAR_POS		= 0x00000010;		// trackbarï¿½ï¿½ posï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½
+const DWORD UIMSG_SCROLLBAR_POS		= 0x00000100;		// scrollbarï¿½ï¿½ posï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½.
+const DWORD UIMSG_EDIT_RETURN		= 0x00001000;		// Editï¿½ï¿½ï¿½ï¿½ enterï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+const DWORD UIMSG_EDIT_TAB			= 0x00002000;		// Editï¿½ï¿½ï¿½ï¿½ Tabï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+const DWORD UIMSG_EDIT_ESCAPE		= 0x00004000;		// Editï¿½ï¿½ï¿½ï¿½ escï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+const DWORD UIMSG_ICON_DOWN_FIRST	= 0x00010000;		// Iconï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ì½º ï¿½ï¿½Æ° Ã³ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ù¿ï¿½..
+const DWORD UIMSG_ICON_DOWN			= 0x00020000;		// Iconï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ì½º ï¿½ï¿½Æ° ï¿½Ù¿ï¿½..
+const DWORD UIMSG_ICON_UP			= 0x00040000;		// Iconï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ì½º ï¿½ï¿½Æ° ï¿½ï¿½..
+const DWORD UIMSG_ICON_DBLCLK		= 0x00080000;		// Iconï¿½ï¿½ ï¿½ï¿½Æ° ï¿½ï¿½ï¿½ï¿½ Å¬ï¿½ï¿½
+const DWORD UIMSG_AREA_DOWN_FIRST	= 0x00100000;		// Areaï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ì½º ï¿½ï¿½Æ° Ã³ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ù¿ï¿½..
 const DWORD UIMSG_LIST_SELCHANGE	= 0x00200000;		// List Selection Change..
 const DWORD UIMSG_LIST_DBLCLK		= 0x00400000;
-const DWORD UIMSG_ICON_RDOWN_FIRST	= 0x01000000;		// Icon¿¡ ¿À¸¥ÂÊ ¸¶¿ì½º ¹öÆ° Ã³À½À¸·Î ´Ù¿î..
-const DWORD UIMSG_ICON_RDOWN		= 0x02000000;		// Icon¿¡ ¿À¸¥ÂÊ ¸¶¿ì½º ¹öÆ° ´Ù¿î..
-const DWORD UIMSG_ICON_RUP			= 0x04000000;		// Icon¿¡ ¿À¸¥ÂÊ ¸¶¿ì½º ¹öÆ° ¾÷..
-const DWORD UIMSG_ICON_RDBLCLK		= 0x08000000;		// Icon¿¡ ¿À¸¥ÂÊ ¸¶¿ì½º ´õºí Å¬¸¯
-const DWORD UIMSG_STRING_LCLICK		= 0x10000000;		// string¿¡ ¸¶¿ì½º°¡ ¿ÞÂÊ Å¬¸¯ µÇ¾úÀ»¶§...
-const DWORD UIMSG_STRING_LDCLICK	= 0x20000000;		// string¿¡ ¸¶¿ì½º°¡ ¿ÞÂÊ ´õºí Å¬¸¯ µÇ¾úÀ»¶§...
+const DWORD UIMSG_ICON_RDOWN_FIRST	= 0x01000000;		// Iconï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ì½º ï¿½ï¿½Æ° Ã³ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ù¿ï¿½..
+const DWORD UIMSG_ICON_RDOWN		= 0x02000000;		// Iconï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ì½º ï¿½ï¿½Æ° ï¿½Ù¿ï¿½..
+const DWORD UIMSG_ICON_RUP			= 0x04000000;		// Iconï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ì½º ï¿½ï¿½Æ° ï¿½ï¿½..
+const DWORD UIMSG_ICON_RDBLCLK		= 0x08000000;		// Iconï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ì½º ï¿½ï¿½ï¿½ï¿½ Å¬ï¿½ï¿½
+const DWORD UIMSG_STRING_LCLICK		= 0x10000000;		// stringï¿½ï¿½ ï¿½ï¿½ï¿½ì½ºï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ Å¬ï¿½ï¿½ ï¿½Ç¾ï¿½ï¿½ï¿½ï¿½ï¿½...
+const DWORD UIMSG_STRING_LDCLICK	= 0x20000000;		// stringï¿½ï¿½ ï¿½ï¿½ï¿½ì½ºï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ Å¬ï¿½ï¿½ ï¿½Ç¾ï¿½ï¿½ï¿½ï¿½ï¿½...
 
-// ¸®ÆæÆ®¿ë ¸Þ¼¼Áö
-const DWORD UIMSG_ICONSLOT_LBCLICK	= 0x00010000;		// icon slot¿¡ ¿ÞÂÊ ¸¶¿ì½º ¹öÆ° Å¬¸¯
-const DWORD UIMSG_ICONSLOT_RBCLICK	= 0x00020000;		// icon slot¿¡ ¿À¸¥ÂÊ ¸¶¿ì½º ¹öÆ° Å¬¸¯
-const DWORD UIMSG_ICONSLOT_MBCLICK	= 0x00040000;		// icon slot¿¡ ¿ÞÂÊ ¸¶¿ì½º ¹öÆ° Å¬¸¯
-const DWORD UIMSG_ICONSLOT_MOUSEOVER= 0x00080000;		// icon slot¿¡ ¸¶¿ì½º°¡ °ÉÃÄ ÀÖ´Ù.
+// ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½Þ¼ï¿½ï¿½ï¿½
+const DWORD UIMSG_ICONSLOT_LBCLICK	= 0x00010000;		// icon slotï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ì½º ï¿½ï¿½Æ° Å¬ï¿½ï¿½
+const DWORD UIMSG_ICONSLOT_RBCLICK	= 0x00020000;		// icon slotï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ì½º ï¿½ï¿½Æ° Å¬ï¿½ï¿½
+const DWORD UIMSG_ICONSLOT_MBCLICK	= 0x00040000;		// icon slotï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ì½º ï¿½ï¿½Æ° Å¬ï¿½ï¿½
+const DWORD UIMSG_ICONSLOT_MOUSEOVER= 0x00080000;		// icon slotï¿½ï¿½ ï¿½ï¿½ï¿½ì½ºï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ö´ï¿½.
 
-// mouse flag (localinput.hÀÇ °ª°ú ÀÏÄ¡ÇØ¾ß ÇÑ´Ù.)
+// mouse flag (localinput.hï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ä¡ï¿½Ø¾ï¿½ ï¿½Ñ´ï¿½.)
 const DWORD UI_MOUSE_LBCLICK	= 0x00000001;
 const DWORD UI_MOUSE_LBCLICKED	= 0x00000002;
 const DWORD UI_MOUSE_LBDOWN		= 0x00000004;
@@ -107,64 +107,64 @@ const DWORD UI_MOUSE_MBDBLCLK	= 0x00000400;
 const DWORD UI_MOUSE_RBDBLCLK	= 0x00000800;
 
 // mouse procedure return value flag
-const DWORD UI_MOUSEPROC_NONE			= 0x00000000;	// ¾Æ¹« ÀÏµµ ÇÏÁö ¾Ê¾Ò´Ù.
-const DWORD UI_MOUSEPROC_DONESOMETHING	= 0x00000001;	// ¸Õ°¡ ÀÏÀ» Çß´Ù.
-const DWORD UI_MOUSEPROC_CHILDDONESOMETHING	= 0x00000002;	// ÀÚ½ÄÀÌ ¸Õ°¡ ÀÏÀ» Çß´Ù.(ÀÌ ÇÃ·¡±×°¡ ¼³Á¤µÇ¾î ÀÖÀ¸¸é Ç×»ó UI_MOUSEPROC_DONESOMETHINGµµ ¼³Á¤µÇ¾îÀÖ´Ù.)
-const DWORD UI_MOUSEPROC_INREGION		= 0x00000004;	// ¿µ¿ª ¾È¿¡ ¸¶¿ì½º Æ÷ÀÎÅÍ°¡ ÀÖ´Ù.
-const DWORD UI_MOUSEPROC_PREVINREGION	= 0x00000008;	// ¿µ¿ª ¾È¿¡ ÀÌÀü Æ½ÀÇ ¸¶¿ì½º Æ÷ÀÎÅÍ°¡ ÀÖ¾ú´Ù.
-const DWORD UI_MOUSEPROC_DIALOGFOCUS	= 0x00000010;	// dialog°¡ Æ÷Ä¿½º ¹Þ¾Ò´Ù.
+const DWORD UI_MOUSEPROC_NONE			= 0x00000000;	// ï¿½Æ¹ï¿½ ï¿½Ïµï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ê¾Ò´ï¿½.
+const DWORD UI_MOUSEPROC_DONESOMETHING	= 0x00000001;	// ï¿½Õ°ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ß´ï¿½.
+const DWORD UI_MOUSEPROC_CHILDDONESOMETHING	= 0x00000002;	// ï¿½Ú½ï¿½ï¿½ï¿½ ï¿½Õ°ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ß´ï¿½.(ï¿½ï¿½ ï¿½Ã·ï¿½ï¿½×°ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ç¾ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½×»ï¿½ UI_MOUSEPROC_DONESOMETHINGï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ç¾ï¿½ï¿½Ö´ï¿½.)
+const DWORD UI_MOUSEPROC_INREGION		= 0x00000004;	// ï¿½ï¿½ï¿½ï¿½ ï¿½È¿ï¿½ ï¿½ï¿½ï¿½ì½º ï¿½ï¿½ï¿½ï¿½ï¿½Í°ï¿½ ï¿½Ö´ï¿½.
+const DWORD UI_MOUSEPROC_PREVINREGION	= 0x00000008;	// ï¿½ï¿½ï¿½ï¿½ ï¿½È¿ï¿½ ï¿½ï¿½ï¿½ï¿½ Æ½ï¿½ï¿½ ï¿½ï¿½ï¿½ì½º ï¿½ï¿½ï¿½ï¿½ï¿½Í°ï¿½ ï¿½Ö¾ï¿½ï¿½ï¿½.
+const DWORD UI_MOUSEPROC_DIALOGFOCUS	= 0x00000010;	// dialogï¿½ï¿½ ï¿½ï¿½Ä¿ï¿½ï¿½ ï¿½Þ¾Ò´ï¿½.
 
 
 // ui_string type
-const DWORD UI_STR_TYPE_LINE			= 0x00000000;	// ½ºÆ®¸µ ¶óÀÎ ¼³Á¤ ½Ì±Û¶óÀÎÀÎÁö ¸ÖÆ¼¶óÀÎÀÎÁö..
-const DWORD UI_STR_TYPE_HALIGN			= 0x00000001;	// ½ºÆ®¸µ ¼öÆòÁ¤·Ä
-const DWORD UI_STR_TYPE_VALIGN			= 0x00000002;	// ½ºÆ®¸µ ¼öÁ÷Á¤·Ä
+const DWORD UI_STR_TYPE_LINE			= 0x00000000;	// ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ì±Û¶ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Æ¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½..
+const DWORD UI_STR_TYPE_HALIGN			= 0x00000001;	// ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+const DWORD UI_STR_TYPE_VALIGN			= 0x00000002;	// ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 
 // ui style
 const DWORD UISTYLE_NONE				= 0x00000000;
-const DWORD UISTYLE_ALWAYSTOP			= 0x00000001;	// Ç×»ó ÃÖ»óÀ§¿¡
+const DWORD UISTYLE_ALWAYSTOP			= 0x00000001;	// ï¿½×»ï¿½ ï¿½Ö»ï¿½ï¿½ï¿½ï¿½ï¿½
 const DWORD UISTYLE_MODAL				= 0x00000002;	// modal dialog
-const DWORD UISTYLE_FOCUS_UNABLE		= 0x00000004;	// Æ÷Ä¿½º¸¦ ¹ÞÀ»¼ö ¾ø´Â À¯¾ÆÀÌ
-const DWORD UISTYLE_SHOW_ME_ALONE		= 0x00000008;	// ´ÜÁö ÀÚ±â ÀÚ½Å¸¸ ¿­¸±¼ö ÀÖ´Â ´Ù¸¥°ÍÀº ´ÝÇô¾ßÇÑ´Ù¸é..
-const DWORD UISTYLE_HIDE_UNABLE			= 0x00000010;	// ´ÝÈ÷Áö ¾Ê´Â À¯¾ÆÀÌ
-const DWORD UISTYLE_USER_MOVE_HIDE		= 0x00000020;	// À¯Àú°¡ ¿òÁ÷ÀÌ¸é ´ÝÈ÷´Â À¯¾ÆÀÌ
-const DWORD UISTYLE_POS_LEFT			= 0x00000040;	// ¿ÞÂÊ¿¡ ´Þ¸° À¯¾ÆÀÌ
-const DWORD UISTYLE_POS_RIGHT			= 0x00000080;	// ¿À¸¥ÂÊ¿¡ ´Þ¸° À¯¾ÆÀÌ
+const DWORD UISTYLE_FOCUS_UNABLE		= 0x00000004;	// ï¿½ï¿½Ä¿ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+const DWORD UISTYLE_SHOW_ME_ALONE		= 0x00000008;	// ï¿½ï¿½ï¿½ï¿½ ï¿½Ú±ï¿½ ï¿½Ú½Å¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ö´ï¿½ ï¿½Ù¸ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ñ´Ù¸ï¿½..
+const DWORD UISTYLE_HIDE_UNABLE			= 0x00000010;	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ê´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+const DWORD UISTYLE_USER_MOVE_HIDE		= 0x00000020;	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ì¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+const DWORD UISTYLE_POS_LEFT			= 0x00000040;	// ï¿½ï¿½ï¿½Ê¿ï¿½ ï¿½Þ¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+const DWORD UISTYLE_POS_RIGHT			= 0x00000080;	// ï¿½ï¿½ï¿½ï¿½ï¿½Ê¿ï¿½ ï¿½Þ¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 
 	// button
-const DWORD UISTYLE_BTN_NORMAL			= 0x00010000;	// ÀÏ¹Ý ¹öÆ°
-const DWORD UISTYLE_BTN_CHECK			= 0x00020000;	// Ã¼Å© ¹öÆ°(toggle¹öÆ°)
+const DWORD UISTYLE_BTN_NORMAL			= 0x00010000;	// ï¿½Ï¹ï¿½ ï¿½ï¿½Æ°
+const DWORD UISTYLE_BTN_CHECK			= 0x00020000;	// Ã¼Å© ï¿½ï¿½Æ°(toggleï¿½ï¿½Æ°)
 	// image
-const DWORD UISTYLE_IMAGE_ANIMATE		= 0x00010000;	// ¿¡´Ï¸ÞÀÌ¼Ç µÇ´Â ÀÌ¹ÌÁöÀÌ´Ù.
+const DWORD UISTYLE_IMAGE_ANIMATE		= 0x00010000;	// ï¿½ï¿½ï¿½Ï¸ï¿½ï¿½Ì¼ï¿½ ï¿½Ç´ï¿½ ï¿½Ì¹ï¿½ï¿½ï¿½ï¿½Ì´ï¿½.
 	// string
-const DWORD UISTYLE_STRING_MULTILINE	= 0x00000000;	// ¿©·¯ÁÙ·Î Ç¥½ÃµÈ´Ù.
-const DWORD UISTYLE_STRING_SINGLELINE	= 0x00100000;	// ÇÑÁÙ·Î¸¸ Ç¥½ÃµÈ´Ù.
-const DWORD UISTYLE_STRING_ALIGNLEFT	= 0x00200000;	// ¿ÞÂÊ Á¤·Ä(default)
-const DWORD UISTYLE_STRING_ALIGNRIGHT	= 0x00400000;	// ¿À¸¥ÂÊ Á¤·Ä (ÇÑÁÙÀÏ¶§¸¸)
-const DWORD UISTYLE_STRING_ALIGNCENTER	= 0x00800000;	// °¡¿îµ¥ Á¤·Ä (ÇÑÁÙÀÏ¶§¸¸)
-const DWORD UISTYLE_STRING_ALIGNTOP		= 0x01000000;	// »ó´Ü Á¤·Ä (ÇÑÁÙÀÏ¶§¸¸, default)
-const DWORD UISTYLE_STRING_ALIGNBOTTOM	= 0x02000000;	// ÇÏ´Ü Á¤·Ä (ÇÑÁÙÀÏ¶§¸¸)
-const DWORD UISTYLE_STRING_ALIGNVCENTER	= 0x04000000;	// ¼öÁ÷°¡¿îµ¥ Á¤·Ä (ÇÑÁÙÀÏ¶§¸¸)
+const DWORD UISTYLE_STRING_MULTILINE	= 0x00000000;	// ï¿½ï¿½ï¿½ï¿½ï¿½Ù·ï¿½ Ç¥ï¿½ÃµÈ´ï¿½.
+const DWORD UISTYLE_STRING_SINGLELINE	= 0x00100000;	// ï¿½ï¿½ï¿½Ù·Î¸ï¿½ Ç¥ï¿½ÃµÈ´ï¿½.
+const DWORD UISTYLE_STRING_ALIGNLEFT	= 0x00200000;	// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½(default)
+const DWORD UISTYLE_STRING_ALIGNRIGHT	= 0x00400000;	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ (ï¿½ï¿½ï¿½ï¿½ï¿½Ï¶ï¿½ï¿½ï¿½)
+const DWORD UISTYLE_STRING_ALIGNCENTER	= 0x00800000;	// ï¿½ï¿½ï¿½îµ¥ ï¿½ï¿½ï¿½ï¿½ (ï¿½ï¿½ï¿½ï¿½ï¿½Ï¶ï¿½ï¿½ï¿½)
+const DWORD UISTYLE_STRING_ALIGNTOP		= 0x01000000;	// ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ (ï¿½ï¿½ï¿½ï¿½ï¿½Ï¶ï¿½ï¿½ï¿½, default)
+const DWORD UISTYLE_STRING_ALIGNBOTTOM	= 0x02000000;	// ï¿½Ï´ï¿½ ï¿½ï¿½ï¿½ï¿½ (ï¿½ï¿½ï¿½ï¿½ï¿½Ï¶ï¿½ï¿½ï¿½)
+const DWORD UISTYLE_STRING_ALIGNVCENTER	= 0x04000000;	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½îµ¥ ï¿½ï¿½ï¿½ï¿½ (ï¿½ï¿½ï¿½ï¿½ï¿½Ï¶ï¿½ï¿½ï¿½)
 	// edit
-const DWORD UISTYLE_EDIT_PASSWORD		= 0x10000000;	// ¾ÏÈ£¸¦ ÀÔ·Â¹Þ´Â editÀÌ´Ù.
+const DWORD UISTYLE_EDIT_PASSWORD		= 0x10000000;	// ï¿½ï¿½È£ï¿½ï¿½ ï¿½Ô·Â¹Þ´ï¿½ editï¿½Ì´ï¿½.
 const DWORD UISTYLE_EDIT_NUMBERONLY		= 0x20000000;
 	// progress
-const DWORD UISTYLE_PROGRESS_LEFT2RIGHT	= 0x10000000;	// ¿ÞÂÊ¿¡¼­ ¿À¸¥ÂÊÀ¸·Î Áõ°¡(default)
-const DWORD UISTYLE_PROGRESS_RIGHT2LEFT	= 0x20000000;	// ¿À¸¥ÂÊ¿¡¼­ ¿ÞÂÊÀ¸·Î Áõ°¡
-const DWORD UISTYLE_PROGRESS_TOP2BOTTOM	= 0x40000000;	// À§ÂÊ¿¡¼­ ¾Æ·¡ÂÊÀ¸·Î Áõ°¡
-const DWORD UISTYLE_PROGRESS_BOTTOM2TOP	= 0x80000000;	// ¾Æ·¡ÂÊ¿¡¼­ À§ÂÊÀ¸·Î Áõ°¡
+const DWORD UISTYLE_PROGRESS_LEFT2RIGHT	= 0x10000000;	// ï¿½ï¿½ï¿½Ê¿ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½(default)
+const DWORD UISTYLE_PROGRESS_RIGHT2LEFT	= 0x20000000;	// ï¿½ï¿½ï¿½ï¿½ï¿½Ê¿ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+const DWORD UISTYLE_PROGRESS_TOP2BOTTOM	= 0x40000000;	// ï¿½ï¿½ï¿½Ê¿ï¿½ï¿½ï¿½ ï¿½Æ·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+const DWORD UISTYLE_PROGRESS_BOTTOM2TOP	= 0x80000000;	// ï¿½Æ·ï¿½ï¿½Ê¿ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	// TrackBar
-const DWORD UISTYLE_TRACKBAR_HORIZONTAL	= 0x00010000;	// °¡·Î(default)
-const DWORD UISTYLE_TRACKBAR_VERTICAL	= 0x00020000;	// ¼¼·Î
+const DWORD UISTYLE_TRACKBAR_HORIZONTAL	= 0x00010000;	// ï¿½ï¿½ï¿½ï¿½(default)
+const DWORD UISTYLE_TRACKBAR_VERTICAL	= 0x00020000;	// ï¿½ï¿½ï¿½ï¿½
 	// ScrollBar
-const DWORD UISTYLE_SCROLLBAR_HORIZONTAL= 0x00010000;	// °¡·Î(default)
-const DWORD UISTYLE_SCROLLBAR_VERTICAL	= 0x00020000;	// ¼¼·Î
+const DWORD UISTYLE_SCROLLBAR_HORIZONTAL= 0x00010000;	// ï¿½ï¿½ï¿½ï¿½(default)
+const DWORD UISTYLE_SCROLLBAR_VERTICAL	= 0x00020000;	// ï¿½ï¿½ï¿½ï¿½
 
 	// Icon type.. ecli666..
-const DWORD UISTYLE_ICON_ITEM			= 0x00000010;	// ¾ÆÀÌÅÛ ¾ÆÀÌÄÜ..
-const DWORD UISTYLE_ICON_SKILL			= 0x00000020;	// ½ºÅ³ ¾ÆÀÌÄÜ..
-const DWORD UISTYLE_ICON_CERTIFICATION_NEED		= 0X00000100;	// ¼­¹ö·Î ºÎÅÍ ÀÎÁõÀÌ ÇÊ¿äÇÑ ¾ÆÀÌÄÜ..
-const DWORD UISTYLE_ICON_CERTIFICATION_NONEED	= 0X00000200;	// ¼­¹ö·Î ºÎÅÍ ÀÎÁõÀÌ ºÒÇÊ¿äÇÑ ¾ÆÀÌÄÜ..
+const DWORD UISTYLE_ICON_ITEM			= 0x00000010;	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½..
+const DWORD UISTYLE_ICON_SKILL			= 0x00000020;	// ï¿½ï¿½Å³ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½..
+const DWORD UISTYLE_ICON_CERTIFICATION_NEED		= 0X00000100;	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ê¿ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½..
+const DWORD UISTYLE_ICON_CERTIFICATION_NONEED	= 0X00000200;	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ê¿ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½..
 const DWORD UISTYLE_ICON_HIGHLIGHT				= 0x00001000;	// No highlight Icon.. 
 const DWORD UISTYLE_DURABILITY_EXHAUST			= 0x00002000;	// Durability exhausted Icon.. 
 const DWORD UISTYLE_DISABLE_SKILL	= 0x00004000;	// Disable Skill Icon..

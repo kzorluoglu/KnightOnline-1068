@@ -182,11 +182,11 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 	m_wndToolBar.SetBarStyle(m_wndToolBar.GetBarStyle() |
 		CBRS_TOOLTIPS | CBRS_FLYBY);
 
-	// Engine »ý¼º
+	// Engine ï¿½ï¿½ï¿½ï¿½
 	if(m_Eng.Init(TRUE, m_hWnd, 64, 64, 0, TRUE) == false) return -1;
-	m_Eng.GridCreate(200, 200); // ±×¸®µå ¸¸µé±â..
+	m_Eng.GridCreate(200, 200); // ï¿½×¸ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½..
 
-	// ±âº» Ä«¸Þ¶ó & Light ¸¸µé±â..
+	// ï¿½âº» Ä«ï¿½Þ¶ï¿½ & Light ï¿½ï¿½ï¿½ï¿½ï¿½..
 	m_Camera.EyePosSet(0, 5, -15);
 	//D3DCOLORVALUE crLgt = { 1.0f, 1.0f, 1.0f, 1.0f };
 	//m_Light.m_Data.InitDirection(0, __Vector3(-1, -1, -1), crLgt);
@@ -194,7 +194,7 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 
 	D3DCOLORVALUE crLgt;
 	crLgt.a = 0.0f, crLgt.r = crLgt.g = crLgt.b = 0.8f;
-	//CN3Light* pLightGlobal = new CN3Light(); // ÀüÃ¼¸¦ ºñÃâ ¶óÀÌÆ®..
+	//CN3Light* pLightGlobal = new CN3Light(); // ï¿½ï¿½Ã¼ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Æ®..
 	m_Light[0].m_Data.InitDirection(0, __Vector3(0,-1,0), crLgt);
 	m_Light[1].m_Data.InitDirection(1, __Vector3(0,1,0), crLgt);
 	
@@ -315,7 +315,7 @@ int CMainFrame::GetPartType(CString& PathName)
 			else if(lstrcmpi(szBuf[0], "board")==0) PartType = FX_PART_TYPE_BOARD;
 			else if(lstrcmpi(szBuf[0], "mesh")==0) PartType = FX_PART_TYPE_MESH;
 			else if(lstrcmpi(szBuf[0], "ground")==0) PartType = FX_PART_TYPE_BOTTOMBOARD;			
-			//^^v ´õ ³ÖÀ»²¨ ÀÖÀ¸¸é ³Ö¾î¶ó..
+			//^^v ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ö¾ï¿½ï¿½..
 
 			fclose(stream);
 			return PartType;
@@ -357,7 +357,7 @@ void CMainFrame::OnFileLoadPart()
 				}
 				else
 				{
-					MessageBox("n3fxpartÆÄÀÏÀ» ¿©´Âµ¥ ½ÇÆÐÇß½À´Ï´Ù...-.-;;","ERR01",MB_OK);
+					MessageBox("n3fxpartï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Âµï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ß½ï¿½ï¿½Ï´ï¿½...-.-;;","ERR01",MB_OK);
 					pEditPartWnd->DestroyWindow();
 					delete pEditPartWnd;
 				}
@@ -376,7 +376,7 @@ void CMainFrame::OnFileLoadPart()
 				}
 				else
 				{
-					MessageBox("n3fxpartÆÄÀÏÀ» ¿©´Âµ¥ ½ÇÆÐÇß½À´Ï´Ù...-.-;;","ERR01",MB_OK);
+					MessageBox("n3fxpartï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Âµï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ß½ï¿½ï¿½Ï´ï¿½...-.-;;","ERR01",MB_OK);
 					pEditPartWnd->DestroyWindow();
 					delete pEditPartWnd;
 				}
@@ -395,7 +395,7 @@ void CMainFrame::OnFileLoadPart()
 				}
 				else
 				{
-					MessageBox("n3fxpartÆÄÀÏÀ» ¿©´Âµ¥ ½ÇÆÐÇß½À´Ï´Ù...-.-;;","ERR01",MB_OK);
+					MessageBox("n3fxpartï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Âµï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ß½ï¿½ï¿½Ï´ï¿½...-.-;;","ERR01",MB_OK);
 					pEditPartWnd->DestroyWindow();
 					delete pEditPartWnd;
 				}
@@ -414,7 +414,7 @@ void CMainFrame::OnFileLoadPart()
 				}
 				else
 				{
-					MessageBox("n3fxpartÆÄÀÏÀ» ¿©´Âµ¥ ½ÇÆÐÇß½À´Ï´Ù...-.-;;","ERR01",MB_OK);
+					MessageBox("n3fxpartï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Âµï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ß½ï¿½ï¿½Ï´ï¿½...-.-;;","ERR01",MB_OK);
 					pEditPartWnd->DestroyWindow();
 					delete pEditPartWnd;
 				}
@@ -437,12 +437,12 @@ void CMainFrame::OnFileLoadBundle()
 	{
 		CString PathName = dlg.GetNextPathName(pos);
 
-		//½ºÅ©¸³Æ® ¿¡µðÆ® Ã¢ ¸¸µé°í, ½ºÅ©¸³Æ® Á¤º¸µé ÀÐ°í, ¼ÂÆÃ..
+		//ï¿½ï¿½Å©ï¿½ï¿½Æ® ï¿½ï¿½ï¿½ï¿½Æ® Ã¢ ï¿½ï¿½ï¿½ï¿½ï¿½, ï¿½ï¿½Å©ï¿½ï¿½Æ® ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ð°ï¿½, ï¿½ï¿½ï¿½ï¿½..
 		CDlgEditScript*	pEditWnd = new CDlgEditScript;
 		pEditWnd->Create(IDD_DLG_SCRIPTEDITOR, NULL);
 		pEditWnd->m_pRefFrm = this;
 
-		// load ÇØ¼­ ¼º°øÇÏ¸é ±×´ë·Î ÇÏ°í ½ÇÆÐÇÏ¸é ´Ù Áö¿ö¹ö·Á..
+		// load ï¿½Ø¼ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï¸ï¿½ ï¿½×´ï¿½ï¿½ ï¿½Ï°ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï¸ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½..
 		if(pEditWnd->LoadBundle(PathName))
 		{
 			pEditWnd->ShowWindow(TRUE);
@@ -450,7 +450,7 @@ void CMainFrame::OnFileLoadBundle()
 		}
 		else
 		{
-			MessageBox("n3fxbundleÆÄÀÏÀ» ¿©´Âµ¥ ½ÇÆÐÇß½À´Ï´Ù.","-.-;;",MB_OK);
+			MessageBox("n3fxbundleï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Âµï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ß½ï¿½ï¿½Ï´ï¿½.","-.-;;",MB_OK);
 			pEditWnd->DestroyWindow();
 			delete pEditWnd;
 		}
@@ -498,7 +498,7 @@ void CMainFrame::TickRender()
 
 	if(m_bRenderFloor) m_pGround->Render();
 	
-	//¿Â°® renderstate¼³Á¤...	
+	//ï¿½Â°ï¿½ renderstateï¿½ï¿½ï¿½ï¿½...	
 	if(m_pCurrFX)
 	{
 		DWORD dwLgt; 
@@ -511,11 +511,11 @@ void CMainFrame::TickRender()
 		m_Eng.s_lpD3DDev->SetRenderState( D3DRS_LIGHTING, dwLgt );		
 	}
 
-	CN3Base::s_AlphaMgr.Render(); // ÀÌ°É ¹Ýµå½Ã ÇØÁà¾ß ¾ËÆÄºí·»µù ¹öÆÛ ¿À¹öÇÃ·Î¿ì°¡ ¾È³­´Ù..
+	CN3Base::s_AlphaMgr.Render(); // ï¿½Ì°ï¿½ ï¿½Ýµï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Äºï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ã·Î¿ì°¡ ï¿½È³ï¿½ï¿½ï¿½..
 	m_Eng.s_lpD3DDev->EndScene();
 	m_Eng.Present(GetActiveView()->m_hWnd);
 
-	// ÇÁ·¹ÀÓ Ç¥½Ã
+	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Ç¥ï¿½ï¿½
 	DWORD dwTick = GetTickCount();
 	static DWORD dwTickPrev = dwTick;
 	static CString szFPS;
@@ -718,12 +718,12 @@ void CMainFrame::OnViewBgcolor()
 
 void CMainFrame::OnFileNewBundle() 
 {
-	//½ºÅ©¸³Æ® ¿¡µðÆ® Ã¢ ¸¸µé°í, ½ºÅ©¸³Æ® Á¤º¸µé ÀÐ°í, ¼ÂÆÃ..
+	//ï¿½ï¿½Å©ï¿½ï¿½Æ® ï¿½ï¿½ï¿½ï¿½Æ® Ã¢ ï¿½ï¿½ï¿½ï¿½ï¿½, ï¿½ï¿½Å©ï¿½ï¿½Æ® ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ð°ï¿½, ï¿½ï¿½ï¿½ï¿½..
 	CDlgEditScript*	pEditWnd = new CDlgEditScript;
 	pEditWnd->Create(IDD_DLG_SCRIPTEDITOR, NULL);
 	pEditWnd->m_pRefFrm = this;
 
-	// load ÇØ¼­ ¼º°øÇÏ¸é ±×´ë·Î ÇÏ°í ½ÇÆÐÇÏ¸é ´Ù Áö¿ö¹ö·Á..
+	// load ï¿½Ø¼ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï¸ï¿½ ï¿½×´ï¿½ï¿½ ï¿½Ï°ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï¸ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½..
 	if(pEditWnd->NewBundle())
 	{
 		pEditWnd->ShowWindow(TRUE);
@@ -731,7 +731,7 @@ void CMainFrame::OnFileNewBundle()
 	}
 	else
 	{
-		MessageBox("»õ ¹øµéÀ» ¸¸µå´Âµ¥ ½ÇÆÐÇß½À´Ï´Ù.","ERR;;",MB_OK);
+		MessageBox("ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Âµï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ß½ï¿½ï¿½Ï´ï¿½.","ERR;;",MB_OK);
 		pEditWnd->DestroyWindow();
 		delete pEditWnd;
 	}		
@@ -751,7 +751,7 @@ void CMainFrame::OnFileOpenFloorTex()
 
 void CMainFrame::OnFileNewGroup() 
 {
-	//½ºÅ©¸³Æ® ¿¡µðÆ® Ã¢ ¸¸µé°í, ½ºÅ©¸³Æ® Á¤º¸µé ÀÐ°í, ¼ÂÆÃ..
+	//ï¿½ï¿½Å©ï¿½ï¿½Æ® ï¿½ï¿½ï¿½ï¿½Æ® Ã¢ ï¿½ï¿½ï¿½ï¿½ï¿½, ï¿½ï¿½Å©ï¿½ï¿½Æ® ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ð°ï¿½, ï¿½ï¿½ï¿½ï¿½..
 	CDlgEditFxg* pEditWnd = new CDlgEditFxg;
 	pEditWnd->Create(IDD_DLG_GROUP, NULL);
 	pEditWnd->m_pRefFrm = this;
@@ -773,12 +773,12 @@ void CMainFrame::OnFileLoadGroup()
 	{
 		CString PathName = dlg.GetNextPathName(pos);
 
-		//½ºÅ©¸³Æ® ¿¡µðÆ® Ã¢ ¸¸µé°í, ½ºÅ©¸³Æ® Á¤º¸µé ÀÐ°í, ¼ÂÆÃ..
+		//ï¿½ï¿½Å©ï¿½ï¿½Æ® ï¿½ï¿½ï¿½ï¿½Æ® Ã¢ ï¿½ï¿½ï¿½ï¿½ï¿½, ï¿½ï¿½Å©ï¿½ï¿½Æ® ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ð°ï¿½, ï¿½ï¿½ï¿½ï¿½..
 		CDlgEditFxg* pEditWnd = new CDlgEditFxg;
 		pEditWnd->Create(IDD_DLG_GROUP, NULL);
 		pEditWnd->m_pRefFrm = this;
 
-		// load ÇØ¼­ ¼º°øÇÏ¸é ±×´ë·Î ÇÏ°í ½ÇÆÐÇÏ¸é ´Ù Áö¿ö¹ö·Á..
+		// load ï¿½Ø¼ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï¸ï¿½ ï¿½×´ï¿½ï¿½ ï¿½Ï°ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï¸ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½..
 		if(pEditWnd->LoadScript((LPCTSTR)PathName))
 		{
 			pEditWnd->ShowWindow(TRUE);
@@ -786,7 +786,7 @@ void CMainFrame::OnFileLoadGroup()
 		}
 		else
 		{
-			MessageBox("n3fxgroupÆÄÀÏÀ» ¿©´Âµ¥ ½ÇÆÐÇß½À´Ï´Ù.","-.-;;",MB_OK);
+			MessageBox("n3fxgroupï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Âµï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ß½ï¿½ï¿½Ï´ï¿½.","-.-;;",MB_OK);
 			pEditWnd->DestroyWindow();
 			delete pEditWnd;
 		}

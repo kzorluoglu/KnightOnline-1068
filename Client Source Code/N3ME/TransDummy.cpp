@@ -94,7 +94,7 @@ void CTransDummy::InitDummyCube(int iType, __DUMMYCUBE* pDummyCube, __Vector3& v
 void CTransDummy::Tick()
 {
 	if (m_SelObjArray.GetSize()==0) return;
-	// Scale Á¶Á¤
+	// Scale ï¿½ï¿½ï¿½ï¿½
 	__Vector3 vL = s_CameraData.vEye - m_vPos;
 	float fL = vL.Magnitude()*0.01f;
 	m_vScale.Set(fL, fL, fL);
@@ -102,7 +102,7 @@ void CTransDummy::Tick()
 	CN3Transform::Tick(-1000.0f);
 	ReCalcMatrix();
 
-	// °Å¸®¿¡ µû¶ó Á¤·Ä
+	// ï¿½Å¸ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	int i;
 	for (i=0; i<NUM_DUMMY; ++i)
 	{
@@ -130,7 +130,7 @@ void CTransDummy::Render()
 	HRESULT hr;
 
 	// set transform
-	hr = s_lpD3DDev->SetTransform(D3DTS_WORLD, &m_Matrix); // ¿ùµå Çà·Ä Àû¿ë..
+	hr = s_lpD3DDev->SetTransform(D3DTS_WORLD, &m_Matrix); // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½..
 
 	// set texture
 	hr = s_lpD3DDev->SetTexture(0, NULL);
@@ -146,12 +146,12 @@ void CTransDummy::Render()
 	hr = s_lpD3DDev->SetRenderState(D3DRS_ZENABLE, D3DZB_FALSE);
 	hr = s_lpD3DDev->SetRenderState(D3DRS_LIGHTING, FALSE);
 
-	// ÀÌ¾îÁö ¼± ±×¸®±â
-	hr = s_lpD3DDev->SetVertexShader(FVF_XYZCOLOR);
+	// ï¿½Ì¾ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½×¸ï¿½ï¿½ï¿½
+	hr = s_lpD3DDev->SetFVF(FVF_XYZCOLOR);
 	hr = s_lpD3DDev->DrawPrimitiveUP(D3DPT_LINELIST, 3, m_LineVertices, sizeof(__VertexXyzColor));
 
-	// Cube ±×¸®±â
-	hr = s_lpD3DDev->SetVertexShader(FVF_XYZNORMALCOLOR);
+	// Cube ï¿½×¸ï¿½ï¿½ï¿½
+	hr = s_lpD3DDev->SetFVF(FVF_XYZNORMALCOLOR);
 	int i;
 	for (i=0; i<NUM_DUMMY; ++i)
 	{
@@ -231,7 +231,7 @@ BOOL CTransDummy::MouseMsgFilter(LPMSG pMsg)
 				m_qPrevRot = pSelObj0->Rot();
 				if (m_vPrevScaleArray) {delete [] m_vPrevScaleArray; m_vPrevScaleArray = NULL;}
 				m_vPrevScaleArray = new __Vector3[iSize];
-				for (int i=0; i<iSize; ++i)	// ¸ðµç ¼±ÅÃµÈ °´Ã¼ÀÇ ½ºÄÉÀÏ ÀúÀå
+				for (int i=0; i<iSize; ++i)	// ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ãµï¿½ ï¿½ï¿½Ã¼ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 				{
 					CN3Transform* pSelObj = m_SelObjArray.GetAt(i);
 					_ASSERT(pSelObj);
@@ -253,7 +253,7 @@ BOOL CTransDummy::MouseMsgFilter(LPMSG pMsg)
 			}
 		}
 		break;
-	case WM_RBUTTONUP:	// Å¥ºê ¼±ÅÃ Ãë¼Ò ¹× ÀÌ¹ø µå·¡±×·Î ¿òÁ÷ÀÎ°Í µÇµ¹·Á ³õ±â
+	case WM_RBUTTONUP:	// Å¥ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½Ì¹ï¿½ ï¿½å·¡ï¿½×·ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Î°ï¿½ ï¿½Çµï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 		{
 			if (m_pSelectedCube)
 			{
@@ -339,7 +339,7 @@ void CTransDummy::TransDiff(__Vector3* pvDiffPos, __Quaternion* pqDiffRot, __Vec
 			qtRot *= (*pqDiffRot);
 			pSelObj->RotSet(qtRot);
 
-			vPos = pSelObj->Pos();	//	¸Ê»ó¿¡¼­ÀÇ À§Ä¡
+			vPos = pSelObj->Pos();	//	ï¿½Ê»ó¿¡¼ï¿½ï¿½ï¿½ ï¿½ï¿½Ä¡
 			vPos -= vCenter;
 			vPos *= mtx44Rotate;
 			vPos += vCenter;

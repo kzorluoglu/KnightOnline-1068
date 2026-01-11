@@ -36,9 +36,9 @@ bool CN3Light::Load(HANDLE hFile)
 	CN3Transform::Load(hFile);
 
 	DWORD dwRWC;
-	ReadFile(hFile, &m_Data, sizeof(m_Data), &dwRWC, NULL); // ¶óÀÌÆ® ¼¼ÆÃ.
+	ReadFile(hFile, &m_Data, sizeof(m_Data), &dwRWC, NULL); // ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ï¿½ï¿½ï¿½.
 
-	__ASSERT(m_Data.nNumber >= 0 && m_Data.nNumber < 8, "Light Loading Warning - Light ¹øÈ£°¡ ¹üÀ§¸¦ ¹ş¾î³µ½À´Ï´Ù.");
+	__ASSERT(m_Data.nNumber >= 0 && m_Data.nNumber < 8, "Light Loading Warning - Light ï¿½ï¿½È£ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½î³µï¿½ï¿½ï¿½Ï´ï¿½.");
 	
 	return true;
 }
@@ -49,7 +49,7 @@ bool CN3Light::Save(HANDLE hFile)
 	CN3Transform::Save(hFile);
 
 	DWORD dwRWC;
-	WriteFile(hFile, &m_Data, sizeof(m_Data), &dwRWC, NULL); // ¶óÀÌÆ® ¼¼ÆÃ.
+	WriteFile(hFile, &m_Data, sizeof(m_Data), &dwRWC, NULL); // ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ï¿½ï¿½ï¿½.
 
 	return true;
 }

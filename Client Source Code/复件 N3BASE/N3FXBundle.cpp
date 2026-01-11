@@ -78,7 +78,7 @@ CN3FXBundle::~CN3FXBundle()
 
 //
 //	decode script file..
-//	½ºÅ©¸³Æ® ÆÄÀÏ ÀÐ°í ÇØ¼®½ÃÅ´...
+//	ï¿½ï¿½Å©ï¿½ï¿½Æ® ï¿½ï¿½ï¿½ï¿½ ï¿½Ð°ï¿½ ï¿½Ø¼ï¿½ï¿½ï¿½Å´...
 //
 #ifdef _N3TOOL
 bool CN3FXBundle::DecodeScriptFile(const char* lpPathName)
@@ -124,7 +124,7 @@ bool CN3FXBundle::DecodeScriptFile(const char* lpPathName)
 
 		if(lstrcmpi(szCommand, "<part>")==0)
 		{
-			char szFullPath[_MAX_PATH];	//full path ¸¸µé±â..	
+			char szFullPath[_MAX_PATH];	//full path ï¿½ï¿½ï¿½ï¿½ï¿½..	
 			sprintf(szFullPath,"%s%s",CN3Base::PathGet().c_str(), szBuf[0]);
 			
 			FXPARTWITHSTARTTIME* pPart = new FXPARTWITHSTARTTIME;
@@ -173,7 +173,7 @@ bool CN3FXBundle::DecodeScriptFile(const char* lpPathName)
 
 //
 //	GetPartType...
-//	ÆÄÆ®ÀÇ ÆÄÀÏÀÌ¸§À¸·Î Å¸ÀÔÀ» ¾Ë¾Æ³»ÀÚ..
+//	ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ì¸ï¿½ï¿½ï¿½ï¿½ï¿½ Å¸ï¿½ï¿½ï¿½ï¿½ ï¿½Ë¾Æ³ï¿½ï¿½ï¿½..
 //
 #ifdef _N3TOOL
 CN3FXPartBase* CN3FXBundle::SetPart(const char* pFileName)
@@ -211,7 +211,7 @@ CN3FXPartBase* CN3FXBundle::SetPart(const char* pFileName)
 			else if(lstrcmpi(szBuf[0], "board")==0) PartType = FX_PART_TYPE_BOARD;
 			else if(lstrcmpi(szBuf[0], "mesh")==0) PartType = FX_PART_TYPE_MESH;
 			else if(lstrcmpi(szBuf[0], "ground")==0) PartType = FX_PART_TYPE_BOTTOMBOARD;
-			//^^v ´õ ³ÖÀ»²¨ ÀÖÀ¸¸é ³Ö¾î¶ó..
+			//^^v ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ö¾ï¿½ï¿½..
 		}		
 	}
 	fclose(stream);
@@ -607,8 +607,8 @@ void CN3FXBundle::Trigger(int iSourceID, int iTargetID, int iTargetJoint, int iS
 
 //
 //	Stop...
-//	¸ØÃß´Â ´Ü°è¸¦ ½ÃÀÛÇÑ´Ù..
-//	Á¤¸» ¸ØÃß´Â ±â´ÉÀº tick¿¡¼­ ¸ðµç ÆÄÆ®°¡ ´Ù Á×¾ú´Ù°í ÆÇ´ÜµÉ¶§ tick¿¡¼­ ¼öÇàÇÑ´Ù.
+//	ï¿½ï¿½ï¿½ß´ï¿½ ï¿½Ü°è¸¦ ï¿½ï¿½ï¿½ï¿½ï¿½Ñ´ï¿½..
+//	ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ß´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ tickï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½ ï¿½×¾ï¿½ï¿½Ù°ï¿½ ï¿½Ç´ÜµÉ¶ï¿½ tickï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ñ´ï¿½.
 //
 void CN3FXBundle::Stop(bool immediately)
 {

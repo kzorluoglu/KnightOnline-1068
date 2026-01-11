@@ -137,7 +137,7 @@ bool CN3Skin::CheckCollisionPrecisely(const __Vector3 &vPos, const __Vector3 &vD
 	if(pVs == NULL || pwIs == NULL) return false;
 
 	nFC = FaceCount();
-	for(int j = 0; j < nFC; j++) // °¢°¢ÀÇ Face ¸¶´Ù Ãæµ¹Ã¼Å©..
+	for(int j = 0; j < nFC; j++) // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Face ï¿½ï¿½ï¿½ï¿½ ï¿½æµ¹Ã¼Å©..
 	{
 		nCI0 = pwIs[j*3+0];
 		nCI1 = pwIs[j*3+1];

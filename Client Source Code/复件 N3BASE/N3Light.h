@@ -14,10 +14,10 @@
 class CN3Light : public CN3Transform
 {
 public:
-	typedef struct __Light : public _D3DLIGHT8
+	typedef struct __Light : public _D3DLIGHT9
 	{
 	public:
-		BOOL	bOn; // ¶óÀÌÆ®°¡ ÄÑÁ® ÀÖ´ÂÁö..
+		BOOL	bOn; // ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ö´ï¿½ï¿½ï¿½..
 		int		nNumber; // 0 ~ 8
 		
 		void Zero() { memset(this, 0, sizeof(__Light)); }

@@ -28,12 +28,12 @@ typedef std::vector<class CN3Chr*>::iterator	it_Chr;
 class CN3Scene : public CN3BaseFileAccess
 {
 public:
-	float			m_fFrmCur, m_fFrmStart, m_fFrmEnd; // ÇöÀç, ½ÃÀÛ, ³¡ ÇÁ·¹ÀÓ..
-	bool			m_bDisableDefaultLight; // ÂüÀÌ¸é ±âº»¶óÀÌÆ®¸¦ ²ö´Ù..
+	float			m_fFrmCur, m_fFrmStart, m_fFrmEnd; // ï¿½ï¿½ï¿½ï¿½, ï¿½ï¿½ï¿½ï¿½, ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½..
+	bool			m_bDisableDefaultLight; // ï¿½ï¿½ï¿½Ì¸ï¿½ ï¿½âº»ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½..
 	D3DCOLOR		m_AmbientLightColor;
 
 protected:
-	int				m_nCameraActive; // ÇöÀç ¼±ÅÃµÈ Ä«¸Þ¶ó..
+	int				m_nCameraActive; // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ãµï¿½ Ä«ï¿½Þ¶ï¿½..
 	int				m_nCameraCount;
 	int				m_nLightCount;
 

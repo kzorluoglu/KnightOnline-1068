@@ -18,7 +18,7 @@ static char THIS_FILE[]=__FILE__;
 
 CN3EngTool::CN3EngTool()
 {
-	// ½ÊÀÚ¼± »ý¼º..
+	// ï¿½ï¿½ï¿½Ú¼ï¿½ ï¿½ï¿½ï¿½ï¿½..
 	int i = 0;
 	for(i = -10; i < 10; i++)
 	{
@@ -49,7 +49,7 @@ CN3EngTool::~CN3EngTool()
 //	m_lpD3DDevExtra = NULL;
 }
 
-// ¿ùµå Ãà ±×¸®±â..
+// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½×¸ï¿½ï¿½ï¿½..
 void CN3EngTool::RenderGrid(const __Matrix44& mtxWorld)
 {
 	DWORD dwAlpha, dwFog, dwLight;
@@ -74,14 +74,14 @@ void CN3EngTool::RenderGrid(const __Matrix44& mtxWorld)
 	s_lpD3DDev->SetTransform(D3DTS_WORLD, &mtxWorld);
 	s_lpD3DDev->SetTexture(0, NULL);
 
-	s_lpD3DDev->SetVertexShader(FVF_CV);
+	s_lpD3DDev->SetFVF(FVF_CV);
 
-	if(m_pVGrids) // ±×¸®µå ±×¸®±â..
+	if(m_pVGrids) // ï¿½×¸ï¿½ï¿½ï¿½ ï¿½×¸ï¿½ï¿½ï¿½..
 	{
 		s_lpD3DDev->DrawPrimitiveUP(D3DPT_LINELIST, m_nGridLineCount, m_pVGrids, sizeof(__VertexColor)); // X
 	}
 
-	// Ãà ±×¸®±â..
+	// ï¿½ï¿½ ï¿½×¸ï¿½ï¿½ï¿½..
 //	s_lpD3DDev->DrawPrimitiveUP(D3DPT_LINESTRIP, 19, &m_VAxis[0], sizeof(__VertexColor)); // X
 //	s_lpD3DDev->DrawPrimitiveUP(D3DPT_LINESTRIP, 19, &m_VAxis[20], sizeof(__VertexColor)); // Y
 //	s_lpD3DDev->DrawPrimitiveUP(D3DPT_LINESTRIP, 19, &m_VAxis[40], sizeof(__VertexColor)); // Z
@@ -120,9 +120,9 @@ void CN3EngTool::RenderAxis(bool bShowDir)
 	s_lpD3DDev->SetTransform(D3DTS_WORLD, &stm);
 	s_lpD3DDev->SetTexture(0, NULL);
 
-	s_lpD3DDev->SetVertexShader(FVF_CV);
+	s_lpD3DDev->SetFVF(FVF_CV);
 
-	// Ãà ±×¸®±â..
+	// ï¿½ï¿½ ï¿½×¸ï¿½ï¿½ï¿½..
 	s_lpD3DDev->DrawPrimitiveUP(D3DPT_LINESTRIP, 19, &m_VAxis[0], sizeof(__VertexColor)); // X
 	s_lpD3DDev->DrawPrimitiveUP(D3DPT_LINESTRIP, 19, &m_VAxis[20], sizeof(__VertexColor)); // Y
 	s_lpD3DDev->DrawPrimitiveUP(D3DPT_LINESTRIP, 19, &m_VAxis[40], sizeof(__VertexColor)); // Z
@@ -136,7 +136,7 @@ void CN3EngTool::RenderAxis(bool bShowDir)
 
 
 //
-// pTex==NULLÀÏ¶§ °ËÁ¤»öÀ» Âï±â À§ÇØ ¼öÁ¤ÇßÀ½...by lynus 2001. 12. 7.
+// pTex==NULLï¿½Ï¶ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½...by lynus 2001. 12. 7.
 //
 void CN3EngTool::RenderTexturePreview(CN3Texture *pTex, HWND hWndDiffuse, RECT* pRCSrc)
 {
@@ -157,20 +157,20 @@ void CN3EngTool::RenderTexturePreview(CN3Texture *pTex, HWND hWndDiffuse, RECT* 
 		RECT rcTex = rcPreview;
 		float fRatioDest = (float)nW / (float)nH;
 		
-		if(fRatioDest > 1.0f) // °¡·Î°¡ ±ä°æ¿ì
+		if(fRatioDest > 1.0f) // ï¿½ï¿½ï¿½Î°ï¿½ ï¿½ï¿½ï¿½ï¿½
 		{
 			int nDec = (nW - nH) / 2;
 			rcTex.left += nDec;
 			rcTex.right -= nDec;
 		}
-		else if(fRatioDest < 1.0f) // ¼¼·Î°¡ ±ä°æ¿ì
+		else if(fRatioDest < 1.0f) // ï¿½ï¿½ï¿½Î°ï¿½ ï¿½ï¿½ï¿½ï¿½
 		{
 			int nDec = (nH - nW) / 2;
 			rcTex.top += nDec;
 			rcTex.bottom -= nDec;
 		}
 
-		float fU_Left = 0.0f, fV_Top = 0.0f, fU_Right = 1.0f, fV_Bottom = 1.0f; // ±âº» UV ÁÂÇ¥
+		float fU_Left = 0.0f, fV_Top = 0.0f, fU_Right = 1.0f, fV_Bottom = 1.0f; // ï¿½âº» UV ï¿½ï¿½Ç¥
 	
 		s_lpD3DDev->BeginScene();
 
@@ -187,7 +187,7 @@ void CN3EngTool::RenderTexturePreview(CN3Texture *pTex, HWND hWndDiffuse, RECT* 
 
 		s_lpD3DDev->SetTextureStageState(0, D3DTSS_COLOROP, D3DTOP_DISABLE);		
 
-		s_lpD3DDev->SetVertexShader(FVF_TRANSFORMED);
+		s_lpD3DDev->SetFVF(FVF_TRANSFORMED);
 		s_lpD3DDev->DrawPrimitiveUP(D3DPT_TRIANGLELIST, 2, &m_VPreview, sizeof(__VertexTransformed));
 
 		s_lpD3DDev->SetTextureStageState(0, D3DTSS_COLOROP, ColorOP);
@@ -199,7 +199,7 @@ void CN3EngTool::RenderTexturePreview(CN3Texture *pTex, HWND hWndDiffuse, RECT* 
 	
 //	if(hWndDiffuse != NULL)
 	{
-		// ÅØ½ºÃ³ ÇÁ¸®ºä
+		// ï¿½Ø½ï¿½Ã³ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		RECT rcPreview;
 		HRESULT hr;
 		::GetClientRect(hWndDiffuse, &rcPreview);
@@ -216,13 +216,13 @@ void CN3EngTool::RenderTexturePreview(CN3Texture *pTex, HWND hWndDiffuse, RECT* 
 			float fRatioDest = (float)nW / (float)nH;
 			float fRatioSrc = (float)(pTex->Width()) / (float)(pTex->Height());
 
-			if(fRatioDest > 1.0f) // °¡·Î°¡ ±ä°æ¿ì
+			if(fRatioDest > 1.0f) // ï¿½ï¿½ï¿½Î°ï¿½ ï¿½ï¿½ï¿½ï¿½
 			{
 				int nDec = (nW - nH) / 2;
 				rcTex.left += nDec;
 				rcTex.right -= nDec;
 			}
-			else if(fRatioDest < 1.0f) // ¼¼·Î°¡ ±ä°æ¿ì
+			else if(fRatioDest < 1.0f) // ï¿½ï¿½ï¿½Î°ï¿½ ï¿½ï¿½ï¿½ï¿½
 			{
 				int nDec = (nH - nW) / 2;
 				rcTex.top += nDec;
@@ -230,8 +230,8 @@ void CN3EngTool::RenderTexturePreview(CN3Texture *pTex, HWND hWndDiffuse, RECT* 
 			}
 
 
-			float fU_Left = 0.0f, fV_Top = 0.0f, fU_Right = 1.0f, fV_Bottom = 1.0f; // ±âº» UV ÁÂÇ¥
-			// ¸¸¾à Rect °¡ ÀÖÀ¸¸é..
+			float fU_Left = 0.0f, fV_Top = 0.0f, fU_Right = 1.0f, fV_Bottom = 1.0f; // ï¿½âº» UV ï¿½ï¿½Ç¥
+			// ï¿½ï¿½ï¿½ï¿½ Rect ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½..
 			if(pRCSrc)
 			{
 				float fW = (float)(pTex->Width());
@@ -272,7 +272,7 @@ void CN3EngTool::RenderTexturePreview(CN3Texture *pTex, HWND hWndDiffuse, RECT* 
 			hr = s_lpD3DDev->SetTextureStageState(0, D3DTSS_COLORARG1, D3DTA_TEXTURE);
 			hr = s_lpD3DDev->SetTexture(0, pTex->Get());
 
-			hr = s_lpD3DDev->SetVertexShader(FVF_TRANSFORMED);
+			hr = s_lpD3DDev->SetFVF(FVF_TRANSFORMED);
 			hr = s_lpD3DDev->DrawPrimitiveUP(D3DPT_TRIANGLELIST, 2, &m_VPreview, sizeof(__VertexTransformed));
 
 			hr = s_lpD3DDev->SetRenderState(D3DRS_ALPHABLENDENABLE, dwAlpha);
@@ -295,7 +295,7 @@ void CN3EngTool::GridCreate(int nWidth, int nHeight)
 	m_nGridLineCount = (nWidth+1) + (nHeight+1);
 	m_pVGrids = new __VertexColor[m_nGridLineCount * 2];
 
-	// ±×¸®µå »ý¼º..
+	// ï¿½×¸ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½..
 	D3DCOLOR GridColor = 0xff808080;
 	int xx = nWidth/2, zz = nHeight/2;
 	int nSeq = 0;

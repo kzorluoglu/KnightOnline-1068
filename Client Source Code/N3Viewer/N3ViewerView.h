@@ -32,7 +32,7 @@ public:
 		__Vector3	vMin, vMax;
 	};
 	CN3Base*		m_pSelObjs[MAX_SELECT];
-	D3DCOLOR		m_crBkg; // ¾È°³°¡ ²¨Á³À»¶§ ¹è°æ»ö
+	D3DCOLOR		m_crBkg; // ï¿½È°ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 
 protected: // create from serialization only
 	CN3ViewerView();

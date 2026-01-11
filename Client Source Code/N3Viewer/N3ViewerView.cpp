@@ -71,7 +71,7 @@ CN3ViewerView::CN3ViewerView()
 	m_bViewClimbMesh = false;
 	m_bViewSelectedMeshWireFrame = false;
 
-	m_crBkg = 0xff606060; // ±âº» ¹è°æ»öÀº È¸»ö.
+	m_crBkg = 0xff606060; // ï¿½âº» ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ È¸ï¿½ï¿½.
 }
 
 CN3ViewerView::~CN3ViewerView()
@@ -99,7 +99,7 @@ void CN3ViewerView::OnDraw(CDC* pDC)
 
 	CMainFrame* pFrm = (CMainFrame*)AfxGetMainWnd();
 	
-	if(pCamera->m_bFogUse) // ¾È°³ »ç¿ëÀÌ¸é..
+	if(pCamera->m_bFogUse) // ï¿½È°ï¿½ ï¿½ï¿½ï¿½ï¿½Ì¸ï¿½..
 	{
 		D3DCOLOR crFog = pCamera->m_FogColor;
 		pFrm->m_Eng.Clear(crFog);
@@ -121,8 +121,8 @@ void CN3ViewerView::OnDraw(CDC* pDC)
 	
 	if(MODE_NORMAL == pFrm->m_eMode)
 	{
-		pDoc->m_Scene.Render(); // Scene ·»´õ¸µ..
-		if(pDoc->m_pSelectedObj) // ¼±ÅÃµÈ°Í ·»´õ¸µ..
+		pDoc->m_Scene.Render(); // Scene ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½..
+		if(pDoc->m_pSelectedObj) // ï¿½ï¿½ï¿½ÃµÈ°ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½..
 		{
 			DWORD dwType = pDoc->m_pSelectedObj->Type();
 			
@@ -138,10 +138,10 @@ void CN3ViewerView::OnDraw(CDC* pDC)
 				CN3Shape* pShape = (CN3Shape*)(pDoc->m_pSelectedObj);
 				int nPart = pFrm->GetViewProperty()->m_CBShapePart.GetCurSel();
 				CN3SPart* pPD = pShape->Part(nPart);
-				if(pPD) pPD->RenderSelected(m_bViewSelectedMeshWireFrame); // ¼±ÅÃµÈ ºÎºÐ¸¸ ·»´õ¸µ..
+				if(pPD) pPD->RenderSelected(m_bViewSelectedMeshWireFrame); // ï¿½ï¿½ï¿½Ãµï¿½ ï¿½ÎºÐ¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½..
 				else pShape->RenderSelected(m_bViewSelectedMeshWireFrame);
 
-				if(m_bViewObjectAxis && pFrm->GetViewProperty()->m_CBShapePart.GetSafeHwnd()) // Ãà º¸ÀÌ±â..
+				if(m_bViewObjectAxis && pFrm->GetViewProperty()->m_CBShapePart.GetSafeHwnd()) // ï¿½ï¿½ ï¿½ï¿½ï¿½Ì±ï¿½..
 				{
 					int nPart = pFrm->GetViewProperty()->m_CBShapePart.GetCurSel();
 					CN3SPart* pPart = pShape->Part(nPart);
@@ -157,10 +157,10 @@ void CN3ViewerView::OnDraw(CDC* pDC)
 
 		int nPart = -1;
 		int nPC = -1;
-		if(pFrm->m_DlgPMeshEdit.m_bPreview) // Preview ¸ðµå
+		if(pFrm->m_DlgPMeshEdit.m_bPreview) // Preview ï¿½ï¿½ï¿½
 		{
 			float fFrm = pDoc->m_Scene.m_fFrmCur;
-			pShape->Tick(fFrm); // ÀÚµ¿À¸·Î LOD °è»ê..
+			pShape->Tick(fFrm); // ï¿½Úµï¿½ï¿½ï¿½ï¿½ï¿½ LOD ï¿½ï¿½ï¿½..
 		}
 		else
 		{
@@ -180,7 +180,7 @@ void CN3ViewerView::OnDraw(CDC* pDC)
 				}
 				else
 				{
-					pPD->MeshInstance()->SetLOD(0); // ¸ù¶¥ º¸°Ô²û..
+					pPD->MeshInstance()->SetLOD(0); // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ô²ï¿½..
 				}
 			}
 		}
@@ -195,7 +195,7 @@ void CN3ViewerView::OnDraw(CDC* pDC)
 	pFrm->m_Eng.s_lpD3DDev->EndScene();
 	pFrm->m_Eng.Present(m_hWnd);
 
-	// ÇÁ·¹ÀÓ Ç¥½Ã
+	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Ç¥ï¿½ï¿½
 #ifdef _DEBUG
 	static CString szInfo0, szInfo1, szInfo2;
 	szInfo0.Format("FPS : %6.2f", pFrm->m_Eng.s_fFrmPerSec);
@@ -271,7 +271,7 @@ void CN3ViewerView::OnLButtonDown(UINT nFlags, CPoint point)
 		pFrm->GetViewSceneTree()->SelectObject(TVI_ROOT, GetDocument()->m_pSelectedObj); // Tree Select
 		if(pDoc->m_pSelectedObj && pDoc->m_pSelectedObj->Type() & OBJ_SHAPE)
 		{
-			pFrm->GetViewProperty()->m_CBShapePart.SetCurSel(nPart); // ÆÄÆ® ¼±ÅÃ..
+			pFrm->GetViewProperty()->m_CBShapePart.SetCurSel(nPart); // ï¿½ï¿½Æ® ï¿½ï¿½ï¿½ï¿½..
 		}
 		pFrm->GetViewProperty()->UpdateInfo();
 		this->InvalidateRect(NULL, FALSE);
@@ -330,7 +330,7 @@ CN3Base* CN3ViewerView::Pick(POINT point, int* pnPart)
 		if(nPart >= 0)
 		{
 			m_pSelObjs[0] = sort[i].pObj;
-			if(pnPart) *pnPart = nPart; // ¸î¹øÂ° ÆÄÆ®°¡ ÂïÇû³ª...
+			if(pnPart) *pnPart = nPart; // ï¿½ï¿½ï¿½Â° ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½...
 			return m_pSelObjs[0];
 		}
 	}

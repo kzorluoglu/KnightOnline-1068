@@ -174,8 +174,13 @@ void CGameProcedure::StaticMemberInit(HINSTANCE hInstance, HWND hWndMain, HWND h
 
 	s_hWndSubSocket = hWndSub; // ���� ���Ͽ� ������ �ڵ�..
 
-	CGameBase::StaticMemberInit(); // Table �� ����, ������Ʈ, ĳ���� �ʱ�ȭ...
-	CLogWriter::Write("StaticMemberInit: tables loaded");
+	try {
+		CLogWriter::Write("StaticMemberInit: before CGameBase init");
+		CGameBase::StaticMemberInit(); // Table �� ����, ������Ʈ, ĳ���� �ʱ�ȭ...
+		CLogWriter::Write("StaticMemberInit: tables loaded");
+	} catch (...) {
+		CLogWriter::Write("StaticMemberInit: EXCEPTION in CGameBase::StaticMemberInit");
+	}
 
 	//////////////////////////////////////////////////////////////////////////////////////////
 	// Game Procedure ���ϰ� ���� ��ǲ, 3D����, Resource Table �ε� �� �ʱ�ȭ...

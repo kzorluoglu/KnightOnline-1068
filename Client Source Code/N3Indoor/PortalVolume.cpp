@@ -38,34 +38,34 @@ CPortalVolume::CPortalVolume()
 
 	unsigned short*		pIdx = m_pIndex;
 
-	// ¾Æ·§¸é.
+	// ï¿½Æ·ï¿½ï¿½ï¿½.
 	*pIdx++ = 0;  *pIdx++ = 1;  *pIdx++ = 3;
 	*pIdx++ = 2;  *pIdx++ = 3;  *pIdx++ = 1;
 
-	// ¾Õ¸é..
+	// ï¿½Õ¸ï¿½..
 	*pIdx++ = 7;  *pIdx++ = 3;  *pIdx++ = 6;
 	*pIdx++ = 2;  *pIdx++ = 6;  *pIdx++ = 3;
 
-	// ¿ÞÂÊ..
+	// ï¿½ï¿½ï¿½ï¿½..
 	*pIdx++ = 4;  *pIdx++ = 0;  *pIdx++ = 7;
 	*pIdx++ = 3;  *pIdx++ = 7;  *pIdx++ = 0;
 
-	// ¿À¸¥ÂÊ..
+	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½..
 	*pIdx++ = 6;  *pIdx++ = 2;  *pIdx++ = 5;
 	*pIdx++ = 1;  *pIdx++ = 5;  *pIdx++ = 2;
 
-	// µÞ¸é..
+	// ï¿½Þ¸ï¿½..
 	*pIdx++ = 5;  *pIdx++ = 1;  *pIdx++ = 4;
 	*pIdx++ = 0;  *pIdx++ = 4;  *pIdx++ = 1;
 
-	// À­¸é..	
+	// ï¿½ï¿½ï¿½ï¿½..	
 	*pIdx++ = 4;  *pIdx++ = 7;  *pIdx++ = 5;
 	*pIdx++ = 6;  *pIdx++ = 5;  *pIdx++ = 7;
 
 	m_eState = STATE_NONE;
 
 	m_eRenderType = TYPE_UNKNOWN;
-	m_iPriority = -1;											//.. ÄÄÆÄÀÏ ¸ðµå¿¡¼­ PortalÀÇ ¿ì¼±¼øÀ§..	-1·Î ¸ÕÀú Å¬¸®¾î ÇÑ´ÙÀ½.. 0 ¼øÀ§´Â ÀÚ±â ÀÚ½Å..
+	m_iPriority = -1;											//.. ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½å¿¡ï¿½ï¿½ Portalï¿½ï¿½ ï¿½ì¼±ï¿½ï¿½ï¿½ï¿½..	-1ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ Å¬ï¿½ï¿½ï¿½ï¿½ ï¿½Ñ´ï¿½ï¿½ï¿½.. 0 ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ú±ï¿½ ï¿½Ú½ï¿½..
 }
 
 CPortalVolume::~CPortalVolume()
@@ -256,7 +256,7 @@ void CPortalVolume::RenderEdit()
 	CN3Base::s_lpD3DDev->SetTransform(D3DTS_WORLD, &m_Matrix);
 	CN3Base::s_lpD3DDev->SetTexture(0, NULL);
 
-	CN3Base::s_lpD3DDev->SetVertexShader(FVF_CV);	
+	CN3Base::s_lpD3DDev->SetFVF(FVF_CV);	
 
 	CN3Base::s_lpD3DDev->SetRenderState(D3DRS_CULLMODE, D3DCULL_CCW);
 	CN3Base::s_lpD3DDev->SetRenderState(D3DRS_FILLMODE, D3DFILL_WIREFRAME);
@@ -319,7 +319,7 @@ void CPortalVolume::RenderCompile()
 	CN3Base::s_lpD3DDev->SetTransform(D3DTS_WORLD, &m_Matrix);
 	CN3Base::s_lpD3DDev->SetTexture(0, NULL);
 
-	CN3Base::s_lpD3DDev->SetVertexShader(FVF_CV);	
+	CN3Base::s_lpD3DDev->SetFVF(FVF_CV);	
 
 	CN3Base::s_lpD3DDev->SetRenderState(D3DRS_CULLMODE, D3DCULL_CCW);
 	CN3Base::s_lpD3DDev->SetRenderState(D3DRS_FILLMODE, D3DFILL_WIREFRAME);
@@ -560,7 +560,7 @@ void CPortalVolume::RenderCollisionEdit()
 		pSI->m_pShape->Tick(-1000);
 		pSI->m_pShape->m_bDontRender = false;
 
-		// ·ÎµùÇÒ¶§ ¹Ì¸® °è»êÇØ ³õÀº ¿ùµå Çà·Ä Àû¿ë..
+		// ï¿½Îµï¿½ï¿½Ò¶ï¿½ ï¿½Ì¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½..
 		__Matrix44 mtxBackup;
 		CN3Base::s_lpD3DDev->GetTransform(D3DTS_WORLD, &mtxBackup);
 		CN3Base::s_lpD3DDev->SetTransform(D3DTS_WORLD, &pSI->m_pShape->m_Matrix);
@@ -595,7 +595,7 @@ void CPortalVolume::RenderShapeCompile()
 			int iSize = vpi.m_ivVector.size();
 		
 	#ifdef _USE_VERTEXBUFFER
-			LPDIRECT3DINDEXBUFFER8	pIB;
+			LPDIRECT3DINDEXBUFFER9	pIB;
 			HRESULT hr = CN3Base::s_lpD3DDev->CreateIndexBuffer(iSize*sizeof(WORD),
 											D3DUSAGE_DYNAMIC, D3DFMT_INDEX16, D3DPOOL_MANAGED, &pIB);
 			if (FAILED(hr)) return hr;
@@ -656,7 +656,7 @@ void CPortalVolume::RenderCollisionCompile()
 	{
 		pCI = *ciit++;
 
-		// Çà·Ä °è»ê..
+		// ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½..
 		__Matrix44 mtxWorld;
 		mtxWorld.Identity();
 
@@ -697,16 +697,16 @@ bool CPortalVolume::Load(HANDLE hFile, bool bGameData)
 {
 	CN3Transform::Load(hFile);
 
-	// ÀÚ½ÅÀÇ µ¥ÀÌÅÍ ·Îµå..
+	// ï¿½Ú½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Îµï¿½..
 	DWORD dwNum;
 	std::string strSrc;
 
-	// ¸µÅ©µÈ °¹¼ö¸¦ ·Îµå..
+	// ï¿½ï¿½Å©ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Îµï¿½..
 	int iLinkedCount = 0;
 
 	ReadFile(hFile, &iLinkedCount, sizeof(int), &dwNum, NULL);
 	
-	// ¸µÅ©µÈ ¾ÆÀÌµð ·Îµå..
+	// ï¿½ï¿½Å©ï¿½ï¿½ ï¿½ï¿½ï¿½Ìµï¿½ ï¿½Îµï¿½..
 	WVID wvid;
 	for( int i = 0; i < iLinkedCount; i++ )
 	{
@@ -717,7 +717,7 @@ bool CPortalVolume::Load(HANDLE hFile, bool bGameData)
 
 	CMainFrame* pFrm = (CMainFrame* )AfxGetMainWnd();
 
-	// ¸µÅ©µÈ Shape °¹¼ö ·Îµå..
+	// ï¿½ï¿½Å©ï¿½ï¿½ Shape ï¿½ï¿½ï¿½ï¿½ ï¿½Îµï¿½..
 	int iCount = 0; int iSize = 0;
 	ReadFile(hFile, &iCount, sizeof(int), &dwNum, NULL);
 	for (i = 0; i < iCount; i++)
@@ -725,11 +725,11 @@ bool CPortalVolume::Load(HANDLE hFile, bool bGameData)
 		ShapeInfo*	pSI = new ShapeInfo;
 		ReadFile(hFile, &pSI->m_iID, sizeof(int), &dwNum, NULL);
 		
-		// ¹®ÀÚ¿­ ±æÀÌ..
+		// ï¿½ï¿½ï¿½Ú¿ï¿½ ï¿½ï¿½ï¿½ï¿½..
 		strSrc = CPVSManager::ReadDecryptString(hFile);
 		pSI->m_strShapeFile = strSrc;
 
-		// SourceList¿¡¼­.. ShapeÀÇ Pointer¸¦ ¿¬°áÇÑ´Ù..
+		// SourceListï¿½ï¿½ï¿½ï¿½.. Shapeï¿½ï¿½ Pointerï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ñ´ï¿½..
 		pSI->m_pShape = pFrm->m_pSceneSource->ShapeGetByFileName(strSrc);
 		ASSERT(pSI->m_pShape);
 
@@ -826,17 +826,17 @@ bool CPortalVolume::Save(HANDLE hFile, bool bGameData)
 	DWORD dwNum;
 	std::string strSrc;
 
-	// ÀÚ½ÅÀÇ ¾ÆÀÌµð¸¦ ÀúÀå..
+	// ï¿½Ú½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ìµï¿½ ï¿½ï¿½ï¿½ï¿½..
 	WriteFile(hFile, &m_iID, sizeof(int), &dwNum, NULL);
 
-	// ÀÚ½ÅÀÇ µ¥ÀÌÅÍ ÀúÀå..
+	// ï¿½Ú½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½..
 	CN3Transform::Save(hFile);
 
-	// ¸µÅ©µÈ °¹¼ö¸¦ ÀúÀå..
+	// ï¿½ï¿½Å©ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½..
 	int iCount = m_VoltList.size();
 	WriteFile(hFile, &iCount, sizeof(int), &dwNum, NULL);
 
-	//¸µÅ©µÈ ¾ÆÀÌµð ÀúÀå..
+	//ï¿½ï¿½Å©ï¿½ï¿½ ï¿½ï¿½ï¿½Ìµï¿½ ï¿½ï¿½ï¿½ï¿½..
 	WVOL wvol;
 	witer wit = m_VoltList.begin();
 	while (wit != m_VoltList.end())
@@ -846,7 +846,7 @@ bool CPortalVolume::Save(HANDLE hFile, bool bGameData)
 		WriteFile(hFile, &wvol.ePWT, sizeof(int), &dwNum, NULL);
 	}
 
-	// ¸µÅ©µÈ Shape °¹¼ö ÀúÀå..
+	// ï¿½ï¿½Å©ï¿½ï¿½ Shape ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½..
 	iCount = m_plShapeInfoList.size();
 	WriteFile(hFile, &iCount, sizeof(int), &dwNum, NULL);
 
@@ -859,7 +859,7 @@ bool CPortalVolume::Save(HANDLE hFile, bool bGameData)
 
 		CPVSManager::WriteCryptographString(hFile, pSI->m_strShapeFile);
 
-		// ShapeÀÇ µ¥ÀÌÅÍ ÀúÀå..
+		// Shapeï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½..
 		WriteFile(hFile, &pSI->m_iBelong, sizeof(int), &dwNum, NULL);	
 		WriteFile(hFile, &pSI->m_iEventID, sizeof(int), &dwNum, NULL);	
 		WriteFile(hFile, &pSI->m_iEventType, sizeof(int), &dwNum, NULL);	
@@ -884,7 +884,7 @@ void CPortalVolume::SaveGameData(HANDLE hFile)
 	int iCount = 0;
 	CPortalVolume* pVol = NULL;
 
-	// Visible VolumeÀÇ ID..
+	// Visible Volumeï¿½ï¿½ ID..
 	iCount = m_pVisiblePvsList.size();
 	WriteFile(hFile, &iCount, sizeof(int), &dwNum, NULL);
 
@@ -901,7 +901,7 @@ void CPortalVolume::SaveGameData(HANDLE hFile)
 	iCount = m_lpShapePartList.size(); 
 	WriteFile(hFile, &iCount, sizeof(int), &dwNum, NULL);
 
-	// ShapeÀÇ ºÎºÐ Á¤º¸..
+	// Shapeï¿½ï¿½ ï¿½Îºï¿½ ï¿½ï¿½ï¿½ï¿½..
 	ShapePart* pSP = NULL;
 	spiter spit = m_lpShapePartList.begin();
 	while( spit != m_lpShapePartList.end())
@@ -1305,20 +1305,20 @@ bool CPortalVolume::IntersectTriangle(const __Vector3& vOrig, const __Vector3& v
     // Begin calculating determinant - also used to calculate U parameter
     __Vector3 pVec;	float fDet;
 	
-//	By : Ecli666 ( On 2001-09-12 ¿ÀÀü 10:39:01 )
+//	By : Ecli666 ( On 2001-09-12 ï¿½ï¿½ï¿½ï¿½ 10:39:01 )
 
 	pVec.Cross(vEdge1, vEdge2);
 	fDet = pVec.Dot(vDir);
 	if ( fDet > -0.0001f )
 		return false;
 
-//	~(By Ecli666 On 2001-09-12 ¿ÀÀü 10:39:01 )
+//	~(By Ecli666 On 2001-09-12 ï¿½ï¿½ï¿½ï¿½ 10:39:01 )
 
     pVec.Cross(vDir, vEdge2);
 
     // If determinant is near zero, ray lies in plane of triangle
     fDet = vEdge1.Dot(pVec);
-    if( fDet < 0.0001f )		// °ÅÀÇ 0¿¡ °¡±î¿ì¸é »ï°¢Çü Æò¸é°ú Áö³ª°¡´Â ¼±ÀÌ ÆòÇàÇÏ´Ù.
+    if( fDet < 0.0001f )		// ï¿½ï¿½ï¿½ï¿½ 0ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï°¢ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½.
         return false;
 
     // Calculate distance from vert0 to ray origin
@@ -1345,15 +1345,15 @@ bool CPortalVolume::IntersectTriangle(const __Vector3& vOrig, const __Vector3& v
     fU *= fInvDet;
     fV *= fInvDet;
 
-	// t°¡ Å¬¼ö·Ï ¸Ö¸® Á÷¼±°ú Æò¸é°ú ¸¸³ª´Â Á¡ÀÌ ¸Ö´Ù.
-	// t*dir + orig ¸¦ ±¸ÇÏ¸é ¸¸³ª´Â Á¡À» ±¸ÇÒ ¼ö ÀÖ´Ù.
-	// u¿Í vÀÇ ÀÇ¹Ì´Â ¹«¾ùÀÏ±î?
-	// ÃßÃø : v0 (0,0), v1(1,0), v2(0,1) <°ýÈ£¾ÈÀº (U, V)ÁÂÇ¥> ÀÌ·±½ÄÀ¸·Î ¾î´À Á¡¿¡ °¡±õ³ª ³ªÅ¸³½ °Í °°À½
+	// tï¿½ï¿½ Å¬ï¿½ï¿½ï¿½ï¿½ ï¿½Ö¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ö´ï¿½.
+	// t*dir + orig ï¿½ï¿½ ï¿½ï¿½ï¿½Ï¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½Ö´ï¿½.
+	// uï¿½ï¿½ vï¿½ï¿½ ï¿½Ç¹Ì´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï±ï¿½?
+	// ï¿½ï¿½ï¿½ï¿½ : v0 (0,0), v1(1,0), v2(0,1) <ï¿½ï¿½È£ï¿½ï¿½ï¿½ï¿½ (U, V)ï¿½ï¿½Ç¥> ï¿½Ì·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Å¸ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	//
 
-	if(pVCol) (*pVCol) = vOrig + (vDir * fT);	// Á¢Á¡À» °è»ê..
+	if(pVCol) (*pVCol) = vOrig + (vDir * fT);	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½..
 
-	// *t < 0 ÀÌ¸é µÚÂÊ...
+	// *t < 0 ï¿½Ì¸ï¿½ ï¿½ï¿½ï¿½ï¿½...
 	if ( fT < 0.0f )
 		return false;
 

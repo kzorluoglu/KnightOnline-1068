@@ -56,13 +56,13 @@ bool CN3AnimatedTexures::Load(HANDLE hFile)
 	
 	int nL = 0;
 	char szFN[256] = "";
-	m_TexRefs.assign(iTC, NULL); // Texture Pointer Pointer ÇÒ´ç..
-	for(int i = 0; i < iTC; i++) // Texture Count ¸¸Å­ ÆÄÀÏ ÀÌ¸§ ÀÐ¾î¼­ ÅØ½ºÃ³ ºÎ¸£±â..
+	m_TexRefs.assign(iTC, NULL); // Texture Pointer Pointer ï¿½Ò´ï¿½..
+	for(int i = 0; i < iTC; i++) // Texture Count ï¿½ï¿½Å­ ï¿½ï¿½ï¿½ï¿½ ï¿½Ì¸ï¿½ ï¿½Ð¾î¼­ ï¿½Ø½ï¿½Ã³ ï¿½Î¸ï¿½ï¿½ï¿½..
 	{
 		ReadFile(hFile, &nL, 4, &dwRWC, NULL);
 		if(nL > 0)
 		{
-			ReadFile(hFile, szFN, nL, &dwRWC, NULL); szFN[nL] = NULL; // ÅØ½ºÃ³ ÆÄÀÏ ÀÌ¸§..
+			ReadFile(hFile, szFN, nL, &dwRWC, NULL); szFN[nL] = NULL; // ï¿½Ø½ï¿½Ã³ ï¿½ï¿½ï¿½ï¿½ ï¿½Ì¸ï¿½..
 			m_TexRefs[i] = s_MngTex.Get(szFN);
 		}
 	}
@@ -81,14 +81,14 @@ bool CN3AnimatedTexures::Save(HANDLE hFile)
 	int iTC = m_TexRefs.size();
 	WriteFile(hFile, &iTC, 4, &dwRWC, NULL);
 	
-	for(int i = 0; i < iTC; i++) // Texture Count ¸¸Å­ ÆÄÀÏ ÀÌ¸§ ÀÐ¾î¼­ ÅØ½ºÃ³ ºÎ¸£±â..
+	for(int i = 0; i < iTC; i++) // Texture Count ï¿½ï¿½Å­ ï¿½ï¿½ï¿½ï¿½ ï¿½Ì¸ï¿½ ï¿½Ð¾î¼­ ï¿½Ø½ï¿½Ã³ ï¿½Î¸ï¿½ï¿½ï¿½..
 	{
 		nL = 0;
 		if(m_TexRefs[i]) nL = m_TexRefs[i].size();
 		WriteFile(hFile, &nL, 4, &dwRWC, NULL);
 		if(nL > 0)
 		{
-			WriteFile(hFile, m_TexRefs[i]->FileName().c_str(), nL, &dwRWC, NULL); // ÅØ½ºÃ³ ÆÄÀÏ ÀÌ¸§..
+			WriteFile(hFile, m_TexRefs[i]->FileName().c_str(), nL, &dwRWC, NULL); // ï¿½Ø½ï¿½Ã³ ï¿½ï¿½ï¿½ï¿½ ï¿½Ì¸ï¿½..
 		}
 	}
 
@@ -102,5 +102,5 @@ void CN3AnimatedTexures::Tick()
 
 	int iTC = m_TexRefs.size();
 	m_fTexIndex += CN3Base::s_fSecPerFrm * m_fTexFPS;
-	if(m_fTexIndex >= iTC) m_fTexIndex -= (iTC * m_fTexIndex) / iTC; // Á¤¼ö·Î ³ª´©¸é ¼Ò¼ýÁ¡¸¸ ³²±â°Ô µÈ´Ù??(ÇÏ¿©Æ° ºñ½ÁÇØ~)
+	if(m_fTexIndex >= iTC) m_fTexIndex -= (iTC * m_fTexIndex) / iTC; // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ò¼ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½È´ï¿½??(ï¿½Ï¿ï¿½Æ° ï¿½ï¿½ï¿½ï¿½ï¿½~)
 }

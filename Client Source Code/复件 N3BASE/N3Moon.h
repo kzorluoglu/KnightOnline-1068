@@ -28,15 +28,15 @@ public:
 protected:	
 	__VertexTransformed		m_pVertices[4];
 	CN3Texture				*m_pTexture;
-	float					m_fCurRadian;		// ÇöÀç ´ÞÀÇ È¸ÀüÀ§Ä¡
-	float					m_fMoonRatio;		// ´ÞÀÇ pixel½ÎÀÌÁî
-	int						m_iMoonPhaseIndex;	// ´ÞÀÇ ¸ð¾ç ÀÎµ¦½º 0~23;
+	float					m_fCurRadian;		// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ È¸ï¿½ï¿½ï¿½ï¿½Ä¡
+	float					m_fMoonRatio;		// ï¿½ï¿½ï¿½ï¿½ pixelï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	int						m_iMoonPhaseIndex;	// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½Îµï¿½ï¿½ï¿½ 0~23;
 
 // Operations
 public:
 	void	Init(const std::string& szTexFN);
-	void	SetMoonPhase(int iIndex);	// ´ÞÀÇ ¸ð¾ç ¼³Á¤
-	void	SetCurAngle(float fAngle)	{m_fCurRadian = D3DXToRadian(fAngle);}	// ÇöÀç °¢µµ¼³Á¤
+	void	SetMoonPhase(int iIndex);	// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+	void	SetCurAngle(float fAngle)	{m_fCurRadian = D3DXToRadian(fAngle);}	// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 
 	void	Render(__Matrix44& matView, __Matrix44& matProj);
 	void	Release();

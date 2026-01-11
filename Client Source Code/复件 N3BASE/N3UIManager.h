@@ -19,7 +19,7 @@ protected:
 		DWORD dwZEnable, dwAlphaBlend, dwSrcBlend, dwDestBlend, dwFog;
 		DWORD dwMagFilter, dwMinFilter, dwMipFilter;
 #ifdef _DEBUG
-		BOOL	bSet;	// ÀÌ¹Ì °ªÀÌ 3D deviceÀÇ °ªÀ¸·Î ¼¼ÆÃÀÌ µÇ¾ú´ÂÁö ÆÇ´Ü.
+		BOOL	bSet;	// ï¿½Ì¹ï¿½ ï¿½ï¿½ï¿½ï¿½ 3D deviceï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ç¾ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ç´ï¿½.
 #endif
 	};
 	

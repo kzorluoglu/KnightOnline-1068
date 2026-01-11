@@ -23,7 +23,7 @@ static char THIS_FILE[]=__FILE__;
 
 CWarpMgr::CWarpMgr()
 {
-	m_pRefMapMng = NULL;				// ÁöÇü ÂüÁ¶ Æ÷ÀÎÅÍ..
+	m_pRefMapMng = NULL;				// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½..
 	m_bActive = false;
 
 	m_ListWarpInfo.clear();

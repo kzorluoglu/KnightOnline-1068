@@ -1,0 +1,50 @@
+Upgrading WarFare workspace...
+Building WarFare (Release|x86)...
+Microsoft (R)-Build-Engine, Version 15.9.30+gc0e4b0e683 für .NET Framework
+Copyright (C) Microsoft Corporation. Alle Rechte vorbehalten.
+
+Die Projekte in dieser Projektmappe werden nacheinander erstellt. Um eine parallele Erstellung zu ermöglichen, müssen Sie den Schalter "/m" hinzufügen.
+Der Buildvorgang wurde am 11.01.2026 18:32:34 gestartet.
+Projekt "C:\Users\kzorluoglu\CLionProjects\KnightOnline-1068\Client Source Code\WarFare\WarFare.sln" auf Knoten "1" (Standardziele).
+ValidateSolutionConfiguration:
+  Die Projektmappenkonfiguration "Release|x86" wird erstellt.
+Das Projekt "C:\Users\kzorluoglu\CLionProjects\KnightOnline-1068\Client Source Code\WarFare\WarFare.sln" (1) erstellt "C:\Users\kzorluoglu\CLionProjects\KnightOnline-1068\Client Source Code\WarFare\WarFare.vcxproj" (2) auf Knoten "1" (Standardziele).
+InitializeBuildStatus:
+  ".\Release\WarFare.tlog\unsuccessfulbuild" wird erstellt, da "AlwaysCreate" angegeben wurde.
+ClCompile:
+  Alle Ausgaben sind aktuell.
+ResourceCompile:
+  Alle Ausgaben sind aktuell.
+C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V140\Microsoft.CppBuild.targets(1189,5): warning MSB8012: TargetPath(C:\Users\kzorluoglu\CLionProjects\KnightOnline-1068\Client Source Code\WarFare\.\Release\WarFare.exe) does not match the Linker's OutputFile property value (C:\Users\kzorluoglu\CLionProjects\KnightOnline-1068\Client Source Code\WarFare\KnightOnLine.exe). This may cause your project to build incorrectly. To correct this, please make sure that $(OutDir), $(TargetName) and $(TargetExt) property values match the value specified in %(Link.OutputFile). [C:\Users\kzorluoglu\CLionProjects\KnightOnline-1068\Client Source Code\WarFare\WarFare.vcxproj]
+C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V140\Microsoft.CppBuild.targets(1191,5): warning MSB8012: TargetName(WarFare) does not match the Linker's OutputFile property value (KnightOnLine). This may cause your project to build incorrectly. To correct this, please make sure that $(OutDir), $(TargetName) and $(TargetExt) property values match the value specified in %(Link.OutputFile). [C:\Users\kzorluoglu\CLionProjects\KnightOnline-1068\Client Source Code\WarFare\WarFare.vcxproj]
+Link:
+  Alle Ausgaben sind aktuell.
+  WarFare.vcxproj -> C:\Users\kzorluoglu\CLionProjects\KnightOnline-1068\Client Source Code\WarFare\.\Release\WarFare.exe
+BscMake:
+  Alle Ausgaben sind aktuell.
+FinalizeBuildStatus:
+  Die Datei ".\Release\WarFare.tlog\unsuccessfulbuild" wird gelöscht.
+  Aktualisieren des Timestamps von ".\Release\WarFare.tlog\WarFare.lastbuildstate".
+Die Erstellung von Projekt "C:\Users\kzorluoglu\CLionProjects\KnightOnline-1068\Client Source Code\WarFare\WarFare.vcxproj" ist abgeschlossen (Standardziele).
+Die Erstellung von Projekt "C:\Users\kzorluoglu\CLionProjects\KnightOnline-1068\Client Source Code\WarFare\WarFare.sln" ist abgeschlossen (Standardziele).
+
+Der Buildvorgang wurde erfolgreich ausgeführt.
+
+"C:\Users\kzorluoglu\CLionProjects\KnightOnline-1068\Client Source Code\WarFare\WarFare.sln" (Standardziel) (1) ->
+"C:\Users\kzorluoglu\CLionProjects\KnightOnline-1068\Client Source Code\WarFare\WarFare.vcxproj" (Standardziel) (2) ->
+(DoLinkOutputFilesMatch Ziel) -> 
+  C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V140\Microsoft.CppBuild.targets(1189,5): warning MSB8012: TargetPath(C:\Users\kzorluoglu\CLionProjects\KnightOnline-1068\Client Source Code\WarFare\.\Release\WarFare.exe) does not match the Linker's OutputFile property value (C:\Users\kzorluoglu\CLionProjects\KnightOnline-1068\Client Source Code\WarFare\KnightOnLine.exe). This may cause your project to build incorrectly. To correct this, please make sure that $(OutDir), $(TargetName) and $(TargetExt) property values match the value specified in %(Link.OutputFile). [C:\Users\kzorluoglu\CLionProjects\KnightOnline-1068\Client Source Code\WarFare\WarFare.vcxproj]
+
+
+"C:\Users\kzorluoglu\CLionProjects\KnightOnline-1068\Client Source Code\WarFare\WarFare.sln" (Standardziel) (1) ->
+"C:\Users\kzorluoglu\CLionProjects\KnightOnline-1068\Client Source Code\WarFare\WarFare.vcxproj" (Standardziel) (2) ->
+  C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V140\Microsoft.CppBuild.targets(1191,5): warning MSB8012: TargetName(WarFare) does not match the Linker's OutputFile property value (KnightOnLine). This may cause your project to build incorrectly. To correct this, please make sure that $(OutDir), $(TargetName) and $(TargetExt) property values match the value specified in %(Link.OutputFile). [C:\Users\kzorluoglu\CLionProjects\KnightOnline-1068\Client Source Code\WarFare\WarFare.vcxproj]
+
+    2 Warnung(en)
+    0 Fehler
+
+Verstrichene Zeit 00:00:00.38
+
+Build outputs:
+  KnightOnline (WarFare): 1097 Client/KnightOnLine.exe
+  → Data folder already exists, skipping copy

@@ -1,7 +1,7 @@
 ////////////////////////////////////////////////////////////////////////////////////////
 //
 //	N3SndDef.h
-//	- ÀÌ°ÍÀú°Í Sound¿¡ °ü·ÃµÈ ÀÚ·áÇüÁ¤ÀÇ, »ó¼öÁ¤ÀÇ...
+//	- ï¿½Ì°ï¿½ï¿½ï¿½ï¿½ï¿½ Soundï¿½ï¿½ ï¿½ï¿½ï¿½Ãµï¿½ ï¿½Ú·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½, ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½...
 //
 //	By Donghoon..
 //
@@ -40,16 +40,16 @@ typedef struct __SoundSource
 	}	
 } SOUNDSOURCE, *LPSOUNDSOURCE;
 
-typedef struct __TABLE_SOUND // Sound ¸®¼Ò½º ·¹ÄÚµå...
+typedef struct __TABLE_SOUND // Sound ï¿½ï¿½ï¿½Ò½ï¿½ ï¿½ï¿½ï¿½Úµï¿½...
 {
-	DWORD		dwID;		// °íÀ¯ ID
+	DWORD		dwID;		// ï¿½ï¿½ï¿½ï¿½ ID
 	std::string	szFN;		// wave file name
-	int			iType;		// »ç¿îµå Å¸ÀÔ...
-	int			iNumInst;	// ÃÖ´ë »ç¿ëÇÒ ¼ö ÀÖ´Â ÀÎ½ºÅÏ½ºÀÇ °¹¼ö..
+	int			iType;		// ï¿½ï¿½ï¿½ï¿½ Å¸ï¿½ï¿½...
+	int			iNumInst;	// ï¿½Ö´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½Ö´ï¿½ ï¿½Î½ï¿½ï¿½Ï½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½..
 } TABLE_SOUND;
 
 
-// »ç¿îµå ¿ÀºêÁ§Æ® Å¸ÀÔ Á¤ÀÇ..
+// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ® Å¸ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½..
 enum e_SndType { SNDTYPE_2D=0, SNDTYPE_3D, SNDTYPE_STREAM };
 enum e_SndState { SNDSTATE_STOP=0, SNDSTATE_DELAY, SNDSTATE_FADEIN, SNDSTATE_PLAY, SNDSTATE_FADEOUT };
 

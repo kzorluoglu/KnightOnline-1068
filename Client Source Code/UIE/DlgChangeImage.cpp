@@ -51,7 +51,7 @@ void CDlgChangeImage::OnBBrowseOldFile()
 
 	if (IDCANCEL == dlg.DoModal()) return;
 	CString szFN_Old = dlg.GetPathName();
-	szFN_Old.MakeLower(); // ¼Ò¹®ÀÚ·Î ¸¸µé°í..
+	szFN_Old.MakeLower(); // ï¿½Ò¹ï¿½ï¿½Ú·ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½..
 
 	CString szPath = CN3Base::PathGet().c_str();
 	szPath.MakeLower();
@@ -68,10 +68,10 @@ void CDlgChangeImage::OnBBrowseNewFile()
 
 	if (IDCANCEL == dlg.DoModal()) return;
 	CString szFN_New = dlg.GetPathName();
-	szFN_New.MakeLower(); // ¼Ò¹®ÀÚ·Î ¸¸µé°í..
+	szFN_New.MakeLower(); // ï¿½Ò¹ï¿½ï¿½Ú·ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½..
 
 	CString szPath = CN3Base::PathGet().c_str();
-	szPath.MakeLower(); // ¼Ò¹®ÀÚ·Î ¸¸µç´Ù
+	szPath.MakeLower(); // ï¿½Ò¹ï¿½ï¿½Ú·ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½
 	int i = szFN_New.Find(szPath);
 	if(i >= 0) szFN_New = szFN_New.Mid(i + szPath.GetLength());
 

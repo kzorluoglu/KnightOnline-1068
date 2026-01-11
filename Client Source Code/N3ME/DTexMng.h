@@ -25,7 +25,7 @@ protected:
 public:
 	std::list<CDTex*>	m_pDTex;
 	CMainFrame*			m_pMainFrm;	
-	//int					m_NumDTex;	//dtex¸¦ ´ã°í ÀÖ´Â ¸¶Áö¸· ¹è¿­ + 1...^^
+	//int					m_NumDTex;	//dtexï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½Ö´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½è¿­ + 1...^^
 	//CDTex*			m_pDTex[MAX_TILETEXTURE];
 				
 public:

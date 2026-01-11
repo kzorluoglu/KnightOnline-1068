@@ -22,7 +22,7 @@ CN3Camera::CN3Camera()
 	m_Data.vAt = m_vAt = __Vector3(0,0,0);
 	m_Data.vUp = m_vScale = __Vector3(0,1,0);
 
-	m_Data.fFOV = D3DXToRadian(55.0f); // ±âº»°ª 55 µµ
+	m_Data.fFOV = D3DXToRadian(55.0f); // ï¿½âº»ï¿½ï¿½ 55 ï¿½ï¿½
 	m_Data.fNP = 0.7f;
 	m_Data.fFP = 512.0f;
 
@@ -47,7 +47,7 @@ void CN3Camera::Release()
 	m_Data.vAt = m_vAt = __Vector3(0,0,0);
 	m_Data.vUp = m_vScale = __Vector3(0,1,0);
 
-	m_Data.fFOV = D3DXToRadian(55.0f); // ±âº»°ª 55 µµ
+	m_Data.fFOV = D3DXToRadian(55.0f); // ï¿½âº»ï¿½ï¿½ 55 ï¿½ï¿½
 	m_Data.fNP = 0.7f;
 	m_Data.fFP = 512.0f;
 
@@ -225,7 +225,7 @@ BOOL CN3Camera::MoveByWindowMessage(MSG* pMsg)
 					return TRUE;
 				}
 			}
-		default:	// ¸¶¿ì½º ¸Þ¼¼Áö°¡ ¾Æ´Ò°æ¿ì Ä«¸Þ¶ó ¿òÁ÷ÀÓÀÌ ¾Æ´Ï´Ù.
+		default:	// ï¿½ï¿½ï¿½ì½º ï¿½Þ¼ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Æ´Ò°ï¿½ï¿½ Ä«ï¿½Þ¶ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Æ´Ï´ï¿½.
 			return FALSE;
 		}
 	}
@@ -245,8 +245,8 @@ void CN3Camera::Zoom(float fDelta)
 	__Vector3 vPos = m_vPos + vD * fDelta;
 	float fDist = (vPos - m_Data.vAt).Magnitude();
 #ifndef _N3INDOOR
-	if(fDist < 0.3f) return; // ³Ê¹« °¡±î¿ì¸é Àû¿ëÇÏÁö ¾Ê´Â´Ù..
-	else if(fDist > m_Data.fFP * 2.0f) return; // ³Ê¹« ¸Ö¸é Àû¿ëÇÏÁö ¾Ê´Â´Ù.
+	if(fDist < 0.3f) return; // ï¿½Ê¹ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ê´Â´ï¿½..
+	else if(fDist > m_Data.fFP * 2.0f) return; // ï¿½Ê¹ï¿½ ï¿½Ö¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ê´Â´ï¿½.
 #endif
 
 	m_vPos = vPos;
@@ -263,7 +263,7 @@ void CN3Camera::Rotate(float fRadianX, float fRadianY)
 	__Matrix44 mtx;		//by lynus...
 	mtx.RotationY(fRadianY);
 
-	__Vector3 v1 = m_vAt - m_vPos, v2; // Rotation Àº LookAt Position Ã³·³, Scale Àº UpVector Ã³·³ ¾´´Ù..
+	__Vector3 v1 = m_vAt - m_vPos, v2; // Rotation ï¿½ï¿½ LookAt Position Ã³ï¿½ï¿½, Scale ï¿½ï¿½ UpVector Ã³ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½..
 	v1 *= mtx;
 	m_vScale *= mtx;
 
@@ -283,7 +283,7 @@ void CN3Camera::Rotate(float fRadianX, float fRadianY)
 }
 
 #ifdef _N3TOOL
-void CN3Camera::LookAround(float fRadianX, float fRadianY)		//At PostionÀ» Áß½ÉÀ¸·Î Ä«¸Þ¶ó°¡ µ·´Ù..°í·Î À§Ä¡°¡ ¹Ù²ï´Ù..
+void CN3Camera::LookAround(float fRadianX, float fRadianY)		//At Postionï¿½ï¿½ ï¿½ß½ï¿½ï¿½ï¿½ï¿½ï¿½ Ä«ï¿½Þ¶ï¿½ ï¿½ï¿½ï¿½ï¿½..ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ä¡ï¿½ï¿½ ï¿½Ù²ï¿½ï¿½..
 {
 	//static __Matrix44 mtx;
 	//static __Vector3 v1, v2;
@@ -309,7 +309,7 @@ void CN3Camera::LookAround(float fRadianX, float fRadianY)		//At PostionÀ» Áß½ÉÀ
 	m_vScale *= mtx;
 #endif
 */
-	m_vPos = m_vAt + v1; // Rotation Àº LookAt Position Ã³·³, Scale Àº UpVector Ã³·³ ¾´´Ù..
+	m_vPos = m_vAt + v1; // Rotation ï¿½ï¿½ LookAt Position Ã³ï¿½ï¿½, Scale ï¿½ï¿½ UpVector Ã³ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½..
 }
 #endif // end of #ifdef _N3TOOL
 
@@ -337,7 +337,7 @@ void CN3Camera::MoveStraight(float fDistance, bool bSmall)
 #ifdef _N3TOOL
 void CN3Camera::MovePlane(float fX, float fY)
 {
-	__Vector3 vDir = m_vAt - m_vPos; // Rotation Àº LookAt Position Ã³·³, Scale Àº UpVector Ã³·³ ¾´´Ù..
+	__Vector3 vDir = m_vAt - m_vPos; // Rotation ï¿½ï¿½ LookAt Position Ã³ï¿½ï¿½, Scale ï¿½ï¿½ UpVector Ã³ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½..
 	vDir.Normalize();
 
 	__Vector3 vHoriz;
@@ -352,7 +352,7 @@ void CN3Camera::MovePlane(float fX, float fY)
 	__Vector3 vMove = (vHoriz*fX) + (vDown*fY);
 	
 	m_vPos += vMove;
-	m_vAt += vMove; // Rotation Àº LookAt Position Ã³·³, Scale Àº UpVector Ã³·³ ¾´´Ù..
+	m_vAt += vMove; // Rotation ï¿½ï¿½ LookAt Position Ã³ï¿½ï¿½, Scale ï¿½ï¿½ UpVector Ã³ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½..
 }
 #endif // end of #ifdef _N3TOOL
 
@@ -380,7 +380,7 @@ void CN3Camera::Apply()
 	s_lpD3DDev->SetTransform(D3DTS_PROJECTION, &m_Data.mtxProjection); // Projection Matrix Setting
 	memcpy(&(CN3Base::s_CameraData), &m_Data, sizeof(__CameraData)); // Static Data Update...
 
-	// ¾È°³ »ö±ò ¸ÂÃß±â..
+	// ï¿½È°ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ß±ï¿½..
 	s_lpD3DDev->SetRenderState( D3DRS_FOGENABLE, m_bFogUse);
 	s_lpD3DDev->SetRenderState( D3DRS_FOGCOLOR,  m_FogColor);
 //	s_lpD3DDev->SetRenderState( D3DRS_FOGVERTEXMODE,  D3DFOG_EXP2);
@@ -388,15 +388,15 @@ void CN3Camera::Apply()
 	s_lpD3DDev->SetRenderState( D3DRS_FOGTABLEMODE,   D3DFOG_NONE);
 	s_lpD3DDev->SetRenderState( D3DRS_FOGVERTEXMODE,  D3DFOG_LINEAR);
 	s_lpD3DDev->SetRenderState( D3DRS_RANGEFOGENABLE, TRUE);
-	// Range Fog : ÀåÁ¡ - °Å¸®±â¹ÝÀ¸·Î fog°¡ Àû¿ëµÈ´Ù. ´ÜÁ¡ - poligon´ÜÀ§·Î °°Àº fog°ªÀÌ Àû¿ëµÈ´Ù.(Å« Æú¸®°ïÀÌ ÀÖÀ»°æ¿ì ¾î»öÇÑ fog°¡ µÉ ¼ö ÀÖ´Ù.)
-	// range fog = FALSE·Î ÇßÀ»¶§´Â depth¹öÆÛ ±â¹ÝÀ¸·Î fog°¡ °è»êµÇ¾î Àû¿ëµÈ´Ù.
+	// Range Fog : ï¿½ï¿½ï¿½ï¿½ - ï¿½Å¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ fogï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½È´ï¿½. ï¿½ï¿½ï¿½ï¿½ - poligonï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ fogï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½È´ï¿½.(Å« ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ fogï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ ï¿½Ö´ï¿½.)
+	// range fog = FALSEï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ depthï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ fogï¿½ï¿½ ï¿½ï¿½ï¿½Ç¾ï¿½ ï¿½ï¿½ï¿½ï¿½È´ï¿½.
 
-	// vertex fog ¿Í pixel fog(table fog)ÀÇ Â÷ÀÌ - Dino¾¸..
-	// vertex fog : vertexÀÇ depth°ªÀ» ±â¹ÝÀ¸·Î vertex»çÀÌÀÇ º¸°£À¸·Î °è»êµÇ´Â °Í °°´Ù.
-	//				µû¶ó¼­ Ä«¸Þ¶ó¸¦ µ¹¸®´Ùº¸¸é vertexÁÖÀ§¸¦ Áß½ÉÀ¸·Î fog°¡ º¯ÇÏ´Â°ÍÀÌ °üÂûµÈ´Ù.
-	// pixel fog : pixelÀÇ depth°ªÀ» ±â¹ÝÀ¸·Î fog¸¦ °è»êÇÏ´Â°Í °°´Ù.
+	// vertex fog ï¿½ï¿½ pixel fog(table fog)ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ - Dinoï¿½ï¿½..
+	// vertex fog : vertexï¿½ï¿½ depthï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ vertexï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ç´ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½.
+	//				ï¿½ï¿½ï¿½ï¿½ Ä«ï¿½Þ¶ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ùºï¿½ï¿½ï¿½ vertexï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ß½ï¿½ï¿½ï¿½ï¿½ï¿½ fogï¿½ï¿½ ï¿½ï¿½ï¿½Ï´Â°ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½È´ï¿½.
+	// pixel fog : pixelï¿½ï¿½ depthï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ fogï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ï´Â°ï¿½ ï¿½ï¿½ï¿½ï¿½.
 
-	// À§ÀÇ ¸ðµç fogÀÇ Â÷ÀÌ¸¦ º¸·Á¸é Å«ÆÇÀ» ÇÏ³ª ±×·Á¼­ fog¸¦ ³Ö¾îº¸¸é ½±°Ô °üÂûÇÒ ¼ö ÀÖ´Ù.
+	// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ fogï¿½ï¿½ ï¿½ï¿½ï¿½Ì¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Å«ï¿½ï¿½ï¿½ï¿½ ï¿½Ï³ï¿½ ï¿½×·ï¿½ï¿½ï¿½ fogï¿½ï¿½ ï¿½Ö¾îº¸ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½Ö´ï¿½.
 
 //	s_lpD3DDev->SetRenderState( D3DRS_FOGSTART,   *(DWORD*)&m_fFogStart);
 //	s_lpD3DDev->SetRenderState( D3DRS_FOGEND,     *(DWORD*)&m_fFogEnd);
@@ -417,22 +417,22 @@ void CN3Camera::Tick(float fFrm)
 	CN3Transform::Tick(fFrm);
 
 	////////////////////////////////////////////////////////////////////////
-	// View Matrix ¹× Projection Matrix Setting
+	// View Matrix ï¿½ï¿½ Projection Matrix Setting
 	
 	/////////////////////////////////////////////////////////////////////////////////////////////////////////
-	// 	__Vector3 m_vEye, m_vUp ->> m_vPos, m_vScale ·Î ´ë½ÅÇÑ´Ù.. Áß¿ä!!
+	// 	__Vector3 m_vEye, m_vUp ->> m_vPos, m_vScale ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ñ´ï¿½.. ï¿½ß¿ï¿½!!
 	m_Data.vEye = m_vPos;
 	m_Data.vAt  = m_vAt;
-	m_Data.vUp  = m_vScale; // Up Vector Ã³·³ ¾´´Ù.
+	m_Data.vUp  = m_vScale; // Up Vector Ã³ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½.
 	/////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 //	m_Data.fInverse_SineHalfOfFOV = 1.0f/sinf(m_Data.fFOV*0.5f);
 
-	::D3DXMatrixLookAtLH(&m_Data.mtxView, &m_Data.vEye, &m_Data.vAt, &m_Data.vUp); // Look At Àû¿ë
-	::D3DXMatrixInverse(&m_Data.mtxViewInverse, NULL, &m_Data.mtxView); // View Inverse Çà·Ä ±¸ÇÏ±â..
-	CN3Base::s_lpD3DDev->GetViewport(&m_Data.vp); // View port °¡Á®¿À±â...
+	::D3DXMatrixLookAtLH(&m_Data.mtxView, &m_Data.vEye, &m_Data.vAt, &m_Data.vUp); // Look At ï¿½ï¿½ï¿½ï¿½
+	::D3DXMatrixInverse(&m_Data.mtxViewInverse, NULL, &m_Data.mtxView); // View Inverse ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ï±ï¿½..
+	CN3Base::s_lpD3DDev->GetViewport(&m_Data.vp); // View port ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½...
 	
-	m_Data.fAspect = (float)m_Data.vp.Width / (float)m_Data.vp.Height; // Á¾È¾ºñ
+	m_Data.fAspect = (float)m_Data.vp.Width / (float)m_Data.vp.Height; // ï¿½ï¿½È¾ï¿½ï¿½
 	if(m_bOrtho)
 	{
 		float fL = (m_Data.vAt - m_Data.vEye).Magnitude() / 2.0f;

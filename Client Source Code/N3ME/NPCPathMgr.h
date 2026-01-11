@@ -36,11 +36,11 @@ protected:
 	__Vector3			m_RBActVertex;
 	
 public:
-	CMapMng*				m_pRefMapMng;				// ÁöÇü ÂüÁ¶ Æ÷ÀÎÅÍ..
-	std::list<CNPCPath*>	m_pPaths;					// npc pathµé...
+	CMapMng*				m_pRefMapMng;				// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½..
+	std::list<CNPCPath*>	m_pPaths;					// npc pathï¿½ï¿½...
 	CDlgMakeNPCPath*		m_pDlgMakePath;				// path make dialog..
-	bool					m_bActive;					// ÀÌ±â´ÉÀÌ È°¼ºÈ­ µÇ¾î ÀÖ´ÂÁö...1:È°¼ºÈ­, 0:ºñÈ°¼ºÈ­..
-	CNPCPath*				m_pCurrPath;					// ÇöÀç ¸¸µé°í ÀÖ´Â ±æ..or ¸¸µé·Á°í ÁØºñÇÑ ¹öÆÛ..
+	bool					m_bActive;					// ï¿½Ì±ï¿½ï¿½ï¿½ï¿½ È°ï¿½ï¿½È­ ï¿½Ç¾ï¿½ ï¿½Ö´ï¿½ï¿½ï¿½...1:È°ï¿½ï¿½È­, 0:ï¿½ï¿½È°ï¿½ï¿½È­..
+	CNPCPath*				m_pCurrPath;					// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ö´ï¿½ ï¿½ï¿½..or ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Øºï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½..
 
 	short**					m_pppRefEvent;
 	bool					m_bRenderMovableRegion;

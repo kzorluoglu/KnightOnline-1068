@@ -29,7 +29,7 @@ protected:
 	int							m_CellSize;
 	int							m_NumCell;
 	int							m_iLevel;
-	LPDIRECT3DVERTEXBUFFER8		m_pVB;
+	LPDIRECT3DVERTEXBUFFER9		m_pVB;
 	int							m_VBSize[MAX_PATCH_LEVEL];
 	
 	FanInfoList					m_FanInfoList;
@@ -39,11 +39,11 @@ protected:
 	bool*						m_pIsTileFull;
 
 	//lightmap...
-	LPDIRECT3DVERTEXBUFFER8		m_pLightMapVB;
+	LPDIRECT3DVERTEXBUFFER9		m_pLightMapVB;
 	CN3Texture**				m_pRefLightMapTex;
 	int							m_NumLightMapTex;
 
-	//TileÁö¿ø ¾ÈÇÏ´Â Ä«µåµéÀ» À§ÇÑ ¼³Á¤.
+	//Tileì§€ì› ì•ˆí•˜ëŠ” ì¹´ë“œë“¤ì„ ìœ„í•œ ì„¤ì •.
 	//LPDIRECT3DVERTEXBUFFER8		m_pFoolishTileVB;
 	//int							m_NumFoolishTile;
 

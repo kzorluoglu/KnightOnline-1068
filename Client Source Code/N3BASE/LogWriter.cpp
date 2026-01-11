@@ -42,7 +42,7 @@ void CLogWriter::Open(const std::string& szFN)
 
 	DWORD dwSizeHigh = 0;
 	DWORD dwSizeLow = ::GetFileSize(hFile, &dwSizeHigh);
-	if(dwSizeLow > 256000)  // ÆÄÀÏ »çÀÌÁî°¡ ³Ê¹« Å©¸é Áö¿î´Ù..
+	if(dwSizeLow > 256000)  // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½î°¡ ï¿½Ê¹ï¿½ Å©ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½..
 	{
 		CloseHandle(hFile);
 		::DeleteFile(s_szFileName.c_str());
@@ -50,7 +50,7 @@ void CLogWriter::Open(const std::string& szFN)
 		if(INVALID_HANDLE_VALUE == hFile) return;
 	}
 
-	::SetFilePointer(hFile, 0, NULL, FILE_END); // Ãß°¡ ÇÏ±â À§ÇØ¼­ ÆÄÀÏÀÇ ³¡À¸·Î ¿Å±â°í..
+	::SetFilePointer(hFile, 0, NULL, FILE_END); // ï¿½ß°ï¿½ ï¿½Ï±ï¿½ ï¿½ï¿½ï¿½Ø¼ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Å±ï¿½ï¿½..
 
 	char szBuff[1024];
 	SYSTEMTIME time;
@@ -79,7 +79,7 @@ void CLogWriter::Close()
 
 	if(hFile)
 	{
-		::SetFilePointer(hFile, 0, NULL, FILE_END); // Ãß°¡ ÇÏ±â À§ÇØ¼­ ÆÄÀÏÀÇ ³¡À¸·Î ¿Å±â°í..
+		::SetFilePointer(hFile, 0, NULL, FILE_END); // ï¿½ß°ï¿½ ï¿½Ï±ï¿½ ï¿½ï¿½ï¿½Ø¼ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Å±ï¿½ï¿½..
 
 		char szBuff[1024];
 		SYSTEMTIME time;
@@ -132,7 +132,7 @@ void CLogWriter::Write(const char *lpszFormat, ...)
 
 	if(hFile)
 	{
-		::SetFilePointer(hFile, 0, NULL, FILE_END); // Ãß°¡ ÇÏ±â À§ÇØ¼­ ÆÄÀÏÀÇ ³¡À¸·Î ¿Å±â°í..
+		::SetFilePointer(hFile, 0, NULL, FILE_END); // ï¿½ß°ï¿½ ï¿½Ï±ï¿½ ï¿½ï¿½ï¿½Ø¼ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Å±ï¿½ï¿½..
 
 		WriteFile(hFile, szFinal, iLength, &dwRWC, NULL);
 		CloseHandle(hFile);

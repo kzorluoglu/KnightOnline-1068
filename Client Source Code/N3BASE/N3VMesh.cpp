@@ -19,7 +19,7 @@ CN3VMesh::CN3VMesh()
 {
 	m_dwType |= OBJ_MESH_VECTOR3;
 	
-	m_pVertices = NULL; // Á¡ ¹öÆÛ
+	m_pVertices = NULL; // ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	m_pwIndices = NULL; // Index...
 
 	m_nVC = 0;
@@ -27,7 +27,7 @@ CN3VMesh::CN3VMesh()
 
 	m_vMin.Zero();
 	m_vMax.Zero();
-	m_fRadius = 0.0f; // ¹ÝÁö¸§
+	m_fRadius = 0.0f; // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 }
 
 CN3VMesh::~CN3VMesh()
@@ -49,7 +49,7 @@ void CN3VMesh::Release()
 
 	m_vMin.Zero();
 	m_vMax.Zero();
-	m_fRadius = 0.0f; // ¹ÝÁö¸§
+	m_fRadius = 0.0f; // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 }
 
 bool CN3VMesh::Load(HANDLE hFile)
@@ -59,10 +59,10 @@ bool CN3VMesh::Load(HANDLE hFile)
 	DWORD dwRWC = 0;
 
 	int nVC;
-	ReadFile(hFile, &nVC, 4, &dwRWC, NULL); // Á¡°¹¼ö ÀÐ±â..
+	ReadFile(hFile, &nVC, 4, &dwRWC, NULL); // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ð±ï¿½..
 	if(nVC > 0)
 	{
-		this->CreateVertices(nVC); // Vertex Buffer »ý¼º ¹× µ¥ÀÌÅÍ Ã¤¿ì±â
+		this->CreateVertices(nVC); // Vertex Buffer ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Ã¤ï¿½ï¿½ï¿½
 		ReadFile(hFile, m_pVertices, nVC * sizeof(__Vector3), &dwRWC, NULL);
 	}
 
@@ -70,11 +70,11 @@ bool CN3VMesh::Load(HANDLE hFile)
 	ReadFile(hFile, &nIC, 4, &dwRWC, NULL); // Index Count..
 	if(nIC > 0)
 	{
-		this->CreateIndex(nIC); // Vertex Buffer »ý¼º ¹× µ¥ÀÌÅÍ Ã¤¿ì±â
+		this->CreateIndex(nIC); // Vertex Buffer ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Ã¤ï¿½ï¿½ï¿½
 		ReadFile(hFile, m_pwIndices, nIC * 2, &dwRWC, NULL);
 	}
 
-	this->FindMinMax(); // ÃÖ´ë ÃÖ¼ÒÁ¡°ú Áß½ÉÁ¡°ú ¹ÝÁö¸§À» °è»êÇØ ÁØ´Ù..
+	this->FindMinMax(); // ï¿½Ö´ï¿½ ï¿½Ö¼ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ß½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ø´ï¿½..
 
 	return true;
 }
@@ -86,7 +86,7 @@ bool CN3VMesh::Save(HANDLE hFile)
 
 	DWORD dwRWC = 0;
 
-	WriteFile(hFile, &m_nVC, 4, &dwRWC, NULL); // Á¡°¹¼ö ÀÐ±â..
+	WriteFile(hFile, &m_nVC, 4, &dwRWC, NULL); // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ð±ï¿½..
 	if(m_nVC > 0) 
 	{
 		WriteFile(hFile, m_pVertices, m_nVC * sizeof(__Vector3), &dwRWC, NULL);
@@ -95,7 +95,7 @@ bool CN3VMesh::Save(HANDLE hFile)
 	WriteFile(hFile, &m_nIC, 4, &dwRWC, NULL); // Index Count..
 	if(m_nIC > 0)
 	{
-		WriteFile(hFile, m_pwIndices, m_nIC * 2, &dwRWC, NULL); // Index Buffer µ¥ÀÌÅÍ ¾²±â..
+		WriteFile(hFile, m_pwIndices, m_nIC * 2, &dwRWC, NULL); // Index Buffer ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½..
 	}
 
 	return true;
@@ -120,7 +120,7 @@ void CN3VMesh::CreateVertices(int nVC)
 		m_pVertices = new __Vector3[nVC];
 	}
 
-	memset(m_pVertices, 0, nVC * sizeof(__Vector3)); // Vertex Buffer »ý¼º
+	memset(m_pVertices, 0, nVC * sizeof(__Vector3)); // Vertex Buffer ï¿½ï¿½ï¿½ï¿½
 	m_nVC = nVC;
 }
 
@@ -135,7 +135,7 @@ void CN3VMesh::CreateIndex(int nIC)
 
 	delete [] m_pwIndices;
 	m_pwIndices = new WORD[nIC];
-	memset(m_pwIndices, 0, nIC * 2); // Index Buffer »ý¼º
+	memset(m_pwIndices, 0, nIC * 2); // Index Buffer ï¿½ï¿½ï¿½ï¿½
 	m_nIC = nIC;
 }
 
@@ -167,7 +167,7 @@ void CN3VMesh::CreateCube(const __Vector3 &vMin, const __Vector3 &vMax)
 	m_pwIndices[30] = 3; m_pwIndices[31] = 2; m_pwIndices[32] = 7;
 	m_pwIndices[33] = 3; m_pwIndices[34] = 7; m_pwIndices[35] = 6;
 
-	this->FindMinMax(); // Áß½ÉÁ¡°ú ¹ÝÁö¸§À» °è»êÇØ ÁØ´Ù..
+	this->FindMinMax(); // ï¿½ß½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ø´ï¿½..
 }
 
 
@@ -185,7 +185,7 @@ void CN3VMesh::Render(D3DCOLOR crLine)
 	s_lpD3DDev->SetTextureStageState(0, D3DTSS_COLOROP, D3DTOP_SELECTARG1);
 	s_lpD3DDev->SetTextureStageState(0, D3DTSS_COLORARG1, D3DTA_DIFFUSE);
 	s_lpD3DDev->SetTexture(0, NULL);
- 	s_lpD3DDev->SetVertexShader(FVF_CV);
+ 	s_lpD3DDev->SetFVF(FVF_CV);
 
 	__VertexColor vTs[3];
 	if(m_nIC)
@@ -238,7 +238,7 @@ void CN3VMesh::FindMinMax()
 		if(m_pVertices[i].z > m_vMax.z) m_vMax.z = m_pVertices[i].z;
 	}
 
-	// ÃÖ´ë ÃÖ¼Ò°ªÀ» °®°í ¹ÝÁö¸§ °è»êÇÑ´Ù..
+	// ï¿½Ö´ï¿½ ï¿½Ö¼Ò°ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ñ´ï¿½..
 	m_fRadius  = (m_vMax - m_vMin).Magnitude() * 0.5f;
 }
 
@@ -271,17 +271,17 @@ bool CN3VMesh::CheckCollision(const __Matrix44& MtxWorld, const __Vector3& v0, c
 		if(m_nIC > 0) { nCI0 = m_pwIndices[i*3+0]; nCI1 = m_pwIndices[i*3+1]; nCI2 = m_pwIndices[i*3+2]; }
 		else { nCI0 = i*3; nCI1 = i*3+1; nCI2 = i*3+2; }
 
-		if(false == ::_IntersectTriangle(vPos0, vDir, m_pVertices[nCI0], m_pVertices[nCI1], m_pVertices[nCI2], fT, fU, fV, &vColTmp)) continue; // Ã¹Â° º¤ÅÍ°¡ °ÉÄ¡¸é..
-		if(false == ::_IntersectTriangle(vPos1, vDir, m_pVertices[nCI0], m_pVertices[nCI1], m_pVertices[nCI2])) // µÑÂ°´Â ¾È °ÉÄ¡¸é..
+		if(false == ::_IntersectTriangle(vPos0, vDir, m_pVertices[nCI0], m_pVertices[nCI1], m_pVertices[nCI2], fT, fU, fV, &vColTmp)) continue; // Ã¹Â° ï¿½ï¿½ï¿½Í°ï¿½ ï¿½ï¿½Ä¡ï¿½ï¿½..
+		if(false == ::_IntersectTriangle(vPos1, vDir, m_pVertices[nCI0], m_pVertices[nCI1], m_pVertices[nCI2])) // ï¿½ï¿½Â°ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½Ä¡ï¿½ï¿½..
 		{
-			fDistTmp = (vPos0 - vColTmp).Magnitude(); // °Å¸®¸¦ Àçº¸°í..
+			fDistTmp = (vPos0 - vColTmp).Magnitude(); // ï¿½Å¸ï¿½ï¿½ï¿½ ï¿½çº¸ï¿½ï¿½..
 			if(fDistTmp < fDistClosest) 
 			{
 				fDistClosest = fDistTmp;
 				
 				if(pVCol) *pVCol = vColTmp * MtxWorld;
 
-				// ¹ý¼± º¤ÅÍ ±¸ÇÏ±â..
+				// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ï±ï¿½..
 				if(pVNormal)
 				{
 					(*pVNormal).Cross(m_pVertices[nCI1] - m_pVertices[nCI0], m_pVertices[nCI2] - m_pVertices[nCI1]);
@@ -293,7 +293,7 @@ bool CN3VMesh::CheckCollision(const __Matrix44& MtxWorld, const __Vector3& v0, c
 	}
 	if(fDistClosest != FLT_MAX) return true;
 
-	//µÎÁ¡ÀÌ Ãæµ¹¸Þ½Ã ¾È¿¡ ÀÖ´Â °æ¿ì..by lynus..
+	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½æµ¹ï¿½Þ½ï¿½ ï¿½È¿ï¿½ ï¿½Ö´ï¿½ ï¿½ï¿½ï¿½..by lynus..
 	__Vector3 tmpNormal;
 	float d;
 	for(i = 0; i < nFC; i++)
@@ -335,7 +335,7 @@ bool CN3VMesh::Pick(const __Matrix44& MtxWorld, const __Vector3& vPos, const __V
 
 		if(false == ::_IntersectTriangle(vPos2, vDir2, m_pVertices[nCI0], m_pVertices[nCI1], m_pVertices[nCI2])) continue;
 
-		// Ãæµ¹ÀÌ´Ù..
+		// ï¿½æµ¹ï¿½Ì´ï¿½..
 		if(pVCol)
 		{
 			float fT, fU, fV;
@@ -343,7 +343,7 @@ bool CN3VMesh::Pick(const __Matrix44& MtxWorld, const __Vector3& vPos, const __V
 			(*pVCol) *= MtxWorld;
 		}
 
-		// ¹ý¼± º¤ÅÍ ±¸ÇÏ±â..
+		// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ï±ï¿½..
 		if(pVNormal)
 		{
 			(*pVNormal).Cross(m_pVertices[nCI1] - m_pVertices[nCI0], m_pVertices[nCI2] - m_pVertices[nCI1]);
@@ -368,14 +368,14 @@ bool CN3VMesh::Import(CN3IMesh *pIMesh)
 	this->Release();
 	this->CreateVertices(nFC * 3);
 
-	for(int i = 0; i < nFC; i++) // Normal °ª ´Ù½Ã ¼¼ÆÃ..
+	for(int i = 0; i < nFC; i++) // Normal ï¿½ï¿½ ï¿½Ù½ï¿½ ï¿½ï¿½ï¿½ï¿½..
 	{
 		m_pVertices[i*3+0] = pvSrc[i*3+0];
 		m_pVertices[i*3+1] = pvSrc[i*3+1];
 		m_pVertices[i*3+2] = pvSrc[i*3+2];
 	}
 
-	m_szName = pIMesh->m_szName; // ÀÌ¸§..
+	m_szName = pIMesh->m_szName; // ï¿½Ì¸ï¿½..
 	return true;
 }
 #endif // end of _N3TOOL
@@ -410,7 +410,7 @@ void CN3VMesh::PartialColRender(int iCount, int* piIndices)
 	s_lpD3DDev->SetTextureStageState(0, D3DTSS_COLOROP, D3DTOP_SELECTARG1);
 	s_lpD3DDev->SetTextureStageState(0, D3DTSS_COLORARG1, D3DTA_DIFFUSE);
 	s_lpD3DDev->SetTexture(0, NULL);
- 	s_lpD3DDev->SetVertexShader(FVF_CV);
+ 	s_lpD3DDev->SetFVF(FVF_CV);
 
 	__VertexColor vTs[3];
 	if(iCount)

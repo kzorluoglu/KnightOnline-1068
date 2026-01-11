@@ -64,7 +64,7 @@ void CFloorDlg::OnOK()
 	int iCur = GetFloor();
 	if (iCur < 1)
 	{
-		AfxMessageBox("0º¸´Ù Å« ¼ö¸¦ ÀÔ·ÂÇÏ½Ê½Ã¿À....");
+		AfxMessageBox("0ï¿½ï¿½ï¿½ï¿½ Å« ï¿½ï¿½ï¿½ï¿½ ï¿½Ô·ï¿½ï¿½Ï½Ê½Ã¿ï¿½....");
 		return;
 	}
 	

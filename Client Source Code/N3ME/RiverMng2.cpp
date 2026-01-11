@@ -93,7 +93,7 @@ void CRiverMng2::Render()
 
 	D3DXMATRIX mtx;	D3DXMatrixIdentity(&mtx);
 		
-	hr = s_lpD3DDev->SetTransform(D3DTS_WORLD, &mtx); // ¿ùµå Çà·Ä Àû¿ë..
+	hr = s_lpD3DDev->SetTransform(D3DTS_WORLD, &mtx); // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½..
 
 	// backup state
 	DWORD dwAlphaEnable, dwSrcBlend, dwDestBlend;
@@ -128,8 +128,8 @@ void CRiverMng2::Render()
 //    s_lpD3DDev->SetTextureStageState( 1, D3DTSS_COLORARG2, D3DTA_CURRENT);	
 
 
-	s_lpD3DDev->SetVertexShader(D3DFVF_XYZ|D3DFVF_NORMAL|D3DFVF_DIFFUSE|D3DFVF_TEX2);
-	//s_lpD3DDev->SetVertexShader(D3DFVF_XYZ|D3DFVF_NORMAL|D3DFVF_DIFFUSE|D3DFVF_TEX1);
+	s_lpD3DDev->SetFVF(D3DFVF_XYZ|D3DFVF_NORMAL|D3DFVF_DIFFUSE|D3DFVF_TEX2);
+	//s_lpD3DDev->SetFVF(D3DFVF_XYZ|D3DFVF_NORMAL|D3DFVF_DIFFUSE|D3DFVF_TEX1);
 
 	int x,z;
 	__VertexRiver Vtx[4];	
@@ -395,7 +395,7 @@ void CRiverMng2::MakeTileVB(__VertexRiver *pVtx, int x, int z)
 	//DWORD color = 0xa0ffffff;
 	DWORD color = 0x80ffffff;
 
-	//if((x+z)%2==0)	// ½½·¡½¬ ¸ð¾çÀÇ Å¸ÀÏ..
+	//if((x+z)%2==0)	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ Å¸ï¿½ï¿½..
 	{
 		__Vector3 v;
 		v.x = x*TERRAIN_CELL_SIZE;
@@ -425,7 +425,7 @@ void CRiverMng2::MakeTileVB(__VertexRiver *pVtx, int x, int z)
 
 		return;
 	}
-//	if((x+z)%2==1)	//¹é½½·¹½¬ ¸ð¾çÀÇ Å¸ÀÏ..
+//	if((x+z)%2==1)	//ï¿½é½½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ Å¸ï¿½ï¿½..
 //	{
 //		__Vector3 v;
 //		v.x = x*TERRAIN_CELL_SIZE;

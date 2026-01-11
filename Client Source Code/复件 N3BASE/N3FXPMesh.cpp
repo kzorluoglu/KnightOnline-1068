@@ -84,7 +84,7 @@ void CN3FXPMesh::operator=(const CN3FXPMesh& fxPMesh)
 
 	if (m_iNumCollapses>0)
 	{
-		m_pCollapses = new __EdgeCollapse[m_iNumCollapses+1];	// +1À» ÇÑ ÀÌÀ¯ : PMeshInstance::SplitOne() ÇÔ¼ö¿¡¼­ ºÎµæÀÌÇÏ°Ô Æ÷ÀÎÅÍ°¡ °æ°è¼±À» °¡¸£Å°°Ô ÇØ¾ß ÇÏ´Â °æ¿ì°¡ ÀÖ¾î¼­.
+		m_pCollapses = new __EdgeCollapse[m_iNumCollapses+1];	// +1ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ : PMeshInstance::SplitOne() ï¿½Ô¼ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Îµï¿½ï¿½ï¿½ï¿½Ï°ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Í°ï¿½ ï¿½ï¿½è¼±ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Å°ï¿½ï¿½ ï¿½Ø¾ï¿½ ï¿½Ï´ï¿½ ï¿½ï¿½ì°¡ ï¿½Ö¾î¼­.
 		memcpy(m_pCollapses, fxPMesh.m_pCollapses, sizeof(__EdgeCollapse)*(m_iMaxNumIndices+1));
 	}
 
@@ -133,9 +133,9 @@ bool CN3FXPMesh::Load(HANDLE hFile)
 
 	if (m_iNumCollapses>0)
 	{
-		m_pCollapses = new __EdgeCollapse[m_iNumCollapses+1];	// +1À» ÇÑ ÀÌÀ¯ : PMeshInstance::SplitOne() ÇÔ¼ö¿¡¼­ ºÎµæÀÌÇÏ°Ô Æ÷ÀÎÅÍ°¡ °æ°è¼±À» °¡¸£Å°°Ô ÇØ¾ß ÇÏ´Â °æ¿ì°¡ ÀÖ¾î¼­.
+		m_pCollapses = new __EdgeCollapse[m_iNumCollapses+1];	// +1ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ : PMeshInstance::SplitOne() ï¿½Ô¼ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Îµï¿½ï¿½ï¿½ï¿½Ï°ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Í°ï¿½ ï¿½ï¿½è¼±ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Å°ï¿½ï¿½ ï¿½Ø¾ï¿½ ï¿½Ï´ï¿½ ï¿½ï¿½ì°¡ ï¿½Ö¾î¼­.
 		ReadFile(hFile, m_pCollapses, m_iNumCollapses*sizeof(__EdgeCollapse), &dwNum, NULL);
-		ZeroMemory(m_pCollapses + m_iNumCollapses, sizeof(__EdgeCollapse));	// À§ÀÇ +1À» ÇÑÀÌÀ¯¿Í °°À½. ¸¸¾àÀ» ´ëºñÇØ ¸¶Áö¸· µ¥ÀÌÅ¸¸¦ ÃÊ±âÈ­ ÇØµÒ
+		ZeroMemory(m_pCollapses + m_iNumCollapses, sizeof(__EdgeCollapse));	// ï¿½ï¿½ï¿½ï¿½ +1ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½. ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Å¸ï¿½ï¿½ ï¿½Ê±ï¿½È­ ï¿½Øµï¿½
 
 		bool bFixed = false;
 		for(int i = 0; i < m_iNumCollapses; i++)
@@ -148,7 +148,7 @@ bool CN3FXPMesh::Load(HANDLE hFile)
 		}
 #ifdef _DEBUG
 		if(bFixed)
-			::MessageBox(s_hWndBase, "Àß¸øµÈ Progressive Mesh ¼öÁ¤", m_szName.c_str(), MB_OK);
+			::MessageBox(s_hWndBase, "ï¿½ß¸ï¿½ï¿½ï¿½ Progressive Mesh ï¿½ï¿½ï¿½ï¿½", m_szName.c_str(), MB_OK);
 #endif
 	}
 	if (m_iTotalIndexChanges>0)
@@ -182,7 +182,7 @@ void CN3FXPMesh::Release()
 
 void CN3FXPMesh::Render()
 {
-	s_lpD3DDev->SetVertexShader(FVF_XYZCOLORT1);
+	s_lpD3DDev->SetFVF(FVF_XYZCOLORT1);
 
 	const int iPCToRender = 1000;	// primitive count to render
 	if(m_iMaxNumIndices > 3)
@@ -211,7 +211,7 @@ void CN3FXPMesh::FindMinMax()
 		return;
 	}
 
-	// ÃÖ¼Ò, ÃÖ´ë Á¡À» Ã£´Â´Ù.
+	// ï¿½Ö¼ï¿½, ï¿½Ö´ï¿½ ï¿½ï¿½ï¿½ï¿½ Ã£ï¿½Â´ï¿½.
 	m_vMin.Set(FLT_MAX, FLT_MAX, FLT_MAX);
 	m_vMax.Set(-FLT_MAX, -FLT_MAX, -FLT_MAX);
 
@@ -226,7 +226,7 @@ void CN3FXPMesh::FindMinMax()
 		if(m_pColorVertices[i].z > m_vMax.z) m_vMax.z = m_pColorVertices[i].z;
 	}
 
-	// ÃÖ´ë ÃÖ¼Ò°ªÀ» °®°í ¹ÝÁö¸§ °è»êÇÑ´Ù..
+	// ï¿½Ö´ï¿½ ï¿½Ö¼Ò°ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ñ´ï¿½..
 	m_fRadius  = (m_vMax - m_vMin).Magnitude() * 0.5f;
 }
 

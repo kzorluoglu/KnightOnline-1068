@@ -52,7 +52,7 @@ void CDlgBar::OnButtonBasepath()
 	CString strPath;
 	if (pWnd) pWnd->GetWindowText(strPath);
 	char szFolder[_MAX_PATH] = "";
-	char szTitle[] = "¸®¼Ò½º base°æ·Î¸¦ ¼±ÅÃÇØÁÖ¼¼¿ä.";
+	char szTitle[] = "ï¿½ï¿½ï¿½Ò½ï¿½ baseï¿½ï¿½Î¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö¼ï¿½ï¿½ï¿½.";
 
     BROWSEINFO bi;
 	LPCITEMIDLIST lpidl;

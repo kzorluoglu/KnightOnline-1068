@@ -18,19 +18,19 @@
 
 struct __AlphaPrimitive
 {
-	float				fCameraDistance;	// Ä«¸Þ¶ó¿ÍÀÇ °Å¸®..
+	float				fCameraDistance;	// Ä«ï¿½Þ¶ï¿½ï¿½ï¿½ï¿½ ï¿½Å¸ï¿½..
 	DWORD				dwBlendSrc;			
 	DWORD				dwBlendDest;
-	int 				nRenderFlags;		// ·»´õ¸µ ÇÃ·¡±×.. RF_... ÂüÁ¶..
+	int 				nRenderFlags;		// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ã·ï¿½ï¿½ï¿½.. RF_... ï¿½ï¿½ï¿½ï¿½..
 	LPDIRECT3DTEXTURE8	lpTex;				// Texture pointer
 	DWORD				dwFVF;				// flexible vertex format
 	D3DPRIMITIVETYPE	ePrimitiveType;	// Primitive Type 
 	int					nPrimitiveCount;	// PrimitiveCount
 	DWORD				dwPrimitiveSize;	// Primitive Size .. stream 0 stride
-	BOOL				bUseVB;				// ¹öÅØ½º ¹öÆÛ, ÀÎµ¦½º ¹öÆÛ¸¦ »ç¿ëÇÒ °ÍÀÎ°¡ ¾Æ´Ñ°¡
-	const void*			pwIndices;			// ¸¸¾à Index ±â¹ÝÀÌ¸é... NULL ÀÌ ¾Æ´Ñ°ÍÀ» ³ÖÀ¸¸é µÈ´Ù.
+	BOOL				bUseVB;				// ï¿½ï¿½ï¿½Ø½ï¿½ ï¿½ï¿½ï¿½ï¿½, ï¿½Îµï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Û¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Î°ï¿½ ï¿½Æ´Ñ°ï¿½
+	const void*			pwIndices;			// ï¿½ï¿½ï¿½ï¿½ Index ï¿½ï¿½ï¿½ï¿½Ì¸ï¿½... NULL ï¿½ï¿½ ï¿½Æ´Ñ°ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½È´ï¿½.
 	int					nVertexCount;
-	const void*			pVertices;			// »ï°¢Çü.. º¤ÅÍ ÇüÀÌÁö¸¸.. °­Á¦ Çüº¯È¯À» ÅëÇØ ´Ù¾çÇÑ Á¡Çü½ÄÀÌ µé¾î¿Àµµ·Ï ½á¾ß ÇÑ´Ù..
+	const void*			pVertices;			// ï¿½ï°¢ï¿½ï¿½.. ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½.. ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½È¯ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ù¾ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½Ñ´ï¿½..
 	__Matrix44			MtxWorld;			// Matrix
 };
 
@@ -39,8 +39,8 @@ const int MAX_ALPHAPRIMITIVE_BUFFER = 1024;
 class CN3AlphaPrimitiveManager
 {
 protected:
-	int					m_nToDrawCount; // ±×·Á¾ß ÇÒ ¹öÆÛ °¹¼ö 
-	__AlphaPrimitive	m_Buffers[MAX_ALPHAPRIMITIVE_BUFFER]; // ÇÁ¸®¹ÌÆ¼ºê ¹öÆÛ..
+	int					m_nToDrawCount; // ï¿½×·ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ 
+	__AlphaPrimitive	m_Buffers[MAX_ALPHAPRIMITIVE_BUFFER]; // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ¼ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½..
 
 public:
 	int					ToDrawCount() { return m_nToDrawCount; }
@@ -48,7 +48,7 @@ public:
 
 	void		Render();
 
-	static int SortByCameraDistance(const void *pArg1, const void *pArg2); // Á¤·Ä ÇÔ¼ö..
+	static int SortByCameraDistance(const void *pArg1, const void *pArg2); // ï¿½ï¿½ï¿½ï¿½ ï¿½Ô¼ï¿½..
 	
 	CN3AlphaPrimitiveManager();
 	virtual ~CN3AlphaPrimitiveManager();

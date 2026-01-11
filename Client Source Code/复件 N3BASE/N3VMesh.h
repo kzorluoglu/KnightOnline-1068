@@ -16,19 +16,19 @@ class CN3IMesh;
 class CN3VMesh : public CN3Base
 {
 protected:
-	__Vector3*	m_pVertices; // Á¡ ¹öÆÛ
-	int		m_nVC; // Á¡ °¹¼ö
+	__Vector3*	m_pVertices; // ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+	int		m_nVC; // ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 
 	WORD*	m_pwIndices; // Index...
 	int		m_nIC; // Index Count
 
-	__Vector3 m_vCenter; // Mesh Vertices ÀÇ Áß°£Á¡..
-	float m_fRadius; // ¹ÝÁö¸§
+	__Vector3 m_vCenter; // Mesh Vertices ï¿½ï¿½ ï¿½ß°ï¿½ï¿½ï¿½..
+	float m_fRadius; // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 
 public:
 	bool Import(CN3IMesh *pIMesh);
-	bool CheckCollision(const __Matrix44* pMtxWorld, int xScreen, int yScreen); // Screen ÁÂÇ¥¿Í Local ÁÂÇ¥¸¦ ÅëÇÑ Ãæµ¹ Ã¼Å© ÆÇÁ¤..
-	bool CheckCollision(const __Matrix44* pMtxWorld, __Vector3& v0, __Vector3& v1, __Vector3 &vCollision, __Vector3 &vNormal); // Local ÁÂÇ¥¸¦ ÅëÇÑ Ãæµ¹ Ã¼Å© ÆÇÁ¤..
+	bool CheckCollision(const __Matrix44* pMtxWorld, int xScreen, int yScreen); // Screen ï¿½ï¿½Ç¥ï¿½ï¿½ Local ï¿½ï¿½Ç¥ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½æµ¹ Ã¼Å© ï¿½ï¿½ï¿½ï¿½..
+	bool CheckCollision(const __Matrix44* pMtxWorld, __Vector3& v0, __Vector3& v1, __Vector3 &vCollision, __Vector3 &vNormal); // Local ï¿½ï¿½Ç¥ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½æµ¹ Ã¼Å© ï¿½ï¿½ï¿½ï¿½..
 	float Radius() { return m_fRadius; }
 	__Vector3 Center() { return m_vCenter; }
 	void CalcRadiusAndCenter();

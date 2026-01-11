@@ -125,8 +125,8 @@ void CDlgRename::OnBConvert()
 		}
 		if(nF2 < 0) continue;
 		CString szDir = szPath.Left(nF2+1);
-		CString szExt = szPath.Mid(nF + 1, szPath.GetLength() - nF); // È®ÀåÀÚ..
-		CString szNew = szDir + szName; // ÀÌ¸§
+		CString szExt = szPath.Mid(nF + 1, szPath.GetLength() - nF); // È®ï¿½ï¿½ï¿½ï¿½..
+		CString szNew = szDir + szName; // ï¿½Ì¸ï¿½
 
 		CString szAdd;
 		if(nDigit == 0) szAdd.Format("%.1d.%s", nSeq, szExt);

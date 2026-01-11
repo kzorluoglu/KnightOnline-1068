@@ -41,12 +41,12 @@ function Find-Devenv2017 {
 
 $devenv = Find-Devenv2017
 
-$dx8Root = Join-Path $repoRoot "third_party/dx8sdk/DXF"
-if (Test-Path $dx8Root) {
-  $env:INCLUDE = (Join-Path $dx8Root "include") + ";" + $env:INCLUDE
-  $env:LIB = (Join-Path $dx8Root "lib") + ";" + $env:LIB
+$dx9Root = Join-Path $repoRoot "third_party/dx9sdk"
+if (Test-Path $dx9Root) {
+  $env:INCLUDE = (Join-Path $dx9Root "Include") + ";" + $env:INCLUDE
+  $env:LIB = (Join-Path $dx9Root "Lib") + ";" + $env:LIB
 } else {
-  Write-Warning "DX8 SDK path not found at $dx8Root. Build will likely fail unless DirectX 8 SDK is installed and on INCLUDE/LIB."
+  Write-Warning "DX9 SDK path not found at $dx9Root. Build will likely fail unless DirectX 9 SDK is installed and on INCLUDE/LIB."
 }
 
 function Fix-LauncherVcxproj {
@@ -170,7 +170,8 @@ function Fix-WarFareVcxproj {
           "$ProjectDir",
           "$ProjectDir\..\N3BASE",
           "$ProjectDir\..\JPEG",
-          "$repoRoot\third_party\dx8sdk\DXF\include"
+          "$repoRoot\third_party\dx8sdk\DXF\include",
+          "$repoRoot\third_party\dx9sdk\Include"
         )
         
         $newIncludePath = ($neededIncludes | Where-Object { $_ -and (Test-Path $_) }) -join ";"
@@ -247,11 +248,20 @@ function Fix-WarFareVcxproj {
       # Add linker library directories
       $linkNodes = $vcxproj.SelectNodes("//ns:ItemDefinitionGroup//ns:Link", $ns)
       foreach ($linkNode in $linkNodes) {
-        # Add legacy_stdio_definitions.lib for old __snprintf symbols
+        # Add legacy_stdio_definitions.lib for old __snprintf symbols and DX9 libs
         $addDepNode = $linkNode.SelectSingleNode("ns:AdditionalDependencies", $ns)
-        if ($addDepNode -and $addDepNode.InnerText -notlike "*legacy_stdio_definitions*") {
-          $addDepNode.InnerText = "legacy_stdio_definitions.lib;" + $addDepNode.InnerText
-          $modified = $true
+        if ($addDepNode) {
+          $currentDeps = $addDepNode.InnerText
+          $newDeps = ""
+          if ($currentDeps -notlike "*legacy_stdio_definitions*") { $newDeps += "legacy_stdio_definitions.lib;" }
+          if ($currentDeps -notlike "*d3d9.lib*") { $newDeps += "d3d9.lib;" }
+          if ($currentDeps -notlike "*d3dx9.lib*") { $newDeps += "d3dx9.lib;" }
+          if ($currentDeps -notlike "*DxErr.lib*") { $newDeps += "DxErr.lib;" }
+          
+          if ($newDeps) {
+            $addDepNode.InnerText = $newDeps + $currentDeps
+            $modified = $true
+          }
         }
 
         $libDirNode = $linkNode.SelectSingleNode("ns:AdditionalLibraryDirectories", $ns)
@@ -260,10 +270,11 @@ function Fix-WarFareVcxproj {
           $linkNode.AppendChild($libDirNode) | Out-Null
         }
         $dx8LibPath = "$repoRoot\third_party\dx8sdk\DXF\lib"
+        $dx9LibPath = "$repoRoot\third_party\dx9sdk\Lib\x86"
         $ucrtLibPath = "C:\Program Files (x86)\Windows Kits\10\Lib\10.0.10240.0\ucrt\x86"
         $umLibPath = "C:\Program Files (x86)\Windows Kits\10\Lib\10.0.10240.0\um\x86"
-        if ($libDirNode.InnerText -notlike "*dx8sdk*") {
-          $libDirNode.InnerText = "$dx8LibPath;$ucrtLibPath;$umLibPath;%(AdditionalLibraryDirectories)"
+        if ($libDirNode.InnerText -notlike "*dx9sdk*") {
+          $libDirNode.InnerText = "$dx9LibPath;$dx8LibPath;$ucrtLibPath;$umLibPath;%(AdditionalLibraryDirectories)"
           $modified = $true
         }
 
@@ -463,6 +474,57 @@ foreach ($target in $targetsToBuild) {
   Build-Dsw -Name $target -DswRelPath $spec.Dsw -Platform $Platform
 }
 
+function Copy-Executable {
+  param(
+    [string]$Label,
+    [string[]]$SourcePaths,
+    [string]$DestinationPath
+  )
+
+  foreach ($src in $SourcePaths) {
+    $fullSrc = Join-Path $repoRoot $src
+    if (Test-Path $fullSrc) {
+      $destFull = Join-Path $repoRoot $DestinationPath
+      $destDir = Split-Path $destFull -Parent
+      if (-not (Test-Path $destDir)) {
+        New-Item -ItemType Directory -Path $destDir | Out-Null
+      }
+      Copy-Item -Path $fullSrc -Destination $destFull -Force
+      Write-Host ("   Copied {0} to {1}" -f $Label, $DestinationPath)
+      return
+    }
+  }
+
+  Write-Warning ("Could not find built {0}. Tried: {1}" -f $Label, ($SourcePaths -join ", "))
+}
+
+function Copy-BuiltOutputs {
+  param(
+    [string]$Target
+  )
+
+  switch ($Target.ToLower()) {
+    "warfare" {
+      Copy-Executable -Label "KnightOnLine.exe" -SourcePaths @(
+        "Client Source Code/WarFare/Release/KnightOnLine.exe",
+        "Client Source Code/WarFare/Release/WarFare.exe",
+        "Client Source Code/WarFare/KnightOnLine.exe"
+      ) -DestinationPath $dswSpecs["WarFare"].Output
+    }
+    "launcher" {
+      Copy-Executable -Label "Launcher.exe" -SourcePaths @(
+        "Client Source Code/Launcher/Launcher/Release/Launcher.exe",
+        "Client Source Code/Launcher/Release/Launcher.exe"
+      ) -DestinationPath $dswSpecs["Launcher"].Output
+    }
+    "option" {
+      Copy-Executable -Label "Option.exe" -SourcePaths @(
+        "Client Source Code/Option/Release/Option.exe"
+      ) -DestinationPath $dswSpecs["Option"].Output
+    }
+  }
+}
+
 function Copy-GameData {
   param(
     [string]$ExecutableDir
@@ -473,11 +535,11 @@ function Copy-GameData {
   
   if (Test-Path $dataSource) {
     if (Test-Path $dataDest) {
-      Write-Host "  → Data folder already exists, skipping copy"
+      Write-Host "   Data folder already exists, skipping copy"
     } else {
-      Write-Host "  → Copying game data files to output directory..."
+      Write-Host "   Copying game data files to output directory..."
       Copy-Item -Path $dataSource -Destination $dataDest -Recurse -Force
-      Write-Host "  → Game data files copied successfully"
+      Write-Host "   Game data files copied successfully"
     }
   } else {
     Write-Warning "Game data source not found at $dataSource"
@@ -491,6 +553,7 @@ foreach ($target in $targetsToBuild) {
     $label = if ($target -ieq "WarFare") { "KnightOnline (WarFare)" } else { $target }
     $outputPath = $dswSpecs[$target].Output
     Write-Host ("  {0}: {1}" -f $label, $outputPath)
+    Copy-BuiltOutputs -Target $target
     
     # Copy game data for WarFare client
     if ($target -ieq "WarFare") {

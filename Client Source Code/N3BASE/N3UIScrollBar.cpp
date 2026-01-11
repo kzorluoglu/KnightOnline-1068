@@ -39,9 +39,9 @@ void CN3UIScrollBar::Release()
 bool CN3UIScrollBar::Load(HANDLE hFile)
 {
 	if (false == CN3UIBase::Load(hFile)) return false;
-	__ASSERT(NULL == m_pTrackBarRef, "scrollbar°¡ ÃÊ±âÈ­µÇ¾î ÀÖÁö ¾Ê¾Æ¿©");
+	__ASSERT(NULL == m_pTrackBarRef, "scrollbarï¿½ï¿½ ï¿½Ê±ï¿½È­ï¿½Ç¾ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ê¾Æ¿ï¿½");
 
-	// m_pTrackBarRef, m_pBtnRef  ¼³Á¤ÇÏ±â
+	// m_pTrackBarRef, m_pBtnRef  ï¿½ï¿½ï¿½ï¿½ï¿½Ï±ï¿½
 	for(UIListItor itor = m_Children.begin(); m_Children.end() != itor; ++itor)
 	{
 		CN3UIBase* pChild = (*itor);
@@ -62,7 +62,7 @@ bool CN3UIScrollBar::Load(HANDLE hFile)
 void CN3UIScrollBar::SetRegion(const RECT& Rect)
 {
 	CN3UIBase::SetRegion(Rect);
-	// ¿ì¼± ÀÓ½Ã·Î ½ºÅ©·Ñ ¿µ¿ª Å©±â¿Í °°°Ô ¹èÄ¡
+	// ï¿½ì¼± ï¿½Ó½Ã·ï¿½ ï¿½ï¿½Å©ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ Å©ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ä¡
 //	for(UIListItor itor = m_Children.begin(); m_Children.end() != itor; ++itor)
 //	{
 //		(*itor)->SetRegion(Rect);
@@ -105,9 +105,9 @@ void CN3UIScrollBar::SetStyle(DWORD dwStyle)
 void CN3UIScrollBar::operator = (const CN3UIScrollBar& other)
 {
 	CN3UIBase::operator = (other);
-	m_iLineSize = other.m_iLineSize;		// ¹öÆ°À» ´­·¶À»¶§ trackbar°¡ ¿òÁ÷¿©Áö´Â Å©±â
+	m_iLineSize = other.m_iLineSize;		// ï¿½ï¿½Æ°ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ trackbarï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Å©ï¿½ï¿½
 
-	// m_pTrackBarRef, m_pBtnRef  ¼³Á¤ÇÏ±â
+	// m_pTrackBarRef, m_pBtnRef  ï¿½ï¿½ï¿½ï¿½ï¿½Ï±ï¿½
 	for(UIListItor itor = m_Children.begin(); m_Children.end() != itor; ++itor)
 	{
 		CN3UIBase* pChild = (*itor);
@@ -126,18 +126,18 @@ void CN3UIScrollBar::operator = (const CN3UIScrollBar& other)
 
 void CN3UIScrollBar::CreateTrackBarAndBtns()
 {
-	__ASSERT(NULL == m_pTrackBarRef, "±¸¼º¿ä¼Ò°¡ ÀÌ¹Ì ÇÒ´çµÇ¾î ÀÖ¾î¿ä");
+	__ASSERT(NULL == m_pTrackBarRef, "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ò°ï¿½ ï¿½Ì¹ï¿½ ï¿½Ò´ï¿½Ç¾ï¿½ ï¿½Ö¾ï¿½ï¿½");
 	int i;
 	for (i=0; i<NUM_BTN_TYPE; ++i)
 	{
 		m_pBtnRef[i] = new CN3UIButton();
 		m_pBtnRef[i]->Init(this);
-		m_pBtnRef[i]->SetReserved(i);		// »óÅÂ ¹øÈ£(eBTN_TYPE) ÇÒ´ç.
+		m_pBtnRef[i]->SetReserved(i);		// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È£(eBTN_TYPE) ï¿½Ò´ï¿½.
 		m_pBtnRef[i]->CreateImages();
 	}
 	
 	m_pTrackBarRef = new CN3UITrackBar();
 	m_pTrackBarRef->Init(this);
-	m_pTrackBarRef->CreateImages();			// trackbarÀÇ ÀÌ¹ÌÁö »ý¼º
+	m_pTrackBarRef->CreateImages();			// trackbarï¿½ï¿½ ï¿½Ì¹ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 }
 #endif

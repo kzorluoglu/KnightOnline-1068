@@ -71,7 +71,7 @@ void CDTex::Init()
 
 //
 //	SetAttr...
-//	Å¸ÀÏÇÏ³ª¿¡ ¼Ó¼º Áý¾î ³Ö±â..
+//	Å¸ï¿½ï¿½ï¿½Ï³ï¿½ï¿½ï¿½ ï¿½Ó¼ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ö±ï¿½..
 //
 void CDTex::SetAttr(int x, int y, DTEXATTR attr)
 {

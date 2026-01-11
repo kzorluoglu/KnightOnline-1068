@@ -54,22 +54,22 @@ public:
 
 // Operations
 public:
-	void UpdateInfo();		// ¸ðµç Á¤º¸ °»½Å
-	void UpdateUIBaseInfo();			// BaseÁ¤º¸ °»½Å
-	void UpdateUIImageInfo();			// ImageÁ¤º¸ °»½Å
-	void UpdateUIStringInfo();			// StringÁ¤º¸ °»½Å
-	void UpdateUIListInfo();			// ListÁ¤º¸ °»½Å
-	void UpdateUIButtonInfo();			// ButtonÁ¤º¸ °»½Å
-	void UpdateUIEditInfo();			// EditÁ¤º¸ °»½Å
-	void UpdateUIProgressInfo();		// ProgressÁ¤º¸ °»½Å
-	void UpdateUITrackBarInfo();		// TrackbarÁ¤º¸ °»½Å
-	void UpdateUIScrollBarInfo();		// ScrollBarÁ¤º¸ °»½Å
-	void UpdateUIAreaInfo();			// AreaÁ¤º¸ °»½Å
-	void UpdateUIIconSlotInfo();		// IconSlot Á¤º¸ °»½Å(¸®ÆæÆ® Àü¿ë)
-	void UpdateUIStaticInfo();			// Static Á¤º¸ °»½Å
+	void UpdateInfo();		// ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+	void UpdateUIBaseInfo();			// Baseï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+	void UpdateUIImageInfo();			// Imageï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+	void UpdateUIStringInfo();			// Stringï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+	void UpdateUIListInfo();			// Listï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+	void UpdateUIButtonInfo();			// Buttonï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+	void UpdateUIEditInfo();			// Editï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+	void UpdateUIProgressInfo();		// Progressï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+	void UpdateUITrackBarInfo();		// Trackbarï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+	void UpdateUIScrollBarInfo();		// ScrollBarï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+	void UpdateUIAreaInfo();			// Areaï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+	void UpdateUIIconSlotInfo();		// IconSlot ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½(ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ï¿½ï¿½ï¿½)
+	void UpdateUIStaticInfo();			// Static ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 protected:
-	void Resize();			// È­¸é ±¸¼º¿ä¼Ò Àç¹èÄ¡
-	void SetPropertyListPos(CPropertyList* pList, CPoint& ptWndPos);	// ±¸¼º¿ä¼Ò Æ¯Á¤À§Ä¡¿¡ ¹èÄ¡ÇÏ´Â ÇÔ¼ö
+	void Resize();			// È­ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ä¡
+	void SetPropertyListPos(CPropertyList* pList, CPoint& ptWndPos);	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Æ¯ï¿½ï¿½ï¿½ï¿½Ä¡ï¿½ï¿½ ï¿½ï¿½Ä¡ï¿½Ï´ï¿½ ï¿½Ô¼ï¿½
 public:
 // Overrides
 	// ClassWizard generated virtual function overrides

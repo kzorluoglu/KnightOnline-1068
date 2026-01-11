@@ -23,10 +23,10 @@ public:
 public:
 	int		GetNumStar() const {return m_iCurNumStar;}
 protected:
-	int		m_iCurNumStar;		// ÇöÀç ¶°ÀÖ´Â º°ÀÇ ¼ö
-	int		m_iNextNumStar;		// ¾ÕÀ¸·Î º¸ÀÏ º° ¼ýÀÚ
-	float	m_fAddTime;			// º° ÇÏ³ª°¡ Ãß°¡µÇ°Å³ª ¾ø¾îÁö´Â ½Ã°£ °£°Ý
-	BOOL	m_bIncrease;		// º°ÀÌ Áõ°¡ÇÒ °ÍÀÎ°¡ °¨¼ÒÇÒ °ÍÀÎ°¡
+	int		m_iCurNumStar;		// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ö´ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½
+	int		m_iNextNumStar;		// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+	float	m_fAddTime;			// ï¿½ï¿½ ï¿½Ï³ï¿½ï¿½ï¿½ ï¿½ß°ï¿½ï¿½Ç°Å³ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ã°ï¿½ ï¿½ï¿½ï¿½ï¿½
+	BOOL	m_bIncrease;		// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Î°ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Î°ï¿½
 	__VertexXyzColor	m_Stars[MAX_STAR];
 // Operations
 public:

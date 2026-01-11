@@ -28,15 +28,15 @@ protected:
 		void	MoveOffset(int iOffsetX, int iOffsetY);
 		void	SetSize(int iSize);
 		void	SetColor(D3DCOLOR color);
-		void	Render(LPDIRECT3DDEVICE8 lpD3DDev);
-		void	InitFlckering();		// ±ô¹ÚÀÓ ÃÊ±âÈ­..
-		BOOL	m_bVisible;				// º¸ÀÌ³ª
+		void	Render(LPDIRECT3DDEVICE9 lpD3DDev);
+		void	InitFlckering();		// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ê±ï¿½È­..
+		BOOL	m_bVisible;				// ï¿½ï¿½ï¿½Ì³ï¿½
 	protected:
-		int		m_iSize;				// caretÀÇ pixel Å©±â
-		float	m_fFlickerTimePrev;	// ±ô¹ÚÀÌ±â À§ÇÑ ½Ã°£..
+		int		m_iSize;				// caretï¿½ï¿½ pixel Å©ï¿½ï¿½
+		float	m_fFlickerTimePrev;	// ï¿½ï¿½ï¿½ï¿½ï¿½Ì±ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ã°ï¿½..
 		bool	m_bFlickerStatus;
-//		POINT	m_ptPos;				// caretÀÇ pixel ÁÂÇ¥
-		__VertexTransformedColor	m_pVB[2];	// vertex ¹öÆÛ
+//		POINT	m_ptPos;				// caretï¿½ï¿½ pixel ï¿½ï¿½Ç¥
+		__VertexTransformedColor	m_pVB[2];	// vertex ï¿½ï¿½ï¿½ï¿½
 	};
 
 // Attributes
@@ -63,12 +63,12 @@ public:
 
 protected:
 	static CN3Caret		s_Caret;
-	UINT				m_nCaretPos;		// ±ÛÀÚ ´ÜÀ§À§Ä¡(byte´ÜÀ§)
-	int					m_iCompLength;		// ÇöÀç Á¶ÇÕÁßÀÎ ±ÛÀÚÀÇ byte¼ö 0ÀÌ¸é Á¶ÇÕÁßÀÌ ¾Æ´Ï´Ù.
-	int					m_iMaxStrLen;		// ¾µ¼ö ÀÖ´Â ±Û¾¾ÀÇ ÃÖ´ë ¼ýÀÚ
+	UINT				m_nCaretPos;		// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä¡(byteï¿½ï¿½ï¿½ï¿½)
+	int					m_iCompLength;		// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ byteï¿½ï¿½ 0ï¿½Ì¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Æ´Ï´ï¿½.
+	int					m_iMaxStrLen;		// ï¿½ï¿½ï¿½ï¿½ ï¿½Ö´ï¿½ ï¿½Û¾ï¿½ï¿½ï¿½ ï¿½Ö´ï¿½ ï¿½ï¿½ï¿½ï¿½
 	std::string			m_szPassword;		// password buffer
 
-	CN3SndObj*			m_pSnd_Typing;		// Å¸ÀÌÇÎ ÇÒ ¶§ ³ª´Â ¼Ò¸®
+	CN3SndObj*			m_pSnd_Typing;		// Å¸ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ò¸ï¿½
 // Operations
 public:
 	virtual const std::string&	GetString();
@@ -79,14 +79,14 @@ public:
 	virtual void		Release();
 	virtual void		SetVisible(bool bVisible);
 	virtual DWORD		MouseProc(DWORD dwFlags, const POINT& ptCur, const POINT& ptOld);
-	virtual BOOL		MoveOffset(int iOffsetX, int iOffsetY);		// À§Ä¡ ÁöÁ¤(chilrenÀÇ À§Ä¡µµ °°ÀÌ ¹Ù²Ù¾îÁØ´Ù. caretÀ§Ä¡µµ °°ÀÌ ¹Ù²Ù¾îÁÜ.)
-	void				KillFocus();			// Æ÷Ä¿½º¸¦ ¾ø¾Ø´Ù.
-	bool				SetFocus();				// Æ÷Ä¿½º¸¦ ÁØ´Ù.
+	virtual BOOL		MoveOffset(int iOffsetX, int iOffsetY);		// ï¿½ï¿½Ä¡ ï¿½ï¿½ï¿½ï¿½(chilrenï¿½ï¿½ ï¿½ï¿½Ä¡ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ù²Ù¾ï¿½ï¿½Ø´ï¿½. caretï¿½ï¿½Ä¡ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ù²Ù¾ï¿½ï¿½ï¿½.)
+	void				KillFocus();			// ï¿½ï¿½Ä¿ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ø´ï¿½.
+	bool				SetFocus();				// ï¿½ï¿½Ä¿ï¿½ï¿½ï¿½ï¿½ ï¿½Ø´ï¿½.
 	bool				HaveFocus() const {return (this == s_pFocusedEdit);}
-	void				SetCaretPos(UINT nPos);	//¸î¹øÂ° ¹ÙÀÌÆ®¿¡ ÀÖ´ÂÁö ¼³Á¤ÇÑ´Ù.
-	void				SetMaxString(int iMax);		// ÃÖ´ë ±Û¾¾ ¼ö¸¦ Á¤ÇØÁØ´Ù.
+	void				SetCaretPos(UINT nPos);	//ï¿½ï¿½ï¿½Â° ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½Ö´ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ñ´ï¿½.
+	void				SetMaxString(int iMax);		// ï¿½Ö´ï¿½ ï¿½Û¾ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ø´ï¿½.
 protected:
-	BOOL				IsHangulMiddleByte( const char* lpszStr, int iPos );	// ÇÑ±ÛÀÇ 2¹øÂ° ¹ÙÀÌÆ® ±ÛÀÚÀÎ°¡?
+	BOOL				IsHangulMiddleByte( const char* lpszStr, int iPos );	// ï¿½Ñ±ï¿½ï¿½ï¿½ 2ï¿½ï¿½Â° ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ï¿½ï¿½ï¿½ï¿½Î°ï¿½?
 
 #ifdef _N3TOOL
 public:	

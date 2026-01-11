@@ -25,7 +25,7 @@ CN3Transform::~CN3Transform()
 
 void CN3Transform::Release()
 {
-	m_vPos.Set(0,0,0); // À§Ä¡, ½ºÄÉÀÏ, È¸Àü º¤ÅÍ. 
+	m_vPos.Set(0,0,0); // ï¿½ï¿½Ä¡, ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½, È¸ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½. 
 	m_vScale.Set(1,1,1);
 	__Vector3 vv(1,1,1);
 	m_qRot.Identity();
@@ -34,7 +34,7 @@ void CN3Transform::Release()
 
 	m_Matrix.Identity();
 
-	// ¿¡´Ï¸ÞÀÌ¼Ç Å°
+	// ï¿½ï¿½ï¿½Ï¸ï¿½ï¿½Ì¼ï¿½ Å°
 	m_fFrmCur = 0;
 	m_fFrmWhole = 0;
 
@@ -50,11 +50,11 @@ bool CN3Transform::Load(HANDLE hFile)
 	CN3Base::Load(hFile);
 
 	DWORD dwRWC = 0;
-	ReadFile(hFile, &m_vPos, sizeof(__Vector3), &dwRWC, NULL); // À§Ä¡, ½ºÄÉÀÏ, È¸Àü º¤ÅÍ. 
+	ReadFile(hFile, &m_vPos, sizeof(__Vector3), &dwRWC, NULL); // ï¿½ï¿½Ä¡, ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½, È¸ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½. 
 	ReadFile(hFile, &m_qRot, sizeof(__Quaternion), &dwRWC, NULL);
 	ReadFile(hFile, &m_vScale, sizeof(__Vector3), &dwRWC, NULL);
 
-	// ¿¡´Ï¸ÞÀÌ¼Ç Å°
+	// ï¿½ï¿½ï¿½Ï¸ï¿½ï¿½Ì¼ï¿½ Å°
 	m_KeyPos.Load(hFile);
 	m_KeyRot.Load(hFile);
 	m_KeyScale.Load(hFile);
@@ -71,7 +71,7 @@ bool CN3Transform::Load(HANDLE hFile)
 	fFrmWhole = m_KeyScale.Count() * m_KeyScale.SamplingRate() / 30.0f;
 	if(fFrmWhole > m_fFrmWhole) m_fFrmWhole = fFrmWhole;
 
-	this->ReCalcMatrix(); // º¯È¯ Çà·Ä °è»ê..
+	this->ReCalcMatrix(); // ï¿½ï¿½È¯ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½..
 
 	return true;
 }
@@ -81,11 +81,11 @@ bool CN3Transform::Save(HANDLE hFile)
 	CN3Base::Save(hFile);
 
 	DWORD dwRWC = 0;
-	WriteFile(hFile, &m_vPos, sizeof(__Vector3), &dwRWC, NULL); // À§Ä¡, ½ºÄÉÀÏ, È¸Àü º¤ÅÍ. 
+	WriteFile(hFile, &m_vPos, sizeof(__Vector3), &dwRWC, NULL); // ï¿½ï¿½Ä¡, ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½, È¸ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½. 
 	WriteFile(hFile, &m_qRot, sizeof(__Quaternion), &dwRWC, NULL);
 	WriteFile(hFile, &m_vScale, sizeof(__Vector3), &dwRWC, NULL);
 
-	// ¿¡´Ï¸ÞÀÌ¼Ç Å°
+	// ï¿½ï¿½ï¿½Ï¸ï¿½ï¿½Ì¼ï¿½ Å°
 	m_KeyPos.Save(hFile);
 	m_KeyRot.Save(hFile);
 	m_KeyScale.Save(hFile);
@@ -109,7 +109,7 @@ void CN3Transform::Tick(float fFrm)
 
 	bool bNdeedRecalcMatrix = this->TickAnimationKey(m_fFrmCur);
 	
-	if(m_dwType & OBJ_JOINT) return; // Joint ÀÏ °æ¿ì´Â Çà·ÄÀ» °è»êÇÏ´Â ¹æ¹ýÀÌ ´Ù¸£±â ¶«½Ã ³Ñ¾î°£´Ù..
+	if(m_dwType & OBJ_JOINT) return; // Joint ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ï´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ù¸ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ñ¾î°£ï¿½ï¿½..
 
 	if(bNdeedRecalcMatrix) this->ReCalcMatrix();
 }
@@ -128,7 +128,7 @@ void CN3Transform::ReCalcMatrix()
 
 bool CN3Transform::TickAnimationKey(float fFrm)
 {
-	// ¿¡´Ï¸ÞÀÌ¼Ç Å°
+	// ï¿½ï¿½ï¿½Ï¸ï¿½ï¿½Ì¼ï¿½ Å°
 	int nKCP = m_KeyPos.Count();
 	int nKCR = m_KeyRot.Count();
 	int nKCS = m_KeyScale.Count();
@@ -172,7 +172,7 @@ void CN3Transform::Render(const __Matrix44* pMtxParent, float fUnitSize)
 	s_lpD3DDev->SetMaterial(&smtl);
 	s_lpD3DDev->SetTexture(0, NULL);
 
-	// Ãà ±×¸®±â..
+	// ï¿½ï¿½ ï¿½×¸ï¿½ï¿½ï¿½..
 	static __VertexColor vAxis[12];
 	static bool bAxisCreated = false;
 	if(false == bAxisCreated)
@@ -194,12 +194,12 @@ void CN3Transform::Render(const __Matrix44* pMtxParent, float fUnitSize)
 	}
 
 	__Matrix44 mtxBox;
-	mtxBox.Scale(fUnitSize, fUnitSize, fUnitSize); // °üÀýºÎ ¹Ú½º¿¡ ½ºÄÉÀÏ Àû¿ë
+	mtxBox.Scale(fUnitSize, fUnitSize, fUnitSize); // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ú½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	mtxBox *= m_Matrix;
 
 	s_lpD3DDev->SetTransform(D3DTS_WORLD, &mtxBox);
-	s_lpD3DDev->SetVertexShader(FVF_XYZCOLOR);
-	s_lpD3DDev->DrawPrimitiveUP(D3DPT_LINELIST, 6, vAxis, sizeof(__VertexColor)); // ¼±±×¸®±â..
+	s_lpD3DDev->SetFVF(FVF_XYZCOLOR);
+	s_lpD3DDev->DrawPrimitiveUP(D3DPT_LINELIST, 6, vAxis, sizeof(__VertexColor)); // ï¿½ï¿½ï¿½×¸ï¿½ï¿½ï¿½..
 
 //	if(dwZ) s_lpD3DDev->SetRenderState(D3DRS_ZENABLE, dwZ);
 	if(dwFog) s_lpD3DDev->SetRenderState(D3DRS_FOGENABLE, dwFog);
@@ -209,10 +209,10 @@ void CN3Transform::Render(const __Matrix44* pMtxParent, float fUnitSize)
 
 /*
 #if _DEBUG 
-// ¼±ÅÃ »óÀÚ ¸¸µé±â.
+// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½.
 void CN3Transform::GenerateSelectBox(__Vector3 &vMin, __Vector3 &vMax)
 {
-	// Bounding Box Vertex Buffer »ý¼º
+	// Bounding Box Vertex Buffer ï¿½ï¿½ï¿½ï¿½
 	if(m_lpVBBox != NULL) { m_lpVBBox->Release(); m_lpVBBox = NULL; }
 	HRESULT rval = m_lpDevRef->CreateVertexBuffer(54 * sizeof(__VertexColor), 0, FVF_CV, D3DPOOL_MANAGED, &m_lpVBBox);
 	if(rval != D3D_OK)
@@ -221,17 +221,17 @@ void CN3Transform::GenerateSelectBox(__Vector3 &vMin, __Vector3 &vMax)
 		if(rval != D3D_OK)
 		{
 			char szDebug[256]; D3DXGetErrorString(rval, szDebug, 256);
-			MessageBox(::GetActiveWindow(), szDebug, "VertexBuffer »ý¼º ½ÇÆÐ", MB_OK);
+			MessageBox(::GetActiveWindow(), szDebug, "VertexBuffer ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½", MB_OK);
 			return;
 		}
 	}
 
-	float fW = (vMax.x - vMin.x)/5, fH = (vMax.y - vMin.y)/5, fL = (vMax.z - vMin.z)/5; // ±æÀÌ ³ôÀÌ ³Êºñ (x y z)
+	float fW = (vMax.x - vMin.x)/5, fH = (vMax.y - vMin.y)/5, fL = (vMax.z - vMin.z)/5; // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Êºï¿½ (x y z)
 
 	__VertexColor* pVC;
-	m_lpVBBox->Lock(0, 0, (BYTE**)&pVC, NULL);
+	m_lpVBBox->Lock(0, 0, (void**)&pVC, NULL);
 	
-	pVC[4] =  pVC[2] =  pVC[0] =  __VertexColor(vMin.x, vMax.y, vMin.z, 0xff7f7f7f);  // Á¤¸é - ¾Æ·¡¿Í °°Àº ¼± ¸®½ºÆ®¸¦ ¸¸µç´Ù.
+	pVC[4] =  pVC[2] =  pVC[0] =  __VertexColor(vMin.x, vMax.y, vMin.z, 0xff7f7f7f);  // ï¿½ï¿½ï¿½ï¿½ - ï¿½Æ·ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½.
 	pVC[10] = pVC[8] =  pVC[6] =  __VertexColor(vMax.x, vMax.y, vMin.z, 0xff7f7f7f);  //  /          /
 	pVC[16] = pVC[14] = pVC[12] = __VertexColor(vMax.x, vMin.y, vMin.z, 0xff7f7f7f);  // +--      --+
 	pVC[22] = pVC[20] = pVC[18] = __VertexColor(vMin.x, vMin.y, vMin.z, 0xff7f7f7f);  // |          |
@@ -253,12 +253,12 @@ void CN3Transform::GenerateSelectBox(__Vector3 &vMin, __Vector3 &vMax)
 	__Vector3 vLength = (vMax - vMin);
 	float fLength = vLength.Magnitude();
 	__Vector3 vCenter = vMin + (vMax - vMin)/2.0f;
-	pVC[48].Set(0, 0, 0, 0xffff0000); pVC[48].x -= vLength.x/2 + fLength/5 + 0.5f;// x Ãà »¡°£»ö -> »¡°£»ö
-	pVC[49].Set(0, 0, 0, 0xffff0000); pVC[49].x += vLength.x/2 + fLength/5 + 0.5f;// x Ãà »¡°£»ö -> »¡°£»ö
-	pVC[50].Set(0, 0, 0, 0xff00ff00); pVC[50].y -= vLength.y/2 + fLength/5 + 0.5f;// y Ãà ³ì»ö -> ³ì»ö
-	pVC[51].Set(0, 0, 0, 0xff00ff00); pVC[51].y += vLength.y/2 + fLength/5 + 0.5f;// y Ãà ³ì»ö -> ³ì»ö
-	pVC[52].Set(0, 0, 0, 0xff0000ff); pVC[52].z -= vLength.z/2 + fLength/5 + 0.5f;// z Ãà ÆÄ¶õ»ö -> ÆÄ¶õ»ö
-	pVC[53].Set(0, 0, 0, 0xff0000ff); pVC[53].z += vLength.z/2 + fLength/5 + 0.5f;// z Ãà ÆÄ¶õ»ö -> ÆÄ¶õ»ö
+	pVC[48].Set(0, 0, 0, 0xffff0000); pVC[48].x -= vLength.x/2 + fLength/5 + 0.5f;// x ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ -> ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	pVC[49].Set(0, 0, 0, 0xffff0000); pVC[49].x += vLength.x/2 + fLength/5 + 0.5f;// x ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ -> ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	pVC[50].Set(0, 0, 0, 0xff00ff00); pVC[50].y -= vLength.y/2 + fLength/5 + 0.5f;// y ï¿½ï¿½ ï¿½ï¿½ï¿½ -> ï¿½ï¿½ï¿½
+	pVC[51].Set(0, 0, 0, 0xff00ff00); pVC[51].y += vLength.y/2 + fLength/5 + 0.5f;// y ï¿½ï¿½ ï¿½ï¿½ï¿½ -> ï¿½ï¿½ï¿½
+	pVC[52].Set(0, 0, 0, 0xff0000ff); pVC[52].z -= vLength.z/2 + fLength/5 + 0.5f;// z ï¿½ï¿½ ï¿½Ä¶ï¿½ï¿½ï¿½ -> ï¿½Ä¶ï¿½ï¿½ï¿½
+	pVC[53].Set(0, 0, 0, 0xff0000ff); pVC[53].z += vLength.z/2 + fLength/5 + 0.5f;// z ï¿½ï¿½ ï¿½Ä¶ï¿½ï¿½ï¿½ -> ï¿½Ä¶ï¿½ï¿½ï¿½
 	m_lpVBBox->Unlock();
 }
 #endif

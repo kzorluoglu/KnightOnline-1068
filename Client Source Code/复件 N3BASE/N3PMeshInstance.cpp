@@ -134,7 +134,7 @@ void CN3PMeshInstance::SetLODByNumVertices(int iNumVertices)
 	{
 		while(iNumVertices > m_iNumVertices)
 		{
-			if (m_pCollapseUpTo->NumVerticesToLose + m_iNumVertices > iNumVertices) break;		// ±ô¹ÚÀÓ ¹æÁö ÄÚµå..
+			if (m_pCollapseUpTo->NumVerticesToLose + m_iNumVertices > iNumVertices) break;		// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Úµï¿½..
 			if (SplitOne() == false) break;
 		}
 	}
@@ -157,11 +157,11 @@ void CN3PMeshInstance::SetLOD(float value)
 {
 #define _USE_LODCONTROL_VALUE
 #ifdef _USE_LODCONTROL_VALUE
-	// value´Â distance * FOVÀÌ´Ù.
+	// valueï¿½ï¿½ distance * FOVï¿½Ì´ï¿½.
 	if (m_pPMesh == NULL ) return;
 
 	if (m_pPMesh->m_iLODCtrlValueCount == 0)
-	{	// LODCtrlValue°¡ ¾øÀ¸¸é ¸ðµÎ ±×¸°´Ù.
+	{	// LODCtrlValueï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½×¸ï¿½ï¿½ï¿½.
 		SetLODByNumVertices(0x7fffffff);
 		return;
 	}
@@ -171,15 +171,15 @@ void CN3PMeshInstance::SetLOD(float value)
 	CN3PMesh::__LODCtrlValue* pTmpLODCV = m_pPMesh->m_pLODCtrlValues + m_pPMesh->m_iLODCtrlValueCount-1;
 
 	if (value < m_pPMesh->m_pLODCtrlValues[0].fDist)
-	{		// ÃÖ¼Ò ±âÁØÄ¡º¸´Ù °¡±î¿ì¹Ç·Î °¡Àå ¸¹Àº ¸éÀ¸·Î ±×¸°´Ù.
+	{		// ï¿½Ö¼ï¿½ ï¿½ï¿½ï¿½ï¿½Ä¡ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ç·ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½×¸ï¿½ï¿½ï¿½.
 		SetLODByNumVertices(m_pPMesh->m_pLODCtrlValues[0].iNumVertices);
 	}
 	else if ( pTmpLODCV->fDist < value)
-	{		// ÃÖ´ë ±âÁØÄ¡º¸´Ù ¸Ö¸® ÀÖÀ¸¹Ç·Î °¡Àå ÀûÀº ¸éÀ¸·Î ±×¸°´Ù.
+	{		// ï¿½Ö´ï¿½ ï¿½ï¿½ï¿½ï¿½Ä¡ï¿½ï¿½ï¿½ï¿½ ï¿½Ö¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ç·ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½×¸ï¿½ï¿½ï¿½.
 		SetLODByNumVertices(pTmpLODCV->iNumVertices);
 	}
 	else
-	{		// Áß°£ °ª¿¡ ¸Â°Ô Á¶Á¤µÈ ¸é ¼ö·Î ±×¸°´Ù.
+	{		// ï¿½ß°ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Â°ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½×¸ï¿½ï¿½ï¿½.
 		for (int i=1; i< m_pPMesh->m_iLODCtrlValueCount; ++i)
 		{
 			if (value < m_pPMesh->m_pLODCtrlValues[i].fDist)
@@ -194,7 +194,7 @@ void CN3PMeshInstance::SetLOD(float value)
 		}
 	}
 #else
-	// value´Â distance * FOVÀÌ´Ù.
+	// valueï¿½ï¿½ distance * FOVï¿½Ì´ï¿½.
 	if (m_pCollapseUpTo == NULL || m_pPMesh == NULL) return;
 
 	const int iLODCtrlValueCount = 5;
@@ -289,7 +289,7 @@ bool CN3PMeshInstance::SplitOne()
 void CN3PMeshInstance::Render()
 {
 	if (m_pPMesh == NULL) return;
-	s_lpD3DDev->SetVertexShader(FVF_VNT1);
+	s_lpD3DDev->SetFVF(FVF_VNT1);
 
 	const int iPCToRender = 1000;	// primitive count to render
 #ifdef _USE_VERTEXBUFFER
@@ -332,7 +332,7 @@ void CN3PMeshInstance::Render()
 }
 
 #ifdef _USE_VERTEXBUFFER
-LPDIRECT3DVERTEXBUFFER8	CN3PMeshInstance::GetVertexBuffer() const
+LPDIRECT3DVERTEXBUFFER9	CN3PMeshInstance::GetVertexBuffer() const
 {
 	if (m_pPMesh == NULL) return NULL;
 	return m_pPMesh->GetVertexBuffer();

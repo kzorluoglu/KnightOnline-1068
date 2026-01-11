@@ -11,7 +11,7 @@
 
 #include "TransDummy.h"
 
-// Á¡À» ÀÌµ¿½ÃÅ°´Â ±â´ÉÀ» °¡Á³´Ù.
+// ï¿½ï¿½ï¿½ï¿½ ï¿½Ìµï¿½ï¿½ï¿½Å°ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½.
 class CVtxPosDummy : public CTransDummy
 {
 public:
@@ -21,24 +21,24 @@ public:
 // Attributes
 public:
 protected:
-	CTypedPtrArray<CPtrArray, __VertexXyzT1*> m_SelVtxArray;	// ¼±ÅÃµÈ Á¡µé
+	CTypedPtrArray<CPtrArray, __VertexXyzT1*> m_SelVtxArray;	// ï¿½ï¿½ï¿½Ãµï¿½ ï¿½ï¿½ï¿½ï¿½
 
 // Operations
 public:
 	virtual void Tick();
 	virtual void Render();
 	virtual void Release();
-	virtual void SetSelObj(CN3Transform* pObj);		// ¼±ÅÃµÈ °´Ã¼ ¹Ù²Ù±â
-	virtual void AddSelObj(CN3Transform* pObj);	// ¼±ÅÃµÈ °´Ã¼ Ãß°¡
-	virtual BOOL MouseMsgFilter(LPMSG pMsg);			// ¸¶¿ì½º ¸Þ¼¼Áö Ã³¸®
+	virtual void SetSelObj(CN3Transform* pObj);		// ï¿½ï¿½ï¿½Ãµï¿½ ï¿½ï¿½Ã¼ ï¿½Ù²Ù±ï¿½
+	virtual void AddSelObj(CN3Transform* pObj);	// ï¿½ï¿½ï¿½Ãµï¿½ ï¿½ï¿½Ã¼ ï¿½ß°ï¿½
+	virtual BOOL MouseMsgFilter(LPMSG pMsg);			// ï¿½ï¿½ï¿½ì½º ï¿½Þ¼ï¿½ï¿½ï¿½ Ã³ï¿½ï¿½
 
-	void SetSelVtx(__VertexXyzT1* pVtx);		// ¼±ÅÃµÈ Á¡ ¹Ù²Ù±â
-	void AddSelVtx(__VertexXyzT1* pVtx);				// ¼±ÅÃµÈ Á¡ Ãß°¡
+	void SetSelVtx(__VertexXyzT1* pVtx);		// ï¿½ï¿½ï¿½Ãµï¿½ ï¿½ï¿½ ï¿½Ù²Ù±ï¿½
+	void AddSelVtx(__VertexXyzT1* pVtx);				// ï¿½ï¿½ï¿½Ãµï¿½ ï¿½ï¿½ ï¿½ß°ï¿½
 
 	void AddPos(__Vector3 vAddPos) {m_vPos+=vAddPos;}
 	void PosRotate(__Matrix44 vRotate,__Vector3 vCenterPos);
 protected:
-	virtual void TransDiff(__Vector3* pvDiffPos, __Quaternion* pqDiffRot, __Vector3* pvDiffScale);		// Â÷ÀÌ¸¸Å­ ¼±ÅÃµÈ ¿À¹ÇÁ§Æ®µéÀ» º¯Çü½ÃÅ²´Ù.
+	virtual void TransDiff(__Vector3* pvDiffPos, __Quaternion* pqDiffRot, __Vector3* pvDiffScale);		// ï¿½ï¿½ï¿½Ì¸ï¿½Å­ ï¿½ï¿½ï¿½Ãµï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Å²ï¿½ï¿½.
 };
 
 #endif // !defined(AFX_VTXPOSDUMMY_H__FA661289_2E6D_4F3A_B490_3B50794389FC__INCLUDED_)

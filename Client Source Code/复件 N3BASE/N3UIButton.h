@@ -24,11 +24,11 @@ public:
 	void			SetClickRect(const RECT& Rect) {m_rcClick = Rect;}
 	RECT			GetClickRect() const {return m_rcClick;}
 protected:
-	CN3UIImage*		m_ImageRef[NUM_BTN_STATE];	// ¹öÆ°ÀÇ °¢ »óÅÂº° imageÀÇ ÂüÁ¶ Æ÷ÀÎÅÍ(ÂüÁ¶ÀÎ ÀÌÀ¯´Â  children list·Î °ü¸®ÇÏ¹Ç·Î ÂüÁ¶¸¸ ÇÑ´Ù.)
-	RECT			m_rcClick;					// clickµÇ´Â ¿µ¿ª
+	CN3UIImage*		m_ImageRef[NUM_BTN_STATE];	// ï¿½ï¿½Æ°ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½Âºï¿½ imageï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½(ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½  children listï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï¹Ç·ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ñ´ï¿½.)
+	RECT			m_rcClick;					// clickï¿½Ç´ï¿½ ï¿½ï¿½ï¿½ï¿½
 
-	CN3SndObj*		m_pSnd_On;		// ¹öÆ° À§¿¡ ¸¶¿ì½º°¡ ¿Ã¶ó°¡´Â ¼ø°£ ³»´Â ¼Ò¸®
-	CN3SndObj*		m_pSnd_Click;	// ¹öÆ°ÀÌ ´­¸®´Â ¼ø°£ ³»´Â ¼Ò¸®
+	CN3SndObj*		m_pSnd_On;		// ï¿½ï¿½Æ° ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ì½ºï¿½ï¿½ ï¿½Ã¶ó°¡´ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ò¸ï¿½
+	CN3SndObj*		m_pSnd_Click;	// ï¿½ï¿½Æ°ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ò¸ï¿½
 
 // Operations
 public:
@@ -41,7 +41,7 @@ public:
 	virtual void	Render();
 
 #ifdef _N3TOOL
-// Åø¿¡¼­ »ç¿ëÇÏ±â À§ÇÑ ÇÔ¼ö
+// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ï±ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ô¼ï¿½
 public:
 	virtual void	operator = (const CN3UIButton& other);
 	virtual bool	Save(HANDLE hFile);

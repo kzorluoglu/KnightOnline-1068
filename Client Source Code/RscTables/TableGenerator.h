@@ -84,11 +84,11 @@ public:
 
 protected:
 	std::vector<DATA_TYPE>		m_DataTypes;
-	std::vector<CTableData>		m_Datas; // ±âº»ÀÌ µÇ´Â ¾ÆÀÌÅÛ Å×ÀÌºí
-	std::vector<CTableDataExt>	m_DataExts; // ÂüÁ¶ÇÒ ¾ÆÀÌÅÛ Å×ÀÌºí
+	std::vector<CTableData>		m_Datas; // ï¿½âº»ï¿½ï¿½ ï¿½Ç´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ìºï¿½
+	std::vector<CTableDataExt>	m_DataExts; // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ìºï¿½
 
 private:
-	int ParseLine(const char* szLine, int& iOffset, int& iVal, DWORD& dwVal, double& dfVal, std::string& szText); // ¼º°øÇÏ¸é 0, Ãß°¡ÇØ¾ßÇÏ°í ³¡ÀÌ¸é -1 Ãß°¡ÇÒ ÇÊ¿ä ¾ø°í ³¡ÀÌ¸é.. -2 ¸®ÅÏ
+	int ParseLine(const char* szLine, int& iOffset, int& iVal, DWORD& dwVal, double& dfVal, std::string& szText); // ï¿½ï¿½ï¿½ï¿½ï¿½Ï¸ï¿½ 0, ï¿½ß°ï¿½ï¿½Ø¾ï¿½ï¿½Ï°ï¿½ ï¿½ï¿½ï¿½Ì¸ï¿½ -1 ï¿½ß°ï¿½ï¿½ï¿½ ï¿½Ê¿ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ì¸ï¿½.. -2 ï¿½ï¿½ï¿½ï¿½
 
 	bool WriteData(HANDLE hFile, DATA_TYPE DataType, LPCTSTR lpszData);
 	bool ReadData(HANDLE hFile, DATA_TYPE DataType, LPTSTR lpszData);

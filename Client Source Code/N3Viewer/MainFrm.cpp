@@ -87,10 +87,10 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 	EnableDocking(CBRS_ALIGN_ANY);
 	DockControlBar(&m_wndToolBar);
 
-	// Engine »ý¼º
+	// Engine ï¿½ï¿½ï¿½ï¿½
 //	m_Eng.InitEnv();
 	if(!m_Eng.Init(TRUE, m_hWnd, 64, 64, 0, TRUE)) return -1;
-	m_Eng.GridCreate(1000, 1000); // ±×¸®µå ¸¸µé±â..
+	m_Eng.GridCreate(1000, 1000); // ï¿½×¸ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½..
 
 	return 0;
 }
@@ -252,7 +252,7 @@ void CMainFrame::OnToolFixProgressiveMesh()
 	}
 
 	CFile file;
-	file.Open("ÇÁ·Î±×·¹½Ãºê ¸Þ½¬ Ã³¸® ¾ÈµÈ ¸®½ºÆ®.txt", CFile::modeWrite | CFile::modeCreate);
+	file.Open("ï¿½ï¿½ï¿½Î±×·ï¿½ï¿½Ãºï¿½ ï¿½Þ½ï¿½ Ã³ï¿½ï¿½ ï¿½Èµï¿½ ï¿½ï¿½ï¿½ï¿½Æ®.txt", CFile::modeWrite | CFile::modeCreate);
 
 	CN3PMesh PM;
 	POSITION pos = dlg.GetStartPosition();
@@ -267,12 +267,12 @@ void CMainFrame::OnToolFixProgressiveMesh()
 		if(PM.LODCtrlCount() <= 0 || PM.CollapsesCount() <= 0)
 		{
 			CString szWarning;
-			szWarning.Format("LOD Ã³¸® ¾ÈµÊ : %s\r\n", PM.FileName().c_str());
+			szWarning.Format("LOD Ã³ï¿½ï¿½ ï¿½Èµï¿½ : %s\r\n", PM.FileName().c_str());
 			file.Write(szWarning, szWarning.GetLength());
 		}
 	}
 
-	MessageBox("ÇÁ·Î±×·¹½Ãºê Ã³¸®°¡ ¾ÈµÈ ÆÄÀÏ¸®½ºÆ®´Â \"ÇÁ·Î±×·¹½Ãºê ¸Þ½¬ Ã³¸® ¾ÈµÈ ¸®½ºÆ®.txt\" ÆÄÀÏ¿¡ ±â·ÏµÇ¾ú½À´Ï´Ù.");
+	MessageBox("ï¿½ï¿½ï¿½Î±×·ï¿½ï¿½Ãºï¿½ Ã³ï¿½ï¿½ï¿½ï¿½ ï¿½Èµï¿½ ï¿½ï¿½ï¿½Ï¸ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ \"ï¿½ï¿½ï¿½Î±×·ï¿½ï¿½Ãºï¿½ ï¿½Þ½ï¿½ Ã³ï¿½ï¿½ ï¿½Èµï¿½ ï¿½ï¿½ï¿½ï¿½Æ®.txt\" ï¿½ï¿½ï¿½Ï¿ï¿½ ï¿½ï¿½ÏµÇ¾ï¿½ï¿½ï¿½ï¿½Ï´ï¿½.");
 	file.Close();
 
 	delete [] pBuff;

@@ -24,7 +24,7 @@ protected:
 	CN3UITrackBar*	m_pTrackBarRef;
 	CN3UIButton*	m_pBtnRef[NUM_BTN_TYPE];
 
-	int				m_iLineSize;		// ¹öÆ°À» ´­·¶À»¶§ trackbar°¡ ¿òÁ÷¿©Áö´Â Å©±â
+	int				m_iLineSize;		// ï¿½ï¿½Æ°ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ trackbarï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Å©ï¿½ï¿½
 
 // Operations
 public:
@@ -32,7 +32,7 @@ public:
 	virtual bool	Load(HANDLE hFile);
 	virtual void	SetRegion(const RECT& Rect);
 	virtual void	SetStyle(DWORD dwStyle);
-	virtual bool	ReceiveMessage(CN3UIBase* pSender, DWORD dwMsg); // ¸Þ½ÃÁö¸¦ ¹Þ´Â´Ù.. º¸³½³ð, msg
+	virtual bool	ReceiveMessage(CN3UIBase* pSender, DWORD dwMsg); // ï¿½Þ½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Þ´Â´ï¿½.. ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½, msg
 
 	void			SetRange(int iMin, int iMax) {if(m_pTrackBarRef) m_pTrackBarRef->SetRange(iMin,iMax);}
 	void			SetRangeMax(int iMax) {if(m_pTrackBarRef) m_pTrackBarRef->SetRangeMax(iMax);}
@@ -46,10 +46,10 @@ public:
 	int				GetMaxPos() const {if (m_pTrackBarRef) return m_pTrackBarRef->GetMaxPos(); return 0;}
 
 #ifdef _N3TOOL
-// tool¿¡¼­ »ç¿ëÇÏ´Â ÇÔ¼öµé
+// toolï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ï´ï¿½ ï¿½Ô¼ï¿½ï¿½ï¿½
 public:
 	virtual void	operator = (const CN3UIScrollBar& other);
-	void			CreateTrackBarAndBtns();			// trackbar¿Í button »ý¼º
+	void			CreateTrackBarAndBtns();			// trackbarï¿½ï¿½ button ï¿½ï¿½ï¿½ï¿½
 	CN3UITrackBar*	GetTrackBarRef() const {return m_pTrackBarRef;}
 	CN3UIButton*	GetBtnRef(eBTN_TYPE eBtnType) const {return m_pBtnRef[eBtnType];}
 #endif

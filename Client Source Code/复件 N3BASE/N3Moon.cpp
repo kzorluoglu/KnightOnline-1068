@@ -57,7 +57,7 @@ void CN3Moon::Init(const std::string& szTexFN)
 
 void CN3Moon::Render(__Matrix44& matView, __Matrix44& matProj)
 {
-	// ´ÞÀÌ ±×·ÁÁö´Â È­¸é ÁÂÇ¥ °è»êÇÏ±â (2D·Î ±×¸®´Â ÀÌÀ¯´Â ´ÞÀÌ ¿Ö°îµÇ¾î¼­ º¸ÀÌ´Â°ÍÀ» ¸·±â À§ÇØ)
+	// ï¿½ï¿½ï¿½ï¿½ ï¿½×·ï¿½ï¿½ï¿½ï¿½ï¿½ È­ï¿½ï¿½ ï¿½ï¿½Ç¥ ï¿½ï¿½ï¿½ï¿½Ï±ï¿½ (2Dï¿½ï¿½ ï¿½×¸ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ö°ï¿½Ç¾î¼­ ï¿½ï¿½ï¿½Ì´Â°ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½)
 	__Matrix44 matWorld;
 	matWorld.RotationZ(m_fCurRadian);
 	__Matrix44 matFinal;
@@ -74,7 +74,7 @@ void CN3Moon::Render(__Matrix44& matView, __Matrix44& matProj)
 	int Y = s_CameraData.vp.Y;
 	float fRHW = 1.0f/vOut.w;
 	vMoon.z = vOut.z*fRHW;
-	if (vMoon.z < 0.0f || vMoon.z > 1.0f) return;		// È­¸é µÚ¿¡ ±×·ÁÁø´Ù.
+	if (vMoon.z < 0.0f || vMoon.z > 1.0f) return;		// È­ï¿½ï¿½ ï¿½Ú¿ï¿½ ï¿½×·ï¿½ï¿½ï¿½ï¿½ï¿½.
 	// Mapping Screen Coordinate.
 	vMoon.x = X + int((vOut.x*fRHW + 1.0f)*Width*0.5f);
 	vMoon.y = Y + int((-vOut.y*fRHW + 1.0f)*Height*0.5f);
@@ -83,9 +83,9 @@ void CN3Moon::Render(__Matrix44& matView, __Matrix44& matProj)
 	int iMoonSize = (Width * m_fMoonRatio) / 2;
 	SetRect(&rcMoon, vMoon.x-iMoonSize, vMoon.y-iMoonSize, vMoon.x+iMoonSize, vMoon.y+iMoonSize);
 	// clipping with screen.
-	if ( rcMoon.right < X|| rcMoon.bottom < Y || rcMoon.left > X+Width || rcMoon.top > Y+Height) return;	// È­¸é ¹Û¿¡ ±×·ÁÁø´Ù.
+	if ( rcMoon.right < X|| rcMoon.bottom < Y || rcMoon.left > X+Width || rcMoon.top > Y+Height) return;	// È­ï¿½ï¿½ ï¿½Û¿ï¿½ ï¿½×·ï¿½ï¿½ï¿½ï¿½ï¿½.
 
-	// 2D·Î ±×¸®±â
+	// 2Dï¿½ï¿½ ï¿½×¸ï¿½ï¿½ï¿½
 	m_pVertices[0].x = rcMoon.left;		m_pVertices[0].y = rcMoon.top;
 	m_pVertices[1].x = rcMoon.right;	m_pVertices[1].y = rcMoon.top;
 	m_pVertices[2].x = rcMoon.right;	m_pVertices[2].y = rcMoon.bottom;
@@ -97,7 +97,7 @@ void CN3Moon::Render(__Matrix44& matView, __Matrix44& matProj)
 	s_lpD3DDev->SetTextureStageState( 0, D3DTSS_COLORARG1, D3DTA_TEXTURE );
 	s_lpD3DDev->SetTextureStageState( 0, D3DTSS_COLORARG2, D3DTA_DIFFUSE );
 
-	s_lpD3DDev->SetVertexShader(FVF_TRANSFORMED);
+	s_lpD3DDev->SetFVF(FVF_TRANSFORMED);
 	s_lpD3DDev->DrawPrimitiveUP(D3DPT_TRIANGLEFAN , 2, m_pVertices, sizeof(m_pVertices[0]));
 }
 

@@ -30,8 +30,8 @@ public:
 	int EffectCount() { return m_nEffectCount; }
 	int EffectInstanceCount() { return m_EffectInstances.Count(); }
 	CN3Effect* Effect(int index) { if(index < 0 || index >= MAX_EFFECT) return NULL; return m_pEffects[index]; };
-	CN3Effect* EffectAdd(); // Ãß°¡µÈ Effect¸¦ return
-	CN3Effect* EffectAddFromFile(const char* szFN); // Ãß°¡µÈ Effect¸¦ return
+	CN3Effect* EffectAdd(); // ï¿½ß°ï¿½ï¿½ï¿½ Effectï¿½ï¿½ return
+	CN3Effect* EffectAddFromFile(const char* szFN); // ï¿½ß°ï¿½ï¿½ï¿½ Effectï¿½ï¿½ return
 
 	void	Trigger(const char* szEffectName, __Vector3& vPos, __Vector3& vDir, float fVelocity, CN3Shape* pShape);
 	void	Tick();

@@ -73,7 +73,7 @@ BOOL CDlgPondProperty::OnInitDialog()
 	m_LPPond.AddPropItem("WaterScaleWidth(int)", "", PIT_EDIT, "");
 	m_LPPond.AddPropItem("WaterScaleHeight(int)", "", PIT_EDIT, "");
 
-	m_LPPond.AddPropItem("Texture File", "", PIT_FILE, "Texture ·Î ¾µ¼ö ÀÖ´Â ±×¸² ÆÄÀÏ(*.DXT; *.BMP; *.TGA)|*.DXT; *.BMP; *.TGA|");
+	m_LPPond.AddPropItem("Texture File", "", PIT_FILE, "Texture ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ö´ï¿½ ï¿½×¸ï¿½ ï¿½ï¿½ï¿½ï¿½(*.DXT; *.BMP; *.TGA)|*.DXT; *.BMP; *.TGA|");
 	m_LPPond.AddPropItem("Alpha factor(hex)", "", PIT_EDIT, "");
 
 	m_LPPond.AddPropItem("Water tu(float)", "", PIT_EDIT, "");
@@ -164,8 +164,8 @@ void CDlgPondProperty::UpdateInfo()
 		else GetDlgItem(IDC_BUTTON_EDITPOND)->SetWindowText("Pond UnLock Edit");
 
 		if(pSelPond->GetChangUVState()==TRUE)	
-			 GetDlgItem(IDC_BU_RECALCUV)->SetWindowText("Á¡À¸·Î");
-		else GetDlgItem(IDC_BU_RECALCUV)->SetWindowText("ÆòÆíÇÏ°Ô");
+			 GetDlgItem(IDC_BU_RECALCUV)->SetWindowText("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
+		else GetDlgItem(IDC_BU_RECALCUV)->SetWindowText("ï¿½ï¿½ï¿½ï¿½ï¿½Ï°ï¿½");
 
 		if(m_pPondMng->GetChooseGroup()==TRUE)
 			 GetDlgItem(IDC_GROUP)->SetWindowText("Gup On");
@@ -311,7 +311,7 @@ BOOL CDlgPondProperty::OnNotify(WPARAM wParam, LPARAM lParam, LRESULT* pResult)
 				int iWidht = (int)atoi(pItem->m_curValue);
 				if(MAX_PONDMESH_VERTEX< iWidht*pSelPond->GetWaterScaleHeight())
 				{
-					MessageBox("¸¸µé¼öÀÖ´Â ÇÑ°è¸¦ ³Ñ¾ú½À´Ï´Ù.");
+					MessageBox("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö´ï¿½ ï¿½Ñ°è¸¦ ï¿½Ñ¾ï¿½ï¿½ï¿½ï¿½Ï´ï¿½.");
 					pItem->m_curValue.Format("%d", pSelPond->GetWaterScaleWidht());
 					return TRUE;
 				}
@@ -326,7 +326,7 @@ BOOL CDlgPondProperty::OnNotify(WPARAM wParam, LPARAM lParam, LRESULT* pResult)
 				int iHeight = (int)atoi(pItem->m_curValue);
 				if(MAX_PONDMESH_VERTEX< iHeight*pSelPond->GetWaterScaleWidht())
 				{
-					MessageBox("¸¸µé¼öÀÖ´Â ÇÑ°è¸¦ ³Ñ¾ú½À´Ï´Ù.");
+					MessageBox("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö´ï¿½ ï¿½Ñ°è¸¦ ï¿½Ñ¾ï¿½ï¿½ï¿½ï¿½Ï´ï¿½.");
 					pItem->m_curValue.Format("%d", pSelPond->GetWaterScaleHeight());
 					return TRUE;
 				}
@@ -339,7 +339,7 @@ BOOL CDlgPondProperty::OnNotify(WPARAM wParam, LPARAM lParam, LRESULT* pResult)
 			else if (pItem->m_propName == "Texture File")
 			{
 				CN3Base tmp;
-				tmp.m_szName = pItem->m_curValue;		// »ó´ë°æ·Î·Î ¹Ù²Ù±â
+				tmp.m_szName = pItem->m_curValue;		// ï¿½ï¿½ï¿½ï¿½Î·ï¿½ ï¿½Ù²Ù±ï¿½
 				if (pSelPond->SetTextureName(tmp.m_szName.c_str()) == FALSE)
 				{
 					CString strMsg;
@@ -366,11 +366,11 @@ void CDlgPondProperty::OnOK()
 		if (pSelPond && pSelPond->TexGet())
 		{
 			if (m_pPondMng->GetPondMesh(pSelPond->GetPondID()) == NULL) CDialog::OnOK();
-			else MessageBox("Áßº¹µÇ´Â ¾ÆÀÌµð ÀÔ´Ï´Ù.");
+			else MessageBox("ï¿½ßºï¿½ï¿½Ç´ï¿½ ï¿½ï¿½ï¿½Ìµï¿½ ï¿½Ô´Ï´ï¿½.");
 		}
 		else
 		{
-			MessageBox("Texture¸¦ ÁöÁ¤ÇÏÁö ¾Ê¾Ò½À´Ï´Ù.");
+			MessageBox("Textureï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ê¾Ò½ï¿½ï¿½Ï´ï¿½.");
 		}
 	}
 }
@@ -408,12 +408,12 @@ void CDlgPondProperty::OnButtonRecalUV()
 	pSelPond->SetChangUVState();
 	if(pSelPond->GetChangUVState()==TRUE)
 	{
-		GetDlgItem(IDC_BU_RECALCUV)->SetWindowText("Á¡À¸·Î");
+		GetDlgItem(IDC_BU_RECALCUV)->SetWindowText("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
 		pSelPond->ReCalcUV();
 	}
 	else
 	{
-		GetDlgItem(IDC_BU_RECALCUV)->SetWindowText("ÆòÆíÇÏ°Ô");
+		GetDlgItem(IDC_BU_RECALCUV)->SetWindowText("ï¿½ï¿½ï¿½ï¿½ï¿½Ï°ï¿½");
 		pSelPond->ReCalcVexUV();
 	}
 
@@ -426,7 +426,7 @@ void CDlgPondProperty::OnButtonDeletePond()
 	CPondMesh* pSelPond = m_pPondMng->GetSelPond();
 	if (pSelPond)
 	{
-		if (MessageBox("¼±ÅÃµÈ ¿¬¸øÀ» Áö¿ì½Ã°Ú½À´Ï±î?", "Remove pond", MB_YESNO|MB_DEFBUTTON2) == IDNO) return;
+		if (MessageBox("ï¿½ï¿½ï¿½Ãµï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ã°Ú½ï¿½ï¿½Ï±ï¿½?", "Remove pond", MB_YESNO|MB_DEFBUTTON2) == IDNO) return;
 		m_pPondMng->RemovePondMesh(pSelPond->GetPondID());
 
 		UpdateInfo();

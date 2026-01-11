@@ -108,32 +108,32 @@ void CFormViewProperty::OnInitialUpdate()
 	CSkyViewerDoc* pDoc = GetDocument();
 	m_SldTime.SetRange(0, 24 * 60);
 	
-//enum		eSKY_DAYCHANGE {	SDC_SKYCOLOR=0,		// ÇÏ´Ã»ö
-//								SDC_FOGCOLOR,		// ¾È°³»ö
-//								SDC_STARCOUNT,		// º° ¼ö
-//								SDC_MOONPHASE,		// ´Þ ¸ð¾ç
-//								SDC_SUNCOLOR,		// ÇØ »ö
-//								SDC_GLOWCOLOR,		// ÇØÀÇ glow»ö
-//								SDC_FLARECOLOR,		// ÇØÀÇ flare»ö
-//								SDC_CLOUD1COLOR,	// ±¸¸§Ãþ 1ÀÇ »ö
-//								SDC_CLOUD2COLOR,	// ±¸¸§Ãþ 2ÀÇ »ö
-//								SDC_CLOUDTEX,		// ±¸¸§ ÅØ½ºÃÄ ¹Ù²Ù±â
+//enum		eSKY_DAYCHANGE {	SDC_SKYCOLOR=0,		// ï¿½Ï´Ã»ï¿½
+//								SDC_FOGCOLOR,		// ï¿½È°ï¿½ï¿½ï¿½
+//								SDC_STARCOUNT,		// ï¿½ï¿½ ï¿½ï¿½
+//								SDC_MOONPHASE,		// ï¿½ï¿½ ï¿½ï¿½ï¿½
+//								SDC_SUNCOLOR,		// ï¿½ï¿½ ï¿½ï¿½
+//								SDC_GLOWCOLOR,		// ï¿½ï¿½ï¿½ï¿½ glowï¿½ï¿½
+//								SDC_FLARECOLOR,		// ï¿½ï¿½ï¿½ï¿½ flareï¿½ï¿½
+//								SDC_CLOUD1COLOR,	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ 1ï¿½ï¿½ ï¿½ï¿½
+//								SDC_CLOUD2COLOR,	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ 2ï¿½ï¿½ ï¿½ï¿½
+//								SDC_CLOUDTEX,		// ï¿½ï¿½ï¿½ï¿½ ï¿½Ø½ï¿½ï¿½ï¿½ ï¿½Ù²Ù±ï¿½
 //								NUM_SKYDAYCHANGE,
 //								
 //								SDC_UNKNOWN = 0xffffffff
 //};
 
 	m_LPProperty.ResetContent();
-	m_LPProperty.AddPropItem("ÀÌ¸§", "", PIT_EDIT, "");
-	m_LPProperty.AddPropItem("Á¾·ù", "", PIT_COMBO, "ÇÏ´Ã»ö|¾È°³»ö|º°¼ö|´Þ¸ð¾ç|ÇØÀÇ »ö|ÇØÀÇ Glow »ö|ÇØÀÇ Flare »ö|±¸¸§Ãþ1ÀÇ »ö|±¸¸§Ãþ2ÀÇ »ö|±¸¸§ÅØ½ºÃ³ ¹Ù²Ù±â|¶óÀÌÆ®0|¶óÀÌÆ®1|¶óÀÌÆ®2");
-	m_LPProperty.AddPropItem("ÀÎ¼ö1", "", PIT_EDIT, "");
-	m_LPProperty.AddPropItem("»ö1", "", PIT_COLOR, "");
-	m_LPProperty.AddPropItem("ÀÎ¼ö2", "", PIT_EDIT, "");
-	m_LPProperty.AddPropItem("»ö2", "", PIT_COLOR, "");
-	m_LPProperty.AddPropItem("½Ã°£", "", PIT_EDIT, "0½Ã0ºÐ");
-	m_LPProperty.AddPropItem("Áö¿¬½Ã°£", "", PIT_EDIT, "0ÃÊ");
+	m_LPProperty.AddPropItem("ï¿½Ì¸ï¿½", "", PIT_EDIT, "");
+	m_LPProperty.AddPropItem("ï¿½ï¿½ï¿½ï¿½", "", PIT_COMBO, "ï¿½Ï´Ã»ï¿½|ï¿½È°ï¿½ï¿½ï¿½|ï¿½ï¿½ï¿½ï¿½|ï¿½Þ¸ï¿½ï¿½|ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½|ï¿½ï¿½ï¿½ï¿½ Glow ï¿½ï¿½|ï¿½ï¿½ï¿½ï¿½ Flare ï¿½ï¿½|ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½1ï¿½ï¿½ ï¿½ï¿½|ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½2ï¿½ï¿½ ï¿½ï¿½|ï¿½ï¿½ï¿½ï¿½ï¿½Ø½ï¿½Ã³ ï¿½Ù²Ù±ï¿½|ï¿½ï¿½ï¿½ï¿½Æ®0|ï¿½ï¿½ï¿½ï¿½Æ®1|ï¿½ï¿½ï¿½ï¿½Æ®2");
+	m_LPProperty.AddPropItem("ï¿½Î¼ï¿½1", "", PIT_EDIT, "");
+	m_LPProperty.AddPropItem("ï¿½ï¿½1", "", PIT_COLOR, "");
+	m_LPProperty.AddPropItem("ï¿½Î¼ï¿½2", "", PIT_EDIT, "");
+	m_LPProperty.AddPropItem("ï¿½ï¿½2", "", PIT_COLOR, "");
+	m_LPProperty.AddPropItem("ï¿½Ã°ï¿½", "", PIT_EDIT, "0ï¿½ï¿½0ï¿½ï¿½");
+	m_LPProperty.AddPropItem("ï¿½ï¿½ï¿½ï¿½ï¿½Ã°ï¿½", "", PIT_EDIT, "0ï¿½ï¿½");
 
-	// ½Ã°£À» °¡Á®¿Í ¼¼ÆÃ..
+	// ï¿½Ã°ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½..
 	SYSTEMTIME Time;
 	::GetLocalTime(&Time);
 	pDoc->m_Sky.SetGameTime(Time.wYear, Time.wMonth, Time.wDay, Time.wHour, Time.wMinute);
@@ -155,19 +155,19 @@ BOOL CFormViewProperty::OnNotify(WPARAM wParam, LPARAM lParam, LRESULT* pResult)
 		if(NULL == pSDC) return FALSE;
 		CPropertyItem* pItem = (CPropertyItem*)lParam;
 
-		if(pItem->m_propName == "ÀÌ¸§") pSDC->szName = pItem->m_curValue;
-		else if(pItem->m_propName == "½Ã°£")
+		if(pItem->m_propName == "ï¿½Ì¸ï¿½") pSDC->szName = pItem->m_curValue;
+		else if(pItem->m_propName == "ï¿½Ã°ï¿½")
 		{
 			int iHour = 0, iMin = 0;
-			sscanf(pItem->m_curValue, "%d½Ã%dºÐ", &iHour, &iMin);
+			sscanf(pItem->m_curValue, "%dï¿½ï¿½%dï¿½ï¿½", &iHour, &iMin);
 			pSDC->dwWhen = CONVERT_SEC(iHour,iMin,0);
 		}
-		else if(pItem->m_propName == "Á¾·ù")	pSDC->eSkyDayChange = (eSKY_DAYCHANGE)(pItem->m_crColor);
-		else if(pItem->m_propName == "ÀÎ¼ö1")	pSDC->dwParam1 = atoi(pItem->m_curValue);
-		else if(pItem->m_propName == "»ö1")		pSDC->dwParam1 = ::_RGB_To_D3DCOLOR(pItem->m_crColor, (DWORD)255);
-		else if(pItem->m_propName == "ÀÎ¼ö2")	pSDC->dwParam2 = atoi(pItem->m_curValue);
-		else if(pItem->m_propName == "»ö2")		pSDC->dwParam2 = ::_RGB_To_D3DCOLOR(pItem->m_crColor, (DWORD)255);
-		else if(pItem->m_propName == "Áö¿¬½Ã°£") pSDC->fHowLong = (float)(atof(pItem->m_curValue));
+		else if(pItem->m_propName == "ï¿½ï¿½ï¿½ï¿½")	pSDC->eSkyDayChange = (eSKY_DAYCHANGE)(pItem->m_crColor);
+		else if(pItem->m_propName == "ï¿½Î¼ï¿½1")	pSDC->dwParam1 = atoi(pItem->m_curValue);
+		else if(pItem->m_propName == "ï¿½ï¿½1")		pSDC->dwParam1 = ::_RGB_To_D3DCOLOR(pItem->m_crColor, (DWORD)255);
+		else if(pItem->m_propName == "ï¿½Î¼ï¿½2")	pSDC->dwParam2 = atoi(pItem->m_curValue);
+		else if(pItem->m_propName == "ï¿½ï¿½2")		pSDC->dwParam2 = ::_RGB_To_D3DCOLOR(pItem->m_crColor, (DWORD)255);
+		else if(pItem->m_propName == "ï¿½ï¿½ï¿½ï¿½ï¿½Ã°ï¿½") pSDC->fHowLong = (float)(atof(pItem->m_curValue));
 
 		int iYear = 0, iMonth = 0, iDay = 0, iHour = 0, iMin = 0;
 		pDoc->m_Sky.GetGameTime(&iYear, &iMonth, &iDay, &iHour, &iMin);
@@ -194,7 +194,7 @@ void CFormViewProperty::UpdateTime()
 	CSkyViewerDoc* pDoc = GetDocument();
 	pDoc->m_Sky.GetGameTime(&iYear, &iMonth, &iDay, &iHour, &iMin);
 	
-	// ½Ã°£ ¾÷µ¥ÀÌÆ®..
+	// ï¿½Ã°ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®..
 	SetDlgItemInt(IDC_E_YEAR, iYear);
 	SetDlgItemInt(IDC_E_MONTH, iMonth);
 	SetDlgItemInt(IDC_E_DAY, iDay);
@@ -212,16 +212,16 @@ void CFormViewProperty::UpdateInfo()
 	int iIndex = m_ListDayChanges.GetCurSel();
 	__SKY_DAYCHANGE* pSDC = pDoc->m_Sky.DayChangeGet(iIndex);
 
-	CPropertyItem* pItem0 = m_LPProperty.GetPropItem("ÀÌ¸§");
-	CPropertyItem* pItem1 = m_LPProperty.GetPropItem("½Ã°£");
-	CPropertyItem* pItem2 = m_LPProperty.GetPropItem("Á¾·ù");
+	CPropertyItem* pItem0 = m_LPProperty.GetPropItem("ï¿½Ì¸ï¿½");
+	CPropertyItem* pItem1 = m_LPProperty.GetPropItem("ï¿½Ã°ï¿½");
+	CPropertyItem* pItem2 = m_LPProperty.GetPropItem("ï¿½ï¿½ï¿½ï¿½");
 	
-	CPropertyItem* pItem3 = m_LPProperty.GetPropItem("ÀÎ¼ö1");
-	CPropertyItem* pItem4 = m_LPProperty.GetPropItem("»ö1");
-	CPropertyItem* pItem5 = m_LPProperty.GetPropItem("ÀÎ¼ö2");
-	CPropertyItem* pItem6 = m_LPProperty.GetPropItem("»ö2");
+	CPropertyItem* pItem3 = m_LPProperty.GetPropItem("ï¿½Î¼ï¿½1");
+	CPropertyItem* pItem4 = m_LPProperty.GetPropItem("ï¿½ï¿½1");
+	CPropertyItem* pItem5 = m_LPProperty.GetPropItem("ï¿½Î¼ï¿½2");
+	CPropertyItem* pItem6 = m_LPProperty.GetPropItem("ï¿½ï¿½2");
 	
-	CPropertyItem* pItem7 = m_LPProperty.GetPropItem("Áö¿¬½Ã°£");
+	CPropertyItem* pItem7 = m_LPProperty.GetPropItem("ï¿½ï¿½ï¿½ï¿½ï¿½Ã°ï¿½");
 
 	if(NULL == pSDC)
 	{
@@ -229,7 +229,7 @@ void CFormViewProperty::UpdateInfo()
 		SetDlgItemText(IDC_E_NAME, "");
 
 		if(pItem0) pItem0->m_curValue = "";
-		if(pItem1) pItem1->m_curValue = "0½Ã0ºÐ";
+		if(pItem1) pItem1->m_curValue = "0ï¿½ï¿½0ï¿½ï¿½";
 		if(pItem2) pItem2->m_crColor = 0;
 		
 		if(pItem3) pItem3->m_curValue = "";
@@ -248,7 +248,7 @@ void CFormViewProperty::UpdateInfo()
 		if(pItem1)
 		{
 			int iHour = pSDC->dwWhen / (3600), iMin = (pSDC->dwWhen % (3600))/60;
-			pItem1->m_curValue.Format("%d½Ã%dºÐ", iHour, iMin);
+			pItem1->m_curValue.Format("%dï¿½ï¿½%dï¿½ï¿½", iHour, iMin);
 		}
 		if(pItem2) pItem2->m_crColor = pSDC->eSkyDayChange;
 		
@@ -384,7 +384,7 @@ void CFormViewProperty::OnDblclkListCloudTextures()
 {
 	CString FileName;
 	DWORD dwFlags = OFN_HIDEREADONLY | OFN_OVERWRITEPROMPT;
-	CFileDialog dlg(TRUE, "DXT", NULL, dwFlags, "Texture ·Î ¾µ¼ö ÀÖ´Â ±×¸² ÆÄÀÏ(*.DXT; *.BMP; *.TGA)|*.DXT; *.BMP; *.TGA||", NULL);
+	CFileDialog dlg(TRUE, "DXT", NULL, dwFlags, "Texture ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ö´ï¿½ ï¿½×¸ï¿½ ï¿½ï¿½ï¿½ï¿½(*.DXT; *.BMP; *.TGA)|*.DXT; *.BMP; *.TGA||", NULL);
 	if(dlg.DoModal() == IDCANCEL) return;
 	
 	int iIndex = m_ListCloudTextures.GetCurSel();
@@ -405,7 +405,7 @@ void CFormViewProperty::OnDblclkListSunTextures()
 {
 	CString FileName;
 	DWORD dwFlags = OFN_HIDEREADONLY | OFN_OVERWRITEPROMPT;
-	CFileDialog dlg(TRUE, "DXT", NULL, dwFlags, "Texture ·Î ¾µ¼ö ÀÖ´Â ±×¸² ÆÄÀÏ(*.DXT; *.BMP; *.TGA)|*.DXT; *.BMP; *.TGA||", NULL);
+	CFileDialog dlg(TRUE, "DXT", NULL, dwFlags, "Texture ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ö´ï¿½ ï¿½×¸ï¿½ ï¿½ï¿½ï¿½ï¿½(*.DXT; *.BMP; *.TGA)|*.DXT; *.BMP; *.TGA||", NULL);
 	if(dlg.DoModal() == IDCANCEL) return;
 	
 	int iIndex = m_ListSunTextures.GetCurSel();
@@ -426,7 +426,7 @@ void CFormViewProperty::OnBBrowseMoonTexture()
 {
 	CString FileName;
 	DWORD dwFlags = OFN_HIDEREADONLY | OFN_OVERWRITEPROMPT;
-	CFileDialog dlg(TRUE, "DXT", NULL, dwFlags, "Texture ·Î ¾µ¼ö ÀÖ´Â ±×¸² ÆÄÀÏ(*.DXT; *.BMP; *.TGA)|*.DXT; *.BMP; *.TGA||", NULL);
+	CFileDialog dlg(TRUE, "DXT", NULL, dwFlags, "Texture ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ö´ï¿½ ï¿½×¸ï¿½ ï¿½ï¿½ï¿½ï¿½(*.DXT; *.BMP; *.TGA)|*.DXT; *.BMP; *.TGA||", NULL);
 	if(dlg.DoModal() == IDCANCEL) return;
 	
 	FileName = dlg.GetPathName();

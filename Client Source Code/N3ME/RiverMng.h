@@ -53,17 +53,17 @@ public:
 	it_RiverMesh	GetDrawRiver();
 protected:
 	std::list<CRiverMesh*>			m_RiverMeshes;				// River Mesh list
-	CRiverMesh*						m_pSelRiver;				// ¼±ÅÃµÈ RiverMesh
-	CTypedPtrArray<CPtrArray, __VertexXyzT2*>	m_SelVtxArray;	// ¼±ÅÃµÈ Á¡µé
-	CVtxPosDummy					m_VtxPosDummy;				// Á¡À» ¿òÁ÷ÀÏ¼ö ÀÖ´Â dummy object
-	BOOL							m_bEditMode;				// °­¹° ÆíÁý¸ðµåÀÎ°¡?
-	int								m_RCursorMode;				// °­À» Ãß°¡?ÇÏ´Â °ÍÀÎ°¡ Á¡À» ¼±ÅÃÇÏ´Â °ÍÀÎ°¡?
+	CRiverMesh*						m_pSelRiver;				// ï¿½ï¿½ï¿½Ãµï¿½ RiverMesh
+	CTypedPtrArray<CPtrArray, __VertexXyzT2*>	m_SelVtxArray;	// ï¿½ï¿½ï¿½Ãµï¿½ ï¿½ï¿½ï¿½ï¿½
+	CVtxPosDummy					m_VtxPosDummy;				// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï¼ï¿½ ï¿½Ö´ï¿½ dummy object
+	BOOL							m_bEditMode;				// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Î°ï¿½?
+	int								m_RCursorMode;				// ï¿½ï¿½ï¿½ï¿½ ï¿½ß°ï¿½?ï¿½Ï´ï¿½ ï¿½ï¿½ï¿½Î°ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½ ï¿½ï¿½ï¿½Î°ï¿½?
 
 	CMainFrame*						m_pMainFrm;					// mainframe pointer
 	CDlgRiverProperty*				m_pDlgProperty;				// property dialog
 
-	RECT							m_rcSelDrag;				// µå·¡±× ¿µ¿ª
-	__VertexXyzColor				m_CreateLine[2];			// °­ Ã³À½ »ý¼ºÇÒ¶§ º¸ÀÌ´Â ¼±
+	RECT							m_rcSelDrag;				// ï¿½å·¡ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+	__VertexXyzColor				m_CreateLine[2];			// ï¿½ï¿½ Ã³ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ò¶ï¿½ ï¿½ï¿½ï¿½Ì´ï¿½ ï¿½ï¿½
 
 // Operations
 public:
@@ -73,22 +73,22 @@ public:
 	virtual bool	Load(HANDLE hFile);
 	virtual bool	Save(HANDLE hFile);
 
-	void			MakeGameFiles(HANDLE hFile, float fSize);				// Game file·Î ÀúÀå
+	void			MakeGameFiles(HANDLE hFile, float fSize);				// Game fileï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	CRiverMesh*		CreateNewRiverMesh(__Vector3& vPos1, __Vector3& vPos2,
-		__Vector3& vPos3, __Vector3& vPos4);								// »õ·Î¿î °­À» Ãß°¡ÇÑ´Ù.
-	void			RemoveRiverMesh(int iRiverID);							// ¼±ÅÃµÈ °­À» »èÁ¦ÇÑ´Ù.
-	BOOL			MouseMsgFilter(LPMSG pMsg);								// Mouse ¸Þ¼¼Áö Ã³¸®
-	BOOL			SetRiverID(CRiverMesh* pRiverMesh, int iRiverID);		// °­ÀÇ ID¸¦ ¼³Á¤
-	void			SetEditMode(BOOL bEditMode);							// °­ EditMode¼³Á¤
+		__Vector3& vPos3, __Vector3& vPos4);								// ï¿½ï¿½ï¿½Î¿ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ß°ï¿½ï¿½Ñ´ï¿½.
+	void			RemoveRiverMesh(int iRiverID);							// ï¿½ï¿½ï¿½Ãµï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ñ´ï¿½.
+	BOOL			MouseMsgFilter(LPMSG pMsg);								// Mouse ï¿½Þ¼ï¿½ï¿½ï¿½ Ã³ï¿½ï¿½
+	BOOL			SetRiverID(CRiverMesh* pRiverMesh, int iRiverID);		// ï¿½ï¿½ï¿½ï¿½ IDï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+	void			SetEditMode(BOOL bEditMode);							// ï¿½ï¿½ EditModeï¿½ï¿½ï¿½ï¿½
 	void			ExtrudeRiverEdge();
-	CRiverMesh*		GetRiverMesh(int iRiverID);								// RiverMesh ¾ò±â
-	void			DeleteSelectedVertex();									// ¼±ÅÃµÈ Á¡µé Áö¿ì±â
-	void			ReCalcUV();												// ¼±ÅÃµÈ °­ÀÇ UVÁÂÇ¥ ´Ù½Ã °è»ê.
+	CRiverMesh*		GetRiverMesh(int iRiverID);								// RiverMesh ï¿½ï¿½ï¿½
+	void			DeleteSelectedVertex();									// ï¿½ï¿½ï¿½Ãµï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½
+	void			ReCalcUV();												// ï¿½ï¿½ï¿½Ãµï¿½ ï¿½ï¿½ï¿½ï¿½ UVï¿½ï¿½Ç¥ ï¿½Ù½ï¿½ ï¿½ï¿½ï¿½.
 	void			ReCalcSelectedVertex();
 
-	void			GoRiver(int iRiverID);									// ¼±ÅÃµÈ °­À¸·Î °©´Ï´Ù.
+	void			GoRiver(int iRiverID);									// ï¿½ï¿½ï¿½Ãµï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ï´ï¿½.
 protected:
-	void			SetSelRiver(CRiverMesh* pRiverMesh);					// RiverMesh ¼±ÅÃÇÏ±â
+	void			SetSelRiver(CRiverMesh* pRiverMesh);					// RiverMesh ï¿½ï¿½ï¿½ï¿½ï¿½Ï±ï¿½
 	void			SelectVtxByDragRect(RECT* pRect, BOOL bAdd);
 
 };

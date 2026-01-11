@@ -21,50 +21,50 @@ static char THIS_FILE[]=__FILE__;
 //////////////////////////////////////////////////////////////////////
 // Construction/Destruction
 //////////////////////////////////////////////////////////////////////
-LPDIRECT3DDEVICE8 CN3Base::s_lpD3DDev	= NULL;			// ÂüÁ¶ Æ÷ÀÎÅÍ.. ¸Ú´ë·Î ÇØÁ¦ÇÏ¸é ¾ÈµÈ´Ù..
-DWORD CN3Base::s_dwTextureCaps			= 0;			// Texture È£È¯¼º..
+LPDIRECT3DDEVICE9 CN3Base::s_lpD3DDev	= NULL;			// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½.. ï¿½Ú´ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï¸ï¿½ ï¿½ÈµÈ´ï¿½..
+DWORD CN3Base::s_dwTextureCaps			= 0;			// Texture È£È¯ï¿½ï¿½..
 float CN3Base::s_fFrmPerSec				= 30.0f;		// Frame Per Second
 float CN3Base::s_fSecPerFrm				= 1.0f/30.0f;	// Second per Frame
-HWND CN3Base::s_hWndBase				= NULL;			// Init ÇÒ¶§ ¾´ Window Handle
-HWND CN3Base::s_hWndPresent				= NULL;			// ÃÖ±Ù¿¡ Present ÇÑ Window Handle
+HWND CN3Base::s_hWndBase				= NULL;			// Init ï¿½Ò¶ï¿½ ï¿½ï¿½ Window Handle
+HWND CN3Base::s_hWndPresent				= NULL;			// ï¿½Ö±Ù¿ï¿½ Present ï¿½ï¿½ Window Handle
 
-D3DPRESENT_PARAMETERS CN3Base::s_DevParam;	// Device »ı¼º Present Parameter
-D3DCAPS8 CN3Base::s_DevCaps;				// Device È£È¯¼º...
+D3DPRESENT_PARAMETERS CN3Base::s_DevParam;	// Device ï¿½ï¿½ï¿½ï¿½ Present Parameter
+D3DCAPS9 CN3Base::s_DevCaps;				// Device È£È¯ï¿½ï¿½...
 std::string CN3Base::s_szPath;
 
 __CameraData CN3Base::s_CameraData;			// Camera Data
 __ResrcInfo CN3Base::s_ResrcInfo;			// Rendering Information
-__Options CN3Base::s_Options;	// °¢Á¾ ¿É¼Çµî...
+__Options CN3Base::s_Options;	// ï¿½ï¿½ï¿½ï¿½ ï¿½É¼Çµï¿½...
 #ifdef _DEBUG
 __RenderInfo CN3Base::s_RenderInfo;			// Rendering Information
 #endif
 
-#ifdef _N3GAME // °ÔÀÓÀÌ ¾Æ´Ñ Åø¿¡¼­´Â ÇÊ¿ä¾ø´Ù...
-CN3SndMgr CN3Base::s_SndMgr;	//»ç¿îµå ¸Ş´ÏÀú.
+#ifdef _N3GAME // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Æ´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ê¿ï¿½ï¿½ï¿½ï¿½...
+CN3SndMgr CN3Base::s_SndMgr;	//ï¿½ï¿½ï¿½ï¿½ ï¿½Ş´ï¿½ï¿½ï¿½.
 #endif
-#ifdef _N3UIE	// ui ¿¡µğÅÍÀÏ¶§´Â ÇÊ¿äÇÏ´Ù.
-CN3SndMgr CN3Base::s_SndMgr;	//»ç¿îµå ¸Ş´ÏÀú.
+#ifdef _N3UIE	// ui ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï¶ï¿½ï¿½ï¿½ ï¿½Ê¿ï¿½ï¿½Ï´ï¿½.
+CN3SndMgr CN3Base::s_SndMgr;	//ï¿½ï¿½ï¿½ï¿½ ï¿½Ş´ï¿½ï¿½ï¿½.
 #endif
 
 CN3Mng<CN3Texture>		CN3Base::s_MngTex; // Texture Manager
 CN3Mng<CN3Mesh>			CN3Base::s_MngMesh; // Mesh Manager
-CN3Mng<CN3VMesh>		CN3Base::s_MngVMesh; // ´Ü¼øÈ÷ Æú¸®°ï¸¸ °®°í ÀÖ´Â ¸Ş½Ã - ÁÖ·Î Ãæµ¹ Ã¼Å©¿¡ ¾´´Ù..
+CN3Mng<CN3VMesh>		CN3Base::s_MngVMesh; // ï¿½Ü¼ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¸¸ ï¿½ï¿½ï¿½ï¿½ ï¿½Ö´ï¿½ ï¿½Ş½ï¿½ - ï¿½Ö·ï¿½ ï¿½æµ¹ Ã¼Å©ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½..
 CN3Mng<CN3PMesh>		CN3Base::s_MngPMesh; // Progressive Mesh Manager
 CN3Mng<CN3Joint>		CN3Base::s_MngJoint; // Joint Manager
 CN3Mng<CN3CPartSkins>	CN3Base::s_MngSkins; // Character Part Skins Manager
 CN3Mng<CN3AnimControl>	CN3Base::s_MngAniCtrl; // Animation Manager
-CN3Mng<CN3FXPMesh>		CN3Base::s_MngFXPMesh; // FX¿¡¼­ ¾²´Â PMesh - ÆÄÀÏÀº ÀÏ¹İ PMesh¸¦ ¾²Áö¸¸ ¼ÓÀº ´Ù¸£´Ù.
-CN3Mng<CN3FXShape>		CN3Base::s_MngFXShape; // FX¿¡¼­ ¾²´Â Shape - ÆÄÀÏÀº ÀÏ¹İ shape¸¦ ¾²Áö¸¸ ¼ÓÀº ´Ù¸£´Ù.	
+CN3Mng<CN3FXPMesh>		CN3Base::s_MngFXPMesh; // FXï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ PMesh - ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ï¹ï¿½ PMeshï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ù¸ï¿½ï¿½ï¿½.
+CN3Mng<CN3FXShape>		CN3Base::s_MngFXShape; // FXï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ Shape - ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ï¹ï¿½ shapeï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ù¸ï¿½ï¿½ï¿½.	
 
-CN3AlphaPrimitiveManager	CN3Base::s_AlphaMgr;  // Alpha blend ÇÒ Æú¸®°ïµéÀ» °ü¸®.. Ãß°¡Çß´Ù°¡.. Ä«¸Ş¶ó °Å¸®¿¡ ¬Ãß¾î Á¤·ÄÇÏ°í ÇÑ²¨¹ø¿¡ ±×¸°´Ù..
+CN3AlphaPrimitiveManager	CN3Base::s_AlphaMgr;  // Alpha blend ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½.. ï¿½ß°ï¿½ï¿½ß´Ù°ï¿½.. Ä«ï¿½Ş¶ï¿½ ï¿½Å¸ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ß¾ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï°ï¿½ ï¿½Ñ²ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½×¸ï¿½ï¿½ï¿½..
 
 #ifdef _N3GAME
-CLogWriter g_Log; // ·Î±× ³²±â±â...
+CLogWriter g_Log; // ï¿½Î±ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½...
 #endif
 
 CN3Base::CN3Base()
 {
-	m_dwType = OBJ_BASE; // "MESH", "CAMERA", "SCENE", "???" .... µîµîµî...
+	m_dwType = OBJ_BASE; // "MESH", "CAMERA", "SCENE", "???" .... ï¿½ï¿½ï¿½ï¿½...
 	m_szName = "";
 }
 
@@ -286,7 +286,7 @@ void CN3Base::PathSet(const std::string& szPath)
 	s_szPath = szPath;
 	if(s_szPath.size() <= 0) return;
 
-	CharLower(&(s_szPath[0])); // ¹İµå½Ã ¼Ò¹®ÀÚ·Î ¸¸µé¾î ÁØ´Ù..
+	CharLower(&(s_szPath[0])); // ï¿½İµï¿½ï¿½ ï¿½Ò¹ï¿½ï¿½Ú·ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ø´ï¿½..
 	if(s_szPath.size() > 1)
 	{
 		if(s_szPath[s_szPath.size()-1] != '\\') s_szPath += '\\';
@@ -316,7 +316,7 @@ void CN3Base::RenderLines(const __Vector3 *pvLines, int nCount, D3DCOLOR color)
 
 	static __VertexColor svLines[512];
 
-	s_lpD3DDev->SetVertexShader(FVF_CV);
+	s_lpD3DDev->SetFVF(FVF_CV);
 
 	int nRepeat = nCount/512;
 	for(int i = 0; i < nRepeat; i++)
@@ -354,7 +354,7 @@ void CN3Base::RenderLines(const RECT& rc, D3DCOLOR color)
 	CN3Base::s_lpD3DDev->GetTextureStageState(0, D3DTSS_COLORARG1, &dwCA1);
 	CN3Base::s_lpD3DDev->GetTextureStageState(0, D3DTSS_ALPHAOP, &dwAOP);
 	CN3Base::s_lpD3DDev->GetTextureStageState(0, D3DTSS_ALPHAARG1, &dwAA1);
-	CN3Base::s_lpD3DDev->GetVertexShader(&dwVertexShader); 
+	CN3Base::s_lpD3DDev->GetFVF(&dwVertexShader); 
 
 	CN3Base::s_lpD3DDev->SetRenderState(D3DRS_ZENABLE, FALSE);
 	CN3Base::s_lpD3DDev->SetRenderState(D3DRS_FOGENABLE, FALSE);
@@ -366,7 +366,7 @@ void CN3Base::RenderLines(const RECT& rc, D3DCOLOR color)
 	CN3Base::s_lpD3DDev->SetTextureStageState(0, D3DTSS_ALPHAOP, D3DTOP_SELECTARG1);
 	CN3Base::s_lpD3DDev->SetTextureStageState(0, D3DTSS_ALPHAARG1, D3DTA_DIFFUSE);
 
-	CN3Base::s_lpD3DDev->SetVertexShader(FVF_TRANSFORMEDCOLOR);
+	CN3Base::s_lpD3DDev->SetFVF(FVF_TRANSFORMEDCOLOR);
 	CN3Base::s_lpD3DDev->DrawPrimitiveUP(D3DPT_LINESTRIP, 4, vLines, sizeof(__VertexTransformedColor));
 	
 	CN3Base::s_lpD3DDev->SetRenderState(D3DRS_ZENABLE, dwZ);
@@ -378,7 +378,7 @@ void CN3Base::RenderLines(const RECT& rc, D3DCOLOR color)
 	CN3Base::s_lpD3DDev->SetTextureStageState(0, D3DTSS_COLORARG1, dwCA1);
 	CN3Base::s_lpD3DDev->SetTextureStageState(0, D3DTSS_ALPHAOP, dwAOP);
 	CN3Base::s_lpD3DDev->SetTextureStageState(0, D3DTSS_ALPHAARG1, dwAA1);
-	CN3Base::s_lpD3DDev->SetVertexShader(dwVertexShader); 
+	CN3Base::s_lpD3DDev->SetFVF(dwVertexShader); 
 }
 
 float CN3Base::TimeGet()

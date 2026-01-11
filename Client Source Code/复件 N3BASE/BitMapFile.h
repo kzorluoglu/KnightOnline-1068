@@ -16,7 +16,7 @@ class CBitMapFile : public CN3Base
 protected:
 	BITMAPFILEHEADER m_bmfHeader;
 	BITMAPINFOHEADER m_bmInfoHeader;
-	void* m_pPixels; // ½ÇÁ¦ ÇÈ¼¿ µ¥ÀÌÅÍ
+	void* m_pPixels; // ï¿½ï¿½ï¿½ï¿½ ï¿½È¼ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 
 public:
 	bool SaveRectToFile(const char* szFileName, RECT rc);

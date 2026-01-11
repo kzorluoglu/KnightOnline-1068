@@ -1,7 +1,7 @@
 #if !defined(_N3E2WRAPPER_H__INCUDED_)
 #define _N3E2WRAPPER_H__INCUDED_
 
-// stl ¾µ·Á°í...
+// stl ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½...
 #pragma warning(disable : 4786)
 
 /*==============================================*/
@@ -83,8 +83,8 @@ class CN3E2Wrapper
 {
 private:
 	// different extensions will get added to this:
-	char	m_szPath[1024];		// °æ·Î ÀÌ¸§
-	char	m_szFileName[1024];	// ÆÄÀÏ ÀÌ¸§
+	char	m_szPath[1024];		// ï¿½ï¿½ï¿½ ï¿½Ì¸ï¿½
+	char	m_szFileName[1024];	// ï¿½ï¿½ï¿½ï¿½ ï¿½Ì¸ï¿½
 	
 	CN3Scene*		m_pScene;
 	static __EXPORT_OPTION m_Option;
@@ -96,7 +96,7 @@ protected:
 
 	MObject MeshGetShader(MFnMesh &pMMesh);
 
-	CN3Texture* ProcessTexture(MFnMesh &mMesh); // ÅØ½ºÃ³ ÀÎµ¦½º°ªÀÌ ¸®ÅÏµÈ´Ù..
+	CN3Texture* ProcessTexture(MFnMesh &mMesh); // ï¿½Ø½ï¿½Ã³ ï¿½Îµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ÏµÈ´ï¿½..
 	CN3Joint*	ProcessJoint(MFnIkJoint& mJoint);
 	bool		ProcessIMesh(MFnMesh& mMesh, CN3IMesh* pIMesh);
 	bool		ProcessVMesh(MFnMesh &mMesh, CN3VMesh* pVMesh);

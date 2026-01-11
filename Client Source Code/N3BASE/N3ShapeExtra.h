@@ -21,10 +21,10 @@ class CN3ShapeExtra : public CN3Shape
 protected:
 	struct __Rotation
 	{
-		float			fRadianPerSec;	// ÃÊ´ç È¸Àü.. Radian...
-		__Vector3		vAxis;			// È¸ÀüÃà..
-		float			fRadianCur;		// ÇöÀç È¸Àü°ª..
-		float			fRadianToReach;	// È¸Àü½ÃÅ³°ª..
+		float			fRadianPerSec;	// ï¿½Ê´ï¿½ È¸ï¿½ï¿½.. Radian...
+		__Vector3		vAxis;			// È¸ï¿½ï¿½ï¿½ï¿½..
+		float			fRadianCur;		// ï¿½ï¿½ï¿½ï¿½ È¸ï¿½ï¿½ï¿½ï¿½..
+		float			fRadianToReach;	// È¸ï¿½ï¿½ï¿½ï¿½Å³ï¿½ï¿½..
 
 		__Rotation()
 		{
@@ -36,7 +36,7 @@ protected:
 	std::vector<__Rotation>	m_Rotations;
 
 public:
-	void RotateTo(int iPart, const __Vector3& vAxis, float fRadianToReach, float fRadianPerSec, bool bImmediately = false); // ¿øÇÏ´Â ÆÄÆ®¸¦ Ãà¿¡ µû¶ó ÁöÁ¤ÇÑ °¢µµ±îÁö ÁöÁ¤ÇÑ ¼Óµµ·Î È¸Àü½ÃÅ²´Ù..
+	void RotateTo(int iPart, const __Vector3& vAxis, float fRadianToReach, float fRadianPerSec, bool bImmediately = false); // ï¿½ï¿½ï¿½Ï´ï¿½ ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½à¿¡ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Óµï¿½ï¿½ï¿½ È¸ï¿½ï¿½ï¿½ï¿½Å²ï¿½ï¿½..
 
 	bool Load(HANDLE hFile);
 	void Tick(float fFrm);

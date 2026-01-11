@@ -18,20 +18,20 @@ public:
 	{
 		char	szDeviceName[128];
 		char	szDeviceDesc[128];
-		int		nAdapter; // ¸î¹øÂ° ±×·¡ÇÈ Ä«µåÀÎÁö.
-		int		nDevice; // ¸î¹øÂ° ÀåÄ¡ÀÎÁö.
+		int		nAdapter; // ï¿½ï¿½ï¿½Â° ï¿½×·ï¿½ï¿½ï¿½ Ä«ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½.
+		int		nDevice; // ï¿½ï¿½ï¿½Â° ï¿½ï¿½Ä¡ï¿½ï¿½ï¿½ï¿½.
 		
-		D3DDEVTYPE		DevType; // ÇÏµå¿þ¾î °¡¼ÓÀÎÁö.
-		int				nModeCount; // µð½ºÇÃ·¹ÀÌ ¸ðµå °¹¼ö
-		D3DDISPLAYMODE* pModes; // µð½ºÇÃ·¹ÀÌ ¸ðµå
+		D3DDEVTYPE		DevType; // ï¿½Ïµï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½.
+		int				nModeCount; // ï¿½ï¿½ï¿½Ã·ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+		D3DDISPLAYMODE* pModes; // ï¿½ï¿½ï¿½Ã·ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
 	} __D3DDevInfo;
 
 	LPDIRECT3D8			m_lpD3D;
 
 protected:
-	int		m_nModeActive; // ÇöÀç ¼±ÅÃµÈ Mode
-	int		m_nAdapterCount; // ±×·¡ÇÈ Ä«µå °¹¼ö
-	__D3DDEV_INFO m_DeviceInfo; // Device Á¤º¸
+	int		m_nModeActive; // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ãµï¿½ Mode
+	int		m_nAdapterCount; // ï¿½×·ï¿½ï¿½ï¿½ Ä«ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+	__D3DDEV_INFO m_DeviceInfo; // Device ï¿½ï¿½ï¿½ï¿½
 	
 public:
 	HKEY RegistryOpen(const char* szKey);

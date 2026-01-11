@@ -82,10 +82,10 @@ void CTexViewer::OnPaint()
 	CPaintDC dc(this); // device context for painting
 
 	dc.SetViewportOrg(-m_ptLeftTopInImage.x * m_fScale, -m_ptLeftTopInImage.y * m_fScale);
-	// ÇöÀç ¼±ÅÃµÈ ¿µ¿ª ±×¸®±â
+	// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ãµï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½×¸ï¿½ï¿½ï¿½
 	if (m_rcSelectedRect.top != -1)
 	{
-		// ¼±ÅÃ ¿µ¿ªÀ» ÁÂ¿ì»óÇÏ¸¦ ¸¦ Å©±â¿¡ µû¶ó ´Ù½Ã ¹èÄ¡ ÈÄ È­¸é ÁÂÇ¥·Î º¯È¯
+		// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Â¿ï¿½ï¿½ï¿½Ï¸ï¿½ ï¿½ï¿½ Å©ï¿½â¿¡ ï¿½ï¿½ï¿½ï¿½ ï¿½Ù½ï¿½ ï¿½ï¿½Ä¡ ï¿½ï¿½ È­ï¿½ï¿½ ï¿½ï¿½Ç¥ï¿½ï¿½ ï¿½ï¿½È¯
 		CRect rcSelected;
 		if (m_rcSelectedRect.left<m_rcSelectedRect.right)
 		{
@@ -115,16 +115,16 @@ void CTexViewer::OnPaint()
 		dc.SetBkColor(RGB(0,0,0));
 		dc.SelectStockObject(NULL_BRUSH);
 		CPen* pOldPen = dc.SelectObject(&m_WhiteDashPen);
-		dc.Rectangle(&rcSelected);	// Èò Á¡¼± ÆæÀ¸·Î Ä¥ÇÏ°í
+		dc.Rectangle(&rcSelected);	// ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Ä¥ï¿½Ï°ï¿½
 		dc.SelectObject(pOldPen);
 	}
-	// ImageTypeº° ¿µ¿ªÀÌ ÀÖÀ¸¸é ±×¸®±â
+	// ImageTypeï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½×¸ï¿½ï¿½ï¿½
 	int i;
 	int iOldMode = dc.SetROP2(R2_NOTXORPEN);
 	dc.SelectStockObject(NULL_BRUSH);
 	for (i=0; i<m_iImageTypeCount; ++i)
 	{
-		if (m_iCurSelectedImage == i) continue;	// ÇöÀç ¼±ÅÃµÈ °ÍÀº °Ç³Ê¶Ù±â
+		if (m_iCurSelectedImage == i) continue;	// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ãµï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ç³Ê¶Ù±ï¿½
 		CRect rcTmp = m_ImageRects[i];
 		rcTmp.left *= m_fScale;		rcTmp.right *= m_fScale;
 		rcTmp.top *= m_fScale;		rcTmp.bottom *= m_fScale;
@@ -143,7 +143,7 @@ void CTexViewer::OnLButtonDown(UINT nFlags, CPoint point)
 
 	if (EDITMODE_SELECT == m_eEditMode)
 	{
-		// ÁöÁ¤µÈ »ç°¢ÇüÀÌ ÀÖÀ¸¸é ±× »ç°¢ÇüÀ» º¯ÇüÇÏ´ÂÁö Ã¼Å©ÇÏÀÚ
+		// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ç°¢ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ç°¢ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½ï¿½ï¿½ Ã¼Å©ï¿½ï¿½ï¿½ï¿½
 		if (-1 != m_rcSelectedRect.left)
 		{
 			CRect rcReal = m_rcSelectedRect;
@@ -155,7 +155,7 @@ void CTexViewer::OnLButtonDown(UINT nFlags, CPoint point)
 		if (DRAGTYPE_NONE == m_eDragType)
 		{
 			CPoint pt = point;
-			ScreenToImage(&pt);				// image ÁÂÇ¥·Î º¯È¯
+			ScreenToImage(&pt);				// image ï¿½ï¿½Ç¥ï¿½ï¿½ ï¿½ï¿½È¯
 			m_rcSelectedRect.SetRect(pt, pt);
 			m_eDragType = DRAGTYPE_SELECT;
 			m_bDeselect = TRUE;
@@ -187,9 +187,9 @@ void CTexViewer::OnLButtonUp(UINT nFlags, CPoint point)
 				else
 				{
 					CPoint pt = point;
-					ScreenToImage(&pt);				// image ÁÂÇ¥·Î º¯È¯
+					ScreenToImage(&pt);				// image ï¿½ï¿½Ç¥ï¿½ï¿½ ï¿½ï¿½È¯
 					
-					// »ç°¢ÇüÀÇ left,topÀº ÀÛÀº ÁÂÇ¥ right, bottomÀº Å« ÁÂÇ¥·Î Á¤¸®ÇÏ±â
+					// ï¿½ç°¢ï¿½ï¿½ï¿½ï¿½ left,topï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ç¥ right, bottomï¿½ï¿½ Å« ï¿½ï¿½Ç¥ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï±ï¿½
 					if (m_rcSelectedRect.left > pt.x)
 					{
 						m_rcSelectedRect.right = m_rcSelectedRect.left;
@@ -209,7 +209,7 @@ void CTexViewer::OnLButtonUp(UINT nFlags, CPoint point)
 				ProcessDrag(point);
 			}
 			m_eDragType = DRAGTYPE_NONE;
-			if (m_iCurSelectedImage>=0) m_ImageRects[m_iCurSelectedImage] = m_rcSelectedRect;	// ¸¸¾à ImageTypeº°·Î ÀúÀåÇÑ´Ù¸é ¼±ÅÃµÈ »ç°¢ÇüÀ» copyÇØÁÖ±â
+			if (m_iCurSelectedImage>=0) m_ImageRects[m_iCurSelectedImage] = m_rcSelectedRect;	// ï¿½ï¿½ï¿½ï¿½ ImageTypeï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ñ´Ù¸ï¿½ ï¿½ï¿½ï¿½Ãµï¿½ ï¿½ç°¢ï¿½ï¿½ï¿½ï¿½ copyï¿½ï¿½ï¿½Ö±ï¿½
 			Invalidate();
 		}
 		else if (EDITMODE_ZOOM == m_eEditMode)
@@ -219,13 +219,13 @@ void CTexViewer::OnLButtonUp(UINT nFlags, CPoint point)
 				CRect rc;
 				GetClientRect(&rc);
 				CPoint ptPrev = point;
-				ScreenToImage(&ptPrev);	// zoom ÇÏ±â ÀüÀÇ imageÁÂÇ¥ ÀúÀå
+				ScreenToImage(&ptPrev);	// zoom ï¿½Ï±ï¿½ ï¿½ï¿½ï¿½ï¿½ imageï¿½ï¿½Ç¥ ï¿½ï¿½ï¿½ï¿½
 				Zoom((GetAsyncKeyState(VK_MENU) & 0xff00) ? FALSE : TRUE);
 				CPoint ptNext = ptPrev;
-				ImageToScreen(&ptNext);	// zoom ÇÑ ÈÄÀÇ imageÁÂÇ¥¸¦ screenÁÂÇ¥·Î ÀüÈ¯
-				ptNext.x = int((ptNext.x-rc.CenterPoint().x)/m_fScale);		//È­¸é °¡¿îµ¥·Î ¿À°Ô²û ¼³Á¤
+				ImageToScreen(&ptNext);	// zoom ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ imageï¿½ï¿½Ç¥ï¿½ï¿½ screenï¿½ï¿½Ç¥ï¿½ï¿½ ï¿½ï¿½È¯
+				ptNext.x = int((ptNext.x-rc.CenterPoint().x)/m_fScale);		//È­ï¿½ï¿½ ï¿½ï¿½ï¿½îµ¥ï¿½ï¿½ ï¿½ï¿½ï¿½Ô²ï¿½ ï¿½ï¿½ï¿½ï¿½
 				ptNext.y = int((ptNext.y-rc.CenterPoint().y)/m_fScale);
-				SetLeftTopInImage( m_ptLeftTopInImage + ptNext);	//Â÷ÀÌ¸¸Å­ ¿Å±â±â
+				SetLeftTopInImage( m_ptLeftTopInImage + ptNext);	//ï¿½ï¿½ï¿½Ì¸ï¿½Å­ ï¿½Å±ï¿½ï¿½
 			}
 			else
 			{
@@ -251,21 +251,21 @@ void CTexViewer::OnMouseMove(UINT nFlags, CPoint point)
 	{
 		if (EDITMODE_SELECT == m_eEditMode)
 		{
-			// È­¸é ½ºÅ©·Ñ Ã¼Å©
+			// È­ï¿½ï¿½ ï¿½ï¿½Å©ï¿½ï¿½ Ã¼Å©
 			CRect rcClient;
 			GetClientRect(&rcClient);
 			CPoint ptOffset(0,0);
-			int iBorder = 20;	// È­¸é °¡ÀåÀÚ¸® 20 ÀÌ³»ÀÖÀ¸¸é 1¾¿ Áõ°¨
+			int iBorder = 20;	// È­ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ú¸ï¿½ 20 ï¿½Ì³ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ 1ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 			if (point.x < rcClient.left+iBorder) ptOffset.x = -1;
 			else if (point.x > rcClient.right-iBorder) ptOffset.x = 1;
 			if (point.y < rcClient.top+iBorder) ptOffset.y = -1;
 			else if (point.y > rcClient.bottom-iBorder) ptOffset.y = 1;
-			iBorder = 10;		// 10 ÀÌ³»ÀÖÀ¸¸é 5¾¿ Áõ°¨
+			iBorder = 10;		// 10 ï¿½Ì³ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ 5ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 			if (point.x < rcClient.left+iBorder) ptOffset.x = -5;
 			else if (point.x > rcClient.right-iBorder) ptOffset.x = 5;
 			if (point.y < rcClient.top+iBorder) ptOffset.y = -5;
 			else if (point.y > rcClient.bottom-iBorder) ptOffset.y = 5;
-			iBorder = 5;		// 5 ÀÌ³»ÀÖÀ¸¸é 20¾¿ Áõ°¨
+			iBorder = 5;		// 5 ï¿½Ì³ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ 20ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 			if (point.x < rcClient.left+iBorder) ptOffset.x = -20;
 			else if (point.x > rcClient.right-iBorder) ptOffset.x = 20;
 			if (point.y < rcClient.top+iBorder) ptOffset.y = -20;
@@ -274,15 +274,15 @@ void CTexViewer::OnMouseMove(UINT nFlags, CPoint point)
 
 			if (DRAGTYPE_SELECT == m_eDragType)
 			{
-				// ¼±ÅÃ ¿µ¿ª °»½Å
+				// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 				CPoint pt = point;
-				ScreenToImage(&pt);				// image ÁÂÇ¥·Î º¯È¯
+				ScreenToImage(&pt);				// image ï¿½ï¿½Ç¥ï¿½ï¿½ ï¿½ï¿½È¯
 				m_rcSelectedRect.right = pt.x;
 				m_rcSelectedRect.bottom = pt.y;
-				m_bDeselect = FALSE;		// deselect ÇØÁ¦
+				m_bDeselect = FALSE;		// deselect ï¿½ï¿½ï¿½ï¿½
 			}
 			else
-			{	// ¿µ¿ª º¯ÇüÀÏ °æ¿ì ´ÙÀ½°ú °°ÀÌ Ã³¸®
+			{	// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ Ã³ï¿½ï¿½
 				ProcessDrag(point);
 			}
 			Invalidate();
@@ -303,7 +303,7 @@ void CTexViewer::OnMouseMove(UINT nFlags, CPoint point)
 void CTexViewer::OnSize(UINT nType, int cx, int cy) 
 {
 	CWnd::OnSize(nType, cx, cy);
-	SetLeftTopInImage(m_ptLeftTopInImage);	// »çÀÌÁî°¡ ´Þ¶óÁ³À¸¹Ç·Î ´Ù½Ã ¼³Á¤ÇÏ¿© ¿ÞÂÊ À§¸¦ ´Ù½Ã °è»êÇÏ°Ô ÇÏ±â
+	SetLeftTopInImage(m_ptLeftTopInImage);	// ï¿½ï¿½ï¿½ï¿½ï¿½î°¡ ï¿½Þ¶ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ç·ï¿½ ï¿½Ù½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï¿ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ù½ï¿½ ï¿½ï¿½ï¿½ï¿½Ï°ï¿½ ï¿½Ï±ï¿½
 	
 }
 
@@ -315,7 +315,7 @@ BOOL CTexViewer::OnSetCursor(CWnd* pWnd, UINT nHitTest, UINT message)
 		{
 			HCURSOR hCur = m_hCursorSelect;
 			eDRAGTYPE		eDT = m_eDragType;
-			if (DRAGTYPE_NONE == m_eDragType)	// µå·¹±× TypeÀÌ NONEÀÌ¸é cursorÀÇ À§Ä¡¸¦ ¾ò¾î¼­ Å×½ºÆ®ÇÏ±â
+			if (DRAGTYPE_NONE == m_eDragType)	// ï¿½å·¹ï¿½ï¿½ Typeï¿½ï¿½ NONEï¿½Ì¸ï¿½ cursorï¿½ï¿½ ï¿½ï¿½Ä¡ï¿½ï¿½ ï¿½ï¿½î¼­ ï¿½×½ï¿½Æ®ï¿½Ï±ï¿½
 			{
 				CPoint pt;
 				if (GetCursorPos(&pt))
@@ -377,7 +377,7 @@ void CTexViewer::Release()
 	m_eDragType = DRAGTYPE_NONE;
 	m_ptClickOffset = CPoint(-1,-1);
 
-	// image type°ü·Ã
+	// image typeï¿½ï¿½ï¿½ï¿½
 	int i;
 	for (i=0; i<MAX_IMAGETYPE; ++i)
 	{
@@ -409,7 +409,7 @@ void CTexViewer::Render()
 	// set render state
 	if (D3DZB_FALSE != dwZEnable) lpD3DDev->SetRenderState(D3DRS_ZENABLE, D3DZB_FALSE);
 	if (FALSE != dwAlphaBlend) lpD3DDev->SetRenderState(D3DRS_ALPHABLENDENABLE, FALSE);
-	if (FALSE != dwFog) lpD3DDev->SetRenderState(D3DRS_FOGENABLE   , FALSE);	// 2dµµ fog¸¦ ¸Ô´Â´Ù ¤Ñ.¤Ñ;
+	if (FALSE != dwFog) lpD3DDev->SetRenderState(D3DRS_FOGENABLE   , FALSE);	// 2dï¿½ï¿½ fogï¿½ï¿½ ï¿½Ô´Â´ï¿½ ï¿½ï¿½.ï¿½ï¿½;
 	if (D3DTEXF_POINT != dwMagFilter ) lpD3DDev->SetTextureStageState(0, D3DTSS_MAGFILTER,   D3DTEXF_POINT);
 	if (D3DTEXF_POINT != dwMinFilter ) lpD3DDev->SetTextureStageState(0, D3DTSS_MINFILTER,   D3DTEXF_POINT);
 	if (D3DTEXF_NONE != dwMipFilter ) lpD3DDev->SetTextureStageState(0, D3DTSS_MIPFILTER,   D3DTEXF_NONE);
@@ -419,7 +419,7 @@ void CTexViewer::Render()
 	lpD3DDev->SetTextureStageState(0, D3DTSS_COLORARG1,  D3DTA_TEXTURE);
 	lpD3DDev->SetTextureStageState(1, D3DTSS_COLOROP,  D3DTOP_DISABLE);
 
-	//  ±×¸² À§Ä¡¿Í ¹èÀ²µîÀ» °í·ÁÇØ¼­ °è»ê
+	//  ï¿½×¸ï¿½ ï¿½ï¿½Ä¡ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ø¼ï¿½ ï¿½ï¿½ï¿½
 	CRect rcRender(0,0, m_TexSize.cx*m_fScale, m_TexSize.cy*m_fScale);
 	rcRender.OffsetRect(-m_ptLeftTopInImage.x*m_fScale, -m_ptLeftTopInImage.y*m_fScale);
 	static __VertexTransformed		Vertices[4];
@@ -429,8 +429,8 @@ void CTexViewer::Render()
 	Vertices[2].Set((float)rcRender.right, (float)rcRender.bottom, z, rhw, color, 1.0f, 1.0f);
 	Vertices[3].Set((float)rcRender.left, (float)rcRender.bottom, z, rhw, color, 0.0f, 1.0f);
 
-	// ±×¸®±â
-	lpD3DDev->SetVertexShader(FVF_TRANSFORMED);
+	// ï¿½×¸ï¿½ï¿½ï¿½
+	lpD3DDev->SetFVF(FVF_TRANSFORMED);
 	HRESULT hr = lpD3DDev->DrawPrimitiveUP(D3DPT_TRIANGLEFAN, 2, Vertices, sizeof(Vertices[0]));
 
 	// restore
@@ -447,7 +447,7 @@ void CTexViewer::SetTexture(LPCTSTR pszFName)
 	CN3Base::s_MngTex.Delete(&m_pTex);
 	m_pTex = CN3Base::s_MngTex.Get(pszFName);
 
-	// texture size ÁöÁ¤
+	// texture size ï¿½ï¿½ï¿½ï¿½
 	if (m_pTex)	{m_TexSize.cx = m_pTex->Width();	m_TexSize.cy = m_pTex->Height();}
 	else m_TexSize.cx = m_TexSize.cy = 0;
 }
@@ -510,23 +510,23 @@ BOOL CTexViewer::ImageToScreen(RECT* pRect)
 CTexViewer::eEDITMODE CTexViewer::SetEditMode(eEDITMODE eMode)
 {
 	if (m_eEditMode == eMode) return m_eEditMode;
-	if (m_bDrag) return m_eEditMode;		// µå·¡±× ÁßÀÌ¸é ¹Ù²ÙÁö ¸»ÀÚ ÀÌ»óµ¿Àå °¡´É¼ºÀÌ ¸¹´Ù.
+	if (m_bDrag) return m_eEditMode;		// ï¿½å·¡ï¿½ï¿½ ï¿½ï¿½ï¿½Ì¸ï¿½ ï¿½Ù²ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ì»ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½É¼ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½.
 	m_eEditMode = eMode;
 	return m_eEditMode;
 }
 
 void CTexViewer::SetLeftTopInImage(CPoint ptLeftTop)
 {
-	// ÇÑ°è ¿µ¿ª °è»êÇÏ±â
-	//  ±×¸² À§Ä¡¿Í ¹èÀ²µîÀ» °í·ÁÇØ¼­ °è»ê
-	CRect rcClient;				// Client¿µ¿ª
+	// ï¿½Ñ°ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ï±ï¿½
+	//  ï¿½×¸ï¿½ ï¿½ï¿½Ä¡ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ø¼ï¿½ ï¿½ï¿½ï¿½
+	CRect rcClient;				// Clientï¿½ï¿½ï¿½ï¿½
 	GetClientRect(&rcClient);
 	CPoint ptLimit;
 	ptLimit.x = int(m_TexSize.cx - rcClient.Width()/m_fScale);
 	ptLimit.y = int(m_TexSize.cy - rcClient.Height()/m_fScale);
 	if (ptLimit.x < 0) ptLimit.x = 0;	if (ptLimit.y < 0) ptLimit.y = 0;
 
-	//ÇÑ°è ¿µ¿ª¿¡ ¸ÂÃß¾î °è»êÇÏ±â
+	//ï¿½Ñ°ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ß¾ï¿½ ï¿½ï¿½ï¿½ï¿½Ï±ï¿½
 	if (ptLeftTop.x < 0) ptLeftTop.x = 0;	if (ptLeftTop.y < 0) ptLeftTop.y = 0;
 	if (ptLeftTop.x > ptLimit.x) ptLeftTop.x = ptLimit.x;
 	if (ptLeftTop.y > ptLimit.y) ptLeftTop.y = ptLimit.y;
@@ -562,7 +562,7 @@ void CTexViewer::SetSelectedUVRect(const __FLOAT_RECT* pFRect)
 	if (NULL == pFRect) return;
 	ASSERT(m_TexSize.cx > 2 && m_TexSize.cy > 2);
 
-	m_rcSelectedRect.left = int(pFRect->left*m_TexSize.cx + 0.5f);		// 0.5f¸¦ ´õÇÏ´Â ÀÌÀ¯´Â ¹Ý¿Ã¸²..
+	m_rcSelectedRect.left = int(pFRect->left*m_TexSize.cx + 0.5f);		// 0.5fï¿½ï¿½ ï¿½ï¿½ï¿½Ï´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ý¿Ã¸ï¿½..
 	m_rcSelectedRect.right = int(pFRect->right*m_TexSize.cx + 0.5f);
 	m_rcSelectedRect.top = int(pFRect->top*m_TexSize.cy + 0.5f);
 	m_rcSelectedRect.bottom = int(pFRect->bottom*m_TexSize.cy + 0.5f);
@@ -599,7 +599,7 @@ CTexViewer::eDRAGTYPE CTexViewer::CheckDragType(CRect rcSel, CPoint point)
 	return DRAGTYPE_NONE;
 }
 
-// ¿µ¿ª º¯ÇüÀÏ °æ¿ì Ã³¸®ÇÏ´Â ·çÆ¾
+// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ Ã³ï¿½ï¿½ï¿½Ï´ï¿½ ï¿½ï¿½Æ¾
 void CTexViewer::ProcessDrag(CPoint point)
 {
 	ScreenToImage(&point);
@@ -687,16 +687,16 @@ CRect CTexViewer::GetImageRect(int iIndex)
 	return m_ImageRects[iIndex];
 }
 
-BOOL CTexViewer::AutoMultiRectSelect(BOOL bHorizon, CString& strErrMsg)	// °¡·Î ¶Ç´Â ¼¼·Î·Î ¿¬°áµÈ ÀÌ¹ÌÁö RectµéÀ» ÀÚµ¿À¸·Î °°Àº Å©±â·Î ¼±ÅÃÇØÁØ´Ù.
+BOOL CTexViewer::AutoMultiRectSelect(BOOL bHorizon, CString& strErrMsg)	// ï¿½ï¿½ï¿½ï¿½ ï¿½Ç´ï¿½ ï¿½ï¿½ï¿½Î·ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ì¹ï¿½ï¿½ï¿½ Rectï¿½ï¿½ï¿½ï¿½ ï¿½Úµï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ Å©ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ø´ï¿½.
 {
 	if (-1 == m_rcSelectedRect.left)
 	{
-		strErrMsg = "ÇöÀç ¼±ÅÃµÈ ¿µ¿ªÀÌ ¾ø½À´Ï´Ù.";
+		strErrMsg = "ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ãµï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½.";
 		return FALSE;
 	}
 	else if (0 == m_rcSelectedRect.Width() || 0 == m_rcSelectedRect.Height())
 	{
-		strErrMsg = "¼±ÅÃµÈ ¿µ¿ªÀÇ °¡·Î ¶Ç´Â ¼¼·Î Å©±â°¡ 0ÀÔ´Ï´Ù.";
+		strErrMsg = "ï¿½ï¿½ï¿½Ãµï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ç´ï¿½ ï¿½ï¿½ï¿½ï¿½ Å©ï¿½â°¡ 0ï¿½Ô´Ï´ï¿½.";
 		return FALSE;
 	}
 
@@ -706,13 +706,13 @@ BOOL CTexViewer::AutoMultiRectSelect(BOOL bHorizon, CString& strErrMsg)	// °¡·Î 
 	int iCol = 0;
 	CPoint ptLeftTop = m_rcSelectedRect.TopLeft();
 	if (bHorizon)
-	{	// ¼öÆòÀ¸·Î ÀÌµ¿ÇÏ¸ç ³ª´©±â
+	{	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ìµï¿½ï¿½Ï¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		for(i=0; i<m_iImageTypeCount; ++i)
 		{
 			if ( (ptLeftTop.x + m_rcSelectedRect.Width()*(iRow+1)) > m_TexSize.cx) {++iCol; iRow = 0;}
 			if ( (ptLeftTop.y + m_rcSelectedRect.Height()*(iCol+1)) > m_TexSize.cy)
 			{
-				strErrMsg.Format("¸ðµç »ç°¢Çü ¿µ¿ªÀ» ¼±ÅÃÇÒ ¼ö ¾ø½À´Ï´Ù.(%d°³ ¼³Á¤)", i+1);
+				strErrMsg.Format("ï¿½ï¿½ï¿½ ï¿½ç°¢ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½.(%dï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½)", i+1);
 				return FALSE;
 			}
 			m_ImageRects[i].SetRect(ptLeftTop.x+m_rcSelectedRect.Width()*iRow,
@@ -723,13 +723,13 @@ BOOL CTexViewer::AutoMultiRectSelect(BOOL bHorizon, CString& strErrMsg)	// °¡·Î 
 		}
 	}
 	else
-	{	// ¼öÁ÷À¸·Î ÀÌµ¿ÇÏ¸ç ³ª´©±â
+	{	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ìµï¿½ï¿½Ï¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		for(i=0; i<m_iImageTypeCount; ++i)
 		{
 			if ( (ptLeftTop.y + m_rcSelectedRect.Height()*(iCol+1)) > m_TexSize.cy) {++iRow; iCol = 0;}
 			if ( (ptLeftTop.x + m_rcSelectedRect.Width()*(iRow+1)) > m_TexSize.cx)
 			{
-				strErrMsg.Format("¸ðµç »ç°¢Çü ¿µ¿ªÀ» ¼±ÅÃÇÒ ¼ö ¾ø½À´Ï´Ù.(%d°³ ¼³Á¤)", i+1);
+				strErrMsg.Format("ï¿½ï¿½ï¿½ ï¿½ç°¢ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½.(%dï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½)", i+1);
 				return FALSE;
 			}
 			m_ImageRects[i].SetRect(ptLeftTop.x+m_rcSelectedRect.Width()*iRow,

@@ -40,7 +40,7 @@ void CN3GERain::Tick()
 	int i;
 
 	__VertexXyzColor* pVertices;
-	HRESULT hr = m_pVB->Lock(0, iRainCount*2*sizeof(__VertexXyzColor), (BYTE**)&pVertices, D3DLOCK_NOSYSLOCK);
+	HRESULT hr = m_pVB->Lock(0, iRainCount*2*sizeof(__VertexXyzColor), (void**)&pVertices, D3DLOCK_NOSYSLOCK);
 
 	__Vector3 vN = m_vVelocity;	vN.Normalize();
 	__Vector3 vAdd = m_vVelocity/s_fFrmPerSec;
@@ -52,13 +52,13 @@ void CN3GERain::Tick()
 
 	for (i=0; i<iRainCount; ++i)
 	{
-		// tail À§Ä¡ °áÁ¤ÇÏ±â
+		// tail ï¿½ï¿½Ä¡ ï¿½ï¿½ï¿½ï¿½ï¿½Ï±ï¿½
 		__VertexXyzColor* pVTail = pVertices+i*2+0;
 		__VertexXyzColor* pVHead = pVertices+i*2+1;
 		pVTail->x += vAdd.x;	pVTail->y += vAdd.y;	pVTail->z += vAdd.z;
 
 		float fDiff = pVTail->y - (fCurY-fHalfHeight);
-		if (fDiff < 0)	// ³ôÀÌ ¹üÀ§¸¦ ¹þ¾î³µÀ» °æ¿ì
+		if (fDiff < 0)	// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½î³µï¿½ï¿½ ï¿½ï¿½ï¿½
 		{
 			pVTail->y -= (((int)(fDiff/m_fHeight)-1)*m_fHeight);
 			pVTail->x = m_fWidth*(rand()%10000-5000)/10000.f;
@@ -67,20 +67,20 @@ void CN3GERain::Tick()
 		else
 		{
 			fDiff = pVTail->y - (fCurY+fHalfHeight);
-			if (fDiff > 0)	// ³ôÀÌ ¹üÀ§¸¦ ¹Ý´ë·Î ¹þ¾î³µÀ»°æ¿ì
+			if (fDiff > 0)	// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ý´ï¿½ï¿½ ï¿½ï¿½ï¿½î³µï¿½ï¿½ï¿½ï¿½ï¿½
 				pVTail->y -= ((int)(fDiff/m_fHeight)+1)*m_fHeight;
-			// x ³Êºñ ¹üÀ§¸¦ ¹þ¾î³µÀ» °æ¿ì
+			// x ï¿½Êºï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½î³µï¿½ï¿½ ï¿½ï¿½ï¿½
 			fDiff = pVTail->x - fHalfWidth;
 			if (fDiff > 0) pVTail->x -= ((int)(fDiff/m_fWidth)+1)*m_fWidth;
 			fDiff = pVTail->x + fHalfWidth;
 			if (fDiff < 0) pVTail->x -= ((int)(fDiff/m_fWidth)-1)*m_fWidth;
-			// z ³Êºñ ¹üÀ§¸¦ ¹þ¾î³µÀ» °æ¿ì
+			// z ï¿½Êºï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½î³µï¿½ï¿½ ï¿½ï¿½ï¿½
 			fDiff = pVTail->z - fHalfWidth;
 			if (fDiff >  0) pVTail->z -= ((int)(fDiff/m_fWidth)+1)*m_fWidth;
 			fDiff = pVTail->z + fHalfWidth;
 			if (fDiff < 0) pVTail->z -= ((int)(fDiff/m_fWidth)-1)*m_fWidth;
 		}
-		// HeadÀÇ À§Ä¡¸¦ TailÀÇ À§Ä¡·ÎºÎÅÍ ÀÏÁ¤ °Å¸®¿¡ ¶³¾îÁø °÷¿¡ À§Ä¡½ÃÅ²´Ù.
+		// Headï¿½ï¿½ ï¿½ï¿½Ä¡ï¿½ï¿½ Tailï¿½ï¿½ ï¿½ï¿½Ä¡ï¿½Îºï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Å¸ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ä¡ï¿½ï¿½Å²ï¿½ï¿½.
 		pVHead->x = pVTail->x + vAddLength.x;
 		pVHead->y = pVTail->y + vAddLength.y;
 		pVHead->z = pVTail->z + vAddLength.z;
@@ -93,7 +93,7 @@ void CN3GERain::Render(__Vector3& vPos)
 {
 	if (m_bActive == FALSE || m_iVC <= 0 || m_pVB == NULL) return;
 	CN3GlobalEffect::Render(vPos);
-	// ÀÌÀü render state ÀúÀå
+	// ï¿½ï¿½ï¿½ï¿½ render state ï¿½ï¿½ï¿½ï¿½
 	DWORD dwColorVertex, dwLighting, dwAlphaBlend, dwSrcAlpha, dwDestAlpha;
 	s_lpD3DDev->GetRenderState( D3DRS_COLORVERTEX , &dwColorVertex );
 	s_lpD3DDev->GetRenderState( D3DRS_LIGHTING, &dwLighting );
@@ -115,8 +115,8 @@ void CN3GERain::Render(__Vector3& vPos)
 	s_lpD3DDev->SetTexture(0, NULL);
 
 	// render
-	s_lpD3DDev->SetVertexShader(FVF_XYZCOLOR);
-	s_lpD3DDev->SetStreamSource(0, m_pVB, sizeof(__VertexXyzColor)); // ¹öÅØ½º ¹öÆÛ ÁöÁ¤
+	s_lpD3DDev->SetFVF(FVF_XYZCOLOR);
+	s_lpD3DDev->SetStreamSource(0, m_pVB, sizeof(__VertexXyzColor)); // ï¿½ï¿½ï¿½Ø½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	s_lpD3DDev->DrawPrimitive(D3DPT_LINELIST, 0, m_iVC / 2);
 
 	// restore
@@ -128,11 +128,11 @@ void CN3GERain::Render(__Vector3& vPos)
 }
 
 void CN3GERain::Create(float fDensity, float fWidth, float fHeight, float fRainLength, __Vector3& vVelocity)
-// fDensity : 1 (¼¼Á¦°ö¹ÌÅÍ) ´ç ºø¹æ¿ïÀÇ °¹¼ö
-// fWidth : ºñ¿À´Â ¹üÀ§ X,Z ±æÀÌ
-// fHeight : ºñ¿À´Â ¹üÀ§ÀÇ ³ôÀÌ
-// fRainLength : ºøÁÙ±âÀÇ ±æÀÌ
-// vVelocity : ºøÁÙ±âÀÇ ¼Óµµ
+// fDensity : 1 (ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½) ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+// fWidth : ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ X,Z ï¿½ï¿½ï¿½ï¿½
+// fHeight : ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+// fRainLength : ï¿½ï¿½ï¿½Ù±ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+// vVelocity : ï¿½ï¿½ï¿½Ù±ï¿½ï¿½ï¿½ ï¿½Óµï¿½
 {
 	Release();
 
@@ -142,7 +142,7 @@ void CN3GERain::Create(float fDensity, float fWidth, float fHeight, float fRainL
 	__ASSERT(fVolume>0, "Rain volume is less than 0");
 	int iRainCount = (int)(fVolume*fDensity);
 
-	// m_pVB, m_pIB ¸¸µé±â
+	// m_pVB, m_pIB ï¿½ï¿½ï¿½ï¿½ï¿½
 	__ASSERT(s_lpD3DDev, "D3D Device Pointer is NULL!");
 	m_iVC = iRainCount*2;
 	HRESULT hr = s_lpD3DDev->CreateVertexBuffer(m_iVC*sizeof(__VertexXyzColor),
@@ -151,11 +151,11 @@ void CN3GERain::Create(float fDensity, float fWidth, float fHeight, float fRainL
 
 	if (FAILED(hr)) return;
 	__VertexXyzColor* pVertices;
-	hr = m_pVB->Lock(0, iRainCount*2*sizeof(__VertexXyzColor), (BYTE**)&pVertices, D3DLOCK_NOSYSLOCK);
+	hr = m_pVB->Lock(0, iRainCount*2*sizeof(__VertexXyzColor), (void**)&pVertices, D3DLOCK_NOSYSLOCK);
 	if (FAILED(hr)) return;
 
-	const DWORD dwColorA = 0x00bfbfbf,	// ²¿¸®
-				dwColorB = 0xffbfbfbf;	// ¸Ó¸®
+	const DWORD dwColorA = 0x00bfbfbf,	// ï¿½ï¿½ï¿½ï¿½
+				dwColorB = 0xffbfbfbf;	// ï¿½Ó¸ï¿½
 	int i;
 	__Vector3 vN = vVelocity; vN.Normalize();
 	__Vector3 vAdd = vN*fRainLength;

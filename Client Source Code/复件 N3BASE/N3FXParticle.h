@@ -22,24 +22,24 @@ public:
 	int			m_iNumTex;
 	int			m_iTexIdx;
 	
-	__Vector3	m_vCreatePoint;	//»ý¼º±âÁØÀ§Ä¡..
-	__Vector3	m_vAxis;		//±âÁØ¹æÇâ..(È¸ÀüÃà)
-	__Vector3	m_vVelocity;	//ÁøÇà¹æÇâ..
+	__Vector3	m_vCreatePoint;	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä¡..
+	__Vector3	m_vAxis;		//ï¿½ï¿½ï¿½Ø¹ï¿½ï¿½ï¿½..(È¸ï¿½ï¿½ï¿½ï¿½)
+	__Vector3	m_vVelocity;	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½..
 	__Vector3	m_vAccel;		//
 
 	float		m_fDropVel;		//
 	float		m_fDropY;		//
 	float		m_fRot;			//
-	__Vector3	m_vLcPos;		//·ÎÄÃ...
+	__Vector3	m_vLcPos;		//ï¿½ï¿½ï¿½ï¿½...
 	__Vector3	m_vWdPos;		//	
 	DWORD		m_dwColor;		//
-	float		m_fSize;		//¿ø·¡Å©±â
-	//float		m_fCurrSize;	//ÇöÀç
+	float		m_fSize;		//ï¿½ï¿½ï¿½ï¿½Å©ï¿½ï¿½
+	//float		m_fCurrSize;	//ï¿½ï¿½ï¿½ï¿½
 
 public:
 	bool Tick();
 	
-//»ý¼ºÀÚ ¼Ò¸êÀÚ..
+//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ò¸ï¿½ï¿½ï¿½..
 	CN3FXParticle();	
 	virtual ~CN3FXParticle();
 };

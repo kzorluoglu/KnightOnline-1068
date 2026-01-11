@@ -24,7 +24,7 @@ static char THIS_FILE[]=__FILE__;
 
 CLightObjMgr::CLightObjMgr()
 {
-	m_pRefMapMng = NULL;				// ┴Ў╟№ ┬№┴╢ ╞ў└╬┼═..
+	m_pRefMapMng = NULL;				// я┐╜я┐╜я┐╜я┐╜ я┐╜я┐╜я┐╜я┐╜ я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜..
 	m_bActive = false;
 
 	m_iVersion = 1;
@@ -36,14 +36,14 @@ CLightObjMgr::CLightObjMgr()
 
 	m_ListObj.clear();
 
-	m_BaseCube[0].Set(0, 1, 0);	// ╛╒┬╩ LT
-	m_BaseCube[1].Set(1, 1, 0);	// ╛╒┬╩ RT
-	m_BaseCube[2].Set(0, 0, 0); // ╛╒┬╩ LB
-	m_BaseCube[3].Set(1, 0, 0); // ╛╒┬╩ RB
-	m_BaseCube[4].Set(0, 1, 1); // ╡┌┬╩ LT
-	m_BaseCube[5].Set(1, 1, 1); // ╡┌┬╩ RT
-	m_BaseCube[6].Set(0, 0, 1); // ╡┌┬╩ LB
-	m_BaseCube[7].Set(1, 0, 1);	// ╡┌┬╩ RB
+	m_BaseCube[0].Set(0, 1, 0);	// я┐╜я┐╜я┐╜я┐╜ LT
+	m_BaseCube[1].Set(1, 1, 0);	// я┐╜я┐╜я┐╜я┐╜ RT
+	m_BaseCube[2].Set(0, 0, 0); // я┐╜я┐╜я┐╜я┐╜ LB
+	m_BaseCube[3].Set(1, 0, 0); // я┐╜я┐╜я┐╜я┐╜ RB
+	m_BaseCube[4].Set(0, 1, 1); // я┐╜я┐╜я┐╜я┐╜ LT
+	m_BaseCube[5].Set(1, 1, 1); // я┐╜я┐╜я┐╜я┐╜ RT
+	m_BaseCube[6].Set(0, 0, 1); // я┐╜я┐╜я┐╜я┐╜ LB
+	m_BaseCube[7].Set(1, 0, 1);	// я┐╜я┐╜я┐╜я┐╜ RB
 
 	m_pCurrLO = NULL;
 	m_VtxPosDummy.Release();
@@ -232,7 +232,7 @@ void CLightObjMgr::Render()
 	D3DXMATRIX mtx;
 	D3DXMatrixIdentity(&mtx);
 		
-	hr = s_lpD3DDev->SetTransform(D3DTS_WORLD, &mtx); // ┐∙╡х ╟р╖─ └√┐ы..
+	hr = s_lpD3DDev->SetTransform(D3DTS_WORLD, &mtx); // я┐╜я┐╜я┐╜я┐╜ я┐╜я┐╜я┐╜ я┐╜я┐╜я┐╜я┐╜..
 	
 	// set texture
 	hr = s_lpD3DDev->SetTexture(0, NULL);
@@ -251,9 +251,9 @@ void CLightObjMgr::Render()
 	hr = s_lpD3DDev->SetRenderState(D3DRS_CULLMODE, D3DCULL_NONE);
 
 
-	hr = s_lpD3DDev->SetVertexShader(FVF_XYZCOLOR);
+	hr = s_lpD3DDev->SetFVF(FVF_XYZCOLOR);
 
-	//└╠╣╠ ╕╕╡щ╛ю┴° ╢є└╠╞о┐└║ъ┴з╞о ▒╫╕о▒т...
+	//я┐╜╠╣я┐╜ я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜ я┐╜я┐╜я┐╜я┐╜╞оя┐╜я┐╜я┐╜я┐╜я┐╜я┐╜╞о я┐╜╫╕я┐╜я┐╜я┐╜...
 	std::list<LIGHTOBJ*>::iterator it;
 	LIGHTOBJ* pLO;	
 	for(it = m_ListObj.begin(); it != m_ListObj.end(); it++)
@@ -265,14 +265,14 @@ void CLightObjMgr::Render()
 		hr = s_lpD3DDev->DrawPrimitiveUP(D3DPT_TRIANGLELIST, 12, &(m_CubeVB[0]), sizeof(__VertexXyzColor));
 	}
 
-	//╟Ў└ч ╕╕╡щ░э └╓┤┬ ╢є└╠╞о┐└║ъ┴з╞о ▒╫╕о▒т.
+	//я┐╜я┐╜я┐╜я┐╜ я┐╜я┐╜я┐╜я┐╜я┐╜ я┐╜╓┤я┐╜ я┐╜я┐╜я┐╜я┐╜╞оя┐╜я┐╜я┐╜я┐╜я┐╜я┐╜╞о я┐╜╫╕я┐╜я┐╜я┐╜.
 	if(m_pCurrLO && m_pCurrLO->pRefLight)
 	{
 		MakeCube(m_pCurrLO->pRefLight->Pos(), 0xffff0000);
 		hr = s_lpD3DDev->DrawPrimitiveUP(D3DPT_TRIANGLELIST, 12, &(m_CubeVB[0]), sizeof(__VertexXyzColor));		
 	}
 		
-	//┤┘└╠╛є╖╬▒╫ ├в┐б╝н ╝▒┼├╡╚ ▒ц ▒╫╕о▒т..
+	//я┐╜я┐╜я┐╜╠╛я┐╜╬▒я┐╜ ├вя┐╜я┐╜я┐╜я┐╜ я┐╜я┐╜я┐╜├╡я┐╜ я┐╜я┐╜ я┐╜╫╕я┐╜я┐╜я┐╜..
 	pLO = m_pDlg->m_pSelLO;
 	if(pLO)
 	{

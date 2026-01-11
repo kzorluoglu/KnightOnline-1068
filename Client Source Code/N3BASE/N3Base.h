@@ -18,12 +18,15 @@
 #include "LogWriter.h"
 #endif
 
+#include <d3d9.h>
+#include <d3dx9.h>
+
 #include <string>
 
-#if _N3GAME // °ÔÀÓÀÌ ¾Æ´Ñ Åø¿¡¼­´Â ÇÊ¿ä¾ø´Ù...
+#if _N3GAME // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Æ´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ê¿ï¿½ï¿½ï¿½ï¿½...
 #include "N3SndMgr.h"
 #endif
-#ifdef _N3UIE	// ui ¿¡µðÅÍÀÏ¶§´Â ÇÊ¿äÇÏ´Ù.
+#ifdef _N3UIE	// ui ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï¶ï¿½ï¿½ï¿½ ï¿½Ê¿ï¿½ï¿½Ï´ï¿½.
 #include "N3SndMgr.h"
 #endif
 
@@ -37,7 +40,7 @@ const DWORD TEX_CAPS_MIPMAP =		0x00000040;
 const DWORD TEX_CAPS_POW2 =			0x00000080;
 
 const float CAMERA_RADIUS_UNIT = 2.0f;
-const int MAX_CAMERA_RADIUS = 512; // 2¹ÌÅÍ ´ÜÀ§·Î 128 °³ÀÇ µµÆ® ÇÁ·Î´öÆ® ¹Ì¸® °è»êÇØ ³õ´Â´Ù..
+const int MAX_CAMERA_RADIUS = 512; // 2ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ 128 ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Æ® ï¿½ï¿½ï¿½Î´ï¿½Æ® ï¿½Ì¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Â´ï¿½..
 
 enum TIMER_COMMAND { TIMER_RESET, TIMER_START, TIMER_STOP, TIMER_ADVANCE,
                      TIMER_GETABSOLUTETIME, TIMER_GETAPPTIME, TIMER_GETELAPSEDTIME };
@@ -59,24 +62,24 @@ struct __CameraData
 	__Vector3		vAt; // Camera At Vector
 	__Vector3		vUp; // Camera Up Vector
 
-	float			fFOV; // Ä«¸Þ¶ó ·»Áî °¢ : Field Of View
+	float			fFOV; // Ä«ï¿½Þ¶ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ : Field Of View
 //	float			fInverse_SineHalfOfFOV;
-	float			fAspect; // Á¾È¾ºñ
+	float			fAspect; // ï¿½ï¿½È¾ï¿½ï¿½
 	float			fNP; // NearPlane
 	float			fFP; // FarPlane
-	D3DVIEWPORT8	vp; // ViewPort;
+	D3DVIEWPORT9	vp; // ViewPort;
 	__Matrix44		mtxView;
 	__Matrix44		mtxViewInverse;
 	__Matrix44		mtxProjection;
 
 	float			fFrustum [6][4];
 
-	// fRadius - ¹°Ã¼ÀÇ ¹ÝÁö¸§º¸´Ù ¾à°£ ´õ ¿©À¯ ÀÖ°Ô Àâ°í ³ÖÀ¸¸é ±×¸¸Å­ Å¬¸®ÇÎÀ» ¿©À¯ÀÖ°Ô ÇÑ´Ù..
+	// fRadius - ï¿½ï¿½Ã¼ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½à°£ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ö°ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½×¸ï¿½Å­ Å¬ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ö°ï¿½ ï¿½Ñ´ï¿½..
 	BOOL IsOutOfFrustum(const __Vector3& vPosition, float fRadius) 
-		// ¹Ì¸® °è»êµÈ Ä«¸Þ¶ó Æò¸éÀÇ µµÆ® ÇÁ·Î´öÆ® °ªÀ» ±âÁØÀ¸·Î Ä«¸Þ¶ó »ç¸éÃ¼ ¹Û¿¡ ÀÖÀ¸¸é  ÂüÀ» µ¹·ÁÁØ´Ù.
+		// ï¿½Ì¸ï¿½ ï¿½ï¿½ï¿½ï¿½ Ä«ï¿½Þ¶ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Æ® ï¿½ï¿½ï¿½Î´ï¿½Æ® ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Ä«ï¿½Þ¶ï¿½ ï¿½ï¿½ï¿½Ã¼ ï¿½Û¿ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½  ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ø´ï¿½.
 	{
 		if((vEye - vPosition).Magnitude() > fFP + fRadius) 
-			return TRUE; // Far Plane °Å¸®Ã¼Å©
+			return TRUE; // Far Plane ï¿½Å¸ï¿½Ã¼Å©
 
 		int p;
 		for( p = 0; p < 6; p++ )
@@ -93,16 +96,16 @@ struct __RenderInfo
 {
 	int nShape;
 	int nShape_Part;
-	int nShape_Polygon; // ´Ü¼ø Æú¸®°ï
+	int nShape_Polygon; // ï¿½Ü¼ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	
 	int nChr;
 	int nChr_Part;
-	int nChr_Polygon; // Ä³¸¯ÅÍ Æú¸®°ï
-	int nChr_Plug; // Ä³¸¯ÅÍ¿¡ ºÙÀº ¹«±âµî..
-	int	nChr_Plug_Polygon; // Ä³¸¯ÅÍ¿¡ ºÙÀº ¹«±âµîÀÇ Æú¸®°ï..
+	int nChr_Polygon; // Ä³ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	int nChr_Plug; // Ä³ï¿½ï¿½ï¿½Í¿ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½..
+	int	nChr_Plug_Polygon; // Ä³ï¿½ï¿½ï¿½Í¿ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½..
 
-	int nTerrain_Polygon; // Å¸ÀÏ Àû¿ëµÈ ÁöÇü Æú¸®°ï..
-	int nTerrain_Tile_Polygon; // Å¸ÀÏ Àû¿ëµÈ ÁöÇü Æú¸®°ï..
+	int nTerrain_Polygon; // Å¸ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½..
+	int nTerrain_Tile_Polygon; // Å¸ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½..
 
 	int nAlpha_Polygon;
 	
@@ -111,7 +114,7 @@ struct __RenderInfo
 	int nTexture_128X128; // 128 X 128 Texture
 	int nTexture_256X256; // 256 X 256 Texture
 	int nTexture_512X512; // 512 X 512 Texture
-	int nTexture_Huge; // 512 X 512 ÀÌ»ó size
+	int nTexture_Huge; // 512 X 512 ï¿½Ì»ï¿½ size
 	int nTexture_OtherSize; // Other size
 };
 
@@ -122,25 +125,26 @@ struct __ResrcInfo
 	int nTexture_Loaded_128X128; // 128 X 128 Texture
 	int nTexture_Loaded_256X256; // 256 X 256 Texture
 	int nTexture_Loaded_512X512; // 512 X 512 Texture
-	int nTexture_Loaded_Huge; // 512 X 512 ÀÌ»ó size
+	int nTexture_Loaded_Huge; // 512 X 512 ï¿½Ì»ï¿½ size
 	int nTexture_Loaded_OtherSize; // Other size
 };
 
 struct __Options
 {
 	int iUseShadow;
-	int iTexLOD_Chr;			// 0 - ¿ø·¡ Å©±â.. 1 - ÇÑ´Ü°è ÀÛ°Ô. 2 - µÎ´Ü°è ÀÛ°Ô..
-	int iTexLOD_Shape;			// 0 - ¿ø·¡ Å©±â.. 1 - ÇÑ´Ü°è ÀÛ°Ô. 2 - µÎ´Ü°è ÀÛ°Ô..
-	int iTexLOD_Terrain;		// 0 - ¿ø·¡ Å©±â.. 1 - ÇÑ´Ü°è ÀÛ°Ô. 2 - µÎ´Ü°è ÀÛ°Ô..
+	int iTexLOD_Chr;			// 0 - ï¿½ï¿½ï¿½ï¿½ Å©ï¿½ï¿½.. 1 - ï¿½Ñ´Ü°ï¿½ ï¿½Û°ï¿½. 2 - ï¿½Î´Ü°ï¿½ ï¿½Û°ï¿½..
+	int iTexLOD_Shape;			// 0 - ï¿½ï¿½ï¿½ï¿½ Å©ï¿½ï¿½.. 1 - ï¿½Ñ´Ü°ï¿½ ï¿½Û°ï¿½. 2 - ï¿½Î´Ü°ï¿½ ï¿½Û°ï¿½..
+	int iTexLOD_Terrain;		// 0 - ï¿½ï¿½ï¿½ï¿½ Å©ï¿½ï¿½.. 1 - ï¿½Ñ´Ü°ï¿½ ï¿½Û°ï¿½. 2 - ï¿½Î´Ü°ï¿½ ï¿½Û°ï¿½..
 	int iViewWidth;
 	int iViewHeight;
 	int iViewColorDepth;
 	int iViewDist;
-	int iEffectSndDist;			// ÀÌÆåÆ® »ç¿îµå °Å¸®
+	int iEffectSndDist;			// ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ï¿½ï¿½ï¿½ ï¿½Å¸ï¿½
 
 	bool bSndEnable;		// 0 - High, 1 - Low
-	bool bSndDuplicated;	// Áßº¹µÈ À½¿ø »ç¿ë
-	bool bWindowCursor;		// 0 - °ÔÀÓ¿¡¼­ ±×·ÁÁÖ´Â Ä¿¼­ 1 - À©µµ¿ì Ä¿¼­ »ç¿ë
+	bool bSndDuplicated;	// ï¿½ßºï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
+	bool bWindowCursor;		// 0 - ï¿½ï¿½ï¿½Ó¿ï¿½ï¿½ï¿½ ï¿½×·ï¿½ï¿½Ö´ï¿½ Ä¿ï¿½ï¿½ 1 - ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Ä¿ï¿½ï¿½ ï¿½ï¿½ï¿½
+	bool bWindowed;			// 0 - Fullscreen, 1 - Windowed
 
 	void InitDefault()
 	{
@@ -156,6 +160,7 @@ struct __Options
 		bSndEnable = 0;
 		bSndDuplicated = false;
 		bWindowCursor = true;
+		bWindowed = false;
 	}
 	__Options() { InitDefault(); }
 };
@@ -163,47 +168,47 @@ struct __Options
 class CN3Base
 {
 public:
-	static LPDIRECT3DDEVICE8		s_lpD3DDev; // Device ÂüÁ¶ Æ÷ÀÎÅÍ.. ¸Ú´ë·Î ÇØÁ¦ÇÏ¸é ¾ÈµÈ´Ù..
-	static D3DPRESENT_PARAMETERS	s_DevParam; // Device »ý¼º Present Parameter
-	static D3DCAPS8					s_DevCaps; // Device È£È¯¼º...
-	static DWORD					s_dwTextureCaps; // Texture Áö¿ø.. DXT1 ~ DXT5, Square Only
-	static HWND						s_hWndBase; // Init ÇÒ¶§ ¾´ Window Handle
-	static HWND						s_hWndPresent; // ÃÖ±Ù¿¡ Present ÇÑ Window Handle
+	static LPDIRECT3DDEVICE9		s_lpD3DDev; // Device ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½.. ï¿½Ú´ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï¸ï¿½ ï¿½ÈµÈ´ï¿½..
+	static D3DPRESENT_PARAMETERS	s_DevParam; // Device ï¿½ï¿½ï¿½ï¿½ Present Parameter
+	static D3DCAPS9					s_DevCaps; // Device È£È¯ï¿½ï¿½...
+	static DWORD					s_dwTextureCaps; // Texture ï¿½ï¿½ï¿½ï¿½.. DXT1 ~ DXT5, Square Only
+	static HWND						s_hWndBase; // Init ï¿½Ò¶ï¿½ ï¿½ï¿½ Window Handle
+	static HWND						s_hWndPresent; // ï¿½Ö±Ù¿ï¿½ Present ï¿½ï¿½ Window Handle
 
-	static __CameraData				s_CameraData; // Ä«¸Þ¶ó µ¥ÀÌÅÍ Á¤Àû º¯¼ö..
+	static __CameraData				s_CameraData; // Ä«ï¿½Þ¶ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½..
 	static __ResrcInfo				s_ResrcInfo; // Rendering Information..
-	static __Options				s_Options;	// °¢Á¾ ¿É¼Çµî...
+	static __Options				s_Options;	// ï¿½ï¿½ï¿½ï¿½ ï¿½É¼Çµï¿½...
 #ifdef _DEBUG
 	static __RenderInfo				s_RenderInfo; // Rendering Information..
 #endif
 	static float					s_fFrmPerSec; // Frame Per Second
-	static float					s_fSecPerFrm; // Second Per Frame = 1.0f/s_fFrmPerSec (Dino°¡ Ãß°¡)
+	static float					s_fSecPerFrm; // Second Per Frame = 1.0f/s_fFrmPerSec (Dinoï¿½ï¿½ ï¿½ß°ï¿½)
 	
-#ifdef _N3GAME // °ÔÀÓÀÌ ¾Æ´Ñ Åø¿¡¼­´Â ÇÊ¿ä¾ø´Ù...
+#ifdef _N3GAME // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Æ´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ê¿ï¿½ï¿½ï¿½ï¿½...
 	static CN3SndMgr				s_SndMgr;
 #endif
-#ifdef _N3UIE	// ui ¿¡µðÅÍÀÏ¶§´Â ÇÊ¿äÇÏ´Ù.
+#ifdef _N3UIE	// ui ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï¶ï¿½ï¿½ï¿½ ï¿½Ê¿ï¿½ï¿½Ï´ï¿½.
 	static CN3SndMgr				s_SndMgr;
 #endif
 
-	static CN3AlphaPrimitiveManager	s_AlphaMgr; // Alpha blend ÇÒ Æú¸®°ïµéÀ» °ü¸®.. Ãß°¡Çß´Ù°¡.. Ä«¸Þ¶ó °Å¸®¿¡ ¬Ãß¾î Á¤·ÄÇÏ°í ÇÑ²¨¹ø¿¡ ±×¸°´Ù..
+	static CN3AlphaPrimitiveManager	s_AlphaMgr; // Alpha blend ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½.. ï¿½ß°ï¿½ï¿½ß´Ù°ï¿½.. Ä«ï¿½Þ¶ï¿½ ï¿½Å¸ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ß¾ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï°ï¿½ ï¿½Ñ²ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½×¸ï¿½ï¿½ï¿½..
 
 	static CN3Mng<class CN3Texture>		s_MngTex; // Texture Manager
 	static CN3Mng<class CN3Mesh>		s_MngMesh; // Normal Mesh Manager
-	static CN3Mng<class CN3VMesh>		s_MngVMesh; // ´Ü¼øÈ÷ Æú¸®°ï¸¸ °®°í ÀÖ´Â ¸Þ½Ã - ÁÖ·Î Ãæµ¹ Ã¼Å©¿¡ ¾´´Ù..
+	static CN3Mng<class CN3VMesh>		s_MngVMesh; // ï¿½Ü¼ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¸¸ ï¿½ï¿½ï¿½ï¿½ ï¿½Ö´ï¿½ ï¿½Þ½ï¿½ - ï¿½Ö·ï¿½ ï¿½æµ¹ Ã¼Å©ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½..
 	static CN3Mng<class CN3PMesh>		s_MngPMesh; // Progressive Mesh Manager
 	static CN3Mng<class CN3Joint>		s_MngJoint; // Joint Manager
 	static CN3Mng<class CN3CPartSkins>	s_MngSkins; // Character Part Skin Manager
 	static CN3Mng<class CN3AnimControl>	s_MngAniCtrl; // Animation Manager
-	static CN3Mng<class CN3FXPMesh>		s_MngFXPMesh; // FX¿¡¼­ ¾²´Â PMesh - ÆÄÀÏÀº ÀÏ¹Ý PMesh¸¦ ¾²Áö¸¸ ¼ÓÀº ´Ù¸£´Ù.
-	static CN3Mng<class CN3FXShape>		s_MngFXShape; // FX¿¡¼­ ¾²´Â Shape - ÆÄÀÏÀº ÀÏ¹Ý shape¸¦ ¾²Áö¸¸ ¼ÓÀº ´Ù¸£´Ù.
+	static CN3Mng<class CN3FXPMesh>		s_MngFXPMesh; // FXï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ PMesh - ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ï¹ï¿½ PMeshï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ù¸ï¿½ï¿½ï¿½.
+	static CN3Mng<class CN3FXShape>		s_MngFXShape; // FXï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ Shape - ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ï¹ï¿½ shapeï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ù¸ï¿½ï¿½ï¿½.
 	
 
 protected:
-	static std::string 				s_szPath; // ÇÁ·Î±×·¥ÀÌ ½ÇÇàµÈ °æ·Î.. 
+	static std::string 				s_szPath; // ï¿½ï¿½ï¿½Î±×·ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½.. 
 
 protected:
-	DWORD							m_dwType; // "MESH", "CAMERA", "SCENE", "???" .... µîµîµî...
+	DWORD							m_dwType; // "MESH", "CAMERA", "SCENE", "???" .... ï¿½ï¿½ï¿½ï¿½...
 
 public:
 	std::string 					m_szName;
@@ -218,7 +223,7 @@ public:
 	
 	static float		TimerProcess( TIMER_COMMAND command );
 
-	DWORD				Type() { return m_dwType; } // °´Ã¼ Á¾·ù..
+	DWORD				Type() { return m_dwType; } // ï¿½ï¿½Ã¼ ï¿½ï¿½ï¿½ï¿½..
 
 	void				ReleaseResrc();
 //#ifdef _N3TOOL
