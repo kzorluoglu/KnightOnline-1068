@@ -9,6 +9,10 @@
 #include "..\N3Base\N3Texture.h"
 #include <d3d9.h>
 
+#define D3DTSS_MAGFILTER 16
+#define D3DTSS_MINFILTER 17
+#define D3DTSS_MIPFILTER 18
+
 #ifdef _DEBUG
 #define new DEBUG_NEW
 #undef THIS_FILE

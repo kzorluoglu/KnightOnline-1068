@@ -12,6 +12,10 @@
 #include "..\N3Base\N3SndMgr.h"
 #include <d3d9.h>
 
+#define D3DTSS_MAGFILTER 16
+#define D3DTSS_MINFILTER 17
+#define D3DTSS_MIPFILTER 18
+
 #ifdef _DEBUG
 #define new DEBUG_NEW
 #undef THIS_FILE
@@ -728,7 +732,7 @@ void CUIEView::UpdateUIInfo_SelectedRect()
 			}
 			break;
 		case RT_MOVE:
-			pSelectedUI->SetMoveRect((const RECT&)m_rcSelectedRect);
+			pSelectedUI->SetMoveRect(RECT(m_rcSelectedRect));
 			break;
 		case RT_CLICK:
 			if (UI_TYPE_BUTTON == pSelectedUI->UIType()) ((CN3UIButton*)pSelectedUI)->SetClickRect(m_rcSelectedRect);
