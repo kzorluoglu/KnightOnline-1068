@@ -57,11 +57,11 @@ void CLogWriter::Open(const std::string& szFN)
 	GetLocalTime(&time);
 	DWORD dwRWC = 0;
 
-	sprintf(szBuff, "---------------------------------------------------------------------------\r\n", time.wMonth, time.wDay, time.wHour, time.wMinute);
+	sprintf_s(szBuff, sizeof(szBuff), "---------------------------------------------------------------------------\r\n");
 	int iLength = lstrlen(szBuff);
 	WriteFile(hFile, szBuff, iLength, &dwRWC, NULL);
 
-	sprintf(szBuff, "// Begin writing log... [%.2d/%.2d %.2d:%.2d]\r\n", time.wMonth, time.wDay, time.wHour, time.wMinute);
+	sprintf_s(szBuff, sizeof(szBuff), "// Begin writing log... [%.2d/%.2d %.2d:%.2d]\r\n", time.wMonth, time.wDay, time.wHour, time.wMinute);
 	iLength = lstrlen(szBuff);
 	WriteFile(hFile, szBuff, iLength, &dwRWC, NULL);
 
@@ -86,11 +86,11 @@ void CLogWriter::Close()
 		GetLocalTime(&time);
 		DWORD dwRWC = 0;
 
-		sprintf(szBuff, "// End writing log... [%.2d/%.2d %.2d:%.2d]\r\n", time.wMonth, time.wDay, time.wHour, time.wMinute);
+		sprintf_s(szBuff, sizeof(szBuff), "// End writing log... [%.2d/%.2d %.2d:%.2d]\r\n", time.wMonth, time.wDay, time.wHour, time.wMinute);
 		int iLength = lstrlen(szBuff);
 		WriteFile(hFile, szBuff, iLength, &dwRWC, NULL);
 
-		sprintf(szBuff, "---------------------------------------------------------------------------\r\n", time.wMonth, time.wDay, time.wHour, time.wMinute);
+		sprintf_s(szBuff, sizeof(szBuff), "---------------------------------------------------------------------------\r\n");
 		iLength = lstrlen(szBuff);
 		WriteFile(hFile, szBuff, iLength, &dwRWC, NULL);
 
@@ -109,13 +109,13 @@ void CLogWriter::Write(const char *lpszFormat, ...)
 	szFinal[0] = NULL;
 
 	DWORD dwRWC = 0;
-	sprintf(szFinal, "    [%.2d:%.2d:%.2d] ", time.wHour, time.wMinute, time.wSecond);
+	sprintf_s(szFinal, sizeof(szFinal), "    [%.2d:%.2d:%.2d] ", time.wHour, time.wMinute, time.wSecond);
 
 	static char szBuff[1024];
 	szBuff[0] = NULL;
 	va_list argList;
 	va_start(argList, lpszFormat);
-	vsprintf(szBuff, lpszFormat, argList);
+	vsprintf_s(szBuff, sizeof(szBuff), lpszFormat, argList);
 	va_end(argList);
 
 	lstrcat(szFinal, szBuff);

@@ -30,6 +30,29 @@ static char THIS_FILE[]=__FILE__;
 #define new DEBUG_NEW
 #endif
 
+const char* UITypeName(eUI_TYPE t)
+{
+    switch (t)
+    {
+    case UI_TYPE_BASE:      return "BASE";
+    case UI_TYPE_IMAGE:     return "IMAGE";
+    case UI_TYPE_STRING:    return "STRING";
+    case UI_TYPE_BUTTON:    return "BUTTON";
+    case UI_TYPE_STATIC:    return "STATIC";
+    case UI_TYPE_PROGRESS:  return "PROGRESS";
+    case UI_TYPE_SCROLLBAR: return "SCROLLBAR";
+    case UI_TYPE_TRACKBAR:  return "TRACKBAR";
+    case UI_TYPE_EDIT:      return "EDIT";
+    case UI_TYPE_AREA:      return "AREA";
+    case UI_TYPE_TOOLTIP:   return "TOOLTIP";
+    case UI_TYPE_LIST:      return "LIST";
+#ifdef _REPENT
+    case UI_TYPE_ICONSLOT:  return "ICONSLOT";
+#endif
+    default:                return "UNKNOWN";
+    }
+}
+
 CN3UIEdit* CN3UIBase::s_pFocusedEdit = NULL;
 CN3UITooltip* CN3UIBase::s_pTooltipCtrl = NULL;
 std::string CN3UIStatic::s_szStringTmp; // �ӽú���..
@@ -226,14 +249,62 @@ bool CN3UIBase::Load(HANDLE hFile)
 	CN3BaseFileAccess::Load(hFile);
 	DWORD dwRWC = NULL;
 
-	// children ����
-	int iCC = 0;
-	ReadFile(hFile, &iCC, sizeof(iCC), &dwRWC, NULL); // children count
+    // children (1097 UIF normally uses 16-bit count/version, but some files pack count as 32-bit followed by 16-bit version)
+    DWORD dwCountPos = SetFilePointer(hFile, 0, NULL, FILE_CURRENT);
+    short wCC = 0, wVer = 0;
+    ReadFile(hFile, &wCC, 2, &dwRWC, NULL);
+    ReadFile(hFile, &wVer, 2, &dwRWC, NULL);
+    int iCC = wCC;
+    bool bCountReparsed = false;
+
+    // Peek at the first child type to detect misalignment (e.g. count stored as 32-bit, version as 16-bit).
+    DWORD dwAfterCount = SetFilePointer(hFile, 0, NULL, FILE_CURRENT);
+    eUI_TYPE ePeekType = UI_TYPE_BASE;
+    ReadFile(hFile, &ePeekType, sizeof(ePeekType), &dwRWC, NULL);
+    bool bLooksMisaligned = ((ePeekType & 0xFFFF) == 0 && (ePeekType >> 16) > 0 && (ePeekType >> 16) < 256);
+    if (bLooksMisaligned)
+    {
+        SetFilePointer(hFile, dwCountPos, NULL, FILE_BEGIN);
+        int iCC32 = 0;
+        ReadFile(hFile, &iCC32, 4, &dwRWC, NULL);
+        ReadFile(hFile, &wVer, 2, &dwRWC, NULL);
+        iCC = iCC32;
+        bCountReparsed = true;
+#ifdef _N3GAME
+        CLogWriter::Write("CN3UIBase::Load - detected misaligned child header, using 32-bit count (%d) and 16-bit version (%d)", iCC, wVer);
+#endif
+        dwAfterCount = dwCountPos + 6;
+    }
+    else
+    {
+        dwAfterCount = dwCountPos + 4;
+    }
+    SetFilePointer(hFile, dwAfterCount, NULL, FILE_BEGIN);
+
+    if (iCC < 0)
+    {
+#ifdef _N3GAME
+        CLogWriter::Write("CN3UIBase::Load - negative child count %d detected, clamping to 0 (ver %d)", iCC, wVer);
+#endif
+        iCC = 0;
+    }
+#ifdef _N3GAME
+    if (iCC > 0) CLogWriter::Write("CN3UIBase::Load - loading %d children (ver %d)%s", iCC, wVer, (bCountReparsed ? " [reparsed]" : ""));
+#endif
+
 	eUI_TYPE eChildUIType;
 	for(int i = 0; i < iCC; i++)
 	{
 		CN3UIBase* pChild = NULL;
+        DWORD dwFilePosBeforeChild = 0;
+#ifdef _N3GAME
+        dwFilePosBeforeChild = SetFilePointer(hFile, 0, NULL, FILE_CURRENT);
+#endif
 		ReadFile(hFile, &eChildUIType, sizeof(eChildUIType), &dwRWC, NULL); // child�� ui type
+
+#ifdef _N3GAME
+        CLogWriter::Write("CN3UIBase::Load child %d/%d type=%s(%d) parent=%p file_pos=%lu BEGIN", i + 1, iCC, UITypeName(eChildUIType), eChildUIType, this, dwFilePosBeforeChild);
+#endif
 
 		switch(eChildUIType)
 		{
@@ -251,10 +322,18 @@ bool CN3UIBase::Load(HANDLE hFile)
 		case UI_TYPE_ICONSLOT:		pChild = new CN3UIIconSlot();		break;
 #endif
 		case UI_TYPE_LIST:			pChild = new CN3UIList();			break;
+        default:
+#ifdef _N3GAME
+            CLogWriter::Write("CN3UIBase::Load child %d/%d unknown type=%d (parent=%p) - loading as BASE to continue", i + 1, iCC, eChildUIType, this);
+#endif
+            pChild = new CN3UIBase(); // fall back to bare container so we can continue reading UI
 		}
 		__ASSERT(pChild, "Unknown type UserInterface!!!");
 		pChild->Init(this);
-		pChild->Load(hFile);
+        bool bChildLoaded = pChild->Load(hFile);
+#ifdef _N3GAME
+        CLogWriter::Write("CN3UIBase::Load child %d/%d load result=%s type=%s(%d)", i + 1, iCC, (bChildLoaded ? "ok" : "FAIL"), UITypeName(eChildUIType), eChildUIType);
+#endif
 	}
 
 	// base ����

@@ -49,8 +49,8 @@ CN3Eng::CN3Eng()
 		char szPath[256];
 		char szDrive[_MAX_DRIVE], szDir[_MAX_DIR];
 		::GetModuleFileName(NULL, szPath, 256);
-		_splitpath(szPath, szDrive, szDir, NULL, NULL);
-		sprintf(szPath, "%s%s", szDrive, szDir);
+		_splitpath_s(szPath, szDrive, _MAX_DRIVE, szDir, _MAX_DIR, NULL, 0, NULL, 0);
+		sprintf_s(szPath, sizeof(szPath), "%s%s", szDrive, szDir);
 		this->PathSet(szPath); // ��� ����..	
 	}
 
@@ -195,7 +195,7 @@ bool CN3Eng::Init(BOOL bWindowed, HWND hWnd, DWORD dwWidth, DWORD dwHeight, DWOR
 		rval = m_lpD3D->CreateDevice(0, DevType, hWnd, D3DCREATE_SOFTWARE_VERTEXPROCESSING, &s_DevParam, &s_lpD3DDev);
 		if(rval != D3D_OK)
 		{
-			const char* szDebug = DXGetErrorStringA(rval);
+			const char* szDebug = "D3D Device creation failed";
 			MessageBox(hWnd, "Can't create D3D Device - please, check DirectX or display card driver", "initialization", MB_OK);
 #ifdef _N3GAME
 			CLogWriter::Write("Can't create D3D Device - please, check DirectX or display card driver");
@@ -344,6 +344,20 @@ void CN3Eng::Present(HWND hWnd, RECT* pRC)
 	{
 		GetClientRect(s_hWndBase, &rc);
 		pRC = &rc;
+		// Ensure the engine viewport matches the actual client area in windowed mode
+		// so UI positioning (which uses s_CameraData.vp) is correct.
+		if(NULL != s_lpD3DDev)
+		{
+			D3DVIEWPORT9 vp;
+			vp.X = rc.left;
+			vp.Y = rc.top;
+			vp.Width = rc.right - rc.left;
+			vp.Height = rc.bottom - rc.top;
+			vp.MinZ = 0.0f;
+			vp.MaxZ = 1.0f;
+			s_lpD3DDev->SetViewport(&vp);
+			memcpy(&s_CameraData.vp, &vp, sizeof(D3DVIEWPORT9));
+		}
 	}
 
 	HRESULT rval = s_lpD3DDev->Present(pRC, pRC, hWnd, NULL);

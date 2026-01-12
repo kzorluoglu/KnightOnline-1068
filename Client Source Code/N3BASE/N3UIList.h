@@ -48,7 +48,7 @@ public:
 	bool	GetString(int iIndex, std::string& szString);
 	bool	SetString(int iIndex, const std::string& szString);
 	int		GetCurSel() { return m_iCurSel; }
-	bool	SetCurSel(int iIndex) { if(iIndex < 0 || iIndex >= m_ListString.size()) m_iCurSel = -1; else m_iCurSel = iIndex; return true; }
+	bool	SetCurSel(int iIndex) { if(iIndex < 0 || iIndex >= (int)m_ListString.size()) m_iCurSel = -1; else m_iCurSel = iIndex; return true; }
 	int		GetCount() { return m_ListString.size(); }
 
 	int		GetScrollPos();

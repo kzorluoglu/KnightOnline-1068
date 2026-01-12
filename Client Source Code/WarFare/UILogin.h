@@ -56,17 +56,17 @@ protected:
 	
 	std::vector<__GameServerInfo> m_ListServerInfos;
 
-	bool	m_bOpenningNow; // À§¿¡¼­ ¾Æ·¡·Î ½º¸£¸¤...¿­·Á¾ß ÇÑ´Ù¸é..
+	bool	m_bOpenningNow; // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Æ·ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½...ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ñ´Ù¸ï¿½..
 	float 	m_fMoveDelta;
-	bool	m_bLogIn; // ·Î±×ÀÎ Áßº¹ ¹æÁö..
+	bool	m_bLogIn; // ï¿½Î±ï¿½ï¿½ï¿½ ï¿½ßºï¿½ ï¿½ï¿½ï¿½ï¿½..
 
-
+	void FindUIElementsRecursive(CN3UIBase* pBase, std::vector<CN3UIEdit*>& edits, std::vector<CN3UIButton*>& buttons);
 
 public:
 	void SetRequestedLogIn(bool bLogIn) { m_bLogIn = bLogIn; }
 	bool OnKeyPress(int iKey);
 	void RecalcGradePos();
-	void SetVisibleLogInUIs(bool bEnable); // °èÁ¤ LogIn ¿¡ ÇÊ¿äÇÑ UI µéÀ» ¼û±ä´Ù..
+	void SetVisibleLogInUIs(bool bEnable); // ï¿½ï¿½ï¿½ï¿½ LogIn ï¿½ï¿½ ï¿½Ê¿ï¿½ï¿½ï¿½ UI ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½..
 	void OpenServerList();
 	void Tick();
 
@@ -74,7 +74,7 @@ public:
 	void FocusCircular();
 	void FocusToID();
 	bool Load(HANDLE hFile);
-	bool ReceiveMessage(CN3UIBase* pSender, DWORD dwMsg); // ¸Þ½ÃÁö¸¦ ¹Þ´Â´Ù.. º¸³½³ð, msg
+	bool ReceiveMessage(CN3UIBase* pSender, DWORD dwMsg); // ï¿½Þ½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Þ´Â´ï¿½.. ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½, msg
 
 	int		ServerInfoCount() { return m_ListServerInfos.size(); }
 	bool	ServerInfoAdd(const __GameServerInfo& GSI);

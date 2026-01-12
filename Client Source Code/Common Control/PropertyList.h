@@ -14,14 +14,14 @@
 #endif // _MSC_VER > 1000
 // PropertyList.h : header file
 //
-#include "D3D8.h"
+#include <d3d9.h>
 
 #define PIT_COMBO	0  //PIT = property item type
 #define PIT_EDIT	1
 #define PIT_COLOR	2
 #define PIT_FONT	3
 #define PIT_FILE	4
-#define PIT_FILE_MULTI	5 // FileName1'\n'FileName2'\n'....FileName'\n' ÀÌ·¸°Ô ¹®ÀÚ¿­ÀÌ µÈ´Ù..
+#define PIT_FILE_MULTI	5 // FileName1'\n'FileName2'\n'....FileName'\n' ï¿½Ì·ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ú¿ï¿½ï¿½ï¿½ ï¿½È´ï¿½..
 #define PIT_CHECK	6
 #define PIT_BUTTON	7
 
@@ -36,10 +36,10 @@ class CPropertyItem
 // Attributes
 public:
 	CString			m_propName;
-	CString			m_curValue; // Color °ªÀÇ Alpha °ªÀ¸·Îµµ ¾²ÀÎ´Ù..
+	CString			m_curValue; // Color ï¿½ï¿½ï¿½ï¿½ Alpha ï¿½ï¿½ï¿½ï¿½ï¿½Îµï¿½ ï¿½ï¿½ï¿½Î´ï¿½..
 	int				m_nItemType;
 	CStringArray	m_szCBItemsOrFilter;
-	COLORREF		m_crColor; // ColorReference | Combo Box Index ·Î ¾²ÀÎ´Ù..
+	COLORREF		m_crColor; // ColorReference | Combo Box Index ï¿½ï¿½ ï¿½ï¿½ï¿½Î´ï¿½..
 
 public:
 	void D3DColorSet(D3DCOLOR color);

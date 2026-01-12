@@ -4,6 +4,7 @@
 
 #include "StdAfxBase.h"
 #include "N3UIBase.h"
+#include "UIEDebugLog.h"
 
 #include <vector>
 #include "N3UIButton.h"
@@ -249,28 +250,51 @@ void CN3UIBase::ShowWindow(int iID, CN3UIBase* pParent)
 
 bool CN3UIBase::Load(HANDLE hFile)
 {
+	try {
+	UIEDebugLog::Log("CN3UIBase::Load - BEGIN");
 	CN3BaseFileAccess::Load(hFile);
 	DWORD dwRWC = NULL;
 
     // children (1097 UIF normally uses 16-bit count/version, but some files pack count as 32-bit followed by 16-bit version)
     DWORD dwCountPos = SetFilePointer(hFile, 0, NULL, FILE_CURRENT);
     short wCC = 0, wVer = 0;
-    ReadFile(hFile, &wCC, 2, &dwRWC, NULL);
-    ReadFile(hFile, &wVer, 2, &dwRWC, NULL);
+    if (!ReadFile(hFile, &wCC, 2, &dwRWC, NULL) || dwRWC != 2) {
+		UIEDebugLog::Log("LOAD_FAIL: Cannot read child count from file at offset %lu", dwCountPos);
+		return false;
+	}
+	UIEDebugLog::Log("LOAD_OK: Read child count: %d", wCC);
+    if (!ReadFile(hFile, &wVer, 2, &dwRWC, NULL) || dwRWC != 2) {
+		UIEDebugLog::Log("LOAD_FAIL: Cannot read version from file after child count");
+		return false;
+	}
+	UIEDebugLog::Log("LOAD_OK: Read version: %d", wVer);
     int iCC = wCC;
     bool bCountReparsed = false;
 
     // Peek at the first child type to detect misalignment (e.g. count stored as 32-bit, version as 16-bit).
     DWORD dwAfterCount = SetFilePointer(hFile, 0, NULL, FILE_CURRENT);
     eUI_TYPE ePeekType = UI_TYPE_BASE;
-    ReadFile(hFile, &ePeekType, sizeof(ePeekType), &dwRWC, NULL);
+    if (!ReadFile(hFile, &ePeekType, sizeof(ePeekType), &dwRWC, NULL) || dwRWC != sizeof(ePeekType)) {
+		UIEDebugLog::Log("LOAD_FAIL: Cannot peek at first child type at offset %lu (expected %zu, got %lu)", dwAfterCount, sizeof(ePeekType), dwRWC);
+		return false;
+	}
+	UIEDebugLog::Log("LOAD_OK: Peeked first child type: %d (0x%x)", ePeekType, ePeekType);
     bool bLooksMisaligned = ((ePeekType & 0xFFFF) == 0 && (ePeekType >> 16) > 0 && (ePeekType >> 16) < 256);
+	if (bLooksMisaligned) {
+		UIEDebugLog::Log("LOAD_INFO: Detected misaligned child header format");
+	}
     if (bLooksMisaligned)
     {
         SetFilePointer(hFile, dwCountPos, NULL, FILE_BEGIN);
         int iCC32 = 0;
-        ReadFile(hFile, &iCC32, 4, &dwRWC, NULL);
-        ReadFile(hFile, &wVer, 2, &dwRWC, NULL);
+        if (!ReadFile(hFile, &iCC32, 4, &dwRWC, NULL) || dwRWC != 4) {
+			UIEDebugLog::Log("LOAD_FAIL: Cannot read 32-bit child count (misaligned format) at offset %lu", dwCountPos);
+			return false;
+		}
+        if (!ReadFile(hFile, &wVer, 2, &dwRWC, NULL) || dwRWC != 2) {
+			UIEDebugLog::Log("LOAD_FAIL: Cannot read version after 32-bit count");
+			return false;
+		}
         iCC = iCC32;
         bCountReparsed = true;
 #ifdef _N3GAME
@@ -282,12 +306,20 @@ bool CN3UIBase::Load(HANDLE hFile)
     {
         dwAfterCount = dwCountPos + 4;
     }
+
     SetFilePointer(hFile, dwAfterCount, NULL, FILE_BEGIN);
 
     if (iCC < 0)
     {
 #ifdef _N3GAME
         CLogWriter::Write("CN3UIBase::Load - negative child count %d detected, clamping to 0 (ver %d)", iCC, wVer);
+#endif
+        iCC = 0;
+    }
+    if (iCC > 1000)
+    {
+#ifdef _N3GAME
+        CLogWriter::Write("CN3UIBase::Load - excessive child count %d detected, clamping to 0 (ver %d)", iCC, wVer);
 #endif
         iCC = 0;
     }
@@ -298,97 +330,144 @@ bool CN3UIBase::Load(HANDLE hFile)
 	eUI_TYPE eChildUIType;
 	for(int i = 0; i < iCC; i++)
 	{
-		CN3UIBase* pChild = NULL;
-        DWORD dwFilePosBeforeChild = 0;
+		try {
+			CN3UIBase* pChild = NULL;
+	        DWORD dwFilePosBeforeChild = 0;
 #ifdef _N3GAME
-        dwFilePosBeforeChild = SetFilePointer(hFile, 0, NULL, FILE_CURRENT);
+	        dwFilePosBeforeChild = SetFilePointer(hFile, 0, NULL, FILE_CURRENT);
 #endif
-		ReadFile(hFile, &eChildUIType, sizeof(eChildUIType), &dwRWC, NULL); // child UI type
+			if (!ReadFile(hFile, &eChildUIType, sizeof(eChildUIType), &dwRWC, NULL) || dwRWC != sizeof(eChildUIType)) {
+				UIEDebugLog::Log("LOAD_FAIL: Cannot read child %d/%d type from file (got %lu bytes)", i+1, iCC, dwRWC);
+				return false;
+			}
+			UIEDebugLog::Log("LOAD_OK: Child %d/%d type=%d", i+1, iCC, eChildUIType);
 
 #ifdef _N3GAME
-        CLogWriter::Write("CN3UIBase::Load child %d/%d type=%s(%d) parent=%p file_pos=%lu BEGIN", i + 1, iCC, UITypeName(eChildUIType), eChildUIType, this, dwFilePosBeforeChild);
+	        CLogWriter::Write("CN3UIBase::Load child %d/%d type=%s(%d) parent=%p file_pos=%lu BEGIN", i + 1, iCC, UITypeName(eChildUIType), eChildUIType, this, dwFilePosBeforeChild);
 #endif
 
-		switch(eChildUIType)
-		{
-		case UI_TYPE_BASE:			pChild = new CN3UIBase();			break;
-		case UI_TYPE_IMAGE:			pChild = new CN3UIImage();			break;
-		case UI_TYPE_STRING:		pChild = new CN3UIString();			break;
-		case UI_TYPE_BUTTON:		pChild = new CN3UIButton();			break;
-		case UI_TYPE_STATIC:		pChild = new CN3UIStatic();			break;
-		case UI_TYPE_PROGRESS:		pChild = new CN3UIProgress();		break;
-		case UI_TYPE_SCROLLBAR:		pChild = new CN3UIScrollBar();		break;
-		case UI_TYPE_TRACKBAR:		pChild = new CN3UITrackBar();		break;
-		case UI_TYPE_EDIT:			pChild = new CN3UIEdit();			break;
-		case UI_TYPE_AREA:			pChild = new CN3UIArea();			break;
+			switch(eChildUIType)
+			{
+			case UI_TYPE_BASE:			pChild = new CN3UIBase();			break;
+			case UI_TYPE_IMAGE:
+			UIEDebugLog::Log("LOAD_INFO: Creating CN3UIImage for child %d/%d", i+1, iCC);
+			pChild = new CN3UIImage();
+			UIEDebugLog::Log("LOAD_INFO: CN3UIImage created successfully");
+			break;
+			case UI_TYPE_STRING:		pChild = new CN3UIString();			break;
+			case UI_TYPE_BUTTON:		pChild = new CN3UIButton();			break;
+			case UI_TYPE_STATIC:		pChild = new CN3UIStatic();			break;
+			case UI_TYPE_PROGRESS:		pChild = new CN3UIProgress();		break;
+			case UI_TYPE_SCROLLBAR:		pChild = new CN3UIScrollBar();		break;
+			case UI_TYPE_TRACKBAR:		pChild = new CN3UITrackBar();		break;
+			case UI_TYPE_EDIT:			pChild = new CN3UIEdit();			break;
+			case UI_TYPE_AREA:			pChild = new CN3UIArea();			break;
 #ifdef _REPENT
-		case UI_TYPE_ICONSLOT:		pChild = new CN3UIIconSlot();		break;
+			case UI_TYPE_ICONSLOT:		pChild = new CN3UIIconSlot();		break;
 #endif
-		case UI_TYPE_LIST:			pChild = new CN3UIList();			break;
-        default:
+			case UI_TYPE_LIST:			pChild = new CN3UIList();			break;
+	        default:
 #ifdef _N3GAME
-            CLogWriter::Write("CN3UIBase::Load child %d/%d unknown type=%d (parent=%p) - loading as BASE to continue", i + 1, iCC, eChildUIType, this);
+	            CLogWriter::Write("CN3UIBase::Load child %d/%d unknown type=%d (parent=%p) - loading as BASE to continue", i + 1, iCC, eChildUIType, this);
 #endif
-            pChild = new CN3UIBase(); // fall back to bare container so we can continue reading UI
-		}
-		__ASSERT(pChild, "Unknown type UserInterface!!!");
+	            pChild = new CN3UIBase(); // fall back to bare container so we can continue reading UI
+			}
+			__ASSERT(pChild, "Unknown type UserInterface!!!");
+			UIEDebugLog::Log("LOAD_INFO: Calling Init on child %d/%d type=%d", i+1, iCC, eChildUIType);
 		pChild->Init(this);
-        bool bChildLoaded = pChild->Load(hFile);
+		UIEDebugLog::Log("LOAD_INFO: Init completed for child %d/%d", i+1, iCC);
+	        bool bChildLoaded = pChild->Load(hFile);
+	        UIEDebugLog::Log("LOAD_INFO: Child %d/%d load result=%s", i+1, iCC, (bChildLoaded ? "OK" : "FAIL"));
 #ifdef _N3GAME
-        CLogWriter::Write("CN3UIBase::Load child %d/%d load result=%s type=%s(%d)", i + 1, iCC, (bChildLoaded ? "ok" : "FAIL"), UITypeName(eChildUIType), eChildUIType);
+	        CLogWriter::Write("CN3UIBase::Load child %d/%d load result=%s type=%s(%d)", i + 1, iCC, (bChildLoaded ? "ok" : "FAIL"), UITypeName(eChildUIType), eChildUIType);
 #endif
+	        if (!bChildLoaded) {
+	            m_Children.pop_back();
+	            delete pChild;
+	        }
+		} catch (const std::exception& e) {
+			UIEDebugLog::Log("LOAD_CHILD_EXCEPTION: Child %d/%d - %s", i+1, iCC, e.what());
+			return false;
+		} catch (...) {
+			UIEDebugLog::Log("LOAD_CHILD_EXCEPTION: Child %d/%d - Unknown exception", i+1, iCC);
+			return false;
+		}
 	}
 
 	// base ����
 	int iIDLen = 0;
-	ReadFile(hFile, &iIDLen, sizeof(iIDLen), &dwRWC, NULL);			// ui id length
-	if (iIDLen>0)
+	if (!ReadFile(hFile, &iIDLen, sizeof(iIDLen), &dwRWC, NULL) || dwRWC != sizeof(iIDLen)) return false;			// ui id length
 	{
-		std::vector<char> buffer(iIDLen+1, NULL);
-		ReadFile(hFile, &buffer[0], iIDLen, &dwRWC, NULL);		// ui id
-		m_szID = &buffer[0];
+		if (iIDLen > 0 && iIDLen < 1000)
+		{
+			std::vector<char> buffer(iIDLen + 1, NULL);
+			if (!ReadFile(hFile, &buffer[0], iIDLen, &dwRWC, NULL) || dwRWC != iIDLen) return false;		// ui id
+			{
+				m_szID = &buffer[0];
+			}
+		}
+		else if (iIDLen == 0)
+		{
+			m_szID = "";
+		}
 	}
-	else
-	{
-		m_szID = "";
-	}
-	ReadFile(hFile, &m_rcRegion, sizeof(m_rcRegion), &dwRWC, NULL);		// m_rcRegion
-	ReadFile(hFile, &m_rcMovable, sizeof(m_rcMovable), &dwRWC, NULL);	// m_rcMovable
-	ReadFile(hFile, &m_dwStyle, sizeof(m_dwStyle), &dwRWC, NULL);		// style
-	ReadFile(hFile, &m_dwReserved, sizeof(m_dwReserved), &dwRWC, NULL);	//	m_dwReserved
+	if (!ReadFile(hFile, &m_rcRegion, sizeof(m_rcRegion), &dwRWC, NULL) || dwRWC != sizeof(m_rcRegion)) return false;		// m_rcRegion
+	if (!ReadFile(hFile, &m_rcMovable, sizeof(m_rcMovable), &dwRWC, NULL) || dwRWC != sizeof(m_rcMovable)) return false;	// m_rcMovable
+	if (m_rcRegion.left < -10000 || m_rcRegion.top < -10000 || m_rcRegion.right > 10000 || m_rcRegion.bottom > 10000 || m_rcRegion.right <= m_rcRegion.left || m_rcRegion.bottom <= m_rcRegion.top) m_rcRegion = {0,0,64,64};
+	if (m_rcMovable.left < -10000 || m_rcMovable.top < -10000 || m_rcMovable.right > 10000 || m_rcMovable.bottom > 10000 || m_rcMovable.right <= m_rcMovable.left || m_rcMovable.bottom <= m_rcMovable.top) m_rcMovable = {0,0,64,64};
+	if (!ReadFile(hFile, &m_dwStyle, sizeof(m_dwStyle), &dwRWC, NULL) || dwRWC != sizeof(m_dwStyle)) return false;		// style
+	if (!ReadFile(hFile, &m_dwReserved, sizeof(m_dwReserved), &dwRWC, NULL) || dwRWC != sizeof(m_dwReserved)) return false;	//	m_dwReserved
 
-	int iTooltipLen;
-	ReadFile(hFile, &iTooltipLen, sizeof(iTooltipLen), &dwRWC, NULL);		//	tooltip���ڿ� ����
-	if (iTooltipLen>0)
+	int iTooltipLen = 0;
+	if (!ReadFile(hFile, &iTooltipLen, sizeof(iTooltipLen), &dwRWC, NULL) || dwRWC != sizeof(iTooltipLen)) return false;		//	tooltip���ڿ� ����
 	{
-		std::vector<char> buffer(iTooltipLen+1, NULL);
-		ReadFile(hFile, &buffer[0], iTooltipLen, &dwRWC, NULL);
-		m_szToolTip = &buffer[0];
+		if (iTooltipLen > 0 && iTooltipLen < 1000)
+		{
+			std::vector<char> buffer(iTooltipLen + 1, NULL);
+			if (!ReadFile(hFile, &buffer[0], iTooltipLen, &dwRWC, NULL) || dwRWC != iTooltipLen) return false;
+			{
+				m_szToolTip = &buffer[0];
+			}
+		}
 	}
 
 	// ���� uif������ ������ �Ϸ��� ���� �ε� �ϴ� �κ� ����
 	int iSndFNLen = 0;
-	ReadFile(hFile, &iSndFNLen, sizeof(iSndFNLen), &dwRWC, NULL);		//	���� ���� ���ڿ� ����
-	if (iSndFNLen>0)
+	if (!ReadFile(hFile, &iSndFNLen, sizeof(iSndFNLen), &dwRWC, NULL) || dwRWC != sizeof(iSndFNLen)) return false;		//	���� ���� ���ڿ� ����
 	{
-		std::vector<char> buffer(iSndFNLen+1, NULL);
-		ReadFile(hFile, &buffer[0], iSndFNLen, &dwRWC, NULL);
-
-		__ASSERT(NULL == m_pSnd_OpenUI, "memory leak");
-		m_pSnd_OpenUI = s_SndMgr.CreateObj(&buffer[0], SNDTYPE_2D);
+		if (iSndFNLen > 0 && iSndFNLen < 1000)
+		{
+			std::vector<char> buffer(iSndFNLen + 1, NULL);
+			if (!ReadFile(hFile, &buffer[0], iSndFNLen, &dwRWC, NULL) || dwRWC != iSndFNLen) return false;
+			{
+				__ASSERT(NULL == m_pSnd_OpenUI, "memory leak");
+				m_pSnd_OpenUI = s_SndMgr.CreateObj(&buffer[0], SNDTYPE_2D);
+			}
+		}
 	}
 
-	ReadFile(hFile, &iSndFNLen, sizeof(iSndFNLen), &dwRWC, NULL);		//	���� ���� ���ڿ� ����
-	if (iSndFNLen>0)
+	if (!ReadFile(hFile, &iSndFNLen, sizeof(iSndFNLen), &dwRWC, NULL) || dwRWC != sizeof(iSndFNLen)) return false;		//	���� ���� ���ڿ� ����
 	{
-		std::vector<char> buffer(iSndFNLen+1, NULL);
-		ReadFile(hFile, &buffer[0], iSndFNLen, &dwRWC, NULL);
-
-		__ASSERT(NULL == m_pSnd_CloseUI, "memory leak");
-		m_pSnd_CloseUI = s_SndMgr.CreateObj(&buffer[0], SNDTYPE_2D);
+		if (iSndFNLen > 0 && iSndFNLen < 1000)
+		{
+			std::vector<char> buffer(iSndFNLen + 1, NULL);
+			if (!ReadFile(hFile, &buffer[0], iSndFNLen, &dwRWC, NULL) || dwRWC != iSndFNLen) return false;
+			{
+				__ASSERT(NULL == m_pSnd_CloseUI, "memory leak");
+				m_pSnd_CloseUI = s_SndMgr.CreateObj(&buffer[0], SNDTYPE_2D);
+			}
+		}
 	}
 
+	UIEDebugLog::Log("CN3UIBase::Load - END (SUCCESS)");
 	return true;
+	} catch (const std::exception& e) {
+		UIEDebugLog::Log("LOAD_EXCEPTION: %s", e.what());
+		return false;
+	} catch (...) {
+		UIEDebugLog::Log("LOAD_EXCEPTION: Unknown exception in CN3UIBase::Load");
+		return false;
+	}
 }
 
 void CN3UIBase::Tick()
@@ -711,8 +790,10 @@ bool CN3UIBase::Save(HANDLE hFile)
 	DWORD dwRWC = NULL;
 
 	// child ´┐¢´┐¢´┐¢´┐¢
-	int iCC = m_Children.size();
-	WriteFile(hFile, &iCC, sizeof(iCC), &dwRWC, NULL); // Child ´┐¢´┐¢´┐¢´┐¢ ´┐¢´┐¢´┐¢´┐¢..´┐¢´┐¢..
+	short sChildCount = (short)m_Children.size();
+	short sVersion = 1;
+	WriteFile(hFile, &sChildCount, sizeof(sChildCount), &dwRWC, NULL); // Child count
+	WriteFile(hFile, &sVersion, sizeof(sVersion), &dwRWC, NULL); // Version
 	for(UIListReverseItor itor = m_Children.rbegin(); m_Children.rend() != itor; ++itor)
 	// childadd´┐¢ÊÂ´┐¢ push_front´┐¢╠╣ÃÀ´┐¢ ´┐¢´┐¢´┐¢´┐¢´┐¢´┐¢ ´┐¢´┐¢ ´┐¢┼▓┘À´┐¢ ´┐¢´┐¢´┐¢´┐¢´┐¢Ï¥´┐¢ ´┐¢Ð┤´┐¢.
 	{
@@ -822,11 +903,13 @@ bool CN3UIBase::SwapChild(CN3UIBase* pChild1, CN3UIBase* pChild2)
 {
 	if(this->IsMyChild(pChild1) < 0 || IsMyChild(pChild2) < 0) return false;
 	
-	for(UIListItor itor1 = m_Children.begin(); m_Children.end() != itor1; itor1++)
+	UIListItor itor1;
+	for(itor1 = m_Children.begin(); m_Children.end() != itor1; itor1++)
 		if(*itor1 == pChild1) break;
 	if(itor1 == m_Children.end()) return false;
 
-	for(UIListItor itor2 = m_Children.begin(); m_Children.end() != itor2; itor2++)
+	UIListItor itor2;
+	for(itor2 = m_Children.begin(); m_Children.end() != itor2; itor2++)
 		if(*itor2 == pChild2) break;
 	if(itor2 == m_Children.end()) return false;
 
@@ -916,7 +999,8 @@ void CN3UIBase::ArrangeZOrder()
 	// ´┐¢´┐¢´┐¢´┐¢ image´┐¢´┐¢ ´┐¢´┐¢´┐¢Î©´┐¢´┐¢´┐¢ ´┐¢Ã╣ÃÀ´┐¢ child list´┐¢´┐¢´┐¢´┐¢ ´┐¢´┐¢ ´┐¢┌À´┐¢ ´┐¢´┐¢´┐¢´┐¢´┐¢´┐¢.
 	// ´┐¢Í│´┐¢´┐¢¤©´┐¢ ´┐¢´┐¢ ´┐¢┌┐´┐¢ ´┐¢Í┤┬░´┐¢´┐¢´┐¢ ´┐¢´┐¢ ´┐¢´┐¢´┐¢´┐¢ ´┐¢ÎÀ´┐¢´┐¢´┐¢´┐¢ÃÀ´┐¢
 	UIList tempList;
-	for(UIListItor itor = m_Children.begin(); m_Children.end() != itor;)
+	UIListItor itor;
+	for(itor = m_Children.begin(); m_Children.end() != itor;)
 	{
 		CN3UIBase* pChild = (*itor);
 		if(UI_TYPE_IMAGE == pChild->UIType())

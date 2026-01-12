@@ -66,6 +66,12 @@ void CN3UIString::Init(CN3UIBase* pParent)
 {
 	CN3UIBase::Init(pParent);
 
+	// In editor mode without D3D device, skip font initialization
+	if (NULL == CN3Base::s_lpD3DDev)
+	{
+		return;
+	}
+
 	if(m_pDFont) delete m_pDFont; m_pDFont = NULL;
 	m_pDFont = new CDFont("����", 16);	// default �� ���� 16���� ����
 	m_pDFont->InitDeviceObjects( CN3Base::s_lpD3DDev );

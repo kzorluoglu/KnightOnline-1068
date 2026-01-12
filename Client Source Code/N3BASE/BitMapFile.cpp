@@ -185,7 +185,7 @@ bool CBitMapFile::LoadFromFile(const char* pszFN)
 		return false;
 
 	DWORD dwRWC = 0;
-	HANDLE hFile = ::CreateFile(pszFN, GENERIC_READ, 0, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
+	HANDLE hFile = ::CreateFile(pszFN, GENERIC_READ, FILE_SHARE_READ, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
 
 	if(INVALID_HANDLE_VALUE == hFile)
 		return false;

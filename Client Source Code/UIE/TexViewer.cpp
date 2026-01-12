@@ -7,6 +7,7 @@
 #include "MainFrm.h"
 #include "..\N3Base\N3UIDef.h"
 #include "..\N3Base\N3Texture.h"
+#include <d3d9.h>
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -392,7 +393,7 @@ void CTexViewer::Render()
 	if (NULL == m_pTex) return;
 	CMainFrame* pFrm = (CMainFrame*)AfxGetMainWnd();
 	CN3EngTool* pEng = &(pFrm->m_Eng);
-	LPDIRECT3DDEVICE8 lpD3DDev = pEng->s_lpD3DDev;
+	LPDIRECT3DDEVICE9 lpD3DDev = pEng->s_lpD3DDev;
 
 	// backup render state
 	DWORD dwZEnable, dwAlphaBlend, dwSrcBlend, dwDestBlend, dwFog;

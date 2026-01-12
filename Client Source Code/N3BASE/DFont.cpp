@@ -118,6 +118,12 @@ HRESULT CDFont::RestoreDeviceObjects()
 
 	m_iPrimitiveCount = 0;
 
+	// In editor tool without D3D device initialized, skip font rendering setup
+	if (NULL == m_pd3dDevice)
+	{
+		return S_OK;
+	}
+
 //	__ASSERT(NULL == s_hDC && NULL == m_hFont, "??");
 //	m_hDC = CreateCompatibleDC(NULL);
 	__ASSERT(NULL == m_hFont, "??");

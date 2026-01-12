@@ -1,0 +1,50 @@
+﻿cl : Command line warning D9035: option 'Gm' has been deprecated and will be removed in a future release
+  UIEView.cpp
+c:\users\kzorluoglu\clionprojects\knightonline-1068\client source code\uie\uiedoc.h(32): warning C4018: '>=': signed/unsigned mismatch
+c:\users\kzorluoglu\clionprojects\knightonline-1068\client source code\uie\uieview.cpp(473): error C2065: 'D3DTSS_MAGFILTER': undeclared identifier
+c:\users\kzorluoglu\clionprojects\knightonline-1068\client source code\uie\uieview.cpp(474): error C2065: 'D3DTSS_MINFILTER': undeclared identifier
+c:\users\kzorluoglu\clionprojects\knightonline-1068\client source code\uie\uieview.cpp(475): error C2065: 'D3DTSS_MIPFILTER': undeclared identifier
+c:\users\kzorluoglu\clionprojects\knightonline-1068\client source code\uie\uieview.cpp(483): error C2065: 'D3DTSS_MAGFILTER': undeclared identifier
+c:\users\kzorluoglu\clionprojects\knightonline-1068\client source code\uie\uieview.cpp(484): error C2065: 'D3DTSS_MINFILTER': undeclared identifier
+c:\users\kzorluoglu\clionprojects\knightonline-1068\client source code\uie\uieview.cpp(485): error C2065: 'D3DTSS_MIPFILTER': undeclared identifier
+c:\users\kzorluoglu\clionprojects\knightonline-1068\client source code\uie\uieview.cpp(497): error C2065: 'D3DTSS_MAGFILTER': undeclared identifier
+c:\users\kzorluoglu\clionprojects\knightonline-1068\client source code\uie\uieview.cpp(498): error C2065: 'D3DTSS_MINFILTER': undeclared identifier
+c:\users\kzorluoglu\clionprojects\knightonline-1068\client source code\uie\uieview.cpp(499): error C2065: 'D3DTSS_MIPFILTER': undeclared identifier
+c:\users\kzorluoglu\clionprojects\knightonline-1068\client source code\uie\uieview.cpp(519): error C2065: 'D3DTSS_MAGFILTER': undeclared identifier
+c:\users\kzorluoglu\clionprojects\knightonline-1068\client source code\uie\uieview.cpp(520): error C2065: 'D3DTSS_MINFILTER': undeclared identifier
+c:\users\kzorluoglu\clionprojects\knightonline-1068\client source code\uie\uieview.cpp(521): error C2065: 'D3DTSS_MIPFILTER': undeclared identifier
+c:\users\kzorluoglu\clionprojects\knightonline-1068\client source code\uie\uieview.cpp(529): error C2065: 'D3DTSS_MAGFILTER': undeclared identifier
+c:\users\kzorluoglu\clionprojects\knightonline-1068\client source code\uie\uieview.cpp(530): error C2065: 'D3DTSS_MINFILTER': undeclared identifier
+c:\users\kzorluoglu\clionprojects\knightonline-1068\client source code\uie\uieview.cpp(531): error C2065: 'D3DTSS_MIPFILTER': undeclared identifier
+c:\users\kzorluoglu\clionprojects\knightonline-1068\client source code\uie\uieview.cpp(550): error C2065: 'D3DTSS_MAGFILTER': undeclared identifier
+c:\users\kzorluoglu\clionprojects\knightonline-1068\client source code\uie\uieview.cpp(551): error C2065: 'D3DTSS_MINFILTER': undeclared identifier
+c:\users\kzorluoglu\clionprojects\knightonline-1068\client source code\uie\uieview.cpp(552): error C2065: 'D3DTSS_MIPFILTER': undeclared identifier
+c:\users\kzorluoglu\clionprojects\knightonline-1068\client source code\uie\uieview.cpp(731): error C2668: 'CN3UIBase::SetMoveRect': ambiguous call to overloaded function
+  c:\users\kzorluoglu\clionprojects\knightonline-1068\client source code\n3base\n3uibase.h(171): note: could be 'void CN3UIBase::SetMoveRect(RECT)'
+  c:\users\kzorluoglu\clionprojects\knightonline-1068\client source code\n3base\n3uibase.h(94): note: or       'void CN3UIBase::SetMoveRect(const RECT &)'
+  c:\users\kzorluoglu\clionprojects\knightonline-1068\client source code\uie\uieview.cpp(731): note: while trying to match the argument list '(const RECT)'
+  UIEDoc.cpp
+c:\users\kzorluoglu\clionprojects\knightonline-1068\client source code\uie\uiedoc.h(32): warning C4018: '>=': signed/unsigned mismatch
+c:\users\kzorluoglu\clionprojects\knightonline-1068\client source code\n3base\n3uistring.h(70): warning C4114: same type qualifier used more than once
+c:\users\kzorluoglu\clionprojects\knightonline-1068\client source code\uie\uiedoc.cpp(636): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.10240.0\ucrt\stdio.h(1769): note: see declaration of 'sprintf'
+  TexViewer.cpp
+c:\users\kzorluoglu\clionprojects\knightonline-1068\client source code\uie\texviewer.cpp(85): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+c:\users\kzorluoglu\clionprojects\knightonline-1068\client source code\uie\texviewer.cpp(111): warning C4244: '*=': conversion from 'float' to 'LONG', possible loss of data
+c:\users\kzorluoglu\clionprojects\knightonline-1068\client source code\uie\texviewer.cpp(112): warning C4244: '*=': conversion from 'float' to 'LONG', possible loss of data
+c:\users\kzorluoglu\clionprojects\knightonline-1068\client source code\uie\texviewer.cpp(113): warning C4244: '*=': conversion from 'float' to 'LONG', possible loss of data
+c:\users\kzorluoglu\clionprojects\knightonline-1068\client source code\uie\texviewer.cpp(114): warning C4244: '*=': conversion from 'float' to 'LONG', possible loss of data
+c:\users\kzorluoglu\clionprojects\knightonline-1068\client source code\uie\texviewer.cpp(130): warning C4244: '*=': conversion from 'float' to 'LONG', possible loss of data
+c:\users\kzorluoglu\clionprojects\knightonline-1068\client source code\uie\texviewer.cpp(131): warning C4244: '*=': conversion from 'float' to 'LONG', possible loss of data
+c:\users\kzorluoglu\clionprojects\knightonline-1068\client source code\uie\texviewer.cpp(406): error C2065: 'D3DTSS_MAGFILTER': undeclared identifier
+c:\users\kzorluoglu\clionprojects\knightonline-1068\client source code\uie\texviewer.cpp(407): error C2065: 'D3DTSS_MINFILTER': undeclared identifier
+c:\users\kzorluoglu\clionprojects\knightonline-1068\client source code\uie\texviewer.cpp(408): error C2065: 'D3DTSS_MIPFILTER': undeclared identifier
+c:\users\kzorluoglu\clionprojects\knightonline-1068\client source code\uie\texviewer.cpp(414): error C2065: 'D3DTSS_MAGFILTER': undeclared identifier
+c:\users\kzorluoglu\clionprojects\knightonline-1068\client source code\uie\texviewer.cpp(415): error C2065: 'D3DTSS_MINFILTER': undeclared identifier
+c:\users\kzorluoglu\clionprojects\knightonline-1068\client source code\uie\texviewer.cpp(416): error C2065: 'D3DTSS_MIPFILTER': undeclared identifier
+c:\users\kzorluoglu\clionprojects\knightonline-1068\client source code\uie\texviewer.cpp(424): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+c:\users\kzorluoglu\clionprojects\knightonline-1068\client source code\uie\texviewer.cpp(425): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+c:\users\kzorluoglu\clionprojects\knightonline-1068\client source code\uie\texviewer.cpp(441): error C2065: 'D3DTSS_MAGFILTER': undeclared identifier
+c:\users\kzorluoglu\clionprojects\knightonline-1068\client source code\uie\texviewer.cpp(442): error C2065: 'D3DTSS_MINFILTER': undeclared identifier
+c:\users\kzorluoglu\clionprojects\knightonline-1068\client source code\uie\texviewer.cpp(443): error C2065: 'D3DTSS_MIPFILTER': undeclared identifier
+  Generating Code...

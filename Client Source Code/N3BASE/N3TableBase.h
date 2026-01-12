@@ -207,7 +207,8 @@ BOOL CN3TableBase<Type>::ReadData(HANDLE hFile, DATA_TYPE DataType, void* pData)
 			if (pData)
 			{
 #ifdef _N3GAME
-                CLogWriter::Write("ReadData String - pData=0x%X, len=%d", (unsigned int)pData, iStrLen); 
+// @todo: temporarily commented out to reduce log spam
+                // CLogWriter::Write("ReadData String - pData=0x%X, len=%d", (unsigned int)pData, iStrLen); 
 #endif
                 if (iStrLen < 0 || iStrLen > 100000) return TRUE;
 
@@ -249,7 +250,7 @@ template <class Type>
 BOOL CN3TableBase<Type>::LoadFromFile(const std::string& szFN)
 {
 	if(szFN.empty()) return FALSE;
-	HANDLE hFile = ::CreateFile(szFN.c_str(), GENERIC_READ, 0, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
+	HANDLE hFile = ::CreateFile(szFN.c_str(), GENERIC_READ, FILE_SHARE_READ, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
 	if(INVALID_HANDLE_VALUE == hFile) return FALSE;
 
 	std::string szFNTmp = szFN + ".tmp";
@@ -273,12 +274,12 @@ BOOL CN3TableBase<Type>::LoadFromFile(const std::string& szFN)
 		pDatas[i] = byData;
 	}
 
-	hFile = ::CreateFile(szFNTmp.c_str(), GENERIC_WRITE, 0, NULL, CREATE_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
+	hFile = ::CreateFile(szFNTmp.c_str(), GENERIC_WRITE, FILE_SHARE_READ, NULL, CREATE_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
 	::WriteFile(hFile, pDatas, dwSizeLow, &dwRWC, NULL);
 	CloseHandle(hFile);
 	delete [] pDatas;
 
-	hFile = ::CreateFile(szFNTmp.c_str(), GENERIC_READ, 0, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
+	hFile = ::CreateFile(szFNTmp.c_str(), GENERIC_READ, FILE_SHARE_READ, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
 	BOOL bResult = Load(hFile);
 	CloseHandle(hFile);
 
@@ -307,7 +308,8 @@ BOOL CN3TableBase<Type>::Load(HANDLE hFile)
 
 #ifdef _N3GAME
         for(int k=0; k<iDataTypeCount; k++) {
-            CLogWriter::Write("Column %d: Type=%d, Offset=%d", k, m_DataTypes[k], offsets[k]);
+			// @todo: temporarily commented out to reduce log spam
+            // CLogWriter::Write("Column %d: Type=%d, Offset=%d", k, m_DataTypes[k], offsets[k]);
         }
 #endif
 		if (DT_DWORD != m_DataTypes[0]) { m_DataTypes.clear(); return FALSE; }
@@ -330,7 +332,8 @@ BOOL CN3TableBase<Type>::Load(HANDLE hFile)
 			if (offset + sz <= (int)sizeof(Type))
 			{
 #ifdef _N3GAME
-                if (i == 0) CLogWriter::Write("Reading row 0, col %d, type %d, offset %d", j, m_DataTypes[j], offset);
+// @todo: temporarily commented out to reduce log spam
+                // if (i == 0) CLogWriter::Write("Reading row 0, col %d, type %d, offset %d", j, m_DataTypes[j], offset);
 #endif
 				ReadData(hFile, m_DataTypes[j], (char*)(&Data) + offset);
 			}

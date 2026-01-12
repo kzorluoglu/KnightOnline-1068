@@ -174,13 +174,9 @@ void CGameProcedure::StaticMemberInit(HINSTANCE hInstance, HWND hWndMain, HWND h
 
 	s_hWndSubSocket = hWndSub; // ���� ���Ͽ� ������ �ڵ�..
 
-	try {
-		CLogWriter::Write("StaticMemberInit: before CGameBase init");
-		CGameBase::StaticMemberInit(); // Table �� ����, ������Ʈ, ĳ���� �ʱ�ȭ...
-		CLogWriter::Write("StaticMemberInit: tables loaded");
-	} catch (...) {
-		CLogWriter::Write("StaticMemberInit: EXCEPTION in CGameBase::StaticMemberInit");
-	}
+	CLogWriter::Write("StaticMemberInit: before CGameBase init");
+	CGameBase::StaticMemberInit(); // Table �� ����, ������Ʈ, ĳ���� �ʱ�ȭ...
+	CLogWriter::Write("StaticMemberInit: tables loaded");
 
 	//////////////////////////////////////////////////////////////////////////////////////////
 	// Game Procedure ���ϰ� ���� ��ǲ, 3D����, Resource Table �ε� �� �ʱ�ȭ...
@@ -465,17 +461,14 @@ void CGameProcedure::TickActive()
 
 void CGameProcedure::RenderActive()
 {
-//	if(s_pProcActive != s_pProcPrev) // ���ν����� �ٲ��..
-//	{
-//		if(s_pProcPrev) s_pProcPrev->Release();
-//		if(s_pProcActive) s_pProcActive->Init();
-//
-//		s_pProcPrev = s_pProcActive;
-//	}
-//	else 
-//	{
-		if(s_pProcActive == s_pProcPrev) s_pProcActive->Render();
-//	}
+	if(s_pProcActive != s_pProcPrev) // ���ν����� �ٲ��..
+	{
+		if(s_pProcPrev) s_pProcPrev->Release();
+		if(s_pProcActive) s_pProcActive->Init();
+
+		s_pProcPrev = s_pProcActive;
+	}
+	if(s_pProcActive) s_pProcActive->Render();
 }
 
 bool CGameProcedure::CaptureScreenAndSaveToFile(const std::string& szFN)

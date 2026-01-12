@@ -70,6 +70,7 @@ protected:
 	eUI_STATE	m_eState;		// UI state
 	DWORD		m_dwStyle;		// style
 	DWORD		m_dwReserved;	// ��Ÿ �ӽ÷� �ְ� ���� ������ ������ �ȴ�.
+	DWORD		m_dwVersion;	// UI version
 
 	RECT		m_rcRegion;		// UI - screen coordinates (screen : main window client area) ���� : �θ� ���� �����ǥ�� �ƴϴ�.
 	RECT		m_rcMovable;	// UI�� �巡�� �Ͽ� �����̰� �� �� �ִ� ���� - (screen : main window client area)           ~~~~~~~
@@ -140,7 +141,7 @@ public:
 	int				GetChildrenCount() { return m_Children.size(); }
 	CN3UIBase*		GetChildByIndex(int iIndex)
 	{
-		if(iIndex < 0 || iIndex >= m_Children.size()) return NULL;
+		if(iIndex < 0 || iIndex >= (int)m_Children.size()) return NULL;
 		UIListItor it = m_Children.begin();
 		for(int i = 0; i < iIndex; it++, i++);
 		return *it;

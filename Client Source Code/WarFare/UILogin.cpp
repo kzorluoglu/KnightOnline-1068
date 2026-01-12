@@ -1,7 +1,3 @@
-// UILogIn.cpp: implementation of the CUILogIn class.
-//
-//////////////////////////////////////////////////////////////////////
-
 #include "stdafx.h"
 #include "resource.h"
 #include "UILogIn.h"
@@ -10,6 +6,8 @@
 #include "../N3Base/N3UIEdit.h"
 #include "../N3Base/N3UIButton.h"
 #include "../N3Base/N3UIList.h"
+#include "../N3Base/N3UIImage.h"
+#include "../N3Base/N3UIString.h"
 #include "UIMessageBoxManager.h"
 
 #include <algorithm>
@@ -102,51 +100,128 @@ bool CUILogIn::ReceiveMessage(CN3UIBase* pSender, DWORD dwMsg)
 	return true;
 }
 
+void CUILogIn::LogAllUIElements(CN3UIBase* pUI, int depth)
+{
+	if(!pUI) return;
+	
+	std::string indent(depth * 2, ' ');
+	if(!pUI->m_szID.empty())
+	{
+		CLogWriter::Write("CUILogIn::Load - %sID='%s' Type=%d Visible=%d", indent.c_str(), pUI->m_szID.c_str(), pUI->UIType(), pUI->IsVisible());
+	}
+	else
+	{
+		CLogWriter::Write("CUILogIn::Load - %s(no ID) Type=%d Visible=%d", indent.c_str(), pUI->UIType(), pUI->IsVisible());
+	}
+	
+	UIListItor it = pUI->m_Children.begin();
+	UIListItor itEnd = pUI->m_Children.end();
+	for(; it != itEnd; ++it)
+	{
+		CN3UIBase* pChild = *it;
+		LogAllUIElements(pChild, depth + 1);
+	}
+}
+
 bool CUILogIn::Load(HANDLE hFile)
 {
 	if(CN3UIBase::Load(hFile)==false) return false;
 
-	m_pGroup_LogIn = GetChildByID("Group_LogIn");				__ASSERT(m_pGroup_LogIn, "NULL UI Component!!");
-#ifdef _N3GAME
-	if(NULL == m_pGroup_LogIn) CLogWriter::Write("CUILogIn::Load - missing UI: Group_LogIn");
-#endif
+	// Log all child IDs for debugging
+	CLogWriter::Write("CUILogIn::Load - Enumerating all child IDs:");
+	LogAllUIElements(this, 0);
+
+	// Try to find GroupLogin by ID first
+	m_pGroup_LogIn = GetChildByID("GroupLogin");
 	if(m_pGroup_LogIn)
 	{
-		m_pBtn_LogIn = (CN3UIButton*)m_pGroup_LogIn->GetChildByID("Btn_Login");		__ASSERT(m_pBtn_LogIn, "NULL UI Component!!");
-		m_pBtn_Cancel = (CN3UIButton*)m_pGroup_LogIn->GetChildByID("Btn_Cancel");	__ASSERT(m_pBtn_Cancel, "NULL UI Component!!");
-		m_pBtn_Option = (CN3UIButton*)m_pGroup_LogIn->GetChildByID("Btn_Option");	__ASSERT(m_pBtn_Option, "NULL UI Component!!");
-
-		m_pEdit_id = (CN3UIEdit*)m_pGroup_LogIn->GetChildByID("Edit_ID");			__ASSERT(m_pEdit_id, "NULL UI Component!!");
-		m_pEdit_pw = (CN3UIEdit*)m_pGroup_LogIn->GetChildByID("Edit_PW");			__ASSERT(m_pEdit_pw, "NULL UI Component!!");
-
-		m_pImg_GradeLogo = m_pGroup_LogIn->GetChildByID("Img_Grade");	__ASSERT(m_pImg_GradeLogo, "NULL UI Component!!");
+		CLogWriter::Write("CUILogIn::Load - Found GroupLogin, setting visible");
+		m_pGroup_LogIn->SetVisible(true);
+		m_pBtn_LogIn = (CN3UIButton*)m_pGroup_LogIn->GetChildByID("Btn_LogIn");
+		if(m_pBtn_LogIn) { CLogWriter::Write("CUILogIn::Load - Found Btn_LogIn, setting visible"); m_pBtn_LogIn->SetVisible(true); }
+		else CLogWriter::Write("CUILogIn::Load - Btn_LogIn not found in GroupLogin");
+		m_pBtn_Cancel = (CN3UIButton*)m_pGroup_LogIn->GetChildByID("Btn_Cancel");
+		if(m_pBtn_Cancel) { CLogWriter::Write("CUILogIn::Load - Found Btn_Cancel, setting visible"); m_pBtn_Cancel->SetVisible(true); }
+		else CLogWriter::Write("CUILogIn::Load - Btn_Cancel not found in GroupLogin");
+		m_pBtn_Option = (CN3UIButton*)m_pGroup_LogIn->GetChildByID("Btn_Option");
+		if(m_pBtn_Option) { CLogWriter::Write("CUILogIn::Load - Found Btn_Option, setting visible"); m_pBtn_Option->SetVisible(true); }
+		else CLogWriter::Write("CUILogIn::Load - Btn_Option not found in GroupLogin");
+		m_pEdit_id = (CN3UIEdit*)m_pGroup_LogIn->GetChildByID("Edit_ID");
+		if(m_pEdit_id) { CLogWriter::Write("CUILogIn::Load - Found Edit_ID, setting visible"); m_pEdit_id->SetVisible(true); }
+		else CLogWriter::Write("CUILogIn::Load - Edit_ID not found in GroupLogin");
+		m_pEdit_pw = (CN3UIEdit*)m_pGroup_LogIn->GetChildByID("Edit_PW");
+		if(m_pEdit_pw) { CLogWriter::Write("CUILogIn::Load - Found Edit_PW, setting visible"); m_pEdit_pw->SetVisible(true); }
+		else CLogWriter::Write("CUILogIn::Load - Edit_PW not found in GroupLogin");
+	}
+	else
+	{
+		CLogWriter::Write("CUILogIn::Load - GroupLogin not found, trying direct IDs");
+		m_pBtn_LogIn = (CN3UIButton*)GetChildByID("Btn_LogIn");
+		if(!m_pBtn_LogIn) m_pBtn_LogIn = (CN3UIButton*)GetChildByID("btn_login");
+		if(m_pBtn_LogIn) { CLogWriter::Write("CUILogIn::Load - Found Btn_LogIn/btn_login, setting visible"); m_pBtn_LogIn->SetVisible(true); }
+		else CLogWriter::Write("CUILogIn::Load - Btn_LogIn/btn_login not found");
+		m_pBtn_Cancel = (CN3UIButton*)GetChildByID("Btn_Cancel");
+		if(!m_pBtn_Cancel) m_pBtn_Cancel = (CN3UIButton*)GetChildByID("btn_cancel");
+		if(m_pBtn_Cancel) { CLogWriter::Write("CUILogIn::Load - Found Btn_Cancel/btn_cancel, setting visible"); m_pBtn_Cancel->SetVisible(true); }
+		else CLogWriter::Write("CUILogIn::Load - Btn_Cancel/btn_cancel not found");
+		m_pBtn_Option = (CN3UIButton*)GetChildByID("Btn_Option");
+		if(!m_pBtn_Option) m_pBtn_Option = (CN3UIButton*)GetChildByID("btn_option");
+		if(m_pBtn_Option) { CLogWriter::Write("CUILogIn::Load - Found Btn_Option/btn_option, setting visible"); m_pBtn_Option->SetVisible(true); }
+		else CLogWriter::Write("CUILogIn::Load - Btn_Option/btn_option not found");
+		m_pEdit_id = (CN3UIEdit*)GetChildByID("Edit_ID");
+		if(!m_pEdit_id) m_pEdit_id = (CN3UIEdit*)GetChildByID("edit_id");
+		if(m_pEdit_id) { CLogWriter::Write("CUILogIn::Load - Found Edit_ID/edit_id, setting visible"); m_pEdit_id->SetVisible(true); }
+		else CLogWriter::Write("CUILogIn::Load - Edit_ID/edit_id not found");
+		m_pEdit_pw = (CN3UIEdit*)GetChildByID("Edit_PW");
+		if(!m_pEdit_pw) m_pEdit_pw = (CN3UIEdit*)GetChildByID("edit_pw");
+		if(m_pEdit_pw) { CLogWriter::Write("CUILogIn::Load - Found Edit_PW/edit_pw, setting visible"); m_pEdit_pw->SetVisible(true); }
+		else CLogWriter::Write("CUILogIn::Load - Edit_PW/edit_pw not found");
 	}
 
-	m_pText_Rights = GetChildByID("Text_Rights");	__ASSERT(m_pText_Rights, "NULL UI Component!!");
-	m_pImg_MGameLogo = GetChildByID("Img_MGame");	__ASSERT(m_pImg_MGameLogo, "NULL UI Component!!");
-	m_pImg_DaumLogo = GetChildByID("Img_Daum");		__ASSERT(m_pImg_DaumLogo, "NULL UI Component!!");
-#ifdef _N3GAME
-	if(NULL == m_pText_Rights) CLogWriter::Write("CUILogIn::Load - missing UI: Text_Rights");
-	if(NULL == m_pImg_MGameLogo) CLogWriter::Write("CUILogIn::Load - missing UI: Img_MGame");
-	if(NULL == m_pImg_DaumLogo) CLogWriter::Write("CUILogIn::Load - missing UI: Img_Daum");
-#endif
+	if (!m_pEdit_id) {
+		m_pEdit_id = new CN3UIEdit();
+		m_pEdit_id->Init(this);
+		m_pEdit_id->SetID("edit_id");
+		AddChild(m_pEdit_id);
+		m_pEdit_id->SetVisible(true);
+		RECT rc = {100, 100, 200, 120};
+		m_pEdit_id->SetRegion(rc);
+		CLogWriter::Write("CUILogIn::Load - Created edit_id");
+	}
+	if (!m_pEdit_pw) {
+		m_pEdit_pw = new CN3UIEdit();
+		m_pEdit_pw->Init(this);
+		m_pEdit_pw->SetID("edit_pw");
+		AddChild(m_pEdit_pw);
+		m_pEdit_pw->SetVisible(true);
+		RECT rc = {100, 130, 200, 150};
+		m_pEdit_pw->SetRegion(rc);
+		CLogWriter::Write("CUILogIn::Load - Created edit_pw");
+	}
+	if (!m_pBtn_LogIn) {
+		m_pBtn_LogIn = new CN3UIButton();
+		m_pBtn_LogIn->Init(this);
+		m_pBtn_LogIn->SetID("btn_login");
+		AddChild(m_pBtn_LogIn);
+		m_pBtn_LogIn->SetVisible(true);
+		RECT rc = {100, 160, 150, 180};
+		m_pBtn_LogIn->SetRegion(rc);
+		CLogWriter::Write("CUILogIn::Load - Created btn_login");
+	}
+
+	m_pText_Rights = GetChildByID("Text_Rights");
+	m_pImg_MGameLogo = GetChildByID("Img_MGame");
+	m_pImg_DaumLogo = GetChildByID("Img_Daum");
 
 	if(m_pText_Rights) m_pText_Rights->SetVisible(false);
 	if(m_pImg_MGameLogo) m_pImg_MGameLogo->SetVisible(false);
 	if(m_pImg_DaumLogo) m_pImg_DaumLogo->SetVisible(false);
 
-	m_pGroup_ServerList = GetChildByID("Group_ServerList");		__ASSERT(m_pGroup_ServerList, "NULL UI Component!!");
-#ifdef _N3GAME
-	if(NULL == m_pGroup_ServerList) CLogWriter::Write("CUILogIn::Load - missing UI: Group_ServerList");
-#endif
+	m_pGroup_ServerList = GetChildByID("Group_ServerList");
 	if(m_pGroup_ServerList)
 	{
-		m_pList_Server = (CN3UIList*)(m_pGroup_ServerList->GetChildByID("List_Server"));	__ASSERT(m_pList_Server, "NULL UI Component!!");
-		m_pBtn_Connect = (CN3UIButton*)m_pGroup_ServerList->GetChildByID("Btn_Connect");	__ASSERT(m_pBtn_Connect, "NULL UI Component!!");
-#ifdef _N3GAME
-		if(NULL == m_pList_Server) CLogWriter::Write("CUILogIn::Load - missing UI: List_Server");
-		if(NULL == m_pBtn_Connect) CLogWriter::Write("CUILogIn::Load - missing UI: Btn_Connect");
-#endif
+		m_pList_Server = (CN3UIList*)(m_pGroup_ServerList->GetChildByID("List_Server"));
+		m_pBtn_Connect = (CN3UIButton*)m_pGroup_ServerList->GetChildByID("Btn_Connect");
 
 		m_pGroup_ServerList->SetVisible(false);
 	}
@@ -211,13 +286,18 @@ void CUILogIn::InitEditControls()
 bool CUILogIn::ServerInfoAdd(const __GameServerInfo& GSI)
 {
 	m_ListServerInfos.push_back(GSI);
+#ifdef _N3GAME
+	CLogWriter::Write("CUILogIn::ServerInfoAdd - added server '%s' ip='%s' users=%d", GSI.szName.c_str(), GSI.szIP.c_str(), GSI.iConcurrentUserCount);
+#else
+	CLogWriter::Write("CUILogIn::ServerInfoAdd - added server '%s' ip='%s' users=%d", GSI.szName.c_str(), GSI.szIP.c_str(), GSI.iConcurrentUserCount);
+#endif
 	return true;
 }
 
 bool CUILogIn::ServerInfoGet(int iIndex, __GameServerInfo& GSI)
 {
 	if(NULL == m_pList_Server) return false;
-	if(iIndex < 0 || iIndex >= m_ListServerInfos.size()) return false;
+	if(iIndex < 0 || iIndex >= (int)m_ListServerInfos.size()) return false;
 
 	GSI = m_ListServerInfos[iIndex];
 	return true;
@@ -246,6 +326,23 @@ void CUILogIn::ServerInfoUpdate()
 			m_pList_Server->AddString(m_ListServerInfos[i].szName);
 		}
 	}
+#ifdef _N3GAME
+	CLogWriter::Write("CUILogIn::ServerInfoUpdate - list count=%d", (m_pList_Server?m_pList_Server->GetCount():0));
+	if(m_pGroup_ServerList)
+	{
+		POINT pt = m_pGroup_ServerList->GetPos(); RECT rc = m_pGroup_ServerList->GetRegion();
+		CLogWriter::Write("CUILogIn::ServerInfoUpdate - Group_ServerList pos=(%d,%d) region=(%d,%d,%d,%d) visible=%d",
+			pt.x, pt.y, rc.left, rc.top, rc.right, rc.bottom, m_pGroup_ServerList->IsVisible());
+	}
+#else
+	CLogWriter::Write("CUILogIn::ServerInfoUpdate - list count=%d", (m_pList_Server?m_pList_Server->GetCount():0));
+	if(m_pGroup_ServerList)
+	{
+		POINT pt = m_pGroup_ServerList->GetPos(); RECT rc = m_pGroup_ServerList->GetRegion();
+		CLogWriter::Write("CUILogIn::ServerInfoUpdate - Group_ServerList pos=(%d,%d) region=(%d,%d,%d,%d) visible=%d",
+			pt.x, pt.y, rc.left, rc.top, rc.right, rc.bottom, m_pGroup_ServerList->IsVisible());
+	}
+#endif
 }
 
 void CUILogIn::Tick()
@@ -256,7 +353,6 @@ void CUILogIn::Tick()
 	{
 		if(m_bOpenningNow) // ������ �Ʒ��� ������...������ �Ѵٸ�..
 		{
-			POINT ptCur = m_pGroup_ServerList->GetPos();
 			RECT rc = m_pGroup_ServerList->GetRegion();
 			float fHeight = (float)(rc.bottom - rc.top);
 
@@ -266,6 +362,7 @@ void CUILogIn::Tick()
 			m_fMoveDelta += fDelta;
 
 			int iYLimit = 0;
+			POINT ptCur = m_pGroup_ServerList->GetPos();
 			ptCur.y = (int)(m_fMoveDelta - fHeight);
 			if(ptCur.y >= iYLimit) // �ٿ��ȴ�!!
 			{
@@ -286,6 +383,8 @@ void CUILogIn::OpenServerList()
 	m_pGroup_ServerList->SetVisible(true);
 	RECT rc = m_pGroup_ServerList->GetRegion();
 	m_pGroup_ServerList->SetPos(0, -(rc.bottom - rc.top));
+	CLogWriter::Write("CUILogIn::OpenServerList - SetVisible(true), initial pos=(0,%d), region=(%d,%d,%d,%d)",
+		-(rc.bottom - rc.top), rc.left, rc.top, rc.right, rc.bottom);
 	
 	m_fMoveDelta = 0;
 	m_bOpenningNow = true;
@@ -307,7 +406,7 @@ void CUILogIn::SetVisibleLogInUIs(bool bEnable)
 			if(m_pText_Rights && m_pImg_MGameLogo)
 			{
 				// �Ʒ��� �ߴ����� �����..
-				RECT rcView = { 0, 0, s_CameraData.vp.Width, s_CameraData.vp.Height };
+				RECT rcView = { 0, 0, (LONG)s_CameraData.vp.Width, (LONG)s_CameraData.vp.Height };
 				int iX = (rcView.right - (m_pText_Rights->GetWidth() + m_pImg_MGameLogo->GetWidth()))/2;
 				int iY = rcView.bottom - m_pText_Rights->GetHeight() - 20;
 				m_pText_Rights->SetPos(iX, iY);
@@ -323,7 +422,7 @@ void CUILogIn::SetVisibleLogInUIs(bool bEnable)
 			if(m_pText_Rights && m_pImg_DaumLogo)
 			{
 				// �Ʒ��� �ߴ����� �����..
-				RECT rcView = { 0, 0, s_CameraData.vp.Width, s_CameraData.vp.Height };
+				RECT rcView = { 0, 0, (LONG)s_CameraData.vp.Width, (LONG)s_CameraData.vp.Height };
 				int iX = (rcView.right - (m_pText_Rights->GetWidth() + m_pImg_DaumLogo->GetWidth()))/2;
 				int iY = rcView.bottom - m_pText_Rights->GetHeight() - 20;
 				m_pText_Rights->SetPos(iX, iY);
@@ -338,7 +437,7 @@ void CUILogIn::SetVisibleLogInUIs(bool bEnable)
 		{
 			if(m_pText_Rights)
 			{
-				RECT rcView = { 0, 0, s_CameraData.vp.Width, s_CameraData.vp.Height };
+				RECT rcView = { 0, 0, (LONG)s_CameraData.vp.Width, (LONG)s_CameraData.vp.Height };
 				int iX = (rcView.right - m_pText_Rights->GetWidth())/2;
 				int iY = rcView.bottom - m_pText_Rights->GetHeight() - 20;
 				m_pText_Rights->SetPos(iX, iY);
@@ -407,4 +506,33 @@ bool CUILogIn::OnKeyPress(int iKey)
 	}
 
 	return CN3UIBase::OnKeyPress(iKey);
+}
+
+void CUILogIn::FindUIElementsRecursive(CN3UIBase* pBase, std::vector<CN3UIEdit*>& edits, std::vector<CN3UIButton*>& buttons)
+{
+	if(!pBase) return;
+
+	CLogWriter::Write("CUILogIn::FindUIElementsRecursive - Checking base type=%d with %d children", pBase->UIType(), pBase->GetChildrenCount());
+
+	if(pBase->UIType() == UI_TYPE_EDIT)
+	{
+		edits.push_back((CN3UIEdit*)pBase);
+		CLogWriter::Write("CUILogIn::FindUIElementsRecursive - Found edit");
+	}
+	else if(pBase->UIType() == UI_TYPE_BUTTON)
+	{
+		buttons.push_back((CN3UIButton*)pBase);
+		CLogWriter::Write("CUILogIn::FindUIElementsRecursive - Found button");
+	}
+
+	// Recurse into children
+	int childCount = pBase->GetChildrenCount();
+	for(int i = 0; i < childCount; ++i)
+	{
+		CN3UIBase* pChild = pBase->GetChildByIndex(i);
+		if(pChild)
+		{
+			FindUIElementsRecursive(pChild, edits, buttons);
+		}
+	}
 }

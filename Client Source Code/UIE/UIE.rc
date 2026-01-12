@@ -17,7 +17,7 @@
 
 #if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_KOR)
 #ifdef _WIN32
-LANGUAGE LANG_KOREAN, SUBLANG_DEFAULT
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
 #pragma code_page(949)
 #endif //_WIN32
 
@@ -73,7 +73,7 @@ IDR_UIETYPE             ICON    DISCARDABLE     "res\\UIEDoc.ico"
 // Bitmap
 //
 
-IDR_MAINFRAME           BITMAP  MOVEABLE PURE   "res\\Toolbar.bmp"
+// IDR_MAINFRAME           BITMAP  MOVEABLE PURE   "res\\Toolbar.bmp"
 
 /////////////////////////////////////////////////////////////////////////////
 //
@@ -114,7 +114,7 @@ BEGIN
         MENUITEM "&Export Tooltip file",        ID_FILE_EXPORT_TOOLTIP
         MENUITEM "&Import Tooltip file",        ID_FILE_IMPORT_TOOLTIP
         MENUITEM SEPARATOR
-        MENUITEM "ÃÖ±Ù ÆÄÀÏ",                   ID_FILE_MRU_FILE1, GRAYED
+        MENUITEM "Recent File",                   ID_FILE_MRU_FILE1, GRAYED
         MENUITEM SEPARATOR
         MENUITEM "E&xit",                       ID_APP_EXIT
     END
@@ -233,28 +233,28 @@ END
 
 IDD_ABOUTBOX DIALOG DISCARDABLE  0, 0, 235, 55
 STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
-CAPTION "UIE ±à¼­Æ÷"
-FONT 9, "±¼¸²"
+CAPTION "UIE ï¿½à¼­ï¿½ï¿½"
+FONT 9, "ï¿½ï¿½ï¿½ï¿½"
 BEGIN
     ICON            IDR_MAINFRAME,IDC_STATIC,11,17,20,20
-    LTEXT           "UIE±à¼­Æ÷",IDC_STATIC,40,10,119,8,SS_NOPREFIX
+    LTEXT           "UIEï¿½à¼­ï¿½ï¿½",IDC_STATIC,40,10,119,8,SS_NOPREFIX
     LTEXT           "Copyright (C) 2001",IDC_STATIC,40,25,119,8
-    DEFPUSHBUTTON   "¹Ø±Õ",IDOK,178,7,50,14,WS_GROUP
+    DEFPUSHBUTTON   "ï¿½Ø±ï¿½",IDOK,178,7,50,14,WS_GROUP
 END
 
 IDR_MAINFRAME DIALOG DISCARDABLE  0, 0, 330, 16
 STYLE WS_CHILD
-FONT 9, "±¼¸²"
+FONT 9, "ï¿½ï¿½ï¿½ï¿½"
 BEGIN
     PUSHBUTTON      "Browse",IDC_BUTTON_BASEPATH,193,2,33,12
-    LTEXT           "×ÊÔ´ËùÔÚÂ·¾¶ :",IDC_STATIC,5,4,58,8
+    LTEXT           "ï¿½ï¿½Ô´ï¿½ï¿½ï¿½ï¿½Â·ï¿½ï¿½ :",IDC_STATIC,5,4,58,8
     EDITTEXT        IDC_EDIT_BASEPATH,66,2,126,12,ES_AUTOHSCROLL | 
                     ES_READONLY
 END
 
 IDD_PROPERTY DIALOG DISCARDABLE  0, 0, 125, 307
 STYLE WS_CHILD
-FONT 9, "±¼¸²"
+FONT 9, "ï¿½ï¿½ï¿½ï¿½"
 BEGIN
     LISTBOX         IDC_UI_BASE,0,0,107,18,LBS_OWNERDRAWVARIABLE | 
                     LBS_HASSTRINGS | LBS_NOINTEGRALHEIGHT | WS_VSCROLL | 
@@ -298,7 +298,7 @@ IDD_TEXTURE DIALOGEX 0, 0, 277, 234
 STYLE WS_MINIMIZEBOX | WS_MAXIMIZEBOX | WS_POPUP | WS_VISIBLE | WS_CAPTION | 
     WS_SYSMENU | WS_THICKFRAME
 CAPTION "Texture"
-FONT 9, "±¼¸²", 0, 0, 0x1
+FONT 9, "ï¿½ï¿½ï¿½ï¿½", 0, 0, 0x1
 BEGIN
     DEFPUSHBUTTON   "OK",IDOK,227,0,50,14
     PUSHBUTTON      "Cancel",IDCANCEL,227,14,50,14
@@ -312,28 +312,27 @@ BEGIN
                     WS_EX_STATICEDGE
     COMBOBOX        IDC_COMBO_IMAGETYPE,227,217,50,102,CBS_DROPDOWNLIST | 
                     WS_VSCROLL | WS_TABSTOP
-    PUSHBUTTON      "ÀÚµ¿¼±ÅÃ(°¡·Î)",IDC_BUTTON_AUTOSELECT_H,227,82,50,14,
+    PUSHBUTTON      "Auto select (H)",IDC_BUTTON_AUTOSELECT_H,227,82,50,14,
                     NOT WS_VISIBLE
-    PUSHBUTTON      "ÀÚµ¿¼±ÅÃ(¼¼·Î)",IDC_BUTTON_AUTOSELECT_V,227,98,50,14,
+    PUSHBUTTON      "Auto select (V)",IDC_BUTTON_AUTOSELECT_V,227,98,50,14,
                     NOT WS_VISIBLE
 END
 
 IDD_ANIMATE DIALOG DISCARDABLE  0, 0, 115, 87
 STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
 CAPTION "Set animate image count"
-FONT 9, "±¼¸²"
+FONT 9, "ï¿½ï¿½ï¿½ï¿½"
 BEGIN
     DEFPUSHBUTTON   "OK",IDOK,7,66,50,14
     PUSHBUTTON      "Cancel",IDCANCEL,58,66,50,14
-    LTEXT           "¿¡´Ï¸ÞÀÌ¼ÇµÇ´Â ±×¸²ÀÇ ¼ýÀÚ¸¦ ÁöÁ¤ÇÏ¼¼¿ä.\n(0À» ³ÖÀ¸½Ã¸é º¸Åë image·Î µ¹¾Æ°©´Ï´Ù.)",
-                    IDC_STATIC,7,7,101,32
+    LTEXT           "Animate image count",IDC_STATIC,7,7,101,32
     EDITTEXT        IDC_EDIT_COUNT,7,47,101,14,ES_AUTOHSCROLL
 END
 
 IDD_REPLACE DIALOG DISCARDABLE  0, 0, 227, 45
 STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
 CAPTION "Replace texture"
-FONT 9, "±¼¸²"
+FONT 9, "ï¿½ï¿½ï¿½ï¿½"
 BEGIN
     PUSHBUTTON      "Replace",IDOK,170,7,50,14
     PUSHBUTTON      "Cancel",IDCANCEL,170,24,50,14
@@ -345,29 +344,29 @@ END
 
 IDD_CHANGE_IMAGE_FILE_NAME DIALOG DISCARDABLE  0, 0, 189, 88
 STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
-CAPTION "±×¸²ÆÄÀÏ ¹Ù²Ù±â"
-FONT 9, "±¼¸²"
+CAPTION "Change image file name"
+FONT 9, "ï¿½ï¿½ï¿½ï¿½"
 BEGIN
     DEFPUSHBUTTON   "OK",IDOK,24,63,50,14
     PUSHBUTTON      "Cancel",IDCANCEL,108,63,50,14
     EDITTEXT        IDC_E_PATH_OLD,48,18,111,14,ES_AUTOHSCROLL
     EDITTEXT        IDC_E_PATH_NEW,9,39,111,14,ES_AUTOHSCROLL
-    LTEXT           "±×¸²ÆÄÀÏ",IDC_STATIC,12,18,30,12,SS_CENTERIMAGE
-    LTEXT           "·Î ¹Ù²ß´Ï´Ù.",IDC_STATIC,141,42,39,12,SS_CENTERIMAGE
-    LTEXT           "¸¦",IDC_STATIC,174,18,12,12,SS_CENTERIMAGE
+    LTEXT           "Old path",IDC_STATIC,12,18,30,12,SS_CENTERIMAGE
+    LTEXT           "New path",IDC_STATIC,141,42,39,12,SS_CENTERIMAGE
+    LTEXT           "Path",IDC_STATIC,174,18,12,12,SS_CENTERIMAGE
     PUSHBUTTON      "..",IDC_B_BROWSE_OLD_FILE,159,18,12,15
     PUSHBUTTON      "..",IDC_B_BROWSE_NEW_FILE,120,39,12,15
 END
 
 IDD_UNUSED_FILE DIALOG DISCARDABLE  0, 0, 390, 218
 STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
-CAPTION "¾²Áö ¾Ê´Â ÆÄÀÏ ¸®½ºÆ®"
-FONT 9, "±¼¸²"
+CAPTION "Unused file list"
+FONT 9, "ï¿½ï¿½ï¿½ï¿½"
 BEGIN
     PUSHBUTTON      "Cancel",IDCANCEL,198,174,186,39
     LISTBOX         IDC_LIST_FILES,6,9,375,162,LBS_SORT | LBS_MULTIPLESEL | 
                     LBS_NOINTEGRALHEIGHT | WS_VSCROLL | WS_TABSTOP
-    PUSHBUTTON      "¼±ÅÃµÈ ÆÄÀÏ Áö¿ì±â",IDC_B_DELETE_SELECT,6,174,186,39
+    PUSHBUTTON      "Delete selected",IDC_B_DELETE_SELECT,6,174,186,39
 END
 
 
@@ -377,42 +376,42 @@ END
 // Version
 //
 
-VS_VERSION_INFO VERSIONINFO
- FILEVERSION 2,2,7,1341
- PRODUCTVERSION 2,2,7,1341
- FILEFLAGSMASK 0x3fL
-#ifdef _DEBUG
- FILEFLAGS 0x1L
-#else
- FILEFLAGS 0x0L
-#endif
- FILEOS 0x4L
- FILETYPE 0x1L
- FILESUBTYPE 0x0L
-BEGIN
-    BLOCK "StringFileInfo"
-    BEGIN
-        BLOCK "041204b0"
-        BEGIN
-            VALUE "Comments", "\0"
-            VALUE "CompanyName", "\0"
-            VALUE "FileDescription", "UIE MFC ÀÀ¿ë ÇÁ·Î±×·¥\0"
-            VALUE "FileVersion", "2, 2, 7, 1341\0"
-            VALUE "InternalName", "UIE\0"
-            VALUE "LegalCopyright", "Copyright (C) 2001\0"
-            VALUE "LegalTrademarks", "\0"
-            VALUE "OriginalFilename", "UIE.EXE\0"
-            VALUE "PrivateBuild", "\0"
-            VALUE "ProductName", "UIE ÀÀ¿ë ÇÁ·Î±×·¥\0"
-            VALUE "ProductVersion", "2, 2, 7, 1341\0"
-            VALUE "SpecialBuild", "\0"
-        END
-    END
-    BLOCK "VarFileInfo"
-    BEGIN
-        VALUE "Translation", 0x412, 1200
-    END
-END
+// VS_VERSION_INFO VERSIONINFO
+//  FILEVERSION 2,2,7,1341
+//  PRODUCTVERSION 2,2,7,1341
+//  FILEFLAGSMASK 0x3fL
+// #ifdef _DEBUG
+//  FILEFLAGS 0x1L
+// #else
+//  FILEFLAGS 0x0L
+// #endif
+//  FILEOS 0x4L
+//  FILETYPE 0x1L
+//  FILESUBTYPE 0x0L
+// BEGIN
+//     BLOCK "StringFileInfo"
+//     BEGIN
+//         BLOCK "041204b0"
+//         BEGIN
+//             VALUE "Comments", "\0"
+//             VALUE "CompanyName", "\0"
+//             VALUE "FileDescription", "UIE MFC ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Î±×·ï¿½\0"
+//             VALUE "FileVersion", "2, 2, 7, 1341\0"
+//             VALUE "InternalName", "UIE\0"
+//             VALUE "LegalCopyright", "Copyright (C) 2001\0"
+//             VALUE "LegalTrademarks", "\0"
+//             VALUE "OriginalFilename", "UIE.EXE\0"
+//             VALUE "PrivateBuild", "\0"
+//             VALUE "ProductName", "UIE ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Î±×·ï¿½\0"
+//             VALUE "ProductVersion", "2, 2, 7, 1341\0"
+//             VALUE "SpecialBuild", "\0"
+//         END
+//     END
+//     BLOCK "VarFileInfo"
+//     BEGIN
+//         VALUE "Translation", 0x412, 1200
+//     END
+// END
 
 #endif    // !_MAC
 
@@ -478,9 +477,9 @@ END
 // Cursor
 //
 
-IDC_CURSOR_HAND         CURSOR  DISCARDABLE     "res\\hand.cur"
-IDC_CURSOR_ZOOMOUT      CURSOR  DISCARDABLE     "res\\zoomout.cur"
-IDC_CURSOR_ZOOMIN       CURSOR  DISCARDABLE     "res\\zoomin.cur"
+// IDC_CURSOR_HAND         CURSOR  DISCARDABLE     "res\\hand.cur"
+// IDC_CURSOR_ZOOMOUT      CURSOR  DISCARDABLE     "res\\zoomout.cur"
+// IDC_CURSOR_ZOOMIN       CURSOR  DISCARDABLE     "res\\zoomin.cur"
 
 /////////////////////////////////////////////////////////////////////////////
 //
@@ -489,169 +488,169 @@ IDC_CURSOR_ZOOMIN       CURSOR  DISCARDABLE     "res\\zoomin.cur"
 
 STRINGTABLE PRELOAD DISCARDABLE 
 BEGIN
-    IDR_MAINFRAME           "UIE\n\nUI\nui ÆÄÀÏ (*.uif)\n.uif\nUIE.Document\nUI Document"
+    IDR_MAINFRAME           "UIE\n\nUI\nUI File (*.uif)\n.uif\nUIE.Document\nUI Document"
 END
 
-STRINGTABLE PRELOAD DISCARDABLE 
-BEGIN
-    AFX_IDS_APP_TITLE       "UI Editor"
-    AFX_IDS_IDLEMESSAGE     "ÁØºñ"
-END
+// STRINGTABLE PRELOAD DISCARDABLE 
+// BEGIN
+//     AFX_IDS_APP_TITLE       "UI Editor"
+//     AFX_IDS_IDLEMESSAGE     "ï¿½Øºï¿½"
+// END
 
-STRINGTABLE DISCARDABLE 
-BEGIN
-    ID_INDICATOR_EXT        "EXT"
-    ID_INDICATOR_CAPS       "CAP"
-    ID_INDICATOR_NUM        "NUM"
-    ID_INDICATOR_SCRL       "SCRL"
-    ID_INDICATOR_OVR        "OVR"
-    ID_INDICATOR_REC        "REC"
-END
+// STRINGTABLE DISCARDABLE 
+// BEGIN
+//     ID_INDICATOR_EXT        "EXT"
+//     ID_INDICATOR_CAPS       "CAP"
+//     ID_INDICATOR_NUM        "NUM"
+//     ID_INDICATOR_SCRL       "SCRL"
+//     ID_INDICATOR_OVR        "OVR"
+//     ID_INDICATOR_REC        "REC"
+// END
 
-STRINGTABLE DISCARDABLE 
-BEGIN
-    ID_FILE_NEW             "»õ ¹®¼­¸¦ ÀÛ¼ºÇÕ´Ï´Ù\n»õ ÆÄÀÏ"
-    ID_FILE_OPEN            "±âÁ¸ ¹®¼­¸¦ ¿±´Ï´Ù\n¿­±â"
-    ID_FILE_CLOSE           "ÇöÀç ¿­¸° ¹®¼­¸¦ ´Ý½À´Ï´Ù\n´Ý±â"
-    ID_FILE_SAVE            "ÇöÀç ¿­¸° ¹®¼­¸¦ ÀúÀåÇÕ´Ï´Ù\nÀúÀå"
-    ID_FILE_SAVE_AS         "¼±ÅÃµÈUI¸¦ ´Ù¸¥ ÀÌ¸§À¸·Î ExportÇÕ´Ï´Ù\nExport"
-END
+// STRINGTABLE DISCARDABLE 
+// BEGIN
+//     ID_FILE_NEW             "ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Û¼ï¿½ï¿½Õ´Ï´ï¿½\nï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½"
+//     ID_FILE_OPEN            "ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ï´ï¿½\nï¿½ï¿½ï¿½ï¿½"
+//     ID_FILE_CLOSE           "ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ý½ï¿½ï¿½Ï´ï¿½\nï¿½Ý±ï¿½"
+//     ID_FILE_SAVE            "ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Õ´Ï´ï¿½\nï¿½ï¿½ï¿½ï¿½"
+//     ID_FILE_SAVE_AS         "ï¿½ï¿½ï¿½Ãµï¿½UIï¿½ï¿½ ï¿½Ù¸ï¿½ ï¿½Ì¸ï¿½ï¿½ï¿½ï¿½ï¿½ Exportï¿½Õ´Ï´ï¿½\nExport"
+// END
 
-STRINGTABLE DISCARDABLE 
-BEGIN
-    ID_APP_ABOUT            "ÇÁ·Î±×·¥ Á¤º¸¿Í ¹öÀü Á¤º¸, ÀúÀÛ±Ç Á¤º¸¸¦ Ç¥½ÃÇÕ´Ï´Ù\nÁ¤º¸"
-    ID_APP_EXIT             "ÀÀ¿ë ÇÁ·Î±×·¥À» Á¾·áÇÏ±â À§ÇØ ¹®¼­¸¦ ÀúÀåÇÒ °ÍÀÎÁö ¹¯½À´Ï´Ù\nÁ¾·á"
-END
+// STRINGTABLE DISCARDABLE 
+// BEGIN
+//     ID_APP_ABOUT            "ï¿½ï¿½ï¿½Î±×·ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½, ï¿½ï¿½ï¿½Û±ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Ç¥ï¿½ï¿½ï¿½Õ´Ï´ï¿½\nï¿½ï¿½ï¿½ï¿½"
+//     ID_APP_EXIT             "ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Î±×·ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï±ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½\nï¿½ï¿½ï¿½ï¿½"
+// END
 
-STRINGTABLE DISCARDABLE 
-BEGIN
-    ID_FILE_MRU_FILE1       "ÀÌ ¹®¼­¸¦ ¿±´Ï´Ù"
-    ID_FILE_MRU_FILE2       "ÀÌ ¹®¼­¸¦ ¿±´Ï´Ù"
-    ID_FILE_MRU_FILE3       "ÀÌ ¹®¼­¸¦ ¿±´Ï´Ù"
-    ID_FILE_MRU_FILE4       "ÀÌ ¹®¼­¸¦ ¿±´Ï´Ù"
-    ID_FILE_MRU_FILE5       "ÀÌ ¹®¼­¸¦ ¿±´Ï´Ù"
-    ID_FILE_MRU_FILE6       "ÀÌ ¹®¼­¸¦ ¿±´Ï´Ù"
-    ID_FILE_MRU_FILE7       "ÀÌ ¹®¼­¸¦ ¿±´Ï´Ù"
-    ID_FILE_MRU_FILE8       "ÀÌ ¹®¼­¸¦ ¿±´Ï´Ù"
-    ID_FILE_MRU_FILE9       "ÀÌ ¹®¼­¸¦ ¿±´Ï´Ù"
-    ID_FILE_MRU_FILE10      "ÀÌ ¹®¼­¸¦ ¿±´Ï´Ù"
-    ID_FILE_MRU_FILE11      "ÀÌ ¹®¼­¸¦ ¿±´Ï´Ù"
-    ID_FILE_MRU_FILE12      "ÀÌ ¹®¼­¸¦ ¿±´Ï´Ù"
-    ID_FILE_MRU_FILE13      "ÀÌ ¹®¼­¸¦ ¿±´Ï´Ù"
-    ID_FILE_MRU_FILE14      "ÀÌ ¹®¼­¸¦ ¿±´Ï´Ù"
-    ID_FILE_MRU_FILE15      "ÀÌ ¹®¼­¸¦ ¿±´Ï´Ù"
-    ID_FILE_MRU_FILE16      "ÀÌ ¹®¼­¸¦ ¿±´Ï´Ù"
-END
+// STRINGTABLE DISCARDABLE 
+// BEGIN
+//     ID_FILE_MRU_FILE1       "ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ï´ï¿½"
+//     ID_FILE_MRU_FILE2       "ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ï´ï¿½"
+//     ID_FILE_MRU_FILE3       "ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ï´ï¿½"
+//     ID_FILE_MRU_FILE4       "ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ï´ï¿½"
+//     ID_FILE_MRU_FILE5       "ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ï´ï¿½"
+//     ID_FILE_MRU_FILE6       "ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ï´ï¿½"
+//     ID_FILE_MRU_FILE7       "ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ï´ï¿½"
+//     ID_FILE_MRU_FILE8       "ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ï´ï¿½"
+//     ID_FILE_MRU_FILE9       "ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ï´ï¿½"
+//     ID_FILE_MRU_FILE10      "ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ï´ï¿½"
+//     ID_FILE_MRU_FILE11      "ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ï´ï¿½"
+//     ID_FILE_MRU_FILE12      "ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ï´ï¿½"
+//     ID_FILE_MRU_FILE13      "ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ï´ï¿½"
+//     ID_FILE_MRU_FILE14      "ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ï´ï¿½"
+//     ID_FILE_MRU_FILE15      "ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ï´ï¿½"
+//     ID_FILE_MRU_FILE16      "ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ï´ï¿½"
+// END
 
-STRINGTABLE DISCARDABLE 
-BEGIN
-    ID_NEXT_PANE            "´ÙÀ½ Ã¢À¸·Î ÀüÈ¯ÇÕ´Ï´Ù\n´ÙÀ½ Ã¢"
-    ID_PREV_PANE            "ÀÌÀü Ã¢À¸·Î ÀüÈ¯ÇÕ´Ï´Ù\nÀÌÀü Ã¢"
-END
+// STRINGTABLE DISCARDABLE 
+// BEGIN
+//     ID_NEXT_PANE            "ï¿½ï¿½ï¿½ï¿½ Ã¢ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È¯ï¿½Õ´Ï´ï¿½\nï¿½ï¿½ï¿½ï¿½ Ã¢"
+//     ID_PREV_PANE            "ï¿½ï¿½ï¿½ï¿½ Ã¢ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È¯ï¿½Õ´Ï´ï¿½\nï¿½ï¿½ï¿½ï¿½ Ã¢"
+// END
 
-STRINGTABLE DISCARDABLE 
-BEGIN
-    ID_WINDOW_SPLIT         "ÇöÀç ¿­¸° Ã¢À» ³ª´¯´Ï´Ù\n³ª´©±â"
-END
+// STRINGTABLE DISCARDABLE 
+// BEGIN
+//     ID_WINDOW_SPLIT         "ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ Ã¢ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½\nï¿½ï¿½ï¿½ï¿½ï¿½ï¿½"
+// END
 
-STRINGTABLE DISCARDABLE 
-BEGIN
-    ID_EDIT_CLEAR           "¼±ÅÃ ºÎºÐÀ» Áö¿ó´Ï´Ù\nÁö¿ì±â"
-    ID_EDIT_CLEAR_ALL       "¸ðµç °ÍÀ» Áö¿ó´Ï´Ù\n¸ðµÎ Áö¿ì±â"
-    ID_EDIT_COPY            "¼±ÅÃ ºÎºÐÀ» º¹»çÇÏ¿© Å¬¸³º¸µå¿¡ ³Ö½À´Ï´Ù\nº¹»ç"
-    ID_EDIT_CUT             "¼±ÅÃ ºÎºÐÀ» Àß¶ó³»¾î Å¬¸³º¸µå¿¡ ³Ö½À´Ï´Ù\nÀß¶ó³»±â"
-    ID_EDIT_FIND            "ÁöÁ¤ÇÑ ¹®ÀÚ¿­À» Ã£½À´Ï´Ù\nÃ£±â"
-    ID_EDIT_PASTE           "Å¬¸³º¸µåÀÇ ³»¿ëÀ» ºÙ¿© ³Ö½À´Ï´Ù\nºÙ¿©³Ö±â"
-    ID_EDIT_REPEAT          "¸¶Áö¸·À¸·Î ½ÇÇàÇÑ µ¿ÀÛÀ» ¹Ýº¹ÇÕ´Ï´Ù\n¹Ýº¹"
-    ID_EDIT_REPLACE         "ÁöÁ¤ÇÑ ¹®ÀÚ¿­À» ´Ù¸¥ ¹®ÀÚ¿­·Î ¹Ù²ß´Ï´Ù\n¹Ù²Ù±â"
-    ID_EDIT_SELECT_ALL      "¹®¼­ ÀüÃ¼¸¦ ¼±ÅÃÇÕ´Ï´Ù\nÀüÃ¼ ¼±ÅÃ"
-    ID_EDIT_UNDO            "¸¶Áö¸·À¸·Î ÇÑ µ¿ÀÛÀ» Ãë¼ÒÇÕ´Ï´Ù\n½ÇÇà Ãë¼Ò"
-    ID_EDIT_REDO            "ÀÌÀü¿¡ Ãë¼ÒÇÑ µ¿ÀÛÀ» ´Ù½Ã ¼öÇàÇÕ´Ï´Ù\n´Ù½Ã ½ÇÇà"
-END
+// STRINGTABLE DISCARDABLE 
+// BEGIN
+//     ID_EDIT_CLEAR           "ï¿½ï¿½ï¿½ï¿½ ï¿½Îºï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ï´ï¿½\nï¿½ï¿½ï¿½ï¿½ï¿½"
+//     ID_EDIT_CLEAR_ALL       "ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ï´ï¿½\nï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½"
+//     ID_EDIT_COPY            "ï¿½ï¿½ï¿½ï¿½ ï¿½Îºï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï¿ï¿½ Å¬ï¿½ï¿½ï¿½ï¿½ï¿½å¿¡ ï¿½Ö½ï¿½ï¿½Ï´ï¿½\nï¿½ï¿½ï¿½ï¿½"
+//     ID_EDIT_CUT             "ï¿½ï¿½ï¿½ï¿½ ï¿½Îºï¿½ï¿½ï¿½ ï¿½ß¶ó³»¾ï¿½ Å¬ï¿½ï¿½ï¿½ï¿½ï¿½å¿¡ ï¿½Ö½ï¿½ï¿½Ï´ï¿½\nï¿½ß¶ó³»±ï¿½"
+//     ID_EDIT_FIND            "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ú¿ï¿½ï¿½ï¿½ Ã£ï¿½ï¿½ï¿½Ï´ï¿½\nÃ£ï¿½ï¿½"
+//     ID_EDIT_PASTE           "Å¬ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ù¿ï¿½ ï¿½Ö½ï¿½ï¿½Ï´ï¿½\nï¿½Ù¿ï¿½ï¿½Ö±ï¿½"
+//     ID_EDIT_REPEAT          "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ýºï¿½ï¿½Õ´Ï´ï¿½\nï¿½Ýºï¿½"
+//     ID_EDIT_REPLACE         "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ú¿ï¿½ï¿½ï¿½ ï¿½Ù¸ï¿½ ï¿½ï¿½ï¿½Ú¿ï¿½ï¿½ï¿½ ï¿½Ù²ß´Ï´ï¿½\nï¿½Ù²Ù±ï¿½"
+//     ID_EDIT_SELECT_ALL      "ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ã¼ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Õ´Ï´ï¿½\nï¿½ï¿½Ã¼ ï¿½ï¿½ï¿½ï¿½"
+//     ID_EDIT_UNDO            "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Õ´Ï´ï¿½\nï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½"
+//     ID_EDIT_REDO            "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ù½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Õ´Ï´ï¿½\nï¿½Ù½ï¿½ ï¿½ï¿½ï¿½ï¿½"
+// END
 
-STRINGTABLE DISCARDABLE 
-BEGIN
-    ID_VIEW_TOOLBAR         "µµ±¸ ¸ðÀ½À» º¸ÀÌ°Å³ª °¨Ãä´Ï´Ù\nµµ±¸ ¸ðÀ½ ÀüÈ¯"
-    ID_VIEW_STATUS_BAR      "»óÅÂ Ç¥½ÃÁÙÀ» Ç¥½ÃÇÏ°Å³ª °¨Ãä´Ï´Ù\n»óÅÂ Ç¥½ÃÁÙ ÀüÈ¯"
-    ID_VIEW_AUTOARRANGE     "¸ð´«¿¡ ¸ÂÃß¾î ¾ÆÀÌÄÜÀ» Á¤·ÄÇÕ´Ï´Ù."
-END
+// STRINGTABLE DISCARDABLE 
+// BEGIN
+//     ID_VIEW_TOOLBAR         "ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ì°Å³ï¿½ ï¿½ï¿½ï¿½ï¿½Ï´ï¿½\nï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È¯"
+//     ID_VIEW_STATUS_BAR      "ï¿½ï¿½ï¿½ï¿½ Ç¥ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Ç¥ï¿½ï¿½ï¿½Ï°Å³ï¿½ ï¿½ï¿½ï¿½ï¿½Ï´ï¿½\nï¿½ï¿½ï¿½ï¿½ Ç¥ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È¯"
+//     ID_VIEW_AUTOARRANGE     "ï¿½ð´«¿ï¿½ ï¿½ï¿½ï¿½ß¾ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Õ´Ï´ï¿½."
+// END
 
-STRINGTABLE DISCARDABLE 
-BEGIN
-    AFX_IDS_SCSIZE          "Ã¢ÀÇ Å©±â¸¦ º¯°æÇÕ´Ï´Ù"
-    AFX_IDS_SCMOVE          "Ã¢ÀÇ À§Ä¡¸¦ º¯°æÇÕ´Ï´Ù"
-    AFX_IDS_SCMINIMIZE      "Ã¢À» ¾ÆÀÌÄÜÀ¸·Î ÁÙ¿©¼­ Ç¥½ÃÇÕ´Ï´Ù"
-    AFX_IDS_SCMAXIMIZE      "Ã¢À» ÃÖ´ë Å©±â·Î È®ÀåÇÕ´Ï´Ù"
-    AFX_IDS_SCNEXTWINDOW    "´ÙÀ½ ¹®¼­ Ã¢À¸·Î ÀüÈ¯ÇÕ´Ï´Ù"
-    AFX_IDS_SCPREVWINDOW    "ÀÌÀü ¹®¼­ Ã¢À¸·Î ÀüÈ¯ÇÕ´Ï´Ù"
-    AFX_IDS_SCCLOSE         "ÇöÀç ¿­¸° Ã¢À» ´Ý°í ¹®¼­¸¦ ÀúÀåÇÒ °ÍÀÎÁö¸¦ ¹¯½À´Ï´Ù"
-END
+// STRINGTABLE DISCARDABLE 
+// BEGIN
+//     AFX_IDS_SCSIZE          "Ã¢ï¿½ï¿½ Å©ï¿½â¸¦ ï¿½ï¿½ï¿½ï¿½ï¿½Õ´Ï´ï¿½"
+//     AFX_IDS_SCMOVE          "Ã¢ï¿½ï¿½ ï¿½ï¿½Ä¡ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Õ´Ï´ï¿½"
+//     AFX_IDS_SCMINIMIZE      "Ã¢ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ù¿ï¿½ï¿½ï¿½ Ç¥ï¿½ï¿½ï¿½Õ´Ï´ï¿½"
+//     AFX_IDS_SCMAXIMIZE      "Ã¢ï¿½ï¿½ ï¿½Ö´ï¿½ Å©ï¿½ï¿½ï¿½ È®ï¿½ï¿½ï¿½Õ´Ï´ï¿½"
+//     AFX_IDS_SCNEXTWINDOW    "ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ Ã¢ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È¯ï¿½Õ´Ï´ï¿½"
+//     AFX_IDS_SCPREVWINDOW    "ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ Ã¢ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È¯ï¿½Õ´Ï´ï¿½"
+//     AFX_IDS_SCCLOSE         "ï¿½ï¿½ï¿½ï¿½ Ã¢ï¿½ï¿½ï¿½ï¿½ ï¿½Ý½ï¿½ï¿½Ï°ï¿½ ï¿½Ù¸ï¿½ Ã¢ï¿½ï¿½ï¿½ï¿½ È°ï¿½ï¿½È­ï¿½Õ´Ï´ï¿½"
+// END
 
-STRINGTABLE DISCARDABLE 
-BEGIN
-    AFX_IDS_SCRESTORE       "Ã¢À» ¿ø·¡ Å©±â·Î º¹¿øÇÕ´Ï´Ù"
-    AFX_IDS_SCTASKLIST      "ÀÛ¾÷ ¸ñ·ÏÀ» È°¼ºÈ­ÇÕ´Ï´Ù"
-END
+// STRINGTABLE DISCARDABLE 
+// BEGIN
+//     AFX_IDS_SCRESTORE       "Ã¢ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ Å©ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Õ´Ï´ï¿½"
+//     AFX_IDS_SCTASKLIST      "ï¿½Û¾ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ È°ï¿½ï¿½È­ï¿½Õ´Ï´ï¿½"
+// END
 
-STRINGTABLE DISCARDABLE 
-BEGIN
-    ID_VIEW_SMALLICON       "ÀÛÀº ¾ÆÀÌÄÜÀ» »ç¿ëÇÏ¿© Ç×¸ñÀ» Ç¥½ÃÇÕ´Ï´Ù\nÀÛÀº ¾ÆÀÌÄÜ"
-    ID_VIEW_LARGEICON       "Å« ¾ÆÀÌÄÜÀ» »ç¿ëÇÏ¿© Ç×¸ñÀ» Ç¥½ÃÇÕ´Ï´Ù\nÅ« ¾ÆÀÌÄÜ"
-    ID_VIEW_LIST            "Ç×¸ñµéÀ» ¸ñ·ÏÀ¸·Î Ç¥½ÃÇÕ´Ï´Ù\n¸ñ·Ï"
-    ID_VIEW_DETAILS         "Ã¢ÀÇ °¢ Ç×¸ñ¿¡ ´ëÇÑ Á¤º¸¸¦ Ç¥½ÃÇÕ´Ï´Ù\n¼¼ºÎ »çÇ×"
-    ID_VIEW_LINEUP          "¸ð´«¿¡ ¸ÂÃß¾î ¾ÆÀÌÄÜÀ» Á¤·ÄÇÕ´Ï´Ù."
-    ID_VIEW_BYNAME          "¾ËÆÄºª¼øÀ¸·Î ¾ÆÀÌÄÜÀ» Á¤·ÄÇÕ´Ï´Ù."
-END
+// STRINGTABLE DISCARDABLE 
+// BEGIN
+//     ID_VIEW_SMALLICON       "ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ï¿ï¿½ ï¿½×¸ï¿½ï¿½ï¿½ Ç¥ï¿½ï¿½ï¿½Õ´Ï´ï¿½\nï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½"
+//     ID_VIEW_LARGEICON       "Å« ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ï¿ï¿½ ï¿½×¸ï¿½ï¿½ï¿½ Ç¥ï¿½ï¿½ï¿½Õ´Ï´ï¿½\nÅ« ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½"
+//     ID_VIEW_LIST            "ï¿½×¸ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Ç¥ï¿½ï¿½ï¿½Õ´Ï´ï¿½\nï¿½ï¿½ï¿½"
+//     ID_VIEW_DETAILS         "Ã¢ï¿½ï¿½ ï¿½ï¿½ ï¿½×¸ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Ç¥ï¿½ï¿½ï¿½Õ´Ï´ï¿½\nï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½"
+//     ID_VIEW_LINEUP          "ï¿½ð´«¿ï¿½ ï¿½ï¿½ï¿½ß¾ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Õ´Ï´ï¿½."
+//     ID_VIEW_BYNAME          "ï¿½ï¿½ï¿½Äºï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Õ´Ï´ï¿½."
+// END
 
-STRINGTABLE DISCARDABLE 
-BEGIN
-    ID_INSERT_IMAGE         "ÀÌ¹ÌÁö¸¦ »ý¼ºÇÕ´Ï´Ù.\nimage"
-    ID_INSERT_STRING        "¹ÙÅÁ ¾ø´Â ±ÛÀÚ¸¦ »ý¼ºÇÕ´Ï´Ù.\nText"
-    ID_INSERT_BUTTON        "¹öÆ°À» »ý¼ºÇÕ´Ï´Ù.\nbutton"
-    ID_INSERT_STATIC        "¹ÙÅÁÀÖ´Â Á¤Àû ±ÛÀÚ¸¦ »ý¼ºÇÕ´Ï´Ù.\nstatic"
-    ID_INSERT_EDIT          "Edit box¸¦ »ý¼ºÇÕ´Ï´Ù.\nedit"
-    ID_INSERT_PROGRESS      "Progress bar¸¦ »ý¼ºÇÕ´Ï´Ù.\nprogress"
-    ID_INSERT_TRACKBAR      "TrackBar¸¦ »ý¼ºÇÕ´Ï´Ù.\ntrackbar"
-    ID_INSERT_SCROLLBAR     "ScrollBar¸¦ »ý¼ºÇÕ´Ï´Ù.\nscrollbar"
-    ID_EDIT_DELETE          "¼±ÅÃµÈ UI¸¦ »èÁ¦ÇÕ´Ï´Ù.\ndelete"
-    ID_EDIT_ZORDER          "±×¸®´Â ¼ø¼­¸¦ ÀÚµ¿À¸·Î Á¤·ÄÇÕ´Ï´Ù.\nÁ¤·Ä"
-    ID_VIEW_PREVIEW         "¹Ì¸®º¸±â ¸ðµå·Î ÀüÈ¯ÇÕ´Ï´Ù.\n¹Ì¸®º¸±â"
-    ID_VIEW_EDIT            "ÆíÁý ¸ðµå·Î ÀüÈ¯ÇÕ´Ï´Ù.\nÆíÁý¸ðµå"
-END
+// STRINGTABLE DISCARDABLE 
+// BEGIN
+//     ID_INSERT_IMAGE         "ï¿½Ì¹ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Õ´Ï´ï¿½.\nimage"
+//     ID_INSERT_STRING        "ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ú¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Õ´Ï´ï¿½.\nText"
+//     ID_INSERT_BUTTON        "ï¿½ï¿½Æ°ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Õ´Ï´ï¿½.\nbutton"
+//     ID_INSERT_STATIC        "ï¿½ï¿½ï¿½ï¿½ï¿½Ö´ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ú¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Õ´Ï´ï¿½.\nstatic"
+//     ID_INSERT_EDIT          "Edit boxï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Õ´Ï´ï¿½.\nedit"
+//     ID_INSERT_PROGRESS      "Progress barï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Õ´Ï´ï¿½.\nprogress"
+//     ID_INSERT_TRACKBAR      "TrackBarï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Õ´Ï´ï¿½.\ntrackbar"
+//     ID_INSERT_SCROLLBAR     "ScrollBarï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Õ´Ï´ï¿½.\nscrollbar"
+//     ID_EDIT_DELETE          "ï¿½ï¿½ï¿½Ãµï¿½ UIï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Õ´Ï´ï¿½.\ndelete"
+//     ID_EDIT_ZORDER          "ï¿½×¸ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Úµï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Õ´Ï´ï¿½.\nï¿½ï¿½ï¿½ï¿½"
+//     ID_VIEW_PREVIEW         "ï¿½Ì¸ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È¯ï¿½Õ´Ï´ï¿½.\nï¿½Ì¸ï¿½ï¿½ï¿½ï¿½ï¿½"
+//     ID_VIEW_EDIT            "ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È¯ï¿½Õ´Ï´ï¿½.\nï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½"
+// END
 
-STRINGTABLE DISCARDABLE 
-BEGIN
-    ID_INSERT_AREA          "Area box¸¦ »ý¼ºÇÕ´Ï´Ù.\narea"
-    ID_INSERT_LIST          "Text List ¸¦ »ý¼ºÇÕ´Ï´Ù.nList »ý¼º"
-    ID_EDIT_MODE_SELECT     "UI ¸¦ ¼±ÅÃÇÕ´Ï´Ù.\nUI ¼±ÅÃ"
-    ID_EDIT_MODE_MOVE_AND_RESIZE 
-                            "ÇöÀç ¼±ÅÃµÈ UI ¸¦ À§Ä¡¸¦ ¿Å±â°Å³ª Å©±â¸¦ Á¶Á¤ÇÕ´Ï´Ù.\nÀ§Ä¡ ÀÌµ¿, Å©±âÁ¶Á¤"
-END
+// STRINGTABLE DISCARDABLE 
+// BEGIN
+//     ID_INSERT_AREA          "Area boxï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Õ´Ï´ï¿½.\narea"
+//     ID_INSERT_LIST          "Text List ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Õ´Ï´ï¿½.nList ï¿½ï¿½ï¿½ï¿½"
+//     ID_EDIT_MODE_SELECT     "UI ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Õ´Ï´ï¿½.\nUI ï¿½ï¿½ï¿½ï¿½"
+//     ID_EDIT_MODE_MOVE_AND_RESIZE 
+//                             "ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ãµï¿½ UI ï¿½ï¿½ ï¿½ï¿½Ä¡ï¿½ï¿½ ï¿½Å±ï¿½Å³ï¿½ Å©ï¿½â¸¦ ï¿½ï¿½ï¿½ï¿½ï¿½Õ´Ï´ï¿½.\nï¿½ï¿½Ä¡ ï¿½Ìµï¿½, Å©ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½"
+// END
 
-STRINGTABLE DISCARDABLE 
-BEGIN
-    ID_EDIT_MAKE_GROUP      "ÇöÀç ¼±ÅÃµÈ ¿©·¯°³ÀÇ UI ¸¦ ÇÏ³ªÀÇ ±×·ìÀ¸·Î ÁöÁ¤ÇÕ´Ï´Ù.\n±×·ì ÁöÁ¤"
-    ID_EDIT_MOVE_CHILD_TO_LOWER 
-                            "ÇöÀç ¼±ÅÃµÈ UI ¸¦ Á¦ÀÏ ¹ØÀÇ À§Ä¡·Î ¿Å±é´Ï´Ù.\nMove This UI To Lower"
-    ID_FILE_EXPORT          "ÇöÀç ¼±ÅÃµÈ UI¸¦ ÆÄÀÏ¿¡¼­ ºÒ·¯¿É´Ï´Ù.\nImport"
-    ID_EDIT_PARENT          "¼±ÅÃµÈ°ÍÀ» Ã³À½ ¼±ÅÃµÈ UI ÀÇ Child ·Î ³Ö½À´Ï´Ù.\\Parent"
-    ID_EDIT_UNPARENT        "¼±ÅÃµÈ°ÍÀ» ºÎ¸ð°¡µÇ´Â UI ÀÇ Child ¿¡¼­ »©°í ±× »óÀ§·Î ³Ö½À´Ï´Ù.\\UnParent"
-    ID_EDIT_MOVE_TO_UPPER   "ÇöÀç ¼±ÅÃµÈ UI ¸¦ À§·Î ¿Å±é´Ï´Ù.\nÀ§·Î"
-    ID_EDIT_MOVE_TO_LOWER   "ÇöÀç ¼±ÅÃµÈ UI ¸¦ ¹ØÀ¸·Î ¿Å±é´Ï´Ù.\n¹ØÀ¸·Î"
-    ID_INSERT_GROUP         "ºó±×·ì »ðÀÔ\nºñ¾î ÀÖ´Â ±×·ìÀ» »ðÀÔÇÕ´Ï´Ù."
-    ID_TEMP_CHANGE_PATH     "ÁöÁ¤µÈ ÀÌ¹ÌÁö ÆÄÀÏµîÀÇ »ó´ë°æ·Î¸¦ ¹Ù²ß´Ï´Ù.\\ÆÄÀÏ °æ·Î ¹Ù²Ù±â"
-    ID_TOOL_CHANGE_FONT     "ÁöÁ¤µÈ ÆùÆ®¸¦ ¹Ù²ß´Ï´Ù.\\ÆùÆ® ¹Ù²Ù±â"
-    ID_BATCH_TOOL_CHANGE_PATH 
-                            "ÁöÁ¤µÈ ÀÌ¹ÌÁö ÆÄÀÏµîÀÇ »ó´ë°æ·Î¸¦ ¹Ù²ß´Ï´Ù.\\ÆÄÀÏ °æ·Î ¹Ù²Ù±â"
-END
+// STRINGTABLE DISCARDABLE 
+// BEGIN
+//     ID_EDIT_MAKE_GROUP      "ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ãµï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ UI ï¿½ï¿½ ï¿½Ï³ï¿½ï¿½ï¿½ ï¿½×·ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Õ´Ï´ï¿½.\nï¿½×·ï¿½ ï¿½ï¿½ï¿½ï¿½"
+//     ID_EDIT_MOVE_CHILD_TO_LOWER 
+//                             "ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ãµï¿½ UI ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ä¡ï¿½ï¿½ ï¿½Å±ï¿½Ï´ï¿½.\nMove This UI To Lower"
+//     ID_FILE_EXPORT          "ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ãµï¿½ UIï¿½ï¿½ ï¿½ï¿½ï¿½Ï¿ï¿½ï¿½ï¿½ ï¿½Ò·ï¿½ï¿½É´Ï´ï¿½.\nImport"
+//     ID_EDIT_PARENT          "ï¿½ï¿½ï¿½ÃµÈ°ï¿½ï¿½ï¿½ Ã³ï¿½ï¿½ ï¿½ï¿½ï¿½Ãµï¿½ UI ï¿½ï¿½ Child ï¿½ï¿½ ï¿½Ö½ï¿½ï¿½Ï´ï¿½.\\Parent"
+//     ID_EDIT_UNPARENT        "ï¿½ï¿½ï¿½ÃµÈ°ï¿½ï¿½ï¿½ ï¿½Î¸ð°¡µÇ´ï¿½ UI ï¿½ï¿½ Child ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ö½ï¿½ï¿½Ï´ï¿½.\\UnParent"
+//     ID_EDIT_MOVE_TO_UPPER   "ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ãµï¿½ UI ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Å±ï¿½Ï´ï¿½.\nï¿½ï¿½ï¿½ï¿½"
+//     ID_EDIT_MOVE_TO_LOWER   "ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ãµï¿½ UI ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Å±ï¿½Ï´ï¿½.\nï¿½ï¿½ï¿½ï¿½ï¿½ï¿½"
+//     ID_INSERT_GROUP         "ï¿½ï¿½×·ï¿½ ï¿½ï¿½ï¿½ï¿½\nï¿½ï¿½ï¿½ ï¿½Ö´ï¿½ ï¿½×·ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Õ´Ï´ï¿½."
+//     ID_TEMP_CHANGE_PATH     "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ì¹ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ïµï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Î¸ï¿½ ï¿½Ù²ß´Ï´ï¿½.\\ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½Ù²Ù±ï¿½"
+//     ID_TOOL_CHANGE_FONT     "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½Ù²ß´Ï´ï¿½.\\ï¿½ï¿½Æ® ï¿½Ù²Ù±ï¿½"
+//     ID_BATCH_TOOL_CHANGE_PATH 
+//                             "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ì¹ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ïµï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Î¸ï¿½ ï¿½Ù²ß´Ï´ï¿½.\\ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½Ù²Ù±ï¿½"
+// END
 
-STRINGTABLE DISCARDABLE 
-BEGIN
-    ID_BATCH_TOOL_CHANGE_IMAGE_PATH 
-                            "ÁöÁ¤µÈ ÀÌ¹ÌÁö ÆÄÀÏµîÀÇ »ó´ë°æ·Î¸¦ ¹Ù²ß´Ï´Ù.\\ÆÄÀÏ °æ·Î ¹Ù²Ù±â"
-    ID_BATCH_TOOL_GATHER_IMAGE_FILE_NAME 
-                            "¾²Áö ¾Ê´Â ÀÌ¹ÌÁö ÆÄÀÏ ¸®½ºÆ®¸¦ ¸¸µì´Ï´Ù.\n¹Ì»ç¿ë ÆÄÀÏ¸®½ºÆ® ¸¸µê."
-END
+// STRINGTABLE DISCARDABLE 
+// BEGIN
+//     ID_BATCH_TOOL_CHANGE_IMAGE_PATH 
+//                             "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ì¹ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ïµï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Î¸ï¿½ ï¿½Ù²ß´Ï´ï¿½.\\ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½Ù²Ù±ï¿½"
+//     ID_BATCH_TOOL_GATHER_IMAGE_FILE_NAME 
+//                             "ï¿½ï¿½ï¿½ï¿½ ï¿½Ê´ï¿½ ï¿½Ì¹ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ï´ï¿½.\nï¿½Ì»ï¿½ï¿½ ï¿½ï¿½ï¿½Ï¸ï¿½ï¿½ï¿½Æ® ï¿½ï¿½ï¿½ï¿½."
+// END
 
 #endif    // Korean resources
 /////////////////////////////////////////////////////////////////////////////
@@ -670,10 +669,10 @@ END
 #if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_KOR)
 #ifdef _WIN32
 LANGUAGE 18, 1
-#pragma code_page(949)
+// #pragma code_page(949)
 #endif //_WIN32
-#include "res\UIE.rc2"  // non-Microsoft Visual C++ edited resources
-#include "l.kor\afxres.rc"          // Standard components
+// #include "res\UIE.rc2"  // non-Microsoft Visual C++ edited resources
+// #include "l.kor\afxres.rc"          // Standard components
 #endif
 
 /////////////////////////////////////////////////////////////////////////////

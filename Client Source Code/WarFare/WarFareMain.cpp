@@ -226,10 +226,18 @@ LRESULT CALLBACK WndProcMain(HWND hWnd, UINT message, WPARAM wParam, LPARAM lPar
 #ifdef _DEBUG
 					g_bActive = FALSE;
 #endif
-					if(false == CGameProcedure::s_bWindowed)
+					// Only quit automatically when inactive if the window is minimized
+					// (previous behavior exited when losing focus in fullscreen). Keep
+					// the application running when it simply loses focus so UI can
+					// remain visible in windowed mode.
+					if(false == CGameProcedure::s_bWindowed && iMinimized)
 					{
-						CLogWriter::Write("WA_INACTIVE.");
-						PostQuitMessage(0); // â��� �ƴϸ� �ñ��??
+						CLogWriter::Write("WA_INACTIVE (minimized). Exiting.");
+						PostQuitMessage(0);
+					}
+					else
+					{
+						CLogWriter::Write("WA_INACTIVE (not minimized), ignoring exit.");
 					}
 					break;
 				}
@@ -492,10 +500,13 @@ int APIENTRY WinMain(HINSTANCE hInstance,
 
 	CGameProcedure::s_bWindowed = CN3Base::s_Options.bWindowed;
 
+	CLogWriter::Write("WarFareMain: s_bWindowed = %d", CGameProcedure::s_bWindowed ? 1 : 0);
+
 	//////////////////////////////////////////////////////////////////////////////////////////
 	// Static Member ����...
 	CGameProcedure::StaticMemberInit(hInstance, hWndMain, hWndSub);		// �ı��� WM_DESTROY ���� �Ѵ�..
 	CGameProcedure::ProcActiveSet((CGameProcedure*)CGameProcedure::s_pProcLogIn);	// �α��� ���ν������� ����..
+	CLogWriter::Write("ProcActiveSet done, entering message loop");
 
 	// and its installation, called in InitInstance()
 /*	switch ( CGameProcedure::s_eVersion )
@@ -546,7 +557,9 @@ int APIENTRY WinMain(HINSTANCE hInstance,
 			// Render a frame during idle time (no messages are waiting)
 			if( g_bActive)
 			{
+				// CLogWriter::Write("Message loop: TickActive");
 				CGameProcedure::TickActive();
+				// CLogWriter::Write("Message loop: RenderActive");
 				CGameProcedure::RenderActive();
 #if _DEBUG
 				static float fTimePrev = CN3Base::TimeGet();

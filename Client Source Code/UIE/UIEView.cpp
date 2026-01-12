@@ -10,6 +10,7 @@
 #include "PropertyView.h"
 #include "..\N3Base\N3UIButton.h"
 #include "..\N3Base\N3SndMgr.h"
+#include <d3d9.h>
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -459,7 +460,7 @@ void CUIEView::RenderPreview()
 	if (NULL == pDoc) return;
 	CMainFrame* pFrm = (CMainFrame*)AfxGetMainWnd();
 	CN3EngTool* pEng = &(pFrm->m_Eng);
-	LPDIRECT3DDEVICE8 lpD3DDev = pEng->s_lpD3DDev;
+	LPDIRECT3DDEVICE9 lpD3DDev = pEng->s_lpD3DDev;
 
 	// back up old state
 	DWORD dwZEnable, dwAlphaBlend, dwSrcBlend, dwDestBlend, dwFog;
@@ -505,7 +506,7 @@ void CUIEView::RenderEditview()
 	if (NULL == pDoc) return;
 	CMainFrame* pFrm = (CMainFrame*)AfxGetMainWnd();
 	CN3EngTool* pEng = &(pFrm->m_Eng);
-	LPDIRECT3DDEVICE8 lpD3DDev = pEng->s_lpD3DDev;
+	LPDIRECT3DDEVICE9 lpD3DDev = pEng->s_lpD3DDev;
 
 	// back up old state
 	DWORD dwZEnable, dwAlphaBlend, dwSrcBlend, dwDestBlend, dwFog;
@@ -727,7 +728,7 @@ void CUIEView::UpdateUIInfo_SelectedRect()
 			}
 			break;
 		case RT_MOVE:
-			pSelectedUI->SetMoveRect(m_rcSelectedRect);
+			pSelectedUI->SetMoveRect((const RECT&)m_rcSelectedRect);
 			break;
 		case RT_CLICK:
 			if (UI_TYPE_BUTTON == pSelectedUI->UIType()) ((CN3UIButton*)pSelectedUI)->SetClickRect(m_rcSelectedRect);

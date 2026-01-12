@@ -286,7 +286,10 @@ void CN3Base::PathSet(const std::string& szPath)
 	s_szPath = szPath;
 	if(s_szPath.size() <= 0) return;
 
-	CharLower(&(s_szPath[0])); // �ݵ�� �ҹ��ڷ� ����� �ش�..
+	// Convert to lowercase using standard C++ for better Unicode and Windows 11 compatibility
+	for(size_t i = 0; i < s_szPath.length(); i++) {
+		s_szPath[i] = (char)tolower((unsigned char)s_szPath[i]);
+	}
 	if(s_szPath.size() > 1)
 	{
 		if(s_szPath[s_szPath.size()-1] != '\\') s_szPath += '\\';

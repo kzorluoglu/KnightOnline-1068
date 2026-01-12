@@ -898,10 +898,11 @@ void CUIEDoc::OnEditMakeGroup()
 	CN3UIBase* pUIFirst = NULL;
 	it_UI it = m_SelectedUIs.begin(), itEnd = m_SelectedUIs.end();
 	bool bOverLapped = false;
-	for(int iUIC = 0; it != itEnd; it++, iUIC++)
+	int iUIC = 0;
+	for(; it != itEnd; it++, iUIC++)
 	{
 		pUI = *it;
-		if(iUIC == iUIC) pUIFirst = pUI;
+		if(iUIC == 0) pUIFirst = pUI;
 		else // ��� ���� �оƮ���� Ȯ��..
 		{
 			if(pUIFirst->GetParent() != pUI->GetParent())
