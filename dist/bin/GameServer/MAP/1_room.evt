@@ -1,6 +1,0 @@
-; Room Event File for Zone 1
-; Format: ROOM-based dungeon events
-; This is a minimal empty event file
-
-TYPE 0
-END

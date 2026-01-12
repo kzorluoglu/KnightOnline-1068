@@ -42,3 +42,16 @@ Client Source Code/WarFare/.vs
 1097 Client/Log.txt
 *.htm
 .vs
+Client Source Code/UIE/Debug/
+Client Source Code/WarFare/Debug/
+Client Source Code/WarFare/Release/
+Client Source Code/Launcher/Launcher/Release/
+Client Source Code/Launcher/ZipArchive/Release/
+Client Source Code/Launcher/ZipArchive/Static_Release/
+Client Source Code/Option/Release/
+Client Source Code/N3CE/Debug/
+CheckUiMissing/bin/
+CheckUiMissing/obj/
+TblCli/bin/
+TblCli/obj/
+dist/

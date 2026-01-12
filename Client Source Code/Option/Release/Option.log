@@ -1,9 +1,0 @@
-﻿  StdAfx.cpp
-  _WIN32_WINNT not defined. Defaulting to _WIN32_WINNT_MAXVER (see WinSDKVer.h)
-  Option.cpp
-c:\users\kzorluoglu\clionprojects\knightonline-1068\client source code\option\option.cpp(54): warning C4996: 'CWinApp::Enable3dControlsStatic': CWinApp::Enable3dControlsStatic is no longer needed. You should remove this call.
-  c:\program files (x86)\microsoft visual studio\2017\community\vc\tools\msvc\14.16.27023\atlmfc\include\afxwin2.inl(1077): note: see declaration of 'CWinApp::Enable3dControlsStatic'
-  OptionDlg.cpp
-  Generating Code...
-C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\Common7\IDE\VC\VCTargets\Microsoft.CppBuild.targets(1216,5): warning MSB8012: TargetPath(C:\Users\kzorluoglu\CLionProjects\KnightOnline-1068\Client Source Code\Option\.\Release\Option.exe) does not match the Linker's OutputFile property value (C:\Users\kzorluoglu\CLionProjects\KnightOnline-1068\Client Source Code\Option\Option.exe). This may cause your project to build incorrectly. To correct this, please make sure that $(OutDir), $(TargetName) and $(TargetExt) property values match the value specified in %(Link.OutputFile).
-  Option.vcxproj -> C:\Users\kzorluoglu\CLionProjects\KnightOnline-1068\Client Source Code\Option\.\Release\Option.exe
