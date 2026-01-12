@@ -69,6 +69,8 @@
       <ObjectFileName>.\Debug\</ObjectFileName>
       <ProgramDataBaseFileName>.\Debug\</ProgramDataBaseFileName>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+      <CompileAs>CompileAsCpp</CompileAs>
     </ClCompile>
     <Midl>
       <SuppressStartupBanner>true</SuppressStartupBanner>
@@ -112,6 +114,8 @@
       <PrecompiledHeaderOutputFile>.\Release\UIE.pch</PrecompiledHeaderOutputFile>
       <ObjectFileName>.\Release\</ObjectFileName>
       <ProgramDataBaseFileName>.\Release\</ProgramDataBaseFileName>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+      <CompileAs>CompileAsCpp</CompileAs>
     </ClCompile>
     <Midl>
       <SuppressStartupBanner>true</SuppressStartupBanner>

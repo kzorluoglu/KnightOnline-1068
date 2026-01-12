@@ -1158,7 +1158,7 @@ void CN3UIBase::SetSndOpen(const std::string& strFileName)
 	tmpBase.FileNameSet(strFileName);	// Base´┐¢´┐¢╬┐´┐¢ ´┐¢´┐¢´┐¢Ï╝´┐¢ ´┐¢´┐¢´┐¢´┐¢´┐¢ ´┐¢´┐¢╬©´┐¢ ´┐¢Ð░´┐¢´┐¢Ï┤´┐¢.
 
 	SetCurrentDirectory(tmpBase.PathGet().c_str());
-	m_pSnd_OpenUI = s_SndMgr.CreateObj(tmpBase.FileName(), SNDTYPE_2D);
+	m_pSnd_OpenUI = CN3Base::s_SndMgr.CreateObj(tmpBase.FileName(), SNDTYPE_2D);
 }
 
 void CN3UIBase::SetSndClose(const std::string& strFileName)
@@ -1170,7 +1170,7 @@ void CN3UIBase::SetSndClose(const std::string& strFileName)
 	tmpBase.FileNameSet(strFileName);	// Base´┐¢´┐¢╬┐´┐¢ ´┐¢´┐¢´┐¢Ï╝´┐¢ ´┐¢´┐¢´┐¢´┐¢´┐¢ ´┐¢´┐¢╬©´┐¢ ´┐¢Ð░´┐¢´┐¢Ï┤´┐¢.
 
 	SetCurrentDirectory(tmpBase.PathGet().c_str());
-	m_pSnd_CloseUI = s_SndMgr.CreateObj(tmpBase.FileName(), SNDTYPE_2D);
+	m_pSnd_CloseUI = CN3Base::s_SndMgr.CreateObj(tmpBase.FileName(), SNDTYPE_2D);
 }
 
 std::string CN3UIBase::GetSndFName_OpenUI() const

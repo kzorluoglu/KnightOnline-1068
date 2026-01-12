@@ -100,36 +100,13 @@ bool CUILogIn::ReceiveMessage(CN3UIBase* pSender, DWORD dwMsg)
 	return true;
 }
 
-void CUILogIn::LogAllUIElements(CN3UIBase* pUI, int depth)
-{
-	if(!pUI) return;
-	
-	std::string indent(depth * 2, ' ');
-	if(!pUI->m_szID.empty())
-	{
-		CLogWriter::Write("CUILogIn::Load - %sID='%s' Type=%d Visible=%d", indent.c_str(), pUI->m_szID.c_str(), pUI->UIType(), pUI->IsVisible());
-	}
-	else
-	{
-		CLogWriter::Write("CUILogIn::Load - %s(no ID) Type=%d Visible=%d", indent.c_str(), pUI->UIType(), pUI->IsVisible());
-	}
-	
-	UIListItor it = pUI->m_Children.begin();
-	UIListItor itEnd = pUI->m_Children.end();
-	for(; it != itEnd; ++it)
-	{
-		CN3UIBase* pChild = *it;
-		LogAllUIElements(pChild, depth + 1);
-	}
-}
-
 bool CUILogIn::Load(HANDLE hFile)
 {
 	if(CN3UIBase::Load(hFile)==false) return false;
 
 	// Log all child IDs for debugging
-	CLogWriter::Write("CUILogIn::Load - Enumerating all child IDs:");
-	LogAllUIElements(this, 0);
+	// CLogWriter::Write("CUILogIn::Load - Enumerating all child IDs:");
+	// LogAllUIElements(this, 0);
 
 	// Try to find GroupLogin by ID first
 	m_pGroup_LogIn = GetChildByID("GroupLogin");

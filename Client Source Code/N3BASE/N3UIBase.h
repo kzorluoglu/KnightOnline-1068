@@ -91,8 +91,8 @@ public:
 	eUI_STATE 		GetState() const { return m_eState; }
 	bool			IsVisible()	const { return m_bVisible; }
 	RECT			GetRegion() const { return m_rcRegion; }
-	void			SetMoveRect(const RECT& Rect) { m_rcMovable = Rect; }
 	RECT			GetMoveRect() { return m_rcMovable; }
+	virtual void	SetMoveRect(const RECT& rc) {m_rcMovable = rc;}
 	void			SetReserved(DWORD dwReserved) {m_dwReserved = dwReserved;}
 	DWORD			GetReserved() const {return m_dwReserved;}
 	CN3UIBase*		GetParent() const {return m_pParent;}
@@ -168,7 +168,7 @@ public:
 	
 	void			ArrangeZOrder();
 	RECT			GetMoveRect() const {return m_rcMovable;}
-	void			SetMoveRect(RECT rc) {m_rcMovable = rc;}
+	virtual void	SetMoveRect(const RECT& rc) {m_rcMovable = rc;}
 	void			SetSndOpen(const std::string& strFileName);
 	void			SetSndClose(const std::string& strFileName);
 	std::string		GetSndFName_OpenUI() const;

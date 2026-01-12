@@ -110,7 +110,7 @@ void CGameProcLogIn::Init()
     if(pTbl)
     {
         CLogWriter::Write("CGameProcLogIn::Init - before UILogIn LoadFromFile");
-        m_pUILogIn->LoadFromFile("ui_en\\co_login_en.uif");
+        m_pUILogIn->LoadFromFile("UI_CH\\co_login_ch.uif");
         CLogWriter::Write("CGameProcLogIn::Init - after UILogIn LoadFromFile");
     }
 #ifdef _N3GAME

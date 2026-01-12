@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.36617.4
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "WarFare", "WarFare.vcxproj", "{E4B5E44F-5E19-417A-A4B3-72BD6EA59FCC}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "WarFare", "WarFare.vcxproj", "{F3EB0B1C-6EF1-4880-BD1F-52D054E278C3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,15 +11,15 @@ Global
 		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{E4B5E44F-5E19-417A-A4B3-72BD6EA59FCC}.Debug|x86.ActiveCfg = Debug|Win32
-		{E4B5E44F-5E19-417A-A4B3-72BD6EA59FCC}.Debug|x86.Build.0 = Debug|Win32
-		{E4B5E44F-5E19-417A-A4B3-72BD6EA59FCC}.Release|x86.ActiveCfg = Release|Win32
-		{E4B5E44F-5E19-417A-A4B3-72BD6EA59FCC}.Release|x86.Build.0 = Release|Win32
+		{F3EB0B1C-6EF1-4880-BD1F-52D054E278C3}.Debug|x86.ActiveCfg = Debug|Win32
+		{F3EB0B1C-6EF1-4880-BD1F-52D054E278C3}.Debug|x86.Build.0 = Debug|Win32
+		{F3EB0B1C-6EF1-4880-BD1F-52D054E278C3}.Release|x86.ActiveCfg = Release|Win32
+		{F3EB0B1C-6EF1-4880-BD1F-52D054E278C3}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {BB5815AB-813D-4785-8AD2-004D679DB9E8}
+		SolutionGuid = {40D78790-A9A2-421D-B5EF-AE78EB82DD12}
 	EndGlobalSection
 EndGlobal

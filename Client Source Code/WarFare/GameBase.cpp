@@ -62,6 +62,7 @@ void CGameBase::StaticMemberInit()
     std::string szLangTail = ".tbl";
     int iLangID = ::GetUserDefaultLangID();
     if(0x0404 == iLangID) szLangTail = "_TW.tbl"; // Taiwan Language
+    if(0x0804 == iLangID || 0x0404 == iLangID) szLangTail = "_ch.tbl"; // Chinese (Simplified or Traditional)
 
     std::string szFN;
     CLogWriter::Write("CGameBase::StaticMemberInit: load Zones");

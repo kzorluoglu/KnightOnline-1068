@@ -45,6 +45,7 @@ public:
 	void			SetTex(const std::string& szFN);		// Texture ����
 	void			SetUVRect(float left, float top, float right, float bottom);	// image�� uv��ǥ ����
 	void			SetColor(D3DCOLOR color);				// Į�� ����
+	virtual void	SetMoveRect(const RECT& rc) { CN3UIBase::SetMoveRect(rc); }
 
 	virtual void	SetRegion(const RECT& Rect);					// ���� ����
 	virtual BOOL	MoveOffset(int iOffsetX, int iOffsetY);
