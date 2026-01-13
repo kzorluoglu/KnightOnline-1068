@@ -35,27 +35,27 @@ CPortalVolume::CPortalVolume()	: m_fOffs(0.001f), m_fHeightOffs(0.01f), m_fVolOf
 
 	unsigned short*		pIdx = m_pIndex;
 
-	// ¾Æ·§¸é.
+	// ï¿½Æ·ï¿½ï¿½ï¿½.
 	*pIdx++ = 0;  *pIdx++ = 1;  *pIdx++ = 3;
 	*pIdx++ = 2;  *pIdx++ = 3;  *pIdx++ = 1;
 
-	// ¾Õ¸é..
+	// ï¿½Õ¸ï¿½..
 	*pIdx++ = 7;  *pIdx++ = 3;  *pIdx++ = 6;
 	*pIdx++ = 2;  *pIdx++ = 6;  *pIdx++ = 3;
 
-	// ¿ÞÂÊ..
+	// ï¿½ï¿½ï¿½ï¿½..
 	*pIdx++ = 4;  *pIdx++ = 0;  *pIdx++ = 7;
 	*pIdx++ = 3;  *pIdx++ = 7;  *pIdx++ = 0;
 
-	// ¿À¸¥ÂÊ..
+	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½..
 	*pIdx++ = 6;  *pIdx++ = 2;  *pIdx++ = 5;
 	*pIdx++ = 1;  *pIdx++ = 5;  *pIdx++ = 2;
 
-	// µÞ¸é..
+	// ï¿½Þ¸ï¿½..
 	*pIdx++ = 5;  *pIdx++ = 1;  *pIdx++ = 4;
 	*pIdx++ = 0;  *pIdx++ = 4;  *pIdx++ = 1;
 
-	// À­¸é..	
+	// ï¿½ï¿½ï¿½ï¿½..	
 	*pIdx++ = 4;  *pIdx++ = 7;  *pIdx++ = 5;
 	*pIdx++ = 6;  *pIdx++ = 5;  *pIdx++ = 7;
 
@@ -174,7 +174,7 @@ void CPortalVolume::RenderShape()
 		pSI->m_pShape->m_bDontRender = false;
 		pSI->m_pShape->Render();
 
-		// ·ÎµùÇÒ¶§ ¹Ì¸® °è»êÇØ ³õÀº ¿ùµå Çà·Ä Àû¿ë..
+		// ï¿½Îµï¿½ï¿½Ò¶ï¿½ ï¿½Ì¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½..
 		__Matrix44 mtxBackup;
 		CN3Base::s_lpD3DDev->GetTransform(D3DTS_WORLD, &mtxBackup);
 		CN3Base::s_lpD3DDev->SetTransform(D3DTS_WORLD, &pSI->m_pShape->m_Matrix);
@@ -258,7 +258,7 @@ void CPortalVolume::RenderCollision()
 	{
 		pCI = *ciit++;
 
-		// Çà·Ä °è»ê..
+		// ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½..
 		__Matrix44 mtxWorld;
 		mtxWorld.Identity();
 
@@ -292,11 +292,11 @@ bool CPortalVolume::Load(HANDLE hFile)
 
 	char szDrive[_MAX_DRIVE], szDir[_MAX_DIR], szFName[_MAX_FNAME], szExt[_MAX_EXT];
 
-	// ÀÚ½ÅÀÇ µ¥ÀÌÅÍ ·Îµå..
+	// ï¿½Ú½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Îµï¿½..
 	DWORD dwNum;
 	std::string strSrc, strDest;
 
-	// ¸µÅ©µÈ °¹¼ö¸¦ ·Îµå..	ÀÏ´Ü ÀÐ±¸ ¹ö¸°´Ù..
+	// ï¿½ï¿½Å©ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Îµï¿½..	ï¿½Ï´ï¿½ ï¿½Ð±ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½..
 	int iLinkedCount = 0, iTID, iEWT;
 	ReadFile(hFile, &iLinkedCount, sizeof(int), &dwNum, NULL);
 	for( int i = 0; i < iLinkedCount; i++ )
@@ -305,15 +305,15 @@ bool CPortalVolume::Load(HANDLE hFile)
 		ReadFile(hFile, &iEWT, sizeof(int), &dwNum, NULL);
 	}
 
-	// ¸µÅ©µÈ Shape °¹¼ö ·Îµå..
+	// ï¿½ï¿½Å©ï¿½ï¿½ Shape ï¿½ï¿½ï¿½ï¿½ ï¿½Îµï¿½..
 	int iCount = 0;
 	ReadFile(hFile, &iCount, sizeof(int), &dwNum, NULL);
-	for (i = 0; i < iCount; i++)
+	for (int i = 0; i < iCount; i++)
 	{
 		ShapeInfo*	pSI = new ShapeInfo;
 		ReadFile(hFile, &pSI->m_iID, sizeof(int), &dwNum, NULL);
 
-		// ¹®ÀÚ¿­ ±æÀÌ..
+		// ï¿½ï¿½ï¿½Ú¿ï¿½ ï¿½ï¿½ï¿½ï¿½..
 		strSrc = CPvsMgr::ReadDecryptString(hFile);
 		_splitpath(strSrc.c_str(), szDrive, szDir, szFName, szExt);
 		strDest = szFName;	strDest +=  szExt;
@@ -323,7 +323,7 @@ bool CPortalVolume::Load(HANDLE hFile)
 		ReadFile(hFile, &pSI->m_iEventType, sizeof(int), &dwNum, NULL);	
 		ReadFile(hFile, &pSI->m_iNPC_ID, sizeof(int), &dwNum, NULL);	
 		ReadFile(hFile, &pSI->m_iNPC_Status, sizeof(int), &dwNum, NULL);	
-		if (pSI->m_iEventID || pSI->m_iEventType || pSI->m_iNPC_ID || pSI->m_iNPC_Status ) // ÀÌº¥Æ®°¡ ÀÖÀ¸¸é
+		if (pSI->m_iEventID || pSI->m_iEventType || pSI->m_iNPC_ID || pSI->m_iNPC_Status ) // ï¿½Ìºï¿½Æ®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 			pSI->m_pShape = CPvsMgr::s_MngShapeExt.Get(m_pManager->GetIndoorFolderPath() + strDest);
 		else
 			pSI->m_pShape = CPvsMgr::s_MngShape.Get(m_pManager->GetIndoorFolderPath() + strDest);
@@ -336,18 +336,18 @@ bool CPortalVolume::Load(HANDLE hFile)
 	IDAndPriority IDAP;
 	ReadFile(hFile, &iCount, sizeof(int), &dwNum, NULL);
 
-	for( i = 0; i < iCount; i++ )
+	for( int i = 0; i < iCount; i++ )
 	{
 		ReadFile(hFile, &IDAP.m_iID, sizeof(int), &dwNum, NULL);
 		ReadFile(hFile, &IDAP.m_iPriority, sizeof(int), &dwNum, NULL);
-		__ASSERT(IDAP.m_iPriority != -1, "Àß¸øµÈ ÆÄÀÏ");
+		__ASSERT(IDAP.m_iPriority != -1, "ï¿½ß¸ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½");
 		m_piVisibleIDList.push_back(IDAP);
 	}
 
 	ReadFile(hFile, &iCount, sizeof(int), &dwNum, NULL);
 
 	int iSize_2 = 0, iSize_3 = 0;
-	for( i = 0; i < iCount; i++ )
+	for( int i = 0; i < iCount; i++ )
 	{
 		ShapePart* pSP = new ShapePart;
 		ReadFile(hFile, &pSP->m_iID, sizeof(int), &dwNum, NULL);
@@ -374,7 +374,7 @@ bool CPortalVolume::Load(HANDLE hFile)
 
 	ReadFile(hFile, &iCount, sizeof(int), &dwNum, NULL);
 
-	for( i = 0; i < iCount; i++ )
+	for( int i = 0; i < iCount; i++ )
 	{
 		__ColIndex* pCI = new __ColIndex;
 		ReadFile(hFile, &pCI->m_iID, sizeof(int), &dwNum, NULL);		
@@ -673,7 +673,7 @@ BOOL CPortalVolume::PickWideWithTerrain(int x, int y, __Vector3& vPick)
 				__Vector3 vEdge2 = C - A;
 				__Vector3 pVec;	
 				pVec.Cross(vEdge1, vEdge2);	pVec.Normalize();	pVec.y = 0.0f;	
-				if (pVec.Magnitude() < m_fPickIncline)	// ±â¿ï±â..
+				if (pVec.Magnitude() < m_fPickIncline)	// ï¿½ï¿½ï¿½ï¿½..
 					return TRUE;
 				else
 				{
@@ -691,7 +691,7 @@ CN3Shape* CPortalVolume::PickWithShape(int iXScreen, int iYScreen, bool bMustHav
 	__Vector3 vPos, vDir;
 	::_Convert2D_To_3DCoordinate(iXScreen, iYScreen, s_CameraData.mtxView, s_CameraData.mtxProjection, s_CameraData.vp, vPos, vDir);
 
-	// °Å¸®¼øÀ¸·Î Á¤·Ä..
+	// ï¿½Å¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½..
 	std::vector<ShapeInfo*> Shapes;
 	ShapeInfo* pSI = NULL;
 	CPortalVolume* pVol = NULL;
@@ -715,7 +715,7 @@ CN3Shape* CPortalVolume::PickWithShape(int iXScreen, int iYScreen, bool bMustHav
 	for(int i = 0; i < iSC; i++)
 	{
 		ShapeInfo* pShr = Shapes[i];
-		if(bMustHaveEvent && Shapes[i]->m_iEventID <= 0) continue; // ÀÌº¥Æ®°¡ ÀÖ¾î¾ß ÇÑ´Ù¸é...
+		if(bMustHaveEvent && Shapes[i]->m_iEventID <= 0) continue; // ï¿½Ìºï¿½Æ®ï¿½ï¿½ ï¿½Ö¾ï¿½ï¿½ ï¿½Ñ´Ù¸ï¿½...
 		Shapes[i]->m_pShape->PosSet(Shapes[i]->Pos());
 		Shapes[i]->m_pShape->RotSet(Shapes[i]->Rot());
 		Shapes[i]->m_pShape->ScaleSet(Shapes[i]->Scale());
@@ -761,14 +761,14 @@ CN3Shape* CPortalVolume::ShapeGetByIDWithShape(int iID)
 	return NULL;
 }
 
-bool CPortalVolume::CheckCollisionWithShape(	const __Vector3& vPos,				 // Ãæµ¹ À§Ä¡
-																				const __Vector3& vDir,				   // ¹æÇâ º¤ÅÍ
-																				float fSpeedPerSec,					    // ÃÊ´ç ¿òÁ÷ÀÌ´Â ¼Óµµ
-																				__Vector3* pvCol,						 // Ãæµ¹ ÁöÁ¡
-																				__Vector3* pvNormal,				  // Ãæµ¹ÇÑ¸éÀÇ ¹ý¼±º¤ÅÍ
-																				__Vector3* pVec)						// Ãæµ¹ÇÑ ¸é ÀÇ Æú¸®°ï __Vector3[3]
+bool CPortalVolume::CheckCollisionWithShape(	const __Vector3& vPos,				 // ï¿½æµ¹ ï¿½ï¿½Ä¡
+																				const __Vector3& vDir,				   // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+																				float fSpeedPerSec,					    // ï¿½Ê´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ì´ï¿½ ï¿½Óµï¿½
+																				__Vector3* pvCol,						 // ï¿½æµ¹ ï¿½ï¿½ï¿½ï¿½
+																				__Vector3* pvNormal,				  // ï¿½æµ¹ï¿½Ñ¸ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+																				__Vector3* pVec)						// ï¿½æµ¹ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ __Vector3[3]
 {
-	__Vector3 vPosNext = vPos + (vDir * fSpeedPerSec); // ´ÙÀ½ À§Ä¡
+	__Vector3 vPosNext = vPos + (vDir * fSpeedPerSec); // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ä¡
 	float fMcs = (vPosNext - vPos).Magnitude();
 
 	bool bCollision = false;

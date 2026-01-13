@@ -11,9 +11,9 @@
 #endif // _MSC_VER > 1000
 
 ////////////////////////////////
-//	º¯¼ö¾Õ¿¡ ti_°¡ ºÙÀº °Ç Å¸ÀÏ´ÜÀ§..
-//	º¯¼ö¾Õ¿¡ pat_°¡ ºÙÀº °Ç ÆÐÄ¡´ÜÀ§..
-//	º¯¼ö¾Õ¿¡ re_°¡ ºÙÀº °Ç ¹ÌÅÍ´ÜÀ§..
+//	ï¿½ï¿½ï¿½ï¿½ï¿½Õ¿ï¿½ ti_ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ Å¸ï¿½Ï´ï¿½ï¿½ï¿½..
+//	ï¿½ï¿½ï¿½ï¿½ï¿½Õ¿ï¿½ pat_ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½Ä¡ï¿½ï¿½ï¿½ï¿½..
+//	ï¿½ï¿½ï¿½ï¿½ï¿½Õ¿ï¿½ re_ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½Í´ï¿½ï¿½ï¿½..
 //
 
 #include "../N3Base/N3BaseFileAccess.h"
@@ -37,15 +37,15 @@ public:
 	CN3TerrainPatch**	m_ppPatch;
 	POINT				m_pat_LBPos;
 	POINT				m_pat_PrevLBPos;
-	RECT				m_pat_BoundRect;	//LBPos¿¡ ´ëÇÑ »ó´ëÁÂÇ¥..
+	RECT				m_pat_BoundRect;	//LBPosï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ç¥..
 	int					m_iNumPatch;
-	int					m_pat_Center2Side;	//Áß½ÉÁ¡¿¡¼­ ÇÑÂÊº¯±îÁöÀÇ ±æÀÌ..
+	int					m_pat_Center2Side;	//ï¿½ß½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Êºï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½..
 	int					m_iDistanceTable[DISTANCE_TABLE_SIZE][DISTANCE_TABLE_SIZE];
 	
 	//MapInfo..
 	MAPDATA*			m_pMapData;
-	int					m_ti_MapSize;				// ¼¿ÀÌ ¸î°³ µé¾î°¡³ª.. 4096Meter -> 1024 + 1
-	int					m_pat_MapSize;				// ÆÐÄ¡ °¹¼ö.. »çÀÌÁî¿¡ µû¶ó Æ²¸®´Ù..
+	int					m_ti_MapSize;				// ï¿½ï¿½ï¿½ï¿½ ï¿½î°³ ï¿½ï¿½î°¡ï¿½ï¿½.. 4096Meter -> 1024 + 1
+	int					m_pat_MapSize;				// ï¿½ï¿½Ä¡ ï¿½ï¿½ï¿½ï¿½.. ï¿½ï¿½ï¿½ï¿½ï¿½î¿¡ ï¿½ï¿½ï¿½ï¿½ Æ²ï¿½ï¿½ï¿½ï¿½..
 	__Vector3*			m_pNormal;
 
 	//LightMap Info..
@@ -64,17 +64,17 @@ public:
 	POINT				m_ti_PrevCenterPos;
 
 	//Texture...
-	int					m_NumTileTex;				// Tile Texture °¹¼ö
+	int					m_NumTileTex;				// Tile Texture ï¿½ï¿½ï¿½ï¿½
 	CN3Texture*			m_pTileTex;
 
 	//ColorMap..
 	CN3Texture**		m_ppColorMapTex;
-	int					m_iNumColorMap;				// ÄÃ·¯¸ÊÀº ºÐÇÒ ÀúÀåµÇ¾î ÀÖ´Ù.. °¹¼ö = 
+	int					m_iNumColorMap;				// ï¿½Ã·ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ç¾ï¿½ ï¿½Ö´ï¿½.. ï¿½ï¿½ï¿½ï¿½ = 
 
-	//ÄÃ·¯¸ÊÀ§¿¡ µ¡ ¾º¿ì´Â ¹«´Ì¸Ê..
+	//ï¿½Ã·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ì¸ï¿½..
 	CN3Texture			m_pBaseTex;
 
-	//Å¸ÀÏ¹æÇâ..
+	//Å¸ï¿½Ï¹ï¿½ï¿½ï¿½..
 	float m_fTileDirU[8][4];
 	float m_fTileDirV[8][4];
 
@@ -100,10 +100,10 @@ protected:
 	void	TestAvailableTile();
 	void	MakeDistanceTable();
 
-	inline	int	Log2(int x);	//2ÀÇ ½Â¼ö Àü¿ë....
-	int Real2Tile(float x){ return ((int)x / TILE_SIZE); } // ½ÇÁÂÇ¥ -> Å¸ÀÏÁÂÇ¥...(Àý´ëÁÂÇ¥)
-	int Tile2Patch(int x) { return (x / PATCH_TILE_SIZE); } // Å¸ÀÏÁÂÇ¥ -> ÆÐÄ¡ÁÂÇ¥...(Àý´ëÁÂÇ¥°è)
-	int Real2Patch(float fX) { return ( ((int)fX / TILE_SIZE) / PATCH_TILE_SIZE ); } // ½ÇÁÂÇ¥ -> ÆÐÄ¡ÁÂÇ¥..(Àý´ëÁÂÇ¥°è)
+	inline	int	Log2(int x);	//2ï¿½ï¿½ ï¿½Â¼ï¿½ ï¿½ï¿½ï¿½ï¿½....
+	int Real2Tile(float x){ return ((int)x / TILE_SIZE); } // ï¿½ï¿½ï¿½ï¿½Ç¥ -> Å¸ï¿½ï¿½ï¿½ï¿½Ç¥...(ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ç¥)
+	int Tile2Patch(int x) { return (x / PATCH_TILE_SIZE); } // Å¸ï¿½ï¿½ï¿½ï¿½Ç¥ -> ï¿½ï¿½Ä¡ï¿½ï¿½Ç¥...(ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ç¥ï¿½ï¿½)
+	int Real2Patch(float fX) { return ( ((int)fX / TILE_SIZE) / PATCH_TILE_SIZE ); } // ï¿½ï¿½ï¿½ï¿½Ç¥ -> ï¿½ï¿½Ä¡ï¿½ï¿½Ç¥..(ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ç¥ï¿½ï¿½)
 		
 	void	LoadTileInfo(HANDLE hFile);
 	bool	CheckRenderablePatch();
@@ -115,7 +115,7 @@ protected:
 	
 public:
 	CN3Texture* GetLightMap(int tx, int tz);
-	float	GetWidthByMeter() { return (m_ti_MapSize - 1) * TILE_SIZE; }
+	float	GetWidthByMeter() { return (float)(m_ti_MapSize - 1) * TILE_SIZE; }
 	int		GetLODLevel() { return m_iLodLevel; }
 	bool	SetLODLevel(int level);
 	float	GetHeight(float x, float z);
@@ -143,12 +143,12 @@ public:	//additional........
 	BOOL			PickWide(int x, int y, __Vector3& vPick);
 	void			CalcCollisionTerrainByOTPlayer(__Vector3, __Vector3, __Vector3& );
 
-	bool			CheckIncline(const __Vector3& vPos, const __Vector3& vDir, float fIncline); // ÇöÀç À§Ä¡¿Í ¹æÇâ¿¡¼­ÀÇ °æ»ç°ªÀÌ ÀÎ¼ö·Î µé¾î¿Â°Íº¸´Ù Å©¸é(¸ø¿Ã¶ó°¥ °÷ÀÌ¸é) true, ÀÛÀ¸¸é false
-	bool			CheckCollisionCamera(__Vector3& vEye, const __Vector3& vAt, float fNP); // vEye ¿¡ °è»êµÈ °ªµµ µé¾î¿Â´Ù.. Ä«¸Þ¶ó Near PlaneÀ» ³ÖÀ¸¸é °è»ê.
+	bool			CheckIncline(const __Vector3& vPos, const __Vector3& vDir, float fIncline); // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ä¡ï¿½ï¿½ ï¿½ï¿½ï¿½â¿¡ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ç°ªï¿½ï¿½ ï¿½Î¼ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Â°Íºï¿½ï¿½ï¿½ Å©ï¿½ï¿½(ï¿½ï¿½ï¿½Ã¶ï¿½ ï¿½ï¿½ï¿½Ì¸ï¿½) true, ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ false
+	bool			CheckCollisionCamera(__Vector3& vEye, const __Vector3& vAt, float fNP); // vEye ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Â´ï¿½.. Ä«ï¿½Þ¶ï¿½ Near Planeï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½.
 	BOOL			CheckCollisionByHeight(const __Vector3& vPos, float fUnitSize, float& fHeight)
 	{
 		fHeight = this->GetHeight(vPos.x, vPos.z);
-		if(vPos.y < fHeight + fUnitSize) return TRUE; // ÇöÀç ³ôÀÌ°¡ ÁöÇü³ôÀÌ + Å©±â º¸´Ù ÀÛ´Ù¸é 
+		if(vPos.y < fHeight + fUnitSize) return TRUE; // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ì°ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ + Å©ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Û´Ù¸ï¿½ 
 		return FALSE;
 	}
 	bool			CheckCollision(__Vector3& vPos, __Vector3& vDir, float fVelocity, __Vector3* vpCol);

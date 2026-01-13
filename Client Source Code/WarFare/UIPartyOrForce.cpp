@@ -27,14 +27,14 @@ CUIPartyOrForce::CUIPartyOrForce()
 {
 	for(int i = 0; i < MAX_PARTY_OR_FORCE; i++)
 	{
-		m_pProgress_HPs[i]		= NULL;	// ºÎ´ë¿ø°¹¼ö ¸¸Å­... HP Gauge
-		m_pProgress_HPReduce[i] = NULL;	// ºÎ´ë¿ø°¹¼ö ¸¸Å­... HP Reduce
-		m_pProgress_ETC[i]		= NULL;	// ºÎ´ë¿ø°¹¼ö ¸¸Å­... »óÅÂÀÌ»ó
-		m_pStatic_IDs[i]		= NULL;	// ºÎ´ë¿ø°¹¼ö ¸¸Å­... ÀÌ¸§µé..
+		m_pProgress_HPs[i]		= NULL;	// ï¿½Î´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Å­... HP Gauge
+		m_pProgress_HPReduce[i] = NULL;	// ï¿½Î´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Å­... HP Reduce
+		m_pProgress_ETC[i]		= NULL;	// ï¿½Î´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Å­... ï¿½ï¿½ï¿½ï¿½ï¿½Ì»ï¿½
+		m_pStatic_IDs[i]		= NULL;	// ï¿½Î´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Å­... ï¿½Ì¸ï¿½ï¿½ï¿½..
 		m_pAreas[i]				= NULL;
 	}
 
-	m_iIndexSelected = -1; // ÇöÀç ¼±ÅÃµÈ ¸â¹öÀÎµ¦½º..
+	m_iIndexSelected = -1; // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ãµï¿½ ï¿½ï¿½ï¿½ï¿½Îµï¿½ï¿½ï¿½..
 }
 
 CUIPartyOrForce::~CUIPartyOrForce()
@@ -46,13 +46,13 @@ void CUIPartyOrForce::Release()
 	CN3UIBase::Release();
 
 	m_Members.clear();
-	m_iIndexSelected = -1; // ÇöÀç ¼±ÅÃµÈ ¸â¹öÀÎµ¦½º..
+	m_iIndexSelected = -1; // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ãµï¿½ ï¿½ï¿½ï¿½ï¿½Îµï¿½ï¿½ï¿½..
 	for(int i = 0; i < MAX_PARTY_OR_FORCE; i++)
 	{
-		m_pProgress_HPs[i]		= NULL;	// ºÎ´ë¿ø°¹¼ö ¸¸Å­... HP Gauge
-		m_pProgress_HPReduce[i] = NULL;	// ºÎ´ë¿ø°¹¼ö ¸¸Å­... HP Reduce
-		m_pProgress_ETC[i]		= NULL;	// ºÎ´ë¿ø°¹¼ö ¸¸Å­... »óÅÂÀÌ»ó
-		m_pStatic_IDs[i]		= NULL;	// ºÎ´ë¿ø°¹¼ö ¸¸Å­... ÀÌ¸§µé..
+		m_pProgress_HPs[i]		= NULL;	// ï¿½Î´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Å­... HP Gauge
+		m_pProgress_HPReduce[i] = NULL;	// ï¿½Î´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Å­... HP Reduce
+		m_pProgress_ETC[i]		= NULL;	// ï¿½Î´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Å­... ï¿½ï¿½ï¿½ï¿½ï¿½Ì»ï¿½
+		m_pStatic_IDs[i]		= NULL;	// ï¿½Î´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Å­... ï¿½Ì¸ï¿½ï¿½ï¿½..
 		m_pAreas[i]				= NULL;
 	}
 
@@ -63,7 +63,7 @@ bool CUIPartyOrForce::Load(HANDLE hFile)
 	if(CN3UIBase::Load(hFile)==false) return false;
 
 	char szID[128] = "";
-	for(int i = 0; i < MAX_PARTY_OR_FORCE; i++) // ºó°÷À» Ã£ÀÚ..
+	for(int i = 0; i < MAX_PARTY_OR_FORCE; i++) // ï¿½ï¿½ï¿½ï¿½ï¿½ Ã£ï¿½ï¿½..
 	{
 		sprintf(szID, "progress_hp_%d", i); // 
 		m_pProgress_HPs[i] = (CN3UIProgress*)(this->GetChildByID(szID)); __ASSERT(m_pProgress_HPs[i], "NULL UI Component!!!");
@@ -117,7 +117,7 @@ bool CUIPartyOrForce::ReceiveMessage(CN3UIBase* pSender, DWORD dwMsg)
 			if(pSender == m_pAreas[i])
 			{
 				pIP = &(*it);
-				m_iIndexSelected = i; // ÇöÀç ¼±ÅÃµÈ ¸â¹öÀÎµ¦½º..
+				m_iIndexSelected = i; // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ãµï¿½ ï¿½ï¿½ï¿½ï¿½Îµï¿½ï¿½ï¿½..
 				break;
 			}
 		}
@@ -136,7 +136,7 @@ void CUIPartyOrForce::Render()
 	CN3UIBase::Render();
 
 	if(	m_iIndexSelected < 0 ||
-		m_iIndexSelected >= m_Members.size() ||
+		m_iIndexSelected >= (int)m_Members.size() ||
 		m_iIndexSelected >= MAX_PARTY_OR_FORCE ) return;
 	if(NULL == m_pStatic_IDs[m_iIndexSelected] || NULL == m_pProgress_HPs[m_iIndexSelected]) return;
 
@@ -152,18 +152,18 @@ void CUIPartyOrForce::Render()
 	rc.right = (rc1.right > rc2.right) ? rc1.right : rc2.right;
 	rc.bottom = (rc1.bottom > rc2.bottom) ? rc1.bottom : rc2.bottom;
 
-	CN3Base::RenderLines(rc, 0xff00ff00); // ¼±ÅÃ Ç¥½Ã..
+	CN3Base::RenderLines(rc, 0xff00ff00); // ï¿½ï¿½ï¿½ï¿½ Ç¥ï¿½ï¿½..
 }
 
 bool CUIPartyOrForce::TargetByIndex(int iIndex)
 {
-	if(iIndex < 0 || iIndex >= m_Members.size()) return false;
+	if(iIndex < 0 || iIndex >= (int)m_Members.size()) return false;
 
 	it_PartyOrForce it = m_Members.begin();
 	for(int i = 0; i < iIndex; i++) it++;
 
 	__InfoPartyOrForce* pIP = &(*it);
-	m_iIndexSelected = iIndex; // ÇöÀç ¼±ÅÃµÈ ¸â¹öÀÎµ¦½º..
+	m_iIndexSelected = iIndex; // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ãµï¿½ ï¿½ï¿½ï¿½ï¿½Îµï¿½ï¿½ï¿½..
 
 	if(pIP) CGameProcedure::s_pProcMain->TargetSelect(pIP->iID, true);
 
@@ -191,7 +191,7 @@ const __InfoPartyOrForce* CUIPartyOrForce::MemberInfoGetByID(int iID, int& iInde
 const __InfoPartyOrForce* CUIPartyOrForce::MemberInfoGetByIndex(int iIndex)
 {
 	if(m_Members.empty()) return NULL;
-	if(iIndex < 0 || iIndex > m_Members.size()) return NULL;
+	if(iIndex < 0 || iIndex > (int)m_Members.size()) return NULL;
 
 	it_PartyOrForce it = m_Members.begin(), itEnd = m_Members.end();
 	for(int i = 0; i < iIndex; i++) it++;
@@ -264,7 +264,7 @@ bool CUIPartyOrForce::MemberRemove(int iID)
 void CUIPartyOrForce::MemberDestroy()
 {
 	m_Members.clear();
-	for(int i = 0; i < MAX_PARTY_OR_FORCE; i++) // ºó°÷À» Ã£ÀÚ..
+	for(int i = 0; i < MAX_PARTY_OR_FORCE; i++) // ï¿½ï¿½ï¿½ï¿½ï¿½ Ã£ï¿½ï¿½..
 	{
 		if(m_pProgress_HPs[i])		m_pProgress_HPs[i]->SetVisible(false);
 		if(m_pProgress_HPReduce[i]) m_pProgress_HPReduce[i]->SetVisible(false);
@@ -276,13 +276,13 @@ void CUIPartyOrForce::MemberDestroy()
 	this->MemberInfoReInit();
 }
 
-void CUIPartyOrForce::MemberInfoReInit() // ÆÄÆ¼¿ø ±¸¼ºÀÌ º¯°æµÉ¶§.. ¼ø¼­ ¹× °¢Á¾ Á¤º¸ ¾÷µ¥ÀÌÆ®..
+void CUIPartyOrForce::MemberInfoReInit() // ï¿½ï¿½Æ¼ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½É¶ï¿½.. ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®..
 {
 	it_PartyOrForce it = m_Members.begin(), itEnd = m_Members.end();
 	__InfoPartyOrForce* pIP = NULL;
 	for(int i = 0; it != itEnd && i < MAX_PARTY_OR_FORCE; it++, i++)
 	{
-		pIP = &(*it); // µð¹ö±ë ÇÏ±â ½¬¿ì¶ó°í ÀÌ·¸°Ô Çß´Ù..
+		pIP = &(*it); // ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ï±ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ì·ï¿½ï¿½ï¿½ ï¿½ß´ï¿½..
 		if(pIP->iHPMax <= 0)
 		{
 			__ASSERT(0, "Invalid Party memeber HP");
@@ -311,7 +311,7 @@ void CUIPartyOrForce::MemberInfoReInit() // ÆÄÆ¼¿ø ±¸¼ºÀÌ º¯°æµÉ¶§.. ¼ø¼­ ¹× °¢Á
 		}
 	}
 
-	for(; i < MAX_PARTY_OR_FORCE; i++)
+	for(int i = 0; i < MAX_PARTY_OR_FORCE; i++)
 	{
 		if(m_pProgress_HPs[i])		m_pProgress_HPs[i]->SetVisible(false);
 		if(m_pProgress_HPReduce[i]) m_pProgress_HPReduce[i]->SetVisible(false);
@@ -319,14 +319,14 @@ void CUIPartyOrForce::MemberInfoReInit() // ÆÄÆ¼¿ø ±¸¼ºÀÌ º¯°æµÉ¶§.. ¼ø¼­ ¹× °¢Á
 		if(m_pStatic_IDs[i])		m_pStatic_IDs[i]->SetVisible(false);
 	}
 
-	if(m_Members.empty()) this->SetVisible(false); // ¸â¹ö°¡ ¾øÀ¸¸é ¼û±ä´Ù.
-	else this->SetVisible(true); // ¸â¹ö°¡ ÀÖÀ¸¸é º¸ÀÎ´Ù.
+	if(m_Members.empty()) this->SetVisible(false); // ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½.
+	else this->SetVisible(true); // ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Î´ï¿½.
 }
 
 const __InfoPartyOrForce* CUIPartyOrForce::MemberInfoGetSelected()
 {
 	if(m_Members.empty()) return NULL;
-	if(m_iIndexSelected < 0 || m_iIndexSelected > m_Members.size()) return NULL;
+	if(m_iIndexSelected < 0 || m_iIndexSelected > (int)m_Members.size()) return NULL;
 
 	it_PartyOrForce it = m_Members.begin(), itEnd = m_Members.end();
 	for(int i = 0; i < m_iIndexSelected; i++) it++;
@@ -340,7 +340,7 @@ void CUIPartyOrForce::MemberHPChange(int iID, int iHP, int iHPMax)
 	__InfoPartyOrForce* pIP = NULL;
 	for(int i = 0; it != itEnd && i < MAX_PARTY_OR_FORCE; it++, i++)
 	{
-		pIP = &(*it); // µð¹ö±ë ÇÏ±â ½¬¿ì¶ó°í ÀÌ·¸°Ô Çß´Ù..
+		pIP = &(*it); // ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ï±ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ì·ï¿½ï¿½ï¿½ ï¿½ß´ï¿½..
 		if(pIP->iID == iID)
 		{
 			pIP->iHP = iHP;
@@ -360,7 +360,7 @@ void CUIPartyOrForce::MemberStatusChange(int iID, e_PartyStatus ePS, bool bSuffe
 	__InfoPartyOrForce* pIP = NULL;
 	for(int i = 0; it != itEnd && i < MAX_PARTY_OR_FORCE; it++, i++)
 	{
-		pIP = &(*it); // µð¹ö±ë ÇÏ±â ½¬¿ì¶ó°í ÀÌ·¸°Ô Çß´Ù..
+		pIP = &(*it); // ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ï±ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ì·ï¿½ï¿½ï¿½ ï¿½ß´ï¿½..
 		if(pIP->iID == iID)
 		{
 			if(PARTY_STATUS_DOWN_HP == ePS)	pIP->bSufferDown_HP = bSuffer;
@@ -376,7 +376,7 @@ void CUIPartyOrForce::MemberLevelChange(int iID, int iLevel)
 	__InfoPartyOrForce* pIP = NULL;
 	for(int i = 0; it != itEnd && i < MAX_PARTY_OR_FORCE; it++, i++)
 	{
-		pIP = &(*it); // µð¹ö±ë ÇÏ±â ½¬¿ì¶ó°í ÀÌ·¸°Ô Çß´Ù..
+		pIP = &(*it); // ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ï±ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ì·ï¿½ï¿½ï¿½ ï¿½ß´ï¿½..
 		if(pIP->iID == iID)
 		{
 			pIP->iLevel = iLevel;
@@ -391,7 +391,7 @@ void CUIPartyOrForce::MemberClassChange(int iID, e_Class eClass)
 	__InfoPartyOrForce* pIP = NULL;
 	for(int i = 0; it != itEnd && i < MAX_PARTY_OR_FORCE; it++, i++)
 	{
-		pIP = &(*it); // µð¹ö±ë ÇÏ±â ½¬¿ì¶ó°í ÀÌ·¸°Ô Çß´Ù..
+		pIP = &(*it); // ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ï±ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ì·ï¿½ï¿½ï¿½ ï¿½ß´ï¿½..
 		if(pIP->iID == iID)
 		{
 			pIP->eClass = eClass;
@@ -416,7 +416,7 @@ void CUIPartyOrForce::Tick()
 	__InfoPartyOrForce* pIP = NULL;
 	for(int i = 0; it != itEnd && i < MAX_PARTY_OR_FORCE; it++, i++)
 	{
-		pIP = &(*it); // µð¹ö±ë ÇÏ±â ½¬¿ì¶ó°í ÀÌ·¸°Ô Çß´Ù..
+		pIP = &(*it); // ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ï±ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ì·ï¿½ï¿½ï¿½ ï¿½ß´ï¿½..
 		if(m_pProgress_HPs[i])
 		{
 			if( pIP->bSufferDown_HP || pIP->bSufferDown_Etc )
@@ -463,8 +463,8 @@ bool CUIPartyOrForce::OnKeyPress(int iKey)
 	switch(iKey)
 	{
 	case DIK_ESCAPE:
-		{	//hotkey°¡ Æ÷Ä¿½º ÀâÇôÀÖÀ»¶§´Â ´Ù¸¥ ui¸¦ ´ÝÀ»¼ö ¾øÀ¸¹Ç·Î DIK_ESCAPE°¡ µé¾î¿À¸é Æ÷Ä¿½º¸¦ ´Ù½ÃÀâ°í
-			//¿­·ÁÀÖ´Â ´Ù¸¥ À¯¾ÆÀÌ¸¦ ´Ý¾ÆÁØ´Ù.
+		{	//hotkeyï¿½ï¿½ ï¿½ï¿½Ä¿ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ù¸ï¿½ uiï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ç·ï¿½ DIK_ESCAPEï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ä¿ï¿½ï¿½ï¿½ï¿½ ï¿½Ù½ï¿½ï¿½ï¿½ï¿½
+			//ï¿½ï¿½ï¿½ï¿½ï¿½Ö´ï¿½ ï¿½Ù¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ì¸ï¿½ ï¿½Ý¾ï¿½ï¿½Ø´ï¿½.
 			CGameProcedure::s_pUIMgr->ReFocusUI();//this_ui
 			CN3UIBase* pFocus = CGameProcedure::s_pUIMgr->GetFocusedUI();
 			if(pFocus && pFocus != this) pFocus->OnKeyPress(iKey);

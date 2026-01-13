@@ -56,7 +56,7 @@ void CWarMessage::SetMessage(const std::string& szText, DWORD dwFlags, DWORD dwC
 {
 	if(m_pMessageFont) 
 	{
-		m_pMessageFont->SetText(szText, dwFlags); // ÆùÆ®¿¡ ÅØ½ºÆ® ÁöÁ¤.
+		m_pMessageFont->SetText(szText, dwFlags); // ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½Ø½ï¿½Æ® ï¿½ï¿½ï¿½ï¿½.
 		m_pMessageFont->SetFontColor(dwColor);
 		m_fTime = WAR_MESSAGE_SHOW_TIME;
 	}
@@ -72,9 +72,9 @@ void CWarMessage::RenderMessage()
 		POINT pt = m_ptMessage;
 		D3DCOLOR crFont = m_pMessageFont->GetFontColor();
 
-		m_pMessageFont->DrawText(pt.x - 1, pt.y - 1, 0xff000000, 0);
-		m_pMessageFont->DrawText(pt.x + 1, pt.y + 1, 0xff000000, 0);
-		m_pMessageFont->DrawText(pt.x , pt.y, crFont, 0);
+		m_pMessageFont->DrawText((float)((int)pt.x - 1), (float)((int)pt.y - 1), 0xff000000, 0);
+		m_pMessageFont->DrawText((float)((int)pt.x + 1), (float)((int)pt.y + 1), 0xff000000, 0);
+		m_pMessageFont->DrawText((float)(int)pt.x, (float)(int)pt.y, crFont, 0);
 	}
 }
 
@@ -87,7 +87,7 @@ void CWarMessage::Tick()
 		return;
 	}
 
-	m_ptMessage.x -= CN3Base::s_fSecPerFrm * 100;
+	m_ptMessage.x -= (LONG)(CN3Base::s_fSecPerFrm * 100);
 	SIZE size = m_pMessageFont->GetSize();
 	if(m_ptMessage.x < (-size.cx))
 	{

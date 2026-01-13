@@ -1411,7 +1411,7 @@ void CUIFriends::UpdateList()
 	if(m_iPageCur > iPageMax) return;
 
 	int iSkip = m_iPageCur * iLinePerPage;
-	if(iSkip >= m_MapFriends.size()) return;
+	if(iSkip >= (int)m_MapFriends.size()) return;
 
 	if(m_pText_Page) m_pText_Page->SetStringAsInt(m_iPageCur+1); //  ..
 
@@ -1460,7 +1460,7 @@ void CUIFriends::MsgSend_MemberInfo(bool bDisableInterval)
 	{
 		std::string szID;
 		m_pList_Friends->GetString(i, szID);
-		CAPISocket::MP_AddShort(&(buffers[0]), iOffset, szID.size());
+		CAPISocket::MP_AddShort(&(buffers[0]), iOffset, (short)szID.size());
 		CAPISocket::MP_AddString(&(buffers[0]), iOffset, szID);
 	}
 
@@ -1478,7 +1478,7 @@ void CUIFriends::MsgSend_MemberInfo(const std::string& szID)
 	CAPISocket::MP_AddByte(byBuff, iOffset, N3_FRIEND_INFO); //  .. Send s1(), str1() | Receive s1(), str1(), s1(ID), b2(, )
 	CAPISocket::MP_AddShort(byBuff, iOffset, iFC);
 
-	CAPISocket::MP_AddShort(byBuff, iOffset, szID.size());
+	CAPISocket::MP_AddShort(byBuff, iOffset, (short)szID.size());
 	CAPISocket::MP_AddString(byBuff, iOffset, szID);
 
 	CGameProcedure::s_pSocket->Send(byBuff, iOffset);
@@ -1736,8 +1736,8 @@ void CUIVarious::Tick()
 		if(fDelta < 2.0f) fDelta = 2.0f;
 		m_fMoveDelta += fDelta;
 
-		int iXLimit = -fWidth;
-		ptCur.x = -m_fMoveDelta;
+		int iXLimit = (int)(-fWidth);
+		ptCur.x = (int)(-m_fMoveDelta);
 		if(ptCur.x <= iXLimit) //  ..!!
 		{
 			ptCur.x = iXLimit;

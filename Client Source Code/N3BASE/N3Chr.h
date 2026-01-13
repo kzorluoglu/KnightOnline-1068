@@ -297,7 +297,7 @@ public:
 
 	const __Matrix44*	MatrixGet(int nJointIndex) const
 	{
-		if(m_MtxJoints.size() > nJointIndex && nJointIndex >=0) 
+		if((int)m_MtxJoints.size() > nJointIndex && nJointIndex >=0) 
 			return &(m_MtxJoints[nJointIndex]);
 		return NULL;
 	}
@@ -310,14 +310,14 @@ public:
 	int			PartCount() { return m_Parts.size(); }
 	CN3CPart*	PartSet(int iIndex, const std::string& szFN);
 	CN3CPart*  	PartAdd() { CN3CPart* pPart = new CN3CPart(); m_Parts.push_back(pPart); return pPart; }
-	CN3CPart*	Part(int iIndex) { if(iIndex < 0 || iIndex >= m_Parts.size()) return NULL; return m_Parts[iIndex]; }
+	CN3CPart*	Part(int iIndex) { if(iIndex < 0 || iIndex >= (int)m_Parts.size()) return NULL; return m_Parts[iIndex]; }
 
 	void		PlugDelete(int iIndex);
 	void		PlugAlloc(int nCount);
 	int			PlugCount() { return m_Plugs.size(); }
 	CN3CPlug*	PlugSet(int iIndex, const std::string& szFN);
 	CN3CPlug*	PlugAdd(e_PlugType eType=PLUGTYPE_NORMAL) { CN3CPlug* pPlug = new CN3CPlug(); m_Plugs.push_back(pPlug); return pPlug; }
-	CN3CPlug*	Plug(int iIndex) { if(iIndex < 0 || iIndex >= m_Plugs.size()) return NULL; return m_Plugs[iIndex]; }
+	CN3CPlug*	Plug(int iIndex) { if(iIndex < 0 || iIndex >= (int)m_Plugs.size()) return NULL; return m_Plugs[iIndex]; }
 
 	void		Tick(float fFrm = FRAME_SELFPLAY);
 	void		TickAnimationFrame();

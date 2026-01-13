@@ -2,110 +2,110 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <Filter Include="Resource Files">
-      <UniqueIdentifier>{fdd861a1-dbba-459c-b73a-087babf9b20d}</UniqueIdentifier>
+      <UniqueIdentifier>{d4e66132-f79f-409d-891a-5961119b890b}</UniqueIdentifier>
       <Extensions>ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe</Extensions>
     </Filter>
     <Filter Include="N3Base">
-      <UniqueIdentifier>{8e075252-9274-4732-96e4-df10ba067f44}</UniqueIdentifier>
+      <UniqueIdentifier>{f5aa46a4-86c1-4eeb-88e0-fc7747ec7190}</UniqueIdentifier>
     </Filter>
     <Filter Include="N3Base\N3UI">
-      <UniqueIdentifier>{2f757afc-8cd9-4723-89b8-24f0b85e9a6e}</UniqueIdentifier>
+      <UniqueIdentifier>{49eaca4d-4407-4204-ae24-7f0878d5780d}</UniqueIdentifier>
     </Filter>
     <Filter Include="N3Base\Core">
-      <UniqueIdentifier>{9bf38da8-d22f-413d-ba7d-9e0ca7b2286b}</UniqueIdentifier>
+      <UniqueIdentifier>{740cd5e4-0ab6-4342-99d4-a199a48add10}</UniqueIdentifier>
     </Filter>
     <Filter Include="SoundMgr">
-      <UniqueIdentifier>{e3c81720-0a99-4230-9215-49693db2cd62}</UniqueIdentifier>
+      <UniqueIdentifier>{22e30729-05f5-4b97-8f67-c7ec538ab05c}</UniqueIdentifier>
     </Filter>
     <Filter Include="Network">
-      <UniqueIdentifier>{d29492a1-258c-49e7-9041-94aec8d009a1}</UniqueIdentifier>
+      <UniqueIdentifier>{434edfeb-ba95-47b5-b928-579f5d3476e4}</UniqueIdentifier>
     </Filter>
     <Filter Include="Procedure - Character Create">
-      <UniqueIdentifier>{1db6b8d1-3aba-41c8-a631-f17c4b79159c}</UniqueIdentifier>
+      <UniqueIdentifier>{e5be4bfa-f678-4218-8000-4d2035192646}</UniqueIdentifier>
     </Filter>
     <Filter Include="Procedure - Character Select">
-      <UniqueIdentifier>{0acc335e-d527-46b6-809e-70d36c15cee4}</UniqueIdentifier>
+      <UniqueIdentifier>{1a9372e4-08e2-4b7e-9742-2b9130302ede}</UniqueIdentifier>
     </Filter>
     <Filter Include="Procedure - Main">
-      <UniqueIdentifier>{a9cf5149-dfbb-4df7-b1cd-51339c76cc1f}</UniqueIdentifier>
+      <UniqueIdentifier>{14d1e2f8-f57f-434f-8359-e06831dd60da}</UniqueIdentifier>
     </Filter>
     <Filter Include="Procedure - Main\Player">
-      <UniqueIdentifier>{2d4433f0-e025-4769-b7da-83a74b9f94f5}</UniqueIdentifier>
+      <UniqueIdentifier>{09dcdd77-c480-4339-8536-b3d9aca86988}</UniqueIdentifier>
     </Filter>
     <Filter Include="Procedure - Main\Player\Common">
-      <UniqueIdentifier>{f7cf0b5b-183a-4176-8af7-2216505ceec6}</UniqueIdentifier>
+      <UniqueIdentifier>{29b88d14-3b9d-407b-8f7f-f20a74416555}</UniqueIdentifier>
     </Filter>
     <Filter Include="Procedure - Main\Player\Machine">
-      <UniqueIdentifier>{e6e73bf1-732a-413c-8bc8-6003d6b417bc}</UniqueIdentifier>
+      <UniqueIdentifier>{7e9eb332-16bf-4664-baf2-d27901d2464e}</UniqueIdentifier>
     </Filter>
     <Filter Include="Procedure - Main\FX">
-      <UniqueIdentifier>{a574648d-09f3-4161-b1b8-6fcaf34f4a5d}</UniqueIdentifier>
+      <UniqueIdentifier>{5e29a772-83ea-4a1c-9aff-ff63420b0591}</UniqueIdentifier>
     </Filter>
     <Filter Include="Procedure - Main\UI">
-      <UniqueIdentifier>{3bc6140b-1134-4b96-afb2-c08cbee2676f}</UniqueIdentifier>
+      <UniqueIdentifier>{74be2b80-78a3-451d-a560-c76380f452cc}</UniqueIdentifier>
     </Filter>
     <Filter Include="Procedure - Main\UI\UI%28Item Relative%29">
-      <UniqueIdentifier>{44b59465-b716-4c6a-8fdb-2d34ae4e4c70}</UniqueIdentifier>
+      <UniqueIdentifier>{f3ac82eb-4021-475a-97ad-09f336dbd0b6}</UniqueIdentifier>
     </Filter>
     <Filter Include="Procedure - Main\UI\UI%28Icon Basic%29">
-      <UniqueIdentifier>{0774afac-06d8-43f1-a43c-3d64daf128f6}</UniqueIdentifier>
+      <UniqueIdentifier>{b5e084d7-d864-48d1-8653-bf4072202a0b}</UniqueIdentifier>
     </Filter>
     <Filter Include="Procedure - Main\UI\UI%28Skill Relative%29">
-      <UniqueIdentifier>{fa623cb9-f8e4-4a94-ad70-3219083313db}</UniqueIdentifier>
+      <UniqueIdentifier>{c2a67c5f-3104-4bb6-a68a-c5641fe98d4d}</UniqueIdentifier>
     </Filter>
     <Filter Include="Procedure - Main\UI\UI%28Exchange &amp; Repair%29">
-      <UniqueIdentifier>{318c6cc4-0b44-4c76-ab42-01957c262f9e}</UniqueIdentifier>
+      <UniqueIdentifier>{bc59c7aa-e4da-4572-a6d2-a804d0b49ded}</UniqueIdentifier>
     </Filter>
     <Filter Include="Procedure - Main\UI\UI%28Change &amp; Init%29">
-      <UniqueIdentifier>{981711e0-caa2-4f00-897a-8bc5b6d91acb}</UniqueIdentifier>
+      <UniqueIdentifier>{2710fedc-c2ee-4cea-82c0-bd5ffe8fc1b1}</UniqueIdentifier>
     </Filter>
     <Filter Include="Procedure - Main\UI\UI%28Inn%29">
-      <UniqueIdentifier>{0c9b92e3-37ad-4b1a-9168-4c65836609d3}</UniqueIdentifier>
+      <UniqueIdentifier>{7221794b-b276-43a0-91b9-407ac7f8f45f}</UniqueIdentifier>
     </Filter>
     <Filter Include="Procedure - Main\Procedure[Sub] - PerTrade">
-      <UniqueIdentifier>{062065a4-740c-4cab-9aea-6b2babeb26e9}</UniqueIdentifier>
+      <UniqueIdentifier>{fdc7c9bb-4d9b-4373-a807-c69f44593375}</UniqueIdentifier>
     </Filter>
     <Filter Include="Procedure - Main\MagicSkill">
-      <UniqueIdentifier>{8847eb2d-ef6e-4fbd-9585-d89d579ea96a}</UniqueIdentifier>
+      <UniqueIdentifier>{62e3f983-9ab4-4d95-847c-65d6632ce3e7}</UniqueIdentifier>
     </Filter>
     <Filter Include="Procedure - Main\World Manager">
-      <UniqueIdentifier>{41ef5f1b-2817-4581-bc88-df40df78f6dd}</UniqueIdentifier>
+      <UniqueIdentifier>{2d4152b2-759c-4716-9fa2-fda888fc77b5}</UniqueIdentifier>
     </Filter>
     <Filter Include="Procedure - Main\World Manager\Terrain Manager">
-      <UniqueIdentifier>{e3c62925-9668-42e5-9261-3ce367a3cfda}</UniqueIdentifier>
+      <UniqueIdentifier>{19ddd256-9e23-4a8c-bbef-eb2059295691}</UniqueIdentifier>
     </Filter>
     <Filter Include="Procedure - Main\World Manager\Terrain Manager\N3Sky">
-      <UniqueIdentifier>{fa9a1504-7827-4cc0-aebd-cef01022fb23}</UniqueIdentifier>
+      <UniqueIdentifier>{7438de9c-cc93-4b66-9afe-fe00277186c0}</UniqueIdentifier>
     </Filter>
     <Filter Include="Procedure - Main\World Manager\Terrain Manager\N3Terrain">
-      <UniqueIdentifier>{e3945751-2cb6-4f41-88d6-fae3bdf592a2}</UniqueIdentifier>
+      <UniqueIdentifier>{ab0a5837-e306-4e80-8112-1eadb3ee9494}</UniqueIdentifier>
     </Filter>
     <Filter Include="Procedure - Main\World Manager\Terrain Manager\N3ShapeMgr">
-      <UniqueIdentifier>{c6bccf45-1ece-47d8-b99e-cc7e158f58ae}</UniqueIdentifier>
+      <UniqueIdentifier>{3556c219-a083-4eb9-a5dd-fc66fe6fdeb8}</UniqueIdentifier>
     </Filter>
     <Filter Include="Procedure - Main\World Manager\Terrain Manager\Misc">
-      <UniqueIdentifier>{466abf7f-6ce7-489b-b31e-59e805cec926}</UniqueIdentifier>
+      <UniqueIdentifier>{a5c49ac2-cb71-4d6c-a650-54b9745e842d}</UniqueIdentifier>
     </Filter>
     <Filter Include="Procedure - Main\World Manager\Dungeon Manager">
-      <UniqueIdentifier>{d0d400ca-f4a5-4867-9876-4798bad5210a}</UniqueIdentifier>
+      <UniqueIdentifier>{867b3988-fda7-443e-8c38-e4387b4e1bbd}</UniqueIdentifier>
     </Filter>
     <Filter Include="Procedure - Main\World Manager\Dungeon Manager\PVS">
-      <UniqueIdentifier>{f834b4d6-1a6a-46d1-8eb0-9e3b0702f11c}</UniqueIdentifier>
+      <UniqueIdentifier>{cde4c76d-3b17-4276-bba4-775321d0db79}</UniqueIdentifier>
     </Filter>
     <Filter Include="Procedure - Option">
-      <UniqueIdentifier>{dae9e2c0-2bfc-47e4-af42-adc922fca3e0}</UniqueIdentifier>
+      <UniqueIdentifier>{7ca4f515-f807-4d88-b3e5-8367d4d66a73}</UniqueIdentifier>
     </Filter>
     <Filter Include="Procedure - Nation Select">
-      <UniqueIdentifier>{7671dd61-f8bb-4293-9f2f-13cc4062f61e}</UniqueIdentifier>
+      <UniqueIdentifier>{8d17d57a-e8cd-4964-ba99-05f98ded0080}</UniqueIdentifier>
     </Filter>
     <Filter Include="Knight Charactor">
-      <UniqueIdentifier>{6dd86e27-bd42-464a-bd2b-90938faf972c}</UniqueIdentifier>
+      <UniqueIdentifier>{ec6ad28f-c710-4026-8e77-de1029f00fef}</UniqueIdentifier>
     </Filter>
     <Filter Include="Procedure - LogIn">
-      <UniqueIdentifier>{83cb7ce8-c6e9-4a1b-a053-ee85547f256b}</UniqueIdentifier>
+      <UniqueIdentifier>{26198115-d2f8-4684-b2e8-659a9b09357f}</UniqueIdentifier>
     </Filter>
     <Filter Include="Reference Header">
-      <UniqueIdentifier>{b5ad192f-2e34-44b8-b0a5-a0c6e531503f}</UniqueIdentifier>
+      <UniqueIdentifier>{5d6f3fdf-83e7-4725-b8b0-d0391a576951}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

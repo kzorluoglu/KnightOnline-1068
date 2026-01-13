@@ -103,8 +103,7 @@ CN3Terrain::CN3Terrain()
 
 	m_bAvailableTile = true;
 
-	int i;
-	for(i=0;i<3;i++)
+	for(int i=0;i<3;i++)
 		for(int j=0;j<3;j++) m_LightMapPatch[i][j].clear();
 }
 
@@ -691,8 +690,7 @@ void CN3Terrain::LoadTileInfo(HANDLE hFile)
 	short SrcIdx, TileIdx;
 	HANDLE hTTGFile;
 	char szLoadingBuff[128];
-	int i;
-	for(i=0;i<m_NumTileTex;i++)
+	for(int i=0;i<m_NumTileTex;i++)
 	{
 		ReadFile(hFile, &SrcIdx, sizeof(short), &dwRWC, NULL);
 		ReadFile(hFile, &TileIdx, sizeof(short), &dwRWC, NULL);
@@ -716,7 +714,7 @@ void CN3Terrain::LoadTileInfo(HANDLE hFile)
 		CloseHandle(hTTGFile);
 	}
 
-	for(i=0;i<NumTileTexSrc;i++)
+	for(int i=0;i<NumTileTexSrc;i++)
 	{
 		delete[] SrcName[i];
 		SrcName[i] = NULL;
@@ -1225,8 +1223,7 @@ bool CN3Terrain::CheckBound()
 		vFPs[i] = vFPs[i] * CN3Base::s_CameraData.mtxViewInverse;
 
 	
-	int i;
-	for(i=0;i<4;i++)
+	for(int i=0;i<4;i++)
 	{
 		POINT FarPoint;
 		FarPoint.x = Real2Patch(vFPs[i].x);
@@ -1513,10 +1510,10 @@ void CN3Terrain::GetNormal(float x, float z, __Vector3& vNormal)
 		if ((dX+dZ) < 1.0f)
 		{
 			Height = m_pMapData[ix*m_ti_MapSize + (iz+1)].fHeight - m_pMapData[ix*m_ti_MapSize + iz].fHeight;
-			v1.Set(0, Height, TILE_SIZE);
+			v1.Set(0, Height, (float)TILE_SIZE);
 
 			Height = m_pMapData[(ix+1)*m_ti_MapSize + iz].fHeight - m_pMapData[ix*m_ti_MapSize + iz].fHeight;
-			v2.Set(TILE_SIZE, Height, 0);
+			v2.Set((float)TILE_SIZE, Height, 0);
 
 			vNormal.Cross(v1, v2);
 			return;
@@ -1524,10 +1521,10 @@ void CN3Terrain::GetNormal(float x, float z, __Vector3& vNormal)
 		else
 		{
 			Height = m_pMapData[(ix+1)*m_ti_MapSize + iz].fHeight - m_pMapData[(ix+1)*m_ti_MapSize + (iz+1)].fHeight;
-			v1.Set(0.0f, Height, (-1)*TILE_SIZE);
+			v1.Set(0.0f, Height, (float)(-1)*TILE_SIZE);
 
 			Height = m_pMapData[ix*m_ti_MapSize + (iz+1)].fHeight - m_pMapData[(ix+1)*m_ti_MapSize + (iz+1)].fHeight;
-			v2.Set((-1)*TILE_SIZE, Height, 0.0f);
+			v2.Set((float)(-1)*TILE_SIZE, Height, 0.0f);
 
 			vNormal.Cross(v1, v2);
 			return;
@@ -1538,10 +1535,10 @@ void CN3Terrain::GetNormal(float x, float z, __Vector3& vNormal)
 		if (dZ > dX)
 		{
 			Height = m_pMapData[(ix+1)*m_ti_MapSize + (iz+1)].fHeight - m_pMapData[ix*m_ti_MapSize + (iz+1)].fHeight;
-			v1.Set(TILE_SIZE, Height, 0.0f);
+			v1.Set((float)TILE_SIZE, Height, 0.0f);
 
 			Height = m_pMapData[ix*m_ti_MapSize + iz].fHeight - m_pMapData[ix*m_ti_MapSize + (iz+1)].fHeight;
-			v2.Set(0.0f ,Height, (-1)*TILE_SIZE);
+			v2.Set(0.0f ,Height, (float)(-1)*TILE_SIZE);
 
 			vNormal.Cross(v1, v2);
 			return;
@@ -1549,10 +1546,10 @@ void CN3Terrain::GetNormal(float x, float z, __Vector3& vNormal)
 		else
 		{
 			Height = m_pMapData[ix*m_ti_MapSize + iz].fHeight - m_pMapData[(ix+1)*m_ti_MapSize + iz].fHeight;
-			v1.Set((-1)*TILE_SIZE, Height, 0.0f);
+			v1.Set((float)(-1)*TILE_SIZE, Height, 0.0f);
 
 			Height = m_pMapData[(ix+1)*m_ti_MapSize + (iz+1)].fHeight - m_pMapData[(ix+1)*m_ti_MapSize + iz].fHeight;
-			v2.Set(0.0f ,Height, TILE_SIZE);
+			v2.Set(0.0f ,Height, (float)TILE_SIZE);
 
 			vNormal.Cross(v1, v2);
 			return;
@@ -2113,8 +2110,7 @@ bool CN3Terrain::LoadColorMap(const std::string& szFN)
 	}
 
 	char szBuff[128];
-	int x;
-	for(x=0;x<m_iNumColorMap;x++)
+	for(int x=0;x<m_iNumColorMap;x++)
 	{
 		for(int z=0;z<m_iNumColorMap;z++)
 		{
@@ -2142,15 +2138,15 @@ CN3Texture* CN3Terrain::GetTileTex(int x, int z)
 bool CN3Terrain::GetTileTexInfo(float x, float z, TERRAINTILETEXINFO& TexInfo1, TERRAINTILETEXINFO& TexInfo2)
 {
 	int tx, tz;
-	tx = x / TILE_SIZE;
-	tz = z / TILE_SIZE;
+	tx = (int)(x / TILE_SIZE);
+	tz = (int)(z / TILE_SIZE);
 
 	if(tx<0 || tx>=m_ti_MapSize || tz<0 || tz>=m_ti_MapSize) return false;
 
 	MAPDATA MapData = m_pMapData[(tx*m_ti_MapSize) + tz];
 
 
-	if(MapData.Tex1Idx < 0 || MapData.Tex1Idx >= m_NumTileTex)
+	if(MapData.Tex1Idx < 0 || MapData.Tex1Idx >= (int)m_NumTileTex)
 	{
 		TexInfo1.pTex = NULL;
 		TexInfo1.u = TexInfo1.v = 0.0f;
@@ -2181,7 +2177,7 @@ bool CN3Terrain::GetTileTexInfo(float x, float z, TERRAINTILETEXINFO& TexInfo1, 
 
 	}
 
-	if(MapData.Tex2Idx < 0 || MapData.Tex2Idx >= m_NumTileTex)
+	if(MapData.Tex2Idx < 0 || MapData.Tex2Idx >= (int)m_NumTileTex)
 	{
 		TexInfo2.pTex = NULL;
 		TexInfo2.u = TexInfo2.v = 0.0f;

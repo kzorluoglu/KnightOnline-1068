@@ -122,21 +122,21 @@ bool CUIKnightsOperation::ReceiveMessage(CN3UIBase* pSender, DWORD dwMsg)
 		{
 			this->MsgSend_KnightsCreate();
 		}
-		else if(pSender == m_pBtn_Join) // °¡ÀÔ
+		else if(pSender == m_pBtn_Join) // ï¿½ï¿½ï¿½ï¿½
 		{
 			this->MsgSend_KnightsJoin();
 		}
-		else if(pSender == m_pBtn_Destroy) // Å»Åð
+		else if(pSender == m_pBtn_Destroy) // Å»ï¿½ï¿½
 		{
 			std::string szMsg;
 			::_LoadStringFromResource(IDS_KNIGHTS_DESTROY_CONFIRM, szMsg);
-			CGameProcedure::MessageBoxPost(szMsg, "", MB_YESNO, BEHAVIOR_KNIGHTS_DESTROY); // ±â»ç´Ü ÇØÃ¼ ¹°¾îº¸±â..
+			CGameProcedure::MessageBoxPost(szMsg, "", MB_YESNO, BEHAVIOR_KNIGHTS_DESTROY); // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ã¼ ï¿½ï¿½ï¿½îº¸ï¿½ï¿½..
 		}
-		else if(pSender == m_pBtn_Withdraw) // Å»Åð
+		else if(pSender == m_pBtn_Withdraw) // Å»ï¿½ï¿½
 		{
 			std::string szMsg;
 			::_LoadStringFromResource(IDS_KNIGHTS_WITHDRAW_CONFIRM, szMsg);
-			CGameProcedure::MessageBoxPost(szMsg, "", MB_YESNO, BEHAVIOR_KNIGHTS_WITHDRAW); // ±â»ç´Ü Å»Åð ¹°¾îº¸±â..
+			CGameProcedure::MessageBoxPost(szMsg, "", MB_YESNO, BEHAVIOR_KNIGHTS_WITHDRAW); // ï¿½ï¿½ï¿½ï¿½ Å»ï¿½ï¿½ ï¿½ï¿½ï¿½îº¸ï¿½ï¿½..
 		}
 	}
 	else if(dwMsg == UIMSG_LIST_SELCHANGE)
@@ -214,16 +214,16 @@ void CUIKnightsOperation::KnightsListClear()
 
 void CUIKnightsOperation::ChangeUIByDuty(e_KnightsDuty eDuty)
 {
-	if(eDuty == KNIGHTS_DUTY_CHIEF) // ±â»ç´ÜÀåÀÌ¸é ±â»ç´Ü ÇØÃ¼µµ °¡´ÉÇÏ´Ù..
+	if(eDuty == KNIGHTS_DUTY_CHIEF) // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ì¸ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ã¼ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½..
 	{
 		if(m_pBtn_Destroy) m_pBtn_Destroy->SetState(UI_STATE_BUTTON_NORMAL);
-		if(m_pBtn_Withdraw) m_pBtn_Withdraw->SetState(UI_STATE_BUTTON_DISABLE); // ±â»ç ´ÜÀåÀÌ Å»ÅðÇÑ´Ù????!!!!
+		if(m_pBtn_Withdraw) m_pBtn_Withdraw->SetState(UI_STATE_BUTTON_DISABLE); // ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Å»ï¿½ï¿½ï¿½Ñ´ï¿½????!!!!
 		if(m_pBtn_Join) m_pBtn_Join->SetState(UI_STATE_BUTTON_DISABLE);
 	}
 	else 
 	{
 		if(m_pBtn_Destroy) m_pBtn_Destroy->SetState(UI_STATE_BUTTON_DISABLE);
-		if(m_pBtn_Withdraw) m_pBtn_Withdraw->SetState(UI_STATE_BUTTON_NORMAL); // ±â»ç ´ÜÀåÀÌ Å»ÅðÇÑ´Ù????!!!!
+		if(m_pBtn_Withdraw) m_pBtn_Withdraw->SetState(UI_STATE_BUTTON_NORMAL); // ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Å»ï¿½ï¿½ï¿½Ñ´ï¿½????!!!!
 		if(m_pBtn_Join) m_pBtn_Join->SetState(UI_STATE_BUTTON_NORMAL);
 	}
 }
@@ -231,18 +231,18 @@ void CUIKnightsOperation::ChangeUIByDuty(e_KnightsDuty eDuty)
 void CUIKnightsOperation::Open(e_KnightsDuty eDuty)
 {
 	m_iPageCur = 0;
-	this->KnightsListClear(); // ±â»ç´Ü Á¤º¸ Å¬¸®¾î
-	this->SetPosCenter(); // °¡¿îµ¥·Î ¸ÂÃß°í..
+	this->KnightsListClear(); // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ Å¬ï¿½ï¿½ï¿½ï¿½
+	this->SetPosCenter(); // ï¿½ï¿½ï¿½îµ¥ï¿½ï¿½ ï¿½ï¿½ï¿½ß°ï¿½..
 	this->SetVisible(true);
 
-	this->ChangeUIByDuty(eDuty); // ±ÇÇÑ¿¡ µû¶ó UI º¯°æ..
+	this->ChangeUIByDuty(eDuty); // ï¿½ï¿½ï¿½Ñ¿ï¿½ ï¿½ï¿½ï¿½ï¿½ UI ï¿½ï¿½ï¿½ï¿½..
 }
 
 void CUIKnightsOperation::Close()
 {
-	this->KnightsListClear(); // ±â»ç´Ü Á¤º¸ Å¬¸®¾î
+	this->KnightsListClear(); // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ Å¬ï¿½ï¿½ï¿½ï¿½
 	this->SetVisible(false);
-	if(m_pEdit_KnightsName) m_pEdit_KnightsName->KillFocus(); // ÀÌ·¡¾ß ´Ù¸¥°÷¿¡ ¹®Á¦°¡ ¾È»ý±ä´Ù..
+	if(m_pEdit_KnightsName) m_pEdit_KnightsName->KillFocus(); // ï¿½Ì·ï¿½ï¿½ï¿½ ï¿½Ù¸ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½È»ï¿½ï¿½ï¿½ï¿½..
 }
 
 bool CUIKnightsOperation::MsgRecv_KnightsList(DataPack* pDataPack, int& iOffset)
@@ -261,10 +261,10 @@ bool CUIKnightsOperation::MsgRecv_KnightsList(DataPack* pDataPack, int& iOffset)
 		CAPISocket::Parse_GetString(pDataPack->m_pData, iOffset, szChiefName, iNameLength);
 		iPoint = CAPISocket::Parse_GetDword(pDataPack->m_pData, iOffset);
 
-		this->KnightsListAdd(iID, szName, szChiefName, iMemberCount, iPoint); // UI ¿¡ Ãß°¡..
+		this->KnightsListAdd(iID, szName, szChiefName, iMemberCount, iPoint); // UI ï¿½ï¿½ ï¿½ß°ï¿½..
 	}
-	this->KnightsListUpdate(); // List ¿¡ ´Ù ³Ö¾úÀ¸¸é UI Update!!
-	this->EnableKnightsUIs(true); // Disable µÈ ¹öÆ°µé Enable ½ÃÅ²´Ù.
+	this->KnightsListUpdate(); // List ï¿½ï¿½ ï¿½ï¿½ ï¿½Ö¾ï¿½ï¿½ï¿½ï¿½ï¿½ UI Update!!
+	this->EnableKnightsUIs(true); // Disable ï¿½ï¿½ ï¿½ï¿½Æ°ï¿½ï¿½ Enable ï¿½ï¿½Å²ï¿½ï¿½.
 
 	return true;
 }
@@ -274,7 +274,7 @@ void CUIKnightsOperation::MsgSend_KnightsCreate()
 	if(NULL == m_pEdit_KnightsName) return;
 
 	std::string szKnightsName = m_pEdit_KnightsName->GetString();
-	if(szKnightsName.empty()) // ÀÌ¸§ÀÌ ¾øÀ¸¸é ¿¡·¯..
+	if(szKnightsName.empty()) // ï¿½Ì¸ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½..
 	{
 		std::string szMsg; ::_LoadStringFromResource(IDS_ERR_KNIGHTS_CREATE_FAILED_NAME_EMPTY, szMsg);
 		CGameProcedure::s_pProcMain->MsgOutput(szMsg, 0xffff00ff);
@@ -285,8 +285,8 @@ void CUIKnightsOperation::MsgSend_KnightsCreate()
 	BYTE byBuff[128];
 
 	CAPISocket::MP_AddByte(byBuff, iOffset, N3_KNIGHTS);
-	CAPISocket::MP_AddByte(byBuff, iOffset, N3_SP_KNIGHTS_CREATE); // »ý¼º Send - s1(Name Length) str1 | Recv - b1(1:¼º°ø 0:½ÇÆÐ)
-	CAPISocket::MP_AddShort(byBuff, iOffset, szKnightsName.size());
+	CAPISocket::MP_AddByte(byBuff, iOffset, N3_SP_KNIGHTS_CREATE); // ï¿½ï¿½ï¿½ï¿½ Send - s1(Name Length) str1 | Recv - b1(1:ï¿½ï¿½ï¿½ï¿½ 0:ï¿½ï¿½ï¿½ï¿½)
+	CAPISocket::MP_AddShort(byBuff, iOffset, (short)szKnightsName.size());
 	CAPISocket::MP_AddString(byBuff, iOffset, szKnightsName);
 
 	CGameProcedure::s_pSocket->Send(byBuff, iOffset);
@@ -298,7 +298,7 @@ void CUIKnightsOperation::MsgSend_KnightsDestroy()
 	BYTE byBuff[8];
 
 	CAPISocket::MP_AddByte(byBuff, iOffset, N3_KNIGHTS);
-	CAPISocket::MP_AddByte(byBuff, iOffset, N3_SP_KNIGHTS_DESTROY); // »ý¼º Send - s1(Name Length) str1 | Recv - b1(1:¼º°ø 0:½ÇÆÐ)
+	CAPISocket::MP_AddByte(byBuff, iOffset, N3_SP_KNIGHTS_DESTROY); // ï¿½ï¿½ï¿½ï¿½ Send - s1(Name Length) str1 | Recv - b1(1:ï¿½ï¿½ï¿½ï¿½ 0:ï¿½ï¿½ï¿½ï¿½)
 
 	CGameProcedure::s_pSocket->Send(byBuff, iOffset);
 }
@@ -307,7 +307,7 @@ void CUIKnightsOperation::MsgSend_KnightsJoin()
 {
 	if(NULL == m_pList_Knights) return;
 	int iCurSel = m_pList_Knights->GetCurSel();
-	if(iCurSel < 0 && iCurSel >= m_KnightsListExt.size()) return;
+	if(iCurSel < 0 || iCurSel >= (int)m_KnightsListExt.size()) return;
 
 	it_KIE it = m_KnightsListExt.begin();
 	for(int i = 0; i < iCurSel; i++, it++);
@@ -345,7 +345,7 @@ void CUIKnightsOperation::MsgSend_KnightsList(int iPage)
 
 	CGameProcedure::s_pSocket->Send(byBuff, iOffset);
 
-	// ÆäÀÌÁö¸¦ ³Ñ±æ¶§´Â ¹öÆ°µéÀ» ¸·¾Æ ³õ´Â´Ù.
+	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ñ±æ¶§ï¿½ï¿½ ï¿½ï¿½Æ°ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Â´ï¿½.
 	this->EnableKnightsUIs(false);
 }
 

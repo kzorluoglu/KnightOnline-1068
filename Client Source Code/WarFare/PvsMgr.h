@@ -13,6 +13,7 @@
 
 #include "..\N3BASE\N3BaseFileAccess.h"
 #include "../N3Base/N3Shape.h"
+#include "../N3Base/N3ShapeExtra.h"
 
 #include "PortalVolume.h"
 #include <string>
@@ -27,7 +28,7 @@ class CPvsMgr : public CN3BaseFileAccess
 	friend class CPortalVolume;
 
 	const std::string m_IndoorFolder;
-	const float m_fVolumeOffs;		// Volume Ã¼Å© ³ôÀÌ..
+	const float m_fVolumeOffs;		// Volume Ã¼Å© ï¿½ï¿½ï¿½ï¿½..
 
 	std::list<CPortalVolume*> m_pPvsList;
 
@@ -62,12 +63,12 @@ private:
 	BOOL PickWideWithTerrain(int x, int y, __Vector3& vPick);
 	CN3Shape* PickWithShape(int iXScreen, int iYScreen, bool bMustHaveEvent, __Vector3* pvPick = NULL);
 	CN3Shape* ShapeGetByIDWithShape(int iID);
-	bool CheckCollisionWithShape(	const __Vector3& vPos,				 // Ãæµ¹ À§Ä¡
-														const __Vector3& vDir,				   // ¹æÇâ º¤ÅÍ
-														float fSpeedPerSec,					    // ÃÊ´ç ¿òÁ÷ÀÌ´Â ¼Óµµ
-														__Vector3* pvCol,						 // Ãæµ¹ ÁöÁ¡
-														__Vector3* pvNormal,				  // Ãæµ¹ÇÑ¸éÀÇ ¹ý¼±º¤ÅÍ
-														__Vector3* pVec);						// Ãæµ¹ÇÑ ¸é ÀÇ Æú¸®°ï __Vector3[3]
+	bool CheckCollisionWithShape(	const __Vector3& vPos,				 // ï¿½æµ¹ ï¿½ï¿½Ä¡
+														const __Vector3& vDir,				   // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+														float fSpeedPerSec,					    // ï¿½Ê´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ì´ï¿½ ï¿½Óµï¿½
+														__Vector3* pvCol,						 // ï¿½æµ¹ ï¿½ï¿½ï¿½ï¿½
+														__Vector3* pvNormal,				  // ï¿½æµ¹ï¿½Ñ¸ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+														__Vector3* pVec);						// ï¿½æµ¹ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ __Vector3[3]
 
 public:
 	CPvsMgr();

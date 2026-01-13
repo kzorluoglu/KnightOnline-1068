@@ -88,6 +88,12 @@ bool CN3UIStatic::Load(HANDLE hFile)
 		std::vector<char> buffer(iSndFNLen+1, NULL);
 		ReadFile(hFile, &buffer[0], iSndFNLen, &dwNum, NULL);
 
+		std::string strSnd = &buffer[0];
+		size_t pos = strSnd.find("UI_en");
+		if (pos != std::string::npos) {
+			strSnd.replace(pos, 5, "UI_CH");
+			strcpy(&buffer[0], strSnd.c_str());
+		}
 		__ASSERT(NULL == m_pSnd_Click, "memory leak");
 		m_pSnd_Click = s_SndMgr.CreateObj(&buffer[0], SNDTYPE_2D);
 	}

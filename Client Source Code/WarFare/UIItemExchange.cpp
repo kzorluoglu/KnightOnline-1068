@@ -68,7 +68,7 @@ void CUIItemExchange::Release()
 		}
 	}
 
-	for( i = 0; i < MAX_ITEM_EX_RE_NPC; i++ )
+	for( int i = 0; i < MAX_ITEM_EX_RE_NPC; i++ )
 	{
 		if ( m_pMyNpcWnd[i] != NULL )
 		{
@@ -90,7 +90,7 @@ bool CUIItemExchange::Load(HANDLE hFile)
 
 void CUIItemExchange::Render()
 {
-	if (!m_bVisible) return;	// º¸ÀÌÁö ¾ÊÀ¸¸é ÀÚ½ÄµéÀ» renderÇÏÁö ¾Ê´Â´Ù.
+	if (!m_bVisible) return;	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ú½Äµï¿½ï¿½ï¿½ renderï¿½ï¿½ï¿½ï¿½ ï¿½Ê´Â´ï¿½.
 	POINT ptCur = CGameProcedure::s_pLocalInput->MouseGetPos();
 	m_pUITooltipDlg->DisplayTooltipsDisable();
 
@@ -163,7 +163,7 @@ e_UIWND_DISTRICT CUIItemExchange::GetWndDistrict(__IconItemSkill* spItem)
 			return UIWND_DISTRICT_EX_RE_INV;
 	}
 
-	for( i = 0; i < MAX_ITEM_EX_RE_NPC; i++ )
+	for( int i = 0; i < MAX_ITEM_EX_RE_NPC; i++ )
 	{
 		if ( (m_pMyNpcWnd[i] != NULL) && (m_pMyNpcWnd[i] == spItem) )
 			return UIWND_DISTRICT_EX_RE_NPC;
@@ -178,8 +178,8 @@ RECT CUIItemExchange::GetSampleRect()
 	POINT ptCur = CGameProcedure::s_pLocalInput->MouseGetPos();
 	pArea = CN3UIWndBase::GetChildAreaByiOrder(UI_AREA_TYPE_REPAIR_INV, 0);
 	rect = pArea->GetRegion();
-	float fWidth = rect.right - rect.left;
-	float fHeight = rect.bottom - rect.top;
+	float fWidth = (float)(rect.right - rect.left);
+	float fHeight = (float)(rect.bottom - rect.top);
 	fWidth *= 0.5f; fHeight *= 0.5f;
 	rect.left = ptCur.x - (int)fWidth;  rect.right  = ptCur.x + (int)fWidth;
 	rect.top  = ptCur.y - (int)fHeight; rect.bottom = ptCur.y + (int)fHeight;
@@ -224,13 +224,13 @@ bool CUIItemExchange::ReceiveIconDrop(__IconItemSkill* spItem, POINT ptCur)
 	CN3UIArea* pArea;
 	if (!m_bVisible) return false;
 
-	// ³»°¡ °¡Á³´ø ¾ÆÀÌÄÜÀÌ ¾Æ´Ï¸é..
+	// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Æ´Ï¸ï¿½..
 	if ( CN3UIWndBase::m_sSelectedIconInfo.UIWndSelect.UIWnd != m_eUIWnd )
 		FAIL_RETURN
 	if ( CN3UIWndBase::m_sSelectedIconInfo.UIWndSelect.UIWndDistrict != UIWND_DISTRICT_EX_RE_INV )
 		FAIL_RETURN
 
-	// ³»°¡ °¡Á³´ø ¾ÆÀÌÄÜÀÌ¸é.. npc¿µ¿ªÀÎÁö °Ë»çÇÑ´Ù..
+	// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ì¸ï¿½.. npcï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ë»ï¿½ï¿½Ñ´ï¿½..
 	int i; bool bFound = false;
 	for( i = 0; i < MAX_ITEM_EX_RE_NPC; i++ )
 	{
@@ -244,7 +244,7 @@ bool CUIItemExchange::ReceiveIconDrop(__IconItemSkill* spItem, POINT ptCur)
 
 	if (!bFound)	FAIL_RETURN
 
-	// ¾ÆÀÌÅÛÀÌ ²Ë Â÷ÀÖ´ÂÁö °Ë»çÇÑ´Ù..
+	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½Ö´ï¿½ï¿½ï¿½ ï¿½Ë»ï¿½ï¿½Ñ´ï¿½..
 	bFound = false;
 	for( i = 0; i < MAX_ITEM_EX_RE_NPC; i++ )
 	{
@@ -255,10 +255,10 @@ bool CUIItemExchange::ReceiveIconDrop(__IconItemSkill* spItem, POINT ptCur)
 		}
 	}
 
-	// ¾ÆÀÌÅÛÀÌ ²Ë Â÷ÀÖÁö ¾Ê´Ù¸é.. °¡Àå Ã¹¹øÂ° ºó ½½·ÔÀ» °Ë»çÇÑ´Ù..
+	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ê´Ù¸ï¿½.. ï¿½ï¿½ï¿½ï¿½ Ã¹ï¿½ï¿½Â° ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ë»ï¿½ï¿½Ñ´ï¿½..
 	if (!bFound)	FAIL_RETURN
 
-	// ¹Þ¾ÆµéÀÎ´Ù..
+	// ï¿½Þ¾Æµï¿½ï¿½Î´ï¿½..
 	m_pMyInvWnd[CN3UIWndBase::m_sSelectedIconInfo.UIWndSelect.iOrder] = NULL;
 
 	spItem->pUIIcon->SetRegion(pArea->GetRegion());
@@ -266,10 +266,10 @@ bool CUIItemExchange::ReceiveIconDrop(__IconItemSkill* spItem, POINT ptCur)
 
 	m_pMyNpcWnd[i] = spItem;
 
-	// ¹é¾÷ Á¤º¸..
+	// ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½..
 	m_pMyNpcWndOriginIndex[i] = CN3UIWndBase::m_sSelectedIconInfo.UIWndSelect.iOrder;
 
-	// ¼ö¸®ºñ¿ë ¾÷±×·¹ÀÌµå..
+	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½×·ï¿½ï¿½Ìµï¿½..
 	m_pTotalPrice += CalcRepairGold(spItem);
 	UpdateGoldValue();
 
@@ -287,7 +287,7 @@ void CUIItemExchange::UpdateGoldValue()
 	
 	if ( pStrGold )
 	{
-		// µ· ¾÷µ¥ÀÌÆ®..	
+		// ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®..	
 		sprintf(szGold, "%d", m_pTotalPrice);
 		pStrGold->SetString(szGold);
 	}		
@@ -298,7 +298,7 @@ void CUIItemExchange::UpdateUserTotalGold(int iGold)
 	char szGold[32];
 	CN3UIString* pStatic = NULL;
 
-	// µ· ¾÷µ¥ÀÌÆ®..
+	// ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®..
 	CGameBase::s_pPlayer->m_InfoExt.iGold = iGold;
 	sprintf(szGold, "%d", iGold);
 	pStatic = (CN3UIString* )CGameProcedure::s_pProcMain->m_pUIInventory->GetChildByID("text_gold"); __ASSERT(pStatic, "NULL UI Component!!");
@@ -379,9 +379,9 @@ bool CUIItemExchange::ReceiveMessage(CN3UIBase* pSender, DWORD dwMsg)
 			break;
 
 		case UIMSG_ICON_UP:
-			// ¾ÆÀÌÄÜ ¸Å´ÏÀú À©µµ¿ìµéÀ» µ¹¾Æ ´Ù´Ï¸é¼­ °Ë»ç..
+			// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Å´ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ù´Ï¸é¼­ ï¿½Ë»ï¿½..
 			if ( !CGameProcedure::s_pUIMgr->BroadcastIconDropMsg(CN3UIWndBase::m_sSelectedIconInfo.pItemSelect) )
-				// ¾ÆÀÌÄÜ À§Ä¡ ¿ø·¡´ë·Î..
+				// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ä¡ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½..
 				IconRestore();				
 			break;
 	}
@@ -395,7 +395,7 @@ DWORD CUIItemExchange::MouseProc(DWORD dwFlags, const POINT& ptCur, const POINT&
 	if (!m_bVisible) return dwRet;
 	if (CN3UIWndBase::m_sRecoveryJobInfo.m_bWaitFromServer) { dwRet |= CN3UIBase::MouseProc(dwFlags, ptCur, ptOld);  return dwRet; }
 
-	// µå·¡±× µÇ´Â ¾ÆÀÌÄÜ °»½Å..
+	// ï¿½å·¡ï¿½ï¿½ ï¿½Ç´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½..
 	if ( (GetState() == UI_STATE_ICON_MOVING) && 
 			(CN3UIWndBase::m_sSelectedIconInfo.UIWndSelect.UIWnd == UIWND_EXCHANGE_REPAIR) )
 	{
@@ -410,10 +410,10 @@ void CUIItemExchange::Open()
 {
 	SetVisible(true);
 
-	// º¸È£ÄÚµå°¡ ÇÊ¿äÇÏ´Ù.. ¿¹¸¦ µé¸é, ÀÎº¥Åä¸®, npc¿ÍÀÇ »ó°Å·¡, °³ÀÎ °Å·¡ ±ÝÁö..
+	// ï¿½ï¿½È£ï¿½Úµå°¡ ï¿½Ê¿ï¿½ï¿½Ï´ï¿½.. ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½, ï¿½Îºï¿½ï¿½ä¸®, npcï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Å·ï¿½, ï¿½ï¿½ï¿½ï¿½ ï¿½Å·ï¿½ ï¿½ï¿½ï¿½ï¿½..
 
 
-	// ±âÅ¸ ÀÛ¾÷..
+	// ï¿½ï¿½Å¸ ï¿½Û¾ï¿½..
 	int i;
 	for( i = 0; i < MAX_ITEM_EX_RE_NPC; i++ )
 	{
@@ -428,13 +428,13 @@ void CUIItemExchange::Open()
 	m_pTotalPrice = 0;
 	UpdateGoldValue();
 
-	// ÀÎº¥Åä¸® inv ¿µ¿ªÀÇ ¾ÆÀÌÅÛÀ» ÀÌ À©µµ¿ìÀÇ inv¿µ¿ªÀ¸·Î ¿Å±ä´Ù..
+	// ï¿½Îºï¿½ï¿½ä¸® inv ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ invï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Å±ï¿½ï¿½..
 	ItemMoveFromInvToThis();
 }
 
 void CUIItemExchange::UserPressOK()
 {
-	// °¹¼ö ¼¼±â..
+	// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½..
 	int iCount = 0;
 	for( int i = 0; i < MAX_ITEM_EX_RE_NPC; i++ )
 	{
@@ -444,26 +444,26 @@ void CUIItemExchange::UserPressOK()
 	if (iCount == 0) 
 		UserPressCancel();
 
-	// ¼­¹ö¿¡°Ô º¸³»°í.. 
-	BYTE byBuff[16];											// ÆÐÅ¶ ¹öÆÛ..
-	int iOffset=0;											// ÆÐÅ¶ ¿ÀÇÁ¼Â..
+	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½.. 
+	BYTE byBuff[16];											// ï¿½ï¿½Å¶ ï¿½ï¿½ï¿½ï¿½..
+	int iOffset=0;											// ï¿½ï¿½Å¶ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½..
 
-	CAPISocket::MP_AddByte(byBuff, iOffset, N3_ITEM_REPAIR_REQUEST);			// °ÔÀÓ ½ºÅ¸Æ® ÆÐÅ¶ Ä¿¸àµå..
-	CAPISocket::MP_AddShort(byBuff, iOffset, iCount);		// ¾ÆÀÌµð ±æÀÌ ÆÐÅ¶¿¡ ³Ö±â..
-	for( i = 0; i < iCount; i++ )
+	CAPISocket::MP_AddByte(byBuff, iOffset, N3_ITEM_REPAIR_REQUEST);			// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Å¸Æ® ï¿½ï¿½Å¶ Ä¿ï¿½ï¿½ï¿½..
+	CAPISocket::MP_AddShort(byBuff, iOffset, iCount);		// ï¿½ï¿½ï¿½Ìµï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Å¶ï¿½ï¿½ ï¿½Ö±ï¿½..
+	for( int i = 0; i < iCount; i++ )
 	{
-		CAPISocket::MP_AddByte(byBuff, iOffset, m_pMyNpcWndOriginIndex[i]);		// ¾ÆÀÌµð ±æÀÌ ÆÐÅ¶¿¡ ³Ö±â..
-		CAPISocket::MP_AddDword(byBuff, iOffset, m_pMyNpcWnd[i]->pItemBasic->dwID+m_pMyNpcWnd[i]->pItemExt->dwID);	// ¾ÆÀÌµð ¹®ÀÚ¿­ ÆÐÅ¶¿¡ ³Ö±â..
+		CAPISocket::MP_AddByte(byBuff, iOffset, m_pMyNpcWndOriginIndex[i]);		// ï¿½ï¿½ï¿½Ìµï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Å¶ï¿½ï¿½ ï¿½Ö±ï¿½..
+		CAPISocket::MP_AddDword(byBuff, iOffset, m_pMyNpcWnd[i]->pItemBasic->dwID+m_pMyNpcWnd[i]->pItemExt->dwID);	// ï¿½ï¿½ï¿½Ìµï¿½ ï¿½ï¿½ï¿½Ú¿ï¿½ ï¿½ï¿½Å¶ï¿½ï¿½ ï¿½Ö±ï¿½..
 	}
 	CGameProcedure::s_pSocket->Send(byBuff, iOffset);	
 
-	// ÀÀ´äÀ» ±â´Ù¸²..
+	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ù¸ï¿½..
 	CN3UIWndBase::m_sRecoveryJobInfo.m_bWaitFromServer = true;
 }
 
 void CUIItemExchange::ReceiveResultFromServer(int iResult, int iUserGold)
 {
-	// ¼º°øÀÌ¸é npc¿µ¿ªÀÇ Durability¸¦ ÃÖ´ë°ªÀ¸·Î..
+	// ï¿½ï¿½ï¿½ï¿½ï¿½Ì¸ï¿½ npcï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Durabilityï¿½ï¿½ ï¿½Ö´ë°ªï¿½ï¿½ï¿½ï¿½..
 	if(iResult == 0x01)
 	{
 		for( int i = 0; i < MAX_ITEM_EX_RE_NPC; i++ )
@@ -472,19 +472,19 @@ void CUIItemExchange::ReceiveResultFromServer(int iResult, int iUserGold)
 			{
 				m_pMyNpcWnd[i]->iDurability = m_pMyNpcWnd[i]->pItemBasic->siMaxDurability+m_pMyNpcWnd[i]->pItemExt->siMaxDurability;
 
-				// ¾ÆÀÌÄÜ »óÅÂ°¡ UISTYLE_DURABILITY_EXHAUST ÀÌ¸é..
+				// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Â°ï¿½ UISTYLE_DURABILITY_EXHAUST ï¿½Ì¸ï¿½..
 				m_pMyNpcWnd[i]->pUIIcon->SetStyle(m_pMyNpcWnd[i]->pUIIcon->GetStyle() & (~UISTYLE_DURABILITY_EXHAUST));
 			}
 		}
 	}
 
-	// µ· ¾÷µ¥ÀÌÆ®..
+	// ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®..
 	UpdateUserTotalGold(iUserGold);
 
-	// ÀÀ´ä ±â´Ù¸² ÇØÁ¦..
+	// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ù¸ï¿½ ï¿½ï¿½ï¿½ï¿½..
 	CN3UIWndBase::m_sRecoveryJobInfo.m_bWaitFromServer = false;
 
-	// ÀÌ À©µµ¿ìÀÇ npc ¿µ¿ªÀÇ ¾ÆÀÌÅÛÀ» ÀÌ À©µµ¿ìÀÇ inv ¿µ¿ªÀ¸·Î ¿Å±ä´Ù..
+	// ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ npc ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ inv ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Å±ï¿½ï¿½..
 	CN3UIArea* pArea = NULL;
 	for( int i = 0; i < MAX_ITEM_EX_RE_NPC; i++ )
 	{
@@ -502,7 +502,7 @@ void CUIItemExchange::ReceiveResultFromServer(int iResult, int iUserGold)
 		}
 	}
 
-	// Ã¢À» ´Ý´Â´Ù..	
+	// Ã¢ï¿½ï¿½ ï¿½Ý´Â´ï¿½..	
 	Close();
 }
 
@@ -510,7 +510,7 @@ void CUIItemExchange::UserPressCancel()
 {
 	CN3UIArea* pArea = NULL;
 
-	// ÀÌ À©µµ¿ìÀÇ npc ¿µ¿ªÀÇ ¾ÆÀÌÅÛÀ» ÀÌ À©µµ¿ìÀÇ inv ¿µ¿ªÀ¸·Î ¿Å±ä´Ù..
+	// ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ npc ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ inv ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Å±ï¿½ï¿½..
 	int i;
 	for( i = 0; i < MAX_ITEM_EX_RE_NPC; i++ )
 	{
@@ -528,7 +528,7 @@ void CUIItemExchange::UserPressCancel()
 		}
 	}
 
-	// Ã¢À» ´Ý´Â´Ù..	
+	// Ã¢ï¿½ï¿½ ï¿½Ý´Â´ï¿½..	
 	Close();
 }
 
@@ -536,7 +536,7 @@ void CUIItemExchange::Close()
 {
 	SetVisible(false);
 
-	// ÀÌ À©µµ¿ìÀÇ inv ¿µ¿ªÀÇ ¾ÆÀÌÅÛÀ» ÀÌ ÀÎº¥Åä¸® À©µµ¿ìÀÇ inv¿µ¿ªÀ¸·Î ¿Å±ä´Ù..	
+	// ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ inv ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½Îºï¿½ï¿½ä¸® ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ invï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Å±ï¿½ï¿½..	
 	ItemMoveFromThisToInv();
 }
 

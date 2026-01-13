@@ -247,7 +247,7 @@ void CGameProcCharacterSelect::Tick()
 			D3DVIEWPORT9 vp;
 			CN3Base::s_lpD3DDev->GetViewport(&vp);
 			
-			RECT rc = { vp.Width * 0.36f, vp.Height * 0.44f, vp.Width * 0.64f, vp.Height * 0.86f };
+			RECT rc = { (LONG)(vp.Width * 0.36f), (LONG)(vp.Height * 0.44f), (LONG)(vp.Width * 0.64f), (LONG)(vp.Height * 0.86f) };
 			POINT pt = s_pLocalInput->MouseGetPos();
 
 			if ( ::PtInRect(&rc, pt) )
@@ -899,9 +899,9 @@ void CGameProcCharacterSelect::MsgSend_DeleteChr(const std::string& szKey)
 	int iOffset = 0;
 	CAPISocket::MP_AddByte(byBuff, iOffset, N3_DELETE_CHARACTER);		// 커멘드.
 	CAPISocket::MP_AddByte(byBuff, iOffset, (BYTE)iIndex);				// 인덱스 - b
-	CAPISocket::MP_AddShort(byBuff, iOffset, (BYTE)m_InfoChrs[iIndex].szID.size());		// 아이디 길이
+	CAPISocket::MP_AddShort(byBuff, iOffset, (short)m_InfoChrs[iIndex].szID.size());		// 아이디 길이
 	CAPISocket::MP_AddString(byBuff, iOffset, m_InfoChrs[iIndex].szID); // 아이디 문자열
-	CAPISocket::MP_AddShort(byBuff, iOffset, szKey.size());				// 주민등록번호 길이
+	CAPISocket::MP_AddShort(byBuff, iOffset, (short)szKey.size());				// 주민등록번호 길이
 	CAPISocket::MP_AddString(byBuff, iOffset, szKey);					// 주민등록번호 문자열
 	
 	s_pSocket->Send(byBuff, iOffset);								// 보낸다
@@ -1109,9 +1109,9 @@ void CGameProcCharacterSelect::FadeOutRender()
     __VertexTransformedColor pVertices[4];
 
 	pVertices[0].Set( 0.0f, 0.0f, 0.000002f, 0.99f, D3DCOLOR_ARGB((BYTE)m_fFadeOut,0x00,0x00,0x00) );
-	pVertices[1].Set( s_CameraData.vp.Width, 0.0f, 0.000002f, 0.99f, D3DCOLOR_ARGB((BYTE)m_fFadeOut,0x00,0x00,0x00) );
-	pVertices[2].Set( s_CameraData.vp.Width, s_CameraData.vp.Height, 0.000002f, 0.99f, 	D3DCOLOR_ARGB((BYTE)m_fFadeOut,0x00,0x00,0x00) );
-	pVertices[3].Set( 0.0f, s_CameraData.vp.Height, 0.000002f, 0.99f, D3DCOLOR_ARGB((BYTE)m_fFadeOut,0x00,0x00,0x00) );
+	pVertices[1].Set( (float)s_CameraData.vp.Width, 0.0f, 0.000002f, 0.99f, D3DCOLOR_ARGB((BYTE)m_fFadeOut,0x00,0x00,0x00) );
+	pVertices[2].Set( (float)s_CameraData.vp.Width, (float)s_CameraData.vp.Height, 0.000002f, 0.99f, 	D3DCOLOR_ARGB((BYTE)m_fFadeOut,0x00,0x00,0x00) );
+	pVertices[3].Set( 0.0f, (float)s_CameraData.vp.Height, 0.000002f, 0.99f, D3DCOLOR_ARGB((BYTE)m_fFadeOut,0x00,0x00,0x00) );
 
 	DWORD dwUsefog = TRUE;
 	CN3Base::s_lpD3DDev->GetRenderState( D3DRS_FOGENABLE , &dwUsefog );

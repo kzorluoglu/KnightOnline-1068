@@ -253,7 +253,7 @@ void CGameProcLogIn::Render()
 */
 
 	for(int i = 0; i < 8; i++) 	CN3Base::s_lpD3DDev->LightEnable(i, FALSE);
-	for(i = 0; i < 3; i++) 	m_pLights[i]->Apply();
+	for(int i = 0; i < 3; i++) 	m_pLights[i]->Apply();
 
 	// ����Ʈ ���..
 /*	D3DLIGHT8 lgt0, lgt1, lgt2;
@@ -354,9 +354,9 @@ bool CGameProcLogIn::MsgSend_AccountLogIn(e_LogInClassification eLIC)
 //	else if(LIC_DAUM == eLIC) byCmd = N3_ACCOUNT_LOGIN_DAUM;
 
 	CAPISocket::MP_AddByte(byBuff, iOffset, byCmd);				// Ŀ���.
-	CAPISocket::MP_AddShort(byBuff, iOffset, s_szAccount.size());	// ���̵� ����..
+	CAPISocket::MP_AddShort(byBuff, iOffset, (short)s_szAccount.size());	// ���̵� ����..
 	CAPISocket::MP_AddString(byBuff, iOffset, s_szAccount);		// ���� ���̵�..
-	CAPISocket::MP_AddShort(byBuff, iOffset, s_szPassWord.size());	// �н����� ����
+	CAPISocket::MP_AddShort(byBuff, iOffset, (short)s_szPassWord.size());	// �н����� ����
 	CAPISocket::MP_AddString(byBuff, iOffset, s_szPassWord);		// ���� �н�����
 		
 	s_pSocket->Send(byBuff, iOffset);								// ������
@@ -446,7 +446,7 @@ void CGameProcLogIn::MsgRecv_AccountLogIn(int iCmd, DataPack* pDataPack, int& iO
 				int iOffset2 = 0;
 				BYTE Buff[32];
 				CAPISocket::MP_AddByte(Buff, iOffset2, N3_KICK_OUT); // Recv s1, str1(IP) s1(port) | Send s1, str1(ID)
-				CAPISocket::MP_AddShort(Buff, iOffset2, s_szAccount.size()); 
+				CAPISocket::MP_AddShort(Buff, iOffset2, (short)s_szAccount.size()); 
 				CAPISocket::MP_AddString(Buff, iOffset2, s_szAccount); // Recv s1, str1(IP) s1(port) | Send s1, str1(ID)
 				
 				socketTmp.Send(Buff, iOffset2);

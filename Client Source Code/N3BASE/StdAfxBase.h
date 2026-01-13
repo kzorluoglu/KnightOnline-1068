@@ -144,7 +144,7 @@ BOOL AFXAPI AfxDiagnosticInit(void);
 
 
 
-#if _DEBUG && !defined TRACE
+#if _DEBUG && !defined TRACE && !defined(_AFX_NO_DEBUG_CRT)
 void AFX_CDECL AfxTrace(const char* lpszFormat, ...);
 #define TRACE ::AfxTrace
 #else

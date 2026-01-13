@@ -283,7 +283,10 @@ BOOL CN3TableBase<Type>::LoadFromFile(const std::string& szFN)
 	BOOL bResult = Load(hFile);
 	CloseHandle(hFile);
 
-	if (FALSE == bResult) bResult = TRUE;
+	if (FALSE == bResult) {
+		CLogWriter::Write("ERROR: Table file %s failed to parse!", szFN.c_str());
+		bResult = TRUE;  // Still return TRUE to avoid crash, but log the error
+	}
 	::remove(szFNTmp.c_str());
 	return bResult;
 }
@@ -307,12 +310,14 @@ BOOL CN3TableBase<Type>::Load(HANDLE hFile)
 		if(FALSE == MakeOffsetTable(offsets)) return FALSE;
 
 #ifdef _N3GAME
-        for(int k=0; k<iDataTypeCount; k++) {
-			// @todo: temporarily commented out to reduce log spam
-            // CLogWriter::Write("Column %d: Type=%d, Offset=%d", k, m_DataTypes[k], offsets[k]);
-        }
+    for(int k=0; k<iDataTypeCount; k++) {
+		CLogWriter::Write("Column %d: Type=%d, Offset=%d", k, m_DataTypes[k], offsets[k]);
+    }
 #endif
-		if (DT_DWORD != m_DataTypes[0]) { m_DataTypes.clear(); return FALSE; }
+		if (DT_DWORD != m_DataTypes[0]) { 
+			CLogWriter::Write("N3TableBase::Load - WARNING: First column is type %d (expected DT_DWORD=6), but continuing anyway", m_DataTypes[0]);
+			// Don't reject - some table formats have different first columns
+		}
 	}
 
 	int iRC;
@@ -322,6 +327,9 @@ BOOL CN3TableBase<Type>::Load(HANDLE hFile)
 #endif
 	for (i=0; i<iRC; ++i)
 	{
+#ifdef _N3GAME
+        if (i % 10 == 0) CLogWriter::Write("N3TableBase::Load - processing row %d", i);
+#endif
 		Type Data;  // Move inside loop so destructor runs each iteration
         // Zero out Data before each row if it's not a complex object, but here it is complex.
         // We rely on constructor for the first row and subsequent rows are overwritten.
@@ -346,11 +354,11 @@ BOOL CN3TableBase<Type>::Load(HANDLE hFile)
 		auto it = m_Datas.find(dwKey);
 		if(it == m_Datas.end()) m_Datas.insert(typename MapType::value_type(dwKey, Data));
 		
-		// Clear all std::string members in Data to prevent destructor crash
+		// Clear strings in Data to prevent destructor crash
 		char* pData = (char*)(&Data);
 		for(int k=0; k<iDataTypeCount; k++) {
 			if(m_DataTypes[k] == DT_STRING) {
-				std::string* pStr = (std::string*)(pData + m_DataOffsets[k]);
+				std::string* pStr = (std::string*)(pData + offsets[k]);
 				pStr->clear();
 			}
 		}

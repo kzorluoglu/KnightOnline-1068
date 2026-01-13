@@ -320,8 +320,9 @@ void CUIHotKeyDlg::Render()
 	// ���� ���������� 
 	CN3UIArea* pArea;
 	POINT ptCur = CGameProcedure::s_pLocalInput->MouseGetPos();
+	int k;
 
-	for( int k = 0; k < MAX_SKILL_IN_HOTKEY; k++ )
+	for( k = 0; k < MAX_SKILL_IN_HOTKEY; k++ )
 	{
 		if (m_pMyHotkey[m_iCurPage][k] != NULL) 
 			DisplayCountStr(m_pMyHotkey[m_iCurPage][k]);
@@ -560,9 +561,10 @@ bool CUIHotKeyDlg::IsSelectedSkillInRealIconArea()
 	// ���� Area�� �˻��Ѵ�..
 	CN3UIArea* pArea;
 	bool bFound = false;
+	int i;
 	POINT ptCur = CGameProcedure::s_pLocalInput->MouseGetPos();
 
-	for( int i = 0; i < MAX_SKILL_IN_HOTKEY; i++ )
+	for( i = 0; i < MAX_SKILL_IN_HOTKEY; i++ )
 	{
 		pArea = CN3UIWndBase::GetChildAreaByiOrder(UI_AREA_TYPE_SKILL_HOTKEY, i);
 		if (pArea && pArea->IsIn(ptCur.x, ptCur.y))
@@ -634,10 +636,10 @@ RECT CUIHotKeyDlg::GetSampleRect()
 	POINT ptCur = CGameProcedure::s_pLocalInput->MouseGetPos();
 	pArea = CN3UIWndBase::GetChildAreaByiOrder(UI_AREA_TYPE_SKILL_HOTKEY, 0);
 	rect = pArea->GetRegion();
-	float fWidth = rect.right - rect.left;
-	float fHeight = rect.bottom - rect.top;
-	rect.left = ptCur.x - m_ptOffset.x;  rect.right  = rect.left + fWidth;
-	rect.top  = ptCur.y - m_ptOffset.y;  rect.bottom = rect.top + fHeight;
+	float fWidth = (float)(rect.right - rect.left);
+	float fHeight = (float)(rect.bottom - rect.top);
+	rect.left = ptCur.x - m_ptOffset.x;  rect.right  = rect.left + (LONG)fWidth;
+	rect.top  = ptCur.y - m_ptOffset.y;  rect.bottom = rect.top + (LONG)fHeight;
 	return rect;
 }
 
@@ -941,10 +943,10 @@ void CUIHotKeyDlg::RenderSelectIcon(CN3UIIcon* pUIIcon)
 	RECT rc = pUIIcon->GetRegion(); // ���� ǥ��
 
 	__VertexTransformedColor vLines[5];
-	vLines[0].Set(rc.left, rc.top, UI_DEFAULT_Z, UI_DEFAULT_RHW, 0xff00ff00);
-	vLines[1].Set(rc.right, rc.top, UI_DEFAULT_Z, UI_DEFAULT_RHW, 0xff00ff00);
-	vLines[2].Set(rc.right, rc.bottom, UI_DEFAULT_Z, UI_DEFAULT_RHW, 0xff00ff00);
-	vLines[3].Set(rc.left, rc.bottom, UI_DEFAULT_Z, UI_DEFAULT_RHW, 0xff00ff00);
+	vLines[0].Set((float)rc.left, (float)rc.top, UI_DEFAULT_Z, UI_DEFAULT_RHW, 0xff00ff00);
+	vLines[1].Set((float)rc.right, (float)rc.top, UI_DEFAULT_Z, UI_DEFAULT_RHW, 0xff00ff00);
+	vLines[2].Set((float)rc.right, (float)rc.bottom, UI_DEFAULT_Z, UI_DEFAULT_RHW, 0xff00ff00);
+	vLines[3].Set((float)rc.left, (float)rc.bottom, UI_DEFAULT_Z, UI_DEFAULT_RHW, 0xff00ff00);
 	vLines[4] = vLines[0];
 
 	DWORD dwZ, dwFog, dwAlpha, dwCOP, dwCA1, dwSrcBlend, dwDestBlend, dwVertexShader, dwAOP, dwAA1;

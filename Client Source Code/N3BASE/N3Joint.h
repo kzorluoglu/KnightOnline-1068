@@ -50,7 +50,7 @@ public:
 	int ChildCount() { return m_Children.size(); }
 	CN3Joint* Child(int index)
 	{
-		if(index < 0 || index > m_Children.size()) return NULL;
+		if(index < 0 || index >= (int)m_Children.size()) return NULL;
 		it_Joint it = m_Children.begin();
 		for(int i = 0; i < index; i++, it++);
 		return *it;

@@ -9,3 +9,7 @@ Aujard Start : 1? 13? 1? 58?
 
 2026-1-13 2:8, * Packet Count : recv=0, send=0, realsend=0 , time = 2:8
 
+2026-1-13 2:10, * Packet Count : recv=0, send=0, realsend=0 , time = 2:10
+
+2026-1-13 2:12, * Packet Count : recv=0, send=0, realsend=0 , time = 2:12
+

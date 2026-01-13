@@ -244,8 +244,8 @@ void CUIStateBar::Render()
 	__PositionInfo info;
 
 	RECT rc = m_pImage_Map->GetRegion();
-	float fWidth = rc.right - rc.left;
-	float fHeight = rc.bottom - rc.top;
+	float fWidth = (float)(rc.right - rc.left);
+	float fHeight = (float)(rc.bottom - rc.top);
 	float fCenterX = rc.left + fWidth / 2.0f;
 	float fCenterY = rc.top + fHeight / 2.0f;
 

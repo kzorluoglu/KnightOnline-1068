@@ -87,7 +87,7 @@ void CSubProcPerTrade::InitPerTradeDlg(CUIManager* pUIManager)
 	int iW = CN3Base::s_CameraData.vp.Width;
 	RECT rc;
 
-	e_Nation eNation = s_pPlayer->m_InfoBase.eNation;		// ±¹°¡....
+	e_Nation eNation = s_pPlayer->m_InfoBase.eNation;		// ï¿½ï¿½ï¿½ï¿½....
 	__TABLE_UI_RESRC* pTbl = s_pTbl_UI->Find(eNation);
 
 	// UIPerTradeDlg.. ^^
@@ -108,7 +108,7 @@ void CSubProcPerTrade::InitPerTradeDlg(CUIManager* pUIManager)
 	m_pUITradeEditDlg->m_pSubProcPerTrade = this;
 	m_pUITradeEditDlg->LoadFromFile(pTbl->szPersonalTradeEdit);
 	m_pUITradeEditDlg->SetStyle(UISTYLE_ALWAYSTOP);
-	// À§Ä¡ °è»ê ..
+	// ï¿½ï¿½Ä¡ ï¿½ï¿½ï¿½ ..
 	int iXPos, iYPos;
 	int iH = CN3Base::s_CameraData.vp.Height;
 	iXPos = (iW/2) - (m_pUITradeEditDlg->GetRegion().right - m_pUITradeEditDlg->GetRegion().left)/2;
@@ -118,19 +118,19 @@ void CSubProcPerTrade::InitPerTradeDlg(CUIManager* pUIManager)
 	m_pUITradeEditDlg->SetUIType(UI_TYPE_BASE);
 	m_pUITradeEditDlg->SetState(UI_STATE_COMMON_NONE);
 
-	// ÀÏ´ÜÀº µ· ¾ÆÀÌÄÜÀ¸·Î ÇÈ½º.. ^^
+	// ï¿½Ï´ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½È½ï¿½.. ^^
 	m_pUITradeEditDlg->m_pArea = (CN3UIArea *)m_pUITradeEditDlg->GetChildByID("area_trade_icon");	__ASSERT(m_pUITradeEditDlg->m_pArea, "NULL UI Component!!");
 
 	m_pUITradeEditDlg->m_pImageOfIcon = new CN3UIImage;
 	m_pUITradeEditDlg->m_pImageOfIcon->Init(m_pUITradeEditDlg);
-	// µ· ¾ÆÀÌÄÜ ¹®ÀÚ¿­ Ã£±â.. ¾ÆÀÌµð·Î Ã£´Â ±â´É¹Û¿¡ ¾ø´Ù.. ¤Ð.¤Ð
-	__TABLE_ITEM_BASIC*	pItem = NULL;										// ¾ÆÀÌÅÛ Å×ÀÌºí ±¸Á¶Ã¼ Æ÷ÀÎÅÍ..
-	pItem = s_pTbl_Items_Basic->Find(dwGold);	// ¿­ µ¥ÀÌÅÍ ¾ò±â..
+	// ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ú¿ï¿½ Ã£ï¿½ï¿½.. ï¿½ï¿½ï¿½Ìµï¿½ï¿½ Ã£ï¿½ï¿½ ï¿½ï¿½É¹Û¿ï¿½ ï¿½ï¿½ï¿½ï¿½.. ï¿½ï¿½.ï¿½ï¿½
+	__TABLE_ITEM_BASIC*	pItem = NULL;										// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ìºï¿½ ï¿½ï¿½ï¿½ï¿½Ã¼ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½..
+	pItem = s_pTbl_Items_Basic->Find(dwGold);	// ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½..
 
 	std::string szIconFN;
 	e_PartPosition ePart;
 	e_PlugPosition ePlug;
-	CGameProcedure::MakeResrcFileNameForUPC(pItem, NULL, &szIconFN, ePart, ePlug); // ¾ÆÀÌÅÛ¿¡ µû¸¥ ÆÄÀÏ ÀÌ¸§À» ¸¸µé¾î¼­
+	CGameProcedure::MakeResrcFileNameForUPC(pItem, NULL, &szIconFN, ePart, ePlug); // ï¿½ï¿½ï¿½ï¿½ï¿½Û¿ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ì¸ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½î¼­
 	m_pUITradeEditDlg->m_pImageOfIcon->SetTex(szIconFN);
 	float fUVAspect = (float)45.0f/(float)64.0f;
 	m_pUITradeEditDlg->m_pImageOfIcon->SetUVRect(0,0, fUVAspect, fUVAspect);
@@ -148,7 +148,7 @@ void CSubProcPerTrade::EnterWaitMsgFromServerStatePerTradeReq()
 
 	m_ePerTradeState = PER_TRADE_STATE_WAIT_FOR_REQ;
 
-	// ¸Þ½ÃÁö ¹Ú½º ÅØ½ºÆ® Ç¥½Ã..
+	// ï¿½Þ½ï¿½ï¿½ï¿½ ï¿½Ú½ï¿½ ï¿½Ø½ï¿½Æ® Ç¥ï¿½ï¿½..
 	char szBuff[256] = "";
 	std::string szFmt; ::_LoadStringFromResource(IDS_PERSONAL_TRADE_FMT_WAIT, szFmt);
 	sprintf(szBuff, szFmt.c_str(), s_pPlayer->IDString().c_str(), pTarget->IDString().c_str());
@@ -161,7 +161,7 @@ void CSubProcPerTrade::EnterWaitMsgFromServerStatePerTradeReq(std::string szName
 {
 	m_ePerTradeState = PER_TRADE_STATE_WAIT_FOR_REQ;
 
-	// ¸Þ½ÃÁö ¹Ú½º ÅØ½ºÆ® Ç¥½Ã..
+	// ï¿½Þ½ï¿½ï¿½ï¿½ ï¿½Ú½ï¿½ ï¿½Ø½ï¿½Æ® Ç¥ï¿½ï¿½..
 	char szBuff[256] = "";
 	std::string szFmt; ::_LoadStringFromResource(IDS_PERSONAL_TRADE_FMT_WAIT, szFmt);
 	sprintf(szBuff, szFmt.c_str(), s_pPlayer->IDString().c_str(), szName.c_str());
@@ -170,7 +170,7 @@ void CSubProcPerTrade::EnterWaitMsgFromServerStatePerTradeReq(std::string szName
 	SecureCodeBegin();
 }
 
-void CSubProcPerTrade::EnterWaitMyDecisionToPerTrade(int iOtherID)			// ³»°¡ Å¸ÀÎ¿¡°Ô¼­ ¾ÆÀÌÅÛ °Å·¡¸¦ ½ÅÃ» ¹ÞÀº »óÅÂ..
+void CSubProcPerTrade::EnterWaitMyDecisionToPerTrade(int iOtherID)			// ï¿½ï¿½ï¿½ï¿½ Å¸ï¿½Î¿ï¿½ï¿½Ô¼ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Å·ï¿½ï¿½ï¿½ ï¿½ï¿½Ã» ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½..
 {
 	CPlayerOther* pTarget = s_pOPMgr->UPCGetByID(iOtherID, false);
 	if(NULL == pTarget) return;
@@ -178,7 +178,7 @@ void CSubProcPerTrade::EnterWaitMyDecisionToPerTrade(int iOtherID)			// ³»°¡ Å¸À
 	m_iOtherID = iOtherID;
 	m_ePerTradeState = PER_TRADE_STATE_WAIT_FOR_MY_DECISION_AGREE_OR_DISAGREE;
 
-	// ¸Þ½ÃÁö ¹Ú½º ÅØ½ºÆ® Ç¥½Ã..
+	// ï¿½Þ½ï¿½ï¿½ï¿½ ï¿½Ú½ï¿½ ï¿½Ø½ï¿½Æ® Ç¥ï¿½ï¿½..
 	char szBuff[256] = "";
 	std::string szFmt; ::_LoadStringFromResource(IDS_PERSONAL_TRADE_PERMIT, szFmt);
 	sprintf(szBuff, szFmt.c_str(), s_pPlayer->IDString().c_str(), pTarget->IDString().c_str());
@@ -192,36 +192,36 @@ void CSubProcPerTrade::EnterWaitMyDecisionToPerTrade(int iOtherID)			// ³»°¡ Å¸À
 
 void CSubProcPerTrade::SecureCodeBegin()
 {
-	// 1.»ó°Å·¡ ÁßÀÌ¸é °³ÀÎ °Å·¡ ½ÅÃ»ÀÌ ¾ÊµÈ´Ù.. -> ÇØ´ç ºÎºÐ..	ok
-	// 2.»ó°Å·¡ Áß¿¡ °³ÀÎ °Å·¡ ½ÅÃ»À» ¹ÞÀ¸¸é °ÅÀý.. -> ÇØ´ç ºÎºÐ.. ok
+	// 1.ï¿½ï¿½Å·ï¿½ ï¿½ï¿½ï¿½Ì¸ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Å·ï¿½ ï¿½ï¿½Ã»ï¿½ï¿½ ï¿½ÊµÈ´ï¿½.. -> ï¿½Ø´ï¿½ ï¿½Îºï¿½..	ok
+	// 2.ï¿½ï¿½Å·ï¿½ ï¿½ß¿ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Å·ï¿½ ï¿½ï¿½Ã»ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½.. -> ï¿½Ø´ï¿½ ï¿½Îºï¿½.. ok
 
-	// 3.À¯Àú°¡ ¿òÁ÷ÀÌ°í ÀÖ´Â ÁßÀÌ¸é ¸ØÃá´Ù..
-	if ( s_pPlayer->IsMovingNow() )	s_pPlayer->ToggleMoveMode();				// ÀÚµ¿ ÀüÁø Åä±Û.. 
+	// 3.ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ì°ï¿½ ï¿½Ö´ï¿½ ï¿½ï¿½ï¿½Ì¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½..
+	if ( s_pPlayer->IsMovingNow() )	s_pPlayer->ToggleMoveMode();				// ï¿½Úµï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½.. 
 
-	// 4.¾ÆÀÌÄÜ ¸Å´ÏÀú À©µµ¿ì´Â ¸ðµÎ ´Ý´Â´Ù..
-	//   ÀÎº¥Åä¸® À©µµ¿ìÀÌ¸é..
+	// 4.ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Å´ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½Ý´Â´ï¿½..
+	//   ï¿½Îºï¿½ï¿½ä¸® ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ì¸ï¿½..
 	if ( CGameProcedure::s_pProcMain->m_pUIInventory->IsVisible() )
 		CGameProcedure::s_pProcMain->m_pUIInventory->Close();
 
-	//   Drop Item À©µµ¿ìÀÌ¸é..
+	//   Drop Item ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ì¸ï¿½..
 	if ( CGameProcedure::s_pProcMain->m_pUIDroppedItemDlg->IsVisible() )
 		CGameProcedure::s_pProcMain->m_pUIDroppedItemDlg->LeaveDroppedState();
 
-	// 5.ÀÎÇ²À» ¸·´Â´Ù..	-> ÇØ´ç ºÎºÐ..	ok	(Å°ÀÔ·Â°ú ¸Þ½ÃÁö..)
+	// 5.ï¿½ï¿½Ç²ï¿½ï¿½ ï¿½ï¿½ï¿½Â´ï¿½..	-> ï¿½Ø´ï¿½ ï¿½Îºï¿½..	ok	(Å°ï¿½Ô·Â°ï¿½ ï¿½Þ½ï¿½ï¿½ï¿½..)
 
-	// 6.°Å·¡Ã¢ÀÇ ÆíÁý ControlÀÇ °ªÀ» Clear..
+	// 6.ï¿½Å·ï¿½Ã¢ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ Controlï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ Clear..
 	CN3UIString* pStrMy = (CN3UIString* )m_pUIPerTradeDlg->GetChildByID("string_money_my");			__ASSERT(pStrMy, "NULL UI Component!!");
 	CN3UIString* pStrOther = (CN3UIString* )m_pUIPerTradeDlg->GetChildByID("string_money_other");	__ASSERT(pStrOther, "NULL UI Component!!");
 	pStrMy->SetString("0");
 	pStrOther->SetString("0");
 
-	// 7.°³ÀÎ °Å·¡ Ã¢ÀÇ Ã³Å© ¹öÆ°µé ¿ø·¡´ë·Î..
+	// 7.ï¿½ï¿½ï¿½ï¿½ ï¿½Å·ï¿½ Ã¢ï¿½ï¿½ Ã³Å© ï¿½ï¿½Æ°ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½..
 	CN3UIButton* pButtonMy = (CN3UIButton* )m_pUIPerTradeDlg->GetChildByID("btn_trade_my");			__ASSERT(pButtonMy, "NULL UI Component!!");
 	pButtonMy->SetState(UI_STATE_BUTTON_NORMAL);
 	CN3UIButton* pButtonOther = (CN3UIButton* )m_pUIPerTradeDlg->GetChildByID("btn_trade_other");	__ASSERT(pButtonOther, "NULL UI Component!!");
 	pButtonOther->SetState(UI_STATE_BUTTON_NORMAL);
 
-	// 8.»ó´ë¹æ °Å·¡ ¹öÆ°Àº ClickÇÒ ¼ö ¾ø´Ù. uif ÀÚÃ¼ ±â´É..
+	// 8.ï¿½ï¿½ï¿½ï¿½ ï¿½Å·ï¿½ ï¿½ï¿½Æ°ï¿½ï¿½ Clickï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½. uif ï¿½ï¿½Ã¼ ï¿½ï¿½ï¿½..
 }
 
 
@@ -244,9 +244,9 @@ void CSubProcPerTrade::FinalizePerTrade()
 	}
 }
 
-void CSubProcPerTrade::PerTradeCompleteSuccess()						// °³ÀÎ °Å·¡ ÃÖÁ¾ ¼º°ø..
+void CSubProcPerTrade::PerTradeCompleteSuccess()						// ï¿½ï¿½ï¿½ï¿½ ï¿½Å·ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½..
 {
-	// °³ÀÎ °Å·¡ Ã¢¿¡ ÀÖ´Â ¾ÆÀÌÅÛ »èÁ¦..
+	// ï¿½ï¿½ï¿½ï¿½ ï¿½Å·ï¿½ Ã¢ï¿½ï¿½ ï¿½Ö´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½..
 	for ( int i = 0; i < MAX_ITEM_PER_TRADE; i++ )
 	{
 		if (m_pUIPerTradeDlg->m_pPerTradeMy[i] != NULL)	
@@ -254,10 +254,10 @@ void CSubProcPerTrade::PerTradeCompleteSuccess()						// °³ÀÎ °Å·¡ ÃÖÁ¾ ¼º°ø..
 			__IconItemSkill* spItem;
 			spItem = m_pUIPerTradeDlg->m_pPerTradeMy[i];
 
-			// ¸Å´ÏÀú¿¡¼­ Á¦°Å..
+			// ï¿½Å´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½..
 			m_pUIPerTradeDlg->RemoveChild(spItem->pUIIcon);
 
-			// ¸®¼Ò½º Á¦°Å..
+			// ï¿½ï¿½ï¿½Ò½ï¿½ ï¿½ï¿½ï¿½ï¿½..
 			spItem->pUIIcon->Release();
 			delete spItem->pUIIcon;
 			spItem->pUIIcon = NULL;
@@ -271,10 +271,10 @@ void CSubProcPerTrade::PerTradeCompleteSuccess()						// °³ÀÎ °Å·¡ ÃÖÁ¾ ¼º°ø..
 			__IconItemSkill* spItem;
 			spItem = m_pUIPerTradeDlg->m_pPerTradeOther[i];
 
-			// ¸Å´ÏÀú¿¡¼­ Á¦°Å..
+			// ï¿½Å´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½..
 			m_pUIPerTradeDlg->RemoveChild(spItem->pUIIcon);
 
-			// ¸®¼Ò½º Á¦°Å..
+			// ï¿½ï¿½ï¿½Ò½ï¿½ ï¿½ï¿½ï¿½ï¿½..
 			spItem->pUIIcon->Release();
 			delete spItem->pUIIcon;
 			spItem->pUIIcon = NULL;
@@ -287,28 +287,28 @@ void CSubProcPerTrade::PerTradeCompleteSuccess()						// °³ÀÎ °Å·¡ ÃÖÁ¾ ¼º°ø..
 	m_pUIPerTradeDlg->LeavePerTradeState();
 }
 
-void CSubProcPerTrade::PerTradeCompleteCancel()							// °³ÀÎ °Å·¡ Ãë¼Ò..	
+void CSubProcPerTrade::PerTradeCompleteCancel()							// ï¿½ï¿½ï¿½ï¿½ ï¿½Å·ï¿½ ï¿½ï¿½ï¿½..	
 {
 	std::string str;
-	int iGold,			// °Å·¡Ã¢ÀÇ °ª..
-		iMyMoney;		// ÀÎº¥Åä¸®ÀÇ °ª..
+	int iGold,			// ï¿½Å·ï¿½Ã¢ï¿½ï¿½ ï¿½ï¿½..
+		iMyMoney;		// ï¿½Îºï¿½ï¿½ä¸®ï¿½ï¿½ ï¿½ï¿½..
 
 	if ( (int)m_ePerTradeState >= (int)PER_TRADE_STATE_NORMAL )
 	{
-		// ¸ÕÀú µ·À» °Ë»ç ÇÑ´Ù..
-		// °Å·¡ Ã¢ÀÇ ³» ÇöÀç µ·À» ¾ò¾î ¿Â´Ù..
+		// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ë»ï¿½ ï¿½Ñ´ï¿½..
+		// ï¿½Å·ï¿½ Ã¢ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½Â´ï¿½..
 		CN3UIString* pStrMy = (CN3UIString* )m_pUIPerTradeDlg->GetChildByID("string_money_my");		__ASSERT(pStrMy, "NULL UI Component!!");
 		str = pStrMy->GetString();
 		iGold = atoi(str.c_str());
 
-		// ÇöÀç ³»°¡ °¡Áø µ·À» ¾ò¾î ¿Â´Ù..
+		// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½Â´ï¿½..
 		iMyMoney = s_pPlayer->m_InfoExt.iGold;
-		// µ·À» º¹±¸ ÇÑ´Ù..
+		// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ñ´ï¿½..
 		iMyMoney += iGold;
 		s_pPlayer->m_InfoExt.iGold = iMyMoney;
 
-		// ±×´ÙÀ½ ¾ÆÀÌÅÛÀ» °Ë»çÇÑ´Ù..
-		// ¾ÆÀÌÅÛµéÀ» ¿ø·¡ ´ë·Î..
+		// ï¿½×´ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ë»ï¿½ï¿½Ñ´ï¿½..
+		// ï¿½ï¿½ï¿½ï¿½ï¿½Ûµï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½..
 		for ( int i = 0; i < MAX_ITEM_PER_TRADE; i++ )
 		{
 			if (m_pUIPerTradeDlg->m_pPerTradeMy[i] != NULL)	
@@ -316,21 +316,21 @@ void CSubProcPerTrade::PerTradeCompleteCancel()							// °³ÀÎ °Å·¡ Ãë¼Ò..
 				if( (m_pUIPerTradeDlg->m_pPerTradeMy[i]->pItemBasic->byContable == UIITEM_TYPE_COUNTABLE) ||  
 					(m_pUIPerTradeDlg->m_pPerTradeMy[i]->pItemBasic->byContable == UIITEM_TYPE_COUNTABLE_SMALL) )
 				{
-					// È°ÀÌ³ª ¹°¾àµî ¾ÆÀÌÅÛÀÎ °æ¿ì..
+					// È°ï¿½Ì³ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½..
 					__IconItemSkill* spItem;
 					spItem = m_pUIPerTradeDlg->m_pPerTradeMy[i];
 					
-					// ±âÁ¸¿¡ ¾ÆÀÌÄÜÀÌ ÀÖ´Ù¸é.. 
+					// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ö´Ù¸ï¿½.. 
 					if ( m_pUIPerTradeDlg->m_pPerTradeInv[m_pUIPerTradeDlg->m_iBackupiOrder[i]] )
 					{
-						// ¼ýÀÚ ¾÷µ¥ÀÌÆ® ÇÏ°í..
+						// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ® ï¿½Ï°ï¿½..
 						m_pUIPerTradeDlg->m_pPerTradeInv[m_pUIPerTradeDlg->m_iBackupiOrder[i]]->iCount 
 							+= m_pUIPerTradeDlg->m_pPerTradeMy[i]->iCount;
 
-						// ¸Å´ÏÀú¿¡¼­ Á¦°Å..
+						// ï¿½Å´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½..
 						m_pUIPerTradeDlg->RemoveChild(spItem->pUIIcon);
 
-						// ¸®¼Ò½º Á¦°Å..
+						// ï¿½ï¿½ï¿½Ò½ï¿½ ï¿½ï¿½ï¿½ï¿½..
 						spItem->pUIIcon->Release();
 						delete spItem->pUIIcon;
 						spItem->pUIIcon = NULL;
@@ -338,7 +338,7 @@ void CSubProcPerTrade::PerTradeCompleteCancel()							// °³ÀÎ °Å·¡ Ãë¼Ò..
 						spItem = NULL;
 						m_pUIPerTradeDlg->m_pPerTradeMy[i] = NULL;
 					}
-					// ¾ø´Ù¸é ±×´ë·Î ÀÌµ¿ÇÑ´Ù..
+					// ï¿½ï¿½ï¿½Ù¸ï¿½ ï¿½×´ï¿½ï¿½ ï¿½Ìµï¿½ï¿½Ñ´ï¿½..
 					else
 					{
 						__IconItemSkill* spItem;
@@ -346,10 +346,10 @@ void CSubProcPerTrade::PerTradeCompleteCancel()							// °³ÀÎ °Å·¡ Ãë¼Ò..
 
 						spItem->pUIIcon->SetParent(m_pUIPerTradeDlg);
 
-						// ÀÎº¥Åä¸® À©µµ¿ì¿¡ ¼¼ÆÃÇÏ°í..
+						// ï¿½Îºï¿½ï¿½ä¸® ï¿½ï¿½ï¿½ï¿½ï¿½ì¿¡ ï¿½ï¿½ï¿½ï¿½ï¿½Ï°ï¿½..
 						m_pUIPerTradeDlg->m_pPerTradeInv[m_pUIPerTradeDlg->m_iBackupiOrder[i]] = spItem;
 
-						// ³» °Å·¡ À©µµ¿ì¿¡¼­ Å¬¸®¾î..
+						// ï¿½ï¿½ ï¿½Å·ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ì¿¡ï¿½ï¿½ Å¬ï¿½ï¿½ï¿½ï¿½..
 						m_pUIPerTradeDlg->m_pPerTradeMy[i] = NULL;
 
 						CN3UIArea* pArea;
@@ -369,10 +369,10 @@ void CSubProcPerTrade::PerTradeCompleteCancel()							// °³ÀÎ °Å·¡ Ãë¼Ò..
 
 					spItem->pUIIcon->SetParent(m_pUIPerTradeDlg);
 
-					// ÀÎº¥Åä¸® À©µµ¿ì¿¡ ¼¼ÆÃÇÏ°í..
+					// ï¿½Îºï¿½ï¿½ä¸® ï¿½ï¿½ï¿½ï¿½ï¿½ì¿¡ ï¿½ï¿½ï¿½ï¿½ï¿½Ï°ï¿½..
 					m_pUIPerTradeDlg->m_pPerTradeInv[m_pUIPerTradeDlg->m_iBackupiOrder[i]] = spItem;
 
-					// ³» °Å·¡ À©µµ¿ì¿¡¼­ Å¬¸®¾î..
+					// ï¿½ï¿½ ï¿½Å·ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ì¿¡ï¿½ï¿½ Å¬ï¿½ï¿½ï¿½ï¿½..
 					m_pUIPerTradeDlg->m_pPerTradeMy[i] = NULL;
 
 					CN3UIArea* pArea;
@@ -391,10 +391,10 @@ void CSubProcPerTrade::PerTradeCompleteCancel()							// °³ÀÎ °Å·¡ Ãë¼Ò..
 				__IconItemSkill* spItem;
 				spItem = m_pUIPerTradeDlg->m_pPerTradeOther[i];
 
-				// ¸Å´ÏÀú¿¡¼­ Á¦°Å..
+				// ï¿½Å´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½..
 				m_pUIPerTradeDlg->RemoveChild(spItem->pUIIcon);
 
-				// ¸®¼Ò½º Á¦°Å..
+				// ï¿½ï¿½ï¿½Ò½ï¿½ ï¿½ï¿½ï¿½ï¿½..
 				spItem->pUIIcon->Release();
 				delete spItem->pUIIcon;
 				spItem->pUIIcon = NULL;
@@ -411,71 +411,71 @@ void CSubProcPerTrade::PerTradeCompleteCancel()							// °³ÀÎ °Å·¡ Ãë¼Ò..
 
 ///////////////////////////////////////////////////////////////////////
 
-void CSubProcPerTrade::LeavePerTradeState(e_PerTradeResultCode ePTRC)	// ¾ÆÀÌÅÛ °Å·¡°¡ Ãë¼ÒµÇ´Â »óÅÂ¸¦ Á¤ÀÇ..
+void CSubProcPerTrade::LeavePerTradeState(e_PerTradeResultCode ePTRC)	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Å·ï¿½ï¿½ï¿½ ï¿½ï¿½ÒµÇ´ï¿½ ï¿½ï¿½ï¿½Â¸ï¿½ ï¿½ï¿½ï¿½ï¿½..
 {
-	BYTE byBuff[4];											// ÆÐÅ¶ ¹öÆÛ..
-	int iOffset=0;											// ÆÐÅ¶ ¿ÀÇÁ¼Â..
+	BYTE byBuff[4];											// ï¿½ï¿½Å¶ ï¿½ï¿½ï¿½ï¿½..
+	int iOffset=0;											// ï¿½ï¿½Å¶ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½..
 
 	char szBuf[256] = "";
 	std::string szMsg; 
 
 	switch ( ePTRC )
 	{
-		case PER_TRADE_RESULT_MY_CANCEL:								// °Å·¡¸¦ ½ÅÃ»ÇÑ ³»°¡ °Å·¡ ½ÅÃ»À» Ãë¼Ò..
-			// ¼­¹ö¿¡°Ô ÆÐÅ¶ ¸¸µé¾î¼­ ³¯¸²..
+		case PER_TRADE_RESULT_MY_CANCEL:								// ï¿½Å·ï¿½ï¿½ï¿½ ï¿½ï¿½Ã»ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Å·ï¿½ ï¿½ï¿½Ã»ï¿½ï¿½ ï¿½ï¿½ï¿½..
+			// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Å¶ ï¿½ï¿½ï¿½ï¿½î¼­ ï¿½ï¿½ï¿½ï¿½..
 			CAPISocket::MP_AddByte(byBuff, iOffset, N3_PER_TRADE);			
 			CAPISocket::MP_AddByte(byBuff, iOffset, N3_SP_PER_TRADE_CANCEL);
-			CGameProcedure::s_pSocket->Send(byBuff, iOffset);								// º¸³¿..
+			CGameProcedure::s_pSocket->Send(byBuff, iOffset);								// ï¿½ï¿½ï¿½ï¿½..
 
-			// µÞ ¸¶¹«¸®..
+			// ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½..
 			PerTradeCompleteCancel();
 			FinalizePerTrade();
-			TRACE("³»°¡ °Å·¡¸¦ Ãë¼Ò »ó´ë¹æ°ú ³»°¡ Ãë¼ÒµÊ.. ¼­¹ö¿¡°Ô º¸³¿..\n");
+			TRACE("ï¿½ï¿½ï¿½ï¿½ ï¿½Å·ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Òµï¿½.. ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½..\n");
 			break;
 
-		case PER_TRADE_RESULT_MY_DISAGREE:								// °Å·¡¸¦ ½ÅÃ»¹ÞÀº ³»°¡ °Å·¡ ½ÅÃ»À» Ãë¼Ò..
-			// ¼­¹ö¿¡°Ô ÆÐÅ¶ ¸¸µé¾î¼­ ³¯¸²..
+		case PER_TRADE_RESULT_MY_DISAGREE:								// ï¿½Å·ï¿½ï¿½ï¿½ ï¿½ï¿½Ã»ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Å·ï¿½ ï¿½ï¿½Ã»ï¿½ï¿½ ï¿½ï¿½ï¿½..
+			// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Å¶ ï¿½ï¿½ï¿½ï¿½î¼­ ï¿½ï¿½ï¿½ï¿½..
 			CAPISocket::MP_AddByte(byBuff, iOffset, N3_PER_TRADE);			
 			CAPISocket::MP_AddByte(byBuff, iOffset, N3_SP_PER_TRADE_AGREE);		
 			CAPISocket::MP_AddByte(byBuff, iOffset, 0x00);		
 
-			CGameProcedure::s_pSocket->Send(byBuff, iOffset);								// º¸³¿..
+			CGameProcedure::s_pSocket->Send(byBuff, iOffset);								// ï¿½ï¿½ï¿½ï¿½..
 
-			// µÞ ¸¶¹«¸®..
+			// ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½..
 			FinalizePerTrade();
-			TRACE("³»°¡ °Å·¡¸¦ °ÅÀý.. »ó´ë¹æ°ú ³»°¡ Ãë¼ÒµÊ ¼­¹ö¿¡°Ô º¸³¿..\n");
+			TRACE("ï¿½ï¿½ï¿½ï¿½ ï¿½Å·ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½.. ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Òµï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½..\n");
 			break;
 
-		case PER_TRADE_RESULT_OTHER_DISAGREE:							// °Å·¡¸¦ ½ÅÃ»¹ÞÀº »ó´ë¹æÀÌ °Å·¡ ½ÅÃ»À» Ãë¼Ò..
-			TRACE("»ó´ë¹æÀÌ °Å·¡¸¦ °ÅÀý.. \n");
+		case PER_TRADE_RESULT_OTHER_DISAGREE:							// ï¿½Å·ï¿½ï¿½ï¿½ ï¿½ï¿½Ã»ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Å·ï¿½ ï¿½ï¿½Ã»ï¿½ï¿½ ï¿½ï¿½ï¿½..
+			TRACE("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Å·ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½.. \n");
 			//this_ui
-			// ¸Þ½ÃÁö ¹Ú½º ÅØ½ºÆ® Ç¥½Ã..
+			// ï¿½Þ½ï¿½ï¿½ï¿½ ï¿½Ú½ï¿½ ï¿½Ø½ï¿½Æ® Ç¥ï¿½ï¿½..
 			::_LoadStringFromResource(IDS_OTHER_PER_TRADE_ID_NO, szMsg);
 			CGameProcedure::s_pProcMain->MsgOutput(szMsg, 0xffff3b3b);
 //			::_LoadStringFromResource(IDS_OTHER_PER_TRADE_NO, szMsg);
 //			sprintf(szBuf, szMsg.c_str(), 
 //				(s_pOPMgr->UPCGetByID(s_pPlayer->m_iIDTarget, false))->IDString().c_str());
 //			CGameProcedure::s_pProcMain->MsgOutput(szBuf, 0xffff3b3b);
-			// µÞ ¸¶¹«¸®..
+			// ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½..
 			FinalizePerTrade();
 			break;
 	}
 }
 
-void CSubProcPerTrade::ProcessProceed(e_PerTradeProceedCode ePTPC)		// ¾ÆÀÌÅÛ °Å·¡°¡ °è¼ÓµÇ´Â »óÅÂ¸¦ Á¤ÀÇ..
+void CSubProcPerTrade::ProcessProceed(e_PerTradeProceedCode ePTPC)		// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Å·ï¿½ï¿½ï¿½ ï¿½ï¿½ÓµÇ´ï¿½ ï¿½ï¿½ï¿½Â¸ï¿½ ï¿½ï¿½ï¿½ï¿½..
 {
-	BYTE byBuff[4];											// ÆÐÅ¶ ¹öÆÛ..
-	int iOffset=0;											// ÆÐÅ¶ ¿ÀÇÁ¼Â..
+	BYTE byBuff[4];											// ï¿½ï¿½Å¶ ï¿½ï¿½ï¿½ï¿½..
+	int iOffset=0;											// ï¿½ï¿½Å¶ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½..
 
 	switch ( ePTPC )
 	{
-		case PER_TRADE_RESULT_MY_AGREE:									// °Å·¡¸¦ ½ÅÃ»¹ÞÀº ³»°¡ °Å·¡ ½ÅÃ»À» Çã¶ô..
-			// ¼­¹ö¿¡°Ô ÆÐÅ¶ ¸¸µé¾î¼­ ³¯¸²..
+		case PER_TRADE_RESULT_MY_AGREE:									// ï¿½Å·ï¿½ï¿½ï¿½ ï¿½ï¿½Ã»ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Å·ï¿½ ï¿½ï¿½Ã»ï¿½ï¿½ ï¿½ï¿½ï¿½..
+			// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Å¶ ï¿½ï¿½ï¿½ï¿½î¼­ ï¿½ï¿½ï¿½ï¿½..
 			CAPISocket::MP_AddByte(byBuff, iOffset, N3_PER_TRADE);			
 			CAPISocket::MP_AddByte(byBuff, iOffset, N3_SP_PER_TRADE_AGREE);		
 			CAPISocket::MP_AddByte(byBuff, iOffset, 0x01);		
 
-			CGameProcedure::s_pSocket->Send(byBuff, iOffset);				// º¸³¿..
+			CGameProcedure::s_pSocket->Send(byBuff, iOffset);				// ï¿½ï¿½ï¿½ï¿½..
 
 			CGameProcedure::MessageBoxClose(m_szMsg);
 			m_szMsg = "";
@@ -484,7 +484,7 @@ void CSubProcPerTrade::ProcessProceed(e_PerTradeProceedCode ePTPC)		// ¾ÆÀÌÅÛ °Å
 			PerTradeCoreStart();
 			break;
 
-		case PER_TRADE_RESULT_OTHER_AGREE:								// °Å·¡¸¦ ½ÅÃ»¹ÞÀº »ó´ë¹æÀÌ °Å·¡ ½ÅÃ»À» Çã¶ô..
+		case PER_TRADE_RESULT_OTHER_AGREE:								// ï¿½Å·ï¿½ï¿½ï¿½ ï¿½ï¿½Ã»ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Å·ï¿½ ï¿½ï¿½Ã»ï¿½ï¿½ ï¿½ï¿½ï¿½..
 			CGameProcedure::MessageBoxClose(m_szMsg);
 			m_szMsg = "";
 
@@ -534,59 +534,59 @@ void CSubProcPerTrade::ItemCountEditOK()
 {
 	char szGold[32];
 	std::string str;
-	int iGold,			// °Å·¡Ã¢ÀÇ °ª..
-		iGoldOffset,	// ÆíÁýÃ¢ÀÇ °ª..
-		iMyMoney;		// ÀÎº¥Åä¸®ÀÇ °ª..
+	int iGold,			// ï¿½Å·ï¿½Ã¢ï¿½ï¿½ ï¿½ï¿½..
+		iGoldOffset,	// ï¿½ï¿½ï¿½ï¿½Ã¢ï¿½ï¿½ ï¿½ï¿½..
+		iMyMoney;		// ï¿½Îºï¿½ï¿½ä¸®ï¿½ï¿½ ï¿½ï¿½..
 
-	// °Å·¡ Ã¢ÀÇ ³» ÇöÀç µ·À» ¾ò¾î ¿Â´Ù..
+	// ï¿½Å·ï¿½ Ã¢ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½Â´ï¿½..
 	CN3UIString* pStrMy = (CN3UIString* )m_pUIPerTradeDlg->GetChildByID("string_money_my");	 __ASSERT(pStrMy, "NULL UI Component!!");
 	str = pStrMy->GetString();
 	iGold = atoi(str.c_str());
 
-	//  ÀÔ·Â Ã¢ÀÇ °ªÀ» ¾ò¾î¼­ 
+	//  ï¿½Ô·ï¿½ Ã¢ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½î¼­ 
 	iGoldOffset = m_pUITradeEditDlg->GetQuantity();
 
 	// Gold Offset Backup..
 	m_iGoldOffsetBackup = iGoldOffset;
 
-	// ÇöÀç ³»°¡ °¡Áø µ·À» ¾ò¾î ¿Â´Ù..
+	// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½Â´ï¿½..
 	iMyMoney = s_pPlayer->m_InfoExt.iGold;
 
 	if ( iGoldOffset <= 0 ) return;
 	if ( iGoldOffset > iMyMoney ) return;
 
-	// µ·À» °¨¼Ò ½ÃÅ²´Ù..
+	// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Å²ï¿½ï¿½..
 	iMyMoney -= iGoldOffset;
 	s_pPlayer->m_InfoExt.iGold = iMyMoney;
 
-	// µ· Ç¥½Ã.. ÀÎº¥Åä¸®..
+	// ï¿½ï¿½ Ç¥ï¿½ï¿½.. ï¿½Îºï¿½ï¿½ä¸®..
 	sprintf(szGold, "%d", iMyMoney);
 	CN3UIString* pString = NULL;
 	pString = (CN3UIString* )CGameProcedure::s_pProcMain->m_pUIInventory->GetChildByID("text_gold"); __ASSERT(pString, "NULL UI Component!!");
 	if(pString)	pString->SetString(szGold);	
 	if(m_pUIPerTradeDlg->m_pStrMyGold) m_pUIPerTradeDlg->m_pStrMyGold->SetString(szGold);
 
-	// µ· Ç¥½Ã.. °³ÀÎ °Å·¡ Ã¢..
+	// ï¿½ï¿½ Ç¥ï¿½ï¿½.. ï¿½ï¿½ï¿½ï¿½ ï¿½Å·ï¿½ Ã¢..
 	iGold += iGoldOffset;
 	sprintf(szGold, "%d", iGold);
 	pStrMy->SetString(szGold);
 
-	// ¼­¹ö¿¡°Ô Àü¼ÛÇÑ´Ù..
-	BYTE byBuff[16];											// ÆÐÅ¶ ¹öÆÛ..
-	int iOffset=0;											// ÆÐÅ¶ ¿ÀÇÁ¼Â..
+	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ñ´ï¿½..
+	BYTE byBuff[16];											// ï¿½ï¿½Å¶ ï¿½ï¿½ï¿½ï¿½..
+	int iOffset=0;											// ï¿½ï¿½Å¶ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½..
 
-	// ¼­¹ö¿¡°Ô ÆÐÅ¶ ¸¸µé¾î¼­ ³¯¸²..
+	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Å¶ ï¿½ï¿½ï¿½ï¿½î¼­ ï¿½ï¿½ï¿½ï¿½..
 	CAPISocket::MP_AddByte(byBuff, iOffset, N3_PER_TRADE);			
 	CAPISocket::MP_AddByte(byBuff, iOffset, N3_SP_PER_TRADE_ADD);		
 	CAPISocket::MP_AddByte(byBuff, iOffset, 0xff);		
 	CAPISocket::MP_AddDword(byBuff, iOffset, dwGold);		
 	CAPISocket::MP_AddDword(byBuff, iOffset, iGoldOffset);		
 
-	CGameProcedure::s_pSocket->Send(byBuff, iOffset);			// º¸³¿..
+	CGameProcedure::s_pSocket->Send(byBuff, iOffset);			// ï¿½ï¿½ï¿½ï¿½..
 
 	m_pUITradeEditDlg->SetQuantity(0);
 
-	// »óÅÂ¸¦ º¯È­½ÃÅ°°í.. Ã¢À» ´Ý°í..
+	// ï¿½ï¿½ï¿½Â¸ï¿½ ï¿½ï¿½È­ï¿½ï¿½Å°ï¿½ï¿½.. Ã¢ï¿½ï¿½ ï¿½Ý°ï¿½..
 	CN3UIWndBase::m_sRecoveryJobInfo.m_bWaitFromServer = true;
 	m_ePerTradeState = PER_TRADE_STATE_NORMAL;
 	m_ePerTradeItemKindBackup = PER_TRADE_ITEM_MONEY;
@@ -599,7 +599,7 @@ void CSubProcPerTrade::ItemCountEditCancel()
 {
 	m_pUITradeEditDlg->SetQuantity(0);
 
-	// »óÅÂ¸¦ º¯È­½ÃÅ°°í.. Ã¢À» ´Ý°í..
+	// ï¿½ï¿½ï¿½Â¸ï¿½ ï¿½ï¿½È­ï¿½ï¿½Å°ï¿½ï¿½.. Ã¢ï¿½ï¿½ ï¿½Ý°ï¿½..
 	m_ePerTradeState = PER_TRADE_STATE_NORMAL;
 	m_pUITradeEditDlg->Close();
 
@@ -609,23 +609,23 @@ void CSubProcPerTrade::ItemCountEditCancel()
 
 ///////////////////////////////////////////////////////////////////////
 
-void CSubProcPerTrade::PerTradeMyDecision()							// ³»°¡ °Å·¡¸¦ °áÁ¤ Çß´Ù..
+void CSubProcPerTrade::PerTradeMyDecision()							// ï¿½ï¿½ï¿½ï¿½ ï¿½Å·ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ß´ï¿½..
 {
 	std::string szFN = "btn_trade_my";
 	CN3UIButton* pButton;
 	pButton = (CN3UIButton* )m_pUIPerTradeDlg->GetChildButtonByName(szFN);
 
-	// ¼­¹ö¿¡°Ô Àü¼ÛÇÑ´Ù..
-	BYTE byBuff[4];											// ÆÐÅ¶ ¹öÆÛ..
-	int iOffset=0;											// ÆÐÅ¶ ¿ÀÇÁ¼Â..
+	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ñ´ï¿½..
+	BYTE byBuff[4];											// ï¿½ï¿½Å¶ ï¿½ï¿½ï¿½ï¿½..
+	int iOffset=0;											// ï¿½ï¿½Å¶ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½..
 
-	// ¼­¹ö¿¡°Ô ÆÐÅ¶ ¸¸µé¾î¼­ ³¯¸²..
+	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Å¶ ï¿½ï¿½ï¿½ï¿½î¼­ ï¿½ï¿½ï¿½ï¿½..
 	CAPISocket::MP_AddByte(byBuff, iOffset, N3_PER_TRADE);			
 	CAPISocket::MP_AddByte(byBuff, iOffset, N3_SP_PER_TRADE_DECIDE);		
 
-	CGameProcedure::s_pSocket->Send(byBuff, iOffset);			// º¸³¿..
+	CGameProcedure::s_pSocket->Send(byBuff, iOffset);			// ï¿½ï¿½ï¿½ï¿½..
 
-	// ³» °áÁ¤ ¹öÆ° Disable..
+	// ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Æ° Disable..
 	if(pButton) pButton->SetState(UI_STATE_BUTTON_DISABLE);
 	SecureJobStuffByMyDecision();
 }
@@ -634,16 +634,16 @@ void CSubProcPerTrade::SecureJobStuffByMyDecision()
 {
 	m_ePerTradeState = PER_TRADE_STATE_MY_TRADE_DECISION_DONE;
 
-	// 1. ÀÎº¥Åä¸® ¿µ¿ª Icon ¿òÁ÷ÀÓ ¹æÁö..
+	// 1. ï¿½Îºï¿½ï¿½ä¸® ï¿½ï¿½ï¿½ï¿½ Icon ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½..
 	PerTradeCoreInvDisable();
 
-	// 2. µ· ÀÔ·ÂÃ¢ Å¬¸¯ ¹æÁö..		ÇØ´ç ºÎºÐ..
+	// 2. ï¿½ï¿½ ï¿½Ô·ï¿½Ã¢ Å¬ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½..		ï¿½Ø´ï¿½ ï¿½Îºï¿½..
 
-	// 3. ¿Ã·Á³õ´Â ¹öÆ° ±ÝÁö..		ÇØ´ç ºÎºÐ..
+	// 3. ï¿½Ã·ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Æ° ï¿½ï¿½ï¿½ï¿½..		ï¿½Ø´ï¿½ ï¿½Îºï¿½..
 
 }
 
-void CSubProcPerTrade::PerTradeOtherDecision()						// ´Ù¸¥ »ç¶÷ÀÌ °Å·¡¸¦ °áÁ¤ Çß´Ù..
+void CSubProcPerTrade::PerTradeOtherDecision()						// ï¿½Ù¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Å·ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ß´ï¿½..
 {
 	CN3UIButton* pButtonOther = (CN3UIButton* )m_pUIPerTradeDlg->GetChildByID("btn_trade_other");	 __ASSERT(pButtonOther, "NULL UI Component!!");
 	pButtonOther->SetState(UI_STATE_BUTTON_DISABLE);
@@ -654,18 +654,18 @@ void CSubProcPerTrade::PerTradeOtherDecision()						// ´Ù¸¥ »ç¶÷ÀÌ °Å·¡¸¦ °áÁ¤ Ç
 
 void CSubProcPerTrade::ReceiveMsgPerTradeReq(int iOtherID)
 {
-	EnterWaitMyDecisionToPerTrade(iOtherID);							// ³»°¡ Å¸ÀÎ¿¡°Ô¼­ ¾ÆÀÌÅÛ °Å·¡¸¦ ½ÅÃ» ¹ÞÀº »óÅÂ..
+	EnterWaitMyDecisionToPerTrade(iOtherID);							// ï¿½ï¿½ï¿½ï¿½ Å¸ï¿½Î¿ï¿½ï¿½Ô¼ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Å·ï¿½ï¿½ï¿½ ï¿½ï¿½Ã» ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½..
 }
 
 void CSubProcPerTrade::ReceiveMsgPerTradeAgree(BYTE bResult)
 {
 	switch ( bResult )
 	{
-		case 0x01:														// ¼º°ø..
+		case 0x01:														// ï¿½ï¿½ï¿½ï¿½..
 			ProcessProceed(PER_TRADE_RESULT_OTHER_AGREE);
 			break;
 
-		case 0x00:														// ½ÇÆÐ..
+		case 0x00:														// ï¿½ï¿½ï¿½ï¿½..
 			LeavePerTradeState(PER_TRADE_RESULT_OTHER_DISAGREE);
 			break;
 	}
@@ -673,44 +673,44 @@ void CSubProcPerTrade::ReceiveMsgPerTradeAgree(BYTE bResult)
 
 void CSubProcPerTrade::ReceiveMsgPerTradeAdd(BYTE bResult)
 {
-	// »óÅÂ¸¦ º¯È­½ÃÅ°°í.. Ã¢À» ´Ý°í..
+	// ï¿½ï¿½ï¿½Â¸ï¿½ ï¿½ï¿½È­ï¿½ï¿½Å°ï¿½ï¿½.. Ã¢ï¿½ï¿½ ï¿½Ý°ï¿½..
 	CN3UIWndBase::m_sRecoveryJobInfo.m_bWaitFromServer = false;
 
 	char szGold[32];
 	std::string str;
-	int iGold,			// °Å·¡Ã¢ÀÇ °ª..
-		iMyMoney;		// ÀÎº¥Åä¸®ÀÇ °ª..
+	int iGold,			// ï¿½Å·ï¿½Ã¢ï¿½ï¿½ ï¿½ï¿½..
+		iMyMoney;		// ï¿½Îºï¿½ï¿½ä¸®ï¿½ï¿½ ï¿½ï¿½..
 	
 	switch ( bResult )
 	{
 		case 0x01:
 			break;
 
-		case 0x00:			// ½ÇÆÐ ÇßÀ» °æ¿ì.. º¹±¸ÇÑ´Ù..	
-			// Àü¿¡ ÀÛ¾÷ÇÑ ¾ÆÀÌÅÛ Á¾·ù°¡ µ·ÀÎ °æ¿ì..
+		case 0x00:			// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½.. ï¿½ï¿½ï¿½ï¿½ï¿½Ñ´ï¿½..	
+			// ï¿½ï¿½ï¿½ï¿½ ï¿½Û¾ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½..
 			switch ( m_ePerTradeItemKindBackup )
 			{
 				case PER_TRADE_ITEM_MONEY:
 					{
-						// °Å·¡ Ã¢ÀÇ ³» ÇöÀç µ·À» ¾ò¾î ¿Â´Ù..
+						// ï¿½Å·ï¿½ Ã¢ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½Â´ï¿½..
 						CN3UIString* pStrMy = (CN3UIString* )m_pUIPerTradeDlg->GetChildByID("string_money_my");	 __ASSERT(pStrMy, "NULL UI Component!!");
 						str = pStrMy->GetString();
 						iGold = atoi(str.c_str());
 
-						// ÇöÀç ³»°¡ °¡Áø µ·À» ¾ò¾î ¿Â´Ù..
+						// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½Â´ï¿½..
 						iMyMoney = s_pPlayer->m_InfoExt.iGold;
-						// µ·À» Áõ°¡ ½ÃÅ²´Ù..
+						// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Å²ï¿½ï¿½..
 						iMyMoney += m_iGoldOffsetBackup;
 						s_pPlayer->m_InfoExt.iGold = iMyMoney;
 
-						// µ· Ç¥½Ã.. ÀÎº¥Åä¸®..
+						// ï¿½ï¿½ Ç¥ï¿½ï¿½.. ï¿½Îºï¿½ï¿½ä¸®..
 						sprintf(szGold, "%d", iMyMoney);
 						CN3UIString* pString = NULL;
 						pString = (CN3UIString* )CGameProcedure::s_pProcMain->m_pUIInventory->GetChildByID("text_gold"); __ASSERT(pString, "NULL UI Component!!");
 						if(pString)	pString->SetString(szGold);	
 						if(m_pUIPerTradeDlg->m_pStrMyGold) m_pUIPerTradeDlg->m_pStrMyGold->SetString(szGold);
 
-						// µ· Ç¥½Ã.. °³ÀÎ °Å·¡ Ã¢..
+						// ï¿½ï¿½ Ç¥ï¿½ï¿½.. ï¿½ï¿½ï¿½ï¿½ ï¿½Å·ï¿½ Ã¢..
 						iGold -= m_iGoldOffsetBackup;
 						sprintf(szGold, "%d", iGold);
 						pStrMy->SetString(szGold);
@@ -719,32 +719,32 @@ void CSubProcPerTrade::ReceiveMsgPerTradeAdd(BYTE bResult)
 
 				case PER_TRADE_ITEM_OTHER:
 					{
-						// Àü¿¡ ÀÛ¾÷ÇÑ ¾ÆÀÌÅÛ Á¾·ù°¡ ¾ÆÀÌÅÛÀÎ °æ¿ì..
+						// ï¿½ï¿½ï¿½ï¿½ ï¿½Û¾ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½..
 						if( (m_pUIPerTradeDlg->m_pPerTradeMy[CN3UIWndBase::m_sRecoveryJobInfo.UIWndSourceEnd.iOrder]->
 							pItemBasic->byContable == UIITEM_TYPE_COUNTABLE) ||
 							(m_pUIPerTradeDlg->m_pPerTradeMy[CN3UIWndBase::m_sRecoveryJobInfo.UIWndSourceEnd.iOrder]->
 							pItemBasic->byContable == UIITEM_TYPE_COUNTABLE_SMALL) )
 						{
-							// È°ÀÌ³ª ¹°¾àµî ¾ÆÀÌÅÛÀÎ °æ¿ì..
+							// È°ï¿½Ì³ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½..
 							bool bFound = false;
 
-							// ÀÎº¥Åä¸®¿¡ ¾ÆÀÌÅÛÀÌ ¾ø¾îÁø °æ¿ì.. ¸¸µç´Ù..
+							// ï¿½Îºï¿½ï¿½ä¸®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½.. ï¿½ï¿½ï¿½ï¿½ï¿½..
 							if ( !m_pUIPerTradeDlg->m_pPerTradeInv[CN3UIWndBase::m_sRecoveryJobInfo.UIWndSourceStart.iOrder] )
 							{
 								bFound = true;
-								// ÀÎº¥Åä¸®¿¡ ¸¸µé°í ¾ÆÀÌÅÛÀÇ °¹¼ö¸¦ Á¤ÇØÁØ´Ù..
+								// ï¿½Îºï¿½ï¿½ä¸®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ø´ï¿½..
 								__IconItemSkill *spItem, *spItemNew = NULL;
 								spItem = m_pUIPerTradeDlg->m_pPerTradeMy[CN3UIWndBase::m_sRecoveryJobInfo.UIWndSourceEnd.iOrder];
 
-								// ¾ÆÀÌÄÜÀÌ ¾øÀ¸¸é ¾ÆÀÌÄÜÀ» ¸¸µå·Ï °¹¼ö´Â 0À¸·Î..
+								// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ 0ï¿½ï¿½ï¿½ï¿½..
 								spItemNew				= new __IconItemSkill;
 								spItemNew->pItemBasic	= spItem->pItemBasic;
 								spItemNew->pItemExt		= spItem->pItemExt;
-								spItemNew->szIconFN		= spItem->szIconFN; // ¾ÆÀÌÄÜ ÆÄÀÏ ÀÌ¸§ º¹»ç..
+								spItemNew->szIconFN		= spItem->szIconFN; // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ì¸ï¿½ ï¿½ï¿½ï¿½ï¿½..
 								spItemNew->iCount		= m_pUIPerTradeDlg->m_iBackupiCount;
 								spItemNew->iDurability	= spItem->iDurability;
 
-								// ¾ÆÀÌÄÜ ¸®¼Ò½º ¸¸µé±â..
+								// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ò½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½..
 								spItemNew->pUIIcon		= new CN3UIIcon;
 								float fUVAspect			= (float)45.0f/(float)64.0f;
 								spItemNew->pUIIcon->Init(m_pUIPerTradeDlg); 
@@ -763,7 +763,7 @@ void CSubProcPerTrade::ReceiveMsgPerTradeAdd(BYTE bResult)
 
 								m_pUIPerTradeDlg->m_pPerTradeInv[CN3UIWndBase::m_sRecoveryJobInfo.UIWndSourceStart.iOrder] = spItemNew;
 
-								// ³» °Å·¡Ã¢ÀÇ ¾ÆÀÌÅÛÀÌ ÀÖ´Â °æ¿ì .. °¹¼ö °»½Å..
+								// ï¿½ï¿½ ï¿½Å·ï¿½Ã¢ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ö´ï¿½ ï¿½ï¿½ï¿½ .. ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½..
 								if ( m_pUIPerTradeDlg->m_iBackupiCount != 
 									m_pUIPerTradeDlg->m_pPerTradeMy[CN3UIWndBase::m_sRecoveryJobInfo.UIWndSourceEnd.iOrder]->iCount )
 								{
@@ -772,7 +772,7 @@ void CSubProcPerTrade::ReceiveMsgPerTradeAdd(BYTE bResult)
 								}
 							}
 
-							// ¾ÆÀÌÄÜÀÌ ³» °Å·¡Ã¢ÀÇ ½½·Ô¿¡ »ý±ä°æ¿ì.. »èÁ¦ÇÑ´Ù..
+							// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½Å·ï¿½Ã¢ï¿½ï¿½ ï¿½ï¿½ï¿½Ô¿ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½.. ï¿½ï¿½ï¿½ï¿½ï¿½Ñ´ï¿½..
 							if ( m_pUIPerTradeDlg->m_iBackupiCount == 
 								m_pUIPerTradeDlg->m_pPerTradeMy[CN3UIWndBase::m_sRecoveryJobInfo.UIWndSourceEnd.iOrder]->iCount )
 							{
@@ -781,10 +781,10 @@ void CSubProcPerTrade::ReceiveMsgPerTradeAdd(BYTE bResult)
 								__IconItemSkill* spItem;
 								spItem = m_pUIPerTradeDlg->m_pPerTradeMy[CN3UIWndBase::m_sRecoveryJobInfo.UIWndSourceEnd.iOrder];
 
-								// ¸Å´ÏÀú¿¡¼­ Á¦°Å..
+								// ï¿½Å´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½..
 								m_pUIPerTradeDlg->RemoveChild(spItem->pUIIcon);
 
-								// ¸®¼Ò½º Á¦°Å..
+								// ï¿½ï¿½ï¿½Ò½ï¿½ ï¿½ï¿½ï¿½ï¿½..
 								spItem->pUIIcon->Release();
 								delete spItem->pUIIcon;
 								spItem->pUIIcon = NULL;
@@ -792,7 +792,7 @@ void CSubProcPerTrade::ReceiveMsgPerTradeAdd(BYTE bResult)
 								spItem = NULL;
 								m_pUIPerTradeDlg->m_pPerTradeMy[CN3UIWndBase::m_sRecoveryJobInfo.UIWndSourceEnd.iOrder] = NULL;
 
-								// ÀÎº¥Åä¸®¿¡ ¾ÆÀÌÅÛÀÌ ÀÖ´Â °æ¿ì.. °¹¼ö °»½Å..
+								// ï¿½Îºï¿½ï¿½ä¸®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ö´ï¿½ ï¿½ï¿½ï¿½.. ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½..
 								if ( m_pUIPerTradeDlg->m_pPerTradeInv[CN3UIWndBase::m_sRecoveryJobInfo.UIWndSourceStart.iOrder] )
 								{
 									m_pUIPerTradeDlg->m_pPerTradeInv[CN3UIWndBase::m_sRecoveryJobInfo.UIWndSourceStart.iOrder]->iCount
@@ -800,10 +800,10 @@ void CSubProcPerTrade::ReceiveMsgPerTradeAdd(BYTE bResult)
 								}
 							}
 
-							// À§¿¡¼­ °¹¼ö º¸Á¤ÇÑ°Ô ¾Æ´Ï¸é.. °¹¼ö¸¸ º¸Á¤ÇÑ´Ù..
+							// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ñ°ï¿½ ï¿½Æ´Ï¸ï¿½.. ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ñ´ï¿½..
 							if ( !bFound)
 							{
-								// ³» °Å·¡Ã¢°ú ÀÎº¥Åä¸®ÀÇ ¾ÆÀÌÅÛÀÇ °¹¼ö¸¦ Á¤ÇØÁØ´Ù..
+								// ï¿½ï¿½ ï¿½Å·ï¿½Ã¢ï¿½ï¿½ ï¿½Îºï¿½ï¿½ä¸®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ø´ï¿½..
 								m_pUIPerTradeDlg->m_pPerTradeInv[CN3UIWndBase::m_sRecoveryJobInfo.UIWndSourceStart.iOrder]->iCount
 									+= m_pUIPerTradeDlg->m_iBackupiCount;
 
@@ -817,10 +817,10 @@ void CSubProcPerTrade::ReceiveMsgPerTradeAdd(BYTE bResult)
 							spItem = CN3UIWndBase::m_sRecoveryJobInfo.pItemSource;
 							spItem->pUIIcon->SetParent(m_pUIPerTradeDlg);
 
-							// ÀÎº¥Åä¸® À©µµ¿ì¿¡ ¼¼ÆÃÇÏ°í..
+							// ï¿½Îºï¿½ï¿½ä¸® ï¿½ï¿½ï¿½ï¿½ï¿½ì¿¡ ï¿½ï¿½ï¿½ï¿½ï¿½Ï°ï¿½..
 							m_pUIPerTradeDlg->m_pPerTradeInv[CN3UIWndBase::m_sRecoveryJobInfo.UIWndSourceStart.iOrder] = spItem;
 
-							// ³» °Å·¡ À©µµ¿ì¿¡¼­ Å¬¸®¾î..
+							// ï¿½ï¿½ ï¿½Å·ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ì¿¡ï¿½ï¿½ Å¬ï¿½ï¿½ï¿½ï¿½..
 							m_pUIPerTradeDlg->m_pPerTradeMy[CN3UIWndBase::m_sRecoveryJobInfo.UIWndSourceEnd.iOrder] = NULL;
 
 							CN3UIArea* pArea;
@@ -842,42 +842,43 @@ void CSubProcPerTrade::ReceiveMsgPerTradeOtherAdd(int iItemID, int iCount, int i
 {
 	char szGold[32];
 	std::string str;
-	int iGold, iDestiOrder;			// °Å·¡Ã¢ÀÇ °ª..
+	int iGold, iDestiOrder;			// ï¿½Å·ï¿½Ã¢ï¿½ï¿½ ï¿½ï¿½..
 
 	if ( iItemID == dwGold )
 	{
-		// °Å·¡ Ã¢ÀÇ ´Ù¸¥ »ç¶÷ÀÇ ÇöÀç µ·À» ¾ò¾î ¿Â´Ù..
+		// ï¿½Å·ï¿½ Ã¢ï¿½ï¿½ ï¿½Ù¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½Â´ï¿½..
 		CN3UIString* pStrOther = (CN3UIString* )m_pUIPerTradeDlg->GetChildByID("string_money_other");	 __ASSERT(pStrOther, "NULL UI Component!!");
 		str = pStrOther->GetString();
 		iGold = atoi(str.c_str());
 		
-		// µ·À» ´õÇÑ ´ÙÀ½..
+		// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½..
 		iGold += iCount;
 
-		// µ· Ç¥½Ã.. °³ÀÎ °Å·¡ Ã¢..
+		// ï¿½ï¿½ Ç¥ï¿½ï¿½.. ï¿½ï¿½ï¿½ï¿½ ï¿½Å·ï¿½ Ã¢..
 		sprintf(szGold, "%d", iGold);
 		pStrOther->SetString(szGold);
 	}
 	else
 	{
-		// ¾ÆÀÌÅÛÀÌ µé¾î°¥ ¼ö ÀÖ´ÂÁö È®ÀÎ, ¾ÆÀÌÅÛÀÌ µé¾î °¡´Â ÀÚ¸® °è»ê..
+		// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½î°¥ ï¿½ï¿½ ï¿½Ö´ï¿½ï¿½ï¿½ È®ï¿½ï¿½, ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ú¸ï¿½ ï¿½ï¿½ï¿½..
 		bool  bFound = false;
 
-		// ¾ÆÀÌÅÛ ¸¸µé¾î¼­ ³Ö±â..
+		// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½î¼­ ï¿½Ö±ï¿½..
 		__TABLE_ITEM_BASIC*	pItem = NULL;
 		__TABLE_ITEM_EXT*	pItemExt = NULL;
-		pItem = s_pTbl_Items_Basic->Find(iItemID/1000*1000);	// ¿­ µ¥ÀÌÅÍ ¾ò±â..
+		pItem = s_pTbl_Items_Basic->Find(iItemID/1000*1000);	// ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½..
 		if(pItem && pItem->byExtIndex >= 0 && pItem->byExtIndex < MAX_ITEM_EXTENSION)
 			pItemExt = CGameBase::s_pTbl_Items_Exts[pItem->byExtIndex]->Find(iItemID%1000);
 		if(NULL == pItem || NULL == pItemExt)
 		{
-			__ASSERT(0, "¾ÆÀÌÅÛ Æ÷ÀÎÅÍ Å×ÀÌºí¿¡ ¾øÀ½!!");
+			__ASSERT(0, "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ìºï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½!!");
 			return;
 		}
 
 		if( (pItem->byContable == UIITEM_TYPE_COUNTABLE) || (pItem->byContable == UIITEM_TYPE_COUNTABLE_SMALL) )
 		{
-			for( int i = 0; i < MAX_ITEM_PER_TRADE; i++ )
+			int i;
+			for( i = 0; i < MAX_ITEM_PER_TRADE; i++ )
 			{
 				if( (m_pUIPerTradeDlg->m_pPerTradeOther[i]) && (m_pUIPerTradeDlg->m_pPerTradeOther[i]->pItemBasic->dwID == pItem->dwID) )
 				{
@@ -887,10 +888,10 @@ void CSubProcPerTrade::ReceiveMsgPerTradeOtherAdd(int iItemID, int iCount, int i
 				}
 			}
 
-			// ¸øÃ£¾ÒÀ¸¸é.. 
+			// ï¿½ï¿½Ã£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½.. 
 			if ( !bFound )
 			{
-				// ÀÎº¥Åä¸® ºó½½·ÔÀ» Ã£¾Æ µé¾î°£´Ù..
+				// ï¿½Îºï¿½ï¿½ä¸® ï¿½ó½½·ï¿½ï¿½ï¿½ Ã£ï¿½ï¿½ ï¿½ï¿½î°£ï¿½ï¿½..
 				for( i = 0; i < MAX_ITEM_PER_TRADE; i++ )
 				{
 					if ( !m_pUIPerTradeDlg->m_pPerTradeOther[i] )
@@ -901,11 +902,11 @@ void CSubProcPerTrade::ReceiveMsgPerTradeOtherAdd(int iItemID, int iCount, int i
 					}
 				}
 
-				if ( !bFound )	// ºó ½½·ÔÀ» Ã£Áö ¸øÇßÀ¸¸é..
+				if ( !bFound )	// ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Ã£ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½..
 					return;
 			}
 
-			if ( m_pUIPerTradeDlg->m_pPerTradeOther[iDestiOrder] )	// ÇØ´ç À§Ä¡¿¡ ¾ÆÀÌÄÜÀÌ ÀÖÀ¸¸é..
+			if ( m_pUIPerTradeDlg->m_pPerTradeOther[iDestiOrder] )	// ï¿½Ø´ï¿½ ï¿½ï¿½Ä¡ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½..
 			{
 				m_pUIPerTradeDlg->m_pPerTradeOther[iDestiOrder]->iCount += iCount;
 			}
@@ -914,14 +915,14 @@ void CSubProcPerTrade::ReceiveMsgPerTradeOtherAdd(int iItemID, int iCount, int i
 				std::string szIconFN;
 				e_PartPosition ePart;
 				e_PlugPosition ePlug;
-				CGameProcedure::MakeResrcFileNameForUPC(pItem, NULL, &szIconFN, ePart, ePlug); // ¾ÆÀÌÅÛ¿¡ µû¸¥ ÆÄÀÏ ÀÌ¸§À» ¸¸µé¾î¼­
+				CGameProcedure::MakeResrcFileNameForUPC(pItem, NULL, &szIconFN, ePart, ePlug); // ï¿½ï¿½ï¿½ï¿½ï¿½Û¿ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ì¸ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½î¼­
 
 				__IconItemSkill* spItem;
 
 				spItem				= new __IconItemSkill;
 				spItem->pItemBasic	= pItem;
 				spItem->pItemExt	= pItemExt;
-				spItem->szIconFN	= szIconFN; // ¾ÆÀÌÄÜ ÆÄÀÏ ÀÌ¸§ º¹»ç..
+				spItem->szIconFN	= szIconFN; // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ì¸ï¿½ ï¿½ï¿½ï¿½ï¿½..
 				spItem->iCount		= iCount;
 				spItem->iDurability = iDurability;
 				float fUVAspect		= (float)45.0f/(float)64.0f;
@@ -938,7 +939,7 @@ void CSubProcPerTrade::ReceiveMsgPerTradeOtherAdd(int iItemID, int iCount, int i
 				if ( pArea )
 				{
 					spItem->pUIIcon->SetRegion(pArea->GetRegion());
-					// ¿òÁ÷ÀÏ ¼ö ¾ø´Ù..
+					// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½..
 					RECT rect = { 0, 0, 0, 0 };
 					spItem->pUIIcon->SetMoveRect(rect);
 				}
@@ -948,7 +949,8 @@ void CSubProcPerTrade::ReceiveMsgPerTradeOtherAdd(int iItemID, int iCount, int i
 		}
 		else
 		{
-			for( int i = 0; i < MAX_ITEM_PER_TRADE; i++ )
+			int i;
+			for( i = 0; i < MAX_ITEM_PER_TRADE; i++ )
 			{
 				if (m_pUIPerTradeDlg->m_pPerTradeOther[i] == NULL)	
 				{
@@ -957,19 +959,19 @@ void CSubProcPerTrade::ReceiveMsgPerTradeOtherAdd(int iItemID, int iCount, int i
 				}
 			}
 
-			if ( !bFound )	return;	// ¸ø Ã£¾ÒÀ¸¹Ç·Î.. ½ÇÆÐ..
+			if ( !bFound )	return;	// ï¿½ï¿½ Ã£ï¿½ï¿½ï¿½ï¿½ï¿½Ç·ï¿½.. ï¿½ï¿½ï¿½ï¿½..
 
 			std::string szIconFN;
 			e_PartPosition ePart;
 			e_PlugPosition ePlug;
-			CGameProcedure::MakeResrcFileNameForUPC(pItem, NULL, &szIconFN, ePart, ePlug); // ¾ÆÀÌÅÛ¿¡ µû¸¥ ÆÄÀÏ ÀÌ¸§À» ¸¸µé¾î¼­
+			CGameProcedure::MakeResrcFileNameForUPC(pItem, NULL, &szIconFN, ePart, ePlug); // ï¿½ï¿½ï¿½ï¿½ï¿½Û¿ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ì¸ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½î¼­
 
 			__IconItemSkill* spItem;
 
 			spItem				= new __IconItemSkill;
 			spItem->pItemBasic	= pItem;
 			spItem->pItemExt	= pItemExt;
-			spItem->szIconFN	= szIconFN; // ¾ÆÀÌÄÜ ÆÄÀÏ ÀÌ¸§ º¹»ç..
+			spItem->szIconFN	= szIconFN; // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ì¸ï¿½ ï¿½ï¿½ï¿½ï¿½..
 			spItem->iCount		= 1;
 			spItem->iDurability = iDurability;
 			float fUVAspect		= (float)45.0f/(float)64.0f;
@@ -986,7 +988,7 @@ void CSubProcPerTrade::ReceiveMsgPerTradeOtherAdd(int iItemID, int iCount, int i
 			if ( pArea )
 			{
 				spItem->pUIIcon->SetRegion(pArea->GetRegion());
-				// ¿òÁ÷ÀÏ ¼ö ¾ø´Ù..
+				// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½..
 				RECT rect = { 0, 0, 0, 0 };
 				spItem->pUIIcon->SetMoveRect(rect);
 			}
@@ -1020,20 +1022,20 @@ void CSubProcPerTrade::ReceiveMsgPerTradeDoneItemMove(BYTE bItemPos, int iItemID
 {
 	__IconItemSkill* spItem;
 
-	// ¾ÆÀÌÅÛ ÀÎº¥Åä¸® INV ¿µ¿ª¿¡ Ãß°¡..
-	// ¾ÆÀÌÅÛÀÌ µé¾î°¥ ¼ö ÀÖ´ÂÁö È®ÀÎ..
+	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Îºï¿½ï¿½ä¸® INV ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ß°ï¿½..
+	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½î°¥ ï¿½ï¿½ ï¿½Ö´ï¿½ï¿½ï¿½ È®ï¿½ï¿½..
 	if ( m_pUIPerTradeDlg->m_pPerTradeInv[bItemPos] != NULL )
 	{
 		if ( iItemID != (m_pUIPerTradeDlg->m_pPerTradeInv[bItemPos]->pItemBasic->dwID/1000*1000)+
 			(m_pUIPerTradeDlg->m_pPerTradeInv[bItemPos]->pItemExt->dwID%1000) )
 		{
-			// ±âÁ¸ ¾ÆÀÌÄÜÀ» Å¬¸®¾î..
+			// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Å¬ï¿½ï¿½ï¿½ï¿½..
 			spItem =  m_pUIPerTradeDlg->m_pPerTradeInv[bItemPos];
 
-			// ¸Å´ÏÀú¿¡¼­ Á¦°Å..
+			// ï¿½Å´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½..
 			m_pUIPerTradeDlg->RemoveChild(spItem->pUIIcon);
 
-			// ¸®¼Ò½º Á¦°Å..
+			// ï¿½ï¿½ï¿½Ò½ï¿½ ï¿½ï¿½ï¿½ï¿½..
 			spItem->pUIIcon->Release();
 			delete spItem->pUIIcon;
 			spItem->pUIIcon = NULL;
@@ -1041,20 +1043,20 @@ void CSubProcPerTrade::ReceiveMsgPerTradeDoneItemMove(BYTE bItemPos, int iItemID
 			spItem = NULL;
 			m_pUIPerTradeDlg->m_pPerTradeInv[bItemPos] = NULL;
 
-			// ¼­¹ö°¡ ÁØ ¾ÆÀÌµð·Î ¾ÆÀÌÄÜÀ» ¸¸µç´Ù..
+			// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½Ìµï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½..
 			goto Make_Icon;	
 		}
 
 		switch (m_pUIPerTradeDlg->m_pPerTradeInv[bItemPos]->pItemBasic->byContable)
 		{
-			case UIITEM_TYPE_COUNTABLE:						 // È­»ì °°Àº Á¾·ù..
+			case UIITEM_TYPE_COUNTABLE:						 // È­ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½..
 				m_pUIPerTradeDlg->m_pPerTradeInv[bItemPos]->iCount += iCount;
 				if (m_pUIPerTradeDlg->m_pPerTradeInv[bItemPos]->iCount > UIITEM_COUNT_MANY)
 					m_pUIPerTradeDlg->m_pPerTradeInv[bItemPos]->iCount = UIITEM_COUNT_MANY;
 				return;
 				break;
 
-			case UIITEM_TYPE_COUNTABLE_SMALL:			// ¹°¾à°°Àº Á¾·ù..		
+			case UIITEM_TYPE_COUNTABLE_SMALL:			// ï¿½ï¿½ï¿½à°°ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½..		
 				m_pUIPerTradeDlg->m_pPerTradeInv[bItemPos]->iCount += iCount;
 				if (m_pUIPerTradeDlg->m_pPerTradeInv[bItemPos]->iCount > UIITEM_COUNT_FEW)
 					m_pUIPerTradeDlg->m_pPerTradeInv[bItemPos]->iCount = UIITEM_COUNT_FEW;
@@ -1065,27 +1067,27 @@ void CSubProcPerTrade::ReceiveMsgPerTradeDoneItemMove(BYTE bItemPos, int iItemID
 
 Make_Icon:
 
-	// ¾ÆÀÌÅÛ ¸¸µé¾î¼­ ³Ö±â..
+	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½î¼­ ï¿½Ö±ï¿½..
 	__TABLE_ITEM_BASIC*	pItem = NULL;
 	__TABLE_ITEM_EXT*	pItemExt = NULL;
-	pItem = s_pTbl_Items_Basic->Find(iItemID/1000*1000);	// ¿­ µ¥ÀÌÅÍ ¾ò±â..
+	pItem = s_pTbl_Items_Basic->Find(iItemID/1000*1000);	// ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½..
 	if(pItem && pItem->byExtIndex >= 0 && pItem->byExtIndex < MAX_ITEM_EXTENSION)
 		pItemExt = CGameBase::s_pTbl_Items_Exts[pItem->byExtIndex]->Find(iItemID%1000);
 	if(NULL == pItem || NULL == pItemExt)
 	{
-		__ASSERT(0, "¾ÆÀÌÅÛ Æ÷ÀÎÅÍ Å×ÀÌºí¿¡ ¾øÀ½!!");
+		__ASSERT(0, "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ìºï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½!!");
 		return;
 	}
 
 	std::string szIconFN;
 	e_PartPosition ePart;
 	e_PlugPosition ePlug;
-	CGameProcedure::MakeResrcFileNameForUPC(pItem, NULL, &szIconFN, ePart, ePlug); // ¾ÆÀÌÅÛ¿¡ µû¸¥ ÆÄÀÏ ÀÌ¸§À» ¸¸µé¾î¼­
+	CGameProcedure::MakeResrcFileNameForUPC(pItem, NULL, &szIconFN, ePart, ePlug); // ï¿½ï¿½ï¿½ï¿½ï¿½Û¿ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ì¸ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½î¼­
 
 	spItem				= new __IconItemSkill;
 	spItem->pItemBasic	= pItem;
 	spItem->pItemExt	= pItemExt;
-	spItem->szIconFN	= szIconFN; // ¾ÆÀÌÄÜ ÆÄÀÏ ÀÌ¸§ º¹»ç..
+	spItem->szIconFN	= szIconFN; // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ì¸ï¿½ ï¿½ï¿½ï¿½ï¿½..
 	spItem->iCount		= iCount;
 	spItem->iDurability = iDurability;
 
@@ -1114,7 +1116,7 @@ Make_Icon:
 
 void CSubProcPerTrade::ReceiveMsgPerTradeDoneSuccessEnd()
 {
-	// µÞ ¸¶¹«¸®..
+	// ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½..
 	PerTradeCompleteSuccess();
 	FinalizePerTrade();
 
@@ -1127,19 +1129,19 @@ void CSubProcPerTrade::ReceiveMsgPerTradeDoneFail()
 	char szBuf[256] = "";
 	std::string szMsg; 
 
-	// ¸Þ½ÃÁö ¹Ú½º ÅØ½ºÆ® Ç¥½Ã..
+	// ï¿½Þ½ï¿½ï¿½ï¿½ ï¿½Ú½ï¿½ ï¿½Ø½ï¿½Æ® Ç¥ï¿½ï¿½..
 	if (s_pOPMgr->UPCGetByID(m_iOtherID, false) != NULL )
 	{
 		::_LoadStringFromResource(IDS_PER_TRADE_FAIL, szMsg);
 		sprintf(szBuf, szMsg.c_str());			
 		CGameProcedure::s_pProcMain->MsgOutput(szBuf, 0xffffffff);
 
-		// ¸Þ½ÃÁö ¹Ú½º ÅØ½ºÆ® Ç¥½Ã..
+		// ï¿½Þ½ï¿½ï¿½ï¿½ ï¿½Ú½ï¿½ ï¿½Ø½ï¿½Æ® Ç¥ï¿½ï¿½..
 		::_LoadStringFromResource(IDS_ITEM_TOOMANY_OR_HEAVY, szMsg);
 		CGameProcedure::s_pProcMain->MsgOutput(szMsg, 0xffff3b3b);
 	}
 
-	// µÞ ¸¶¹«¸®..
+	// ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½..
 	PerTradeCompleteCancel();
 	FinalizePerTrade();
 }
@@ -1149,7 +1151,7 @@ void CSubProcPerTrade::ReceiveMsgPerTradeCancel()
 	char szBuf[256] = "";
 	std::string szMsg; 
 
-	// ¸Þ½ÃÁö ¹Ú½º ÅØ½ºÆ® Ç¥½Ã..
+	// ï¿½Þ½ï¿½ï¿½ï¿½ ï¿½Ú½ï¿½ ï¿½Ø½ï¿½Æ® Ç¥ï¿½ï¿½..
 	if (s_pOPMgr->UPCGetByID(m_iOtherID, false) != NULL )
 	{
 		::_LoadStringFromResource(IDS_OTHER_PER_TRADE_CANCEL, szMsg);
@@ -1158,7 +1160,7 @@ void CSubProcPerTrade::ReceiveMsgPerTradeCancel()
 		CGameProcedure::s_pProcMain->MsgOutput(szBuf, 0xffff3b3b);
 	}
 
-	// µÞ ¸¶¹«¸®..
+	// ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½..
 	PerTradeCompleteCancel();
 	FinalizePerTrade();
 }

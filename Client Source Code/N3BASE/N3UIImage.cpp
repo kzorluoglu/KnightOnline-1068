@@ -248,11 +248,16 @@ bool CN3UIImage::Load(HANDLE hFile)
 			return false;
 		}
 		szFName[iStrLen]='\0';
+		std::string strFName = szFName;
+		size_t pos = strFName.find("UI_en");
+		if (pos != std::string::npos) {
+			strFName.replace(pos, 5, "UI_CH");
+		}
 		try {
-			this->SetTex(szFName);
-			UIEDebugLog::Log("LOAD_OK: Texture loaded: %s", szFName);
+			this->SetTex(strFName);
+			UIEDebugLog::Log("LOAD_OK: Texture loaded: %s", strFName.c_str());
 		} catch (...) {
-			UIEDebugLog::Log("LOAD_WARN: Exception while loading texture: %s", szFName);
+			UIEDebugLog::Log("LOAD_WARN: Exception while loading texture: %s", strFName.c_str());
 			// Don't fail, just continue without texture
 		}
 	} 

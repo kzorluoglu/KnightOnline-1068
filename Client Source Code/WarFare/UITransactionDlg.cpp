@@ -39,7 +39,7 @@ static char THIS_FILE[]=__FILE__;
 
 CUITransactionDlg::CUITransactionDlg()
 {
-	int i, j;
+	int j;
 	m_iCurPage = 0;
 	for( j = 0; j < MAX_ITEM_TRADE_PAGE; j++ )
 		for(int i = 0; i < MAX_ITEM_TRADE; i++ )		
@@ -65,7 +65,7 @@ void CUITransactionDlg::Release()
 {
 	CN3UIBase::Release();
 
-	int i, j;
+	int j;
 	for( j = 0; j < MAX_ITEM_TRADE_PAGE; j++ )
 		for(int i = 0; i < MAX_ITEM_TRADE; i++ )
 		{
@@ -88,9 +88,7 @@ void CUITransactionDlg::Release()
 
 void CUITransactionDlg::Render()
 {
-	if (!m_bVisible) return;	// º¸ÀÌÁö ¾ÊÀ¸¸é ÀÚ½ÄµéÀ» renderÇÏÁö ¾Ê´Â´Ù.
-
-	int i;
+	if (!m_bVisible) return;	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ú½Äµï¿½ï¿½ï¿½ renderï¿½ï¿½ï¿½ï¿½ ï¿½Ê´Â´ï¿½.
 
 	POINT ptCur = CGameProcedure::s_pLocalInput->MouseGetPos();
 	m_pUITooltipDlg->DisplayTooltipsDisable();
@@ -112,13 +110,13 @@ void CUITransactionDlg::Render()
 		}
 	}
 
-	// °¹¼ö Ç¥½ÃµÇ¾ß ÇÒ ¾ÆÀÌÅÛ °¹¼ö Ç¥½Ã..
+	// ï¿½ï¿½ï¿½ï¿½ Ç¥ï¿½ÃµÇ¾ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ Ç¥ï¿½ï¿½..
 	for(int i = 0; i < MAX_ITEM_INVENTORY; i++ )
 	{
 		if ( m_pMyTradeInv[i] && ( (m_pMyTradeInv[i]->pItemBasic->byContable == UIITEM_TYPE_COUNTABLE) || 
 			(m_pMyTradeInv[i]->pItemBasic->byContable == UIITEM_TYPE_COUNTABLE_SMALL) ) )
 		{
-			// string ¾ò±â..
+			// string ï¿½ï¿½ï¿½..
 			CN3UIString* pStr = GetChildStringByiOrder(i);
 			if(pStr) 
 			{
@@ -143,7 +141,7 @@ void CUITransactionDlg::Render()
 		}
 		else
 		{
-			// string ¾ò±â..
+			// string ï¿½ï¿½ï¿½..
 			CN3UIString* pStr = GetChildStringByiOrder(i);
 			if(pStr) 
 				pStr->SetVisible(false);
@@ -192,7 +190,7 @@ void CUITransactionDlg::InitIconUpdate()
 {
 	CN3UIArea* pArea;
 	float fUVAspect = (float)45.0f/(float)64.0f;
-	int i, j;
+	int j;
 
 	for( j = 0; j < MAX_ITEM_TRADE_PAGE; j++ )
 		for(int i = 0; i < MAX_ITEM_TRADE; i++ )
@@ -217,7 +215,6 @@ void CUITransactionDlg::InitIconUpdate()
 
 __IconItemSkill* CUITransactionDlg::GetHighlightIconItem(CN3UIIcon* pUIIcon)
 {
-	int i;
 	for(int i = 0; i < MAX_ITEM_TRADE; i++ )
 	{
 		if ( (m_pMyTrade[m_iCurPage][i] != NULL) && (m_pMyTrade[m_iCurPage][i]->pUIIcon == pUIIcon) )
@@ -235,7 +232,7 @@ __IconItemSkill* CUITransactionDlg::GetHighlightIconItem(CN3UIIcon* pUIIcon)
 
 void CUITransactionDlg::EnterTransactionState()
 {
-	int i, j;
+	int j;
 	for( j = 0; j < MAX_ITEM_TRADE_PAGE; j++ )
 		for(int i = 0; i < MAX_ITEM_TRADE; i++ )
 		{
@@ -271,7 +268,7 @@ void CUITransactionDlg::EnterTransactionState()
 
 	std::string szIconFN;
 	__IconItemSkill*	spItem = NULL;
-	__TABLE_ITEM_BASIC*	pItem = NULL;													// ¾ÆÀÌÅÛ Å×ÀÌºí ±¸Á¶Ã¼ Æ÷ÀÎÅÍ..
+	__TABLE_ITEM_BASIC*	pItem = NULL;													// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ìºï¿½ ï¿½ï¿½ï¿½ï¿½Ã¼ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½..
 	__TABLE_ITEM_EXT*	pItemExt = NULL;
 
 	int iOrg = m_iTradeID/1000;
@@ -290,9 +287,9 @@ void CUITransactionDlg::EnterTransactionState()
 			break;
 
 		pItem = CGameBase::s_pTbl_Items_Basic->GetIndexedData(i);
-		if(NULL == pItem) // ¾ÆÀÌÅÛÀÌ ¾øÀ¸¸é..
+		if(NULL == pItem) // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½..
 		{
-			__ASSERT(0, "¾ÆÀÌÅÛ Æ÷ÀÎÅÍ Å×ÀÌºí¿¡ ¾øÀ½!!");
+			__ASSERT(0, "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ìºï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½!!");
 			CLogWriter::Write("CUITransactionDlg::EnterTransactionState - Invalid Item ID : %d, %d", iOrg, iExt);
 			continue;
 		}
@@ -304,9 +301,9 @@ void CUITransactionDlg::EnterTransactionState()
 			continue;
 
 		pItemExt = CGameBase::s_pTbl_Items_Exts[pItem->byExtIndex]->Find(iExt);	
-		if(NULL == pItemExt) // ¾ÆÀÌÅÛÀÌ ¾øÀ¸¸é..
+		if(NULL == pItemExt) // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½..
 		{
-			__ASSERT(0, "¾ÆÀÌÅÛ Æ÷ÀÎÅÍ Å×ÀÌºí¿¡ ¾øÀ½!!");
+			__ASSERT(0, "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ìºï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½!!");
 			CLogWriter::Write("CUITransactionDlg::EnterTransactionState - Invalid Item ID : %d, %d", iOrg, iExt);
 			continue;
 		}
@@ -316,13 +313,13 @@ void CUITransactionDlg::EnterTransactionState()
 
 		e_PartPosition ePart;
 		e_PlugPosition ePlug;
-		e_ItemType eType = CGameProcedure::MakeResrcFileNameForUPC(pItem, NULL, &szIconFN, ePart, ePlug); // ¾ÆÀÌÅÛ¿¡ µû¸¥ ÆÄÀÏ ÀÌ¸§À» ¸¸µé¾î¼­
+		e_ItemType eType = CGameProcedure::MakeResrcFileNameForUPC(pItem, NULL, &szIconFN, ePart, ePlug); // ï¿½ï¿½ï¿½ï¿½ï¿½Û¿ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ì¸ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½î¼­
 		__ASSERT(ITEM_TYPE_UNKNOWN != eType, "Unknown Item");
 
 		spItem = new __IconItemSkill;
 		spItem->pItemBasic	= pItem;
 		spItem->pItemExt	= pItemExt;
-		spItem->szIconFN	= szIconFN; // ¾ÆÀÌÄÜ ÆÄÀÏ ÀÌ¸§ º¹»ç..
+		spItem->szIconFN	= szIconFN; // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ì¸ï¿½ ï¿½ï¿½ï¿½ï¿½..
 		spItem->iCount		= 1;
 		spItem->iDurability = pItem->siMaxDurability+pItemExt->siMaxDurability;
 
@@ -397,7 +394,6 @@ void CUITransactionDlg::ItemMoveFromInvToThis()
 	CUIInventory* pInven = CGameProcedure::s_pProcMain->m_pUIInventory;
 	if(!pInven) return;
 
-	int i;
 	for(int i = 0; i < MAX_ITEM_INVENTORY; i++ )
 	{
 		m_pMyTradeInv[i] = NULL;
@@ -435,7 +431,7 @@ void CUITransactionDlg::LeaveTransactionState()
 	SetState(UI_STATE_COMMON_NONE);
 	CN3UIWndBase::AllHighLightIconFree();
 
-	// ÀÌ À©µµ¿ìÀÇ inv ¿µ¿ªÀÇ ¾ÆÀÌÅÛÀ» ÀÌ ÀÎº¥Åä¸® À©µµ¿ìÀÇ inv¿µ¿ªÀ¸·Î ¿Å±ä´Ù..	
+	// ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ inv ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½Îºï¿½ï¿½ä¸® ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ invï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Å±ï¿½ï¿½..	
 	ItemMoveFromThisToInv();
 
 	if (CGameProcedure::s_pProcMain->m_pUISkillTreeDlg) CGameProcedure::s_pProcMain->m_pUISkillTreeDlg->UpdateDisableCheck();
@@ -447,7 +443,6 @@ void CUITransactionDlg::ItemMoveFromThisToInv()
 	CUIInventory* pInven = CGameProcedure::s_pProcMain->m_pUIInventory;
 	if(!pInven) return;
 
-	int i;
 	for(int i = 0; i < MAX_ITEM_INVENTORY; i++ )
 	{
 		if(m_pMyTradeInv[i])
@@ -480,7 +475,7 @@ void CUITransactionDlg::ItemCountOK()
 
 	switch (CN3UIWndBase::m_pCountableItemEdit->GetCallerWndDistrict())
 	{
-		case UIWND_DISTRICT_TRADE_NPC:		// »ç´Â °æ¿ì..
+		case UIWND_DISTRICT_TRADE_NPC:		// ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½..
 			spItem = m_pMyTrade[m_iCurPage][CN3UIWndBase::m_sRecoveryJobInfo.UIWndSourceStart.iOrder];
 
 			switch (spItem->pItemBasic->byContable)
@@ -489,7 +484,7 @@ void CUITransactionDlg::ItemCountOK()
 				case UIITEM_TYPE_SOMOONE:
 					iWeight = spItem->pItemBasic->siWeight;
 
-					// ¹«°Ô Ã¼Å©..
+					// ï¿½ï¿½ï¿½ï¿½ Ã¼Å©..
 					if ( (pInfoExt->iWeight + iWeight) > pInfoExt->iWeightMax)
 					{	 
 						std::string szMsg; ::_LoadStringFromResource(IDS_ITEM_WEIGHT_OVERFLOW, szMsg);	
@@ -500,7 +495,7 @@ void CUITransactionDlg::ItemCountOK()
 
 				case UIITEM_TYPE_COUNTABLE:
 					if ( iGold <= 0 ) return;
-					// short ¹üÀ§ÀÌ»óÀº »ì¼ö ¾ø´Ù..
+					// short ï¿½ï¿½ï¿½ï¿½ï¿½Ì»ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½..
 					if ( iGold > UIITEM_COUNT_MANY ) 
 					{
 						std::string szMsg; ::_LoadStringFromResource(IDS_MANY_COUNTABLE_ITEM_BUY_FAIL, szMsg);
@@ -515,7 +510,7 @@ void CUITransactionDlg::ItemCountOK()
 						return;
 					}
 
-					// ¸Å¼ö°¡ X °¹¼ö°¡ ³»°¡ °¡Áø µ·º¸´Ù ¸¹À¸¸é.. ±×³É ¸®ÅÏ..
+					// ï¿½Å¼ï¿½ï¿½ï¿½ X ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½.. ï¿½×³ï¿½ ï¿½ï¿½ï¿½ï¿½..
 					if ( (iGold * spItem->pItemBasic->iPrice)	> pInfoExt->iGold )	
 					{
 						std::string szMsg; ::_LoadStringFromResource(IDS_COUNTABLE_ITEM_BUY_NOT_ENOUGH_MONEY, szMsg);
@@ -525,7 +520,7 @@ void CUITransactionDlg::ItemCountOK()
 
 					iWeight = iGold * spItem->pItemBasic->siWeight;
 
-					// ¹«°Ô Ã¼Å©..
+					// ï¿½ï¿½ï¿½ï¿½ Ã¼Å©..
 					if ( (pInfoExt->iWeight + iWeight) > pInfoExt->iWeightMax)
 					{	 
 						std::string szMsg; ::_LoadStringFromResource(IDS_ITEM_WEIGHT_OVERFLOW, szMsg);	
@@ -536,7 +531,7 @@ void CUITransactionDlg::ItemCountOK()
 
 				case UIITEM_TYPE_COUNTABLE_SMALL:
 					if ( iGold <= 0 ) return;
-					// short ¹üÀ§ÀÌ»óÀº »ì¼ö ¾ø´Ù..
+					// short ï¿½ï¿½ï¿½ï¿½ï¿½Ì»ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½..
 					if ( iGold > UIITEM_COUNT_FEW ) 
 					{
 						std::string szMsg; ::_LoadStringFromResource(IDS_SMALL_COUNTABLE_ITEM_BUY_FAIL, szMsg);
@@ -551,7 +546,7 @@ void CUITransactionDlg::ItemCountOK()
 						return;
 					}
 
-					// ¸Å¼ö°¡ X °¹¼ö°¡ ³»°¡ °¡Áø µ·º¸´Ù ¸¹À¸¸é.. ±×³É ¸®ÅÏ..
+					// ï¿½Å¼ï¿½ï¿½ï¿½ X ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½.. ï¿½×³ï¿½ ï¿½ï¿½ï¿½ï¿½..
 					if ( (iGold * spItem->pItemBasic->iPrice)	> pInfoExt->iGold )	
 					{
 						std::string szMsg; ::_LoadStringFromResource(IDS_COUNTABLE_ITEM_BUY_NOT_ENOUGH_MONEY, szMsg);
@@ -561,7 +556,7 @@ void CUITransactionDlg::ItemCountOK()
 
 					iWeight = iGold * spItem->pItemBasic->siWeight;
 
-					// ¹«°Ô Ã¼Å©..
+					// ï¿½ï¿½ï¿½ï¿½ Ã¼Å©..
 					if ( (pInfoExt->iWeight + iWeight) > pInfoExt->iWeightMax)
 					{	 
 						std::string szMsg; ::_LoadStringFromResource(IDS_ITEM_WEIGHT_OVERFLOW, szMsg);	
@@ -573,13 +568,13 @@ void CUITransactionDlg::ItemCountOK()
 
 			CN3UIWndBase::m_sRecoveryJobInfo.m_bWaitFromServer	= true;
 
-			if ( m_pMyTradeInv[CN3UIWndBase::m_sRecoveryJobInfo.UIWndSourceEnd.iOrder] )	// ÇØ´ç À§Ä¡¿¡ ¾ÆÀÌÄÜÀÌ ÀÖÀ¸¸é..
+			if ( m_pMyTradeInv[CN3UIWndBase::m_sRecoveryJobInfo.UIWndSourceEnd.iOrder] )	// ï¿½Ø´ï¿½ ï¿½ï¿½Ä¡ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½..
 			{
-				//  ¼ýÀÚ ¾÷µ¥ÀÌÆ®..
+				//  ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®..
 				m_pMyTradeInv[CN3UIWndBase::m_sRecoveryJobInfo.UIWndSourceEnd.iOrder]->iCount += iGold;
 
-				// Ç¥½Ã´Â ¾ÆÀÌÄÜ ·»´õ¸µÇÒ¶§.. InventoryÀÇ Render¿¡¼­..
-				// ¼­¹ö¿¡°Ô º¸³¿..
+				// Ç¥ï¿½Ã´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ò¶ï¿½.. Inventoryï¿½ï¿½ Renderï¿½ï¿½ï¿½ï¿½..
+				// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½..
 				SendToServerBuyMsg(CN3UIWndBase::m_sRecoveryJobInfo.pItemSource->pItemBasic->dwID+
 					CN3UIWndBase::m_sRecoveryJobInfo.pItemSource->pItemExt->dwID, 
 					CN3UIWndBase::m_sRecoveryJobInfo.UIWndSourceEnd.iOrder, iGold);
@@ -591,11 +586,11 @@ void CUITransactionDlg::ItemCountOK()
 				spItemNew				= new __IconItemSkill;
 				spItemNew->pItemBasic	= spItem->pItemBasic;
 				spItemNew->pItemExt		= spItem->pItemExt;
-				spItemNew->szIconFN		= spItem->szIconFN; // ¾ÆÀÌÄÜ ÆÄÀÏ ÀÌ¸§ º¹»ç..
+				spItemNew->szIconFN		= spItem->szIconFN; // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ì¸ï¿½ ï¿½ï¿½ï¿½ï¿½..
 				spItemNew->iCount		= iGold;
 				spItemNew->iDurability  = spItem->pItemBasic->siMaxDurability+spItem->pItemExt->siMaxDurability;
 
-				// ¾ÆÀÌÄÜ ¸®¼Ò½º ¸¸µé±â..
+				// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ò½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½..
 				spItemNew->pUIIcon = new CN3UIIcon;
 				float fUVAspect		= (float)45.0f/(float)64.0f;
 				spItemNew->pUIIcon->Init(this); 
@@ -613,7 +608,7 @@ void CUITransactionDlg::ItemCountOK()
 
 				m_pMyTradeInv[CN3UIWndBase::m_sRecoveryJobInfo.UIWndSourceEnd.iOrder] = spItemNew;
 
-				// ¼­¹ö¿¡°Ô º¸³¿..
+				// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½..
 				SendToServerBuyMsg(CN3UIWndBase::m_sRecoveryJobInfo.pItemSource->pItemBasic->dwID+
 					CN3UIWndBase::m_sRecoveryJobInfo.pItemSource->pItemExt->dwID, 
 					CN3UIWndBase::m_sRecoveryJobInfo.UIWndSourceEnd.iOrder, iGold);
@@ -622,7 +617,7 @@ void CUITransactionDlg::ItemCountOK()
 			if (CN3UIWndBase::m_sRecoveryJobInfo.pItemSource->pItemBasic) PlayItemSound(CN3UIWndBase::m_sRecoveryJobInfo.pItemSource->pItemBasic);
 			break;
 
-		case UIWND_DISTRICT_TRADE_MY:		//  ÆÄ´Â °æ¿ì..
+		case UIWND_DISTRICT_TRADE_MY:		//  ï¿½Ä´ï¿½ ï¿½ï¿½ï¿½..
 			spItem = m_pMyTradeInv[CN3UIWndBase::m_sRecoveryJobInfo.UIWndSourceStart.iOrder];
 
 			if ( iGold <= 0 ) return;
@@ -632,7 +627,7 @@ void CUITransactionDlg::ItemCountOK()
 
 			if ( (spItem->iCount - iGold) > 0 )
 			{	
-				//  ¼ýÀÚ ¾÷µ¥ÀÌÆ®..
+				//  ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®..
 				spItem->iCount -= iGold;
 			}
 			else
@@ -640,7 +635,7 @@ void CUITransactionDlg::ItemCountOK()
 				spItem->pUIIcon->SetVisible(false);
 			}
 
-			// ¼­¹ö¿¡°Ô º¸³¿..
+			// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½..
 			SendToServerSellMsg(CN3UIWndBase::m_sRecoveryJobInfo.pItemSource->pItemBasic->dwID+
 				CN3UIWndBase::m_sRecoveryJobInfo.pItemSource->pItemExt->dwID, 
 				CN3UIWndBase::m_sRecoveryJobInfo.UIWndSourceStart.iOrder, iGold);
@@ -655,7 +650,7 @@ void CUITransactionDlg::ItemCountCancel()
 	// Sound..
 	if (CN3UIWndBase::m_sRecoveryJobInfo.pItemSource->pItemBasic) PlayItemSound(CN3UIWndBase::m_sRecoveryJobInfo.pItemSource->pItemBasic);
 
-	// Ãë¼Ò..
+	// ï¿½ï¿½ï¿½..
 	CN3UIWndBase::m_sRecoveryJobInfo.m_bWaitFromServer  = false;
 	CN3UIWndBase::m_sRecoveryJobInfo.pItemSource		= NULL;
 	CN3UIWndBase::m_sRecoveryJobInfo.pItemTarget		= NULL;
@@ -756,7 +751,7 @@ void CUITransactionDlg::ReceiveResultTradeMoveFail()
 
 void CUITransactionDlg::ReceiveItemDropByTradeSuccess()
 {
-	// ¿ø·¡ ¾ÆÀÌÅÛÀ» »èÁ¦ÇØ¾ß ÇÏÁö¸¸.. µÇ»ì¸± ¹æ¹ýÀÌ ¾ø±â ¶§¹®¿¡ ¿ø·¡ À§Ä¡·Î ¿Å±â°í.. 
+	// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ø¾ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½.. ï¿½Ç»ì¸± ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ä¡ï¿½ï¿½ ï¿½Å±ï¿½ï¿½.. 
 	__IconItemSkill* spItem;
 	spItem = CN3UIWndBase::m_sRecoveryJobInfo.pItemSource;
 
@@ -769,12 +764,12 @@ void CUITransactionDlg::ReceiveItemDropByTradeSuccess()
 		spItem->pUIIcon->SetMoveRect(pArea->GetRegion());
 	}
 
-	// Invisible·Î ÇÏ°í »èÁ¦´Â ¼­¹ö°¡ ¼º°øÀ» ÁÙ¶§ ÇÑ´Ù..
+	// Invisibleï¿½ï¿½ ï¿½Ï°ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ù¶ï¿½ ï¿½Ñ´ï¿½..
 	spItem->pUIIcon->SetVisible(false);
 
 	if( (spItem->pItemBasic->byContable == UIITEM_TYPE_COUNTABLE) || (spItem->pItemBasic->byContable == UIITEM_TYPE_COUNTABLE_SMALL) )
 	{
-		// È°ÀÌ³ª ¹°¾àµî ¾ÆÀÌÅÛÀÎ °æ¿ì..
+		// È°ï¿½Ì³ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½..
 		spItem->pUIIcon->SetVisible(true);
 	}
 }
@@ -792,15 +787,15 @@ bool CUITransactionDlg::ReceiveIconDrop(__IconItemSkill* spItem, POINT ptCur)
 	e_UIWND_DISTRICT eUIWnd = UIWND_DISTRICT_UNKNOWN;
 	if (!m_bVisible) return false;
 
-	// ³»°¡ °¡Á³´ø ¾ÆÀÌÄÜÀÌ ¾Æ´Ï¸é..
+	// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Æ´Ï¸ï¿½..
 	if ( CN3UIWndBase::m_sSelectedIconInfo.UIWndSelect.UIWnd != m_eUIWnd )
 		FAIL_RETURN
 	if ( (CN3UIWndBase::m_sSelectedIconInfo.UIWndSelect.UIWndDistrict != UIWND_DISTRICT_TRADE_NPC) &&
 			(CN3UIWndBase::m_sSelectedIconInfo.UIWndSelect.UIWndDistrict != UIWND_DISTRICT_TRADE_MY) )
 		FAIL_RETURN
 
-	// ³»°¡ °¡Á³´ø ¾ÆÀÌÄÜÀÌ¸é.. npc¿µ¿ªÀÎÁö °Ë»çÇÑ´Ù..
-	int i, iDestiOrder = -1; bool bFound = false;
+	// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ì¸ï¿½.. npcï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ë»ï¿½ï¿½Ñ´ï¿½..
+	int iDestiOrder = -1; bool bFound = false;
 	for(int i = 0; i < MAX_ITEM_TRADE; i++ )
 	{
 		pArea = CN3UIWndBase::GetChildAreaByiOrder(UI_AREA_TYPE_TRADE_NPC, i);
@@ -828,11 +823,11 @@ bool CUITransactionDlg::ReceiveIconDrop(__IconItemSkill* spItem, POINT ptCur)
 
 	if (!bFound)	FAIL_RETURN
 
-	// °°Àº À©µµ¿ì ³»¿¡¼­ÀÇ ¿òÁ÷ÀÓÀº fail!!!!!
+	// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ fail!!!!!
 	if ( (eUIWnd == CN3UIWndBase::m_sSelectedIconInfo.UIWndSelect.UIWndDistrict) && (eUIWnd != UIWND_DISTRICT_TRADE_MY))	FAIL_RETURN
 
-	// º»°ÝÀûÀ¸·Î Recovery Info¸¦ È°¿ëÇÏ±â ½ÃÀÛÇÑ´Ù..
-	// ¸ÕÀú WaitFromServer¸¦ OnÀ¸·Î ÇÏ°í.. Select Info¸¦ Recovery Info·Î º¹»ç.. ÀÌ¶§ Dest´Â ÆÓ¿ä¾ø´Ù..
+	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Recovery Infoï¿½ï¿½ È°ï¿½ï¿½ï¿½Ï±ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ñ´ï¿½..
+	// ï¿½ï¿½ï¿½ï¿½ WaitFromServerï¿½ï¿½ Onï¿½ï¿½ï¿½ï¿½ ï¿½Ï°ï¿½.. Select Infoï¿½ï¿½ Recovery Infoï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½.. ï¿½Ì¶ï¿½ Destï¿½ï¿½ ï¿½Ó¿ï¿½ï¿½ï¿½ï¿½..
 	if ( spItem != CN3UIWndBase::m_sSelectedIconInfo.pItemSelect )
 		CN3UIWndBase::m_sSelectedIconInfo.pItemSelect = spItem;
 
@@ -859,13 +854,13 @@ bool CUITransactionDlg::ReceiveIconDrop(__IconItemSkill* spItem, POINT ptCur)
 	switch (CN3UIWndBase::m_sSelectedIconInfo.UIWndSelect.UIWndDistrict)
 	{
 		case UIWND_DISTRICT_TRADE_NPC:
-			if (eUIWnd == UIWND_DISTRICT_TRADE_MY)		// »ç´Â °æ¿ì..
+			if (eUIWnd == UIWND_DISTRICT_TRADE_MY)		// ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½..
 			{
 				if( (CN3UIWndBase::m_sRecoveryJobInfo.pItemSource->pItemBasic->byContable == UIITEM_TYPE_COUNTABLE) ||
 					(CN3UIWndBase::m_sRecoveryJobInfo.pItemSource->pItemBasic->byContable == UIITEM_TYPE_COUNTABLE_SMALL) )
 				{
-					// È°ÀÌ³ª ¹°¾àµî ¾ÆÀÌÅÛÀÎ °æ¿ì..
-					// ¸éÀú ÀÎº¥Åä¸®¿¡ ÇØ´ç ¾ÆÀÌÄÜÀÌ ÀÖ´ÂÁö ¾Ë¾Æº»´Ù..
+					// È°ï¿½Ì³ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½..
+					// ï¿½ï¿½ï¿½ï¿½ ï¿½Îºï¿½ï¿½ä¸®ï¿½ï¿½ ï¿½Ø´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ö´ï¿½ï¿½ï¿½ ï¿½Ë¾Æºï¿½ï¿½ï¿½..
 					bFound = false;
 
 					for(int i = 0; i < MAX_ITEM_INVENTORY; i++ )
@@ -884,12 +879,12 @@ bool CUITransactionDlg::ReceiveIconDrop(__IconItemSkill* spItem, POINT ptCur)
 						}
 					}
 
-					// ¸øÃ£¾ÒÀ¸¸é.. 
+					// ï¿½ï¿½Ã£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½.. 
 					if ( !bFound )
 					{
-						if ( m_pMyTradeInv[iDestiOrder] )	// ÇØ´ç À§Ä¡¿¡ ¾ÆÀÌÄÜÀÌ ÀÖÀ¸¸é..
+						if ( m_pMyTradeInv[iDestiOrder] )	// ï¿½Ø´ï¿½ ï¿½ï¿½Ä¡ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½..
 						{
-							// ÀÎº¥Åä¸® ºó½½·ÔÀ» Ã£¾Æ µé¾î°£´Ù..
+							// ï¿½Îºï¿½ï¿½ä¸® ï¿½ó½½·ï¿½ï¿½ï¿½ Ã£ï¿½ï¿½ ï¿½ï¿½î°£ï¿½ï¿½..
 							for(int i = 0; i < MAX_ITEM_INVENTORY; i++ )
 							{
 								if ( !m_pMyTradeInv[i] )
@@ -900,7 +895,7 @@ bool CUITransactionDlg::ReceiveIconDrop(__IconItemSkill* spItem, POINT ptCur)
 								}
 							}
 
-							if ( !bFound )	// ºó ½½·ÔÀ» Ã£Áö ¸øÇßÀ¸¸é..
+							if ( !bFound )	// ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Ã£ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½..
 							{
 								CN3UIWndBase::m_sRecoveryJobInfo.m_bWaitFromServer  = false;
 								CN3UIWndBase::m_sRecoveryJobInfo.pItemSource		= NULL;
@@ -920,7 +915,7 @@ bool CUITransactionDlg::ReceiveIconDrop(__IconItemSkill* spItem, POINT ptCur)
 				{
 					__InfoPlayerMySelf*	pInfoExt = &(CGameBase::s_pPlayer->m_InfoExt);
 
-					// ¸Å¼ö°¡ X °¹¼ö°¡ ³»°¡ °¡Áø µ·º¸´Ù ¸¹À¸¸é.. ±×³É ¸®ÅÏ..
+					// ï¿½Å¼ï¿½ï¿½ï¿½ X ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½.. ï¿½×³ï¿½ ï¿½ï¿½ï¿½ï¿½..
 					if ( (CN3UIWndBase::m_sRecoveryJobInfo.pItemSource->pItemBasic->iPrice)	> pInfoExt->iGold )	
 					{
 						std::string szMsg; ::_LoadStringFromResource(IDS_COUNTABLE_ITEM_BUY_NOT_ENOUGH_MONEY, szMsg);
@@ -931,7 +926,7 @@ bool CUITransactionDlg::ReceiveIconDrop(__IconItemSkill* spItem, POINT ptCur)
 						FAIL_RETURN	
 					}
 
-					// ¹«°Ô Ã¼Å©..
+					// ï¿½ï¿½ï¿½ï¿½ Ã¼Å©..
 					if ( (pInfoExt->iWeight + CN3UIWndBase::m_sRecoveryJobInfo.pItemSource->pItemBasic->siWeight) > pInfoExt->iWeightMax)
 					{	 
 						std::string szMsg; ::_LoadStringFromResource(IDS_ITEM_WEIGHT_OVERFLOW, szMsg);	
@@ -942,10 +937,10 @@ bool CUITransactionDlg::ReceiveIconDrop(__IconItemSkill* spItem, POINT ptCur)
 						FAIL_RETURN	
 					}
 
-					// ÀÏ¹Ý ¾ÆÀÌÅÛÀÎ °æ¿ì..
-					if ( m_pMyTradeInv[iDestiOrder] )	// ÇØ´ç À§Ä¡¿¡ ¾ÆÀÌÄÜÀÌ ÀÖÀ¸¸é..
+					// ï¿½Ï¹ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½..
+					if ( m_pMyTradeInv[iDestiOrder] )	// ï¿½Ø´ï¿½ ï¿½ï¿½Ä¡ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½..
 					{
-						// ÀÎº¥Åä¸® ºó½½·ÔÀ» Ã£¾Æ µé¾î°£´Ù..
+						// ï¿½Îºï¿½ï¿½ä¸® ï¿½ó½½·ï¿½ï¿½ï¿½ Ã£ï¿½ï¿½ ï¿½ï¿½î°£ï¿½ï¿½..
 						bFound = false;
 						for(int i = 0; i < MAX_ITEM_INVENTORY; i++ )
 						{
@@ -957,7 +952,7 @@ bool CUITransactionDlg::ReceiveIconDrop(__IconItemSkill* spItem, POINT ptCur)
 							}
 						}
 
-						if ( !bFound )	// ºó ½½·ÔÀ» Ã£Áö ¸øÇßÀ¸¸é..
+						if ( !bFound )	// ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Ã£ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½..
 						{
 							CN3UIWndBase::m_sRecoveryJobInfo.m_bWaitFromServer  = false;
 							CN3UIWndBase::m_sRecoveryJobInfo.pItemSource		= NULL;
@@ -978,18 +973,18 @@ bool CUITransactionDlg::ReceiveIconDrop(__IconItemSkill* spItem, POINT ptCur)
 					e_PartPosition ePart;
 					e_PlugPosition ePlug;
 					CGameProcedure::MakeResrcFileNameForUPC(m_pMyTrade[m_iCurPage][CN3UIWndBase::m_sRecoveryJobInfo.UIWndSourceStart.iOrder]->pItemBasic, 
-						NULL, &szIconFN, ePart, ePlug); // ¾ÆÀÌÅÛ¿¡ µû¸¥ ÆÄÀÏ ÀÌ¸§À» ¸¸µé¾î¼­
+						NULL, &szIconFN, ePart, ePlug); // ï¿½ï¿½ï¿½ï¿½ï¿½Û¿ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ì¸ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½î¼­
 
 					__IconItemSkill* spItemNew;
 					spItemNew				= new __IconItemSkill;
 					spItemNew->pItemBasic	= m_pMyTrade[m_iCurPage][CN3UIWndBase::m_sRecoveryJobInfo.UIWndSourceStart.iOrder]->pItemBasic;
 					spItemNew->pItemExt		= m_pMyTrade[m_iCurPage][CN3UIWndBase::m_sRecoveryJobInfo.UIWndSourceStart.iOrder]->pItemExt;
-					spItemNew->szIconFN		= szIconFN; // ¾ÆÀÌÄÜ ÆÄÀÏ ÀÌ¸§ º¹»ç..
+					spItemNew->szIconFN		= szIconFN; // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ì¸ï¿½ ï¿½ï¿½ï¿½ï¿½..
 					spItemNew->iCount		= 1;
 					spItemNew->iDurability	= m_pMyTrade[m_iCurPage][CN3UIWndBase::m_sRecoveryJobInfo.UIWndSourceStart.iOrder]->pItemBasic->siMaxDurability
 						+m_pMyTrade[m_iCurPage][CN3UIWndBase::m_sRecoveryJobInfo.UIWndSourceStart.iOrder]->pItemExt->siMaxDurability;
 
-					// ¾ÆÀÌÄÜ ¸®¼Ò½º ¸¸µé±â..
+					// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ò½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½..
 					spItemNew->pUIIcon = new CN3UIIcon;
 					float fUVAspect		= (float)45.0f/(float)64.0f;
 					spItemNew->pUIIcon->Init(this); 
@@ -1019,24 +1014,24 @@ bool CUITransactionDlg::ReceiveIconDrop(__IconItemSkill* spItem, POINT ptCur)
 			break;
 
 		case UIWND_DISTRICT_TRADE_MY:
-			if (eUIWnd == UIWND_DISTRICT_TRADE_NPC)		// ÆÄ´Â °æ¿ì..
+			if (eUIWnd == UIWND_DISTRICT_TRADE_NPC)		// ï¿½Ä´ï¿½ ï¿½ï¿½ï¿½..
 			{
 				if( (CN3UIWndBase::m_sRecoveryJobInfo.pItemSource->pItemBasic->byContable == UIITEM_TYPE_COUNTABLE) ||
 					(CN3UIWndBase::m_sRecoveryJobInfo.pItemSource->pItemBasic->byContable == UIITEM_TYPE_COUNTABLE_SMALL) )
 				{
-					// È°ÀÌ³ª ¹°¾àµî ¾ÆÀÌÅÛÀÎ °æ¿ì..
+					// È°ï¿½Ì³ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½..
 					CN3UIWndBase::m_sRecoveryJobInfo.m_bWaitFromServer			= false;
 					CN3UIWndBase::m_pCountableItemEdit->Open(UIWND_TRANSACTION, CN3UIWndBase::m_sSelectedIconInfo.UIWndSelect.UIWndDistrict, false);
 				}
 				else
 				{
-					// Server¿¡°Ô º¸³½´Ù..
+					// Serverï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½..
 					SendToServerSellMsg(CN3UIWndBase::m_sRecoveryJobInfo.pItemSource->pItemBasic->dwID+
 						CN3UIWndBase::m_sRecoveryJobInfo.pItemSource->pItemExt->dwID, 
 						CN3UIWndBase::m_sRecoveryJobInfo.UIWndSourceStart.iOrder, 
 						CN3UIWndBase::m_sRecoveryJobInfo.pItemSource->iCount);
 
-					// ¿ø·¡ ¾ÆÀÌÅÛÀ» »èÁ¦ÇØ¾ß ÇÏÁö¸¸.. µÇ»ì¸± ¹æ¹ýÀÌ ¾ø±â ¶§¹®¿¡ ¿ø·¡ À§Ä¡·Î ¿Å±â°í.. 
+					// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ø¾ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½.. ï¿½Ç»ì¸± ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ä¡ï¿½ï¿½ ï¿½Å±ï¿½ï¿½.. 
 					pArea = NULL;
 					pArea = GetChildAreaByiOrder(UI_AREA_TYPE_TRADE_MY, CN3UIWndBase::m_sRecoveryJobInfo.UIWndSourceStart.iOrder);
 					if ( pArea )
@@ -1045,14 +1040,14 @@ bool CUITransactionDlg::ReceiveIconDrop(__IconItemSkill* spItem, POINT ptCur)
 						spItem->pUIIcon->SetMoveRect(pArea->GetRegion());
 					}
 
-					// Invisible·Î ÇÏ°í »èÁ¦´Â ¼­¹ö°¡ ¼º°øÀ» ÁÙ¶§ ÇÑ´Ù..
+					// Invisibleï¿½ï¿½ ï¿½Ï°ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ù¶ï¿½ ï¿½Ñ´ï¿½..
 					spItem->pUIIcon->SetVisible(false);
 				}
 				FAIL_RETURN
 			}
 			else	
 			{
-				// ÀÌµ¿.. 
+				// ï¿½Ìµï¿½.. 
 				__IconItemSkill *spItemSource, *spItemTarget = NULL;
 				spItemSource = CN3UIWndBase::m_sRecoveryJobInfo.pItemSource;
 
@@ -1065,7 +1060,7 @@ bool CUITransactionDlg::ReceiveIconDrop(__IconItemSkill* spItem, POINT ptCur)
 				}
 
 				CN3UIWndBase::m_sRecoveryJobInfo.UIWndSourceEnd.iOrder				= iDestiOrder;
-				if ( m_pMyTradeInv[iDestiOrder] )	// ÇØ´ç À§Ä¡¿¡ ¾ÆÀÌÄÜÀÌ ÀÖÀ¸¸é..
+				if ( m_pMyTradeInv[iDestiOrder] )	// ï¿½Ø´ï¿½ ï¿½ï¿½Ä¡ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½..
 				{
 					CN3UIWndBase::m_sRecoveryJobInfo.pItemTarget					= m_pMyTradeInv[iDestiOrder];
 					CN3UIWndBase::m_sRecoveryJobInfo.UIWndTargetStart.UIWnd			= UIWND_TRANSACTION;
@@ -1115,11 +1110,11 @@ void CUITransactionDlg::ReceiveResultTradeFromServer(byte bResult, byte bType, i
 	__IconItemSkill* spItem = NULL;
 	__InfoPlayerMySelf*	pInfoExt = &(CGameBase::s_pPlayer->m_InfoExt);
 
-	// ¼Ò½º ¿µ¿ªÀÌ UIWND_DISTRICT_TRADE_NPC ÀÌ¸é ¾ÆÀÌÅÛ »ç´Â°Å..
+	// ï¿½Ò½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ UIWND_DISTRICT_TRADE_NPC ï¿½Ì¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Â°ï¿½..
 	switch ( CN3UIWndBase::m_sRecoveryJobInfo.UIWndSourceStart.UIWndDistrict )
 	{
 		case UIWND_DISTRICT_TRADE_NPC:
-			if ( bResult != 0x01 )	// ½ÇÆÐ¶ó¸é.. 
+			if ( bResult != 0x01 )	// ï¿½ï¿½ï¿½Ð¶ï¿½ï¿½.. 
 			{	
 				if( (CN3UIWndBase::m_sRecoveryJobInfo.pItemSource->pItemBasic->byContable == UIITEM_TYPE_COUNTABLE) ||
 					(CN3UIWndBase::m_sRecoveryJobInfo.pItemSource->pItemBasic->byContable == UIITEM_TYPE_COUNTABLE_SMALL) )
@@ -1128,22 +1123,22 @@ void CUITransactionDlg::ReceiveResultTradeFromServer(byte bResult, byte bType, i
 
 					if ( (m_pMyTradeInv[CN3UIWndBase::m_sRecoveryJobInfo.UIWndSourceEnd.iOrder]->iCount - iGold) > 0 )
 					{	
-						//  ¼ýÀÚ ¾÷µ¥ÀÌÆ®..
+						//  ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®..
 						m_pMyTradeInv[CN3UIWndBase::m_sRecoveryJobInfo.UIWndSourceEnd.iOrder]->iCount -= iGold;
 					}
 					else
 					{
-						// ¾ÆÀÌÅÛ »èÁ¦.. ÇöÀç ÀÎº¥Åä¸® À©µµ¿ì¸¸.. 
+						// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½.. ï¿½ï¿½ï¿½ï¿½ ï¿½Îºï¿½ï¿½ä¸® ï¿½ï¿½ï¿½ï¿½ï¿½ì¸¸.. 
 						__IconItemSkill* spItem;
 						spItem = m_pMyTradeInv[CN3UIWndBase::m_sRecoveryJobInfo.UIWndSourceEnd.iOrder];
 
-						// ÀÎº¥Åä¸®¿¡¼­µµ Áö¿î´Ù..
+						// ï¿½Îºï¿½ï¿½ä¸®ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½..
 						m_pMyTradeInv[CN3UIWndBase::m_sRecoveryJobInfo.UIWndSourceEnd.iOrder] = NULL;
 
-						// iOrder·Î ³» ¸Å´ÏÀúÀÇ ¾ÆÀÌÅÛÀ» ¸®½ºÆ®¿¡¼­ »èÁ¦ÇÑ´Ù..
+						// iOrderï¿½ï¿½ ï¿½ï¿½ ï¿½Å´ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ñ´ï¿½..
 						RemoveChild(spItem->pUIIcon);
 
-						// ¾ÆÀÌÄÜ ¸®¼Ò½º »èÁ¦...
+						// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ò½ï¿½ ï¿½ï¿½ï¿½ï¿½...
 						spItem->pUIIcon->Release();
 						delete spItem->pUIIcon;
 						spItem->pUIIcon = NULL;
@@ -1153,17 +1148,17 @@ void CUITransactionDlg::ReceiveResultTradeFromServer(byte bResult, byte bType, i
 				}
 				else
 				{
-					// ¾ÆÀÌÅÛ »èÁ¦.. ÇöÀç ÀÎº¥Åä¸® À©µµ¿ì¸¸.. 
+					// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½.. ï¿½ï¿½ï¿½ï¿½ ï¿½Îºï¿½ï¿½ä¸® ï¿½ï¿½ï¿½ï¿½ï¿½ì¸¸.. 
 					__IconItemSkill* spItem;
 					spItem = m_pMyTradeInv[CN3UIWndBase::m_sRecoveryJobInfo.UIWndSourceEnd.iOrder];
 
-					// ÀÎº¥Åä¸®¿¡¼­µµ Áö¿î´Ù..
+					// ï¿½Îºï¿½ï¿½ä¸®ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½..
 					m_pMyTradeInv[CN3UIWndBase::m_sRecoveryJobInfo.UIWndSourceEnd.iOrder] = NULL;
 
-					// iOrder·Î ³» ¸Å´ÏÀúÀÇ ¾ÆÀÌÅÛÀ» ¸®½ºÆ®¿¡¼­ »èÁ¦ÇÑ´Ù..
+					// iOrderï¿½ï¿½ ï¿½ï¿½ ï¿½Å´ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ñ´ï¿½..
 					RemoveChild(spItem->pUIIcon);
 
-					// ¾ÆÀÌÄÜ ¸®¼Ò½º »èÁ¦...
+					// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ò½ï¿½ ï¿½ï¿½ï¿½ï¿½...
 					spItem->pUIIcon->Release();
 					delete spItem->pUIIcon;
 					spItem->pUIIcon = NULL;
@@ -1173,19 +1168,19 @@ void CUITransactionDlg::ReceiveResultTradeFromServer(byte bResult, byte bType, i
 
 				if (bType == 0x04)
 				{
-					// ¸Þ½ÃÁö ¹Ú½º ÅØ½ºÆ® Ç¥½Ã..
+					// ï¿½Þ½ï¿½ï¿½ï¿½ ï¿½Ú½ï¿½ ï¿½Ø½ï¿½Æ® Ç¥ï¿½ï¿½..
 					std::string szMsg; ::_LoadStringFromResource(IDS_ITEM_TOOMANY_OR_HEAVY, szMsg);
 					CGameProcedure::s_pProcMain->MsgOutput(szMsg, 0xffff3b3b);
 				}
 			}
 			else
 			{
-				// ¼º°øÀÌ¸é.. µ· ¾÷µ¥ÀÌÆ®.. ¸ÕÀú ÀÎº¥Åä¸®..
+				// ï¿½ï¿½ï¿½ï¿½ï¿½Ì¸ï¿½.. ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®.. ï¿½ï¿½ï¿½ï¿½ ï¿½Îºï¿½ï¿½ä¸®..
 				pInfoExt->iGold = iMoney;
 				pStatic = (CN3UIString* )CGameProcedure::s_pProcMain->m_pUIInventory->GetChildByID("text_gold"); 
 				__ASSERT(pStatic, "NULL UI Component!!");
 				if(pStatic)	pStatic->SetStringAsInt(pInfoExt->iGold);
-				if(m_pStrMyGold)	m_pStrMyGold->SetStringAsInt(pInfoExt->iGold); // »ó°Å·¡Ã¢..
+				if(m_pStrMyGold)	m_pStrMyGold->SetStringAsInt(pInfoExt->iGold); // ï¿½ï¿½Å·ï¿½Ã¢..
 			}
 			
 			CN3UIWndBase::AllHighLightIconFree();
@@ -1193,54 +1188,54 @@ void CUITransactionDlg::ReceiveResultTradeFromServer(byte bResult, byte bType, i
 			break;
 
 		case UIWND_DISTRICT_TRADE_MY:
-			if ( bResult != 0x01 )	// ½ÇÆÐ¶ó¸é.. 
+			if ( bResult != 0x01 )	// ï¿½ï¿½ï¿½Ð¶ï¿½ï¿½.. 
 			{	
 				if( (CN3UIWndBase::m_sRecoveryJobInfo.pItemSource->pItemBasic->byContable == UIITEM_TYPE_COUNTABLE) ||
 					(CN3UIWndBase::m_sRecoveryJobInfo.pItemSource->pItemBasic->byContable == UIITEM_TYPE_COUNTABLE_SMALL) )
 				{
 					int iGold = CN3UIWndBase::m_pCountableItemEdit->GetQuantity();
 
-					if (m_pMyTradeInv[CN3UIWndBase::m_sRecoveryJobInfo.UIWndSourceStart.iOrder]->pUIIcon->IsVisible()) // ±âÁ¸ ¾ÆÀÌÄÜÀÌ º¸ÀÎ´Ù¸é..
+					if (m_pMyTradeInv[CN3UIWndBase::m_sRecoveryJobInfo.UIWndSourceStart.iOrder]->pUIIcon->IsVisible()) // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Î´Ù¸ï¿½..
 					{
-						// ¼ýÀÚ¸¸ ¹Ù²ãÁØ´Ù..
+						// ï¿½ï¿½ï¿½Ú¸ï¿½ ï¿½Ù²ï¿½ï¿½Ø´ï¿½..
 						m_pMyTradeInv[CN3UIWndBase::m_sRecoveryJobInfo.UIWndSourceStart.iOrder]->iCount += iGold;
 					}
 					else
 					{
-						// ±âÁ¸ ¾ÆÀÌÄÜÀÌ ¾È º¸ÀÎ´Ù¸é..
+						// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½Î´Ù¸ï¿½..
 						m_pMyTradeInv[CN3UIWndBase::m_sRecoveryJobInfo.UIWndSourceStart.iOrder]->iCount = iGold;
 
-						// ¾ÆÀÌÄÜÀÌ º¸ÀÌ°Ô..
+						// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ì°ï¿½..
 						m_pMyTradeInv[CN3UIWndBase::m_sRecoveryJobInfo.UIWndSourceStart.iOrder]->pUIIcon->SetVisible(true);
 					}
 				}
 				else
 				{
-					// Invisible·Î ›¾ÆÃÇß´ø Icon Visible·Î..					
+					// Invisibleï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ß´ï¿½ Icon Visibleï¿½ï¿½..					
 					spItem = m_pMyTradeInv[CN3UIWndBase::m_sRecoveryJobInfo.UIWndSourceStart.iOrder];
 					spItem->pUIIcon->SetVisible(true);
 				}
 			}
 			else
 			{
-				// È°ÀÌ³ª ¹°¾àµî ¾ÆÀÌÅÛÀÎ °æ¿ì ±âÁ¸ ¾ÆÀÌÄÜÀÌ ¾Èº¸ÀÎ´Ù¸é.. ¾ÆÀÌÅÛ »èÁ¦..
+				// È°ï¿½Ì³ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Èºï¿½ï¿½Î´Ù¸ï¿½.. ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½..
 				if( ( ((CN3UIWndBase::m_sRecoveryJobInfo.pItemSource->pItemBasic->byContable == UIITEM_TYPE_COUNTABLE) || 
 					(CN3UIWndBase::m_sRecoveryJobInfo.pItemSource->pItemBasic->byContable == UIITEM_TYPE_COUNTABLE_SMALL))
 					&&	!m_pMyTradeInv[CN3UIWndBase::m_sRecoveryJobInfo.UIWndSourceStart.iOrder]->pUIIcon->IsVisible()) ||
 					((CN3UIWndBase::m_sRecoveryJobInfo.pItemSource->pItemBasic->byContable != UIITEM_TYPE_COUNTABLE) &&
 					(CN3UIWndBase::m_sRecoveryJobInfo.pItemSource->pItemBasic->byContable != UIITEM_TYPE_COUNTABLE_SMALL)) )
 				{
-					// ¾ÆÀÌÅÛ »èÁ¦.. ÇöÀç ³» ¿µ¿ª À©µµ¿ì¸¸.. 
+					// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½.. ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ì¸¸.. 
 					__IconItemSkill* spItem;
 					spItem = m_pMyTradeInv[CN3UIWndBase::m_sRecoveryJobInfo.UIWndSourceStart.iOrder];
 
-					// ³» ¿µ¿ª¿¡¼­µµ Áö¿î´Ù..
+					// ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½..
 					m_pMyTradeInv[CN3UIWndBase::m_sRecoveryJobInfo.UIWndSourceStart.iOrder] = NULL;
 
-					// iOrder·Î ³» ¸Å´ÏÀúÀÇ ¾ÆÀÌÅÛÀ» ¸®½ºÆ®¿¡¼­ »èÁ¦ÇÑ´Ù..
+					// iOrderï¿½ï¿½ ï¿½ï¿½ ï¿½Å´ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ñ´ï¿½..
 					RemoveChild(spItem->pUIIcon);
 
-					// ¾ÆÀÌÄÜ ¸®¼Ò½º »èÁ¦...
+					// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ò½ï¿½ ï¿½ï¿½ï¿½ï¿½...
 					spItem->pUIIcon->Release();
 					delete spItem->pUIIcon;
 					spItem->pUIIcon = NULL;
@@ -1248,12 +1243,12 @@ void CUITransactionDlg::ReceiveResultTradeFromServer(byte bResult, byte bType, i
 					spItem = NULL;
 				}
 
-				// ¼º°øÀÌ¸é.. µ· ¾÷µ¥ÀÌÆ®..
+				// ï¿½ï¿½ï¿½ï¿½ï¿½Ì¸ï¿½.. ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®..
 				pInfoExt->iGold = iMoney;
 				pStatic = (CN3UIString* )CGameProcedure::s_pProcMain->m_pUIInventory->GetChildByID("text_gold"); 
 				__ASSERT(pStatic, "NULL UI Component!!");
 				if(pStatic)	pStatic->SetStringAsInt(pInfoExt->iGold);
-				if(m_pStrMyGold) m_pStrMyGold->SetStringAsInt(pInfoExt->iGold); // »ó°Å·¡Ã¢..
+				if(m_pStrMyGold) m_pStrMyGold->SetStringAsInt(pInfoExt->iGold); // ï¿½ï¿½Å·ï¿½Ã¢..
 			}
 
 			CN3UIWndBase::AllHighLightIconFree();
@@ -1312,7 +1307,7 @@ DWORD CUITransactionDlg::MouseProc(DWORD dwFlags, const POINT& ptCur, const POIN
 	if (!m_bVisible) return dwRet;
 	if (CN3UIWndBase::m_sRecoveryJobInfo.m_bWaitFromServer) { dwRet |= CN3UIBase::MouseProc(dwFlags, ptCur, ptOld);  return dwRet; }
 
-	// µå·¡±× µÇ´Â ¾ÆÀÌÄÜ °»½Å..
+	// ï¿½å·¡ï¿½ï¿½ ï¿½Ç´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½..
 	if ( (GetState() == UI_STATE_ICON_MOVING) && 
 			(CN3UIWndBase::m_sSelectedIconInfo.UIWndSelect.UIWnd == UIWND_TRANSACTION) )
 	{
@@ -1326,7 +1321,6 @@ DWORD CUITransactionDlg::MouseProc(DWORD dwFlags, const POINT& ptCur, const POIN
 int CUITransactionDlg::GetItemiOrder(__IconItemSkill* spItem, e_UIWND_DISTRICT eWndDist)
 {
 	int iReturn = -1;
-	int i;
 
 	switch ( eWndDist )
 	{
@@ -1357,8 +1351,8 @@ RECT CUITransactionDlg::GetSampleRect()
 	POINT ptCur = CGameProcedure::s_pLocalInput->MouseGetPos();
 	pArea = CN3UIWndBase::GetChildAreaByiOrder(UI_AREA_TYPE_TRADE_NPC, 0);
 	rect = pArea->GetRegion();
-	float fWidth = rect.right - rect.left;
-	float fHeight = rect.bottom - rect.top;
+	float fWidth = (float)(rect.right - rect.left);
+	float fHeight = (float)(rect.bottom - rect.top);
 	fWidth *= 0.5f; fHeight *= 0.5f;
 	rect.left = ptCur.x - (int)fWidth;  rect.right  = ptCur.x + (int)fWidth;
 	rect.top  = ptCur.y - (int)fHeight; rect.bottom = ptCur.y + (int)fHeight;
@@ -1390,14 +1384,14 @@ bool CUITransactionDlg::ReceiveMessage(CN3UIBase* pSender, DWORD dwMsg)
 			}
 
 	if(NULL == pSender) return false;
-	int i, j;
 
-	if (dwMsg == UIMSG_BUTTON_CLICK)					
+	if (dwMsg == UIMSG_BUTTON_CLICK)
 	{
 		if(pSender == m_pBtnClose)
 			LeaveTransactionState();
 
 		CN3UIString* pStr;
+		int j;
 
 		if(pSender == m_pBtnPageUp)
 		{
@@ -1501,9 +1495,9 @@ bool CUITransactionDlg::ReceiveMessage(CN3UIBase* pSender, DWORD dwMsg)
 			break;
 
 		case UIMSG_ICON_UP:
-			// ¾ÆÀÌÄÜ ¸Å´ÏÀú À©µµ¿ìµéÀ» µ¹¾Æ ´Ù´Ï¸é¼­ °Ë»ç..
+			// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Å´ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ù´Ï¸é¼­ ï¿½Ë»ï¿½..
 			if ( !CGameProcedure::s_pUIMgr->BroadcastIconDropMsg(CN3UIWndBase::m_sSelectedIconInfo.pItemSelect) )
-				// ¾ÆÀÌÄÜ À§Ä¡ ¿ø·¡´ë·Î..
+				// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ä¡ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½..
 				IconRestore();
 			// Sound..
 			if (CN3UIWndBase::m_sSelectedIconInfo.pItemSelect) PlayItemSound(CN3UIWndBase::m_sSelectedIconInfo.pItemSelect->pItemBasic);
@@ -1582,7 +1576,7 @@ void CUITransactionDlg::SetVisibleWithNoSound(bool bVisible, bool bWork, bool bR
 		SetState(UI_STATE_COMMON_NONE);
 		CN3UIWndBase::AllHighLightIconFree();
 
-		// ÀÌ À©µµ¿ìÀÇ inv ¿µ¿ªÀÇ ¾ÆÀÌÅÛÀ» ÀÌ ÀÎº¥Åä¸® À©µµ¿ìÀÇ inv¿µ¿ªÀ¸·Î ¿Å±ä´Ù..	
+		// ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ inv ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½Îºï¿½ï¿½ä¸® ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ invï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Å±ï¿½ï¿½..	
 		ItemMoveFromThisToInv();
 
 		if (CGameProcedure::s_pProcMain->m_pUISkillTreeDlg) CGameProcedure::s_pProcMain->m_pUISkillTreeDlg->UpdateDisableCheck();

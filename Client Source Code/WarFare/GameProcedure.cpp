@@ -241,7 +241,7 @@ void CGameProcedure::StaticMemberInit(HINSTANCE hInstance, HWND hWndMain, HWND h
 	// ���� ����.. ^^
 	OSVERSIONINFO winfo;
 	winfo.dwOSVersionInfoSize=sizeof(OSVERSIONINFO);
-	GetVersionEx(&winfo);
+	GetVersionExW((LPOSVERSIONINFOW)&winfo);
 	if(winfo.dwPlatformId==VER_PLATFORM_WIN32_NT)
 	{
 		if(winfo.dwMajorVersion>=5)
@@ -686,11 +686,11 @@ void CGameProcedure::UIPostData_Read(const std::string& szKey, CN3UIBase* pUI, i
 	RECT rc = pUI->GetRegion();
 
 	if (WI.ptPosition.x < 0) WI.ptPosition.x = 0;
-	if (WI.ptPosition.x + (rc.right - rc.left) > CN3Base::s_CameraData.vp.Width)
-		WI.ptPosition.x = CN3Base::s_CameraData.vp.Width - (rc.right - rc.left);
+	if (WI.ptPosition.x + (rc.right - rc.left) > (LONG)CN3Base::s_CameraData.vp.Width)
+		WI.ptPosition.x = (LONG)CN3Base::s_CameraData.vp.Width - (rc.right - rc.left);
 	if (WI.ptPosition.y < 0) WI.ptPosition.y = 0;
-	if (WI.ptPosition.y + (rc.bottom - rc.top) > CN3Base::s_CameraData.vp.Height)
-		WI.ptPosition.y = CN3Base::s_CameraData.vp.Height - (rc.bottom - rc.top);
+	if (WI.ptPosition.y + (rc.bottom - rc.top) > (LONG)CN3Base::s_CameraData.vp.Height)
+		WI.ptPosition.y = (LONG)CN3Base::s_CameraData.vp.Height - (rc.bottom - rc.top);
 
 	pUI->SetVisible(WI.bVisible);
 	if(0 == WI.ptPosition.x && 0 == WI.ptPosition.y)
@@ -897,7 +897,7 @@ void CGameProcedure::MsgSend_GameServerLogIn()
 	CAPISocket::MP_AddByte(byBuff, iOffset, N3_GAME_SERVER_LOGIN);	// Ŀ���.
 	CAPISocket::MP_AddShort(byBuff, iOffset, s_szAccount.size());	// ���̵� ����..
 	CAPISocket::MP_AddString(byBuff, iOffset, s_szAccount);			// ���� ���̵�..
-	CAPISocket::MP_AddShort(byBuff, iOffset, s_szPassWord.size());	// �н����� ����
+	CAPISocket::MP_AddShort(byBuff, iOffset, (short)s_szPassWord.size());	// �н����� ����
 	CAPISocket::MP_AddString(byBuff, iOffset, s_szPassWord);		// ���� �н�����
 		
 	s_pSocket->Send(byBuff, iOffset);								// ������
@@ -923,7 +923,7 @@ void CGameProcedure::MsgSend_CharacterSelect() // virtual
 	CAPISocket::MP_AddByte(byBuff, iOffset, N3_CHARACTER_SELECT);				// Ŀ���.
 	CAPISocket::MP_AddShort(byBuff, iOffset, s_szAccount.size());				// ���� ����..
 	CAPISocket::MP_AddString(byBuff, iOffset, s_szAccount);						// ���� ���ڿ�..
-	CAPISocket::MP_AddShort(byBuff, iOffset, s_pPlayer->IDString().size());		// ĳ�� ���̵� ����..
+	CAPISocket::MP_AddShort(byBuff, iOffset, (short)s_pPlayer->IDString().size());		// ĳ�� ���̵� ����..
 	CAPISocket::MP_AddString(byBuff, iOffset, s_pPlayer->IDString());			// ĳ�� ���̵� ���ڿ�..
 	CAPISocket::MP_AddByte(byBuff, iOffset, s_pPlayer->m_InfoExt.iZoneInit);	// ó�� �������� �ƴ��� 0x01:ó�� ����
 	CAPISocket::MP_AddByte(byBuff, iOffset, s_pPlayer->m_InfoExt.iZoneCur);		// ĳ���� ����â������ ĳ���� �� ��ȣ

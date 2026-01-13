@@ -440,6 +440,12 @@ bool CN3UIBase::Load(HANDLE hFile)
 			std::vector<char> buffer(iSndFNLen + 1, NULL);
 			if (!ReadFile(hFile, &buffer[0], iSndFNLen, &dwRWC, NULL) || dwRWC != iSndFNLen) return false;
 			{
+				std::string strSnd = &buffer[0];
+				size_t pos = strSnd.find("UI_en");
+				if (pos != std::string::npos) {
+					strSnd.replace(pos, 5, "UI_CH");
+					strcpy(&buffer[0], strSnd.c_str());
+				}
 				__ASSERT(NULL == m_pSnd_OpenUI, "memory leak");
 				m_pSnd_OpenUI = s_SndMgr.CreateObj(&buffer[0], SNDTYPE_2D);
 			}
@@ -453,6 +459,12 @@ bool CN3UIBase::Load(HANDLE hFile)
 			std::vector<char> buffer(iSndFNLen + 1, NULL);
 			if (!ReadFile(hFile, &buffer[0], iSndFNLen, &dwRWC, NULL) || dwRWC != iSndFNLen) return false;
 			{
+				std::string strSnd = &buffer[0];
+				size_t pos = strSnd.find("UI_en");
+				if (pos != std::string::npos) {
+					strSnd.replace(pos, 5, "UI_CH");
+					strcpy(&buffer[0], strSnd.c_str());
+				}
 				__ASSERT(NULL == m_pSnd_CloseUI, "memory leak");
 				m_pSnd_CloseUI = s_SndMgr.CreateObj(&buffer[0], SNDTYPE_2D);
 			}

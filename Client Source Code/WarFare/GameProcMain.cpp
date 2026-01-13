@@ -1260,10 +1260,10 @@ void CGameProcMain::MsgSend_Move(bool bMove, bool bContinous)
 	int iOffset=0;											// 옵셋..
 
 	CAPISocket::MP_AddByte(byBuff, iOffset, N3_MOVE);			// 커멘드..
-	CAPISocket::MP_AddWord(byBuff, iOffset, vPos.x*10);			// 다음 위치
-	CAPISocket::MP_AddWord(byBuff, iOffset, vPos.z*10);
-	CAPISocket::MP_AddShort(byBuff, iOffset, vPos.y*10);
-	CAPISocket::MP_AddWord(byBuff, iOffset, fSpeed*10);			// 속도 
+	CAPISocket::MP_AddWord(byBuff, iOffset, (WORD)(vPos.x*10));			// 다음 위치
+	CAPISocket::MP_AddWord(byBuff, iOffset, (WORD)(vPos.z*10));
+	CAPISocket::MP_AddShort(byBuff, iOffset, (short)(vPos.y*10));
+	CAPISocket::MP_AddWord(byBuff, iOffset, (WORD)(fSpeed*10));			// 속도 
 	CAPISocket::MP_AddByte(byBuff, iOffset, byMoveFlag );		// 움직임 플래그..
 	s_pSocket->Send(byBuff, iOffset);							// 패킷을 보냄..
 
@@ -1282,7 +1282,7 @@ void CGameProcMain::MsgSend_Rotation()
 	float fYaw = s_pPlayer->Yaw(); // 방향..
 	
 	CAPISocket::MP_AddByte(byBuff, iOffset, N3_ROTATE);
-	CAPISocket::MP_AddShort(byBuff, iOffset, fYaw*100);
+	CAPISocket::MP_AddShort(byBuff, iOffset, (short)(fYaw*100));
 
 	s_pSocket->Send(byBuff, iOffset);
 
@@ -1400,7 +1400,7 @@ bool CGameProcMain::MsgSend_PartyOrForceCreate(int iPartyOrForce, const std::str
 	CAPISocket::MP_AddByte(byBuff, iOffset, N3_PARTY_OR_FORCE);
 //	CAPISocket::MP_AddByte(byBuff, iOffset, iPartyOrForce);
 	CAPISocket::MP_AddByte(byBuff, iOffset, eCmdParty);
-	CAPISocket::MP_AddShort(byBuff, iOffset, szID.size());
+	CAPISocket::MP_AddShort(byBuff, iOffset, (short)szID.size());
 	CAPISocket::MP_AddString(byBuff, iOffset, szID);
 
 	s_pSocket->Send(byBuff, iOffset); // 보낸다..
@@ -1506,8 +1506,8 @@ void CGameProcMain::MsgSend_Administrator(e_SubPacket_Administrator eSP, const s
 
 	CAPISocket::MP_AddByte(byBuff, iOffset, N3_ADMINISTRATOR); // 관리자 전용패킷..
 	CAPISocket::MP_AddByte(byBuff, iOffset, eSP);
-	CAPISocket::MP_AddShort(byBuff, iOffset, szID.size());
-	CAPISocket::MP_AddString(byBuff, iOffset, szID);	
+	CAPISocket::MP_AddShort(byBuff, iOffset, (short)szID.size());
+	CAPISocket::MP_AddString(byBuff, iOffset, szID);
 
 	s_pSocket->Send(byBuff, iOffset);
 }
@@ -2421,7 +2421,7 @@ bool CGameProcMain::MsgRecv_UserInAndRequest(DataPack* pDataPack, int& iOffset)
 		CAPISocket::MP_AddShort(&(byBuff[0]), iOffset, iNewUPCCount);		// 아이디 갯수..
 		
 		itID = m_SetUPCID.begin(); itIDEnd = m_SetUPCID.end();
-		for(i = 0; itID != itIDEnd; itID++, i++)
+		for(int i = 0; itID != itIDEnd; itID++, i++)
 		{
 			iID = *itID;
 			CAPISocket::MP_AddShort(&(byBuff[0]), iOffset, iID);			// 자세한 정보가 필요한 아이디들..
@@ -2773,7 +2773,7 @@ bool CGameProcMain::MsgRecv_NPCInAndRequest(DataPack* pDataPack, int& iOffset)
 		CAPISocket::MP_AddShort(&(byBuff[0]), iOffset, iNewNPCCount);		// 아이디 갯수..
 		
 		itID = m_SetNPCID.begin(); itIDEnd = m_SetNPCID.end();
-		for(i = 0; itID != itIDEnd; itID++, i++)
+		for(int i = 0; itID != itIDEnd; itID++, i++)
 		{
 			iID = *itID;
 			CAPISocket::MP_AddShort(&(byBuff[0]), iOffset, iID);			// 자세한 정보가 필요한 아이디들..
@@ -4053,7 +4053,7 @@ void CGameProcMain::MsgSend_GameStart()
 	int iOffset=0;															// 패킷 오프셋..
 
 	CAPISocket::MP_AddByte(byBuff, iOffset, N3_GAMESTART);						// 게임 스타트 패킷 커멘드..
-	CAPISocket::MP_AddByte(byBuff, iOffset, s_pPlayer->IDString().size());		// 아이디 길이 패킷에 넣기..
+	CAPISocket::MP_AddByte(byBuff, iOffset, (BYTE)s_pPlayer->IDString().size());		// 아이디 길이 패킷에 넣기..
 	CAPISocket::MP_AddString(byBuff, iOffset, s_pPlayer->IDString());			// 아이디 문자열 패킷에 넣기..
 
 	s_pSocket->Send(byBuff, iOffset);	
@@ -5066,8 +5066,8 @@ void CGameProcMain::ParseChattingCommand(const std::string& szCmd)
 		
 		int iOffset = 0;
 		CAPISocket::MP_AddByte(byBuff, iOffset, N3_WARP);
-		CAPISocket::MP_AddWord(byBuff, iOffset, (fX * 10));
-		CAPISocket::MP_AddWord(byBuff, iOffset, (fZ * 10));
+		CAPISocket::MP_AddWord(byBuff, iOffset, (WORD)(fX * 10));
+		CAPISocket::MP_AddWord(byBuff, iOffset, (WORD)(fZ * 10));
 
 		s_pSocket->Send(byBuff, iOffset);
 	}
@@ -6585,7 +6585,7 @@ void CGameProcMain::MsgRecv_Knights_GradeChangeAll(DataPack* pDataPack, int& iOf
 		int iIDTmp = pUPC->m_InfoExt.iKnightsID;
 		if(iIDTmp <= 0) continue;
 
-		for(i = 0; i < iCount; i++)
+		for(int i = 0; i < iCount; i++)
 		{
 			if(iIDs[i] == iIDTmp)
 			{

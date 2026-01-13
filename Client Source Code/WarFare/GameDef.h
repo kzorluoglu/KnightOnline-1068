@@ -555,11 +555,19 @@ typedef struct __TABLE_ZONE
       std::string     szUnknownStr5;
       float           fUnknown1;
       std::string     szUnknownStr6;
-      BOOL            bIndicateEnemyPlayer;
-      BYTE            padding[112];
+      DWORD           dwMapBGMID;
+      DWORD           dwNpcIDStart;
+      DWORD           dwNpcIDEnd;
+      DWORD           dwNpcIDStart2;
+      DWORD           dwNpcIDEnd2;
+      std::string     szEventSub;
+      std::string     szAdditionalOpd;
+      int             bIndicateEnemyPlayer;
 
       __TABLE_ZONE() : dwID(0), iFixedSunDirection(0), iFixedSundDirection(0), 
-                       iUnknown2(0), fUnknown1(0.0f), bIndicateEnemyPlayer(FALSE) {
+                       iUnknown2(0), fUnknown1(0.0f),
+                       dwMapBGMID(0), dwNpcIDStart(0), dwNpcIDEnd(0), dwNpcIDStart2(0), dwNpcIDEnd2(0),
+                       bIndicateEnemyPlayer(0) {
           szTerrainFN = "";
           szColorMapFN = "";
           szLightMapFN = "";
@@ -570,7 +578,8 @@ typedef struct __TABLE_ZONE
           szUnknownStr4 = "";
           szUnknownStr5 = "";
           szUnknownStr6 = "";
-          ZeroMemory(padding, sizeof(padding));
+          szEventSub = "";
+          szAdditionalOpd = "";
       }
   } TABLE_ZONE;
 
@@ -1272,9 +1281,8 @@ enum e_Cursor		{	CURSOR_ATTACK,
 						CURSOR_KA_CLICK,
 						CURSOR_PRE_REPAIR,
 						CURSOR_NOW_REPAIR,
+						CURSOR_UNKNOWN,
 						CURSOR_COUNT,
-						CURSOR_UNKNOWN = 0xffffffff
-					};
+      };
 
-#endif // end of #define __GAME_DEF_H_
-
+#endif

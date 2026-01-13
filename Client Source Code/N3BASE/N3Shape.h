@@ -51,20 +51,20 @@ public:
 	int			TexCount() { return m_TexRefs.size(); }
 	CN3Texture* Tex(int iIndex)
 	{
-		if(iIndex < 0 || iIndex >= m_TexRefs.size()) return NULL;
+		if(iIndex < 0 || iIndex >= (int)m_TexRefs.size()) return NULL;
 		return m_TexRefs[iIndex];
 	}
 	void		TexAlloc(int m_nCount);
 	CN3Texture*	TexSet(int iIndex, const std::string& szFN)
 	{
-		if(iIndex < 0 || iIndex >= m_TexRefs.size()) return NULL;
+		if(iIndex < 0 || iIndex >= (int)m_TexRefs.size()) return NULL;
 		s_MngTex.Delete(&m_TexRefs[iIndex]);
 		m_TexRefs[iIndex] = s_MngTex.Get(szFN, true, s_Options.iTexLOD_Shape);
 		return m_TexRefs[iIndex];
 	}
 	void	TexSet(int iIndex, CN3Texture* pTex)
 	{
-		if(iIndex < 0 || iIndex >= m_TexRefs.size()) return;
+		if(iIndex < 0 || iIndex >= (int)m_TexRefs.size()) return;
 		s_MngTex.Delete(&m_TexRefs[iIndex]);
 		m_TexRefs[iIndex] = pTex;
 	}
@@ -133,7 +133,7 @@ public:
 	virtual void	Tick(float fFrm = FRAME_SELFPLAY);
 	virtual void	Render();
 
-	CN3SPart*		Part(int iIndex) { if(iIndex < 0 || iIndex >= m_Parts.size()) return NULL; return m_Parts[iIndex]; }
+	CN3SPart*		Part(int iIndex) { if(iIndex < 0 || iIndex >= (int)m_Parts.size()) return NULL; return m_Parts[iIndex]; }
 	CN3SPart*		PartAdd() { CN3SPart* pPart = new CN3SPart(); m_Parts.push_back(pPart); return pPart; }
 	int				PartCount() { return m_Parts.size(); }
 	void			PartDelete(int iIndex);

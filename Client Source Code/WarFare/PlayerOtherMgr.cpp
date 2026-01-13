@@ -18,7 +18,7 @@ static char THIS_FILE[]=__FILE__;
 
 CPlayerOtherMgr::CPlayerOtherMgr()
 {
-	m_iChrCountToRender = 0; // ·»´õ¸µµÇ´Â Ä³¸¯ Ä«¿îÆ®
+	m_iChrCountToRender = 0; // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ç´ï¿½ Ä³ï¿½ï¿½ Ä«ï¿½ï¿½Æ®
 }
 
 CPlayerOtherMgr::~CPlayerOtherMgr()
@@ -63,7 +63,7 @@ void CPlayerOtherMgr::Release()
 //////////////////////////////////////////////////////////////////////
 void CPlayerOtherMgr::Tick(const __Vector3& vPosPlayer)
 {
-	// ÀÚµ¿ Ä³¸¯ÅÍ LOD Á¶Àý..
+	// ï¿½Úµï¿½ Ä³ï¿½ï¿½ï¿½ï¿½ LOD ï¿½ï¿½ï¿½ï¿½..
 	int iLOD = 0;
 	int iLODTotal = 0;
 
@@ -75,10 +75,10 @@ void CPlayerOtherMgr::Tick(const __Vector3& vPosPlayer)
 		
 		pNPC->Tick();
 		iLOD = pNPC->LODLevel();
-		if(iLOD >= 0 && iLOD < MAX_CHR_LOD) iLODTotal += MAX_CHR_LOD - iLOD; // ÀÚµ¿ LOD °è»êÇÒ¶§ ÇÊ¿äÇÑ °ª..
+		if(iLOD >= 0 && iLOD < MAX_CHR_LOD) iLODTotal += MAX_CHR_LOD - iLOD; // ï¿½Úµï¿½ LOD ï¿½ï¿½ï¿½ï¿½Ò¶ï¿½ ï¿½Ê¿ï¿½ï¿½ï¿½ ï¿½ï¿½..
 
 		float fDist = pNPC->Distance(vPosPlayer);
-		if(fDist < SOUND_RANGE_TO_SET) pNPC->SetSoundAndInitFont(); // SOUND_RANGE ¾È¿¡ ÀÖÀ¸¸é.
+		if(fDist < SOUND_RANGE_TO_SET) pNPC->SetSoundAndInitFont(); // SOUND_RANGE ï¿½È¿ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½.
 		else if(fDist > SOUND_RANGE_TO_RELEASE) pNPC->ReleaseSoundAndFont();
 		it++;
 	}
@@ -90,7 +90,7 @@ void CPlayerOtherMgr::Tick(const __Vector3& vPosPlayer)
 		
 		pNPC->Tick();
 		iLOD = pNPC->LODLevel();
-		if(iLOD >= 0 && iLOD < MAX_CHR_LOD) iLODTotal += MAX_CHR_LOD - iLOD; // ÀÚµ¿ LOD °è»êÇÒ¶§ ÇÊ¿äÇÑ °ª..
+		if(iLOD >= 0 && iLOD < MAX_CHR_LOD) iLODTotal += MAX_CHR_LOD - iLOD; // ï¿½Úµï¿½ LOD ï¿½ï¿½ï¿½ï¿½Ò¶ï¿½ ï¿½Ê¿ï¿½ï¿½ï¿½ ï¿½ï¿½..
 
 		if(PSA_DEATH == pNPC->State())
 		{
@@ -100,13 +100,13 @@ void CPlayerOtherMgr::Tick(const __Vector3& vPosPlayer)
 		else
 		{
 			float fDist = pNPC->Distance(vPosPlayer);
-			if(fDist < SOUND_RANGE_TO_SET) pNPC->SetSoundAndInitFont(); // SOUND_RANGE ¾È¿¡ ÀÖÀ¸¸é.
+			if(fDist < SOUND_RANGE_TO_SET) pNPC->SetSoundAndInitFont(); // SOUND_RANGE ï¿½È¿ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½.
 			else if(fDist > SOUND_RANGE_TO_RELEASE) pNPC->ReleaseSoundAndFont();
 			it2++;
 		}
 	}
 
-	// Á×Àº³ð Ã³¸®..
+	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Ã³ï¿½ï¿½..
 	CPlayerBase* pCorpse = NULL;
 	it_NPC it3 = m_Corpses.begin(), itEnd3 = m_Corpses.end();
 	for(; it3 != itEnd3; )
@@ -116,12 +116,12 @@ void CPlayerOtherMgr::Tick(const __Vector3& vPosPlayer)
 
 		pCorpse->Tick();
 		iLOD = pCorpse->LODLevel();
-		if(iLOD >= 0 && iLOD < MAX_CHR_LOD) iLODTotal += MAX_CHR_LOD - iLOD; // ÀÚµ¿ LOD °è»êÇÒ¶§ ÇÊ¿äÇÑ °ª..
+		if(iLOD >= 0 && iLOD < MAX_CHR_LOD) iLODTotal += MAX_CHR_LOD - iLOD; // ï¿½Úµï¿½ LOD ï¿½ï¿½ï¿½ï¿½Ò¶ï¿½ ï¿½Ê¿ï¿½ï¿½ï¿½ ï¿½ï¿½..
 
-		if(pCorpse->m_fTimeAfterDeath >= TIME_CORPSE_REMAIN) // Á×ÀºÁö ÀÏÁ¤ÇÑ ½Ã°£ÀÌ Áö³ª¸é..
+		if(pCorpse->m_fTimeAfterDeath >= TIME_CORPSE_REMAIN) // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ã°ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½..
 		{
 			T_Delete(pCorpse);
-			it3 = m_Corpses.erase(it3); // Á×Àº³ð Áö¿ì°í..
+			it3 = m_Corpses.erase(it3); // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½..
 		}
 		else
 		{
@@ -129,7 +129,7 @@ void CPlayerOtherMgr::Tick(const __Vector3& vPosPlayer)
 		}
 	}
 
-	// ÀÚµ¿ Ä³¸¯ÅÍ LOD Á¶Àý..
+	// ï¿½Úµï¿½ Ä³ï¿½ï¿½ï¿½ï¿½ LOD ï¿½ï¿½ï¿½ï¿½..
 	int iLODDelta = 0;
 	if(iLODTotal >= 100) iLODDelta = 3;
 	else if(iLODTotal >= 60) iLODDelta = 2;
@@ -154,7 +154,7 @@ void CPlayerOtherMgr::Render(float fSunAngle)
 //		pUPC->Render(true, fSunAngle);
 //	}
 
-	// Ä«¸Þ¶ó °Å¸®¼øÀ¸·Î Á¤·Ä
+	// Ä«ï¿½Þ¶ï¿½ ï¿½Å¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	int iUPCSize = m_UPCs.size();
 	if(iUPCSize > 0)
 	{
@@ -181,7 +181,7 @@ void CPlayerOtherMgr::Render(float fSunAngle)
 //		
 //		pNPC->Render(true, fSunAngle);
 //	}
-	// Ä«¸Þ¶ó °Å¸®¼øÀ¸·Î Á¤·Ä
+	// Ä«ï¿½Þ¶ï¿½ ï¿½Å¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	int iNPCSize = m_NPCs.size();
 	if(iNPCSize > 0)
 	{
@@ -196,7 +196,7 @@ void CPlayerOtherMgr::Render(float fSunAngle)
 	}
 
 
-	// Á×Àº³ðµµ ·»´õ¸µ..
+	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½..
 //	CPlayerBase* pCorpse = NULL;
 //	it_NPC it3 = m_Corpses.begin(), itEnd3 = m_Corpses.end();
 //	for(; it3 != itEnd3; it3++)
@@ -204,7 +204,7 @@ void CPlayerOtherMgr::Render(float fSunAngle)
 //		pCorpse = it3->second;
 //		pCorpse->Render(false, fSunAngle);
 //	}
-	// Ä«¸Þ¶ó °Å¸®¼øÀ¸·Î Á¤·Ä
+	// Ä«ï¿½Þ¶ï¿½ ï¿½Å¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	int iCorpseSize = m_Corpses.size();
 	if(iCorpseSize > 0)
 	{
@@ -260,7 +260,7 @@ CPlayerOther* CPlayerOtherMgr::PickUPC(int ixScreen, int iyScreen, int& iIDResul
 
 	if(!m_UPCs.empty())
 	{
-		// Ä«¸Þ¶ó °Å¸®¼øÀ¸·Î Á¤·Ä
+		// Ä«ï¿½Þ¶ï¿½ ï¿½Å¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 		std::vector<CPlayerOther*> UPCs;
 		UPCs.reserve(m_UPCs.size());
 		it_UPC it = m_UPCs.begin(), itEnd = m_UPCs.end();
@@ -271,7 +271,7 @@ CPlayerOther* CPlayerOtherMgr::PickUPC(int ixScreen, int iyScreen, int& iIDResul
 		for(int i = 0; i < UPCs.size(); i++)
 		{
 			pUPC = UPCs[i];
-			if(pUPC->LODLevel() < 0 || pUPC->LODLevel() >= MAX_CHR_LOD) continue; // Level Of Detail ÀÌ ¾ø´Â°Ç Áö³ª°£´Ù.
+			if(pUPC->LODLevel() < 0 || pUPC->LODLevel() >= MAX_CHR_LOD) continue; // Level Of Detail ï¿½ï¿½ ï¿½ï¿½ï¿½Â°ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½.
 
 			CN3VMesh* pvMesh = pUPC->m_Chr.CollisionMesh();
 			if(NULL != pvMesh && pvMesh->Pick(pUPC->m_Chr.m_Matrix, vPos, vDir, pvPick)) 
@@ -294,18 +294,18 @@ CPlayerNPC* CPlayerOtherMgr::PickNPC(int ixScreen, int iyScreen, int& iIDResult,
 	
 	if(!m_NPCs.empty())
 	{
-		// Ä«¸Þ¶ó °Å¸®¼øÀ¸·Î Á¤·Ä
+		// Ä«ï¿½Þ¶ï¿½ ï¿½Å¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 		std::vector<CPlayerNPC*> NPCs;
 		it_NPC it = m_NPCs.begin(), itEnd = m_NPCs.end();
 		NPCs.reserve(m_NPCs.size());
 		for(; it != itEnd; it++) NPCs.push_back(it->second);
 		qsort(&(NPCs[0]), NPCs.size(), 4, SortByCameraDistance);
 
-		CPlayerNPC* pNPC = NULL; // NPC ¸¦ ¸ÕÀú Âï¾îº»´Ù...
+		CPlayerNPC* pNPC = NULL; // NPC ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½îº»ï¿½ï¿½...
 		for(int i = 0; i < NPCs.size(); i++)
 		{
 			pNPC = NPCs[i];
-			if(pNPC->LODLevel() < 0 || pNPC->LODLevel() >= MAX_CHR_LOD) continue; // Level Of Detail ÀÌ ¾ø´Â°Ç Áö³ª°£´Ù.
+			if(pNPC->LODLevel() < 0 || pNPC->LODLevel() >= MAX_CHR_LOD) continue; // Level Of Detail ï¿½ï¿½ ï¿½ï¿½ï¿½Â°ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½.
 
 			CN3VMesh* pvMesh = NULL;
 			__Matrix44* pMtx = NULL;
@@ -343,7 +343,7 @@ CPlayerNPC* CPlayerOtherMgr::PickCorpse(int ixScreen, int iyScreen, int& iIDResu
 	::_Convert2D_To_3DCoordinate(ixScreen, iyScreen, s_CameraData.mtxView, s_CameraData.mtxProjection, s_CameraData.vp, vPos, vDir);
 
 
-	// Ä«¸Þ¶ó °Å¸®¼øÀ¸·Î Á¤·Ä
+	// Ä«ï¿½Þ¶ï¿½ ï¿½Å¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	std::vector<CPlayerNPC*> Corpses;
 	Corpses.reserve(m_Corpses.size());
 	it_NPC it = m_Corpses.begin(), itEnd = m_Corpses.end();
@@ -351,10 +351,10 @@ CPlayerNPC* CPlayerOtherMgr::PickCorpse(int ixScreen, int iyScreen, int& iIDResu
 	qsort(&(Corpses[0]), Corpses.size(), 4, SortByCameraDistance);
 
 	CPlayerNPC*	pCorpse = NULL;
-	for(int i = 0; i < Corpses.size(); i++)
+	for(int i = 0; i < (int)Corpses.size(); i++)
 	{
 		pCorpse = Corpses[i];
-		if(pCorpse->LODLevel() < 0 || pCorpse->LODLevel() >= MAX_CHR_LOD) continue; // Level Of Detail ÀÌ ¾ø´Â°Ç Áö³ª°£´Ù.
+		if(pCorpse->LODLevel() < 0 || pCorpse->LODLevel() >= MAX_CHR_LOD) continue; // Level Of Detail ï¿½ï¿½ ï¿½ï¿½ï¿½Â°ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½.
 
 		CN3VMesh* pvMesh = pCorpse->m_Chr.CollisionMesh();
 		if(NULL != pvMesh && pvMesh->Pick(pCorpse->m_Chr.m_Matrix, vPos, vDir)) 
@@ -403,23 +403,23 @@ void CPlayerOtherMgr::CorpseRemove(CPlayerNPC *pCorpse, bool bRemoveImmediately)
 	if(pCorpse->m_fTimeAfterDeath >= TIME_CORPSE_REMAIN - TIME_CORPSE_REMOVE) return;
 
 	if(bRemoveImmediately)
-		pCorpse->m_fTimeAfterDeath = TIME_CORPSE_REMAIN; // Á×Àº ½Ã°£À» ´Ã·Á¼­ ¹Ù·Î ¾ø¾ÖÁØ´Ù..
+		pCorpse->m_fTimeAfterDeath = TIME_CORPSE_REMAIN; // ï¿½ï¿½ï¿½ï¿½ ï¿½Ã°ï¿½ï¿½ï¿½ ï¿½Ã·ï¿½ï¿½ï¿½ ï¿½Ù·ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ø´ï¿½..
 	else
-		pCorpse->m_fTimeAfterDeath = TIME_CORPSE_REMAIN - TIME_CORPSE_REMOVE; // ÀÚ ÀÌÁ¦ ¾ø¾îÁú ½Ã°£ÀÌ´Ù.. ³ª¸ÓÁö´Â Tick ¿¡¼­ ÇÑ´Ù..
+		pCorpse->m_fTimeAfterDeath = TIME_CORPSE_REMAIN - TIME_CORPSE_REMOVE; // ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ã°ï¿½ï¿½Ì´ï¿½.. ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Tick ï¿½ï¿½ï¿½ï¿½ ï¿½Ñ´ï¿½..
 }
 
 void CPlayerOtherMgr::CorpseAdd(CPlayerNPC* pNPC)
 {
 	if(NULL == pNPC) return;
 	std::pair<it_NPC, bool> result = m_Corpses.insert(val_NPC(pNPC->IDNumber(), pNPC));
-	if(false == result.second) // Áßº¹µÇ¾úÀ¸¸é..
+	if(false == result.second) // ï¿½ßºï¿½ï¿½Ç¾ï¿½ï¿½ï¿½ï¿½ï¿½..
 	{
-		T_Delete(result.first->second); // ÀüÀÇ°É Áö¿öÁÖ°í..
-		result.first->second = pNPC; // »õ·Î Æ÷ÀÎÅÍ ³Ö´Â´Ù...
+		T_Delete(result.first->second); // ï¿½ï¿½ï¿½Ç°ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ö°ï¿½..
+		result.first->second = pNPC; // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ö´Â´ï¿½...
 	}
 }
 
-CPlayerNPC*	CPlayerOtherMgr::CorpseGetNearstNPC(bool bMustHaveItem, e_Nation eNation, const __Vector3& vPosPlayer) // °¡Àå °¡±î¿î Àû ½ÃÃ¼ °¡Á®¿À±â..
+CPlayerNPC*	CPlayerOtherMgr::CorpseGetNearstNPC(bool bMustHaveItem, e_Nation eNation, const __Vector3& vPosPlayer) // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½Ã¼ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½..
 {
 	CPlayerNPC* pTarget = NULL;
 	float fDistMin = FLT_MAX, fDistTmp = 0;
@@ -447,23 +447,23 @@ void CPlayerOtherMgr::MoveToCorpsesForcely(CPlayerNPC* pNPC, bool bErase)
 	if(NULL == pNPC) return;
 
 	int iID = pNPC->IDNumber();
-	pNPC->Action(PSA_DEATH, false, NULL, true); // °­Á¦·Î Á×ÀÎ´Ù..
-	if(bErase) pNPC->m_fTimeAfterDeath = TIME_CORPSE_REMAIN - 10.0f; // Á×Àº ½Ã°£À» ¼¼ÆÃ...
+	pNPC->Action(PSA_DEATH, false, NULL, true); // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Î´ï¿½..
+	if(bErase) pNPC->m_fTimeAfterDeath = TIME_CORPSE_REMAIN - 10.0f; // ï¿½ï¿½ï¿½ï¿½ ï¿½Ã°ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½...
 	else pNPC->m_fTimeAfterDeath = 0.1f;
 
-	it_UPC it = m_UPCs.find(iID); // User¸¦ Ã£¾Æº¸°í...
+	it_UPC it = m_UPCs.find(iID); // Userï¿½ï¿½ Ã£ï¿½Æºï¿½ï¿½ï¿½...
 	if(it != m_UPCs.end())
 	{
-		if( bErase ) //»èÁ¦ÀÏ¶§´Â ½ÃÃ¼·Î ¸¸µç´Ù
-		{//Áßº¹À¸·Î ÀÎÇØ¼­ Ä³¸¯ÅÍ¸¦ ½ÃÃ¼·Î ¸¸µç´Ù.
+		if( bErase ) //ï¿½ï¿½ï¿½ï¿½ï¿½Ï¶ï¿½ï¿½ï¿½ ï¿½ï¿½Ã¼ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½
+		{//ï¿½ßºï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ø¼ï¿½ Ä³ï¿½ï¿½ï¿½Í¸ï¿½ ï¿½ï¿½Ã¼ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½.
 			CPlayerOther* pUPC = it->second;
-			this->CorpseAdd(pUPC); // ½ÃÃ¼·Î ¸¸µé°í..
-			m_UPCs.erase(it); // ¸Ê¿¡¼­ Áö¿î´Ù.
+			this->CorpseAdd(pUPC); // ï¿½ï¿½Ã¼ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½..
+			m_UPCs.erase(it); // ï¿½Ê¿ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½.
 		}
 
 //		CPlayerOther* pUPC = it->second;
-//		this->CorpseAdd(pUPC); // ½ÃÃ¼·Î ¸¸µé°í..
-//		m_UPCs.erase(it); // ¸Ê¿¡¼­ Áö¿î´Ù.
+//		this->CorpseAdd(pUPC); // ï¿½ï¿½Ã¼ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½..
+//		m_UPCs.erase(it); // ï¿½Ê¿ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½.
 	}
 	else
 	{
@@ -471,13 +471,13 @@ void CPlayerOtherMgr::MoveToCorpsesForcely(CPlayerNPC* pNPC, bool bErase)
 		if(it2 != m_NPCs.end())
 		{
 			CPlayerNPC* pNPC = it2->second; 
-			this->CorpseAdd(pNPC); // ½ÃÃ¼·Î ¸¸µé°í..
-			m_NPCs.erase(it2); // ¸Ê¿¡¼­ Áö¿î´Ù.
+			this->CorpseAdd(pNPC); // ï¿½ï¿½Ã¼ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½..
+			m_NPCs.erase(it2); // ï¿½Ê¿ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½.
 		}
 	}
 }
 
-CPlayerNPC*	CPlayerOtherMgr::CharacterGetByNearstEnemy(e_Nation eNation, const __Vector3& vPosPlayer) // °¡Àå °¡±î¿î Àû °¡Á®¿À±â..
+CPlayerNPC*	CPlayerOtherMgr::CharacterGetByNearstEnemy(e_Nation eNation, const __Vector3& vPosPlayer) // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½..
 {
 	CPlayerNPC* pTarget = NULL;
 	float fDistMin = FLT_MAX, fDistTmp = 0;
@@ -514,14 +514,14 @@ CPlayerNPC*	CPlayerOtherMgr::CharacterGetByNearstEnemy(e_Nation eNation, const _
 	return pTarget;
 }
 
-bool CPlayerOtherMgr::CharacterDelete(int iID) // User, NPC ¾È °¡¸®°í Áö¿î´Ù..
+bool CPlayerOtherMgr::CharacterDelete(int iID) // User, NPC ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½..
 {
-	it_UPC it = m_UPCs.find(iID); // User¸¦ Ã£¾Æº¸°í...
+	it_UPC it = m_UPCs.find(iID); // Userï¿½ï¿½ Ã£ï¿½Æºï¿½ï¿½ï¿½...
 	if(it != m_UPCs.end())
 	{
 		CPlayerOther* pUPC = it->second;
 		delete pUPC;
-		m_UPCs.erase(it); // ¸Ê¿¡¼­ Áö¿î´Ù.
+		m_UPCs.erase(it); // ï¿½Ê¿ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½.
 		return true;
 	}
 
@@ -530,7 +530,7 @@ bool CPlayerOtherMgr::CharacterDelete(int iID) // User, NPC ¾È °¡¸®°í Áö¿î´Ù..
 	{
 		CPlayerNPC* pNPC = it2->second; 
 		delete pNPC;
-		m_NPCs.erase(it2); // ¸Ê¿¡¼­ Áö¿î´Ù.
+		m_NPCs.erase(it2); // ï¿½Ê¿ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½.
 		return true;
 	}
 
@@ -546,23 +546,23 @@ int CPlayerOtherMgr::SortByCameraDistance(const void* pArg1, const void* pArg2)
 	float fDist1 = (CN3Base::s_CameraData.vEye - pPlayer1->Position()).Magnitude();
 	float fDist2 = (CN3Base::s_CameraData.vEye - pPlayer2->Position()).Magnitude();
 
-	if(fDist1 < fDist2) return -1; // °¡±î¿ì¸é true;
+	if(fDist1 < fDist2) return -1; // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ true;
 	else if(fDist1 > fDist2) return 1;
 	else return 0;
 }
 
 void CPlayerOtherMgr::CorpseAdd(int iID)
 {
-	it_UPC it = m_UPCs.find(iID); // User¸¦ Ã£¾Æº¸°í...
+	it_UPC it = m_UPCs.find(iID); // Userï¿½ï¿½ Ã£ï¿½Æºï¿½ï¿½ï¿½...
 	if(it != m_UPCs.end())
 	{
 		CPlayerOther* pUPC = it->second;
 
-		pUPC->Action(PSA_DEATH, false, NULL, true); // °­Á¦·Î Á×ÀÎ´Ù..
-		pUPC->m_fTimeAfterDeath = TIME_CORPSE_REMAIN - 10.0f; // Á×Àº ½Ã°£À» ¼¼ÆÃ...
+		pUPC->Action(PSA_DEATH, false, NULL, true); // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Î´ï¿½..
+		pUPC->m_fTimeAfterDeath = TIME_CORPSE_REMAIN - 10.0f; // ï¿½ï¿½ï¿½ï¿½ ï¿½Ã°ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½...
 
-		this->CorpseAdd(pUPC); // ½ÃÃ¼·Î ¸¸µé°í..
-		m_UPCs.erase(it); // ¸Ê¿¡¼­ Áö¿î´Ù.
+		this->CorpseAdd(pUPC); // ï¿½ï¿½Ã¼ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½..
+		m_UPCs.erase(it); // ï¿½Ê¿ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½.
 	}
 }
 
@@ -574,9 +574,9 @@ CPlayerNPC* CPlayerOtherMgr::PickAllPrecisely(int ixScreen, int iyScreen, int &i
 	::_Convert2D_To_3DCoordinate(ixScreen, iyScreen, s_CameraData.mtxView, s_CameraData.mtxProjection, s_CameraData.vp, vPos, vDir);
 
 
-	CPlayerNPC* pNPC = NULL; // NPC¶ó±â º¸´Ù´Â Ä³¸¯ÅÍ Æ÷ÀÎÅÍ
+	CPlayerNPC* pNPC = NULL; // NPCï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ù´ï¿½ Ä³ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 
-	// Ä«¸Þ¶ó °Å¸®¼øÀ¸·Î Á¤·Ä
+	// Ä«ï¿½Þ¶ï¿½ ï¿½Å¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	std::vector<CPlayerNPC*> NPCs;
 	std::vector<CPlayerNPC*> NUPCBufs;
 	if(!m_NPCs.empty() || !m_UPCs.empty())
@@ -595,11 +595,11 @@ CPlayerNPC* CPlayerOtherMgr::PickAllPrecisely(int ixScreen, int iyScreen, int &i
 
 
 	int iCnt = 0;
-	for(int i = 0; i < NPCs.size(); i++)
+	for(int i = 0; i < (int)NPCs.size(); i++)
 	{
 		pNPC = NPCs[i];
 		if(pNPC == NULL) continue;
-		if(pNPC->LODLevel() < 0 || pNPC->LODLevel() >= MAX_CHR_LOD) continue; // Level Of Detail ÀÌ ¾ø´Â°Ç Áö³ª°£´Ù.
+		if(pNPC->LODLevel() < 0 || pNPC->LODLevel() >= MAX_CHR_LOD) continue; // Level Of Detail ï¿½ï¿½ ï¿½ï¿½ï¿½Â°ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½.
 
 		CN3VMesh* pvMesh = NULL;
 		__Matrix44* pMtx = NULL;
@@ -637,9 +637,9 @@ CPlayerNPC* CPlayerOtherMgr::PickAllPrecisely(int ixScreen, int iyScreen, int &i
 	}
 	
 ////////////////////////////////////////////////////////////////////////////
-//	NPC¿Í UPC¸¦ µû·Î Ãæµ¹Ã¼Å©¸¦ ÇÏ°Ô µÇ¸é UPC°¡ ³ª¿Í °¡±îÀÌ ÀÖ¾îµµ 
-//	µÚ¿¡ ÀÖ´Â NPC¸¦ ¸ÕÀú Ã£¾Æ³»±â ¶§¹®¿¡ UPC¿Í NPC¸¦ µ¿½Ã¿¡ Ä«¸Þ¶ó¿¡ Á¤·ÄÇÏ¿©
-//	Ãæµ¹ Ã¼Å©¸¦ ÇØÁà¾ß Á¤È®ÇÑ Ä³¸¯ÅÍ¸¦ Ã£¾Æ ³¾¼ö°¡ ÀÖ´Ù.
+//	NPCï¿½ï¿½ UPCï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½æµ¹Ã¼Å©ï¿½ï¿½ ï¿½Ï°ï¿½ ï¿½Ç¸ï¿½ UPCï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ö¾îµµ 
+//	ï¿½Ú¿ï¿½ ï¿½Ö´ï¿½ NPCï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ Ã£ï¿½Æ³ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ UPCï¿½ï¿½ NPCï¿½ï¿½ ï¿½ï¿½ï¿½Ã¿ï¿½ Ä«ï¿½Þ¶ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï¿ï¿½
+//	ï¿½æµ¹ Ã¼Å©ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È®ï¿½ï¿½ Ä³ï¿½ï¿½ï¿½Í¸ï¿½ Ã£ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ö´ï¿½.
 ////////////////////////////////////////////////////////////////////////////
 
 	int iBufCnt = NUPCBufs.size();
@@ -655,10 +655,10 @@ CPlayerNPC* CPlayerOtherMgr::PickAllPrecisely(int ixScreen, int iyScreen, int &i
 		}
 	}
 
-	for(i = 0; i < iBufCnt; i++)
+	for(int i = 0; i < iBufCnt; i++)
 	{
 		pNPC = NUPCBufs[i];
-		if(pNPC->LODLevel() < 0 || pNPC->LODLevel() >= MAX_CHR_LOD) continue; // Level Of Detail ÀÌ ¾ø´Â°Ç Áö³ª°£´Ù.
+		if(pNPC->LODLevel() < 0 || pNPC->LODLevel() >= MAX_CHR_LOD) continue; // Level Of Detail ï¿½ï¿½ ï¿½ï¿½ï¿½Â°ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½.
 
 		CN3VMesh* pvMesh = NULL;
 		__Matrix44* pMtx = NULL;
@@ -687,18 +687,18 @@ CPlayerNPC* CPlayerOtherMgr::PickNPCPrecisely(int ixScreen, int iyScreen, int &i
 	
 	if(!m_NPCs.empty())
 	{
-		// Ä«¸Þ¶ó °Å¸®¼øÀ¸·Î Á¤·Ä
+		// Ä«ï¿½Þ¶ï¿½ ï¿½Å¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 		std::vector<CPlayerNPC*> NPCs;
 		it_NPC it = m_NPCs.begin(), itEnd = m_NPCs.end();
 		NPCs.reserve(m_NPCs.size());
 		for(; it != itEnd; it++) NPCs.push_back(it->second);
 		qsort(&(NPCs[0]), NPCs.size(), 4, SortByCameraDistance);
 
-		CPlayerNPC* pNPC = NULL; // NPC ¸¦ ¸ÕÀú Âï¾îº»´Ù...
+		CPlayerNPC* pNPC = NULL; // NPC ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½îº»ï¿½ï¿½...
 		for(int i = 0; i < NPCs.size(); i++)
 		{
 			pNPC = NPCs[i];
-			if(pNPC->LODLevel() < 0 || pNPC->LODLevel() >= MAX_CHR_LOD) continue; // Level Of Detail ÀÌ ¾ø´Â°Ç Áö³ª°£´Ù.
+			if(pNPC->LODLevel() < 0 || pNPC->LODLevel() >= MAX_CHR_LOD) continue; // Level Of Detail ï¿½ï¿½ ï¿½ï¿½ï¿½Â°ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½.
 
 			CN3VMesh* pvMesh = NULL;
 			__Matrix44* pMtx = NULL;
@@ -742,7 +742,7 @@ CPlayerOther* CPlayerOtherMgr::PickUPCPrecisely(int ixScreen, int iyScreen, int 
 
 	if(!m_UPCs.empty())
 	{
-		// Ä«¸Þ¶ó °Å¸®¼øÀ¸·Î Á¤·Ä
+		// Ä«ï¿½Þ¶ï¿½ ï¿½Å¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 		std::vector<CPlayerOther*> UPCs;
 		UPCs.reserve(m_UPCs.size());
 		it_UPC it = m_UPCs.begin(), itEnd = m_UPCs.end();
@@ -753,7 +753,7 @@ CPlayerOther* CPlayerOtherMgr::PickUPCPrecisely(int ixScreen, int iyScreen, int 
 		for(int i = 0; i < UPCs.size(); i++)
 		{
 			pUPC = UPCs[i];
-			if(pUPC->LODLevel() < 0 || pUPC->LODLevel() >= MAX_CHR_LOD) continue; // Level Of Detail ÀÌ ¾ø´Â°Ç Áö³ª°£´Ù.
+			if(pUPC->LODLevel() < 0 || pUPC->LODLevel() >= MAX_CHR_LOD) continue; // Level Of Detail ï¿½ï¿½ ï¿½ï¿½ï¿½Â°ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½.
 
 			if(pUPC->m_Chr.CheckCollisionPrecisely(ixScreen ,iyScreen, pvPick) != -1)
 			{

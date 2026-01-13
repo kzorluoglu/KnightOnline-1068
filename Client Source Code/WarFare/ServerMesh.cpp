@@ -52,8 +52,8 @@ void CServerMesh::Tick(CN3Terrain* pTerrain, const __Vector3& vPosPlayer)
 	ixposR = ixpos - SGRID_SIZE;
 	izposR = izpos + SGRID_SIZE*2;
 
-	fHeightLB	=	pTerrain->GetHeight(ixposL, izposL);
-	fHeightRB	=	pTerrain->GetHeight(ixposR, izposR);
+	fHeightLB	=	pTerrain->GetHeight((float)ixposL, (float)izposL);
+	fHeightRB	=	pTerrain->GetHeight((float)ixposR, (float)izposR);
 
 	if ( fHeightLB >= fHeightRB ) 
 	{
@@ -76,8 +76,8 @@ void CServerMesh::Tick(CN3Terrain* pTerrain, const __Vector3& vPosPlayer)
 	ixposR = ixpos;
 	izposR = izpos + SGRID_SIZE*2;
 
-	fHeightLB	=	pTerrain->GetHeight(ixposL, izposL);
-	fHeightRB	=	pTerrain->GetHeight(ixposR, izposR);
+	fHeightLB	=	pTerrain->GetHeight((float)ixposL, (float)izposL);
+	fHeightRB	=	pTerrain->GetHeight((float)ixposR, (float)izposR);
 
 	if ( fHeightLB >= fHeightRB ) 
 	{
@@ -100,8 +100,8 @@ void CServerMesh::Tick(CN3Terrain* pTerrain, const __Vector3& vPosPlayer)
 	ixposR = ixpos + SGRID_SIZE;
 	izposR = izpos + SGRID_SIZE*2;
 
-	fHeightLB	=	pTerrain->GetHeight(ixposL, izposL);
-	fHeightRB	=	pTerrain->GetHeight(ixposR, izposR);
+	fHeightLB	=	pTerrain->GetHeight((float)ixposL, (float)izposL);
+	fHeightRB	=	pTerrain->GetHeight((float)ixposR, (float)izposR);
 
 	if ( fHeightLB >= fHeightRB ) 
 	{
@@ -124,8 +124,8 @@ void CServerMesh::Tick(CN3Terrain* pTerrain, const __Vector3& vPosPlayer)
 	ixposR = ixpos + SGRID_SIZE*2;
 	izposR = izpos + SGRID_SIZE*2;
 
-	fHeightLB	=	pTerrain->GetHeight(ixposL, izposL);
-	fHeightRB	=	pTerrain->GetHeight(ixposR, izposR);
+	fHeightLB	=	pTerrain->GetHeight((float)ixposL, (float)izposL);
+	fHeightRB	=	pTerrain->GetHeight((float)ixposR, (float)izposR);
 
 	if ( fHeightLB >= fHeightRB ) 
 	{
@@ -148,8 +148,8 @@ void CServerMesh::Tick(CN3Terrain* pTerrain, const __Vector3& vPosPlayer)
 	ixposR = ixpos + SGRID_SIZE*2;
 	izposR = izpos - SGRID_SIZE;
 
-	fHeightLB	=	pTerrain->GetHeight(ixposL, izposL);
-	fHeightRB	=	pTerrain->GetHeight(ixposR, izposR);
+	fHeightLB	=	pTerrain->GetHeight((float)ixposL, (float)izposL);
+	fHeightRB	=	pTerrain->GetHeight((float)ixposR, (float)izposR);
 
 	if ( fHeightLB >= fHeightRB ) 
 	{
@@ -172,8 +172,8 @@ void CServerMesh::Tick(CN3Terrain* pTerrain, const __Vector3& vPosPlayer)
 	ixposR = ixpos + SGRID_SIZE*2;
 	izposR = izpos;
 
-	fHeightLB	=	pTerrain->GetHeight(ixposL, izposL);
-	fHeightRB	=	pTerrain->GetHeight(ixposR, izposR);
+	fHeightLB	=	pTerrain->GetHeight((float)ixposL, (float)izposL);
+	fHeightRB	=	pTerrain->GetHeight((float)ixposR, (float)izposR);
 
 	if ( fHeightLB >= fHeightRB ) 
 	{
@@ -196,8 +196,8 @@ void CServerMesh::Tick(CN3Terrain* pTerrain, const __Vector3& vPosPlayer)
 	ixposR = ixpos + SGRID_SIZE*2;
 	izposR = izpos + SGRID_SIZE;
 
-	fHeightLB	=	pTerrain->GetHeight(ixposL, izposL);
-	fHeightRB	=	pTerrain->GetHeight(ixposR, izposR);
+	fHeightLB	=	pTerrain->GetHeight((float)ixposL, (float)izposL);
+	fHeightRB	=	pTerrain->GetHeight((float)ixposR, (float)izposR);
 
 	if ( fHeightLB >= fHeightRB ) 
 	{
@@ -220,8 +220,8 @@ void CServerMesh::Tick(CN3Terrain* pTerrain, const __Vector3& vPosPlayer)
 	ixposR = ixpos + SGRID_SIZE*2;
 	izposR = izpos + SGRID_SIZE*2;
 
-	fHeightLB	=	pTerrain->GetHeight(ixposL, izposL);
-	fHeightRB	=	pTerrain->GetHeight(ixposR, izposR);
+	fHeightLB	=	pTerrain->GetHeight((float)ixposL, (float)izposL);
+	fHeightRB	=	pTerrain->GetHeight((float)ixposR, (float)izposR);
 
 	if ( fHeightLB >= fHeightRB ) 
 	{

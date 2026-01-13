@@ -87,7 +87,7 @@ bool CUIImageTooltipDlg::SetTooltipTextColor(e_Class eMyValue, e_Class eTooltipV
 void CUIImageTooltipDlg::SetPosSomething(int xpos, int ypos, int iNum)
 {
 	int iWidth = 0;
-	// °¡·Î Å©±â ¾ò±â..
+	// ï¿½ï¿½ï¿½ï¿½ Å©ï¿½ï¿½ ï¿½ï¿½ï¿½..
 	for (int i = 0; i < iNum; i++)
 	{
 		if (m_pstdstr[i].empty())	continue;
@@ -98,7 +98,7 @@ void CUIImageTooltipDlg::SetPosSomething(int xpos, int ypos, int iNum)
 	iWidth += 22;
 
 //	int iWidth	= m_rcRegion.right-m_rcRegion.left;
-	int iHeight = (m_pStr[iNum-1]->GetRegion().bottom - m_pStr[0]->GetRegion().top)+14;	// 2´Â string°£ÀÇ °£°ÝÀÇ Àý¹Ý..
+	int iHeight = (m_pStr[iNum-1]->GetRegion().bottom - m_pStr[0]->GetRegion().top)+14;	// 2ï¿½ï¿½ stringï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½..
 
 	RECT rect, rect2;
 	
@@ -138,7 +138,7 @@ void CUIImageTooltipDlg::SetPosSomething(int xpos, int ypos, int iNum)
 	SetPos(iX, iY);
 	SetSize(rect.right - rect.left, rect.bottom - rect.top);
 
-	for (i = 0; i < iNum; i++)
+	for (int i = 0; i < iNum; i++)
 	{
 		if (!m_pStr[i])	continue;		
 		rect2 = m_pStr[i]->GetRegion();
@@ -150,7 +150,7 @@ void CUIImageTooltipDlg::SetPosSomething(int xpos, int ypos, int iNum)
 			m_pStr[i]->SetString("  "+m_pstdstr[i]);
 	}
 
-	for (i = iNum; i < MAX_TOOLTIP_COUNT; i++ )
+	for (int i = iNum; i < MAX_TOOLTIP_COUNT; i++ )
 		m_pStr[i]->SetString("");
 
 	m_pImg->SetRegion(rect);
@@ -188,7 +188,7 @@ int	CUIImageTooltipDlg::CalcTooltipStringNumAndWrite(__IconItemSkill* spItem, bo
 			if ( spItem->pItemBasic->szName == szStr )
 			{
 				sprintf(szBuff, "%d  %s", spItem->iCount, spItem->pItemBasic->szName.c_str());
-				// µ·ÀÌ¸é Èò»ö..
+				// ï¿½ï¿½ï¿½Ì¸ï¿½ ï¿½ï¿½ï¿½..
 				m_pStr[iIndex]->SetColor(m_CWhite);
 				m_pstdstr[iIndex] = szBuff;
 				iIndex++;			
@@ -250,7 +250,7 @@ int	CUIImageTooltipDlg::CalcTooltipStringNumAndWrite(__IconItemSkill* spItem, bo
 		{
 			m_pStr[iIndex]->SetStyle(UI_STR_TYPE_HALIGN, UISTYLE_STRING_ALIGNCENTER);
 			e_ItemClass eIC = (e_ItemClass)(spItem->pItemBasic->byClass);
-			CGameProcedure::GetTextByItemClass(eIC, szString); // ¾ÆÀÌÅÛ Á¾·ù¿¡ µû¶ó ¹®ÀÚ¿­ ¸¸µé±â..
+			CGameProcedure::GetTextByItemClass(eIC, szString); // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ú¿ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½..
 			m_pStr[iIndex]->SetColor(m_CWhite);
 			m_pstdstr[iIndex] = szString;
 			iIndex++;
@@ -260,7 +260,7 @@ int	CUIImageTooltipDlg::CalcTooltipStringNumAndWrite(__IconItemSkill* spItem, bo
 		if (eRace != RACE_ALL)
 		{
 			m_pStr[iIndex]->SetStyle(UI_STR_TYPE_HALIGN, UISTYLE_STRING_ALIGNCENTER);
-			CGameProcedure::GetTextByRace(eRace, szString); // ¾ÆÀÌÅÛÀ» Âû¼ö ÀÖ´Â Á¾Á·¿¡ µû¸¥ ¹®ÀÚ¿­ ¸¸µé±â.
+			CGameProcedure::GetTextByRace(eRace, szString); // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ö´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ú¿ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½.
 			if (SetTooltipTextColor(CGameBase::s_pPlayer->m_InfoBase.eRace, eRace))
 				m_pStr[iIndex]->SetColor(m_CWhite);
 			else
@@ -274,7 +274,7 @@ int	CUIImageTooltipDlg::CalcTooltipStringNumAndWrite(__IconItemSkill* spItem, bo
 		{
 			m_pStr[iIndex]->SetStyle(UI_STR_TYPE_HALIGN, UISTYLE_STRING_ALIGNCENTER);
 			e_Class eClass = (e_Class)spItem->pItemBasic->byNeedClass;
-			CGameProcedure::GetTextByClass(eClass, szString); // ¾ÆÀÌÅÛÀ» Âû¼ö ÀÖ´Â Á¾Á·¿¡ µû¸¥ ¹®ÀÚ¿­ ¸¸µé±â.
+			CGameProcedure::GetTextByClass(eClass, szString); // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ö´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ú¿ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½.
 
 			switch (eClass)
 			{
@@ -495,7 +495,7 @@ int	CUIImageTooltipDlg::CalcTooltipStringNumAndWrite(__IconItemSkill* spItem, bo
 		}
 		ERROR_EXCEPTION
 
-		// °ø°Ý½Ã°£ °¨¼Ò ¾ø¾îÁü..
+		// ï¿½ï¿½ï¿½Ý½Ã°ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½..
 
 		if (spItem->pItemBasic->siAttackRange != 0)
 		{
@@ -636,7 +636,7 @@ int	CUIImageTooltipDlg::CalcTooltipStringNumAndWrite(__IconItemSkill* spItem, bo
 		}
 		ERROR_EXCEPTION
 
-		if( spItem->pItemExt->byDamageFire != 0)	// È­¿°¼Ó¼º
+		if( spItem->pItemExt->byDamageFire != 0)	// È­ï¿½ï¿½ï¿½Ó¼ï¿½
 		{
 			m_pStr[iIndex]->SetStyle(UI_STR_TYPE_HALIGN, UISTYLE_STRING_ALIGNLEFT);
 			::_LoadStringFromResource(IDS_TOOLTIP_ATTRMAGIC1, szStr);
@@ -1016,7 +1016,7 @@ exceptions:;
 			m_pstdstr[iIndex] = "";
 	}
 
-	return iIndex;	// ÀÓ½Ã..	¹Ýµå½Ã 1º¸´Ù Å©´Ù..
+	return iIndex;	// ï¿½Ó½ï¿½..	ï¿½Ýµï¿½ï¿½ 1ï¿½ï¿½ï¿½ï¿½ Å©ï¿½ï¿½..
 }
 
 void CUIImageTooltipDlg::DisplayTooltipsEnable(int xpos, int ypos, __IconItemSkill* spItem, bool bPrice, bool bBuy)
