@@ -1,0 +1,11 @@
+Aujard Start : 1? 13? 1? 58?
+2026-1-13 2:0, * Packet Count : recv=0, send=0, realsend=0 , time = 2:0
+
+2026-1-13 2:2, * Packet Count : recv=0, send=0, realsend=0 , time = 2:2
+
+2026-1-13 2:4, * Packet Count : recv=0, send=0, realsend=0 , time = 2:4
+
+2026-1-13 2:6, * Packet Count : recv=0, send=0, realsend=0 , time = 2:6
+
+2026-1-13 2:8, * Packet Count : recv=0, send=0, realsend=0 , time = 2:8
+

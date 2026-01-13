@@ -345,12 +345,20 @@ BOOL CN3TableBase<Type>::Load(HANDLE hFile)
 		unsigned int dwKey = *((unsigned int*)(&Data));
 		auto it = m_Datas.find(dwKey);
 		if(it == m_Datas.end()) m_Datas.insert(typename MapType::value_type(dwKey, Data));
+		
+		// Clear all std::string members in Data to prevent destructor crash
+		char* pData = (char*)(&Data);
+		for(int k=0; k<iDataTypeCount; k++) {
+			if(m_DataTypes[k] == DT_STRING) {
+				std::string* pStr = (std::string*)(pData + m_DataOffsets[k]);
+				pStr->clear();
+			}
+		}
 	}
 	
-	// Force cleanup to prevent locale crash in Release builds
 	CloseHandle(hFile);
 #ifdef _N3GAME
-    CLogWriter::Write("N3TableBase::Load - completed, closing file");
+    CLogWriter::Write("N3TableBase::Load - cleanup done, returning");
 #endif
 	return TRUE;
 }
