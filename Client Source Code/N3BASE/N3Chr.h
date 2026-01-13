@@ -212,7 +212,7 @@ protected:
 const int MAX_CHR_ANI_PART = 2; // 0 - ��ü, 1 - ��ü ::: �������� ����� ����� ���ϸ��̼� ����..
 const int MAX_PLUG_TRACE = 2; // �ִ� �ΰ��� ���� ������ �����..
 const int MAX_PLUG_TRACE_VERTEX = 64; // ���� ���� ���� ��.. �� 8 ���δ� �ܻ��� 3�ܰ�� ���´�..
-
+  
 typedef std::vector<CN3CPart*>::iterator	it_CPart;
 typedef std::vector<CN3CPlug*>::iterator	it_CPlug;
 

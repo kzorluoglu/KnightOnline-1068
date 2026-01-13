@@ -182,3 +182,82 @@
     [00:52:32] StaticMemberInit: input initialized
     [00:52:32] StaticMemberInit: sound/fx init done
     [00:52:32] WA_INACTIVE (not minimized), ignoring exit.
+---------------------------------------------------------------------------
+// Begin writing log... [01/13 01:12]
+    [01:12:51] StaticMemberInit: s_pEng->Init ok
+    [01:12:51] StaticMemberInit: after SetFocus
+    [01:12:51] StaticMemberInit: after UIEdit create
+    [01:12:51] StaticMemberInit: before CGameBase init
+    [01:12:51] CGameBase::StaticMemberInit: begin
+    [01:12:51] CGameBase::StaticMemberInit: load Zones
+    [01:12:51] Load Zones rows=0
+    [01:12:51] CGameBase::StaticMemberInit: load UIs
+    [01:12:51] Load UIs rows=0
+    [01:12:51] CGameBase::StaticMemberInit: load UPC_DefaultLooks
+    [01:12:51] Load UPC_DefaultLooks rows=0
+    [01:12:51] CGameBase::StaticMemberInit: load Item_Org
+    [01:12:51] Load Item_Org rows=0
+    [01:12:51] CGameBase::StaticMemberInit: load Quest_Menu
+    [01:12:51] Load Quest_Menu rows=0
+    [01:12:51] CGameBase::StaticMemberInit: load Quest_Talk
+    [01:12:51] Load Quest_Talk rows=0
+    [01:12:51] CGameBase::StaticMemberInit: load Item_Ext_0
+    [01:12:51] Load Item_Ext_0 rows=0
+    [01:12:51] CGameBase::StaticMemberInit: load Item_Ext_1
+    [01:12:51] Load Item_Ext_1 rows=0
+    [01:12:51] CGameBase::StaticMemberInit: load Item_Ext_2
+    [01:12:51] Load Item_Ext_2 rows=0
+    [01:12:51] CGameBase::StaticMemberInit: load Item_Ext_3
+    [01:12:51] Load Item_Ext_3 rows=0
+    [01:12:51] CGameBase::StaticMemberInit: load Item_Ext_4
+    [01:12:51] Load Item_Ext_4 rows=0
+    [01:12:51] CGameBase::StaticMemberInit: load Item_Ext_5
+    [01:12:51] Load Item_Ext_5 rows=0
+    [01:12:51] CGameBase::StaticMemberInit: load Item_Ext_6
+    [01:12:51] Load Item_Ext_6 rows=0
+    [01:12:51] CGameBase::StaticMemberInit: load Item_Ext_7
+    [01:12:51] Load Item_Ext_7 rows=0
+    [01:12:51] CGameBase::StaticMemberInit: load Item_Ext_8
+    [01:12:51] Load Item_Ext_8 rows=0
+    [01:12:51] CGameBase::StaticMemberInit: load Item_Ext_9
+    [01:12:51] Load Item_Ext_9 rows=0
+    [01:12:51] CGameBase::StaticMemberInit: load Item_Ext_10
+    [01:12:51] Load Item_Ext_10 rows=0
+    [01:12:51] CGameBase::StaticMemberInit: load Item_Ext_11
+    [01:12:51] Load Item_Ext_11 rows=0
+    [01:12:51] CGameBase::StaticMemberInit: load Item_Ext_12
+    [01:12:51] Load Item_Ext_12 rows=0
+    [01:12:51] CGameBase::StaticMemberInit: load Item_Ext_13
+    [01:12:51] Load Item_Ext_13 rows=0
+    [01:12:51] CGameBase::StaticMemberInit: load Item_Ext_14
+    [01:12:51] Load Item_Ext_14 rows=0
+    [01:12:51] CGameBase::StaticMemberInit: load Item_Ext_15
+    [01:12:51] Load Item_Ext_15 rows=0
+    [01:12:51] CGameBase::StaticMemberInit: load Item_Ext_16
+    [01:12:51] Load Item_Ext_16 rows=0
+    [01:12:51] CGameBase::StaticMemberInit: load Item_Ext_17
+    [01:12:51] Load Item_Ext_17 rows=0
+    [01:12:51] CGameBase::StaticMemberInit: load Item_Ext_18
+    [01:12:51] Load Item_Ext_18 rows=0
+    [01:12:51] CGameBase::StaticMemberInit: load Item_Ext_19
+    [01:12:51] Load Item_Ext_19 rows=0
+    [01:12:51] CGameBase::StaticMemberInit: load Item_Ext_20
+    [01:12:51] Load Item_Ext_20 rows=0
+    [01:12:51] CGameBase::StaticMemberInit: load Item_Ext_21
+    [01:12:51] Load Item_Ext_21 rows=0
+    [01:12:51] CGameBase::StaticMemberInit: load NPC_Looks
+    [01:12:51] Load NPC_Looks rows=0
+    [01:12:51] CGameBase::StaticMemberInit: load skill_magic_main
+    [01:12:51] Load skill_magic_main rows=0
+    [01:12:51] CGameBase::StaticMemberInit: load Exchange_Quest
+    [01:12:51] Load Exchange_Quest rows=0
+    [01:12:51] CGameBase::StaticMemberInit: load fx
+    [01:12:51] Load fx rows=0
+    [01:12:51] CN3Texture::Create - 32x32, fmt=26, Mms=1 ()
+    [01:12:51] CGameBase::StaticMemberInit: end
+    [01:12:51] StaticMemberInit: tables loaded
+    [01:12:51] StaticMemberInit: sockets created
+    [01:12:51] StaticMemberInit: cursors loaded
+    [01:12:51] StaticMemberInit: input initialized
+    [01:12:51] StaticMemberInit: sound/fx init done
+    [01:12:51] WA_INACTIVE (not minimized), ignoring exit.

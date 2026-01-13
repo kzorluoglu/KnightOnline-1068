@@ -1,0 +1,155 @@
+2026-1-12 0:1, * Packet Count : recv=0, send=0, realsend=0 , time = 0:1
+
+2026-1-12 0:3, * Packet Count : recv=0, send=0, realsend=0 , time = 0:3
+
+2026-1-12 0:5, * Packet Count : recv=0, send=0, realsend=0 , time = 0:5
+
+2026-1-12 0:7, * Packet Count : recv=0, send=0, realsend=0 , time = 0:7
+
+2026-1-12 0:9, * Packet Count : recv=0, send=0, realsend=0 , time = 0:9
+
+2026-1-12 0:11, * Packet Count : recv=0, send=0, realsend=0 , time = 0:11
+
+2026-1-12 0:13, * Packet Count : recv=0, send=0, realsend=0 , time = 0:13
+
+2026-1-12 0:15, * Packet Count : recv=0, send=0, realsend=0 , time = 0:15
+
+2026-1-12 0:17, * Packet Count : recv=0, send=0, realsend=0 , time = 0:17
+
+2026-1-12 0:19, * Packet Count : recv=0, send=0, realsend=0 , time = 0:19
+
+Aujard Start : 1? 12? 19? 21?
+2026-1-12 19:23, * Packet Count : recv=0, send=0, realsend=0 , time = 19:23
+
+2026-1-12 19:25, * Packet Count : recv=0, send=0, realsend=0 , time = 19:25
+
+2026-1-12 19:27, * Packet Count : recv=0, send=0, realsend=0 , time = 19:27
+
+2026-1-12 19:29, * Packet Count : recv=0, send=0, realsend=0 , time = 19:29
+
+2026-1-12 19:31, * Packet Count : recv=0, send=0, realsend=0 , time = 19:31
+
+2026-1-12 19:33, * Packet Count : recv=0, send=0, realsend=0 , time = 19:33
+
+2026-1-12 19:35, * Packet Count : recv=0, send=0, realsend=0 , time = 19:35
+
+2026-1-12 19:37, * Packet Count : recv=0, send=0, realsend=0 , time = 19:37
+
+2026-1-12 19:39, * Packet Count : recv=0, send=0, realsend=0 , time = 19:39
+
+2026-1-12 19:41, * Packet Count : recv=0, send=0, realsend=0 , time = 19:41
+
+2026-1-12 19:43, * Packet Count : recv=0, send=0, realsend=0 , time = 19:43
+
+2026-1-12 19:45, * Packet Count : recv=0, send=0, realsend=0 , time = 19:45
+
+2026-1-12 19:47, * Packet Count : recv=0, send=0, realsend=0 , time = 19:47
+
+2026-1-12 19:49, * Packet Count : recv=0, send=0, realsend=0 , time = 19:49
+
+2026-1-12 19:51, * Packet Count : recv=0, send=0, realsend=0 , time = 19:51
+
+2026-1-12 19:53, * Packet Count : recv=0, send=0, realsend=0 , time = 19:53
+
+2026-1-12 19:55, * Packet Count : recv=0, send=0, realsend=0 , time = 19:55
+
+2026-1-12 19:57, * Packet Count : recv=0, send=0, realsend=0 , time = 19:57
+
+2026-1-12 19:59, * Packet Count : recv=0, send=0, realsend=0 , time = 19:59
+
+2026-1-12 20:1, * Packet Count : recv=0, send=0, realsend=0 , time = 20:1
+
+2026-1-12 20:3, * Packet Count : recv=0, send=0, realsend=0 , time = 20:3
+
+2026-1-12 20:5, * Packet Count : recv=0, send=0, realsend=0 , time = 20:5
+
+2026-1-12 20:7, * Packet Count : recv=0, send=0, realsend=0 , time = 20:7
+
+2026-1-12 20:9, * Packet Count : recv=0, send=0, realsend=0 , time = 20:9
+
+2026-1-12 20:11, * Packet Count : recv=0, send=0, realsend=0 , time = 20:11
+
+2026-1-12 20:13, * Packet Count : recv=0, send=0, realsend=0 , time = 20:13
+
+2026-1-12 20:15, * Packet Count : recv=0, send=0, realsend=0 , time = 20:15
+
+2026-1-12 20:17, * Packet Count : recv=0, send=0, realsend=0 , time = 20:17
+
+2026-1-12 20:19, * Packet Count : recv=0, send=0, realsend=0 , time = 20:19
+
+2026-1-12 20:21, * Packet Count : recv=0, send=0, realsend=0 , time = 20:21
+
+2026-1-12 20:23, * Packet Count : recv=0, send=0, realsend=0 , time = 20:23
+
+2026-1-12 20:25, * Packet Count : recv=0, send=0, realsend=0 , time = 20:25
+
+2026-1-12 20:31, * Packet Count : recv=0, send=0, realsend=0 , time = 20:31
+
+2026-1-12 20:33, * Packet Count : recv=0, send=0, realsend=0 , time = 20:33
+
+2026-1-12 20:35, * Packet Count : recv=0, send=0, realsend=0 , time = 20:35
+
+2026-1-12 20:37, * Packet Count : recv=0, send=0, realsend=0 , time = 20:37
+
+2026-1-12 20:39, * Packet Count : recv=0, send=0, realsend=0 , time = 20:39
+
+2026-1-12 20:52, * Packet Count : recv=0, send=0, realsend=0 , time = 20:52
+
+2026-1-12 20:54, * Packet Count : recv=0, send=0, realsend=0 , time = 20:54
+
+2026-1-12 20:56, * Packet Count : recv=0, send=0, realsend=0 , time = 20:56
+
+2026-1-12 20:58, * Packet Count : recv=0, send=0, realsend=0 , time = 20:58
+
+2026-1-12 21:0, * Packet Count : recv=0, send=0, realsend=0 , time = 21:0
+
+2026-1-12 21:2, * Packet Count : recv=0, send=0, realsend=0 , time = 21:2
+
+2026-1-12 21:4, * Packet Count : recv=0, send=0, realsend=0 , time = 21:4
+
+2026-1-12 21:6, * Packet Count : recv=0, send=0, realsend=0 , time = 21:6
+
+2026-1-12 21:8, * Packet Count : recv=0, send=0, realsend=0 , time = 21:8
+
+2026-1-12 21:10, * Packet Count : recv=0, send=0, realsend=0 , time = 21:10
+
+2026-1-12 21:12, * Packet Count : recv=0, send=0, realsend=0 , time = 21:12
+
+2026-1-12 21:14, * Packet Count : recv=0, send=0, realsend=0 , time = 21:14
+
+2026-1-12 21:16, * Packet Count : recv=0, send=0, realsend=0 , time = 21:16
+
+2026-1-12 21:18, * Packet Count : recv=0, send=0, realsend=0 , time = 21:18
+
+2026-1-12 21:20, * Packet Count : recv=0, send=0, realsend=0 , time = 21:20
+
+2026-1-12 21:22, * Packet Count : recv=0, send=0, realsend=0 , time = 21:22
+
+2026-1-12 21:24, * Packet Count : recv=0, send=0, realsend=0 , time = 21:24
+
+2026-1-12 21:26, * Packet Count : recv=0, send=0, realsend=0 , time = 21:26
+
+2026-1-12 21:28, * Packet Count : recv=0, send=0, realsend=0 , time = 21:28
+
+2026-1-12 21:30, * Packet Count : recv=0, send=0, realsend=0 , time = 21:30
+
+2026-1-12 21:32, * Packet Count : recv=0, send=0, realsend=0 , time = 21:32
+
+2026-1-12 21:34, * Packet Count : recv=0, send=0, realsend=0 , time = 21:34
+
+2026-1-12 21:36, * Packet Count : recv=0, send=0, realsend=0 , time = 21:36
+
+2026-1-12 21:38, * Packet Count : recv=0, send=0, realsend=0 , time = 21:38
+
+2026-1-12 21:40, * Packet Count : recv=0, send=0, realsend=0 , time = 21:40
+
+2026-1-12 21:42, * Packet Count : recv=0, send=0, realsend=0 , time = 21:42
+
+2026-1-12 21:44, * Packet Count : recv=0, send=0, realsend=0 , time = 21:44
+
+2026-1-12 21:46, * Packet Count : recv=0, send=0, realsend=0 , time = 21:46
+
+2026-1-12 21:48, * Packet Count : recv=0, send=0, realsend=0 , time = 21:48
+
+2026-1-12 21:50, * Packet Count : recv=0, send=0, realsend=0 , time = 21:50
+

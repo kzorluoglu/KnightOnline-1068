@@ -144,6 +144,7 @@ void CGameProcLogIn::Init()
 #endif
 
 	char szIPs[256][32]; memset(szIPs, 0, sizeof(szIPs));
+	int i;
 	for(i = 0; i < iServerCount; i++)
 	{
 		char szKey[32] = "";

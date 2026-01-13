@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -13,18 +13,17 @@
   <PropertyGroup Label="Globals">
     <SccProjectName>"$/WarFare", DXBAAAAA</SccProjectName>
     <SccLocalPath>.</SccLocalPath>
-    <ProjectGuid>{F3EB0B1C-6EF1-4880-BD1F-52D054E278C3}</ProjectGuid>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
-    <PlatformToolset>v141</PlatformToolset>
+    <PlatformToolset>v140</PlatformToolset>
     <UseOfMfc>false</UseOfMfc>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
-    <PlatformToolset>v141</PlatformToolset>
+    <PlatformToolset>v140</PlatformToolset>
     <UseOfMfc>false</UseOfMfc>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
@@ -44,19 +43,17 @@
     <OutDir>.\Debug\</OutDir>
     <IntDir>.\Debug\</IntDir>
     <LinkIncremental>true</LinkIncremental>
-    <TargetName>NetCatOnLine_Debug</TargetName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <OutDir>.\Release\</OutDir>
     <IntDir>.\Release\</IntDir>
     <LinkIncremental>false</LinkIncremental>
-    <TargetName>KnightOnLine</TargetName>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
-      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <InlineFunctionExpansion>Default</InlineFunctionExpansion>
-      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <FunctionLevelLinking>false</FunctionLevelLinking>
       <Optimization>Disabled</Optimization>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <WarningLevel>Level3</WarningLevel>
@@ -92,27 +89,31 @@
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
-      <IgnoreSpecificDefaultLibraries>msvcrt;LIBC;%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
-      <ImageHasSafeExceptionHandlers>false</ImageHasSafeExceptionHandlers>
-      <AdditionalDependencies>implode.lib;winmm.lib;imm32.lib;ddraw.lib;d3d8.lib;d3d9.lib;d3dx8.lib;dsound.lib;dxguid.lib;dxerr8.lib;dxerr.lib;wsock32.lib;DInput8.lib;odbc32.lib;odbccp32.lib;NAFXCWD.LIB;LIBCMTD.LIB;..\JPEG\jpegLib.lib;windowscodecs.lib;uxtheme.lib;legacy_stdio_definitions.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <IgnoreSpecificDefaultLibraries>LIBC.lib;%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <OutputFile>NetCatOnLine_Debug.exe</OutputFile>
+      <AdditionalDependencies>legacy_stdio_definitions.lib;d3d9.lib;d3dx9.lib;DxErr.lib;implode.lib;winmm.lib;imm32.lib;ddraw.lib;d3d8.lib;d3dx8.lib;dsound.lib;dxguid.lib;dxerr8.lib;wsock32.lib;DInput8.lib;odbc32.lib;odbccp32.lib;NAFXCWD.LIB;LIBCMTD.LIB;..\JPEG\jpegLib.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>C:\Users\kzorluoglu\CLionProjects\KnightOnline-1068\third_party\dx9sdk\Lib\x86;C:\Users\kzorluoglu\CLionProjects\KnightOnline-1068\third_party\dx8sdk\DXF\lib;C:\Program Files (x86)\Windows Kits\10\Lib\10.0.10240.0\ucrt\x86;C:\Program Files (x86)\Windows Kits\10\Lib\10.0.10240.0\um\x86;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <ImageHasSafeExceptionHandlers>false</ImageHasSafeExceptionHandlers>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
-      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
       <StringPooling>true</StringPooling>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <Optimization>MaxSpeed</Optimization>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <WarningLevel>Level3</WarningLevel>
-      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_N3GAME;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_WIN32_WINNT=0x0601;_CRT_SECURE_NO_WARNINGS;WIN32_LEAN_AND_MEAN;STRICT;_N3GAME;WIN32;NDEBUG;_WINDOWS;_N3GAME;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AssemblerListingLocation>.\Release\</AssemblerListingLocation>
       <BrowseInformation>true</BrowseInformation>
       <PrecompiledHeaderOutputFile>.\Release\WarFare.pch</PrecompiledHeaderOutputFile>
       <ObjectFileName>.\Release\</ObjectFileName>
       <ProgramDataBaseFileName>.\Release\</ProgramDataBaseFileName>
+      <AdditionalIncludeDirectories>C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\ucrt;C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\um;C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\shared;C:\Users\kzorluoglu\CLionProjects\KnightOnline-1068\Client Source Code\WarFare;C:\Users\kzorluoglu\CLionProjects\KnightOnline-1068\Client Source Code\WarFare\..\N3BASE;C:\Users\kzorluoglu\CLionProjects\KnightOnline-1068\Client Source Code\WarFare\..\JPEG;C:\Users\kzorluoglu\CLionProjects\KnightOnline-1068\third_party\dx8sdk\DXF\include;C:\Users\kzorluoglu\CLionProjects\KnightOnline-1068\third_party\dx9sdk\Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <ConformanceMode>false</ConformanceMode>
+      <AdditionalOptions>/FS /Zc:forScope- /permissive </AdditionalOptions>
     </ClCompile>
     <Midl>
       <SuppressStartupBanner>true</SuppressStartupBanner>
@@ -133,8 +134,12 @@
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <GenerateDebugInformation>false</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
-      <AdditionalDependencies>implode.lib;winmm.lib;imm32.lib;ddraw.lib;d3d8.lib;d3d9.lib;d3dx8.lib;dsound.lib;dxguid.lib;dxerr8.lib;dxerr.lib;wsock32.lib;DInput8.lib;..\JPEG\jpegLib.lib;windowscodecs.lib;uxtheme.lib;legacy_stdio_definitions.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>KnightOnLine.exe</OutputFile>
+      <AdditionalDependencies>legacy_stdio_definitions.lib;d3d9.lib;d3dx9.lib;DxErr.lib;implode.lib;winmm.lib;imm32.lib;ddraw.lib;d3d8.lib;d3dx8.lib;dsound.lib;dxguid.lib;dxerr8.lib;wsock32.lib;DInput8.lib;..\JPEG\jpegLib.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <Version>0.1</Version>
       <AdditionalLibraryDirectories>C:\Users\kzorluoglu\CLionProjects\KnightOnline-1068\third_party\dx9sdk\Lib\x86;C:\Users\kzorluoglu\CLionProjects\KnightOnline-1068\third_party\dx8sdk\DXF\lib;C:\Program Files (x86)\Windows Kits\10\Lib\10.0.10240.0\ucrt\x86;C:\Program Files (x86)\Windows Kits\10\Lib\10.0.10240.0\um\x86;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <ImageHasSafeExceptionHandlers>false</ImageHasSafeExceptionHandlers>
+      <IgnoreSpecificDefaultLibraries>LIBC.lib;%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>

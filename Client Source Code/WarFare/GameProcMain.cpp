@@ -1672,6 +1672,7 @@ bool CGameProcMain::MsgRecv_MyInfo_All(DataPack* pDataPack, int& iOffset)
 	int iItemDurabilityInSlots[ITEM_SLOT_COUNT]; memset(iItemDurabilityInSlots, -1, sizeof(iItemDurabilityInSlots));
 	int iItemCountInSlots[ITEM_SLOT_COUNT]; memset(iItemCountInSlots, -1, sizeof(iItemCountInSlots));
 
+	int i;
 	for ( i = 0; i < ITEM_SLOT_COUNT; i++ )				// 슬롯 갯수마큼..
 	{
 		iItemIDInSlots[i]			= CAPISocket::Parse_GetDword(pDataPack->m_pData, iOffset);

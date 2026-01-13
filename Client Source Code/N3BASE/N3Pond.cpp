@@ -213,6 +213,7 @@ bool CN3Pond::Load(HANDLE hFile)
 	if(m_iPondMeshNum<=0) return false;
 
 	char szFileName[30];
+	int i;
 	for (i=0;i<MAX_POND_TEX;i++)
 	{
 		sprintf(szFileName, "misc\\river\\caust%02d.dxt", i);

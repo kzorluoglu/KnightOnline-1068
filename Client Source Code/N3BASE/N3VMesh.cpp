@@ -296,6 +296,7 @@ bool CN3VMesh::CheckCollision(const __Matrix44& MtxWorld, const __Vector3& v0, c
 	//������ �浹�޽� �ȿ� �ִ� ���..by lynus..
 	__Vector3 tmpNormal;
 	float d;
+	int i;
 	for(i = 0; i < nFC; i++)
 	{
 		if(m_nIC > 0) { nCI0 = m_pwIndices[i*3+0]; nCI1 = m_pwIndices[i*3+1]; nCI2 = m_pwIndices[i*3+2]; }

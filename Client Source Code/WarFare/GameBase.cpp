@@ -59,18 +59,29 @@ void CGameBase::StaticMemberInit()
     s_pTbl_QuestMenu        = new CN3TableBase<__TABLE_QUEST_MENU>;
     s_pTbl_QuestTalk        = new CN3TableBase<__TABLE_QUEST_TALK>;
 
-    std::string szLangTail = ".tbl";
+    std::string szLangTail = "_ch.tbl";  // Default to Chinese Simplified
     int iLangID = ::GetUserDefaultLangID();
-    if(0x0404 == iLangID) szLangTail = "_TW.tbl"; // Taiwan Language
-    if(0x0804 == iLangID || 0x0404 == iLangID) szLangTail = "_ch.tbl"; // Chinese (Simplified or Traditional)
+    if(0x0404 == iLangID) szLangTail = "_TW.tbl"; // Taiwan Language (Traditional Chinese)
 
+    CLogWriter::Write("=== BUILD 01:57 - NEW VERSION ===");
     std::string szFN;
     CLogWriter::Write("CGameBase::StaticMemberInit: load Zones");
-    szFN = "Data\\Zones.tbl";               s_pTbl_Zones->LoadFromFile(szFN.c_str());      CLogWriter::Write("Load Zones rows=%d", s_pTbl_Zones->GetSize());
-    CLogWriter::Write("CGameBase::StaticMemberInit: load UIs");
-    szFN = "Data\\UIs" + szLangTail;        s_pTbl_UI->LoadFromFile(szFN.c_str());         CLogWriter::Write("Load UIs rows=%d", s_pTbl_UI->GetSize());
+    szFN = "Data\\Zones.tbl";               
+    s_pTbl_Zones->LoadFromFile(szFN.c_str());
+    CLogWriter::Write("CGameBase::StaticMemberInit: Zones LoadFromFile returned");
+    int zonesSize = s_pTbl_Zones->GetSize();
+    CLogWriter::Write("Load Zones rows=%d", zonesSize);
+    CLogWriter::Write("CGameBase::StaticMemberInit: POINT A - after Zones");
+    
+    szFN = "Data\\UIs" + szLangTail;
+    CLogWriter::Write("CGameBase::StaticMemberInit: POINT B - string concat done, will load UIs from: Data\\UIs_ch.tbl or _TW.tbl");
+    s_pTbl_UI->LoadFromFile(szFN.c_str());         
+    CLogWriter::Write("Load UIs rows=%d", s_pTbl_UI->GetSize());
+    
     CLogWriter::Write("CGameBase::StaticMemberInit: load UPC_DefaultLooks");
-    szFN = "Data\\UPC_DefaultLooks.tbl";    s_pTbl_UPC_Looks->LoadFromFile(szFN.c_str());  CLogWriter::Write("Load UPC_DefaultLooks rows=%d", s_pTbl_UPC_Looks->GetSize());
+    szFN = "Data\\UPC_DefaultLooks.tbl";    
+    s_pTbl_UPC_Looks->LoadFromFile(szFN.c_str());  
+    CLogWriter::Write("Load UPC_DefaultLooks rows=%d", s_pTbl_UPC_Looks->GetSize());
     CLogWriter::Write("CGameBase::StaticMemberInit: load Item_Org");
     szFN = "Data\\Item_Org" + szLangTail;   s_pTbl_Items_Basic->LoadFromFile(szFN.c_str());CLogWriter::Write("Load Item_Org rows=%d", s_pTbl_Items_Basic->GetSize());
 

@@ -320,9 +320,9 @@ BOOL CN3TableBase<Type>::Load(HANDLE hFile)
 #ifdef _N3GAME
     CLogWriter::Write("N3TableBase::Load - iRC = %d", iRC);
 #endif
-	Type Data;
 	for (i=0; i<iRC; ++i)
 	{
+		Type Data;  // Move inside loop so destructor runs each iteration
         // Zero out Data before each row if it's not a complex object, but here it is complex.
         // We rely on constructor for the first row and subsequent rows are overwritten.
 		for (j=0; j<iDataTypeCount; ++j)
@@ -346,6 +346,12 @@ BOOL CN3TableBase<Type>::Load(HANDLE hFile)
 		auto it = m_Datas.find(dwKey);
 		if(it == m_Datas.end()) m_Datas.insert(typename MapType::value_type(dwKey, Data));
 	}
+	
+	// Force cleanup to prevent locale crash in Release builds
+	CloseHandle(hFile);
+#ifdef _N3GAME
+    CLogWriter::Write("N3TableBase::Load - completed, closing file");
+#endif
 	return TRUE;
 }
 

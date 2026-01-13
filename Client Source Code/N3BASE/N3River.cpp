@@ -81,6 +81,7 @@ bool CN3River::Load(HANDLE hFile)
 		pInfo->pDiff = new _RIVER_DIFF[pInfo->iVC];
 		float fAdd = 0.0f;
 		float fMul = 0.002f;
+		int l;
 		for (l=0;l<pInfo->iVC;l++)
 		{
 			pInfo->pDiff[l].fDiff = fAdd;
@@ -126,6 +127,7 @@ bool CN3River::Load(HANDLE hFile)
 	}	
 
 	char szFileName[30];
+	int i;
 	for (i=0;i<MAX_RIVER_TEX;i++)
 	{
 		sprintf(szFileName, "misc\\river\\caust%02d.dxt", i);

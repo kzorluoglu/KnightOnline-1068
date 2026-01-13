@@ -35,7 +35,8 @@ static char THIS_FILE[]=__FILE__;
 CGameProcCharacterSelect::CGameProcCharacterSelect()
 {
 	m_pCamera = NULL;
-	for ( int i = 0; i < 8; i++ ) m_pLights[i] = NULL;
+	int i;
+	for ( i = 0; i < 8; i++ ) m_pLights[i] = NULL;
 	for ( i = 0; i < MAX_AVAILABLE_CHARACTER; i++ )	{ m_pChrs[i] = NULL; }
 	m_pActiveBg = NULL;
 
@@ -55,7 +56,8 @@ CGameProcCharacterSelect::CGameProcCharacterSelect()
 CGameProcCharacterSelect::~CGameProcCharacterSelect()
 {
 	delete m_pCamera;
-	for ( int i = 0; i < 8; i++ ) delete m_pLights[i];
+	int i;
+	for ( i = 0; i < 8; i++ ) delete m_pLights[i];
 	for ( i = 0; i < MAX_AVAILABLE_CHARACTER; i++ ) delete m_pChrs[i];
 	delete m_pActiveBg;
 	delete m_pUICharacterSelect;
@@ -68,7 +70,8 @@ void CGameProcCharacterSelect::Release()
 	CGameProcedure::Release();
 
 	delete m_pCamera; m_pCamera = NULL;
-	for ( int i = 0; i < 8; i++ ) { delete m_pLights[i]; m_pLights[i] = NULL; }
+	int i;
+	for ( i = 0; i < 8; i++ ) { delete m_pLights[i]; m_pLights[i] = NULL; }
 	for ( i = 0; i < MAX_AVAILABLE_CHARACTER; i++ )
 	{
 		delete m_pChrs[i]; m_pChrs[i] = NULL;
@@ -86,7 +89,8 @@ void CGameProcCharacterSelect::Init()
 {
 //..
 	m_pCamera = NULL;
-	for ( int i = 0; i < 8; i++ ) m_pLights[i] = NULL;
+	int i;
+	for ( i = 0; i < 8; i++ ) m_pLights[i] = NULL;
 	for ( i = 0; i < MAX_AVAILABLE_CHARACTER; i++ )	{ m_pChrs[i] = NULL; }
 	m_pActiveBg = NULL;
 
@@ -256,7 +260,8 @@ void CGameProcCharacterSelect::Tick()
 NowRotating:
 
 // 라이트..
-	for(int i = 0; i < 8; i++) s_pEng->s_lpD3DDev->LightEnable(i, FALSE); // 일단 라이트 다 끄고..
+	int i;
+	for(i = 0; i < 8; i++) s_pEng->s_lpD3DDev->LightEnable(i, FALSE); // 일단 라이트 다 끄고..
 	
 	for(i = 0; i < 2; i++)
 	{
@@ -1121,7 +1126,8 @@ void CGameProcCharacterSelect::FadeOutRender()
 	CN3Base::s_lpD3DDev->GetRenderState( D3DRS_ALPHABLENDENABLE,	&bUseAlphaBlend );
 
 	int	bLight[8];
-	for ( int i = 0; i < 8; i++ )	CN3Base::s_lpD3DDev->GetLightEnable(i, &bLight[i]);
+	int i;
+	for ( i = 0; i < 8; i++ )	CN3Base::s_lpD3DDev->GetLightEnable(i, &bLight[i]);
 
 	if (bUseAlphaBlend == FALSE) CN3Base::s_lpD3DDev->SetRenderState( D3DRS_ALPHABLENDENABLE,	TRUE );
 	if (dwUseLighting) CN3Base::s_lpD3DDev->SetRenderState( D3DRS_LIGHTING, FALSE );

@@ -2,8 +2,8 @@
 #define __MY_3DSTRUCT_H_
 
 #include <d3d9.h>
-#include "d3dx9.h"
-#include "d3dx9math.h"
+#include <d3dx9.h>
+#include <d3dx9math.h>
 #include <string>
 
 const float __PI = 3.141592654f;
